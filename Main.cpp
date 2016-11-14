@@ -18,18 +18,64 @@
  */
 
 // Project
+#include <ConfigurationDialog.h>
 #include "TrayWeather.h"
-#include "LocationConfigDialog.h"
-
-// Qt
 #include <QApplication>
 #include <QSharedMemory>
 #include <QMessageBox>
 #include <QIcon>
+#include <QSettings>
 #include <QDebug>
 
 // C++
 #include <iostream>
+
+static const QString LONGITUDE             = QObject::tr("Longitude");
+static const QString LATITUDE              = QObject::tr("Latitude");
+static const QString COUNTRY               = QObject::tr("Country");
+static const QString REGION                = QObject::tr("Region");
+static const QString CITY                  = QObject::tr("City");
+static const QString ISP                   = QObject::tr("Service Provider");
+static const QString IP                    = QObject::tr("IP Address");
+static const QString TIMEZONE              = QObject::tr("Timezone");
+static const QString ZIPCODE               = QObject::tr("Zipcode");
+static const QString OPENWEATHERMAP_APIKEY = QObject::tr("OpenWeatherMap API Key");
+
+//--------------------------------------------------------------------
+void saveConfiguration(const Configuration &configuration)
+{
+  QSettings settings("TrayWeather.ini", QSettings::IniFormat);
+
+  settings.setValue(LONGITUDE,             configuration.longitude);
+  settings.setValue(LATITUDE,              configuration.latitude);
+  settings.setValue(COUNTRY,               configuration.country);
+  settings.setValue(REGION,                configuration.region);
+  settings.setValue(CITY,                  configuration.city);
+  settings.setValue(ISP,                   configuration.isp);
+  settings.setValue(IP,                    configuration.ip);
+  settings.setValue(TIMEZONE,              configuration.timezone);
+  settings.setValue(ZIPCODE,               configuration.zipcode);
+  settings.setValue(OPENWEATHERMAP_APIKEY, configuration.owm_apikey);
+
+  settings.sync();
+}
+
+//--------------------------------------------------------------------
+void loadConfiguration(Configuration &configuration)
+{
+  QSettings settings("TrayWeather.ini", QSettings::IniFormat);
+
+  configuration.longitude  = settings.value(LONGITUDE, -181.0).toDouble();
+  configuration.latitude   = settings.value(LATITUDE, -181.0).toDouble();
+  configuration.country    = settings.value(COUNTRY, QString()).toString();
+  configuration.region     = settings.value(REGION, QString()).toString();
+  configuration.city       = settings.value(CITY, QString()).toString();
+  configuration.isp        = settings.value(ISP, QString()).toString();
+  configuration.ip         = settings.value(IP, QString()).toString();
+  configuration.timezone   = settings.value(TIMEZONE, QString()).toString();
+  configuration.zipcode    = settings.value(ZIPCODE, QString()).toString();
+  configuration.owm_apikey = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
+}
 
 //-----------------------------------------------------------------
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -57,17 +103,42 @@ int main(int argc, char *argv[])
   {
     QMessageBox msgBox;
     msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgBox.setWindowTitle(QObject::tr("Tray Weather"));
     msgBox.setIcon(QMessageBox::Warning);
     msgBox.setText("TrayWeather is already running!");
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.exec();
-    exit(0);
+    std::exit(0);
   }
 
-//  TrayWeather trayApp;
-  // TODO
-  LocationConfigDialog dialog;
-  dialog.show();
+  Configuration configuration;
+  loadConfiguration(configuration);
+
+  //if(!configuration.isValid())
+  {
+    ConfigurationDialog dialog(configuration);
+    dialog.exec();
+
+    dialog.getConfiguration(configuration);
+
+    if(configuration.isValid())
+    {
+      saveConfiguration(configuration);
+    }
+    else
+    {
+      QMessageBox msgBox;
+      msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+      msgBox.setWindowTitle(QObject::tr("Tray Weather"));
+      msgBox.setIcon(QMessageBox::Warning);
+      msgBox.setText("TrayWeather cannot execute without a valid location and a valid OpenWeatherMap API Key.\nThe application will exit now.");
+      msgBox.setStandardButtons(QMessageBox::Ok);
+      msgBox.exec();
+      std::exit(0);
+    }
+  }
+
+  std::exit(0);
 
   auto resultValue = app.exec();
 
