@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/TrayWeather">
+    <file>application.ico</file>
+	<file>application.svg</file>
+	<file>Qt.ico</file>
+  </qresource>
+</RCC>
