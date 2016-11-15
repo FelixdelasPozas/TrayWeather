@@ -22,29 +22,33 @@
 
 // Qt
 #include <QNetworkRequest>
-#include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QMessageBox>
 #include <QIcon>
-#include <QDomNode>
-#include <QDomNodeList>
-#include <QDomDocument>
 #include <QString>
-#include <QDebug>
 
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
-: QDialog     {parent}
-, m_netManager{std::make_shared<QNetworkAccessManager>(this)}
+: QDialog       {parent}
+, m_netManager  {std::make_shared<QNetworkAccessManager>(this)}
+, m_testedAPIKey{false}
 {
   setupUi(this);
 
-  if(!configuration.isValid())
+  connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+          this,               SLOT(replyFinished(QNetworkReply*)));
+
+  connect(m_apiTest, SIGNAL(pressed()),
+          this,      SLOT(requestOpenWeatherMapAPIKeyTest()));
+
+  connect(m_request, SIGNAL(pressed()),
+          this,      SLOT(requestIPGeolocation()));
+
+  if(configuration.isValid())
   {
-    m_longitude->setText(tr("Requesting IP Coordinates..."));
-  }
-  else
-  {
+    m_geoipLabel->setStyleSheet("QLabel { color : green; }");
+    m_geoipLabel->setText(tr("IP Geolocation successful."));
+
     m_city->setText(configuration.city);
     m_country->setText(configuration.country);
     m_ip->setText(configuration.ip);
@@ -56,20 +60,12 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
     m_timezone->setText(configuration.timezone);
     m_zipCode->setText(configuration.zipcode);
 
-    auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(configuration.latitude)
-                                                                                                       .arg(configuration.longitude)
-                                                                                                       .arg(configuration.owm_apikey))};
-    m_netManager->get(QNetworkRequest{url});
+    requestOpenWeatherMapAPIKeyTest();
   }
-
-  connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
-          this,               SLOT(replyFinished(QNetworkReply*)));
-
-  // CSV is easier to parse later.
-  m_netManager->get(QNetworkRequest{QUrl{"http://ip-api.com/csv"}});
-
-  m_request->setEnabled(false);
-  m_request->setText(tr("Waiting"));
+  else
+  {
+    requestIPGeolocation();
+  }
 }
 
 //--------------------------------------------------------------------
@@ -83,7 +79,15 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
   if(reply->url() != QUrl{"http://ip-api.com/csv"})
   {
     auto type = reply->header(QNetworkRequest::ContentTypeHeader);
-    if(type.toString().startsWith("application/json")) return;
+    if(type.toString().startsWith("application/json"))
+    {
+      reply->deleteLater();
+      m_apiTest->setEnabled(true);
+      m_testedAPIKey = true;
+      m_testLabel->setStyleSheet("QLabel { color : green; }");
+      m_testLabel->setText(tr("The API Key is valid!"));
+      return;
+    }
 
     message = tr("Invalid OpenWeatherMap API Key.");
   }
@@ -111,6 +115,13 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
           m_isp->setText(values.at(10));
           m_ip->setText(values.at(13));
 
+          m_request->setEnabled(true);
+          m_geoipLabel->setStyleSheet("QLabel { color : green; }");
+          m_geoipLabel->setText(tr("IP Geolocation successful."));
+          reply->deleteLater();
+
+          if(!m_testedAPIKey) requestOpenWeatherMapAPIKeyTest();
+
           return;
         }
         else
@@ -137,6 +148,8 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
   box->setText(message);
 
   box->exec();
+
+  reply->deleteLater();
 }
 
 //--------------------------------------------------------------------
@@ -146,10 +159,34 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.country    = m_country->text();
   configuration.ip         = m_ip->text();
   configuration.isp        = m_isp->text();
-  configuration.latitude   = m_latitude->text().toDouble();
-  configuration.longitude  = m_longitude->text().toDouble();
-  configuration.owm_apikey = m_apikey->text();
+  configuration.latitude   = !m_latitude->text().isEmpty() ? m_latitude->text().toDouble() : -181.0;
+  configuration.longitude  = !m_longitude->text().isEmpty() ? m_longitude->text().toDouble() : -181.0;
+  configuration.owm_apikey = m_testedAPIKey ? m_apikey->text() : QString();
   configuration.region     = m_region->text();
   configuration.timezone   = m_timezone->text();
   configuration.zipcode    = m_zipCode->text();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::requestIPGeolocation() const
+{
+  // CSV is easier to parse later.
+  m_netManager->get(QNetworkRequest{QUrl{"http://ip-api.com/csv"}});
+
+  m_request->setEnabled(false);
+  m_geoipLabel->setStyleSheet("QLabel { color : blue; }");
+  m_geoipLabel->setText(tr("Requesting IP Geolocation..."));
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::requestOpenWeatherMapAPIKeyTest() const
+{
+  auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_latitude->text())
+                                                                                                     .arg(m_longitude->text())
+                                                                                                     .arg(m_apikey->text()))};
+  m_netManager->get(QNetworkRequest{url});
+
+  m_apiTest->setEnabled(false);
+  m_testLabel->setStyleSheet("QLabel { color : blue; }");
+  m_testLabel->setText(tr("Testing API Key..."));
 }

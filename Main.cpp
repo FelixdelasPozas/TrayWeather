@@ -19,7 +19,9 @@
 
 // Project
 #include <ConfigurationDialog.h>
-#include "TrayWeather.h"
+#include <TrayWeather.h>
+
+// Qt
 #include <QApplication>
 #include <QSharedMemory>
 #include <QMessageBox>
@@ -95,6 +97,18 @@ int main(int argc, char *argv[])
 
   QApplication app(argc, argv);
 
+  if(!QSystemTrayIcon::isSystemTrayAvailable())
+  {
+    QMessageBox msgBox;
+    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgBox.setWindowTitle(QObject::tr("Tray Weather"));
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("TrayWeather cannot execute in this computer because there isn't a tray available!.\nThe application will exit now.");
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.exec();
+    std::exit(0);
+  }
+
   // allow only one instance
   QSharedMemory guard;
   guard.setKey("TrayWeather");
@@ -138,7 +152,8 @@ int main(int argc, char *argv[])
     }
   }
 
-  std::exit(0);
+  TrayWeather application{configuration};
+  application.show();
 
   auto resultValue = app.exec();
 

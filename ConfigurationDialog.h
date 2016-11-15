@@ -81,11 +81,26 @@ class ConfigurationDialog
      */
     void getConfiguration(Configuration &configuration) const;
 
-  public slots:
+  private slots:
+    /** \brief Manages replies from the network requests.
+     * \param[in] reply network reply object pointer.
+     */
     void replyFinished(QNetworkReply *reply);
 
+    /** \brief Request IP Geolocation.
+     *
+     */
+    void requestIPGeolocation() const;
+
+    /** \brief Request forecast data to test OpenWeatherMap API key validity.
+     *
+     */
+    void requestOpenWeatherMapAPIKeyTest() const;
+
   private:
-    std::shared_ptr<QNetworkAccessManager> m_netManager;
+
+    std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
+    bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */
 };
 
 #endif // CONFIGURATIONDIALOG_H_

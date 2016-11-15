@@ -3,5 +3,8 @@
     <file>application.ico</file>
 	<file>application.svg</file>
 	<file>Qt.ico</file>
+	<file>exit.svg</file>
+	<file>information.svg</file>
+	<file>settings.svg</file>
   </qresource>
 </RCC>

@@ -20,8 +20,14 @@
 #ifndef TRAYWEATHER_H_
 #define TRAYWEATHER_H_
 
+// Project
+#include "ConfigurationDialog.h"
+
 // Qt
 #include <QSystemTrayIcon>
+
+class QNetworkReply;
+class QNetworkAccessManager;
 
 /** \class TrayWeather
  * \brief Implements the tray icon and application logic.
@@ -30,12 +36,14 @@
 class TrayWeather
 : public QSystemTrayIcon
 {
+    Q_OBJECT
   public:
     /** \brief TrayWeather class constructor.
+     * \param[in] configuration application configuration values, assumed to be valid.
      * \param[in] parent pointer to the object parent of this one.
      *
      */
-    TrayWeather(QObject *parent = nullptr);
+    TrayWeather(const Configuration &configuration, QObject *parent = nullptr);
 
     /** \brief TrayWeather class virtual destructor.
      *
@@ -43,8 +51,32 @@ class TrayWeather
     virtual ~TrayWeather()
     {};
 
-  private:
+  private slots:
+    /** \brief Handles network replies.
+     * \param[in] reply network reply object pointer.
+     *
+     */
+    void replyFinished(QNetworkReply *reply);
 
+    /** \brief Exits the application.
+     *
+     */
+    void exitApplication();
+
+  private:
+    /** \brief Creates the tray icon menu.
+     *
+     */
+    void createMenuEntries();
+
+    /** \brief Makes a network request for weather forecast data.
+     *
+     */
+    void requestForecastData() const;
+
+    const Configuration                   &m_configuration; /** application configuration. */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.           */
 };
+
 
 #endif // TRAYWEATHER_H_
