@@ -52,6 +52,7 @@ qt5_add_resources(RESOURCES
 qt5_wrap_ui(CORE_UI
   # .ui for Qt
   ConfigurationDialog.ui
+  AboutDialog.ui
 )
 	
 set (CORE_SOURCES
@@ -60,6 +61,7 @@ set (CORE_SOURCES
   ${RESOURCES}
   ${CORE_UI}
   Main.cpp
+  AboutDialog.cpp
   ConfigurationDialog.cpp
   TrayWeather.cpp
 )

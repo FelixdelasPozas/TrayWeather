@@ -63,6 +63,11 @@ class TrayWeather
      */
     void exitApplication();
 
+    /** \brief Shows the "About" dialog.
+     *
+     */
+    void showAboutDialog() const;
+
   private:
     /** \brief Creates the tray icon menu.
      *

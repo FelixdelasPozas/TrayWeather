@@ -19,12 +19,14 @@
 
 // Project
 #include <TrayWeather.h>
+#include <AboutDialog.h>
 
 // Qt
 #include <QNetworkReply>
 #include <QObject>
 #include <QMenu>
 #include <QApplication>
+#include <QDesktopWidget>
 #include <QJsonDocument>
 
 #include <QDebug>
@@ -73,6 +75,11 @@ void TrayWeather::createMenuEntries()
 {
   auto menu = new QMenu(nullptr);
 
+  auto about = new QAction{QIcon{":/TrayWeather/information.svg"}, tr("About..."), menu};
+  connect(about, SIGNAL(triggered(bool)), this, SLOT(showAboutDialog()));
+
+  menu->addAction(about);
+
   auto exit = new QAction{QIcon{":/TrayWeather/exit.svg"}, tr("Quit"), menu};
   connect(exit, SIGNAL(triggered(bool)), this, SLOT(exitApplication()));
 
@@ -87,6 +94,18 @@ void TrayWeather::exitApplication()
   this->hide();
 
   QApplication::instance()->quit();
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::showAboutDialog() const
+{
+  auto scr = QApplication::desktop()->screenGeometry();
+
+  AboutDialog dialog;
+  dialog.move(scr.center() - dialog.rect().center());
+  dialog.setModal(true);
+
+  dialog.exec();
 }
 
 //--------------------------------------------------------------------
