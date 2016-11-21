@@ -8,5 +8,7 @@
 	<file>settings.svg</file>
 	<file>temp-celsius.svg</file>
 	<file>temp-fahrenheit.svg</file>
+	<file>network_error.svg</file>
+	<file>network_refresh.svg</file>
   </qresource>
 </RCC>

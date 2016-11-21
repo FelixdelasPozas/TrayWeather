@@ -26,10 +26,12 @@
 
 // Qt
 #include <QString>
+#include <QDebug>
 
 enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
 
 /** \struct Configuration
+ * \brief Contains the application configuration.
  *
  */
 struct Configuration
@@ -54,6 +56,38 @@ struct Configuration
              !owm_apikey.isEmpty();
     }
 };
+
+/** \struct ForecastData
+ * \brief Contains the forecast data for a given time.
+ *
+ */
+struct ForecastData
+{
+    long long int dt;          /** date and time of the data.         */
+    double        temp;        /** temperature in Kelvin.             */
+    double        temp_max;    /** max temperature in Kelvin.         */
+    double        temp_min;    /** min temperature in Kelvin.         */
+    double        cloudiness;  /** cloudiness %                       */
+    double        humidity;    /** humidity %                         */
+    double        pressure;    /** pressure on the ground.            */
+    QString       description; /** weather description.               */
+    QString       icon_id;     /** weather icon id.                   */
+    double        weather_id;  /** weather identifier.                */
+    QString       parameters;  /** weather parameters (rain, snow...) */
+    double        wind_speed;  /** wind speed.                        */
+    double        wind_dir;    /** wind direction in degrees.         */
+    double        rain;        /** rain accumulation in last 3 hours. */
+    double        snow;        /** snow accumulation in last 3 hours. */
+};
+
+using Forecast = QList<ForecastData>;
+
+/** \brief Prints the contents of the data to the QDebug stream.
+ * \param[in] debug QDebug stream.
+ * \param[in] data ForecastData struct.
+ *
+ */
+QDebug operator<< (QDebug d, const ForecastData &data);
 
 /** \brief Converts the given temp to the given units and returns the value.
  * \param[in] temp temperature in Kelvin.

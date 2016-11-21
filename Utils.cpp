@@ -23,6 +23,7 @@
 // C++
 #include <exception>
 #include <memory>
+#include <time.h>
 
 //--------------------------------------------------------------------
 const double convertKelvinTo(const double temp, const Temperature units)
@@ -39,6 +40,37 @@ const double convertKelvinTo(const double temp, const Temperature units)
   }
 
   throw std::bad_function_call();
+}
+
+//--------------------------------------------------------------------
+QDebug operator <<(QDebug d, const ForecastData& data)
+{
+  QChar fillChar('0');
+  struct tm t;
+  localtime_s(&t, &data.dt);
+
+  d << "-- Forecast " << QString("%1/%2/%3 - %4:%5:%6 --").arg(t.tm_mday, 2, 10, fillChar)
+                                                          .arg(t.tm_mon + 1, 2, 10, fillChar)
+                                                          .arg(t.tm_year + 1900, 4, 10, fillChar)
+                                                          .arg(t.tm_hour, 2, 10, fillChar)
+                                                          .arg(t.tm_min, 2, 10, fillChar)
+                                                          .arg(t.tm_sec, 2, 10, fillChar) << "\n";
+  d << "Temperature      : " << data.temp << "\n";
+  d << "Temperature (min): " << data.temp_min << "\n";
+  d << "Temperature (max): " << data.temp_max << "\n";
+  d << "Cloudiness       : " << data.cloudiness << "\n";
+  d << "Humidity         : " << data.humidity << "\n";
+  d << "Ground Pressure  : " << data.pressure << "\n";
+  d << "Wind Speed       : " << data.wind_speed << "\n";
+  d << "Wind Direction   : " << data.wind_dir << "\n";
+  d << "Snow (3 hours)   : " << data.snow << "\n";
+  d << "Rain (3 hours)   : " << data.rain << "\n";
+  d << "Description      : " << data.description << "\n";
+  d << "Icon Id          : " << data.icon_id << "\n";
+  d << "Parameters       : " << data.parameters << "\n";
+  d << "Weather Id       : " << data.weather_id << "\n";
+
+  return d;
 }
 
 //--------------------------------------------------------------------

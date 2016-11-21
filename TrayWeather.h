@@ -26,6 +26,7 @@
 
 // Qt
 #include <QSystemTrayIcon>
+#include <QTimer>
 
 class QNetworkReply;
 class QNetworkAccessManager;
@@ -85,6 +86,11 @@ class TrayWeather
      */
     void onActivation(QSystemTrayIcon::ActivationReason reason);
 
+    /** \brief Makes a network request for weather forecast data.
+     *
+     */
+    void requestForecastData();
+
   private:
     /** \brief Helper method to connect all the signals and slots.
      *
@@ -96,13 +102,10 @@ class TrayWeather
      */
     void createMenuEntries();
 
-    /** \brief Makes a network request for weather forecast data.
-     *
-     */
-    void requestForecastData() const;
-
-    const Configuration                   &m_configuration; /** application configuration. */
-    std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.           */
+    const Configuration                   &m_configuration; /** application configuration.     */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.               */
+    Forecast                               m_data;          /** list of forecast data.         */
+    QTimer                                 m_timer;         /** timer for updates and retries. */
 };
 
 
