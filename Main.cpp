@@ -20,6 +20,7 @@
 // Project
 #include <ConfigurationDialog.h>
 #include <TrayWeather.h>
+#include <Utils.h>
 
 // Qt
 #include <QApplication>
@@ -37,11 +38,13 @@ static const QString LATITUDE              = QObject::tr("Latitude");
 static const QString COUNTRY               = QObject::tr("Country");
 static const QString REGION                = QObject::tr("Region");
 static const QString CITY                  = QObject::tr("City");
-static const QString ISP                   = QObject::tr("Service Provider");
+static const QString ISP                   = QObject::tr("Service provider");
 static const QString IP                    = QObject::tr("IP Address");
 static const QString TIMEZONE              = QObject::tr("Timezone");
 static const QString ZIPCODE               = QObject::tr("Zipcode");
 static const QString OPENWEATHERMAP_APIKEY = QObject::tr("OpenWeatherMap API Key");
+static const QString TEMP_UNITS            = QObject::tr("Units");
+static const QString UPDATE_INTERVAL       = QObject::tr("Update interval");
 
 //--------------------------------------------------------------------
 void saveConfiguration(const Configuration &configuration)
@@ -58,6 +61,8 @@ void saveConfiguration(const Configuration &configuration)
   settings.setValue(TIMEZONE,              configuration.timezone);
   settings.setValue(ZIPCODE,               configuration.zipcode);
   settings.setValue(OPENWEATHERMAP_APIKEY, configuration.owm_apikey);
+  settings.setValue(TEMP_UNITS,            static_cast<int>(configuration.units));
+  settings.setValue(UPDATE_INTERVAL,       configuration.updateTime);
 
   settings.sync();
 }
@@ -77,6 +82,8 @@ void loadConfiguration(Configuration &configuration)
   configuration.timezone   = settings.value(TIMEZONE, QString()).toString();
   configuration.zipcode    = settings.value(ZIPCODE, QString()).toString();
   configuration.owm_apikey = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
+  configuration.units      = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
+  configuration.updateTime = settings.value(UPDATE_INTERVAL, 15).toUInt();
 }
 
 //-----------------------------------------------------------------
@@ -96,6 +103,7 @@ int main(int argc, char *argv[])
   qInstallMessageHandler(myMessageOutput);
 
   QApplication app(argc, argv);
+  app.setQuitOnLastWindowClosed(false);
 
   if(!QSystemTrayIcon::isSystemTrayAvailable())
   {

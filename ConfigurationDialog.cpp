@@ -48,6 +48,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   {
     m_geoipLabel->setStyleSheet("QLabel { color : green; }");
     m_geoipLabel->setText(tr("IP Geolocation successful."));
+    m_request->setEnabled(true);
 
     m_city->setText(configuration.city);
     m_country->setText(configuration.country);
@@ -59,11 +60,16 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
     m_region->setText(configuration.region);
     m_timezone->setText(configuration.timezone);
     m_zipCode->setText(configuration.zipcode);
+    m_updateTime->setValue(configuration.updateTime);
+    m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
 
     requestOpenWeatherMapAPIKeyTest();
   }
   else
   {
+    m_updateTime->setValue(15);
+    m_tempComboBox->setCurrentIndex(0);
+
     requestIPGeolocation();
   }
 }
@@ -72,9 +78,6 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 {
   QString details, message;
-
-  m_request->setEnabled(true);
-  m_request->setText(tr("Request"));
 
   if(reply->url() != QUrl{"http://ip-api.com/csv"})
   {
@@ -93,6 +96,8 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
   }
   else
   {
+    m_request->setEnabled(true);
+
     if(reply->error() == QNetworkReply::NoError)
     {
       message = tr("Couldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
@@ -165,6 +170,8 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.region     = m_region->text();
   configuration.timezone   = m_timezone->text();
   configuration.zipcode    = m_zipCode->text();
+  configuration.updateTime = m_updateTime->value();
+  configuration.units      = static_cast<Temperature>(m_tempComboBox->currentIndex());
 }
 
 //--------------------------------------------------------------------

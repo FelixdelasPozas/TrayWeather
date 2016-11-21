@@ -61,6 +61,7 @@ set (CORE_SOURCES
   ${RESOURCES}
   ${CORE_UI}
   Main.cpp
+  Utils.cpp
   AboutDialog.cpp
   ConfigurationDialog.cpp
   TrayWeather.cpp

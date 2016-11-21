@@ -189,7 +189,7 @@ QGroupBox::title {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap>:/TranslucentMPlayer/qt.ico</pixmap>
+             <pixmap resource="rsc/resources.qrc">:/TrayWeather/Qt.ico</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -308,7 +308,7 @@ QGroupBox::title {
 }</string>
        </property>
        <property name="title">
-        <string>IP Geolocation by</string>
+        <string>IP Geolocation provided by</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
@@ -349,7 +349,7 @@ QGroupBox::title {
 }</string>
        </property>
        <property name="title">
-        <string>Weather Forecast data by</string>
+        <string>Weather data provided by</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>

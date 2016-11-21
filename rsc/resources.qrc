@@ -6,5 +6,7 @@
 	<file>exit.svg</file>
 	<file>information.svg</file>
 	<file>settings.svg</file>
+	<file>temp-celsius.svg</file>
+	<file>temp-fahrenheit.svg</file>
   </qresource>
 </RCC>

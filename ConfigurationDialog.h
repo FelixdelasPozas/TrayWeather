@@ -20,6 +20,9 @@
 #ifndef CONFIGURATIONDIALOG_H_
 #define CONFIGURATIONDIALOG_H_
 
+// Project
+#include <Utils.h>
+
 // Qt
 #include "ui_ConfigurationDialog.h"
 #include <QDialog>
@@ -30,31 +33,6 @@
 
 class QNetworkReply;
 class QDomNode;
-
-/** \struct Configuration
- *
- */
-struct Configuration
-{
-    double latitude;    /** location latitude in degrees.  */
-    double longitude;   /** location longitude in degrees. */
-    QString country;    /** location's country.            */
-    QString region;     /** location's region.             */
-    QString city;       /** location's city.               */
-    QString zipcode;    /** location's zip code.           */
-    QString isp;        /** internet service provider.     */
-    QString ip;         /** internet address.              */
-    QString timezone;   /** location's timezone.           */
-    QString owm_apikey; /** OpenWeatherMap API Key.        */
-
-    bool isValid() const
-    {
-      return (latitude <= 90.0) &&   (latitude >= -90.0) &&
-             (longitude <= 180.0) && (longitude >= -180) &&
-             !owm_apikey.isEmpty();
-
-    }
-};
 
 class ConfigurationDialog
 : public QDialog

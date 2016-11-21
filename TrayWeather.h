@@ -21,7 +21,8 @@
 #define TRAYWEATHER_H_
 
 // Project
-#include "ConfigurationDialog.h"
+#include <ConfigurationDialog.h>
+#include <Utils.h>
 
 // Qt
 #include <QSystemTrayIcon>
@@ -68,7 +69,28 @@ class TrayWeather
      */
     void showAboutDialog() const;
 
+    /** \brief Shows the weather forecast.
+     *
+     */
+    void showForecast() const;
+
+    /** \brief Hides the tray icon balloon if the user clicks on it or in the icons with it's being shown.
+     *
+     */
+    void onMessageClicked();
+
+    /** \brief Handles icon activation.
+     * \param[in] reason activation reason.
+     *
+     */
+    void onActivation(QSystemTrayIcon::ActivationReason reason);
+
   private:
+    /** \brief Helper method to connect all the signals and slots.
+     *
+     */
+    void connectSignals();
+
     /** \brief Creates the tray icon menu.
      *
      */

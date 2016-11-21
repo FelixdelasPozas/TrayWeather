@@ -28,6 +28,8 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 #include <QDebug>
 
@@ -39,8 +41,7 @@ TrayWeather::TrayWeather(const Configuration& configuration, QObject* parent)
 {
   setIcon(QIcon{":/TrayWeather/application.ico"});
 
-  connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
-          this,               SLOT(replyFinished(QNetworkReply*)));
+  connectSignals();
 
   createMenuEntries();
 
@@ -53,19 +54,50 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
   if(reply->error() == QNetworkReply::NoError)
   {
     auto type = reply->header(QNetworkRequest::ContentTypeHeader).toString();
-    qDebug() << type;
 
     if(type.startsWith("application/json"))
     {
-      const auto data = reply->readAll();
-      auto jsonDocument = QJsonDocument::fromJson(data);
+      auto jsonDocument = QJsonDocument::fromJson(reply->readAll());
 
-      if(!jsonDocument.isNull())
+      if(!jsonDocument.isNull() && jsonDocument.isObject())
       {
-        qDebug() << "array?" << jsonDocument.isArray() << "object?" << jsonDocument.isObject();
+        auto jsonObj = jsonDocument.object();
+        auto values  = jsonObj.value("list").toArray();
+
+        qDebug() << values.count();
+
+        for(auto i = 0; i < values.count(); ++i)
+        {
+          auto valueObj = values.at(i).toObject();
+          auto dt = valueObj.value("dt").toInt(0);
+          auto unixDate = unixTimeStampToDate(dt);
+          qDebug() << i << "date" << unixDate->tm_mday << unixDate->tm_mon + 1 << unixDate->tm_year + 1900 << "/" << unixDate->tm_hour << unixDate->tm_min << unixDate->tm_sec;
+        }
+
+        qDebug() << jsonDocument.object().keys();
+        auto object = jsonDocument.object();
+
+        for(auto item = object.constBegin(); item != object.constEnd(); ++item)
+        {
+          qDebug() << item.key();
+          auto value = item.value();
+          qDebug() << value.type();
+          if(value.isObject())
+          {
+            auto obj = value.toObject();
+            qDebug() << "obj" << obj.keys();
+          }
+          qDebug() << value.toString();
+          qDebug() << "---";
+        }
       }
     }
+
+    reply->deleteLater();
+    return;
   }
+
+  // change to error icon.
 
   reply->deleteLater();
 }
@@ -74,6 +106,11 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 void TrayWeather::createMenuEntries()
 {
   auto menu = new QMenu(nullptr);
+
+  auto weather = new QAction{QIcon{":/TrayWeather/temp-celsius.svg"}, tr("Forecast..."), menu};
+  connect(weather, SIGNAL(triggered(bool)), this, SLOT(showForecast()));
+
+  menu->addSeparator();
 
   auto about = new QAction{QIcon{":/TrayWeather/information.svg"}, tr("About..."), menu};
   connect(about, SIGNAL(triggered(bool)), this, SLOT(showAboutDialog()));
@@ -99,20 +136,57 @@ void TrayWeather::exitApplication()
 //--------------------------------------------------------------------
 void TrayWeather::showAboutDialog() const
 {
-  auto scr = QApplication::desktop()->screenGeometry();
+  static AboutDialog dialog;
 
-  AboutDialog dialog;
-  dialog.move(scr.center() - dialog.rect().center());
-  dialog.setModal(true);
+  if(!dialog.isVisible())
+  {
+    auto scr = QApplication::desktop()->screenGeometry();
+    dialog.move(scr.center() - dialog.rect().center());
+    dialog.setModal(true);
 
-  dialog.exec();
+    dialog.exec();
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::connectSignals()
+{
+  connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+          this,               SLOT(replyFinished(QNetworkReply*)));
+
+  connect(this, SIGNAL(messageClicked()),
+          this, SLOT(onMessageClicked()));
+
+  connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+          this, SLOT(onActivation(QSystemTrayIcon::ActivationReason)));
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::onMessageClicked()
+{
+  this->showMessage(QString(), QString(), QSystemTrayIcon::MessageIcon::NoIcon, 0);
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
+{
+  if(reason == QSystemTrayIcon::ActivationReason::DoubleClick)
+  {
+    // TODO: show forecast.
+    showForecast();
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::showForecast() const
+{
 }
 
 //--------------------------------------------------------------------
 void TrayWeather::requestForecastData() const
 {
-  auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                                     .arg(m_configuration.longitude)
-                                                                                                     .arg(m_configuration.owm_apikey))};
+  auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
+                                                                                                      .arg(m_configuration.longitude)
+                                                                                                      .arg(m_configuration.owm_apikey))};
   m_netManager->get(QNetworkRequest{url});
 }
