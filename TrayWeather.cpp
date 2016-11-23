@@ -40,7 +40,7 @@ TrayWeather::TrayWeather(const Configuration& configuration, QObject* parent)
 , m_netManager   {std::make_shared<QNetworkAccessManager>()}
 , m_timer        {this}
 {
-  setIcon(QIcon{":/TrayWeather/application.ico"});
+  setIcon(QIcon{":/TrayWeather/application.svg"});
   m_timer.setSingleShot(true);
 
   connectSignals();
@@ -63,45 +63,42 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 
       if(!jsonDocument.isNull() && jsonDocument.isObject())
       {
-        m_data.clear();
-
         auto jsonObj = jsonDocument.object();
-        auto values  = jsonObj.value("list").toArray();
 
-        for(auto i = 0; i < values.count(); ++i)
+        if(jsonObj.keys().contains("cnt"))
         {
-          auto obj     = values.at(i).toObject();
-          auto main    = obj.value("main").toObject();
-          auto weather = obj.value("weather").toArray().first().toObject();
-          auto wind    = obj.value("wind").toObject();
-          auto rain    = obj.value("rain").toObject();
-          auto snow    = obj.value("snow").toObject();
+          m_data.clear();
 
-          ForecastData data;
-          data.dt          = obj.value("dt").toInt(0);
-          data.cloudiness  = obj.value("clouds").toObject().value("all").toDouble(0);
-          data.temp        = main.value("temp").toDouble(0);
-          data.temp_min    = main.value("temp_min").toDouble(0);
-          data.temp_max    = main.value("temp_max").toDouble(0);
-          data.humidity    = main.value("humidity").toDouble(0);
-          data.pressure    = main.value("grnd_level").toDouble(0);
-          data.description = weather.value("description").toString();
-          data.parameters  = weather.value("main").toString();
-          data.icon_id     = weather.value("icon").toString();
-          data.weather_id  = weather.value("id").toDouble(0);
-          data.wind_speed  = wind.value("speed").toDouble(0);
-          data.wind_dir    = wind.value("deg").toDouble(0);
-          data.snow        = snow.keys().contains("3h") ? snow.value("3h").toDouble(0) : 0;
-          data.rain        = rain.keys().contains("3h") ? rain.value("3h").toDouble(0) : 0;
+          auto values  = jsonObj.value("list").toArray();
 
-          m_data << data;
+          for(auto i = 0; i < values.count(); ++i)
+          {
+            auto entry = values.at(i).toObject();
+
+            ForecastData data;
+            parseForecastEntry(entry, data);
+
+            m_data << data;
+          }
+        }
+        else
+        {
+          parseForecastEntry(jsonObj, m_current);
         }
       }
     }
 
-    if(!m_data.isEmpty())
+    if(!m_data.isEmpty() && m_current.isValid())
     {
-      setIcon(QIcon{":/TrayWeather/application.ico"});
+      setIcon(weatherIcon(m_current));
+
+      QString tooltip = QObject::tr("%1, %2\n%3\n%4%5").arg(m_configuration.city)
+                                                       .arg(m_configuration.country)
+                                                       .arg(toTitleCase(m_current.description))
+                                                       .arg(QString::number(static_cast<int>(convertKelvinTo(m_current.temp, m_configuration.units))))
+                                                       .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
+      setToolTip(tooltip);
+
       m_timer.setInterval(m_configuration.updateTime*60*1000);
       m_timer.start();
     }
@@ -111,7 +108,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
   }
 
   // change to error icon.
-  setIcon(QIcon{":/TrayWeather/network_error.ico"});
+  setIcon(QIcon{":/TrayWeather/network_error.svg"});
 
   reply->deleteLater();
 }
@@ -123,6 +120,8 @@ void TrayWeather::createMenuEntries()
 
   auto weather = new QAction{QIcon{":/TrayWeather/temp-celsius.svg"}, tr("Forecast..."), menu};
   connect(weather, SIGNAL(triggered(bool)), this, SLOT(showForecast()));
+
+  menu->addAction(weather);
 
   menu->addSeparator();
 
@@ -202,12 +201,18 @@ void TrayWeather::showForecast() const
 //--------------------------------------------------------------------
 void TrayWeather::requestForecastData()
 {
-  setIcon(QIcon{":/TrayWeather/network_refresh.ico"});
+  setIcon(QIcon{":/TrayWeather/network_refresh.svg"});
   m_timer.setInterval(1*60*1000);
   m_timer.start();
 
-  auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
+  auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
                                                                                                       .arg(m_configuration.longitude)
                                                                                                       .arg(m_configuration.owm_apikey))};
+  m_netManager->get(QNetworkRequest{url});
+
+  url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
+                                                                                                .arg(m_configuration.longitude)
+                                                                                                .arg(m_configuration.owm_apikey))};
+
   m_netManager->get(QNetworkRequest{url});
 }

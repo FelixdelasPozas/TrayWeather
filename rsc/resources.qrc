@@ -10,5 +10,24 @@
 	<file>temp-fahrenheit.svg</file>
 	<file>network_error.svg</file>
 	<file>network_refresh.svg</file>
+	<file>01d.svg</file>
+	<file>01n-0.svg</file>
+	<file>01n-1.svg</file>
+	<file>01n-2.svg</file>
+	<file>01n-3.svg</file>
+	<file>01n-4.svg</file>
+	<file>01n-5.svg</file>
+	<file>01n-6.svg</file>
+	<file>01n-7.svg</file>
+	<file>02d.svg</file>
+	<file>02n.svg</file>
+	<file>03.svg</file>
+	<file>04.svg</file>
+	<file>09.svg</file>
+	<file>10d.svg</file>
+	<file>10n.svg</file>
+	<file>11.svg</file>
+	<file>13.svg</file>
+	<file>50.svg</file>
   </qresource>
 </RCC>

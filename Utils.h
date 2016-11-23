@@ -27,6 +27,7 @@
 // Qt
 #include <QString>
 #include <QDebug>
+#include <QJsonObject>
 
 enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
 
@@ -78,9 +79,26 @@ struct ForecastData
     double        wind_dir;    /** wind direction in degrees.         */
     double        rain;        /** rain accumulation in last 3 hours. */
     double        snow;        /** snow accumulation in last 3 hours. */
+
+    ForecastData(): dt{0}, temp{0}, temp_max{0}, temp_min{0}, cloudiness{0}, humidity{0}, pressure{0}, weather_id{0}, wind_speed{0}, wind_dir{0}, rain{0}, snow{0} {};
+
+    bool isValid() { return dt != 0; };
 };
 
 using Forecast = QList<ForecastData>;
+
+/** \brief Returns the icon corresponding to the given data.
+ * \param[in] data forecast data struct.
+ *
+ */
+const QIcon weatherIcon(const ForecastData &data);
+
+/** \brief Parses the information in the entry to the data object.
+ * \param[in] entry JSON object.
+ * \param[out] data Forecast struct.
+ *
+ */
+void parseForecastEntry(const QJsonObject &entry, ForecastData &data);
 
 /** \brief Prints the contents of the data to the QDebug stream.
  * \param[in] debug QDebug stream.
@@ -101,5 +119,17 @@ const double convertKelvinTo(const double temp, const Temperature units);
  *
  */
 const struct tm* unixTimeStampToDate(const long long timestamp);
+
+/** \brief Returns the moon phase for the given date (given in unix timestamp) Answer range [0-7] (0 = new moon, 4 = full moon).
+ * \param[in] timestamp unix timestamp.
+ *
+ */
+int moonPhase(const time_t timestamp);
+
+/** \brief Transforms and returns the string in title case.
+ * \param[in] string string to transform.
+ *
+ */
+const QString toTitleCase(const QString &string);
 
 #endif // UTILS_H_

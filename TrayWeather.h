@@ -105,6 +105,7 @@ class TrayWeather
     const Configuration                   &m_configuration; /** application configuration.     */
     std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.               */
     Forecast                               m_data;          /** list of forecast data.         */
+    ForecastData                           m_current;       /** weather conditions now.        */
     QTimer                                 m_timer;         /** timer for updates and retries. */
 };
 
