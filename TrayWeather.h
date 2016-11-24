@@ -23,6 +23,7 @@
 // Project
 #include <ConfigurationDialog.h>
 #include <Utils.h>
+#include <WeatherDialog.h>
 
 // Qt
 #include <QSystemTrayIcon>
@@ -45,7 +46,7 @@ class TrayWeather
      * \param[in] parent pointer to the object parent of this one.
      *
      */
-    TrayWeather(const Configuration &configuration, QObject *parent = nullptr);
+    TrayWeather(Configuration &configuration, QObject *parent = nullptr);
 
     /** \brief TrayWeather class virtual destructor.
      *
@@ -73,12 +74,12 @@ class TrayWeather
     /** \brief Shows the weather forecast.
      *
      */
-    void showForecast() const;
+    void showForecast();
 
-    /** \brief Hides the tray icon balloon if the user clicks on it or in the icons with it's being shown.
+    /** \brief Shows the configuration dialog.
      *
      */
-    void onMessageClicked();
+    void showConfiguration();
 
     /** \brief Handles icon activation.
      * \param[in] reason activation reason.
@@ -92,6 +93,11 @@ class TrayWeather
     void requestForecastData();
 
   private:
+    /** \brief Updates the tray icon tooltip.
+     *
+     */
+    void updateTooltip();
+
     /** \brief Helper method to connect all the signals and slots.
      *
      */
@@ -102,11 +108,12 @@ class TrayWeather
      */
     void createMenuEntries();
 
-    const Configuration                   &m_configuration; /** application configuration.     */
-    std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.               */
-    Forecast                               m_data;          /** list of forecast data.         */
-    ForecastData                           m_current;       /** weather conditions now.        */
-    QTimer                                 m_timer;         /** timer for updates and retries. */
+    Configuration                         &m_configuration; /** application configuration.                */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.                          */
+    Forecast                               m_data;          /** list of forecast data.                    */
+    ForecastData                           m_current;       /** weather conditions now.                   */
+    QTimer                                 m_timer;         /** timer for updates and retries.            */
+    WeatherDialog                          m_weatherDialog; /** dialog to show weather and forecast data. */
 };
 
 

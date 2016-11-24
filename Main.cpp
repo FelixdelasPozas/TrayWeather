@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
   Configuration configuration;
   loadConfiguration(configuration);
 
-  //if(!configuration.isValid())
+  if(!configuration.isValid())
   {
     ConfigurationDialog dialog(configuration);
     dialog.exec();
@@ -166,6 +166,8 @@ int main(int argc, char *argv[])
   auto resultValue = app.exec();
 
   qDebug() << "terminated with value" << resultValue;
+
+  saveConfiguration(configuration);
 
   return resultValue;
 }

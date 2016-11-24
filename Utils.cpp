@@ -104,7 +104,7 @@ QDebug operator <<(QDebug d, const ForecastData& data)
 }
 
 //--------------------------------------------------------------------
-void parseForecastEntry(const QJsonObject& entry, ForecastData& data)
+void parseForecastEntry(const QJsonObject& entry, ForecastData& data, const Temperature unit)
 {
   auto main    = entry.value("main").toObject();
   auto weather = entry.value("weather").toArray().first().toObject();
@@ -130,11 +130,11 @@ void parseForecastEntry(const QJsonObject& entry, ForecastData& data)
 }
 
 //--------------------------------------------------------------------
-const struct tm* unixTimeStampToDate(const long long timestamp)
+void unixTimeStampToDate(struct tm &time, const long long timestamp)
 {
   const time_t stamp{timestamp};
 
-  return localtime(&stamp);
+  localtime_s(&time, &stamp);
 }
 
 //--------------------------------------------------------------------
@@ -188,6 +188,15 @@ const QIcon weatherIcon(const ForecastData& data)
   {
     iconId += QObject::tr("-%1").arg(moonPhase(data.dt));
   }
+
+  return QIcon(Icons.value(iconId));
+}
+
+//--------------------------------------------------------------------
+const QIcon moonIcon(const ForecastData& data)
+{
+  QString iconId{"01n"};
+  iconId += QObject::tr("-%1").arg(moonPhase(data.dt));
 
   return QIcon(Icons.value(iconId));
 }

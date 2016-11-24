@@ -93,12 +93,19 @@ using Forecast = QList<ForecastData>;
  */
 const QIcon weatherIcon(const ForecastData &data);
 
+/** \brief Returns the moon phase icon corresponding to the given data.
+ * \param[in] data forecast data struct.
+ *
+ */
+const QIcon moonIcon(const ForecastData& data);
+
 /** \brief Parses the information in the entry to the data object.
  * \param[in] entry JSON object.
  * \param[out] data Forecast struct.
+ * \param[in] unit temperature units.
  *
  */
-void parseForecastEntry(const QJsonObject &entry, ForecastData &data);
+void parseForecastEntry(const QJsonObject &entry, ForecastData &data, const Temperature unit);
 
 /** \brief Prints the contents of the data to the QDebug stream.
  * \param[in] debug QDebug stream.
@@ -115,10 +122,11 @@ QDebug operator<< (QDebug d, const ForecastData &data);
 const double convertKelvinTo(const double temp, const Temperature units);
 
 /** \brief Converts the given unix timestamp to a struct tm and returns it.
+ * \param[out] time struct tm.
  * \param[in] timestamp unix timestamp.
  *
  */
-const struct tm* unixTimeStampToDate(const long long timestamp);
+void unixTimeStampToDate(struct tm &time, const long long timestamp);
 
 /** \brief Returns the moon phase for the given date (given in unix timestamp) Answer range [0-7] (0 = new moon, 4 = full moon).
  * \param[in] timestamp unix timestamp.

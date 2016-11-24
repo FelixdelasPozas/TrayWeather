@@ -20,8 +20,10 @@
 // Project
 #include <TrayWeather.h>
 #include <AboutDialog.h>
+#include <ConfigurationDialog.h>
 
 // Qt
+#include <QMessageBox>
 #include <QNetworkReply>
 #include <QObject>
 #include <QMenu>
@@ -34,7 +36,7 @@
 #include <QDebug>
 
 //--------------------------------------------------------------------
-TrayWeather::TrayWeather(const Configuration& configuration, QObject* parent)
+TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 : QSystemTrayIcon{parent}
 , m_configuration{configuration}
 , m_netManager   {std::make_shared<QNetworkAccessManager>()}
@@ -76,31 +78,26 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
             auto entry = values.at(i).toObject();
 
             ForecastData data;
-            parseForecastEntry(entry, data);
+            parseForecastEntry(entry, data, m_configuration.units);
 
             m_data << data;
           }
         }
         else
         {
-          parseForecastEntry(jsonObj, m_current);
+          parseForecastEntry(jsonObj, m_current, m_configuration.units);
         }
       }
     }
 
     if(!m_data.isEmpty() && m_current.isValid())
     {
-      setIcon(weatherIcon(m_current));
-
-      QString tooltip = QObject::tr("%1, %2\n%3\n%4%5").arg(m_configuration.city)
-                                                       .arg(m_configuration.country)
-                                                       .arg(toTitleCase(m_current.description))
-                                                       .arg(QString::number(static_cast<int>(convertKelvinTo(m_current.temp, m_configuration.units))))
-                                                       .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
-      setToolTip(tooltip);
+      updateTooltip();
 
       m_timer.setInterval(m_configuration.updateTime*60*1000);
       m_timer.start();
+
+      m_weatherDialog.setData(m_current, m_data, m_configuration.units);
     }
 
     reply->deleteLater();
@@ -114,14 +111,92 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 }
 
 //--------------------------------------------------------------------
+void TrayWeather::showConfiguration()
+{
+  static ConfigurationDialog dialog{m_configuration};
+
+  if(!dialog.isVisible())
+  {
+    auto scr = QApplication::desktop()->screenGeometry();
+    dialog.move(scr.center() - dialog.rect().center());
+    dialog.setModal(true);
+    dialog.exec();
+
+    Configuration configuration;
+    dialog.getConfiguration(configuration);
+
+    if(configuration.updateTime != m_configuration.updateTime)
+    {
+      m_configuration.updateTime = configuration.updateTime;
+      m_timer.setInterval(m_configuration.updateTime);
+      m_timer.start();
+    }
+
+    if(configuration.owm_apikey != m_configuration.owm_apikey)
+    {
+      m_configuration.owm_apikey = configuration.owm_apikey;
+      m_current = ForecastData();
+      m_data.clear();
+
+      requestForecastData();
+    }
+
+    if(configuration.units != m_configuration.units)
+    {
+      m_configuration.units = configuration.units;
+      if(!m_data.isEmpty() && m_current.isValid())
+      {
+        updateTooltip();
+        m_weatherDialog.setData(m_current, m_data, m_configuration.units);
+      }
+    }
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::updateTooltip()
+{
+  QString tooltip;
+
+  if(m_data.isEmpty() || !m_current.isValid())
+  {
+    tooltip = tr("Requesting weather data from the server...");
+    setIcon(QIcon{":/TrayWeather/network_refresh.svg"});
+  }
+  else
+  {
+    tooltip = tr("%1, %2\n%3\n%4%5").arg(m_configuration.city)
+                                    .arg(m_configuration.country)
+                                    .arg(toTitleCase(m_current.description))
+                                    .arg(QString::number(static_cast<int>(convertKelvinTo(m_current.temp, m_configuration.units))))
+                                    .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
+    setIcon(weatherIcon(m_current));
+  }
+
+  setToolTip(tooltip);
+}
+
+//--------------------------------------------------------------------
 void TrayWeather::createMenuEntries()
 {
   auto menu = new QMenu(nullptr);
 
-  auto weather = new QAction{QIcon{":/TrayWeather/temp-celsius.svg"}, tr("Forecast..."), menu};
+  auto weather = new QAction{QIcon{":/TrayWeather/temp-celsius.svg"}, tr("Weather && forecast..."), menu};
   connect(weather, SIGNAL(triggered(bool)), this, SLOT(showForecast()));
 
   menu->addAction(weather);
+
+  auto refresh = new QAction{QIcon{":/TrayWeather/network_refresh_black.svg"}, tr("Refresh..."), menu};
+  connect(refresh, SIGNAL(triggered(bool)), this, SLOT(requestForecastData()));
+
+  menu->addAction(refresh);
+
+  menu->addSeparator();
+
+  auto config = new QAction{QIcon{":/TrayWeather/settings.svg"}, tr("Configuration..."), menu};
+  connect(config, SIGNAL(triggered(bool)), this, SLOT(showConfiguration()));
+
+  menu->addAction(config);
 
   menu->addSeparator();
 
@@ -167,9 +242,6 @@ void TrayWeather::connectSignals()
   connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
           this,               SLOT(replyFinished(QNetworkReply*)));
 
-  connect(this, SIGNAL(messageClicked()),
-          this, SLOT(onMessageClicked()));
-
   connect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
           this, SLOT(onActivation(QSystemTrayIcon::ActivationReason)));
 
@@ -178,30 +250,44 @@ void TrayWeather::connectSignals()
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::onMessageClicked()
-{
-  this->showMessage(QString(), QString(), QSystemTrayIcon::MessageIcon::NoIcon, 0);
-}
-
-//--------------------------------------------------------------------
 void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
 {
   if(reason == QSystemTrayIcon::ActivationReason::DoubleClick)
   {
-    // TODO: show forecast.
     showForecast();
   }
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::showForecast() const
+void TrayWeather::showForecast()
 {
+  if(m_data.isEmpty() || !m_current.isValid())
+  {
+    QMessageBox msgBox;
+    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgBox.setWindowTitle(QObject::tr("Tray Weather"));
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("TrayWeather has requested the weather data for your geographic location\nand it's still waiting for the response.");
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.exec();
+
+    return;
+  }
+
+  if(!m_weatherDialog.isVisible())
+  {
+    auto scr = QApplication::desktop()->screenGeometry();
+    m_weatherDialog.move(scr.center() - m_weatherDialog.rect().center());
+    m_weatherDialog.setModal(true);
+
+    m_weatherDialog.exec();
+  }
 }
 
 //--------------------------------------------------------------------
 void TrayWeather::requestForecastData()
 {
-  setIcon(QIcon{":/TrayWeather/network_refresh.svg"});
+  updateTooltip();
   m_timer.setInterval(1*60*1000);
   m_timer.start();
 

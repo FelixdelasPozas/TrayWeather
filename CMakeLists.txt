@@ -17,7 +17,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find the QtWidgets library
-find_package(Qt5 COMPONENTS Widgets Network Xml)
+find_package(Qt5 COMPONENTS Widgets Network Charts)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
@@ -53,6 +53,7 @@ qt5_wrap_ui(CORE_UI
   # .ui for Qt
   ConfigurationDialog.ui
   AboutDialog.ui
+  WeatherDialog.ui
 )
 	
 set (CORE_SOURCES
@@ -65,12 +66,13 @@ set (CORE_SOURCES
   AboutDialog.cpp
   ConfigurationDialog.cpp
   TrayWeather.cpp
+  WeatherDialog.cpp
 )
 
 set(CORE_EXTERNAL_LIBS
-  Qt5::Widgets Qt5::Network Qt5::Xml
+  Qt5::Widgets Qt5::Network Qt5::Charts
 )
   
 add_executable(TrayWeather ${CORE_SOURCES})
 target_link_libraries (TrayWeather ${CORE_EXTERNAL_LIBS})
-qt5_use_modules(TrayWeather Widgets Xml)
+qt5_use_modules(TrayWeather Widgets Network Charts)
