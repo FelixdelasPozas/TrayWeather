@@ -108,6 +108,16 @@ class TrayWeather
      */
     void createMenuEntries();
 
+    /** \brief Returns true if the data is valid.
+     *
+     */
+    bool validData() const;
+
+    /** \brief Invalidates all weather data.
+     *
+     */
+    void invalidateData();
+
     Configuration                         &m_configuration; /** application configuration.                */
     std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.                          */
     Forecast                               m_data;          /** list of forecast data.                    */

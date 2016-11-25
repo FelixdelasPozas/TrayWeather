@@ -195,10 +195,15 @@ const QIcon weatherIcon(const ForecastData& data)
 //--------------------------------------------------------------------
 const QIcon moonIcon(const ForecastData& data)
 {
-  QString iconId{"01n"};
-  iconId += QObject::tr("-%1").arg(moonPhase(data.dt));
+  if(!data.icon_id.isEmpty())
+  {
+    QString iconId{"01n"};
+    iconId += QObject::tr("-%1").arg(moonPhase(data.dt));
 
-  return QIcon(Icons.value(iconId));
+    return QIcon(Icons.value(iconId));
+  }
+
+  return QIcon{":/TrayWeather/network_error.svg"};
 }
 
 //--------------------------------------------------------------------

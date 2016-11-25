@@ -82,7 +82,7 @@ struct ForecastData
 
     ForecastData(): dt{0}, temp{0}, temp_max{0}, temp_min{0}, cloudiness{0}, humidity{0}, pressure{0}, weather_id{0}, wind_speed{0}, wind_dir{0}, rain{0}, snow{0} {};
 
-    bool isValid() { return dt != 0; };
+    bool isValid() const { return dt != 0 && !icon_id.isEmpty(); };
 };
 
 using Forecast = QList<ForecastData>;

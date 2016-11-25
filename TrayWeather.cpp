@@ -39,10 +39,9 @@
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 : QSystemTrayIcon{parent}
 , m_configuration{configuration}
-, m_netManager   {std::make_shared<QNetworkAccessManager>()}
+, m_netManager   {std::make_shared<QNetworkAccessManager>(this)}
 , m_timer        {this}
 {
-  setIcon(QIcon{":/TrayWeather/application.svg"});
   m_timer.setSingleShot(true);
 
   connectSignals();
@@ -69,8 +68,6 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 
         if(jsonObj.keys().contains("cnt"))
         {
-          m_data.clear();
-
           auto values  = jsonObj.value("list").toArray();
 
           for(auto i = 0; i < values.count(); ++i)
@@ -90,7 +87,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
       }
     }
 
-    if(!m_data.isEmpty() && m_current.isValid())
+    if(validData())
     {
       updateTooltip();
 
@@ -135,16 +132,13 @@ void TrayWeather::showConfiguration()
     if(configuration.owm_apikey != m_configuration.owm_apikey)
     {
       m_configuration.owm_apikey = configuration.owm_apikey;
-      m_current = ForecastData();
-      m_data.clear();
-
       requestForecastData();
     }
 
     if(configuration.units != m_configuration.units)
     {
       m_configuration.units = configuration.units;
-      if(!m_data.isEmpty() && m_current.isValid())
+      if(validData())
       {
         updateTooltip();
         m_weatherDialog.setData(m_current, m_data, m_configuration.units);
@@ -157,11 +151,12 @@ void TrayWeather::showConfiguration()
 void TrayWeather::updateTooltip()
 {
   QString tooltip;
+  QIcon icon;
 
-  if(m_data.isEmpty() || !m_current.isValid())
+  if(!validData())
   {
     tooltip = tr("Requesting weather data from the server...");
-    setIcon(QIcon{":/TrayWeather/network_refresh.svg"});
+    icon = QIcon{":/TrayWeather/network_refresh.svg"};
   }
   else
   {
@@ -170,10 +165,11 @@ void TrayWeather::updateTooltip()
                                     .arg(toTitleCase(m_current.description))
                                     .arg(QString::number(static_cast<int>(convertKelvinTo(m_current.temp, m_configuration.units))))
                                     .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
-    setIcon(weatherIcon(m_current));
+    icon = weatherIcon(m_current);
   }
 
   setToolTip(tooltip);
+  setIcon(icon);
 }
 
 //--------------------------------------------------------------------
@@ -261,7 +257,7 @@ void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
 //--------------------------------------------------------------------
 void TrayWeather::showForecast()
 {
-  if(m_data.isEmpty() || !m_current.isValid())
+  if(!validData())
   {
     QMessageBox msgBox;
     msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
@@ -287,6 +283,21 @@ void TrayWeather::showForecast()
 //--------------------------------------------------------------------
 void TrayWeather::requestForecastData()
 {
+  if(m_netManager->networkAccessible() != QNetworkAccessManager::Accessible)
+  {
+    if(m_netManager)
+    {
+      disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+                 this,               SLOT(replyFinished(QNetworkReply*)));
+    }
+
+    m_netManager = std::make_shared<QNetworkAccessManager>(this);
+
+    connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+            this,               SLOT(replyFinished(QNetworkReply*)));
+  }
+
+  invalidateData();
   updateTooltip();
   m_timer.setInterval(1*60*1000);
   m_timer.start();
@@ -301,4 +312,17 @@ void TrayWeather::requestForecastData()
                                                                                                 .arg(m_configuration.owm_apikey))};
 
   m_netManager->get(QNetworkRequest{url});
+}
+
+//--------------------------------------------------------------------
+bool TrayWeather::validData() const
+{
+  return !m_data.isEmpty() && m_current.isValid();
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::invalidateData()
+{
+  m_data.clear();
+  m_current = ForecastData();
 }

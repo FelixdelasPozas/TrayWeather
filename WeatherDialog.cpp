@@ -67,11 +67,11 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
   QChar fillChar{'0'};
   auto temperatureUnits = (units == Temperature::CELSIUS ? tr("ºC") : tr("Fº"));
 
-  m_updateTime->setText(tr("Weather and forecast data from %1/%2/%3 at %4:%5 hours.").arg(t.tm_mday, 2, 10, fillChar)
-                                                                                     .arg(t.tm_mon + 1, 2, 10, fillChar)
-                                                                                     .arg(t.tm_year + 1900, 4, 10)
-                                                                                     .arg(t.tm_hour)
-                                                                                     .arg(t.tm_min, 2, 10, fillChar));
+  m_updateTime->setText(tr("Weather station time: %1/%2/%3 at %4:%5 hours.").arg(t.tm_mday, 2, 10, fillChar)
+                                                                            .arg(t.tm_mon + 1, 2, 10, fillChar)
+                                                                            .arg(t.tm_year + 1900, 4, 10)
+                                                                            .arg(t.tm_hour)
+                                                                            .arg(t.tm_min, 2, 10, fillChar));
 
   m_moon->setPixmap(moonIcon(current).pixmap(QSize{64,64}, QIcon::Normal, QIcon::On));
 
@@ -127,15 +127,15 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
 
   QPen pen;
   pen.setWidth(2);
-  pen.setColor(QColor{150,150,255});
+  pen.setColor(QColor{90,90,235});
 
   auto temperatureLine = new QLineSeries(forecastChart);
-  temperatureLine->setColor(QColor{100,100,255});
   temperatureLine->setName(tr("Temperature"));
   temperatureLine->setPointsVisible(true);
   temperatureLine->setPen(pen);
 
   auto bars = new QBarSet("Rain accumulation");
+  bars->setColor(QColor{100,235,100});
 
   auto rainBars = new QBarSeries(forecastChart);
   rainBars->setUseOpenGL(true);
@@ -164,8 +164,8 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
   axisYTemp->setRange(tempMin-1, tempMax+1);
   axisYRain->setRange(rainMin, rainMax*2);
 
-  forecastChart->addSeries(temperatureLine);
   forecastChart->addSeries(rainBars);
+  forecastChart->addSeries(temperatureLine);
   forecastChart->setAxisX(axisX, temperatureLine);
   forecastChart->setAxisY(axisYTemp, temperatureLine);
   forecastChart->setAxisY(axisYRain, rainBars);
