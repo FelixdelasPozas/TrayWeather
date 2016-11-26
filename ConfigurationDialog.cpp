@@ -23,6 +23,8 @@
 // Qt
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QMessageBox>
 #include <QIcon>
 #include <QString>
@@ -81,24 +83,52 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 
   if(reply->url() != QUrl{"http://ip-api.com/csv"})
   {
-    auto type = reply->header(QNetworkRequest::ContentTypeHeader);
-    if(type.toString().startsWith("application/json"))
-    {
-      reply->deleteLater();
-      m_apiTest->setEnabled(true);
-      m_testedAPIKey = true;
-      m_testLabel->setStyleSheet("QLabel { color : green; }");
-      m_testLabel->setText(tr("The API Key is valid!"));
-      return;
-    }
+    m_apiTest->setEnabled(true);
 
-    message = tr("Invalid OpenWeatherMap API Key.");
+    if(reply->error() == QNetworkReply::NetworkError::NoError)
+    {
+      auto type = reply->header(QNetworkRequest::ContentTypeHeader);
+      if(type.toString().startsWith("application/json"))
+      {
+        const auto data = reply->readAll();
+        auto jsonDocument = QJsonDocument::fromJson(data);
+
+        if(!jsonDocument.isNull() && jsonDocument.isObject() && jsonDocument.object().contains("cod"))
+        {
+          auto jsonObj = jsonDocument.object();
+          auto code    = jsonObj.value("cod").toInt(0);
+
+          if(code != 401)
+          {
+            reply->deleteLater();
+
+            m_testedAPIKey = true;
+            m_testLabel->setStyleSheet("QLabel { color : green; }");
+            m_testLabel->setText(tr("The API Key is valid!"));
+            return;
+          }
+        }
+      }
+
+      m_testLabel->setStyleSheet("QLabel { color : red; }");
+      m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
+
+      message = tr("Invalid OpenWeatherMap API Key.");
+    }
+    else
+    {
+      m_testLabel->setStyleSheet("QLabel { color : red; }");
+      m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
+
+      message = tr("Network error.");
+      details = tr("%1").arg(reply->errorString());
+    }
   }
   else
   {
     m_request->setEnabled(true);
 
-    if(reply->error() == QNetworkReply::NoError)
+    if(reply->error() == QNetworkReply::NetworkError::NoError)
     {
       message = tr("Couldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
 
@@ -120,7 +150,6 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
           m_isp->setText(values.at(10));
           m_ip->setText(values.at(13));
 
-          m_request->setEnabled(true);
           m_geoipLabel->setStyleSheet("QLabel { color : green; }");
           m_geoipLabel->setText(tr("IP Geolocation successful."));
           reply->deleteLater();
@@ -131,16 +160,25 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
         }
         else
         {
+          m_geoipLabel->setStyleSheet("QLabel { color : red; }");
+          m_geoipLabel->setText(tr("IP Geolocation unsuccessful."));
+
           details = tr("Error parsing location data. Failure or invalid number of fields.");
         }
       }
       else
       {
+        m_geoipLabel->setStyleSheet("QLabel { color : red; }");
+        m_geoipLabel->setText(tr("IP Geolocation unsuccessful."));
+
         details = tr("Data request failure. Invalid data format.");
       }
     }
     else
     {
+      m_geoipLabel->setStyleSheet("QLabel { color : red; }");
+      m_geoipLabel->setText(tr("IP Geolocation unsuccessful."));
+
       details = tr("%1").arg(reply->errorString());
     }
   }
