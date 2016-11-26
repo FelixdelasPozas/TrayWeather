@@ -54,6 +54,7 @@ qt5_wrap_ui(CORE_UI
   ConfigurationDialog.ui
   AboutDialog.ui
   WeatherDialog.ui
+  TooltipWidget.ui
 )
 	
 set (CORE_SOURCES
@@ -67,6 +68,7 @@ set (CORE_SOURCES
   ConfigurationDialog.cpp
   TrayWeather.cpp
   WeatherDialog.cpp
+  TooltipWidget.cpp
 )
 
 set(CORE_EXTERNAL_LIBS

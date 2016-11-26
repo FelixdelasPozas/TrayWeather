@@ -19,6 +19,7 @@
 
 // Project
 #include <WeatherDialog.h>
+#include <TooltipWidget.h>
 
 // Qt
 #include <QTime>
@@ -31,13 +32,19 @@
 #include <QtCharts/qbarseries.h>
 #include <QtCharts/qareaseries.h>
 #include <QtCharts/qbarset.h>
+#include <QEasingCurve>
 
 using namespace QtCharts;
 
 //--------------------------------------------------------------------
 WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 : QDialog{parent, flags}
+, m_temperatureLine{nullptr}
+, m_forecast       {nullptr}
+, m_config         {nullptr}
+, m_tooltip        {nullptr}
 {
+  setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setupUi(this);
 
   m_tabWidget->removeTab(1);
@@ -48,7 +55,6 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
   m_chartView->setRubberBand(QChartView::HorizontalRubberBand);
 
   m_tabWidget->addTab(m_chartView, QIcon(), "Weather Forecast");
-  m_chartView->setToolTip(tr("Next days weather forecast"));
 
   connect(m_reset, SIGNAL(clicked()),
           this,    SLOT(onResetPressed()));
@@ -60,31 +66,28 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 }
 
 //--------------------------------------------------------------------
-void WeatherDialog::setData(const ForecastData &current, const Forecast &data, const Temperature units)
+void WeatherDialog::setData(const ForecastData &current, const Forecast &data, const Configuration &config)
 {
+  m_forecast = &data;
+  m_config   = &config;
+
   struct tm t;
   unixTimeStampToDate(t, current.dt);
-  QChar fillChar{'0'};
-  auto temperatureUnits = (units == Temperature::CELSIUS ? tr("ºC") : tr("Fº"));
+  QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+  auto temperatureUnits = (config.units == Temperature::CELSIUS ? tr("ºC") : tr("Fº"));
 
-  m_updateTime->setText(tr("Weather station time: %1/%2/%3 at %4:%5 hours.").arg(t.tm_mday, 2, 10, fillChar)
-                                                                            .arg(t.tm_mon + 1, 2, 10, fillChar)
-                                                                            .arg(t.tm_year + 1900, 4, 10)
-                                                                            .arg(t.tm_hour)
-                                                                            .arg(t.tm_min, 2, 10, fillChar));
-
+  m_location->setText(tr("%1, %2 - %3").arg(config.city).arg(config.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
   m_moon->setPixmap(moonIcon(current).pixmap(QSize{64,64}, QIcon::Normal, QIcon::On));
-
   m_description->setText(toTitleCase(current.description));
   m_icon->setPixmap(weatherIcon(current).pixmap(QSize{236,236}, QIcon::Normal, QIcon::On));
-  m_temp->setText(tr("%1 %2").arg(convertKelvinTo(current.temp, units)).arg(temperatureUnits));
-  m_temp_max->setText(tr("%1 %2").arg(convertKelvinTo(current.temp_max, units)).arg(temperatureUnits));
-  m_temp_min->setText(tr("%1 %2").arg(convertKelvinTo(current.temp_min, units)).arg(temperatureUnits));
+  m_temp->setText(tr("%1 %2").arg(convertKelvinTo(current.temp, config.units)).arg(temperatureUnits));
+  m_temp_max->setText(tr("%1 %2").arg(convertKelvinTo(current.temp_max, config.units)).arg(temperatureUnits));
+  m_temp_min->setText(tr("%1 %2").arg(convertKelvinTo(current.temp_min, config.units)).arg(temperatureUnits));
   m_cloudiness->setText(tr("%1%").arg(current.cloudiness));
   m_humidity->setText(tr("%1%").arg(current.humidity));
   m_pressure->setText(tr("%1 hPa").arg(current.pressure));
   m_wind_speed->setText(tr("%1 meter/sec").arg(current.wind_speed));
-  m_wind_dir->setText(tr("%1 º").arg(current.wind_dir));
+  m_wind_dir->setText(tr("%1 º").arg(static_cast<int>(current.wind_dir) % 360));
 
   if(current.rain == 0)
   {
@@ -104,35 +107,38 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
     m_snow->setText(tr("%1 mm").arg(current.snow));
   }
 
-  auto forecastChart = new QChart();
-  forecastChart->legend()->setVisible(true);
-  forecastChart->legend()->setAlignment(Qt::AlignBottom);
-
   auto axisX = new QDateTimeAxis;
   axisX->setTickCount(data.size()/3);
-  axisX->setLabelsAngle(65);
+  axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText("Day (Hour)");
-  forecastChart->addAxis(axisX, Qt::AlignBottom);
 
   auto axisYTemp = new QValueAxis();
   axisYTemp->setLabelFormat("%i");
   axisYTemp->setTitleText(tr("Temperature in %1").arg(temperatureUnits));
-  forecastChart->addAxis(axisYTemp, Qt::AlignLeft);
 
   auto axisYRain = new QValueAxis();
   axisYRain->setLabelFormat("%i");
   axisYRain->setTitleText("Rain accumulation in mm");
+
+  auto forecastChart = new QChart();
+  forecastChart->legend()->setVisible(true);
+  forecastChart->legend()->setAlignment(Qt::AlignBottom);
+  forecastChart->setAnimationDuration(500);
+  forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
+  forecastChart->setAnimationOptions(QChart::AllAnimations);
+  forecastChart->addAxis(axisX, Qt::AlignBottom);
+  forecastChart->addAxis(axisYTemp, Qt::AlignLeft);
   forecastChart->addAxis(axisYRain, Qt::AlignRight);
 
   QPen pen;
   pen.setWidth(2);
   pen.setColor(QColor{90,90,235});
 
-  auto temperatureLine = new QLineSeries(forecastChart);
-  temperatureLine->setName(tr("Temperature"));
-  temperatureLine->setPointsVisible(true);
-  temperatureLine->setPen(pen);
+  m_temperatureLine = new QLineSeries(forecastChart);
+  m_temperatureLine->setName(tr("Temperature"));
+  m_temperatureLine->setPointsVisible(true);
+  m_temperatureLine->setPen(pen);
 
   auto bars = new QBarSet("Rain accumulation");
   bars->setColor(QColor{100,235,100});
@@ -147,10 +153,10 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
   for(auto &entry: data)
   {
     unixTimeStampToDate(t, entry.dt);
-    QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+    dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
 
-    auto temperature = convertKelvinTo(entry.temp, units);
-    temperatureLine->append(dtTime.toMSecsSinceEpoch(), temperature);
+    auto temperature = convertKelvinTo(entry.temp, config.units);
+    m_temperatureLine->append(dtTime.toMSecsSinceEpoch(), temperature);
 
     if(tempMin > temperature) tempMin = temperature;
     if(tempMax < temperature) tempMax = temperature;
@@ -165,10 +171,14 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
   axisYRain->setRange(rainMin, rainMax*2);
 
   forecastChart->addSeries(rainBars);
-  forecastChart->addSeries(temperatureLine);
-  forecastChart->setAxisX(axisX, temperatureLine);
-  forecastChart->setAxisY(axisYTemp, temperatureLine);
+  forecastChart->addSeries(m_temperatureLine);
+
+  forecastChart->setAxisX(axisX, m_temperatureLine);
+  forecastChart->setAxisY(axisYTemp, m_temperatureLine);
   forecastChart->setAxisY(axisYRain, rainBars);
+
+  connect(m_temperatureLine, SIGNAL(hovered(const QPointF &, bool)),
+          this,              SLOT(onChartHover(const QPointF &, bool)));
 
   auto oldChart = m_chartView->chart();
   m_chartView->setChart(forecastChart);
@@ -187,4 +197,44 @@ void WeatherDialog::onResetPressed()
 void WeatherDialog::onTabChanged(int index)
 {
   m_reset->setVisible(index == 1);
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onChartHover(const QPointF& point, bool state)
+{
+  auto closeWidget = [](std::shared_ptr<TooltipWidget> w) { if(w) { w->hide(); } w = nullptr; };
+
+  if(state)
+  {
+    closeWidget(m_tooltip);
+
+    int closestPoint{-1};
+    QPointF distance{100, 100};
+    auto iPoint = m_chartView->chart()->mapToPosition(point, m_temperatureLine);
+
+    if(m_temperatureLine && m_temperatureLine->count() > 0)
+    {
+      for(int i = 0; i < m_temperatureLine->count(); ++i)
+      {
+        auto iPos = m_chartView->chart()->mapToPosition(m_temperatureLine->at(i), m_temperatureLine);
+        auto dist = iPoint - iPos;
+        if(dist.manhattanLength() < distance.manhattanLength())
+        {
+          distance = dist;
+          closestPoint = i;
+        }
+      }
+
+      m_tooltip = std::make_shared<TooltipWidget>(m_forecast->at(closestPoint), *m_config);
+
+      auto pos = m_chartView->mapToGlobal(m_chartView->chart()->mapToPosition(m_temperatureLine->at(closestPoint), m_temperatureLine).toPoint());
+      pos = QPoint{pos.x()-m_tooltip->width()/2, pos.y() - m_tooltip->height() - 5};
+      m_tooltip->move(pos);
+      m_tooltip->show();
+    }
+  }
+  else
+  {
+    closeWidget(m_tooltip);
+  }
 }

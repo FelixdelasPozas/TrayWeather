@@ -27,10 +27,16 @@
 #include <QDialog>
 #include "ui_WeatherDialog.h"
 
+// C++
+#include <memory>
+
 namespace QtCharts
 {
   class QChartView;
+  class QLineSeries;
 }
+
+class TooltipWidget;
 
 /** \class WeatherDialog
  * \brief Implements the dialog showing the current weather and the forecast.
@@ -58,12 +64,19 @@ class WeatherDialog
     /** \brief Sets the weather and forecast data.
      * \param[in] current current weather data.
      * \param[in] data forecast data.
-     * \param[in] units temperature units.
+     * \param[in] config application configuration.
      *
      */
-    void setData(const ForecastData &current, const Forecast &data, const Temperature units);
+    void setData(const ForecastData &current, const Forecast &data, const Configuration &config);
 
   private slots:
+    /** \brief Shows weather data when the user hovers on the temperature line.
+     * \param[in] point hover point.
+     * \param[in] state true when user has hovered over the series and false when hover has moved away from the series.
+     *
+     */
+    void onChartHover(const QPointF &point, bool state);
+
     /** \brief Resets the chart's zoom to the original one.
      *
      */
@@ -74,8 +87,14 @@ class WeatherDialog
      *
      */
     void onTabChanged(int index);
+
   private:
-    QtCharts::QChartView *m_chartView;
+
+    QtCharts::QChartView          *m_chartView;       /** chart view.                     */
+    QtCharts::QLineSeries         *m_temperatureLine; /** temperature series line.        */
+    const Forecast                *m_forecast;        /** forecast data for tooltip.      */
+    const Configuration           *m_config;          /** configuration data for tooltip. */
+    std::shared_ptr<TooltipWidget> m_tooltip;         /** tooltip widget.                 */
 };
 
 #endif // WEATHERDIALOG_H_

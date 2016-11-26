@@ -94,7 +94,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
       m_timer.setInterval(m_configuration.updateTime*60*1000);
       m_timer.start();
 
-      m_weatherDialog.setData(m_current, m_data, m_configuration.units);
+      m_weatherDialog.setData(m_current, m_data, m_configuration);
     }
 
     reply->deleteLater();
@@ -141,7 +141,7 @@ void TrayWeather::showConfiguration()
       if(validData())
       {
         updateTooltip();
-        m_weatherDialog.setData(m_current, m_data, m_configuration.units);
+        m_weatherDialog.setData(m_current, m_data, m_configuration);
       }
     }
   }
