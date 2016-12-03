@@ -79,6 +79,19 @@
         <layout class="QGridLayout" name="gridLayout" columnstretch="1,0,1">
          <item row="0" column="2">
           <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,0">
+           <item row="10" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Sunrise</string>
+             </property>
+            </widget>
+           </item>
            <item row="4" column="0">
             <widget class="QLabel" name="label_5">
              <property name="font">
@@ -339,6 +352,33 @@
              </property>
              <property name="text">
               <string>None</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="label_13">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Sunset</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="1">
+            <widget class="QLabel" name="m_sunrise">
+             <property name="text">
+              <string>Unknown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="1">
+            <widget class="QLabel" name="m_sunset">
+             <property name="text">
+              <string>Unknown</string>
              </property>
             </widget>
            </item>

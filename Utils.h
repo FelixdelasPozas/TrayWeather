@@ -48,7 +48,7 @@ struct Configuration
     QString timezone;        /** location's timezone.           */
     QString owm_apikey;      /** OpenWeatherMap API Key.        */
     Temperature units;       /** temperature units.             */
-    unsigned int updateTime; /** time between updates.  */
+    unsigned int updateTime; /** time between updates.          */
 
     bool isValid() const
     {
@@ -79,8 +79,11 @@ struct ForecastData
     double        wind_dir;    /** wind direction in degrees.         */
     double        rain;        /** rain accumulation in last 3 hours. */
     double        snow;        /** snow accumulation in last 3 hours. */
+    long long int sunrise;     /** time of sunrise.                   */
+    long long int sunset;      /** time of sunset.                    */
 
-    ForecastData(): dt{0}, temp{0}, temp_max{0}, temp_min{0}, cloudiness{0}, humidity{0}, pressure{0}, weather_id{0}, wind_speed{0}, wind_dir{0}, rain{0}, snow{0} {};
+    ForecastData(): dt{0}, temp{0}, temp_max{0}, temp_min{0}, cloudiness{0}, humidity{0}, pressure{0},
+                    weather_id{0}, wind_speed{0}, wind_dir{0}, rain{0}, snow{0}, sunrise{0}, sunset{0} {};
 
     bool isValid() const { return dt != 0 && !icon_id.isEmpty(); };
 };
@@ -139,5 +142,18 @@ int moonPhase(const time_t timestamp);
  *
  */
 const QString toTitleCase(const QString &string);
+
+/** \brief Converts latitude to mercator units of OpenWeatherMaps.
+ * \param[in] latitude latitude value.
+ *
+ */
+const double latitudeToYMercator(const double latitude);
+
+/** \brief Converts longitude to mercator units of OpenWeatherMaps.
+ * \param[in] longitude longitude value.
+ *
+ */
+const double longitudeToXMercator(const double longitude);
+
 
 #endif // UTILS_H_

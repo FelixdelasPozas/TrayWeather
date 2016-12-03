@@ -39,10 +39,9 @@ class TooltipWidget
     /** \brief TooltipWidget class constructor.
      * \param[in] data forecast data entry.
      * \param[in] config application configuragion.
-     * \param[in] flags window flags.
      *
      */
-    explicit TooltipWidget(const ForecastData &data, const Configuration &config, Qt::WindowFlags flags = Qt::WindowFlags());
+    explicit TooltipWidget(const ForecastData &data, const Configuration &config);
 
     /** \brief TooltipWidget class virtual destructor.
      *

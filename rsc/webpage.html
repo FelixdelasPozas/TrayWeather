@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Open Weather Map</title>
+    <style type="text/css">
+        #map {
+            width: 100%;
+            height: 99%;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body  onload="init()">
+<div id="basicMap"></div>
+</body>
+
+<script src="http://openlayers.org/api/OpenLayers.js"></script>
+<script src="http://openweathermap.org/js/OWM.OpenLayers.1.3.4.js" ></script>
+
+<script type="text/javascript">
+var map;
+
+function init() {
+
+	//Center  ( mercator coordinates )
+	var lat = %%lat%%; 
+	var lon = %%lon%%;
+
+	var lonlat = new OpenLayers.LonLat(lon, lat);
+
+    map = new OpenLayers.Map("basicMap");
+
+	// Create overlays
+	// map layer OSM
+    var mapnik = new OpenLayers.Layer.OSM();
+	// Create station layer
+	var stations = new OpenLayers.Layer.Vector.OWMStations("Stations");
+	// Create weather layer 
+	var city = new OpenLayers.Layer.Vector.OWMWeather("Weather");
+
+	//connect layers to map
+	map.addLayers([mapnik, stations, city]);
+
+	// Add Layer switcher
+//	map.addControl(new OpenLayers.Control.LayerSwitcher());       	
+
+	map.setCenter( lonlat, 12 );
+}
+</script>
+</html>

@@ -28,6 +28,14 @@
 #include <exception>
 #include <memory>
 #include <time.h>
+#include <cmath>
+
+constexpr auto PI   = 3.14159265358979323846;
+constexpr auto PI_2 = 1.57079632679489661923;
+constexpr auto PI_4 = 0.78539816339744830962;
+#define Degrees2Radians(a) ((a) / (180 / PI))
+#define Radians2Degrees(a) ((a) * (180 / PI))
+const unsigned int EARTH_RADIUS = 6378137;
 
 static const QMap<QString, QString> Icons = { { "01d", ":/TrayWeather/01d.svg" },
                                               { "01n-0", ":/TrayWeather/01n-0.svg" },
@@ -100,6 +108,22 @@ QDebug operator <<(QDebug d, const ForecastData& data)
   d << "Parameters       : " << data.parameters << "\n";
   d << "Weather Id       : " << data.weather_id << "\n";
 
+  localtime_s(&t, &data.sunrise);
+  d << "Sunrise          : " << QString("%1/%2/%3 - %4:%5:%6 --").arg(t.tm_mday, 2, 10, fillChar)
+                                                                 .arg(t.tm_mon + 1, 2, 10, fillChar)
+                                                                 .arg(t.tm_year + 1900, 4, 10, fillChar)
+                                                                 .arg(t.tm_hour, 2, 10, fillChar)
+                                                                 .arg(t.tm_min, 2, 10, fillChar)
+                                                                 .arg(t.tm_sec, 2, 10, fillChar) << "\n";
+
+  localtime_s(&t, &data.sunset);
+  d << "Sunset           : " << QString("%1/%2/%3 - %4:%5:%6 --").arg(t.tm_mday, 2, 10, fillChar)
+                                                                 .arg(t.tm_mon + 1, 2, 10, fillChar)
+                                                                 .arg(t.tm_year + 1900, 4, 10, fillChar)
+                                                                 .arg(t.tm_hour, 2, 10, fillChar)
+                                                                 .arg(t.tm_min, 2, 10, fillChar)
+                                                                 .arg(t.tm_sec, 2, 10, fillChar) << "\n";
+
   return d;
 }
 
@@ -111,6 +135,7 @@ void parseForecastEntry(const QJsonObject& entry, ForecastData& data, const Temp
   auto wind    = entry.value("wind").toObject();
   auto rain    = entry.value("rain").toObject();
   auto snow    = entry.value("snow").toObject();
+  auto sys     = entry.value("sys").toObject();
 
   data.dt          = entry.value("dt").toInt(0);
   data.cloudiness  = entry.value("clouds").toObject().value("all").toDouble(0);
@@ -127,6 +152,8 @@ void parseForecastEntry(const QJsonObject& entry, ForecastData& data, const Temp
   data.wind_dir    = wind.value("deg").toDouble(0);
   data.snow        = snow.keys().contains("3h") ? snow.value("3h").toDouble(0) : 0;
   data.rain        = rain.keys().contains("3h") ? rain.value("3h").toDouble(0) : 0;
+  data.sunrise     = sys.value("sunrise").toInt(0);
+  data.sunset      = sys.value("sunset").toInt(0);
 }
 
 //--------------------------------------------------------------------
@@ -226,4 +253,16 @@ const QString toTitleCase(const QString& string)
   }
 
   return returnValue;
+}
+
+//--------------------------------------------------------------------
+const double latitudeToYMercator(double latitude)
+{
+  return std::log(std::tan(Degrees2Radians(latitude) / 2 + PI_4 )) * EARTH_RADIUS;
+}
+
+//--------------------------------------------------------------------
+const double longitudeToXMercator(const double longitude)
+{
+  return Degrees2Radians(longitude) * EARTH_RADIUS;
 }

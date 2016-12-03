@@ -31,11 +31,11 @@
 #include <time.h>
 
 //--------------------------------------------------------------------
-TooltipWidget::TooltipWidget(const ForecastData& data, const Configuration &config, Qt::WindowFlags flags)
-: QWidget(QApplication::desktop(), flags)
+TooltipWidget::TooltipWidget(const ForecastData& data, const Configuration &config)
+: QWidget(QApplication::desktop(), Qt::WindowFlags())
 {
   setupUi(this);
-  setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::WindowTransparentForInput);
+  setWindowFlags(Qt::ToolTip|Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::WindowTransparentForInput);
   setPalette(QToolTip::palette());
   layout()->setMargin(5);
 

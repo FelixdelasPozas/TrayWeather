@@ -24,15 +24,17 @@
 // Qt
 #include <QTime>
 #include <QIcon>
-#include <QtCharts/qchart.h>
-#include <QtCharts/qchartview.h>
-#include <QtCharts/qlineseries.h>
-#include <QtCharts/qdatetimeaxis.h>
-#include <QtCharts/qvalueaxis.h>
-#include <QtCharts/qbarseries.h>
-#include <QtCharts/qareaseries.h>
-#include <QtCharts/qbarset.h>
+#include <charts/qchart.h>
+#include <charts/qchartview.h>
+#include <charts/linechart/qlineseries.h>
+#include <charts/axis/datetimeaxis/qdatetimeaxis.h>
+#include <charts/axis/valueaxis/qvalueaxis.h>
+#include <charts/barchart/vertical/bar/qbarseries.h>
+#include <charts/areachart/qareaseries.h>
+#include <charts/barchart/qbarset.h>
 #include <QEasingCurve>
+#include <QWebView>
+#include <QMessageBox>
 
 using namespace QtCharts;
 
@@ -49,12 +51,24 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 
   m_tabWidget->removeTab(1);
 
-  m_chartView = new QChartView{m_tabWidget};
+  m_chartView = new QChartView;
   m_chartView->setRenderHint(QPainter::Antialiasing);
   m_chartView->setBackgroundBrush(QBrush{Qt::white});
   m_chartView->setRubberBand(QChartView::HorizontalRubberBand);
 
-  m_tabWidget->addTab(m_chartView, QIcon(), "Weather Forecast");
+  m_tabWidget->addTab(m_chartView, QIcon(), "Forecast");
+
+  m_webpage = new QWebView;
+  m_webpage->setRenderHint(QPainter::HighQualityAntialiasing, true);
+  m_webpage->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+
+  m_tabWidget->addTab(m_webpage, QIcon(), "Maps");
+
+  connect(m_webpage, SIGNAL(loadStarted()),
+          this,      SLOT(onLoadStarted()));
+
+  connect(m_webpage, SIGNAL(loadFinished(bool)),
+          this,      SLOT(onLoadFinished(bool)));
 
   connect(m_reset, SIGNAL(clicked()),
           this,    SLOT(onResetPressed()));
@@ -71,6 +85,7 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
   m_forecast = &data;
   m_config   = &config;
 
+  // Current weather tab
   struct tm t;
   unixTimeStampToDate(t, current.dt);
   QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
@@ -107,6 +122,29 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
     m_snow->setText(tr("%1 mm").arg(current.snow));
   }
 
+  if(current.sunrise != 0)
+  {
+    unixTimeStampToDate(t, current.sunrise);
+    QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+    m_sunrise->setText(dtTime.toString("hh:mm"));
+  }
+  else
+  {
+    m_sunrise->setText("Unknown");
+  }
+
+  if(current.sunset != 0)
+  {
+    unixTimeStampToDate(t, current.sunset);
+    QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+    m_sunset->setText(dtTime.toString("hh:mm"));
+  }
+  else
+  {
+    m_sunset->setText("Unknown");
+  }
+
+  // Forecast tab
   auto axisX = new QDateTimeAxis;
   axisX->setTickCount(data.size()/3);
   axisX->setLabelsAngle(45);
@@ -184,6 +222,14 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
   m_chartView->setChart(forecastChart);
   if(oldChart) delete oldChart;
 
+  // Maps tab
+  QFile webfile(":/TrayWeather/webpage.html");
+  webfile.open(QFile::ReadOnly);
+  QString webpage{webfile.readAll()};
+  webpage.replace("%%lat%%", QString::number(latitudeToYMercator(config.latitude)));
+  webpage.replace("%%lon%%", QString::number(longitudeToXMercator(config.longitude)));
+  m_webpage->setHtml(webpage);
+
   onResetPressed();
 }
 
@@ -202,7 +248,7 @@ void WeatherDialog::onTabChanged(int index)
 //--------------------------------------------------------------------
 void WeatherDialog::onChartHover(const QPointF& point, bool state)
 {
-  auto closeWidget = [](std::shared_ptr<TooltipWidget> w) { if(w) { w->hide(); } w = nullptr; };
+  auto closeWidget = [](std::shared_ptr<TooltipWidget> w) { if(w && w.get()) { w->hide(); } w = nullptr; };
 
   if(state)
   {
@@ -225,16 +271,43 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
         }
       }
 
-      m_tooltip = std::make_shared<TooltipWidget>(m_forecast->at(closestPoint), *m_config);
+      if(distance.manhattanLength() < 15)
+      {
+        m_tooltip = std::make_shared<TooltipWidget>(m_forecast->at(closestPoint), *m_config);
 
-      auto pos = m_chartView->mapToGlobal(m_chartView->chart()->mapToPosition(m_temperatureLine->at(closestPoint), m_temperatureLine).toPoint());
-      pos = QPoint{pos.x()-m_tooltip->width()/2, pos.y() - m_tooltip->height() - 5};
-      m_tooltip->move(pos);
-      m_tooltip->show();
+        auto pos = m_chartView->mapToGlobal(m_chartView->chart()->mapToPosition(m_temperatureLine->at(closestPoint), m_temperatureLine).toPoint());
+        pos = QPoint{pos.x()-m_tooltip->width()/2, pos.y() - m_tooltip->height() - 5};
+        m_tooltip->move(pos);
+        m_tooltip->show();
+      }
     }
   }
   else
   {
     closeWidget(m_tooltip);
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onLoadFinished(bool value)
+{
+  m_tabWidget->setTabEnabled(2, value);
+
+  if(isVisible() && !value)
+  {
+    QMessageBox msg{ this };
+    msg.setWindowTitle(tr("TrayWeather Maps"));
+    msg.setWindowIcon(QIcon{":/TrayWeather/application.ico"});
+    msg.setText(tr("The weather maps couldn't be loaded."));
+    msg.exec();
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onLoadStarted()
+{
+  if(m_tabWidget->isTabEnabled(2))
+  {
+    m_tabWidget->setTabEnabled(2,  false);
   }
 }

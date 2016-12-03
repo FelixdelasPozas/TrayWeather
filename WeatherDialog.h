@@ -24,8 +24,9 @@
 #include <Utils.h>
 
 // Qt
-#include <QDialog>
 #include "ui_WeatherDialog.h"
+#include <QDialog>
+#include <qwebview.h>
 
 // C++
 #include <memory>
@@ -35,6 +36,8 @@ namespace QtCharts
   class QChartView;
   class QLineSeries;
 }
+
+class QWebView;
 
 class TooltipWidget;
 
@@ -88,6 +91,17 @@ class WeatherDialog
      */
     void onTabChanged(int index);
 
+    /** \brief Shows the maps tab once it has finished loading.
+     * \param[in] value true on load success and false otherwise.
+     *
+     */
+    void onLoadFinished(bool value);
+
+    /** \brief Hides the maps tab once it begins loading.
+     *
+     */
+    void onLoadStarted();
+
   private:
 
     QtCharts::QChartView          *m_chartView;       /** chart view.                     */
@@ -95,6 +109,7 @@ class WeatherDialog
     const Forecast                *m_forecast;        /** forecast data for tooltip.      */
     const Configuration           *m_config;          /** configuration data for tooltip. */
     std::shared_ptr<TooltipWidget> m_tooltip;         /** tooltip widget.                 */
+    QWebView                      *m_webpage;         /** maps webpage.                   */
 };
 
 #endif // WEATHERDIALOG_H_
