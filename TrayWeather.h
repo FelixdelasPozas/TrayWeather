@@ -51,8 +51,7 @@ class TrayWeather
     /** \brief TrayWeather class virtual destructor.
      *
      */
-    virtual ~TrayWeather()
-    {};
+    virtual ~TrayWeather();
 
   private slots:
     /** \brief Handles network replies.

@@ -30,13 +30,6 @@
 #include <time.h>
 #include <cmath>
 
-constexpr auto PI   = 3.14159265358979323846;
-constexpr auto PI_2 = 1.57079632679489661923;
-constexpr auto PI_4 = 0.78539816339744830962;
-#define Degrees2Radians(a) ((a) / (180 / PI))
-#define Radians2Degrees(a) ((a) * (180 / PI))
-const unsigned int EARTH_RADIUS = 6378137;
-
 static const QMap<QString, QString> Icons = { { "01d", ":/TrayWeather/01d.svg" },
                                               { "01n-0", ":/TrayWeather/01n-0.svg" },
                                               { "01n-1", ":/TrayWeather/01n-1.svg" },
@@ -253,16 +246,4 @@ const QString toTitleCase(const QString& string)
   }
 
   return returnValue;
-}
-
-//--------------------------------------------------------------------
-const double latitudeToYMercator(double latitude)
-{
-  return std::log(std::tan(Degrees2Radians(latitude) / 2 + PI_4 )) * EARTH_RADIUS;
-}
-
-//--------------------------------------------------------------------
-const double longitudeToXMercator(const double longitude)
-{
-  return Degrees2Radians(longitude) * EARTH_RADIUS;
 }

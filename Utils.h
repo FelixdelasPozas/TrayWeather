@@ -37,18 +37,20 @@ enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
  */
 struct Configuration
 {
-    double latitude;         /** location latitude in degrees.  */
-    double longitude;        /** location longitude in degrees. */
-    QString country;         /** location's country.            */
-    QString region;          /** location's region.             */
-    QString city;            /** location's city.               */
-    QString zipcode;         /** location's zip code.           */
-    QString isp;             /** internet service provider.     */
-    QString ip;              /** internet address.              */
-    QString timezone;        /** location's timezone.           */
-    QString owm_apikey;      /** OpenWeatherMap API Key.        */
-    Temperature units;       /** temperature units.             */
-    unsigned int updateTime; /** time between updates.          */
+    double       latitude;    /** location latitude in degrees.                 */
+    double       longitude;   /** location longitude in degrees.                */
+    QString      country;     /** location's country.                           */
+    QString      region;      /** location's region.                            */
+    QString      city;        /** location's city.                              */
+    QString      zipcode;     /** location's zip code.                          */
+    QString      isp;         /** internet service provider.                    */
+    QString      ip;          /** internet address.                             */
+    QString      timezone;    /** location's timezone.                          */
+    QString      owm_apikey;  /** OpenWeatherMap API Key.                       */
+    Temperature  units;       /** temperature units.                            */
+    unsigned int updateTime;  /** time between updates.                         */
+    bool         mapsEnabled; /** true if maps tab is visible, false otherwise. */
+
 
     bool isValid() const
     {
@@ -142,18 +144,5 @@ int moonPhase(const time_t timestamp);
  *
  */
 const QString toTitleCase(const QString &string);
-
-/** \brief Converts latitude to mercator units of OpenWeatherMaps.
- * \param[in] latitude latitude value.
- *
- */
-const double latitudeToYMercator(const double latitude);
-
-/** \brief Converts longitude to mercator units of OpenWeatherMaps.
- * \param[in] longitude longitude value.
- *
- */
-const double longitudeToXMercator(const double longitude);
-
 
 #endif // UTILS_H_

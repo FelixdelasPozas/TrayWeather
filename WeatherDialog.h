@@ -70,7 +70,12 @@ class WeatherDialog
      * \param[in] config application configuration.
      *
      */
-    void setData(const ForecastData &current, const Forecast &data, const Configuration &config);
+    void setData(const ForecastData &current, const Forecast &data, Configuration &config);
+
+    /** \brief Returns true if the maps tab is visible and false otherwise.
+     *
+     */
+    bool mapsEnabled() const;
 
   private slots:
     /** \brief Shows weather data when the user hovers on the temperature line.
@@ -83,7 +88,7 @@ class WeatherDialog
     /** \brief Resets the chart's zoom to the original one.
      *
      */
-    void onResetPressed();
+    void onResetButtonPressed();
 
     /** \brief Updates the GUI when the user changes the tab.
      * \param[in] index index of the current tab.
@@ -97,17 +102,22 @@ class WeatherDialog
      */
     void onLoadFinished(bool value);
 
-    /** \brief Hides the maps tab once it begins loading.
+    /** \brief Shows/hides the maps tab.
      *
      */
-    void onLoadStarted();
+    void onMapsButtonPressed();
+
+    /** \brief Helper method to update the maps tab title on load progress.
+     * \param[in] progress progress value in [0-100].
+     *
+     */
+    void onLoadProgress(int progress);
 
   private:
-
     QtCharts::QChartView          *m_chartView;       /** chart view.                     */
     QtCharts::QLineSeries         *m_temperatureLine; /** temperature series line.        */
     const Forecast                *m_forecast;        /** forecast data for tooltip.      */
-    const Configuration           *m_config;          /** configuration data for tooltip. */
+    Configuration                 *m_config;          /** configuration data for tooltip. */
     std::shared_ptr<TooltipWidget> m_tooltip;         /** tooltip widget.                 */
     QWebView                      *m_webpage;         /** maps webpage.                   */
 };

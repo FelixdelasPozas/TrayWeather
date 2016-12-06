@@ -486,6 +486,13 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
+      <widget class="QPushButton" name="m_mapsButton">
+       <property name="text">
+        <string>Show Maps</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="m_reset">
        <property name="text">
         <string>Reset Zoom</string>

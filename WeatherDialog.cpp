@@ -45,11 +45,14 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 , m_forecast       {nullptr}
 , m_config         {nullptr}
 , m_tooltip        {nullptr}
+, m_webpage        {nullptr}
 {
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setupUi(this);
 
+  auto tab = m_tabWidget->widget(1);
   m_tabWidget->removeTab(1);
+  if(tab) delete tab;
 
   m_chartView = new QChartView;
   m_chartView->setRenderHint(QPainter::Antialiasing);
@@ -58,20 +61,11 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 
   m_tabWidget->addTab(m_chartView, QIcon(), "Forecast");
 
-  m_webpage = new QWebView;
-  m_webpage->setRenderHint(QPainter::HighQualityAntialiasing, true);
-  m_webpage->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
-
-  m_tabWidget->addTab(m_webpage, QIcon(), "Maps");
-
-  connect(m_webpage, SIGNAL(loadStarted()),
-          this,      SLOT(onLoadStarted()));
-
-  connect(m_webpage, SIGNAL(loadFinished(bool)),
-          this,      SLOT(onLoadFinished(bool)));
-
   connect(m_reset, SIGNAL(clicked()),
-          this,    SLOT(onResetPressed()));
+          this,    SLOT(onResetButtonPressed()));
+
+  connect(m_mapsButton, SIGNAL(clicked()),
+          this,         SLOT(onMapsButtonPressed()));
 
   connect(m_tabWidget, SIGNAL(currentChanged(int)),
           this,        SLOT(onTabChanged(int)));
@@ -80,7 +74,7 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 }
 
 //--------------------------------------------------------------------
-void WeatherDialog::setData(const ForecastData &current, const Forecast &data, const Configuration &config)
+void WeatherDialog::setData(const ForecastData &current, const Forecast &data, Configuration &config)
 {
   m_forecast = &data;
   m_config   = &config;
@@ -145,7 +139,7 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
   }
 
   // Forecast tab
-  auto axisX = new QDateTimeAxis;
+  auto axisX = new QDateTimeAxis();
   axisX->setTickCount(data.size()/3);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
@@ -223,18 +217,27 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, c
   if(oldChart) delete oldChart;
 
   // Maps tab
-  QFile webfile(":/TrayWeather/webpage.html");
-  webfile.open(QFile::ReadOnly);
-  QString webpage{webfile.readAll()};
-  webpage.replace("%%lat%%", QString::number(latitudeToYMercator(config.latitude)));
-  webpage.replace("%%lon%%", QString::number(longitudeToXMercator(config.longitude)));
-  m_webpage->setHtml(webpage);
+  if(config.mapsEnabled)
+  {
+    if(!mapsEnabled())
+    {
+      onMapsButtonPressed();
+    }
+    else
+    {
+      m_webpage->reload();
+    }
+  }
+  else
+  {
+    if(mapsEnabled()) onMapsButtonPressed();
+  }
 
-  onResetPressed();
+  onResetButtonPressed();
 }
 
 //--------------------------------------------------------------------
-void WeatherDialog::onResetPressed()
+void WeatherDialog::onResetButtonPressed()
 {
   m_chartView->chart()->zoomReset();
 }
@@ -291,7 +294,7 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
 //--------------------------------------------------------------------
 void WeatherDialog::onLoadFinished(bool value)
 {
-  m_tabWidget->setTabEnabled(2, value);
+  m_tabWidget->setTabText(2, tr("Maps"));
 
   if(isVisible() && !value)
   {
@@ -304,10 +307,63 @@ void WeatherDialog::onLoadFinished(bool value)
 }
 
 //--------------------------------------------------------------------
-void WeatherDialog::onLoadStarted()
+bool WeatherDialog::mapsEnabled() const
 {
-  if(m_tabWidget->isTabEnabled(2))
+  return m_tabWidget->count() == 3;
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onMapsButtonPressed()
+{
+  auto enabled = mapsEnabled();
+  m_config->mapsEnabled = !enabled;
+
+  if(enabled)
   {
-    m_tabWidget->setTabEnabled(2,  false);
+    m_mapsButton->setText(tr("Show Maps"));
+
+    m_tabWidget->removeTab(2);
+    delete m_webpage;
+    m_webpage = nullptr;
+  }
+  else
+  {
+    m_mapsButton->setText(tr("Hide Maps"));
+
+    m_webpage = new QWebView;
+    m_webpage->setRenderHint(QPainter::HighQualityAntialiasing, true);
+    m_webpage->setContextMenuPolicy(Qt::NoContextMenu);
+    m_webpage->setAcceptDrops(false);
+    m_webpage->settings()->setAttribute(QWebSettings::Accelerated2dCanvasEnabled, true);
+    m_webpage->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+    m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, false);
+    m_webpage->settings()->setAttribute(QWebSettings::AcceleratedCompositingEnabled, true);
+    m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanCloseWindows, false);
+
+    connect(m_webpage, SIGNAL(loadFinished(bool)),
+            this,      SLOT(onLoadFinished(bool)));
+
+    connect(m_webpage, SIGNAL(loadProgress(int)),
+            this,      SLOT(onLoadProgress(int)));
+
+    m_tabWidget->addTab(m_webpage, QIcon(), "Maps");
+
+    QFile webfile(":/TrayWeather/webpage.html");
+    webfile.open(QFile::ReadOnly);
+    QString webpage{webfile.readAll()};
+
+    webpage.replace("%%lat%%", QString::number(m_config->latitude));
+    webpage.replace("%%lon%%", QString::number(m_config->longitude));
+
+    m_webpage->setHtml(webpage);
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onLoadProgress(int progress)
+{
+  if(mapsEnabled())
+  {
+    m_tabWidget->setTabText(2, QObject::tr("Maps (%1%)").arg(progress, 2, 10, QChar('0')));
   }
 }

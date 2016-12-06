@@ -52,6 +52,12 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 }
 
 //--------------------------------------------------------------------
+TrayWeather::~TrayWeather()
+{
+  m_configuration.mapsEnabled = m_weatherDialog.mapsEnabled();
+}
+
+//--------------------------------------------------------------------
 void TrayWeather::replyFinished(QNetworkReply* reply)
 {
   if(reply->error() == QNetworkReply::NoError)
