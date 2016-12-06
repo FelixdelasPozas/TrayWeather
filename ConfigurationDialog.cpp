@@ -35,6 +35,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 , m_netManager  {std::make_shared<QNetworkAccessManager>(this)}
 , m_testedAPIKey{false}
 {
+  setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setupUi(this);
 
   connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
