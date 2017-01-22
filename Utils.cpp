@@ -158,9 +158,10 @@ void unixTimeStampToDate(struct tm &time, const long long timestamp)
 }
 
 //--------------------------------------------------------------------
-int moonPhase(const time_t timestamp)
+int moonPhase(const time_t timestamp, double &percent)
 {
   // taken from http://www.voidware.com/moon_phase.htm
+  // but modified to add illumination computation.
 
   /*
    calculates the moon phase (0-7), accurate to 1 segment.
@@ -196,9 +197,53 @@ int moonPhase(const time_t timestamp)
   b = jd * 8 + 0.5;           /* scale fraction from 0-8 and round by adding 0.5               */
   b = b & 7;                  /* 0 and 8 are the same so turn 8 into 0                         */
 
+  if(b < 4)
+    percent = jd;
+  else
+    percent = 1-jd;
+
   return b;
 }
 
+//--------------------------------------------------------------------
+const QString moonTooltip(const time_t timestamp)
+{
+  QString result;
+  double percent;
+  auto phase = moonPhase(timestamp, percent);
+
+  switch(phase)
+  {
+    case 0:
+      result += QObject::tr("New moon");
+      break;
+    case 1:
+      result += QObject::tr("Waxing crescent");
+      break;
+    case 2:
+      result += QObject::tr("First quarter");
+      break;
+    case 3:
+      result += QObject::tr("Waxing gibbous");
+      break;
+    case 4:
+      result += QObject::tr("Full moon");
+      break;
+    case 5:
+      result += QObject::tr("Waning gibbous");
+      break;
+    case 6:
+      result += QObject::tr("Last quarter");
+      break;
+    case 7:
+      result += QObject::tr("Waxing crescent");
+      break;
+  }
+
+  result += QObject::tr(" (%1% illumination)").arg(static_cast<int>(percent * 100));
+
+  return result;
+}
 //--------------------------------------------------------------------
 const QIcon weatherIcon(const ForecastData& data)
 {
@@ -206,7 +251,8 @@ const QIcon weatherIcon(const ForecastData& data)
 
   if(data.icon_id == "01n")
   {
-    iconId += QObject::tr("-%1").arg(moonPhase(data.dt));
+    double unused;
+    iconId += QObject::tr("-%1").arg(moonPhase(data.dt, unused));
   }
 
   return QIcon(Icons.value(iconId));
@@ -217,11 +263,14 @@ const QIcon moonIcon(const ForecastData& data)
 {
   if(!data.icon_id.isEmpty())
   {
+    double unused;
     QString iconId{"01n"};
-    iconId += QObject::tr("-%1").arg(moonPhase(data.dt));
+    iconId += QObject::tr("-%1").arg(moonPhase(data.dt, unused));
 
     return QIcon(Icons.value(iconId));
   }
+
+
 
   return QIcon{":/TrayWeather/network_error.svg"};
 }

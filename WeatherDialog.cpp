@@ -40,7 +40,7 @@ using namespace QtCharts;
 
 //--------------------------------------------------------------------
 WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
-: QDialog{parent, flags}
+: QDialog          {parent, flags}
 , m_temperatureLine{nullptr}
 , m_forecast       {nullptr}
 , m_config         {nullptr}
@@ -58,6 +58,7 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
   m_chartView->setRenderHint(QPainter::Antialiasing);
   m_chartView->setBackgroundBrush(QBrush{Qt::white});
   m_chartView->setRubberBand(QChartView::HorizontalRubberBand);
+  m_chartView->setToolTip(tr("Weather forecast for the next days."));
 
   m_tabWidget->addTab(m_chartView, QIcon(), "Forecast");
 
@@ -97,6 +98,8 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   m_pressure->setText(tr("%1 hPa").arg(current.pressure));
   m_wind_speed->setText(tr("%1 meter/sec").arg(current.wind_speed));
   m_wind_dir->setText(tr("%1 º").arg(static_cast<int>(current.wind_dir) % 360));
+
+  m_moon->setToolTip(moonTooltip(current.dt));
 
   if(current.rain == 0)
   {
@@ -321,6 +324,7 @@ void WeatherDialog::onMapsButtonPressed()
   if(enabled)
   {
     m_mapsButton->setText(tr("Show Maps"));
+    m_mapsButton->setToolTip(tr("Show weather maps tab."));
 
     m_tabWidget->removeTab(2);
     delete m_webpage;
@@ -329,6 +333,7 @@ void WeatherDialog::onMapsButtonPressed()
   else
   {
     m_mapsButton->setText(tr("Hide Maps"));
+    m_mapsButton->setToolTip(tr("Hide weather maps tab."));
 
     m_webpage = new QWebView;
     m_webpage->setRenderHint(QPainter::HighQualityAntialiasing, true);
@@ -339,6 +344,7 @@ void WeatherDialog::onMapsButtonPressed()
     m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, false);
     m_webpage->settings()->setAttribute(QWebSettings::AcceleratedCompositingEnabled, true);
     m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanCloseWindows, false);
+    m_webpage->setToolTip("Weather Maps.");
 
     connect(m_webpage, SIGNAL(loadFinished(bool)),
             this,      SLOT(onLoadFinished(bool)));

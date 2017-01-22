@@ -64,6 +64,9 @@
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Location and date</string>
+         </property>
          <property name="text">
           <string>location</string>
          </property>
@@ -87,6 +90,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Sunrise time</string>
+             </property>
              <property name="text">
               <string>Sunrise</string>
              </property>
@@ -99,6 +105,9 @@
                <weight>75</weight>
                <bold>true</bold>
               </font>
+             </property>
+             <property name="toolTip">
+              <string>Current humidity</string>
              </property>
              <property name="text">
               <string>Humidity</string>
@@ -113,6 +122,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Current cloudiness</string>
+             </property>
              <property name="text">
               <string>Cloudiness</string>
              </property>
@@ -125,6 +137,9 @@
                <weight>75</weight>
                <bold>true</bold>
               </font>
+             </property>
+             <property name="toolTip">
+              <string>Snow accumulation in the last 3 hours</string>
              </property>
              <property name="text">
               <string>Snow accumulation (last 3 hours)</string>
@@ -139,6 +154,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Minimum temperature</string>
+             </property>
              <property name="text">
               <string>Minimum temperature</string>
              </property>
@@ -151,6 +169,9 @@
                <weight>75</weight>
                <bold>true</bold>
               </font>
+             </property>
+             <property name="toolTip">
+              <string>Rain accumulation in the last 3 hours</string>
              </property>
              <property name="text">
               <string>Rain accumulation (last 3 hours)</string>
@@ -165,6 +186,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Current temperature</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -175,6 +199,9 @@
            </item>
            <item row="5" column="1">
             <widget class="QLabel" name="m_pressure">
+             <property name="toolTip">
+              <string>Current ground pressure</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -188,6 +215,9 @@
            </item>
            <item row="3" column="1">
             <widget class="QLabel" name="m_cloudiness">
+             <property name="toolTip">
+              <string>Current cloudiness</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -201,6 +231,9 @@
            </item>
            <item row="1" column="1">
             <widget class="QLabel" name="m_temp_max">
+             <property name="toolTip">
+              <string>Maximum temperature</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -220,6 +253,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Current ground pressure</string>
+             </property>
              <property name="text">
               <string>Ground pressure</string>
              </property>
@@ -227,6 +263,9 @@
            </item>
            <item row="9" column="1">
             <widget class="QLabel" name="m_snow">
+             <property name="toolTip">
+              <string>Snow accumulation in the last 3 hours</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -240,6 +279,9 @@
            </item>
            <item row="2" column="1">
             <widget class="QLabel" name="m_temp_min">
+             <property name="toolTip">
+              <string>Minimum temperature</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -259,6 +301,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Maximum temperature</string>
+             </property>
              <property name="text">
               <string>Maximum temperature</string>
              </property>
@@ -272,6 +317,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Current wind direction</string>
+             </property>
              <property name="text">
               <string>Wind direction</string>
              </property>
@@ -279,6 +327,9 @@
            </item>
            <item row="7" column="1">
             <widget class="QLabel" name="m_wind_dir">
+             <property name="toolTip">
+              <string>Current wind direction</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -298,6 +349,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Current wind speed</string>
+             </property>
              <property name="text">
               <string>Wind speed</string>
              </property>
@@ -305,6 +359,9 @@
            </item>
            <item row="4" column="1">
             <widget class="QLabel" name="m_humidity">
+             <property name="toolTip">
+              <string>Current humidity</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -318,6 +375,9 @@
            </item>
            <item row="6" column="1">
             <widget class="QLabel" name="m_wind_speed">
+             <property name="toolTip">
+              <string>Current wind speed</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -331,6 +391,9 @@
            </item>
            <item row="0" column="1">
             <widget class="QLabel" name="m_temp">
+             <property name="toolTip">
+              <string>Current temperature</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -344,6 +407,9 @@
            </item>
            <item row="8" column="1">
             <widget class="QLabel" name="m_rain">
+             <property name="toolTip">
+              <string>Rain accumulation in the last 3 hours</string>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -363,6 +429,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Sunset time</string>
+             </property>
              <property name="text">
               <string>Sunset</string>
              </property>
@@ -370,6 +439,9 @@
            </item>
            <item row="10" column="1">
             <widget class="QLabel" name="m_sunrise">
+             <property name="toolTip">
+              <string>Sunrise time</string>
+             </property>
              <property name="text">
               <string>Unknown</string>
              </property>
@@ -377,6 +449,9 @@
            </item>
            <item row="11" column="1">
             <widget class="QLabel" name="m_sunset">
+             <property name="toolTip">
+              <string>Sunset time</string>
+             </property>
              <property name="text">
               <string>Unknown</string>
              </property>
@@ -388,6 +463,9 @@
           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,0,0,0">
            <item>
             <widget class="QLabel" name="m_icon">
+             <property name="toolTip">
+              <string>Current weather icon</string>
+             </property>
              <property name="text">
               <string>WeatherIcon</string>
              </property>
@@ -408,6 +486,9 @@
                <bold>true</bold>
               </font>
              </property>
+             <property name="toolTip">
+              <string>Current weather description</string>
+             </property>
              <property name="text">
               <string>description</string>
              </property>
@@ -426,12 +507,15 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QLabel" name="label_11">
+              <widget class="QLabel" name="m_moonLabel">
                <property name="font">
                 <font>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
+               </property>
+               <property name="toolTip">
+                <string>Current moon phase</string>
                </property>
                <property name="text">
                 <string>Moon phase</string>
@@ -448,6 +532,9 @@
                  <width>64</width>
                  <height>64</height>
                 </size>
+               </property>
+               <property name="toolTip">
+                <string>Current moon phase</string>
                </property>
                <property name="text">
                 <string>MoonIcon</string>
@@ -487,6 +574,9 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="m_mapsButton">
+       <property name="toolTip">
+        <string>Show weather maps.</string>
+       </property>
        <property name="text">
         <string>Show Maps</string>
        </property>
@@ -494,6 +584,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="m_reset">
+       <property name="toolTip">
+        <string>Reset graph zoom</string>
+       </property>
        <property name="text">
         <string>Reset Zoom</string>
        </property>
@@ -514,6 +607,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="m_ok">
+       <property name="toolTip">
+        <string>Close dialog</string>
+       </property>
        <property name="text">
         <string>Ok</string>
        </property>
