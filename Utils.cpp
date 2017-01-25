@@ -197,10 +197,10 @@ int moonPhase(const time_t timestamp, double &percent)
   b = jd * 8 + 0.5;           /* scale fraction from 0-8 and round by adding 0.5               */
   b = b & 7;                  /* 0 and 8 are the same so turn 8 into 0                         */
 
-  if(b < 4)
-    percent = jd;
+  if(jd < 0.5)
+    percent = 2 * jd;
   else
-    percent = 1-jd;
+    percent = 1.0 - 2*(jd-0.5);
 
   return b;
 }
