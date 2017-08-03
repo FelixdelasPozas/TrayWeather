@@ -25,6 +25,7 @@
 #include <QIcon>
 
 // C++
+#include <functional>
 #include <exception>
 #include <memory>
 #include <time.h>

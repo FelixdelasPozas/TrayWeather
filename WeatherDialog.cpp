@@ -360,6 +360,7 @@ void WeatherDialog::onMapsButtonPressed()
 
     webpage.replace("%%lat%%", QString::number(m_config->latitude));
     webpage.replace("%%lon%%", QString::number(m_config->longitude));
+    webpage.replace("{api_key}", m_config->owm_apikey);
 
     m_webpage->setHtml(webpage);
   }
