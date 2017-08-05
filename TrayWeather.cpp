@@ -128,26 +128,41 @@ void TrayWeather::showConfiguration()
     Configuration configuration;
     dialog.getConfiguration(configuration);
 
-    if(configuration.updateTime != m_configuration.updateTime)
+    if(configuration.isValid())
     {
-      m_configuration.updateTime = configuration.updateTime;
-      m_timer.setInterval(m_configuration.updateTime);
-      m_timer.start();
-    }
-
-    if(configuration.owm_apikey != m_configuration.owm_apikey)
-    {
-      m_configuration.owm_apikey = configuration.owm_apikey;
-      requestForecastData();
-    }
-
-    if(configuration.units != m_configuration.units)
-    {
-      m_configuration.units = configuration.units;
-      if(validData())
+      if(configuration.ip != m_configuration.ip)
       {
-        updateTooltip();
-        m_weatherDialog.setData(m_current, m_data, m_configuration);
+        m_configuration.latitude  = configuration.latitude;
+        m_configuration.longitude = configuration.longitude;
+        m_configuration.country   = configuration.country;
+        m_configuration.city      = configuration.city;
+        m_configuration.zipcode   = configuration.zipcode;
+        m_configuration.isp       = configuration.isp;
+        m_configuration.ip        = configuration.ip;
+        m_configuration.timezone  = configuration.timezone;
+      }
+
+      if(configuration.updateTime != m_configuration.updateTime)
+      {
+        m_configuration.updateTime = configuration.updateTime;
+        m_timer.setInterval(m_configuration.updateTime);
+        m_timer.start();
+      }
+
+      if(configuration.owm_apikey != m_configuration.owm_apikey)
+      {
+        m_configuration.owm_apikey = configuration.owm_apikey;
+        requestForecastData();
+      }
+
+      if(configuration.units != m_configuration.units)
+      {
+        m_configuration.units = configuration.units;
+        if(validData())
+        {
+          updateTooltip();
+          m_weatherDialog.setData(m_current, m_data, m_configuration);
+        }
       }
     }
   }
