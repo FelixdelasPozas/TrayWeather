@@ -33,7 +33,8 @@ The following libraries are required:
 * [Qt Charts 2.1.0 submodule](https://github.com/qt/qtcharts).
 
 # Install
-The only current option is build from source as binaries are not provided. 
+
+Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/releases/tag/1.1.4) installer.
 
 # Screenshots
 Tray icon showing the current weather icon. At night and on clear sky days it shows the current moon phase as the weather icon.
@@ -64,7 +65,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.1.3
+**Version**: 1.1.4
 
 **Status**: finished.
 
@@ -72,8 +73,9 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   7           | 266         |   179            | 1112 |
-| C/C++ Header                 |   6           | 108         |   293            |  204 |
+| C++                          |   7           | 284         |   180            | 1175 |
+| C/C++ Header                 |   6           | 109         |   296            |  208 |
 | HTML                         |   1           |  28         |     0            |  138 |
-| CMake                        |   1           |  15         |    10            |   92 |
-| **Total**                    | **15**        | **417**     | **482**          | **1546** |
+| CMake                        |   1           |  15         |    10            |   93 |
+| **Total**                    | **15**        | **436**     | **486**          | **1614** |
+
