@@ -20,7 +20,7 @@
 // Project
 #include "AboutDialog.h"
 
-const QString AboutDialog::VERSION = QString("version 1.1.2");
+const QString AboutDialog::VERSION = QString("version 1.1.3");
 
 //-----------------------------------------------------------------
 AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)

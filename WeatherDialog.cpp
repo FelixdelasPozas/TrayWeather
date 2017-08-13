@@ -26,7 +26,7 @@
 #include <QIcon>
 #include <charts/qchart.h>
 #include <charts/qchartview.h>
-#include <charts/linechart/qlineseries.h>
+#include <charts/splinechart/qsplineseries.h>
 #include <charts/axis/datetimeaxis/qdatetimeaxis.h>
 #include <charts/axis/valueaxis/qvalueaxis.h>
 #include <charts/barchart/vertical/bar/qbarseries.h>
@@ -170,8 +170,9 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   pen.setWidth(2);
   pen.setColor(QColor{90,90,235});
 
-  m_temperatureLine = new QLineSeries(forecastChart);
+  m_temperatureLine = new QSplineSeries(forecastChart);
   m_temperatureLine->setName(tr("Temperature"));
+  m_temperatureLine->setUseOpenGL(true);
   m_temperatureLine->setPointsVisible(true);
   m_temperatureLine->setPen(pen);
 
@@ -277,7 +278,7 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
         }
       }
 
-      if(distance.manhattanLength() < 15)
+      if(distance.manhattanLength() < 30)
       {
         m_tooltip = std::make_shared<TooltipWidget>(m_forecast->at(closestPoint), *m_config);
 

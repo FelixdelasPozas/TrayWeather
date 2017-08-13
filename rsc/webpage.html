@@ -91,7 +91,7 @@
 		};
 		
         var map = L.map('map', {
-            center: new L.LatLng(%%lat%%, %%lon%%), attributionControl: false, zoom: 11, layers: [mapnik, rain]
+            center: new L.LatLng(%%lat%%, %%lon%%), attributionControl: false, zoom: 11, layers: [mapnik, temperature]
         });
 		
 		var numLayers = 1;
@@ -103,10 +103,10 @@
 			"OpenStreetMap BW": mapnikbw
         };
         var overlayMaps = { 
+            "Temperature": temperature,
 		    "Rain": rain,
             "Clouds": clouds,
-            "Wind": wind,
-            "Temperature": temperature
+            "Wind": wind
         };
 		
 		map.on('overlayadd', function(eo) { 
