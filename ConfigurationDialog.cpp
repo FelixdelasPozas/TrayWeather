@@ -65,8 +65,6 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
     m_zipCode->setText(configuration.zipcode);
     m_updateTime->setValue(configuration.updateTime);
     m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
-
-    requestOpenWeatherMapAPIKeyTest();
   }
   else
   {
@@ -75,6 +73,8 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
     requestIPGeolocation();
   }
+
+  requestOpenWeatherMapAPIKeyTest();
 }
 
 //--------------------------------------------------------------------
@@ -121,7 +121,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
       m_testLabel->setStyleSheet("QLabel { color : red; }");
       m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
 
-      message = tr("Network error.");
+      message = tr("Invalid reply from OpenWeatherMap server.");
       details = tr("%1").arg(reply->errorString());
     }
   }
@@ -131,7 +131,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 
     if(reply->error() == QNetworkReply::NetworkError::NoError)
     {
-      message = tr("Couldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
+      message = tr("Invalid reply from Geo-Locator server.\n.Couldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
 
       auto type = reply->header(QNetworkRequest::ContentTypeHeader);
       if(type.toString().startsWith("text/plain", Qt::CaseInsensitive))
@@ -154,8 +154,6 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
           m_geoipLabel->setStyleSheet("QLabel { color : green; }");
           m_geoipLabel->setText(tr("IP Geolocation successful."));
           reply->deleteLater();
-
-          if(!m_testedAPIKey) requestOpenWeatherMapAPIKeyTest();
 
           return;
         }
@@ -180,16 +178,18 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
       m_geoipLabel->setStyleSheet("QLabel { color : red; }");
       m_geoipLabel->setText(tr("IP Geolocation unsuccessful."));
 
+      message = tr("Invalid reply from Geo-Locator server.");
       details = tr("%1").arg(reply->errorString());
     }
   }
 
 
   auto box = std::make_shared<QMessageBox>(this);
-  box->setWindowTitle(tr("Application error"));
+  box->setWindowTitle(tr("Network Error"));
   box->setWindowIcon(QIcon(":/TrayWeather/application.ico"));
   box->setDetailedText(tr("Error description: %1").arg(reply->errorString()));
   box->setText(message);
+  box->setBaseSize(400, 400);
 
   box->exec();
 

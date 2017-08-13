@@ -1,0 +1,41 @@
+; ESPINA Mingw64 Distribution Inno Setup File
+; 
+; WARNING: For internal use, not intended for public distribution of ESPINA
+;
+; NOTES: Assumes that the user has compiled all the library dependencies, not 
+; installed precompiled libraries.
+
+[Setup]
+AppName=Tray Weather
+AppVersion=@TRAYWEATHER_VERSION_MAJOR@.@TRAYWEATHER_VERSION_MINOR@.@TRAYWEATHER_VERSION_PATCH@
+DefaultDirName={pf64}\Tray Weather
+DefaultGroupName=Tray Weather
+OutputDir=@PROJECT_BINARY_DIR@
+AppComments=Tray Weather
+AppContact=Felix de las Pozas Alvarez
+AppCopyright=(c)2017 Felix de las Pozas Alvarez
+AppPublisher=Felix de las Pozas Alvarez
+ArchitecturesAllowed=x64
+Compression=lzma2/ultra64
+CreateUninstallRegKey=yes
+Uninstallable=yes
+ChangesAssociations=no
+CloseApplications=yes
+UninstallDisplayIcon=@CMAKE_SOURCE_DIR@/rsc/application.ico
+UninstallDisplayName=Tray Weather v@TRAYWEATHER_VERSION_MAJOR@.@TRAYWEATHER_VERSION_MINOR@.@TRAYWEATHER_VERSION_PATCH@
+SourceDir=@PROJECT_BINARY_DIR@
+SetupIconFile=@CMAKE_SOURCE_DIR@/rsc/application.ico
+OutputBaseFilename=TrayWeather_v@TRAYWEATHER_VERSION_MAJOR@.@TRAYWEATHER_VERSION_MINOR@.@TRAYWEATHER_VERSION_PATCH@_Setup
+WizardImageFile=@CMAKE_SOURCE_DIR@/installer/image.bmp
+WizardSmallImageFile=@CMAKE_SOURCE_DIR@/installer/smallimage.bmp
+
+[Files]
+Source: "TrayWeather.exe"; DestDir: "{app}";
+Source: "*.dll"; DestDir: "{app}";
+Source: "bearer/*.*"; DestDir: "{app}/bearer/";
+Source: "iconengines/*.*"; DestDir: "{app}/iconengines/";
+Source: "imageformats/*.*"; DestDir: "{app}/imageformats/";
+Source: "platforms/*.*"; DestDir: "{app}/platforms/";
+
+[Run]
+Filename: "{app}\TrayWeather.exe"; Description: "Launch Tray Weather"; Flags: postinstall nowait skipifsilent unchecked

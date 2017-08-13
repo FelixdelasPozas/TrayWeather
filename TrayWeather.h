@@ -31,6 +31,7 @@
 
 class QNetworkReply;
 class QNetworkAccessManager;
+class AboutDialog;
 
 /** \class TrayWeather
  * \brief Implements the tray icon and application logic.
@@ -68,7 +69,7 @@ class TrayWeather
     /** \brief Shows the "About" dialog.
      *
      */
-    void showAboutDialog() const;
+    void showAboutDialog();
 
     /** \brief Shows the weather forecast.
      *
@@ -102,6 +103,11 @@ class TrayWeather
      */
     void connectSignals();
 
+    /** \brief Helper method to disconnect all the signals and slots.
+     *
+     */
+    void disconnectSignals();
+
     /** \brief Creates the tray icon menu.
      *
      */
@@ -117,12 +123,14 @@ class TrayWeather
      */
     void invalidateData();
 
-    Configuration                         &m_configuration; /** application configuration.                */
-    std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.                          */
-    Forecast                               m_data;          /** list of forecast data.                    */
-    ForecastData                           m_current;       /** weather conditions now.                   */
-    QTimer                                 m_timer;         /** timer for updates and retries.            */
-    WeatherDialog                          m_weatherDialog; /** dialog to show weather and forecast data. */
+    Configuration                         &m_configuration; /** application configuration.                        */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.                                  */
+    Forecast                               m_data;          /** list of forecast data.                            */
+    ForecastData                           m_current;       /** weather conditions now.                           */
+    QTimer                                 m_timer;         /** timer for updates and retries.                    */
+    WeatherDialog                         *m_weatherDialog; /** dialog to show weather and forecast data.         */
+    AboutDialog                           *m_aboutDialog;   /** pointer to current (if any) about dialog.         */
+    ConfigurationDialog                   *m_configDialog;  /** pointer to current (if any) configuration dialog. */
 };
 
 

@@ -33,14 +33,15 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-#include <QDebug>
-
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 : QSystemTrayIcon{parent}
 , m_configuration{configuration}
 , m_netManager   {std::make_shared<QNetworkAccessManager>(this)}
 , m_timer        {this}
+, m_weatherDialog{nullptr}
+, m_aboutDialog  {nullptr}
+, m_configDialog {nullptr}
 {
   m_timer.setSingleShot(true);
 
@@ -54,7 +55,9 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 //--------------------------------------------------------------------
 TrayWeather::~TrayWeather()
 {
-  m_configuration.mapsEnabled = m_weatherDialog.mapsEnabled();
+  disconnectSignals();
+
+  m_timer.stop();
 }
 
 //--------------------------------------------------------------------
@@ -100,7 +103,10 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
       m_timer.setInterval(m_configuration.updateTime*60*1000);
       m_timer.start();
 
-      m_weatherDialog.setData(m_current, m_data, m_configuration);
+      if(m_weatherDialog)
+      {
+        m_weatherDialog->setData(m_current, m_data, m_configuration);
+      }
     }
 
     reply->deleteLater();
@@ -116,54 +122,84 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 //--------------------------------------------------------------------
 void TrayWeather::showConfiguration()
 {
-  static ConfigurationDialog dialog{m_configuration};
-
-  if(!dialog.isVisible())
+  if(m_configDialog)
   {
-    auto scr = QApplication::desktop()->screenGeometry();
-    dialog.move(scr.center() - dialog.rect().center());
-    dialog.setModal(true);
-    dialog.exec();
-
-    Configuration configuration;
-    dialog.getConfiguration(configuration);
-
-    if(configuration.isValid())
+    if(m_aboutDialog)
     {
-      if(configuration.ip != m_configuration.ip)
-      {
-        m_configuration.latitude  = configuration.latitude;
-        m_configuration.longitude = configuration.longitude;
-        m_configuration.country   = configuration.country;
-        m_configuration.city      = configuration.city;
-        m_configuration.zipcode   = configuration.zipcode;
-        m_configuration.isp       = configuration.isp;
-        m_configuration.ip        = configuration.ip;
-        m_configuration.timezone  = configuration.timezone;
-      }
+      m_aboutDialog->raise();
+    }
+    else
+    {
+      m_configDialog->raise();
+    }
 
-      if(configuration.updateTime != m_configuration.updateTime)
-      {
-        m_configuration.updateTime = configuration.updateTime;
-        m_timer.setInterval(m_configuration.updateTime);
-        m_timer.start();
-      }
+    return;
+  }
 
-      if(configuration.owm_apikey != m_configuration.owm_apikey)
-      {
-        m_configuration.owm_apikey = configuration.owm_apikey;
-        requestForecastData();
-      }
+  m_configDialog = new ConfigurationDialog{m_configuration};
 
-      if(configuration.units != m_configuration.units)
+  auto scr = QApplication::desktop()->screenGeometry();
+  m_configDialog->move(scr.center() - m_configDialog->rect().center());
+  m_configDialog->setModal(true);
+  m_configDialog->exec();
+
+  Configuration configuration;
+  m_configDialog->getConfiguration(configuration);
+
+  delete m_configDialog;
+
+  m_configDialog = nullptr;
+
+  if(configuration.isValid())
+  {
+    auto menu = this->contextMenu();
+
+    if(menu && menu->actions().size() > 1 && menu->actions().first()->text().startsWith("Weather"))
+    {
+      QString iconLink = configuration.units == Temperature::CELSIUS ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
+      QIcon icon{iconLink};
+
+      menu->actions().first()->setIcon(icon);
+    }
+
+    if(configuration.ip != m_configuration.ip)
+    {
+      m_configuration.latitude  = configuration.latitude;
+      m_configuration.longitude = configuration.longitude;
+      m_configuration.country   = configuration.country;
+      m_configuration.city      = configuration.city;
+      m_configuration.zipcode   = configuration.zipcode;
+      m_configuration.isp       = configuration.isp;
+      m_configuration.ip        = configuration.ip;
+      m_configuration.timezone  = configuration.timezone;
+    }
+
+    if(configuration.updateTime != m_configuration.updateTime)
+    {
+      m_configuration.updateTime = configuration.updateTime;
+      m_timer.setInterval(m_configuration.updateTime);
+      m_timer.start();
+    }
+
+    if(configuration.owm_apikey != m_configuration.owm_apikey)
+    {
+      m_configuration.owm_apikey = configuration.owm_apikey;
+      requestForecastData();
+    }
+
+    if(configuration.units != m_configuration.units)
+    {
+      m_configuration.units = configuration.units;
+
+      if(validData())
       {
-        m_configuration.units = configuration.units;
-        if(validData())
-        {
-          updateTooltip();
-          m_weatherDialog.setData(m_current, m_data, m_configuration);
-        }
+        updateTooltip();
       }
+    }
+
+    if(m_weatherDialog && validData())
+    {
+      m_weatherDialog->setData(m_current, m_data, m_configuration);
     }
   }
 }
@@ -198,7 +234,8 @@ void TrayWeather::createMenuEntries()
 {
   auto menu = new QMenu(nullptr);
 
-  auto weather = new QAction{QIcon{":/TrayWeather/temp-celsius.svg"}, tr("Weather && forecast..."), menu};
+  QString iconLink = m_configuration.units == Temperature::CELSIUS ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
+  auto weather = new QAction{QIcon{iconLink}, tr("Weather && forecast..."), menu};
   connect(weather, SIGNAL(triggered(bool)), this, SLOT(showForecast()));
 
   menu->addAction(weather);
@@ -239,18 +276,24 @@ void TrayWeather::exitApplication()
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::showAboutDialog() const
+void TrayWeather::showAboutDialog()
 {
-  static AboutDialog dialog;
-
-  if(!dialog.isVisible())
+  if(m_aboutDialog)
   {
-    auto scr = QApplication::desktop()->screenGeometry();
-    dialog.move(scr.center() - dialog.rect().center());
-    dialog.setModal(true);
-
-    dialog.exec();
+    m_aboutDialog->raise();
+    return;
   }
+
+  m_aboutDialog = new AboutDialog{};
+
+  auto scr = QApplication::desktop()->screenGeometry();
+  m_aboutDialog->move(scr.center() - m_aboutDialog->rect().center());
+  m_aboutDialog->setModal(true);
+  m_aboutDialog->exec();
+
+  delete m_aboutDialog;
+
+  m_aboutDialog = nullptr;
 }
 
 //--------------------------------------------------------------------
@@ -267,6 +310,19 @@ void TrayWeather::connectSignals()
 }
 
 //--------------------------------------------------------------------
+void TrayWeather::disconnectSignals()
+{
+  disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+             this,               SLOT(replyFinished(QNetworkReply*)));
+
+  disconnect(this, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+             this, SLOT(onActivation(QSystemTrayIcon::ActivationReason)));
+
+  disconnect(&m_timer, SIGNAL(timeout()),
+             this,     SLOT(requestForecastData()));
+}
+
+//--------------------------------------------------------------------
 void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
 {
   if(reason == QSystemTrayIcon::ActivationReason::DoubleClick)
@@ -278,6 +334,27 @@ void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
 //--------------------------------------------------------------------
 void TrayWeather::showForecast()
 {
+  if(m_weatherDialog)
+  {
+    if(m_aboutDialog)
+    {
+      m_aboutDialog->raise();
+    }
+    else
+    {
+      if(m_configDialog)
+      {
+        m_configDialog->raise();
+      }
+      else
+      {
+        m_weatherDialog->raise();
+      }
+    }
+
+    return;
+  }
+
   if(!validData())
   {
     QMessageBox msgBox;
@@ -291,14 +368,19 @@ void TrayWeather::showForecast()
     return;
   }
 
-  if(!m_weatherDialog.isVisible())
-  {
-    auto scr = QApplication::desktop()->screenGeometry();
-    m_weatherDialog.move(scr.center() - m_weatherDialog.rect().center());
-    m_weatherDialog.setModal(true);
+  m_weatherDialog = new WeatherDialog{};
+  m_weatherDialog->setData(m_current, m_data, m_configuration);
 
-    m_weatherDialog.exec();
-  }
+  auto scr = QApplication::desktop()->screenGeometry();
+  m_weatherDialog->move(scr.center() - m_weatherDialog->rect().center());
+  m_weatherDialog->setModal(true);
+  m_weatherDialog->exec();
+
+  m_configuration.mapsEnabled = m_weatherDialog->mapsEnabled();
+
+  delete m_weatherDialog;
+
+  m_weatherDialog = nullptr;
 }
 
 //--------------------------------------------------------------------

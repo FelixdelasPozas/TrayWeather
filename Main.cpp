@@ -50,7 +50,7 @@ static const QString MAPS_TAB_ENABLED      = QObject::tr("Maps tab enabled");
 //--------------------------------------------------------------------
 void saveConfiguration(const Configuration &configuration)
 {
-  QSettings settings("TrayWeather.ini", QSettings::IniFormat);
+  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
 
   settings.setValue(LONGITUDE,             configuration.longitude);
   settings.setValue(LATITUDE,              configuration.latitude);
@@ -72,7 +72,7 @@ void saveConfiguration(const Configuration &configuration)
 //--------------------------------------------------------------------
 void loadConfiguration(Configuration &configuration)
 {
-  QSettings settings("TrayWeather.ini", QSettings::IniFormat);
+  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
 
   configuration.longitude   = settings.value(LONGITUDE, -181.0).toDouble();
   configuration.latitude    = settings.value(LATITUDE, -181.0).toDouble();
