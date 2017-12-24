@@ -47,6 +47,9 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   connect(m_request, SIGNAL(pressed()),
           this,      SLOT(requestIPGeolocation()));
 
+  connect(m_useDNS, SIGNAL(stateChanged(int)),
+          this,     SLOT(onDNSRequestStateChanged(int)));
+
   if(configuration.isValid())
   {
     m_geoipLabel->setStyleSheet("QLabel { color : green; }");
@@ -65,6 +68,12 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
     m_zipCode->setText(configuration.zipcode);
     m_updateTime->setValue(configuration.updateTime);
     m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
+    m_useDNS->setChecked(configuration.useDNS);
+
+    if(m_useDNS->isChecked())
+    {
+      requestDNSIPGeolocation();
+    }
   }
   else
   {
@@ -82,7 +91,40 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 {
   QString details, message;
 
-  if(reply->url() != QUrl{"http://ip-api.com/csv"})
+  auto url = reply->url();
+
+  if(url.toString().contains("edns.ip", Qt::CaseInsensitive))
+  {
+    if(url.toString().contains(m_DNSIP, Qt::CaseSensitive))
+    {
+      if(reply->error() == QNetworkReply::NetworkError::NoError)
+      {
+        auto data = reply->readAll();
+
+        m_DNSIP = data.split(' ').at(1);
+        requestIPGeolocation();
+      }
+      else
+      {
+        message = tr("Invalid reply from Geo-Locator server.\n.Couldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
+        details = tr("%1").arg(reply->errorString());
+
+        auto box = std::make_shared<QMessageBox>(this);
+        box->setWindowTitle(tr("Network Error"));
+        box->setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+        box->setDetailedText(details);
+        box->setText(message);
+        box->setBaseSize(400, 400);
+        box->exec();
+      }
+    }
+
+    reply->deleteLater();
+
+    return;
+  }
+
+  if(!url.toString().startsWith("http://ip-api.com/csv", Qt::CaseSensitive))
   {
     m_apiTest->setEnabled(true);
 
@@ -183,11 +225,10 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     }
   }
 
-
   auto box = std::make_shared<QMessageBox>(this);
   box->setWindowTitle(tr("Network Error"));
   box->setWindowIcon(QIcon(":/TrayWeather/application.ico"));
-  box->setDetailedText(tr("Error description: %1").arg(reply->errorString()));
+  box->setDetailedText(details);
   box->setText(message);
   box->setBaseSize(400, 400);
 
@@ -211,13 +252,34 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.zipcode    = m_zipCode->text();
   configuration.updateTime = m_updateTime->value();
   configuration.units      = static_cast<Temperature>(m_tempComboBox->currentIndex());
+  configuration.useDNS     = m_useDNS->isChecked();
 }
 
 //--------------------------------------------------------------------
-void ConfigurationDialog::requestIPGeolocation() const
+void ConfigurationDialog::requestIPGeolocation()
+{
+  if(m_useDNS->isChecked() && m_DNSIP.isEmpty())
+  {
+    requestDNSIPGeolocation();
+    return;
+  }
+
+  // CSV is easier to parse later.
+  auto ipAddress = QString("http://ip-api.com/csv/%1").arg(m_DNSIP);
+  m_netManager->get(QNetworkRequest{QUrl{ipAddress}});
+
+  m_request->setEnabled(false);
+  m_geoipLabel->setStyleSheet("QLabel { color : blue; }");
+  m_geoipLabel->setText(tr("Requesting IP Geolocation..."));
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::requestDNSIPGeolocation()
 {
   // CSV is easier to parse later.
-  m_netManager->get(QNetworkRequest{QUrl{"http://ip-api.com/csv"}});
+  m_DNSIP = randomString();
+  auto requestAddress = QString("http://%1.edns.ip-api.com/csv").arg(m_DNSIP);
+  m_netManager->get(QNetworkRequest{QUrl{requestAddress}});
 
   m_request->setEnabled(false);
   m_geoipLabel->setStyleSheet("QLabel { color : blue; }");
@@ -235,4 +297,32 @@ void ConfigurationDialog::requestOpenWeatherMapAPIKeyTest() const
   m_apiTest->setEnabled(false);
   m_testLabel->setStyleSheet("QLabel { color : blue; }");
   m_testLabel->setText(tr("Testing API Key..."));
+}
+
+//--------------------------------------------------------------------
+const QString ConfigurationDialog::randomString(const int length) const
+{
+  const QString possibleCharacters("abcdefghijklmnopqrstuvwxyz0123456789");
+
+  QString randomString;
+  for (int i = 0; i < length; ++i)
+  {
+    randomString.append(possibleCharacters.at(qrand() % possibleCharacters.length()));
+  }
+
+  return randomString;
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onDNSRequestStateChanged(int state)
+{
+  if(m_useDNS->isChecked())
+  {
+    requestDNSIPGeolocation();
+  }
+  else
+  {
+    m_DNSIP.clear();
+    requestIPGeolocation();
+  }
 }

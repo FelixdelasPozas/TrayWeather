@@ -46,6 +46,7 @@ static const QString OPENWEATHERMAP_APIKEY = QObject::tr("OpenWeatherMap API Key
 static const QString TEMP_UNITS            = QObject::tr("Units");
 static const QString UPDATE_INTERVAL       = QObject::tr("Update interval");
 static const QString MAPS_TAB_ENABLED      = QObject::tr("Maps tab enabled");
+static const QString USE_DNS_GEOLOCATION   = QObject::tr("Use DNS GepGeolocation");
 
 //--------------------------------------------------------------------
 void saveConfiguration(const Configuration &configuration)
@@ -65,6 +66,7 @@ void saveConfiguration(const Configuration &configuration)
   settings.setValue(TEMP_UNITS,            static_cast<int>(configuration.units));
   settings.setValue(UPDATE_INTERVAL,       configuration.updateTime);
   settings.setValue(MAPS_TAB_ENABLED,      configuration.mapsEnabled);
+  settings.setValue(USE_DNS_GEOLOCATION,   configuration.useDNS);
 
   settings.sync();
 }
@@ -87,6 +89,7 @@ void loadConfiguration(Configuration &configuration)
   configuration.units       = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
   configuration.updateTime  = settings.value(UPDATE_INTERVAL, 15).toUInt();
   configuration.mapsEnabled = settings.value(MAPS_TAB_ENABLED, true).toBool();
+  configuration.useDNS      = settings.value(USE_DNS_GEOLOCATION, false).toBool();
 }
 
 //-----------------------------------------------------------------

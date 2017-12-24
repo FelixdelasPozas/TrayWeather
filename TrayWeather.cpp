@@ -167,11 +167,14 @@ void TrayWeather::showConfiguration()
       m_configuration.latitude  = configuration.latitude;
       m_configuration.longitude = configuration.longitude;
       m_configuration.country   = configuration.country;
+      m_configuration.region    = configuration.region;
       m_configuration.city      = configuration.city;
       m_configuration.zipcode   = configuration.zipcode;
       m_configuration.isp       = configuration.isp;
       m_configuration.ip        = configuration.ip;
       m_configuration.timezone  = configuration.timezone;
+      m_configuration.useDNS    = configuration.useDNS;
+      requestForecastData();
     }
 
     if(configuration.updateTime != m_configuration.updateTime)

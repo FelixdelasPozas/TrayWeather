@@ -37,19 +37,20 @@ enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
  */
 struct Configuration
 {
-    double       latitude;    /** location latitude in degrees.                 */
-    double       longitude;   /** location longitude in degrees.                */
-    QString      country;     /** location's country.                           */
-    QString      region;      /** location's region.                            */
-    QString      city;        /** location's city.                              */
-    QString      zipcode;     /** location's zip code.                          */
-    QString      isp;         /** internet service provider.                    */
-    QString      ip;          /** internet address.                             */
-    QString      timezone;    /** location's timezone.                          */
-    QString      owm_apikey;  /** OpenWeatherMap API Key.                       */
-    Temperature  units;       /** temperature units.                            */
-    unsigned int updateTime;  /** time between updates.                         */
-    bool         mapsEnabled; /** true if maps tab is visible, false otherwise. */
+    double       latitude;    /** location latitude in degrees.                               */
+    double       longitude;   /** location longitude in degrees.                              */
+    QString      country;     /** location's country.                                         */
+    QString      region;      /** location's region.                                          */
+    QString      city;        /** location's city.                                            */
+    QString      zipcode;     /** location's zip code.                                        */
+    QString      isp;         /** internet service provider.                                  */
+    QString      ip;          /** internet address.                                           */
+    QString      timezone;    /** location's timezone.                                        */
+    QString      owm_apikey;  /** OpenWeatherMap API Key.                                     */
+    Temperature  units;       /** temperature units.                                          */
+    unsigned int updateTime;  /** time between updates.                                       */
+    bool         mapsEnabled; /** true if maps tab is visible, false otherwise.               */
+    bool         useDNS;      /** true to use DNS address for geo location instead of own IP. */
 
 
     bool isValid() const

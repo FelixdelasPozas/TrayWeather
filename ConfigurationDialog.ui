@@ -7,13 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>447</width>
-    <height>470</height>
+    <height>492</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>447</width>
     <height>394</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>447</width>
+    <height>492</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -235,6 +241,13 @@ QGroupBox::title {
          </widget>
         </item>
        </layout>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="m_useDNS">
+        <property name="text">
+         <string>Use DNS address</string>
+        </property>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,0">

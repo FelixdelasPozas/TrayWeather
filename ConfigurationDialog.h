@@ -59,6 +59,18 @@ class ConfigurationDialog
      */
     void getConfiguration(Configuration &configuration) const;
 
+  private:
+    /** \brief Request DNS IP
+     *
+     */
+    void requestDNSIPGeolocation();
+
+    /** \brief Returns a random alphanumeric string with the given length.
+     * \param[in] lenght String length.
+     *
+     */
+    const QString randomString(const int length = 32) const;
+
   private slots:
     /** \brief Manages replies from the network requests.
      * \param[in] reply network reply object pointer.
@@ -68,17 +80,24 @@ class ConfigurationDialog
     /** \brief Request IP Geolocation.
      *
      */
-    void requestIPGeolocation() const;
+    void requestIPGeolocation();
 
     /** \brief Request forecast data to test OpenWeatherMap API key validity.
      *
      */
     void requestOpenWeatherMapAPIKeyTest() const;
 
+    /** \brief Disables/Enables geolocation from DNS IP instead of geolocation detected ip.
+     * \param[in] state DNS Checkbox state.
+     *
+     */
+    void onDNSRequestStateChanged(int state);
+
   private:
 
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
     bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */
+    QString                                m_DNSIP;        /** DNS server IP.                                                                    */
 };
 
 #endif // CONFIGURATIONDIALOG_H_
