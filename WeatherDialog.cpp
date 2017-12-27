@@ -153,13 +153,13 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   axisYTemp->setTitleText(tr("Temperature in %1").arg(temperatureUnits));
 
   auto axisYRain = new QValueAxis();
-  axisYRain->setLabelFormat("%i");
+  axisYRain->setLabelFormat("%.2f");
   axisYRain->setTitleText("Rain accumulation in mm");
 
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
   forecastChart->legend()->setAlignment(Qt::AlignBottom);
-  forecastChart->setAnimationDuration(500);
+  forecastChart->setAnimationDuration(400);
   forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
   forecastChart->setAnimationOptions(QChart::AllAnimations);
   forecastChart->addAxis(axisX, Qt::AlignBottom);
@@ -204,7 +204,7 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   }
 
   axisYTemp->setRange(tempMin-1, tempMax+1);
-  axisYRain->setRange(rainMin, rainMax*2);
+  axisYRain->setRange(rainMin, rainMax*1.25);
 
   forecastChart->addSeries(rainBars);
   forecastChart->addSeries(m_temperatureLine);
@@ -215,6 +215,12 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
 
   connect(m_temperatureLine, SIGNAL(hovered(const QPointF &, bool)),
           this,              SLOT(onChartHover(const QPointF &, bool)));
+
+  if(rainMin == 0 && rainMax == 0)
+  {
+    axisYRain->setVisible(false);
+    rainBars->clear();
+  }
 
   auto oldChart = m_chartView->chart();
   m_chartView->setChart(forecastChart);

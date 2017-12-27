@@ -44,7 +44,7 @@ Tray icon showing the current weather icon. At night and on clear sky days it sh
 
 Configuration dialog. It shows the detected location properties and the options to change the frequency of updates and temperature units. The OpenWeatherMap API Key must be entered here.
 
-![config](https://cloud.githubusercontent.com/assets/12167134/20938098/f06f0044-bbe9-11e6-9e6e-e569111c7964.jpg)
+![config](https://user-images.githubusercontent.com/12167134/34379925-45f2066c-eafe-11e7-83a6-58710b7df802.jpg)
 
 Weather dialog, showing the current weather tab. 
 
@@ -53,8 +53,8 @@ Weather dialog, showing the current weather tab.
 Weather forecast for the next days. If the user puts the mouse over a point in the temperature line a tooltip will provide the weather conditions for that day and hour. 
 The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph.
 
-![forecast_graph](https://cloud.githubusercontent.com/assets/12167134/20938102/f0996c9e-bbe9-11e6-935d-7ac678f5b8b2.jpg)
-![forecast_tooltip](https://cloud.githubusercontent.com/assets/12167134/20938096/f05c26fe-bbe9-11e6-851b-0e4fe8de4c0c.jpg)
+![forecast_graph](https://user-images.githubusercontent.com/12167134/34379926-460a5cbc-eafe-11e7-99f9-b0ee23005b73.jpg)
+![forecast_tooltip](https://user-images.githubusercontent.com/12167134/34379927-4622b118-eafe-11e7-8933-c7fae870fb1d.jpg)
 
 Weather maps are interactive. While initially the map is centered in the detected location it can be moved and zoomed in and out. The maps consumes much more memory than
 the rest of the application so the user can be disable them using the button below. 
@@ -65,7 +65,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.1.5
+**Version**: 1.1.6
 
 **Status**: finished.
 
@@ -73,8 +73,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   7           | 298         |   184            | 1253 |
+| C++                          |   7           | 299         |   184            | 1258 |
 | C/C++ Header                 |   6           | 112         |   307            |  214 |
 | HTML                         |   1           |  28         |     0            |  138 |
 | CMake                        |   1           |  15         |    10            |   93 |
-| **Total**                    | **15**        | **453**     | **501**          | **1698** |
+| **Total**                    | **15**        | **454**     | **501**          | **1703** |
