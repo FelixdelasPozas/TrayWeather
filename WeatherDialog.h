@@ -113,6 +113,11 @@ class WeatherDialog
      */
     void onLoadProgress(int progress);
 
+    /** \brief Updates the state of the reset chart zoom button.
+     *
+     */
+    void onAreaChanged();
+
   private:
     QtCharts::QChartView          *m_chartView;       /** chart view.                     */
     QtCharts::QLineSeries         *m_temperatureLine; /** temperature series line.        */

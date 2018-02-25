@@ -224,7 +224,24 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
 
   auto oldChart = m_chartView->chart();
   m_chartView->setChart(forecastChart);
-  if(oldChart) delete oldChart;
+  m_chartView->chart()->zoomReset();
+
+  m_reset->setEnabled(false);
+
+  connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+          this,  SLOT(onAreaChanged()));
+
+  if(oldChart)
+  {
+    auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
+    if(axis)
+    {
+      disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                 this, SLOT(onAreaChanged()));
+    }
+
+    delete oldChart;
+  }
 
   // Maps tab
   if(config.mapsEnabled)
@@ -380,4 +397,10 @@ void WeatherDialog::onLoadProgress(int progress)
   {
     m_tabWidget->setTabText(2, QObject::tr("Maps (%1%)").arg(progress, 2, 10, QChar('0')));
   }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onAreaChanged()
+{
+  m_reset->setEnabled(m_chartView->chart() && m_chartView->chart()->isZoomed());
 }

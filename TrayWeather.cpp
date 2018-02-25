@@ -79,6 +79,8 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         {
           auto values  = jsonObj.value("list").toArray();
 
+          auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_data) if(entry.dt == dt) return true; return false; };
+
           for(auto i = 0; i < values.count(); ++i)
           {
             auto entry = values.at(i).toObject();
@@ -86,7 +88,13 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
             ForecastData data;
             parseForecastEntry(entry, data, m_configuration.units);
 
-            m_data << data;
+            if(!hasEntry(data.dt)) m_data << data;
+          }
+
+          if(!m_data.isEmpty())
+          {
+            auto lessThan = [](const ForecastData &left, const ForecastData &right) { if(left.dt < right.dt) return true; return false; };
+            qSort(m_data.begin(), m_data.end(), lessThan);
           }
         }
         else
