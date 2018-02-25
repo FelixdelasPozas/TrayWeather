@@ -34,7 +34,7 @@ The following libraries are required:
 
 # Install
 
-Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/releases/tag/1.1.4) installer.
+Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/releases/) installer.
 
 # Screenshots
 Tray icon showing the current weather icon. At night and on clear sky days it shows the current moon phase as the weather icon.
