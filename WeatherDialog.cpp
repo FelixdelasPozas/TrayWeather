@@ -97,7 +97,7 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   m_humidity->setText(tr("%1%").arg(current.humidity));
   m_pressure->setText(tr("%1 hPa").arg(current.pressure));
   m_wind_speed->setText(tr("%1 meter/sec").arg(current.wind_speed));
-  m_wind_dir->setText(tr("%1 º").arg(static_cast<int>(current.wind_dir) % 360));
+  m_wind_dir->setText(tr("%1 º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
 
   m_moon->setToolTip(moonTooltip(current.dt));
 

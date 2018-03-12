@@ -8,7 +8,7 @@ cmake_minimum_required (VERSION 3.0.0)
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
 set (TRAYWEATHER_VERSION_MINOR 1)
-set (TRAYWEATHER_VERSION_PATCH 7)
+set (TRAYWEATHER_VERSION_PATCH 8)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

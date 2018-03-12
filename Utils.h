@@ -153,4 +153,10 @@ const QString moonTooltip(const time_t timestamp);
  */
 const QString toTitleCase(const QString &string);
 
+/** \brief Returns the wind direction string of the given degrees.
+ * \param[in] degrees Wind direction in degrees.
+ *
+ */
+const QString windDegreesToName(const double degrees);
+
 #endif // UTILS_H_
