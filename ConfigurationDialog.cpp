@@ -38,23 +38,15 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setupUi(this);
 
-  connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
-          this,               SLOT(replyFinished(QNetworkReply*)));
-
-  connect(m_apiTest, SIGNAL(pressed()),
-          this,      SLOT(requestOpenWeatherMapAPIKeyTest()));
-
-  connect(m_request, SIGNAL(pressed()),
-          this,      SLOT(requestIPGeolocation()));
-
-  connect(m_useDNS, SIGNAL(stateChanged(int)),
-          this,     SLOT(onDNSRequestStateChanged(int)));
+  connectSignals();
 
   if(configuration.isValid())
   {
-    m_geoipLabel->setStyleSheet("QLabel { color : green; }");
-    m_geoipLabel->setText(tr("IP Geolocation successful."));
-    m_request->setEnabled(true);
+    m_useManual->setChecked(!configuration.useIPLocation);
+    m_useGeolocation->setChecked(configuration.useIPLocation);
+
+    m_longitudeSpin->setValue(configuration.longitude);
+    m_latitudeSpin->setValue(configuration.latitude);
 
     m_city->setText(configuration.city);
     m_country->setText(configuration.country);
@@ -70,18 +62,24 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
     m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
     m_useDNS->setChecked(configuration.useDNS);
 
-    if(m_useDNS->isChecked())
+    if(configuration.useIPLocation)
     {
-      requestDNSIPGeolocation();
+      requestGeolocation();
     }
   }
   else
   {
-    m_updateTime->setValue(15);
-    m_tempComboBox->setCurrentIndex(0);
+    if(configuration.useIPLocation)
+    {
+      m_updateTime->setValue(15);
+      m_tempComboBox->setCurrentIndex(0);
 
-    requestIPGeolocation();
+      requestGeolocation();
+    }
   }
+
+  onRadioChanged();
+  onCoordinatesChanged();
 
   requestOpenWeatherMapAPIKeyTest();
 }
@@ -102,7 +100,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
         auto data = reply->readAll();
 
         m_DNSIP = data.split(' ').at(1);
-        requestIPGeolocation();
+        requestGeolocation();
       }
       else
       {
@@ -169,7 +167,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
   }
   else
   {
-    m_request->setEnabled(true);
+    m_geoRequest->setEnabled(true);
 
     if(reply->error() == QNetworkReply::NetworkError::NoError)
     {
@@ -193,32 +191,32 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
           m_isp->setText(values.at(10));
           m_ip->setText(values.at(13));
 
-          m_geoipLabel->setStyleSheet("QLabel { color : green; }");
-          m_geoipLabel->setText(tr("IP Geolocation successful."));
+          m_ipapiLabel->setStyleSheet("QLabel { color : green; }");
+          m_ipapiLabel->setText(tr("Success"));
           reply->deleteLater();
 
           return;
         }
         else
         {
-          m_geoipLabel->setStyleSheet("QLabel { color : red; }");
-          m_geoipLabel->setText(tr("IP Geolocation unsuccessful."));
+          m_ipapiLabel->setStyleSheet("QLabel { color : red; }");
+          m_ipapiLabel->setText(tr("Failure"));
 
           details = tr("Error parsing location data. Failure or invalid number of fields.");
         }
       }
       else
       {
-        m_geoipLabel->setStyleSheet("QLabel { color : red; }");
-        m_geoipLabel->setText(tr("IP Geolocation unsuccessful."));
+        m_ipapiLabel->setStyleSheet("QLabel { color : red; }");
+        m_ipapiLabel->setText(tr("Failure"));
 
         details = tr("Data request failure. Invalid data format.");
       }
     }
     else
     {
-      m_geoipLabel->setStyleSheet("QLabel { color : red; }");
-      m_geoipLabel->setText(tr("IP Geolocation unsuccessful."));
+      m_ipapiLabel->setStyleSheet("QLabel { color : red; }");
+      m_ipapiLabel->setText(tr("Failure"));
 
       message = tr("Invalid reply from Geo-Locator server.");
       details = tr("%1").arg(reply->errorString());
@@ -240,23 +238,33 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 //--------------------------------------------------------------------
 void ConfigurationDialog::getConfiguration(Configuration &configuration) const
 {
-  configuration.city       = m_city->text();
-  configuration.country    = m_country->text();
-  configuration.ip         = m_ip->text();
-  configuration.isp        = m_isp->text();
-  configuration.latitude   = !m_latitude->text().isEmpty() ? m_latitude->text().toDouble() : -181.0;
-  configuration.longitude  = !m_longitude->text().isEmpty() ? m_longitude->text().toDouble() : -181.0;
-  configuration.owm_apikey = m_testedAPIKey ? m_apikey->text() : QString();
-  configuration.region     = m_region->text();
-  configuration.timezone   = m_timezone->text();
-  configuration.zipcode    = m_zipCode->text();
-  configuration.updateTime = m_updateTime->value();
-  configuration.units      = static_cast<Temperature>(m_tempComboBox->currentIndex());
-  configuration.useDNS     = m_useDNS->isChecked();
+  configuration.city          = m_city->text();
+  configuration.country       = m_country->text();
+  configuration.ip            = m_ip->text();
+  configuration.isp           = m_isp->text();
+  configuration.owm_apikey    = m_testedAPIKey ? m_apikey->text() : QString();
+  configuration.region        = m_region->text();
+  configuration.timezone      = m_timezone->text();
+  configuration.zipcode       = m_zipCode->text();
+  configuration.updateTime    = m_updateTime->value();
+  configuration.units         = static_cast<Temperature>(m_tempComboBox->currentIndex());
+  configuration.useDNS        = m_useDNS->isChecked();
+  configuration.useIPLocation = m_useGeolocation->isChecked();
+
+  if(m_useManual->isChecked())
+  {
+    configuration.latitude  = std::min(90.0, std::max(-90.0, m_latitudeSpin->value()));
+    configuration.longitude = std::min(180.0, std::max(-180.0, m_longitudeSpin->value()));
+  }
+  else
+  {
+    configuration.latitude  = !m_latitude->text().isEmpty() ? m_latitude->text().toDouble() : -90.0;
+    configuration.longitude = !m_longitude->text().isEmpty() ? m_longitude->text().toDouble() : -180.0;
+  }
 }
 
 //--------------------------------------------------------------------
-void ConfigurationDialog::requestIPGeolocation()
+void ConfigurationDialog::requestGeolocation()
 {
   if(m_useDNS->isChecked() && m_DNSIP.isEmpty())
   {
@@ -264,13 +272,15 @@ void ConfigurationDialog::requestIPGeolocation()
     return;
   }
 
+  m_DNSIP.clear();
+
   // CSV is easier to parse later.
   auto ipAddress = QString("http://ip-api.com/csv/%1").arg(m_DNSIP);
   m_netManager->get(QNetworkRequest{QUrl{ipAddress}});
 
-  m_request->setEnabled(false);
-  m_geoipLabel->setStyleSheet("QLabel { color : blue; }");
-  m_geoipLabel->setText(tr("Requesting IP Geolocation..."));
+  m_geoRequest->setEnabled(false);
+  m_ipapiLabel->setStyleSheet("QLabel { color : blue; }");
+  m_ipapiLabel->setText(tr("Requesting..."));
 }
 
 //--------------------------------------------------------------------
@@ -281,9 +291,9 @@ void ConfigurationDialog::requestDNSIPGeolocation()
   auto requestAddress = QString("http://%1.edns.ip-api.com/csv").arg(m_DNSIP);
   m_netManager->get(QNetworkRequest{QUrl{requestAddress}});
 
-  m_request->setEnabled(false);
-  m_geoipLabel->setStyleSheet("QLabel { color : blue; }");
-  m_geoipLabel->setText(tr("Requesting IP Geolocation..."));
+  m_geoRequest->setEnabled(false);
+  m_ipapiLabel->setStyleSheet("QLabel { color : blue; }");
+  m_ipapiLabel->setText(tr("Requesting..."));
 }
 
 //--------------------------------------------------------------------
@@ -323,6 +333,63 @@ void ConfigurationDialog::onDNSRequestStateChanged(int state)
   else
   {
     m_DNSIP.clear();
-    requestIPGeolocation();
+    requestGeolocation();
   }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::connectSignals()
+{
+  connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+          this,               SLOT(replyFinished(QNetworkReply*)));
+
+  connect(m_apiTest, SIGNAL(pressed()),
+          this,      SLOT(requestOpenWeatherMapAPIKeyTest()));
+
+  connect(m_geoRequest, SIGNAL(pressed()),
+          this,         SLOT(requestGeolocation()));
+
+  connect(m_useDNS, SIGNAL(stateChanged(int)),
+          this,     SLOT(onDNSRequestStateChanged(int)));
+
+  connect(m_useGeolocation, SIGNAL(toggled(bool)),
+          this,             SLOT(onRadioChanged()));
+
+  connect(m_useManual, SIGNAL(toggled(bool)),
+          this,        SLOT(onRadioChanged()));
+
+  connect(m_longitudeSpin, SIGNAL(editingFinished()),
+          this,            SLOT(onCoordinatesChanged()));
+
+  connect(m_latitudeSpin, SIGNAL(editingFinished()),
+          this,           SLOT(onCoordinatesChanged()));
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onRadioChanged()
+{
+  auto manualEnabled = m_useManual->isChecked();
+
+  m_longitudeLabel->setEnabled(manualEnabled);
+  m_longitudeSpin->setEnabled(manualEnabled);
+  m_latitudeLabel->setEnabled(manualEnabled);
+  m_latitudeSpin->setEnabled(manualEnabled);
+
+  m_ipapiLabel->clear();
+  m_ipapiLabel->setEnabled(!manualEnabled);
+  m_geoRequest->setEnabled(!manualEnabled);
+  m_useDNS->setEnabled(!manualEnabled);
+  m_geoBox->setEnabled(!manualEnabled);
+
+  if(!manualEnabled) requestGeolocation();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onCoordinatesChanged()
+{
+  auto longitude = std::min(180.0, std::max(-180.0, m_longitudeSpin->value()));
+  auto latitude  = std::min(90.0, std::max(-90.0, m_latitudeSpin->value()));
+
+  m_longitudeSpin->setValue(longitude);
+  m_latitudeSpin->setValue(latitude);
 }

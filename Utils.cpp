@@ -19,6 +19,7 @@
 
 // Project
 #include <Utils.h>
+#include <ISO 3166-1-alpha-2.h>
 
 // Qt
 #include <QJsonArray>
@@ -87,6 +88,8 @@ QDebug operator <<(QDebug d, const ForecastData& data)
                                                           .arg(t.tm_hour, 2, 10, fillChar)
                                                           .arg(t.tm_min, 2, 10, fillChar)
                                                           .arg(t.tm_sec, 2, 10, fillChar) << "\n";
+  d << "Name             : " << data.name << "\n";
+  d << "Country          : " << data.country << "\n";
   d << "Temperature      : " << data.temp << "\n";
   d << "Temperature (min): " << data.temp_min << "\n";
   d << "Temperature (max): " << data.temp_max << "\n";
@@ -148,6 +151,17 @@ void parseForecastEntry(const QJsonObject& entry, ForecastData& data, const Temp
   data.rain        = rain.keys().contains("3h") ? rain.value("3h").toDouble(0) : 0;
   data.sunrise     = sys.value("sunrise").toInt(0);
   data.sunset      = sys.value("sunset").toInt(0);
+  data.name        = entry.keys().contains("name") ? entry.value("name").toString("Unknown") : "Unknown";
+
+  auto country = sys.keys().contains("country") ? sys.value("country").toString("") : "";
+  if(!country.isEmpty())
+  {
+    data.country = (ISO3166.values().contains(country)) ? ISO3166.key(country) : country;
+  }
+  else
+  {
+    data.country = "Unknown";
+  }
 }
 
 //--------------------------------------------------------------------

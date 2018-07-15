@@ -86,7 +86,14 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
   auto temperatureUnits = (config.units == Temperature::CELSIUS ? tr("ºC") : tr("Fº"));
 
-  m_location->setText(tr("%1, %2 - %3").arg(config.city).arg(config.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
+  if(config.useIPLocation)
+  {
+    m_location->setText(tr("%1, %2 - %3").arg(config.city).arg(config.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
+  }
+  else
+  {
+    m_location->setText(tr("%1, %2 - %3").arg(current.name).arg(current.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
+  }
   m_moon->setPixmap(moonIcon(current).pixmap(QSize{64,64}, QIcon::Normal, QIcon::On));
   m_description->setText(toTitleCase(current.description));
   m_icon->setPixmap(weatherIcon(current).pixmap(QSize{236,236}, QIcon::Normal, QIcon::On));

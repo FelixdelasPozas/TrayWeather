@@ -37,26 +37,27 @@ enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
  */
 struct Configuration
 {
-    double       latitude;    /** location latitude in degrees.                               */
-    double       longitude;   /** location longitude in degrees.                              */
-    QString      country;     /** location's country.                                         */
-    QString      region;      /** location's region.                                          */
-    QString      city;        /** location's city.                                            */
-    QString      zipcode;     /** location's zip code.                                        */
-    QString      isp;         /** internet service provider.                                  */
-    QString      ip;          /** internet address.                                           */
-    QString      timezone;    /** location's timezone.                                        */
-    QString      owm_apikey;  /** OpenWeatherMap API Key.                                     */
-    Temperature  units;       /** temperature units.                                          */
-    unsigned int updateTime;  /** time between updates.                                       */
-    bool         mapsEnabled; /** true if maps tab is visible, false otherwise.               */
-    bool         useDNS;      /** true to use DNS address for geo location instead of own IP. */
+    double       latitude;      /** location latitude in degrees.                               */
+    double       longitude;     /** location longitude in degrees.                              */
+    QString      country;       /** location's country.                                         */
+    QString      region;        /** location's region.                                          */
+    QString      city;          /** location's city.                                            */
+    QString      zipcode;       /** location's zip code.                                        */
+    QString      isp;           /** internet service provider.                                  */
+    QString      ip;            /** internet address.                                           */
+    QString      timezone;      /** location's timezone.                                        */
+    QString      owm_apikey;    /** OpenWeatherMap API Key.                                     */
+    Temperature  units;         /** temperature units.                                          */
+    unsigned int updateTime;    /** time between updates.                                       */
+    bool         mapsEnabled;   /** true if maps tab is visible, false otherwise.               */
+    bool         useDNS;        /** true to use DNS address for geo location instead of own IP. */
+    bool         useIPLocation; /** true to use the ip-api.com services, false to use manual.   */
 
 
     bool isValid() const
     {
       return (latitude <= 90.0) &&   (latitude >= -90.0) &&
-             (longitude <= 180.0) && (longitude >= -180) &&
+             (longitude <= 180.0) && (longitude >= -180.0) &&
              !owm_apikey.isEmpty();
     }
 };
@@ -84,9 +85,12 @@ struct ForecastData
     double        snow;        /** snow accumulation in last 3 hours. */
     long long int sunrise;     /** time of sunrise.                   */
     long long int sunset;      /** time of sunset.                    */
+    QString       name;        /** place name.                        */
+    QString       country;     /** country.                           */
 
     ForecastData(): dt{0}, temp{0}, temp_max{0}, temp_min{0}, cloudiness{0}, humidity{0}, pressure{0},
-                    weather_id{0}, wind_speed{0}, wind_dir{0}, rain{0}, snow{0}, sunrise{0}, sunset{0} {};
+                    weather_id{0}, wind_speed{0}, wind_dir{0}, rain{0}, snow{0}, sunrise{0}, sunset{0},
+                    name{"Unknown"}, country{"Unknown"} {};
 
     bool isValid() const { return dt != 0 && !icon_id.isEmpty(); };
 };

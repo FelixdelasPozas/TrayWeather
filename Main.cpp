@@ -33,40 +33,42 @@
 // C++
 #include <iostream>
 
-static const QString LONGITUDE             = QObject::tr("Longitude");
-static const QString LATITUDE              = QObject::tr("Latitude");
-static const QString COUNTRY               = QObject::tr("Country");
-static const QString REGION                = QObject::tr("Region");
-static const QString CITY                  = QObject::tr("City");
-static const QString ISP                   = QObject::tr("Service provider");
-static const QString IP                    = QObject::tr("IP Address");
-static const QString TIMEZONE              = QObject::tr("Timezone");
-static const QString ZIPCODE               = QObject::tr("Zipcode");
-static const QString OPENWEATHERMAP_APIKEY = QObject::tr("OpenWeatherMap API Key");
-static const QString TEMP_UNITS            = QObject::tr("Units");
-static const QString UPDATE_INTERVAL       = QObject::tr("Update interval");
-static const QString MAPS_TAB_ENABLED      = QObject::tr("Maps tab enabled");
-static const QString USE_DNS_GEOLOCATION   = QObject::tr("Use DNS GepGeolocation");
+static const QString LONGITUDE               = QObject::tr("Longitude");
+static const QString LATITUDE                = QObject::tr("Latitude");
+static const QString COUNTRY                 = QObject::tr("Country");
+static const QString REGION                  = QObject::tr("Region");
+static const QString CITY                    = QObject::tr("City");
+static const QString ISP                     = QObject::tr("Service provider");
+static const QString IP                      = QObject::tr("IP Address");
+static const QString TIMEZONE                = QObject::tr("Timezone");
+static const QString ZIPCODE                 = QObject::tr("Zipcode");
+static const QString OPENWEATHERMAP_APIKEY   = QObject::tr("OpenWeatherMap API Key");
+static const QString TEMP_UNITS              = QObject::tr("Units");
+static const QString UPDATE_INTERVAL         = QObject::tr("Update interval");
+static const QString MAPS_TAB_ENABLED        = QObject::tr("Maps tab enabled");
+static const QString USE_DNS_GEOLOCATION     = QObject::tr("Use DNS Geolocation");
+static const QString USE_GEOLOCATION_SERVICE = QObject::tr("Use ip-api.com services");
 
 //--------------------------------------------------------------------
 void saveConfiguration(const Configuration &configuration)
 {
   QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
 
-  settings.setValue(LONGITUDE,             configuration.longitude);
-  settings.setValue(LATITUDE,              configuration.latitude);
-  settings.setValue(COUNTRY,               configuration.country);
-  settings.setValue(REGION,                configuration.region);
-  settings.setValue(CITY,                  configuration.city);
-  settings.setValue(ISP,                   configuration.isp);
-  settings.setValue(IP,                    configuration.ip);
-  settings.setValue(TIMEZONE,              configuration.timezone);
-  settings.setValue(ZIPCODE,               configuration.zipcode);
-  settings.setValue(OPENWEATHERMAP_APIKEY, configuration.owm_apikey);
-  settings.setValue(TEMP_UNITS,            static_cast<int>(configuration.units));
-  settings.setValue(UPDATE_INTERVAL,       configuration.updateTime);
-  settings.setValue(MAPS_TAB_ENABLED,      configuration.mapsEnabled);
-  settings.setValue(USE_DNS_GEOLOCATION,   configuration.useDNS);
+  settings.setValue(LONGITUDE,               configuration.longitude);
+  settings.setValue(LATITUDE,                configuration.latitude);
+  settings.setValue(COUNTRY,                 configuration.country);
+  settings.setValue(REGION,                  configuration.region);
+  settings.setValue(CITY,                    configuration.city);
+  settings.setValue(ISP,                     configuration.isp);
+  settings.setValue(IP,                      configuration.ip);
+  settings.setValue(TIMEZONE,                configuration.timezone);
+  settings.setValue(ZIPCODE,                 configuration.zipcode);
+  settings.setValue(OPENWEATHERMAP_APIKEY,   configuration.owm_apikey);
+  settings.setValue(TEMP_UNITS,              static_cast<int>(configuration.units));
+  settings.setValue(UPDATE_INTERVAL,         configuration.updateTime);
+  settings.setValue(MAPS_TAB_ENABLED,        configuration.mapsEnabled);
+  settings.setValue(USE_DNS_GEOLOCATION,     configuration.useDNS);
+  settings.setValue(USE_GEOLOCATION_SERVICE, configuration.useIPLocation);
 
   settings.sync();
 }
@@ -76,20 +78,21 @@ void loadConfiguration(Configuration &configuration)
 {
   QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
 
-  configuration.longitude   = settings.value(LONGITUDE, -181.0).toDouble();
-  configuration.latitude    = settings.value(LATITUDE, -181.0).toDouble();
-  configuration.country     = settings.value(COUNTRY, QString()).toString();
-  configuration.region      = settings.value(REGION, QString()).toString();
-  configuration.city        = settings.value(CITY, QString()).toString();
-  configuration.isp         = settings.value(ISP, QString()).toString();
-  configuration.ip          = settings.value(IP, QString()).toString();
-  configuration.timezone    = settings.value(TIMEZONE, QString()).toString();
-  configuration.zipcode     = settings.value(ZIPCODE, QString()).toString();
-  configuration.owm_apikey  = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
-  configuration.units       = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
-  configuration.updateTime  = settings.value(UPDATE_INTERVAL, 15).toUInt();
-  configuration.mapsEnabled = settings.value(MAPS_TAB_ENABLED, true).toBool();
-  configuration.useDNS      = settings.value(USE_DNS_GEOLOCATION, false).toBool();
+  configuration.longitude     = settings.value(LONGITUDE, -181.0).toDouble();
+  configuration.latitude      = settings.value(LATITUDE, -91.0).toDouble();
+  configuration.country       = settings.value(COUNTRY, QString()).toString();
+  configuration.region        = settings.value(REGION, QString()).toString();
+  configuration.city          = settings.value(CITY, QString()).toString();
+  configuration.isp           = settings.value(ISP, QString()).toString();
+  configuration.ip            = settings.value(IP, QString()).toString();
+  configuration.timezone      = settings.value(TIMEZONE, QString()).toString();
+  configuration.zipcode       = settings.value(ZIPCODE, QString()).toString();
+  configuration.owm_apikey    = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
+  configuration.units         = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
+  configuration.updateTime    = settings.value(UPDATE_INTERVAL, 15).toUInt();
+  configuration.mapsEnabled   = settings.value(MAPS_TAB_ENABLED, true).toBool();
+  configuration.useDNS        = settings.value(USE_DNS_GEOLOCATION, false).toBool();
+  configuration.useIPLocation = settings.value(USE_GEOLOCATION_SERVICE, true).toBool();
 }
 
 //-----------------------------------------------------------------

@@ -44,7 +44,7 @@ Tray icon showing the current weather icon. At night and on clear sky days it sh
 
 Configuration dialog. It shows the detected location properties and the options to change the frequency of updates and temperature units. The OpenWeatherMap API Key must be entered here.
 
-![config](https://user-images.githubusercontent.com/12167134/34379925-45f2066c-eafe-11e7-83a6-58710b7df802.jpg)
+![config](https://user-images.githubusercontent.com/12167134/42736046-121b5664-885f-11e8-8987-9f1efafc688d.jpg)
 
 Weather dialog, showing the current weather tab. 
 
@@ -65,7 +65,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.1.8
+**Version**: 1.2.0
 
 **Status**: finished.
 
@@ -73,8 +73,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   7           | 308         |   186            | 1300 |
-| C/C++ Header                 |   6           | 114         |   314            |  216 |
+| C++                          |   7           | 324         |   189            | 1379 |
+| C/C++ Header                 |   7           | 122         |   339            |  476 |
 | HTML                         |   1           |  28         |     0            |  138 |
 | CMake                        |   1           |  15         |    10            |   93 |
-| **Total**                    | **15**        | **465**     | **510**          | **1747** |
+| **Total**                    | **16**        | **489**     | **538**          | **2086** |

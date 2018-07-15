@@ -71,6 +71,11 @@ class ConfigurationDialog
      */
     const QString randomString(const int length = 32) const;
 
+    /** \brief Helper method to connect UI signals to the slots.
+     *
+     */
+    void connectSignals();
+
   private slots:
     /** \brief Manages replies from the network requests.
      * \param[in] reply network reply object pointer.
@@ -80,7 +85,7 @@ class ConfigurationDialog
     /** \brief Request IP Geolocation.
      *
      */
-    void requestIPGeolocation();
+    void requestGeolocation();
 
     /** \brief Request forecast data to test OpenWeatherMap API key validity.
      *
@@ -92,6 +97,16 @@ class ConfigurationDialog
      *
      */
     void onDNSRequestStateChanged(int state);
+
+    /** \brief Helper method that enables/disables part of the UI depending on the state of the UI radio buttons.
+     *
+     */
+    void onRadioChanged();
+
+    /** \brief Helper method that updates the coordinates labels when one changes.
+     *
+     */
+    void onCoordinatesChanged();
 
   private:
 

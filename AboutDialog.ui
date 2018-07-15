@@ -100,7 +100,7 @@
          <item>
           <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Copyright (c) 2016 Félix de las Pozas Álvarez</string>
+            <string>Copyright (c) 2016-2018 Félix de las Pozas Álvarez</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>

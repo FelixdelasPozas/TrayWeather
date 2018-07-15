@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>447</width>
-    <height>492</height>
+    <height>569</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>447</width>
-    <height>394</height>
+    <height>569</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>447</width>
-    <height>492</height>
+    <height>569</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -32,9 +32,176 @@
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0,0">
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QGroupBox {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 2ex;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* position at the top center */
+    padding: 0px 5px;
+}</string>
+     </property>
+     <property name="title">
+      <string>Geographic Location Method</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="1">
+         <widget class="QLabel" name="m_latitudeLabel">
+          <property name="toolTip">
+           <string>Latitude value</string>
+          </property>
+          <property name="statusTip">
+           <string>Latitude value</string>
+          </property>
+          <property name="text">
+           <string>Latitude</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QDoubleSpinBox" name="m_latitudeSpin">
+          <property name="toolTip">
+           <string>Latitude value</string>
+          </property>
+          <property name="statusTip">
+           <string>Latitude value</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="decimals">
+           <number>6</number>
+          </property>
+          <property name="minimum">
+           <double>-180.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>180.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="m_longitudeLabel">
+          <property name="toolTip">
+           <string>Longitude value</string>
+          </property>
+          <property name="statusTip">
+           <string>Longitude value</string>
+          </property>
+          <property name="text">
+           <string>Longitude</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QDoubleSpinBox" name="m_longitudeSpin">
+          <property name="toolTip">
+           <string>Longitude value</string>
+          </property>
+          <property name="statusTip">
+           <string>Longitude value</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <property name="decimals">
+           <number>6</number>
+          </property>
+          <property name="minimum">
+           <double>-180.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>180.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="2">
+         <widget class="QCheckBox" name="m_useDNS">
+          <property name="toolTip">
+           <string>Use DNS IP for geolocation</string>
+          </property>
+          <property name="statusTip">
+           <string>Use DNS IP for geolocation</string>
+          </property>
+          <property name="text">
+           <string>Use DNS address</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="m_geoRequest">
+          <property name="toolTip">
+           <string>Request IP geolocation</string>
+          </property>
+          <property name="statusTip">
+           <string>Request IP geolocation</string>
+          </property>
+          <property name="text">
+           <string>Request Geolocation</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QRadioButton" name="m_useManual">
+          <property name="toolTip">
+           <string>Specify geographic coordinates</string>
+          </property>
+          <property name="statusTip">
+           <string>Specify geographic coordinates</string>
+          </property>
+          <property name="text">
+           <string>Manual Coordinates</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="m_ipapiLabel">
+          <property name="toolTip">
+           <string>Geolocation service status</string>
+          </property>
+          <property name="statusTip">
+           <string>Geolocation service status</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QRadioButton" name="m_useGeolocation">
+          <property name="toolTip">
+           <string>Use IP geolocation service</string>
+          </property>
+          <property name="statusTip">
+           <string>Use IP geolocation service</string>
+          </property>
+          <property name="text">
+           <string>IP Geolocation</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="m_geoBox">
      <property name="font">
       <font>
        <weight>75</weight>
@@ -242,46 +409,6 @@ QGroupBox::title {
         </item>
        </layout>
       </item>
-      <item>
-       <widget class="QCheckBox" name="m_useDNS">
-        <property name="text">
-         <string>Use DNS address</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1,0">
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="m_geoipLabel">
-          <property name="text">
-           <string>Requesting IP Geolocation...</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="m_request">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Geo IP Request</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
      </layout>
     </widget>
    </item>
@@ -484,6 +611,9 @@ QGroupBox::title {
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
      <property name="topMargin">
       <number>0</number>
      </property>

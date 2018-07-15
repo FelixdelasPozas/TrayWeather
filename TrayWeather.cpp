@@ -170,35 +170,43 @@ void TrayWeather::showConfiguration()
       menu->actions().first()->setIcon(icon);
     }
 
-    if(configuration.ip != m_configuration.ip)
+    auto changedCoords = (configuration.latitude != m_configuration.latitude) || (configuration.longitude != m_configuration.longitude);
+    auto changedMethod = (configuration.useIPLocation != m_configuration.useIPLocation);
+    auto changedIP     = (configuration.ip != m_configuration.ip);
+    auto changedUpdate = (configuration.updateTime != m_configuration.updateTime);
+    auto changedAPIKey = (configuration.owm_apikey != m_configuration.owm_apikey);
+    auto changedUnits  = (configuration.units != m_configuration.units);
+
+    if(changedIP || changedMethod || changedCoords)
     {
-      m_configuration.latitude  = configuration.latitude;
-      m_configuration.longitude = configuration.longitude;
-      m_configuration.country   = configuration.country;
-      m_configuration.region    = configuration.region;
-      m_configuration.city      = configuration.city;
-      m_configuration.zipcode   = configuration.zipcode;
-      m_configuration.isp       = configuration.isp;
-      m_configuration.ip        = configuration.ip;
-      m_configuration.timezone  = configuration.timezone;
-      m_configuration.useDNS    = configuration.useDNS;
+      m_configuration.latitude      = configuration.latitude;
+      m_configuration.longitude     = configuration.longitude;
+      m_configuration.country       = configuration.country;
+      m_configuration.region        = configuration.region;
+      m_configuration.city          = configuration.city;
+      m_configuration.zipcode       = configuration.zipcode;
+      m_configuration.isp           = configuration.isp;
+      m_configuration.ip            = configuration.ip;
+      m_configuration.timezone      = configuration.timezone;
+      m_configuration.useDNS        = configuration.useDNS;
+      m_configuration.useIPLocation = configuration.useIPLocation;
       requestForecastData();
     }
 
-    if(configuration.updateTime != m_configuration.updateTime)
+    if(changedUpdate)
     {
       m_configuration.updateTime = configuration.updateTime;
       m_timer.setInterval(m_configuration.updateTime);
       m_timer.start();
     }
 
-    if(configuration.owm_apikey != m_configuration.owm_apikey)
+    if(changedAPIKey)
     {
       m_configuration.owm_apikey = configuration.owm_apikey;
       requestForecastData();
     }
 
-    if(configuration.units != m_configuration.units)
+    if(changedUnits)
     {
       m_configuration.units = configuration.units;
 
@@ -417,14 +425,13 @@ void TrayWeather::requestForecastData()
   m_timer.start();
 
   auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                                      .arg(m_configuration.longitude)
-                                                                                                      .arg(m_configuration.owm_apikey))};
+                                                                                                     .arg(m_configuration.longitude)
+                                                                                                     .arg(m_configuration.owm_apikey))};
   m_netManager->get(QNetworkRequest{url});
 
   url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                                .arg(m_configuration.longitude)
-                                                                                                .arg(m_configuration.owm_apikey))};
-
+                                                                                                 .arg(m_configuration.longitude)
+                                                                                                 .arg(m_configuration.owm_apikey))};
   m_netManager->get(QNetworkRequest{url});
 }
 
