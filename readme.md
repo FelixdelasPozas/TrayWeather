@@ -13,8 +13,9 @@ Tray Weather is a simple application to retrieve and show weather information fo
 in the system tray, showing the current weather icon. The tray icon tooltip shows the location, weather description and temperature. The tray menu provides access to the weather and configuration
 dialogs. If there is a network error and the information cannot be retrieved the tray icon will inform of the error and show the error icon. 
 
-The computer location is obtained using the services of [http://ip-api.com/](http://ip-api.com/) and the weather and maps information are obtained from [OpenWeatherMap](http://openweathermap.org/).
-To obtain weather information from OpenWeatherMap you need to register in their website and enter the given API Key into the Tray Weather configuration dialog. 
+The computer location can be automatically obtained by using the services of [http://ip-api.com/](http://ip-api.com/) or entered manually by specifying latitude and longitude coordinates. The weather
+and maps information are obtained from [OpenWeatherMap](http://openweathermap.org/). To obtain weather information from OpenWeatherMap you need to register in their website and enter the given API Key
+into the Tray Weather configuration dialog. 
 
 ## Options
 The temperature units (celsius or fahrenheit) and the frequency of update requests are the only configurable options.
