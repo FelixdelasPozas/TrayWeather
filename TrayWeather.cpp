@@ -21,6 +21,7 @@
 #include <TrayWeather.h>
 #include <AboutDialog.h>
 #include <ConfigurationDialog.h>
+#include <Utils.h>
 
 // Qt
 #include <QMessageBox>
@@ -49,7 +50,7 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 
   createMenuEntries();
 
-  requestForecastData();
+  requestData();
 }
 
 //--------------------------------------------------------------------
@@ -63,6 +64,8 @@ TrayWeather::~TrayWeather()
 //--------------------------------------------------------------------
 void TrayWeather::replyFinished(QNetworkReply* reply)
 {
+  bool hasError = false;
+
   if(reply->error() == QNetworkReply::NoError)
   {
     auto type = reply->header(QNetworkRequest::ContentTypeHeader).toString();
@@ -103,6 +106,44 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         }
       }
     }
+    else
+    {
+      if(type.startsWith("text/plain"))
+      {
+        auto url = reply->url();
+        if(url.toString().contains("edns.ip", Qt::CaseInsensitive))
+        {
+          auto data = reply->readAll();
+
+          m_DNSIP = data.split(' ').at(1);
+          requestGeolocation();
+        }
+        else
+        {
+          const auto data = QString::fromUtf8(reply->readAll());
+          const auto values = data.split(',', QString::SplitBehavior::KeepEmptyParts, Qt::CaseInsensitive);
+
+          if((values.first().compare("success", Qt::CaseInsensitive) == 0) && (values.size() == 14))
+          {
+            m_configuration.country   = values.at(1);
+            m_configuration.region    = values.at(4);
+            m_configuration.city      = values.at(5);
+            m_configuration.zipcode   = values.at(6);
+            m_configuration.latitude  = values.at(7).toDouble();
+            m_configuration.longitude = values.at(8).toDouble();
+            m_configuration.timezone  = values.at(9);
+            m_configuration.isp       = values.at(10);
+            m_configuration.ip        = values.at(13);
+
+            requestForecastData();
+          }
+          else
+          {
+            hasError = true;
+          }
+        }
+      }
+    }
 
     if(validData())
     {
@@ -118,11 +159,23 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
 
     reply->deleteLater();
-    return;
+    if(!hasError) return;
   }
 
   // change to error icon.
   setIcon(QIcon{":/TrayWeather/network_error.svg"});
+
+  QString tooltip;
+  auto url = reply->url().toString();
+  if(url.contains("edns.ip", Qt::CaseInsensitive) || url.startsWith("http://ip-api.com/csv", Qt::CaseInsensitive))
+  {
+    tooltip = tr("Error requesting geolocation coordinates.");
+  }
+  else
+  {
+    tooltip = tr("Error requesting weather data.");
+  }
+  setToolTip(tooltip);
 
   reply->deleteLater();
 }
@@ -170,27 +223,29 @@ void TrayWeather::showConfiguration()
       menu->actions().first()->setIcon(icon);
     }
 
-    auto changedCoords = (configuration.latitude != m_configuration.latitude) || (configuration.longitude != m_configuration.longitude);
-    auto changedMethod = (configuration.useIPLocation != m_configuration.useIPLocation);
-    auto changedIP     = (configuration.ip != m_configuration.ip);
-    auto changedUpdate = (configuration.updateTime != m_configuration.updateTime);
-    auto changedAPIKey = (configuration.owm_apikey != m_configuration.owm_apikey);
-    auto changedUnits  = (configuration.units != m_configuration.units);
+    auto changedCoords  = (configuration.latitude != m_configuration.latitude) || (configuration.longitude != m_configuration.longitude);
+    auto changedMethod  = (configuration.useGeolocation != m_configuration.useGeolocation);
+    auto changedIP      = (configuration.ip != m_configuration.ip);
+    auto changedUpdate  = (configuration.updateTime != m_configuration.updateTime);
+    auto changedAPIKey  = (configuration.owm_apikey != m_configuration.owm_apikey);
+    auto changedUnits   = (configuration.units != m_configuration.units);
+    auto changedRoaming = (configuration.roamingEnabled != m_configuration.roamingEnabled);
 
-    if(changedIP || changedMethod || changedCoords)
+    if(changedIP || changedMethod || changedCoords || changedRoaming)
     {
-      m_configuration.latitude      = configuration.latitude;
-      m_configuration.longitude     = configuration.longitude;
-      m_configuration.country       = configuration.country;
-      m_configuration.region        = configuration.region;
-      m_configuration.city          = configuration.city;
-      m_configuration.zipcode       = configuration.zipcode;
-      m_configuration.isp           = configuration.isp;
-      m_configuration.ip            = configuration.ip;
-      m_configuration.timezone      = configuration.timezone;
-      m_configuration.useDNS        = configuration.useDNS;
-      m_configuration.useIPLocation = configuration.useIPLocation;
-      requestForecastData();
+      m_configuration.latitude       = configuration.latitude;
+      m_configuration.longitude      = configuration.longitude;
+      m_configuration.country        = configuration.country;
+      m_configuration.region         = configuration.region;
+      m_configuration.city           = configuration.city;
+      m_configuration.zipcode        = configuration.zipcode;
+      m_configuration.isp            = configuration.isp;
+      m_configuration.ip             = configuration.ip;
+      m_configuration.timezone       = configuration.timezone;
+      m_configuration.useDNS         = configuration.useDNS;
+      m_configuration.useGeolocation = configuration.useGeolocation;
+      m_configuration.roamingEnabled = configuration.roamingEnabled;
+      requestData();
     }
 
     if(changedUpdate)
@@ -203,7 +258,7 @@ void TrayWeather::showConfiguration()
     if(changedAPIKey)
     {
       m_configuration.owm_apikey = configuration.owm_apikey;
-      requestForecastData();
+      requestData();
     }
 
     if(changedUnits)
@@ -260,7 +315,7 @@ void TrayWeather::createMenuEntries()
   menu->addAction(weather);
 
   auto refresh = new QAction{QIcon{":/TrayWeather/network_refresh_black.svg"}, tr("Refresh..."), menu};
-  connect(refresh, SIGNAL(triggered(bool)), this, SLOT(requestForecastData()));
+  connect(refresh, SIGNAL(triggered(bool)), this, SLOT(requestData()));
 
   menu->addAction(refresh);
 
@@ -325,7 +380,7 @@ void TrayWeather::connectSignals()
           this, SLOT(onActivation(QSystemTrayIcon::ActivationReason)));
 
   connect(&m_timer, SIGNAL(timeout()),
-          this,     SLOT(requestForecastData()));
+          this,     SLOT(requestData()));
 }
 
 //--------------------------------------------------------------------
@@ -338,7 +393,7 @@ void TrayWeather::disconnectSignals()
              this, SLOT(onActivation(QSystemTrayIcon::ActivationReason)));
 
   disconnect(&m_timer, SIGNAL(timeout()),
-             this,     SLOT(requestForecastData()));
+             this,     SLOT(requestData()));
 }
 
 //--------------------------------------------------------------------
@@ -403,7 +458,7 @@ void TrayWeather::showForecast()
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::requestForecastData()
+void TrayWeather::requestData()
 {
   if(m_netManager->networkAccessible() != QNetworkAccessManager::Accessible)
   {
@@ -423,6 +478,33 @@ void TrayWeather::requestForecastData()
   updateTooltip();
   m_timer.setInterval(1*60*1000);
   m_timer.start();
+
+  if(m_configuration.useGeolocation && m_configuration.roamingEnabled)
+  {
+    requestGeolocation();
+  }
+  else
+  {
+    requestForecastData();
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::requestForecastData()
+{
+  if(m_netManager->networkAccessible() != QNetworkAccessManager::Accessible)
+  {
+    if(m_netManager)
+    {
+      disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+                 this,               SLOT(replyFinished(QNetworkReply*)));
+    }
+
+    m_netManager = std::make_shared<QNetworkAccessManager>(this);
+
+    connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+            this,               SLOT(replyFinished(QNetworkReply*)));
+  }
 
   auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
                                                                                                      .arg(m_configuration.longitude)
@@ -446,4 +528,23 @@ void TrayWeather::invalidateData()
 {
   m_data.clear();
   m_current = ForecastData();
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::requestGeolocation()
+{
+  if(m_configuration.useDNS && m_DNSIP.isEmpty())
+  {
+    m_DNSIP = randomString();
+    auto requestAddress = QString("http://%1.edns.ip-api.com/csv").arg(m_DNSIP);
+    m_netManager->get(QNetworkRequest{QUrl{requestAddress}});
+
+    return;
+  }
+
+  // CSV is easier to parse later.
+  auto ipAddress = QString("http://ip-api.com/csv/%1").arg(m_DNSIP);
+  m_netManager->get(QNetworkRequest{QUrl{ipAddress}});
+
+  m_DNSIP.clear();
 }

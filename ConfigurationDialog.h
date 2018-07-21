@@ -65,12 +65,6 @@ class ConfigurationDialog
      */
     void requestDNSIPGeolocation();
 
-    /** \brief Returns a random alphanumeric string with the given length.
-     * \param[in] lenght String length.
-     *
-     */
-    const QString randomString(const int length = 32) const;
-
     /** \brief Helper method to connect UI signals to the slots.
      *
      */

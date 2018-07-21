@@ -48,6 +48,7 @@ static const QString UPDATE_INTERVAL         = QObject::tr("Update interval");
 static const QString MAPS_TAB_ENABLED        = QObject::tr("Maps tab enabled");
 static const QString USE_DNS_GEOLOCATION     = QObject::tr("Use DNS Geolocation");
 static const QString USE_GEOLOCATION_SERVICE = QObject::tr("Use ip-api.com services");
+static const QString ROAMING_ENABLED         = QObject::tr("Roaming enabled");
 
 //--------------------------------------------------------------------
 void saveConfiguration(const Configuration &configuration)
@@ -68,7 +69,8 @@ void saveConfiguration(const Configuration &configuration)
   settings.setValue(UPDATE_INTERVAL,         configuration.updateTime);
   settings.setValue(MAPS_TAB_ENABLED,        configuration.mapsEnabled);
   settings.setValue(USE_DNS_GEOLOCATION,     configuration.useDNS);
-  settings.setValue(USE_GEOLOCATION_SERVICE, configuration.useIPLocation);
+  settings.setValue(USE_GEOLOCATION_SERVICE, configuration.useGeolocation);
+  settings.setValue(ROAMING_ENABLED,         configuration.roamingEnabled);
 
   settings.sync();
 }
@@ -78,21 +80,22 @@ void loadConfiguration(Configuration &configuration)
 {
   QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
 
-  configuration.longitude     = settings.value(LONGITUDE, -181.0).toDouble();
-  configuration.latitude      = settings.value(LATITUDE, -91.0).toDouble();
-  configuration.country       = settings.value(COUNTRY, QString()).toString();
-  configuration.region        = settings.value(REGION, QString()).toString();
-  configuration.city          = settings.value(CITY, QString()).toString();
-  configuration.isp           = settings.value(ISP, QString()).toString();
-  configuration.ip            = settings.value(IP, QString()).toString();
-  configuration.timezone      = settings.value(TIMEZONE, QString()).toString();
-  configuration.zipcode       = settings.value(ZIPCODE, QString()).toString();
-  configuration.owm_apikey    = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
-  configuration.units         = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
-  configuration.updateTime    = settings.value(UPDATE_INTERVAL, 15).toUInt();
-  configuration.mapsEnabled   = settings.value(MAPS_TAB_ENABLED, true).toBool();
-  configuration.useDNS        = settings.value(USE_DNS_GEOLOCATION, false).toBool();
-  configuration.useIPLocation = settings.value(USE_GEOLOCATION_SERVICE, true).toBool();
+  configuration.longitude      = settings.value(LONGITUDE, -181.0).toDouble();
+  configuration.latitude       = settings.value(LATITUDE, -91.0).toDouble();
+  configuration.country        = settings.value(COUNTRY, QString()).toString();
+  configuration.region         = settings.value(REGION, QString()).toString();
+  configuration.city           = settings.value(CITY, QString()).toString();
+  configuration.isp            = settings.value(ISP, QString()).toString();
+  configuration.ip             = settings.value(IP, QString()).toString();
+  configuration.timezone       = settings.value(TIMEZONE, QString()).toString();
+  configuration.zipcode        = settings.value(ZIPCODE, QString()).toString();
+  configuration.owm_apikey     = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
+  configuration.units          = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
+  configuration.updateTime     = settings.value(UPDATE_INTERVAL, 15).toUInt();
+  configuration.mapsEnabled    = settings.value(MAPS_TAB_ENABLED, true).toBool();
+  configuration.useDNS         = settings.value(USE_DNS_GEOLOCATION, false).toBool();
+  configuration.useGeolocation = settings.value(USE_GEOLOCATION_SERVICE, true).toBool();
+  configuration.roamingEnabled = settings.value(ROAMING_ENABLED, false).toBool();
 }
 
 //-----------------------------------------------------------------

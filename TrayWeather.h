@@ -87,10 +87,10 @@ class TrayWeather
      */
     void onActivation(QSystemTrayIcon::ActivationReason reason);
 
-    /** \brief Makes a network request for weather forecast data.
+    /** \brief Makes a network request for weather forecast data or geolocation.
      *
      */
-    void requestForecastData();
+    void requestData();
 
   private:
     /** \brief Updates the tray icon tooltip.
@@ -123,6 +123,16 @@ class TrayWeather
      */
     void invalidateData();
 
+    /** \brief Request geolocation information, can ask for DNS IP first if enabled on configuration.
+     *
+     */
+    void requestGeolocation();
+
+    /** \brief Request weather data from network.
+     *
+     */
+    void requestForecastData();
+
     Configuration                         &m_configuration; /** application configuration.                        */
     std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.                                  */
     Forecast                               m_data;          /** list of forecast data.                            */
@@ -131,6 +141,7 @@ class TrayWeather
     WeatherDialog                         *m_weatherDialog; /** dialog to show weather and forecast data.         */
     AboutDialog                           *m_aboutDialog;   /** pointer to current (if any) about dialog.         */
     ConfigurationDialog                   *m_configDialog;  /** pointer to current (if any) configuration dialog. */
+    QString                                m_DNSIP;         /** DNS IP used for geolocation.                      */
 };
 
 

@@ -333,3 +333,17 @@ const QString windDegreesToName(const double degrees)
 
   return "N"; // (348.75 to 11.25)
 }
+
+//--------------------------------------------------------------------
+const QString randomString(const int length)
+{
+  const QString possibleCharacters("abcdefghijklmnopqrstuvwxyz0123456789");
+
+  QString randomString;
+  for (int i = 0; i < length; ++i)
+  {
+    randomString.append(possibleCharacters.at(qrand() % possibleCharacters.length()));
+  }
+
+  return randomString;
+}

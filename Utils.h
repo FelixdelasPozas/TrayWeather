@@ -37,21 +37,22 @@ enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
  */
 struct Configuration
 {
-    double       latitude;      /** location latitude in degrees.                               */
-    double       longitude;     /** location longitude in degrees.                              */
-    QString      country;       /** location's country.                                         */
-    QString      region;        /** location's region.                                          */
-    QString      city;          /** location's city.                                            */
-    QString      zipcode;       /** location's zip code.                                        */
-    QString      isp;           /** internet service provider.                                  */
-    QString      ip;            /** internet address.                                           */
-    QString      timezone;      /** location's timezone.                                        */
-    QString      owm_apikey;    /** OpenWeatherMap API Key.                                     */
-    Temperature  units;         /** temperature units.                                          */
-    unsigned int updateTime;    /** time between updates.                                       */
-    bool         mapsEnabled;   /** true if maps tab is visible, false otherwise.               */
-    bool         useDNS;        /** true to use DNS address for geo location instead of own IP. */
-    bool         useIPLocation; /** true to use the ip-api.com services, false to use manual.   */
+    double       latitude;       /** location latitude in degrees.                               */
+    double       longitude;      /** location longitude in degrees.                              */
+    QString      country;        /** location's country.                                         */
+    QString      region;         /** location's region.                                          */
+    QString      city;           /** location's city.                                            */
+    QString      zipcode;        /** location's zip code.                                        */
+    QString      isp;            /** internet service provider.                                  */
+    QString      ip;             /** internet address.                                           */
+    QString      timezone;       /** location's timezone.                                        */
+    QString      owm_apikey;     /** OpenWeatherMap API Key.                                     */
+    Temperature  units;          /** temperature units.                                          */
+    unsigned int updateTime;     /** time between updates.                                       */
+    bool         mapsEnabled;    /** true if maps tab is visible, false otherwise.               */
+    bool         useDNS;         /** true to use DNS address for geo location instead of own IP. */
+    bool         useGeolocation; /** true to use the ip-api.com services, false to use manual.   */
+    bool         roamingEnabled; /** true if georaphical coordinates are asked on each forecast. */
 
 
     bool isValid() const
@@ -162,5 +163,13 @@ const QString toTitleCase(const QString &string);
  *
  */
 const QString windDegreesToName(const double degrees);
+
+/** \brief Returns a random alphanumeric string with the given length.
+ * \param[in] lenght String length.
+ *
+ */
+const QString randomString(const int length = 32);
+
+
 
 #endif // UTILS_H_

@@ -86,7 +86,7 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
   auto temperatureUnits = (config.units == Temperature::CELSIUS ? tr("ºC") : tr("Fº"));
 
-  if(config.useIPLocation)
+  if(config.useGeolocation)
   {
     m_location->setText(tr("%1, %2 - %3").arg(config.city).arg(config.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
   }

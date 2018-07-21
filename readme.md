@@ -43,9 +43,11 @@ Tray icon showing the current weather icon. At night and on clear sky days it sh
 ![icon](https://cloud.githubusercontent.com/assets/12167134/20938095/f03e2474-bbe9-11e6-83b9-e2bc8c716bf4.jpg)
 ![icon_menu](https://cloud.githubusercontent.com/assets/12167134/20938103/f0b22126-bbe9-11e6-8639-30161344d1d3.jpg)
 
-Configuration dialog. It shows the detected location properties and the options to change the frequency of updates and temperature units. The OpenWeatherMap API Key must be entered here.
+Configuration dialog. It shows the detected location properties and the options to change the frequency of updates and temperature units. The OpenWeatherMap API Key must be entered here. If the location is better guessed with the DNS IP instead of the IP given by the provider the option
+can be enabled here. Also a 'roaming' mode can be enabled, where the geographical coordinates are requested before any weather data request, so the 
+weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used. 
 
-![config](https://user-images.githubusercontent.com/12167134/42736046-121b5664-885f-11e8-8987-9f1efafc688d.jpg)
+![config](https://user-images.githubusercontent.com/12167134/43036508-a7d5517a-8d03-11e8-972e-430151341ac4.jpg)
 
 Weather dialog, showing the current weather tab. 
 
@@ -66,7 +68,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.2.0
+**Version**: 1.3.0
 
 **Status**: finished.
 
@@ -74,8 +76,9 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   7           | 324         |   189            | 1379 |
-| C/C++ Header                 |   7           | 122         |   339            |  476 |
+| C++                          |   7           | 337         |   192            | 1469 |
+| C/C++ Header                 |   7           | 126         |   345            |  480 |
 | HTML                         |   1           |  28         |     0            |  138 |
 | CMake                        |   1           |  15         |    10            |   93 |
-| **Total**                    | **16**        | **489**     | **538**          | **2086** |
+| **Total**                    | **16**        | **506**     | **547**          | **2180** |
+

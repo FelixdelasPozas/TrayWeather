@@ -42,8 +42,8 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   if(configuration.isValid())
   {
-    m_useManual->setChecked(!configuration.useIPLocation);
-    m_useGeolocation->setChecked(configuration.useIPLocation);
+    m_useManual->setChecked(!configuration.useGeolocation);
+    m_useGeolocation->setChecked(configuration.useGeolocation);
 
     m_longitudeSpin->setValue(configuration.longitude);
     m_latitudeSpin->setValue(configuration.latitude);
@@ -61,15 +61,16 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
     m_updateTime->setValue(configuration.updateTime);
     m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
     m_useDNS->setChecked(configuration.useDNS);
+    m_roamingCheck->setChecked(configuration.roamingEnabled);
 
-    if(configuration.useIPLocation)
+    if(configuration.useGeolocation)
     {
       requestGeolocation();
     }
   }
   else
   {
-    if(configuration.useIPLocation)
+    if(configuration.useGeolocation)
     {
       m_updateTime->setValue(15);
       m_tempComboBox->setCurrentIndex(0);
@@ -238,18 +239,19 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 //--------------------------------------------------------------------
 void ConfigurationDialog::getConfiguration(Configuration &configuration) const
 {
-  configuration.city          = m_city->text();
-  configuration.country       = m_country->text();
-  configuration.ip            = m_ip->text();
-  configuration.isp           = m_isp->text();
-  configuration.owm_apikey    = m_testedAPIKey ? m_apikey->text() : QString();
-  configuration.region        = m_region->text();
-  configuration.timezone      = m_timezone->text();
-  configuration.zipcode       = m_zipCode->text();
-  configuration.updateTime    = m_updateTime->value();
-  configuration.units         = static_cast<Temperature>(m_tempComboBox->currentIndex());
-  configuration.useDNS        = m_useDNS->isChecked();
-  configuration.useIPLocation = m_useGeolocation->isChecked();
+  configuration.city           = m_city->text();
+  configuration.country        = m_country->text();
+  configuration.ip             = m_ip->text();
+  configuration.isp            = m_isp->text();
+  configuration.owm_apikey     = m_testedAPIKey ? m_apikey->text() : QString();
+  configuration.region         = m_region->text();
+  configuration.timezone       = m_timezone->text();
+  configuration.zipcode        = m_zipCode->text();
+  configuration.updateTime     = m_updateTime->value();
+  configuration.units          = static_cast<Temperature>(m_tempComboBox->currentIndex());
+  configuration.useDNS         = m_useDNS->isChecked();
+  configuration.useGeolocation = m_useGeolocation->isChecked();
+  configuration.roamingEnabled = m_roamingCheck->isChecked();
 
   if(m_useManual->isChecked())
   {
@@ -272,11 +274,11 @@ void ConfigurationDialog::requestGeolocation()
     return;
   }
 
-  m_DNSIP.clear();
-
   // CSV is easier to parse later.
   auto ipAddress = QString("http://ip-api.com/csv/%1").arg(m_DNSIP);
   m_netManager->get(QNetworkRequest{QUrl{ipAddress}});
+
+  m_DNSIP.clear();
 
   m_geoRequest->setEnabled(false);
   m_ipapiLabel->setStyleSheet("QLabel { color : blue; }");
@@ -307,20 +309,6 @@ void ConfigurationDialog::requestOpenWeatherMapAPIKeyTest() const
   m_apiTest->setEnabled(false);
   m_testLabel->setStyleSheet("QLabel { color : blue; }");
   m_testLabel->setText(tr("Testing API Key..."));
-}
-
-//--------------------------------------------------------------------
-const QString ConfigurationDialog::randomString(const int length) const
-{
-  const QString possibleCharacters("abcdefghijklmnopqrstuvwxyz0123456789");
-
-  QString randomString;
-  for (int i = 0; i < length; ++i)
-  {
-    randomString.append(possibleCharacters.at(qrand() % possibleCharacters.length()));
-  }
-
-  return randomString;
 }
 
 //--------------------------------------------------------------------
