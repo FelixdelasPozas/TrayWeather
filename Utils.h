@@ -55,6 +55,28 @@ struct Configuration
     bool         roamingEnabled; /** true if georaphical coordinates are asked on each forecast. */
 
 
+    /** \brief Configuration struct constructor.
+     *
+     */
+    Configuration()
+    : latitude      {-91}
+    , longitude     {-181}
+    , country       {"Unknown"}
+    , region        {"Unknown"}
+    , city          {"Unknown"}
+    , zipcode       {"Unknown"}
+    , isp           {"Unknown"}
+    , ip            {"Unknown"}
+    , timezone      {"Unknown"}
+    , owm_apikey    {""}
+    , units         {Temperature::CELSIUS}
+    , updateTime    {0}
+    , mapsEnabled   {false}
+    , useDNS        {false}
+    , useGeolocation{true}
+    , roamingEnabled{false}
+    {};
+
     bool isValid() const
     {
       return (latitude <= 90.0) &&   (latitude >= -90.0) &&

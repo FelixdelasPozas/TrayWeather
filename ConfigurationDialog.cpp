@@ -40,49 +40,68 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   connectSignals();
 
-  if(configuration.isValid())
+  m_useManual->setChecked(!configuration.useGeolocation);
+  m_useGeolocation->setChecked(configuration.useGeolocation);
+  m_city->setText(configuration.city);
+  m_country->setText(configuration.country);
+  m_ip->setText(configuration.ip);
+  m_isp->setText(configuration.isp);
+  m_region->setText(configuration.region);
+  m_timezone->setText(configuration.timezone);
+  m_zipCode->setText(configuration.zipcode);
+  m_updateTime->setValue(configuration.updateTime);
+  m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
+  m_useDNS->setChecked(configuration.useDNS);
+  m_roamingCheck->setChecked(configuration.roamingEnabled);
+  m_apikey->setText(configuration.owm_apikey);
+
+  if(!configuration.isValid())
   {
-    m_useManual->setChecked(!configuration.useGeolocation);
-    m_useGeolocation->setChecked(configuration.useGeolocation);
+    m_longitudeSpin->setValue(0.);
+    m_latitudeSpin->setValue(0.);
 
-    m_longitudeSpin->setValue(configuration.longitude);
-    m_latitudeSpin->setValue(configuration.latitude);
+    m_latitude->setText("0");
+    m_longitude->setText("0");
 
-    m_city->setText(configuration.city);
-    m_country->setText(configuration.country);
-    m_ip->setText(configuration.ip);
-    m_isp->setText(configuration.isp);
-    m_latitude->setText(QString::number(configuration.latitude));
-    m_longitude->setText(QString::number(configuration.longitude));
-    m_apikey->setText(configuration.owm_apikey);
-    m_region->setText(configuration.region);
-    m_timezone->setText(configuration.timezone);
-    m_zipCode->setText(configuration.zipcode);
-    m_updateTime->setValue(configuration.updateTime);
-    m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
-    m_useDNS->setChecked(configuration.useDNS);
-    m_roamingCheck->setChecked(configuration.roamingEnabled);
-
-    if(configuration.useGeolocation)
-    {
-      requestGeolocation();
-    }
+    m_updateTime->setValue(15);
+    m_tempComboBox->setCurrentIndex(0);
   }
   else
   {
-    if(configuration.useGeolocation)
-    {
-      m_updateTime->setValue(15);
-      m_tempComboBox->setCurrentIndex(0);
+    m_longitudeSpin->setValue(configuration.longitude);
+    m_latitudeSpin->setValue(configuration.latitude);
 
-      requestGeolocation();
-    }
+    m_latitude->setText(QString::number(configuration.latitude));
+    m_longitude->setText(QString::number(configuration.longitude));
+  }
+
+  if(configuration.useGeolocation)
+  {
+    requestGeolocation();
   }
 
   onRadioChanged();
   onCoordinatesChanged();
 
-  requestOpenWeatherMapAPIKeyTest();
+  if(configuration.isValid())
+  {
+    requestOpenWeatherMapAPIKeyTest();
+  }
+  else
+  {
+    m_apiTest->setEnabled(true);
+
+    if(configuration.owm_apikey.isEmpty())
+    {
+      m_testLabel->setStyleSheet("QLabel { color : red; }");
+      m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
+    }
+    else
+    {
+      m_testLabel->setStyleSheet("QLabel { color : red; }");
+      m_testLabel->setText(tr("Untested OpenWeatherMap API Key!"));
+    }
+  }
 }
 
 //--------------------------------------------------------------------

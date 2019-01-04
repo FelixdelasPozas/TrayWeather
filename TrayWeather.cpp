@@ -91,7 +91,15 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
             ForecastData data;
             parseForecastEntry(entry, data, m_configuration.units);
 
-            if(!hasEntry(data.dt)) m_data << data;
+            if(!hasEntry(data.dt))
+            {
+              m_data << data;
+              if(!m_configuration.useGeolocation)
+              {
+                if(data.name    != "Unknown") m_configuration.region = m_configuration.city = data.name;
+                if(data.country != "Unknown") m_configuration.country = data.country;
+              }
+            }
           }
 
           if(!m_data.isEmpty())
@@ -103,6 +111,11 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         else
         {
           parseForecastEntry(jsonObj, m_current, m_configuration.units);
+          if(!m_configuration.useGeolocation)
+          {
+            if(m_current.name    != "Unknown") m_configuration.region = m_configuration.city = m_current.name;
+            if(m_current.country != "Unknown") m_configuration.country = m_current.country;
+          }
         }
       }
     }
@@ -147,8 +160,6 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 
     if(validData())
     {
-      updateTooltip();
-
       m_timer.setInterval(m_configuration.updateTime*60*1000);
       m_timer.start();
 
@@ -157,6 +168,8 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         m_weatherDialog->setData(m_current, m_data, m_configuration);
       }
     }
+
+    updateTooltip();
 
     reply->deleteLater();
     if(!hasError) return;
@@ -233,8 +246,6 @@ void TrayWeather::showConfiguration()
 
     if(changedIP || changedMethod || changedCoords || changedRoaming)
     {
-      m_configuration.latitude       = configuration.latitude;
-      m_configuration.longitude      = configuration.longitude;
       m_configuration.country        = configuration.country;
       m_configuration.region         = configuration.region;
       m_configuration.city           = configuration.city;
@@ -242,6 +253,8 @@ void TrayWeather::showConfiguration()
       m_configuration.isp            = configuration.isp;
       m_configuration.ip             = configuration.ip;
       m_configuration.timezone       = configuration.timezone;
+      m_configuration.latitude       = configuration.latitude;
+      m_configuration.longitude      = configuration.longitude;
       m_configuration.useDNS         = configuration.useDNS;
       m_configuration.useGeolocation = configuration.useGeolocation;
       m_configuration.roamingEnabled = configuration.roamingEnabled;
@@ -264,11 +277,6 @@ void TrayWeather::showConfiguration()
     if(changedUnits)
     {
       m_configuration.units = configuration.units;
-
-      if(validData())
-      {
-        updateTooltip();
-      }
     }
 
     if(m_weatherDialog && validData())
@@ -276,6 +284,8 @@ void TrayWeather::showConfiguration()
       m_weatherDialog->setData(m_current, m_data, m_configuration);
     }
   }
+
+  updateTooltip();
 }
 
 //--------------------------------------------------------------------
@@ -441,6 +451,8 @@ void TrayWeather::showForecast()
 
     return;
   }
+
+  updateTooltip();
 
   m_weatherDialog = new WeatherDialog{};
   m_weatherDialog->setData(m_current, m_data, m_configuration);
