@@ -20,7 +20,12 @@
 // Project
 #include "AboutDialog.h"
 
-const QString AboutDialog::VERSION = QString("version 1.3.2");
+// Qt
+#include <QtGlobal>
+#include <QDateTime>
+
+const QString AboutDialog::VERSION = QString("version 1.3.3");
+const QString COPYRIGHT = QString("Copyright (c) 2016-%1 Félix de las Pozas Álvarez");
 
 //-----------------------------------------------------------------
 AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
@@ -35,4 +40,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
 
   m_compilationDate->setText(tr("Compiled on ") + compilation_date + compilation_time);
   m_version->setText(VERSION);
+
+  m_qtVersion->setText(tr("version %1").arg(qVersion()));
+  m_copyright->setText(COPYRIGHT.arg(QDateTime::currentDateTime().date().year()));
 }

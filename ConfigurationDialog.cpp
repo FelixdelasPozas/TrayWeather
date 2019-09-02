@@ -120,6 +120,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
         auto data = reply->readAll();
 
         m_DNSIP = data.split(' ').at(1);
+        m_DNSIP = m_DNSIP.remove('\n');
         requestGeolocation();
       }
       else
@@ -196,8 +197,8 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
       auto type = reply->header(QNetworkRequest::ContentTypeHeader);
       if(type.toString().startsWith("text/plain", Qt::CaseInsensitive))
       {
-        const auto data = QString::fromUtf8(reply->readAll());
-        const auto values = data.split(',', QString::SplitBehavior::KeepEmptyParts, Qt::CaseInsensitive);
+        auto data = QString::fromUtf8(reply->readAll());
+        const auto values = data.remove('\n').split(',', QString::SplitBehavior::KeepEmptyParts, Qt::CaseInsensitive);
 
         if((values.first().compare("success", Qt::CaseInsensitive) == 0) && (values.size() == 14))
         {

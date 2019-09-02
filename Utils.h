@@ -54,7 +54,6 @@ struct Configuration
     bool         useGeolocation; /** true to use the ip-api.com services, false to use manual.   */
     bool         roamingEnabled; /** true if georaphical coordinates are asked on each forecast. */
 
-
     /** \brief Configuration struct constructor.
      *
      */
@@ -187,7 +186,7 @@ const QString toTitleCase(const QString &string);
 const QString windDegreesToName(const double degrees);
 
 /** \brief Returns a random alphanumeric string with the given length.
- * \param[in] lenght String length.
+ * \param[in] length String length.
  *
  */
 const QString randomString(const int length = 32);

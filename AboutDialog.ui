@@ -98,9 +98,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="m_copyright">
            <property name="text">
-            <string>Copyright (c) 2016-2018 Félix de las Pozas Álvarez</string>
+            <string>Copyright (c) 2016-2019 Félix de las Pozas Álvarez</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -216,7 +216,7 @@ Qt Framework</string>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_27">
+             <widget class="QLabel" name="m_qtVersion">
               <property name="text">
                <string>version 5.5.1</string>
               </property>
@@ -295,7 +295,7 @@ Qt Framework</string>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_9">
+             <widget class="QLabel" name="m_chartsVersion">
               <property name="text">
                <string>version 2.1.0</string>
               </property>
