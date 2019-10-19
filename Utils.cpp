@@ -347,3 +347,40 @@ const QString randomString(const int length)
 
   return randomString;
 }
+
+//--------------------------------------------------------------------
+const QStringList parseCSV(const QString& csvText)
+{
+  auto text = csvText;
+  auto parts = text.remove('\n').split(',', QString::SplitBehavior::KeepEmptyParts, Qt::CaseInsensitive);
+
+  QString current;
+  QStringList result;
+
+  for(auto part: parts)
+  {
+    if(!current.isEmpty())
+    {
+      current += "," + part;
+      if(current.endsWith('"'))
+      {
+        current = current.mid(1, current.length()-2);
+        result.push_back(current);
+        current.clear();
+      }
+    }
+    else
+    {
+      if(part.startsWith('"'))
+      {
+        current = part;
+      }
+      else
+      {
+        result.push_back(part);
+      }
+    }
+  }
+
+  return result;
+}

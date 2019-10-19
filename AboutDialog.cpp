@@ -24,7 +24,7 @@
 #include <QtGlobal>
 #include <QDateTime>
 
-const QString AboutDialog::VERSION = QString("version 1.3.3");
+const QString AboutDialog::VERSION = QString("version 1.3.4");
 const QString COPYRIGHT = QString("Copyright (c) 2016-%1 Félix de las Pozas Álvarez");
 
 //-----------------------------------------------------------------

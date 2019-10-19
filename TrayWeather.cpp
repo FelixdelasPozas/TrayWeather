@@ -134,7 +134,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         else
         {
           const auto data = QString::fromUtf8(reply->readAll());
-          const auto values = data.split(',', QString::SplitBehavior::KeepEmptyParts, Qt::CaseInsensitive);
+          const auto values = parseCSV(data);
 
           if((values.first().compare("success", Qt::CaseInsensitive) == 0) && (values.size() == 14))
           {

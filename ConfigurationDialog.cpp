@@ -19,6 +19,7 @@
 
 // Project
 #include <ConfigurationDialog.h>
+#include <Utils.h>
 
 // Qt
 #include <QNetworkRequest>
@@ -198,7 +199,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
       if(type.toString().startsWith("text/plain", Qt::CaseInsensitive))
       {
         auto data = QString::fromUtf8(reply->readAll());
-        const auto values = data.remove('\n').split(',', QString::SplitBehavior::KeepEmptyParts, Qt::CaseInsensitive);
+        const auto values = parseCSV(data);
 
         if((values.first().compare("success", Qt::CaseInsensitive) == 0) && (values.size() == 14))
         {

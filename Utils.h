@@ -191,6 +191,10 @@ const QString windDegreesToName(const double degrees);
  */
 const QString randomString(const int length = 32);
 
-
+/** \brief Parses a CSV string and returns the parts separated by commas in the text.
+ * \param[in] csvText CSV text string.
+ *
+ */
+const QStringList parseCSV(const QString &csvText);
 
 #endif // UTILS_H_
