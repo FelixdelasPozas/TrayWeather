@@ -53,6 +53,9 @@ struct Configuration
     bool         useDNS;         /** true to use DNS address for geo location instead of own IP. */
     bool         useGeolocation; /** true to use the ip-api.com services, false to use manual.   */
     bool         roamingEnabled; /** true if georaphical coordinates are asked on each forecast. */
+    bool         lightTheme;     /** true if light theme is being used, false if dark theme.     */
+    unsigned int iconType;       /** 0 if just icon, 1 if just temperature, 2 if both.           */
+    unsigned int trayTextColor;  /** 0 for white, 1 for black.                                   */
 
     /** \brief Configuration struct constructor.
      *
@@ -74,6 +77,9 @@ struct Configuration
     , useDNS        {false}
     , useGeolocation{true}
     , roamingEnabled{false}
+    , lightTheme    {true}
+    , iconType      {0}
+    , trayTextColor {0}
     {};
 
     bool isValid() const
@@ -123,13 +129,13 @@ using Forecast = QList<ForecastData>;
  * \param[in] data forecast data struct.
  *
  */
-const QIcon weatherIcon(const ForecastData &data);
+const QPixmap weatherPixmap(const ForecastData &data);
 
 /** \brief Returns the moon phase icon corresponding to the given data.
  * \param[in] data forecast data struct.
  *
  */
-const QIcon moonIcon(const ForecastData& data);
+const QPixmap moonPixmap(const ForecastData& data);
 
 /** \brief Parses the information in the entry to the data object.
  * \param[in] entry JSON object.

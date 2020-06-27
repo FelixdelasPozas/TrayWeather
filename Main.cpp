@@ -28,6 +28,8 @@
 #include <QMessageBox>
 #include <QIcon>
 #include <QSettings>
+#include <QFile>
+#include <QTextStream>
 #include <QDebug>
 
 // C++
@@ -49,6 +51,9 @@ static const QString MAPS_TAB_ENABLED        = QObject::tr("Maps tab enabled");
 static const QString USE_DNS_GEOLOCATION     = QObject::tr("Use DNS Geolocation");
 static const QString USE_GEOLOCATION_SERVICE = QObject::tr("Use ip-api.com services");
 static const QString ROAMING_ENABLED         = QObject::tr("Roaming enabled");
+static const QString THEME                   = QObject::tr("Light theme used");
+static const QString TRAY_ICON_TYPE          = QObject::tr("Tray icon type");
+static const QString TRAY_TEXT_COLOR         = QObject::tr("Tray text color");
 
 //--------------------------------------------------------------------
 void saveConfiguration(const Configuration &configuration)
@@ -71,6 +76,9 @@ void saveConfiguration(const Configuration &configuration)
   settings.setValue(USE_DNS_GEOLOCATION,     configuration.useDNS);
   settings.setValue(USE_GEOLOCATION_SERVICE, configuration.useGeolocation);
   settings.setValue(ROAMING_ENABLED,         configuration.roamingEnabled);
+  settings.setValue(THEME,                   configuration.lightTheme);
+  settings.setValue(TRAY_ICON_TYPE,          configuration.iconType);
+  settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor);
 
   settings.sync();
 }
@@ -96,6 +104,9 @@ void loadConfiguration(Configuration &configuration)
   configuration.useDNS         = settings.value(USE_DNS_GEOLOCATION, false).toBool();
   configuration.useGeolocation = settings.value(USE_GEOLOCATION_SERVICE, true).toBool();
   configuration.roamingEnabled = settings.value(ROAMING_ENABLED, false).toBool();
+  configuration.lightTheme     = settings.value(THEME, true).toBool();
+  configuration.iconType       = settings.value(TRAY_ICON_TYPE, 0).toUInt();
+  configuration.trayTextColor  = settings.value(TRAY_TEXT_COLOR, 0).toUInt();
 }
 
 //-----------------------------------------------------------------
@@ -171,6 +182,18 @@ int main(int argc, char *argv[])
       std::exit(0);
     }
   }
+
+  QString sheet;
+
+  if(!configuration.lightTheme)
+  {
+    QFile file(":qdarkstyle/style.qss");
+    file.open(QFile::ReadOnly | QFile::Text);
+    QTextStream ts(&file);
+    sheet = ts.readAll();
+  }
+
+  qApp->setStyleSheet(sheet);
 
   TrayWeather application{configuration};
   application.show();

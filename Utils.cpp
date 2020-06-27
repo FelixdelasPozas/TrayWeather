@@ -260,7 +260,7 @@ const QString moonTooltip(const time_t timestamp)
   return result;
 }
 //--------------------------------------------------------------------
-const QIcon weatherIcon(const ForecastData& data)
+const QPixmap weatherPixmap(const ForecastData& data)
 {
   QString iconId = data.icon_id;
 
@@ -270,11 +270,11 @@ const QIcon weatherIcon(const ForecastData& data)
     iconId += QObject::tr("-%1").arg(moonPhase(data.dt, unused));
   }
 
-  return QIcon(Icons.value(iconId));
+  return QPixmap(Icons.value(iconId));
 }
 
 //--------------------------------------------------------------------
-const QIcon moonIcon(const ForecastData& data)
+const QPixmap moonPixmap(const ForecastData& data)
 {
   if(!data.icon_id.isEmpty())
   {
@@ -282,12 +282,10 @@ const QIcon moonIcon(const ForecastData& data)
     QString iconId{"01n"};
     iconId += QObject::tr("-%1").arg(moonPhase(data.dt, unused));
 
-    return QIcon(Icons.value(iconId));
+    return QPixmap(Icons.value(iconId));
   }
 
-
-
-  return QIcon{":/TrayWeather/network_error.svg"};
+  return QPixmap{":/TrayWeather/network_error.svg"};
 }
 
 //--------------------------------------------------------------------

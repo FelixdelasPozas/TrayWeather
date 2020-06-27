@@ -33,6 +33,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QPainter>
 
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
@@ -224,6 +225,10 @@ void TrayWeather::showConfiguration()
 
   m_configDialog = nullptr;
 
+  m_configuration.lightTheme    = configuration.lightTheme;
+  m_configuration.iconType      = configuration.iconType;
+  m_configuration.trayTextColor = configuration.trayTextColor;
+
   if(configuration.isValid())
   {
     auto menu = this->contextMenu();
@@ -301,12 +306,39 @@ void TrayWeather::updateTooltip()
   }
   else
   {
+    const auto tempString = QString::number(static_cast<int>(convertKelvinTo(m_current.temp, m_configuration.units)));
     tooltip = tr("%1, %2\n%3\n%4%5").arg(m_configuration.city)
                                     .arg(m_configuration.country)
                                     .arg(toTitleCase(m_current.description))
-                                    .arg(QString::number(static_cast<int>(convertKelvinTo(m_current.temp, m_configuration.units))))
+                                    .arg(tempString)
                                     .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
-    icon = weatherIcon(m_current);
+
+    QPixmap pixmap = weatherPixmap(m_current);
+    QPainter painter(&pixmap);
+
+    switch(m_configuration.iconType)
+    {
+      case 0:
+        break;
+      case 1:
+        pixmap.fill(Qt::transparent);
+        // no break
+      default:
+      case 2:
+        {
+          QFont font = painter.font();
+          font.setPixelSize(300);
+          painter.setFont(font);
+
+          painter.setPen(m_configuration.trayTextColor == 0 ? Qt::white : Qt::black);
+          painter.drawText(pixmap.rect(), Qt::AlignCenter, tempString);
+        }
+        break;
+    }
+
+    painter.end();
+
+    icon = QIcon(pixmap);
   }
 
   setToolTip(tooltip);

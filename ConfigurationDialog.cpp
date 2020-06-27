@@ -29,6 +29,8 @@
 #include <QMessageBox>
 #include <QIcon>
 #include <QString>
+#include <QFile>
+#include <QTextStream>
 
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
@@ -55,6 +57,9 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   m_useDNS->setChecked(configuration.useDNS);
   m_roamingCheck->setChecked(configuration.roamingEnabled);
   m_apikey->setText(configuration.owm_apikey);
+  m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
+  m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
+  m_trayTempColor->setCurrentIndex(static_cast<int>(configuration.trayTextColor));
 
   if(!configuration.isValid())
   {
@@ -103,6 +108,8 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
       m_testLabel->setText(tr("Untested OpenWeatherMap API Key!"));
     }
   }
+
+  setFixedSize(size());
 }
 
 //--------------------------------------------------------------------
@@ -273,6 +280,9 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.useDNS         = m_useDNS->isChecked();
   configuration.useGeolocation = m_useGeolocation->isChecked();
   configuration.roamingEnabled = m_roamingCheck->isChecked();
+  configuration.lightTheme     = m_theme->currentIndex() == 0;
+  configuration.iconType       = static_cast<unsigned int>(m_trayIconType->currentIndex());
+  configuration.trayTextColor  = static_cast<unsigned int>(m_trayTempColor->currentIndex());
 
   if(m_useManual->isChecked())
   {
@@ -372,6 +382,9 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_latitudeSpin, SIGNAL(editingFinished()),
           this,           SLOT(onCoordinatesChanged()));
+
+  connect(m_theme, SIGNAL(currentIndexChanged(int)),
+         this,     SLOT(onThemeIndexChanged(int)));
 }
 
 //--------------------------------------------------------------------
@@ -401,4 +414,30 @@ void ConfigurationDialog::onCoordinatesChanged()
 
   m_longitudeSpin->setValue(longitude);
   m_latitudeSpin->setValue(latitude);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onThemeIndexChanged(int index)
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  setMinimumSize(0,0);
+
+  QString sheet;
+
+  if(index != 0)
+  {
+    QFile file(":qdarkstyle/style.qss");
+    file.open(QFile::ReadOnly | QFile::Text);
+    QTextStream ts(&file);
+    sheet = ts.readAll();
+  }
+
+  qApp->setStyleSheet(sheet);
+
+  adjustSize();
+  setFixedSize(size());
+
+  QApplication::restoreOverrideCursor();
 }

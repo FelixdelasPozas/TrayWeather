@@ -94,9 +94,9 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   {
     m_location->setText(tr("%1, %2 - %3").arg(current.name).arg(current.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
   }
-  m_moon->setPixmap(moonIcon(current).pixmap(QSize{64,64}, QIcon::Normal, QIcon::On));
+  m_moon->setPixmap(moonPixmap(current).scaled(QSize{64,64}));
   m_description->setText(toTitleCase(current.description));
-  m_icon->setPixmap(weatherIcon(current).pixmap(QSize{236,236}, QIcon::Normal, QIcon::On));
+  m_icon->setPixmap(weatherPixmap(current).scaled(QSize{236,236}));
   m_temp->setText(tr("%1 %2").arg(convertKelvinTo(current.temp, config.units)).arg(temperatureUnits));
   m_temp_max->setText(tr("%1 %2").arg(convertKelvinTo(current.temp_max, config.units)).arg(temperatureUnits));
   m_temp_min->setText(tr("%1 %2").arg(convertKelvinTo(current.temp_min, config.units)).arg(temperatureUnits));

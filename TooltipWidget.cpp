@@ -45,7 +45,7 @@ TooltipWidget::TooltipWidget(const ForecastData& data, const Configuration &conf
   m_dateTime->setText(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm")));
   m_description->setText(toTitleCase(data.description));
   m_temperature->setText(tr("Temperature: %1 %2").arg(convertKelvinTo(data.temp, config.units)).arg(config.units == Temperature::CELSIUS ? "ºC" : "ºF"));
-  m_icon->setPixmap(weatherIcon(data).pixmap(QSize{64,64}, QIcon::Normal, QIcon::On));
+  m_icon->setPixmap(weatherPixmap(data).scaled(QSize{64,64}));
   m_cloudiness->setText(tr("Cloudiness: %1%").arg(data.cloudiness));
   m_humidity->setText(tr("Humidity: %1%").arg(data.humidity));
   m_pressure->setText(tr("Pressure: %1 hPa").arg(data.pressure));

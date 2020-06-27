@@ -102,6 +102,12 @@ class ConfigurationDialog
      */
     void onCoordinatesChanged();
 
+    /** \brief Updates the visual theme of the application when the user changes the theme value.
+     * \param[in] index Theme combo box index.
+     *
+     */
+    void onThemeIndexChanged(int index);
+
   private:
 
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
