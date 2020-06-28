@@ -30,6 +30,7 @@
 #include <QSettings>
 #include <QFile>
 #include <QTextStream>
+#include <QColor>
 #include <QDebug>
 
 // C++
@@ -78,7 +79,7 @@ void saveConfiguration(const Configuration &configuration)
   settings.setValue(ROAMING_ENABLED,         configuration.roamingEnabled);
   settings.setValue(THEME,                   configuration.lightTheme);
   settings.setValue(TRAY_ICON_TYPE,          configuration.iconType);
-  settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor);
+  settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor.name(QColor::HexArgb));
 
   settings.sync();
 }
@@ -106,7 +107,7 @@ void loadConfiguration(Configuration &configuration)
   configuration.roamingEnabled = settings.value(ROAMING_ENABLED, false).toBool();
   configuration.lightTheme     = settings.value(THEME, true).toBool();
   configuration.iconType       = settings.value(TRAY_ICON_TYPE, 0).toUInt();
-  configuration.trayTextColor  = settings.value(TRAY_TEXT_COLOR, 0).toUInt();
+  configuration.trayTextColor  = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
 }
 
 //-----------------------------------------------------------------

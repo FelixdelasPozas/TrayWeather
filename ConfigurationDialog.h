@@ -108,6 +108,11 @@ class ConfigurationDialog
      */
     void onThemeIndexChanged(int index);
 
+    /** \brief Opens a color dialog to let the user choose the color for the tray text.
+     *
+     */
+    void onColorButtonClicked();
+
   private:
 
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */

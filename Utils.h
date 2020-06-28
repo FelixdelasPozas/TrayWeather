@@ -28,6 +28,7 @@
 #include <QString>
 #include <QDebug>
 #include <QJsonObject>
+#include <QColor>
 
 enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
 
@@ -55,7 +56,7 @@ struct Configuration
     bool         roamingEnabled; /** true if georaphical coordinates are asked on each forecast. */
     bool         lightTheme;     /** true if light theme is being used, false if dark theme.     */
     unsigned int iconType;       /** 0 if just icon, 1 if just temperature, 2 if both.           */
-    unsigned int trayTextColor;  /** 0 for white, 1 for black.                                   */
+    QColor       trayTextColor;  /** Color of tray temperature text.                             */
 
     /** \brief Configuration struct constructor.
      *
@@ -79,7 +80,7 @@ struct Configuration
     , roamingEnabled{false}
     , lightTheme    {true}
     , iconType      {0}
-    , trayTextColor {0}
+    , trayTextColor {Qt::white}
     {};
 
     bool isValid() const

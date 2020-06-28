@@ -328,9 +328,10 @@ void TrayWeather::updateTooltip()
         {
           QFont font = painter.font();
           font.setPixelSize(300);
+          font.setBold(true);
           painter.setFont(font);
 
-          painter.setPen(m_configuration.trayTextColor == 0 ? Qt::white : Qt::black);
+          painter.setPen(m_configuration.trayTextColor);
           painter.drawText(pixmap.rect(), Qt::AlignCenter, tempString);
         }
         break;

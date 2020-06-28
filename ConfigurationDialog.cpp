@@ -31,6 +31,7 @@
 #include <QString>
 #include <QFile>
 #include <QTextStream>
+#include <QColorDialog>
 
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
@@ -59,7 +60,11 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   m_apikey->setText(configuration.owm_apikey);
   m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
   m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
-  m_trayTempColor->setCurrentIndex(static_cast<int>(configuration.trayTextColor));
+
+  QPixmap icon(QSize(64,64));
+  icon.fill(configuration.trayTextColor);
+  m_trayTempColor->setIcon(QIcon(icon));
+  m_trayTempColor->setStyleSheet("text-align:left;");
 
   if(!configuration.isValid())
   {
@@ -282,7 +287,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.roamingEnabled = m_roamingCheck->isChecked();
   configuration.lightTheme     = m_theme->currentIndex() == 0;
   configuration.iconType       = static_cast<unsigned int>(m_trayIconType->currentIndex());
-  configuration.trayTextColor  = static_cast<unsigned int>(m_trayTempColor->currentIndex());
+  configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
 
   if(m_useManual->isChecked())
   {
@@ -385,6 +390,9 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_theme, SIGNAL(currentIndexChanged(int)),
          this,     SLOT(onThemeIndexChanged(int)));
+
+  connect(m_trayTempColor, SIGNAL(clicked()),
+          this,            SLOT(onColorButtonClicked()));
 }
 
 //--------------------------------------------------------------------
@@ -436,8 +444,28 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
 
   qApp->setStyleSheet(sheet);
 
+  m_trayTempColor->setStyleSheet("text-align:left;");
+
   adjustSize();
   setFixedSize(size());
 
   QApplication::restoreOverrideCursor();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onColorButtonClicked()
+{
+  QPalette pal = m_trayTempColor->palette();
+  auto color = pal.color(QPalette::Button);
+
+  QColorDialog dialog;
+  dialog.setCurrentColor(color);
+
+  if(dialog.exec() == QColorDialog::Accepted)
+  {
+    QPixmap icon(QSize(64,64));
+    icon.fill(dialog.selectedColor());
+    m_trayTempColor->setIcon(QIcon(icon));
+    m_trayTempColor->setProperty("iconColor", dialog.selectedColor().name(QColor::HexArgb));
+  }
 }
