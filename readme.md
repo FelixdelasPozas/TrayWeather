@@ -43,7 +43,8 @@ Tray icon showing the current weather icon. At night and on clear sky days it sh
 ![icon](https://cloud.githubusercontent.com/assets/12167134/20938095/f03e2474-bbe9-11e6-83b9-e2bc8c716bf4.jpg)
 ![icon_menu](https://cloud.githubusercontent.com/assets/12167134/20938103/f0b22126-bbe9-11e6-8639-30161344d1d3.jpg)
 
-Tray icon can also show the temperature alone or composed with the weather icon.
+Tray icon can also show the temperature alone or composed with the weather icon. The temperature text color can be set by the user
+or can change dynamically between a range of colors according to the current value. 
 
 ![icon_temp](https://user-images.githubusercontent.com/12167134/85929400-b6e05280-b8b4-11ea-9574-bf27537f38e3.png)
 
