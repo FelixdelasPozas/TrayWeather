@@ -32,6 +32,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QColorDialog>
+#include <QPainter>
 
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
@@ -41,6 +42,9 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 {
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setupUi(this);
+
+  m_minSpinBox->setValue(configuration.minimumValue);
+  m_maxSpinBox->setValue(configuration.maximumValue);
 
   connectSignals();
 
@@ -61,10 +65,24 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
   m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
 
+  m_fixed->setChecked(configuration.trayTextMode);
+  m_variable->setChecked(!configuration.trayTextMode);
+
+  m_minSpinBox->setMaximum(configuration.maximumValue-1);
+  m_maxSpinBox->setMinimum(configuration.minimumValue+1);
+
   QPixmap icon(QSize(64,64));
   icon.fill(configuration.trayTextColor);
   m_trayTempColor->setIcon(QIcon(icon));
-  m_trayTempColor->setStyleSheet("text-align:left;");
+  m_trayTempColor->setProperty("iconColor", configuration.trayTextColor.name(QColor::HexArgb));
+
+  icon.fill(configuration.minimumColor);
+  m_minColor->setIcon(QIcon(icon));
+  m_minColor->setProperty("iconColor", configuration.minimumColor.name(QColor::HexArgb));
+
+  icon.fill(configuration.maximumColor);
+  m_maxColor->setIcon(QIcon(icon));
+  m_maxColor->setProperty("iconColor", configuration.maximumColor.name(QColor::HexArgb));
 
   if(!configuration.isValid())
   {
@@ -115,6 +133,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   }
 
   setFixedSize(size());
+  updateRange();
 }
 
 //--------------------------------------------------------------------
@@ -288,6 +307,11 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.lightTheme     = m_theme->currentIndex() == 0;
   configuration.iconType       = static_cast<unsigned int>(m_trayIconType->currentIndex());
   configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
+  configuration.trayTextMode   = m_fixed->isChecked();
+  configuration.minimumColor   = QColor(m_minColor->property("iconColor").toString());
+  configuration.maximumColor   = QColor(m_maxColor->property("iconColor").toString());
+  configuration.minimumValue   = m_minSpinBox->value();
+  configuration.maximumValue   = m_maxSpinBox->value();
 
   if(m_useManual->isChecked())
   {
@@ -393,6 +417,18 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_trayTempColor, SIGNAL(clicked()),
           this,            SLOT(onColorButtonClicked()));
+
+  connect(m_minColor, SIGNAL(clicked()),
+          this,       SLOT(onColorButtonClicked()));
+
+  connect(m_maxColor, SIGNAL(clicked()),
+          this,       SLOT(onColorButtonClicked()));
+
+  connect(m_minSpinBox, SIGNAL(valueChanged(int)),
+          this,         SLOT(onTemperatureValueChanged(int)));
+
+  connect(m_maxSpinBox, SIGNAL(valueChanged(int)),
+          this,         SLOT(onTemperatureValueChanged(int)));
 }
 
 //--------------------------------------------------------------------
@@ -444,10 +480,9 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
 
   qApp->setStyleSheet(sheet);
 
-  m_trayTempColor->setStyleSheet("text-align:left;");
-
   adjustSize();
   setFixedSize(size());
+  updateRange();
 
   QApplication::restoreOverrideCursor();
 }
@@ -455,17 +490,63 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
 //--------------------------------------------------------------------
 void ConfigurationDialog::onColorButtonClicked()
 {
-  QPalette pal = m_trayTempColor->palette();
-  auto color = pal.color(QPalette::Button);
+  auto button = qobject_cast<QToolButton *>(sender());
+  auto color  = QColor(button->property("iconColor").toString());
 
   QColorDialog dialog;
   dialog.setCurrentColor(color);
 
-  if(dialog.exec() == QColorDialog::Accepted)
+  if(dialog.exec() != QColorDialog::Accepted) return;
+
+  QPixmap icon(QSize(64,64));
+  icon.fill(dialog.selectedColor());
+  button->setIcon(QIcon(icon));
+  button->setProperty("iconColor", dialog.selectedColor().name(QColor::HexArgb));
+
+  if(button == m_minColor || button == m_maxColor)
   {
-    QPixmap icon(QSize(64,64));
-    icon.fill(dialog.selectedColor());
-    m_trayTempColor->setIcon(QIcon(icon));
-    m_trayTempColor->setProperty("iconColor", dialog.selectedColor().name(QColor::HexArgb));
+    updateRange();
   }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onTemperatureValueChanged(int value)
+{
+  auto spinBox = qobject_cast<QSpinBox *>(sender());
+  if(spinBox == m_minSpinBox)
+  {
+    m_minSpinBox->setMaximum(m_maxSpinBox->value()-1);
+    m_maxSpinBox->setMinimum(value + 1);
+  }
+  else
+  {
+    m_maxSpinBox->setMinimum(m_minSpinBox->value()+1);
+    m_minSpinBox->setMaximum(value - 1);
+  }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::updateRange()
+{
+  auto minColor = QColor(m_minColor->property("iconColor").toString());
+  auto maxColor = QColor(m_maxColor->property("iconColor").toString());
+
+  double inc = 1./100;
+  double rStep = (maxColor.red()   - minColor.red())   *inc;
+  double gStep = (maxColor.green() - minColor.green()) *inc;
+  double bStep = (maxColor.blue()  - minColor.blue())  *inc;
+  double aStep = (maxColor.alpha() - minColor.alpha()) *inc;
+
+  QImage range(QSize{100,30}, QImage::Format_ARGB32_Premultiplied);
+  range.fill(qRgba(0, 0, 0, 0));
+  QPainter painter(&range);
+  for(int i = 0; i < 100; ++i)
+  {
+    const auto newColor = QColor::fromRgb(minColor.red() + (i * rStep), minColor.green() + (i * gStep), minColor.blue() + (i * bStep), minColor.alpha() + (i * aStep));
+    painter.setPen(newColor);
+    painter.drawLine(i, 5, i, 25);
+  }
+  painter.end();
+
+  m_range->setPixmap(QPixmap::fromImage(range));
 }

@@ -228,6 +228,11 @@ void TrayWeather::showConfiguration()
   m_configuration.lightTheme    = configuration.lightTheme;
   m_configuration.iconType      = configuration.iconType;
   m_configuration.trayTextColor = configuration.trayTextColor;
+  m_configuration.trayTextMode  = configuration.trayTextMode;
+  m_configuration.minimumColor  = configuration.minimumColor;
+  m_configuration.maximumColor  = configuration.maximumColor;
+  m_configuration.minimumValue  = configuration.minimumValue;
+  m_configuration.maximumValue  = configuration.maximumValue;
 
   if(configuration.isValid())
   {
@@ -306,7 +311,8 @@ void TrayWeather::updateTooltip()
   }
   else
   {
-    const auto tempString = QString::number(static_cast<int>(convertKelvinTo(m_current.temp, m_configuration.units)));
+    const auto temperature = convertKelvinTo(m_current.temp, m_configuration.units);
+    const auto tempString = QString::number(static_cast<int>(temperature));
     tooltip = tr("%1, %2\n%3\n%4%5").arg(m_configuration.city)
                                     .arg(m_configuration.country)
                                     .arg(toTitleCase(m_current.description))
@@ -315,6 +321,20 @@ void TrayWeather::updateTooltip()
 
     QPixmap pixmap = weatherPixmap(m_current);
     QPainter painter(&pixmap);
+
+    auto interpolate = [this](int temp)
+    {
+      auto minColor = m_configuration.minimumColor;
+      auto maxColor = m_configuration.maximumColor;
+
+      double inc = static_cast<double>(temp-m_configuration.minimumValue)/(m_configuration.maximumValue - m_configuration.minimumValue);
+      double rInc = (maxColor.red()   - minColor.red())   *inc;
+      double gInc = (maxColor.green() - minColor.green()) *inc;
+      double bInc = (maxColor.blue()  - minColor.blue())  *inc;
+      double aInc = (maxColor.alpha() - minColor.alpha()) *inc;
+
+      return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
+    };
 
     switch(m_configuration.iconType)
     {
@@ -331,7 +351,20 @@ void TrayWeather::updateTooltip()
           font.setBold(true);
           painter.setFont(font);
 
-          painter.setPen(m_configuration.trayTextColor);
+          QColor color;
+          if(m_configuration.trayTextMode)
+          {
+            color = m_configuration.trayTextColor;
+          }
+          else
+          {
+            if(temperature < m_configuration.minimumValue) color = m_configuration.minimumColor;
+            else if(temperature > m_configuration.maximumValue) color = m_configuration.maximumColor;
+            else color = interpolate(temperature);
+          }
+
+          painter.setPen(color);
+          painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
           painter.drawText(pixmap.rect(), Qt::AlignCenter, tempString);
         }
         break;

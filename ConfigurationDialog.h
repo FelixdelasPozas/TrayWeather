@@ -113,7 +113,17 @@ class ConfigurationDialog
      */
     void onColorButtonClicked();
 
+    /** \brief Helper that checks the values of temperatures spinboxes.
+     * \param[in] value New value for modified spinbox.
+     *
+     */
+    void onTemperatureValueChanged(int value);
+
   private:
+    /** \brief Helper method that draws the color interpolation of the range QLabel.
+     *
+     */
+    void updateRange();
 
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
     bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */

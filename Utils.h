@@ -57,6 +57,12 @@ struct Configuration
     bool         lightTheme;     /** true if light theme is being used, false if dark theme.     */
     unsigned int iconType;       /** 0 if just icon, 1 if just temperature, 2 if both.           */
     QColor       trayTextColor;  /** Color of tray temperature text.                             */
+    bool         trayTextMode;   /** true for fixed, false for dynamic.                          */
+    QColor       minimumColor;   /** minimum value dynamic color.                                */
+    QColor       maximumColor;   /** maximum value dynamic color.                                */
+    int          minimumValue;   /** dynamic color minimum value.                                */
+    int          maximumValue;   /** dynamic color maximum value.                                */
+
 
     /** \brief Configuration struct constructor.
      *
@@ -81,6 +87,11 @@ struct Configuration
     , lightTheme    {true}
     , iconType      {0}
     , trayTextColor {Qt::white}
+    , trayTextMode  {true}
+    , minimumColor  {Qt::blue}
+    , maximumColor  {Qt::red}
+    , minimumValue  {-10}
+    , maximumValue  {45}
     {};
 
     bool isValid() const
