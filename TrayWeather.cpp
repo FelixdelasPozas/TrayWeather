@@ -347,7 +347,7 @@ void TrayWeather::updateTooltip()
       case 2:
         {
           QFont font = painter.font();
-          font.setPixelSize(300);
+          font.setPixelSize(250 - (tempString.length() - 3) * 50);
           font.setBold(true);
           painter.setFont(font);
 

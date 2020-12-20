@@ -24,7 +24,7 @@
 #include <QtGlobal>
 #include <QDateTime>
 
-const QString AboutDialog::VERSION = QString("version 1.4.2");
+const QString AboutDialog::VERSION = QString("version 1.4.3");
 const QString COPYRIGHT = QString("Copyright (c) 2016-%1 Félix de las Pozas Álvarez");
 
 //-----------------------------------------------------------------
@@ -43,4 +43,13 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
 
   m_qtVersion->setText(tr("version %1").arg(qVersion()));
   m_copyright->setText(COPYRIGHT.arg(QDateTime::currentDateTime().date().year()));
+}
+
+//-----------------------------------------------------------------
+void AboutDialog::showEvent(QShowEvent *e)
+{
+  QDialog::showEvent(e);
+
+  adjustSize();
+  setFixedSize(size());
 }
