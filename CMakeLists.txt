@@ -8,7 +8,7 @@ cmake_minimum_required (VERSION 3.0.0)
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
 set (TRAYWEATHER_VERSION_MINOR 4)
-set (TRAYWEATHER_VERSION_PATCH 3)
+set (TRAYWEATHER_VERSION_PATCH 4)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -26,37 +26,38 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
   set(CORE_EXTERNAL_LIBS ${CORE_EXTERNAL_LIBS} ${QT_QTTEST_LIBRARY})
 endif (CMAKE_BUILD_TYPE MATCHES Debug)
 
+set(CHARTS_INCLUDE_DIR "D:/Desarrollo/Bibliotecas/qtcharts-dev/src")
 set(CHARTS_INCLUDE_DIRS
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src" 
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/animations"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/areachart"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/axis"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/axis/barcategoryaxis"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/axis/categoryaxis"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/axis/datetimeaxis"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/axis/logvalueaxis"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/axis/valueaxis"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart/vertical"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart/vertical/bar"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart/vertical/percent"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart/vertical/stacked"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart/horizontal"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart/horizontal/bar"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart/horizontal/percent"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/barchart/horizontal/stacked"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/boxplotchart"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/domain"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/candlestickchart"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/layout"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/legend"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/linechart"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/piechart"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/scatterchart"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/splinechart"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/themes"
-  "D:/Desarrollo/Bibliotecas/qtcharts-dev/src/charts/xychart"
+  "${CHARTS_INCLUDE_DIR}" 
+  "${CHARTS_INCLUDE_DIR}/charts"
+  "${CHARTS_INCLUDE_DIR}/charts/animations"
+  "${CHARTS_INCLUDE_DIR}/charts/areachart"
+  "${CHARTS_INCLUDE_DIR}/charts/axis"
+  "${CHARTS_INCLUDE_DIR}/axis/barcategoryaxis"
+  "${CHARTS_INCLUDE_DIR}/charts/axis/categoryaxis"
+  "${CHARTS_INCLUDE_DIR}/charts/axis/datetimeaxis"
+  "${CHARTS_INCLUDE_DIR}/charts/axis/logvalueaxis"
+  "${CHARTS_INCLUDE_DIR}/charts/axis/valueaxis"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart/vertical"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart/vertical/bar"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart/vertical/percent"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart/vertical/stacked"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart/horizontal"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart/horizontal/bar"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart/horizontal/percent"
+  "${CHARTS_INCLUDE_DIR}/charts/barchart/horizontal/stacked"
+  "${CHARTS_INCLUDE_DIR}/charts/boxplotchart"
+  "${CHARTS_INCLUDE_DIR}/charts/domain"
+  "${CHARTS_INCLUDE_DIR}/charts/candlestickchart"
+  "${CHARTS_INCLUDE_DIR}/charts/layout"
+  "${CHARTS_INCLUDE_DIR}/charts/legend"
+  "${CHARTS_INCLUDE_DIR}/charts/linechart"
+  "${CHARTS_INCLUDE_DIR}/charts/piechart"
+  "${CHARTS_INCLUDE_DIR}/charts/scatterchart"
+  "${CHARTS_INCLUDE_DIR}/charts/splinechart"
+  "${CHARTS_INCLUDE_DIR}/charts/themes"
+  "${CHARTS_INCLUDE_DIR}/charts/xychart"
 )
 
 if(DEFINED MINGW)
