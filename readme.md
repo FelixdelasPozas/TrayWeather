@@ -78,7 +78,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.4.4
+**Version**: 1.4.5
 
 **Status**: finished.
 
