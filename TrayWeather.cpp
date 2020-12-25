@@ -311,13 +311,16 @@ void TrayWeather::updateTooltip()
   }
   else
   {
+    QStringList place;
+    if(!m_configuration.city.isEmpty())    place << m_configuration.city;
+    if(!m_configuration.country.isEmpty()) place << m_configuration.country;
+
     const auto temperature = convertKelvinTo(m_current.temp, m_configuration.units);
     const auto tempString = QString::number(static_cast<int>(temperature));
-    tooltip = tr("%1, %2\n%3\n%4%5").arg(m_configuration.city)
-                                    .arg(m_configuration.country)
-                                    .arg(toTitleCase(m_current.description))
-                                    .arg(tempString)
-                                    .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
+    tooltip = tr("%1\n%2\n%3%4").arg(place.join(", "))
+                                .arg(toTitleCase(m_current.description))
+                                .arg(tempString)
+                                .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
 
     QPixmap pixmap = weatherPixmap(m_current);
     QPainter painter(&pixmap);
@@ -342,7 +345,7 @@ void TrayWeather::updateTooltip()
         break;
       case 1:
         pixmap.fill(Qt::transparent);
-        // no break
+        //no break
       default:
       case 2:
         {

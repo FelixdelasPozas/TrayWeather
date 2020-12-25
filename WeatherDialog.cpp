@@ -107,6 +107,7 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
   m_wind_dir->setText(tr("%1 º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
 
   m_moon->setToolTip(moonTooltip(current.dt));
+  m_icon->setToolTip(tr("Current weather: %1").arg(current.description));
 
   if(current.rain == 0)
   {
