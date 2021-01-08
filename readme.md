@@ -69,6 +69,11 @@ The graph can be zoomed by selecting the area to zoom with the mouse and resette
 ![forecast_graph](https://user-images.githubusercontent.com/12167134/34379926-460a5cbc-eafe-11e7-99f9-b0ee23005b73.jpg)
 ![forecast_tooltip](https://user-images.githubusercontent.com/12167134/34379927-4622b118-eafe-11e7-8933-c7fae870fb1d.jpg)
 
+Pollution forecast can be obtained in the third tab, showing the projections for the next days. The chart can be zoomed in the X axis and
+resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines. 
+
+![pollution](https://user-images.githubusercontent.com/12167134/104073647-83d92d00-520e-11eb-8b6c-901976f2429b.png)
+
 Weather maps are interactive. While initially the map is centered in the detected location it can be moved and zoomed in and out. The maps consumes much more memory than
 the rest of the application so the user can be disable them using the button below. 
 
@@ -78,7 +83,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.4.5
+**Version**: 1.5.0
 
 **Status**: finished.
 
@@ -86,8 +91,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   7           | 389         |   200            | 1747 |
-| C/C++ Header                 |   7           | 130         |   366            |  522 |
+| C++                          |   8           | 444         |   223            | 2007 |
+| C/C++ Header                 |   8           | 149         |   409            |  570 |
 | HTML                         |   1           |  28         |     0            |  138 |
-| CMake                        |   1           |  15         |    10            |   95 |
-| **Total**                    | **16**        | **562**     | **576**          | **2502** |
+| CMake                        |   1           |  15         |    10            |   97 |
+| **Total**                    | **18**        | **636**     | **642**          | **2812** |

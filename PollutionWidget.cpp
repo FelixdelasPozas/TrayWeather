@@ -19,6 +19,7 @@
 
 // Project
 #include <PollutionWidget.h>
+#include <Utils.h>
 
 // Qt
 #include <QApplication>
@@ -29,10 +30,6 @@
 
 // C++
 #include <time.h>
-
-const QList<QColor> CONCENTRATION_COLORS{ QColor::fromHsv(0, 255, 255),   QColor::fromHsv(45, 255, 255),  QColor::fromHsv(90, 255, 255),
-                                          QColor::fromHsv(135, 255, 255), QColor::fromHsv(180, 255, 255), QColor::fromHsv(225, 255, 255),
-                                          QColor::fromHsv(270, 255, 255), QColor::fromHsv(315, 255, 255)};
 
 //--------------------------------------------------------------------
 PollutionWidget::PollutionWidget(const PollutionData& data)

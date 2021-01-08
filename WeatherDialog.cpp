@@ -21,6 +21,7 @@
 #include <WeatherDialog.h>
 #include <WeatherWidget.h>
 #include <PollutionWidget.h>
+#include <Utils.h>
 
 // Qt
 #include <QTime>
@@ -38,11 +39,6 @@
 #include <QMessageBox>
 #include <iostream>
 
-const QStringList CONCENTRATION_NAMES{"CO", "NO", "NO<sub>2</sub>", "O<sub>3</sub>", "SO<sub>2</sub>", "PM<sub>2.5</sub>", "PM<sub>10</sub>", "NH<sub>3</sub>"};
-
-const QList<QColor> CONCENTRATION_COLORS{ QColor::fromHsv(0, 255, 255),   QColor::fromHsv(45, 255, 255),  QColor::fromHsv(90, 255, 255),
-                                          QColor::fromHsv(135, 255, 255), QColor::fromHsv(180, 255, 255), QColor::fromHsv(225, 255, 255),
-                                          QColor::fromHsv(270, 255, 255), QColor::fromHsv(315, 255, 255)};
 using namespace QtCharts;
 
 //--------------------------------------------------------------------
@@ -495,7 +491,7 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   auto axisY = new QValueAxis();
   axisY->setLabelFormat("%i");
-  axisY->setTitleText(tr("Concentration in µg/m<sup>3</sup>"));
+  axisY->setTitleText(tr("Concentration in %1").arg(CONCENTRATION_UNITS));
   axisY->setGridLineVisible(true);
 
   auto forecastChart = new QChart();
