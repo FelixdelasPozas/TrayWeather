@@ -35,6 +35,9 @@
 #include <QJsonArray>
 #include <QPainter>
 
+// C++
+#include <chrono>
+
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 : QSystemTrayIcon{parent}
@@ -77,17 +80,22 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 
       if(!jsonDocument.isNull() && jsonDocument.isObject())
       {
+        const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
+
         auto jsonObj = jsonDocument.object();
 
         if(jsonObj.keys().contains("cnt"))
         {
-          auto values  = jsonObj.value("list").toArray();
+          const auto values  = jsonObj.value("list").toArray();
 
           auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_data) if(entry.dt == dt) return true; return false; };
 
           for(auto i = 0; i < values.count(); ++i)
           {
             auto entry = values.at(i).toObject();
+
+            const auto dt = entry.value("dt").toInt(0);
+            if(dt < currentDt) continue;
 
             ForecastData data;
             parseForecastEntry(entry, data, m_configuration.units);
@@ -107,6 +115,31 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
           {
             auto lessThan = [](const ForecastData &left, const ForecastData &right) { if(left.dt < right.dt) return true; return false; };
             qSort(m_data.begin(), m_data.end(), lessThan);
+          }
+        }
+        else if(jsonObj.keys().contains("list"))
+        {
+          const auto values  = jsonObj.value("list").toArray();
+
+          auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_pData) if(entry.dt == dt) return true; return false; };
+
+          for(auto i = 0; i < values.count(); ++i)
+          {
+            auto entry = values.at(i).toObject();
+
+            const auto dt = entry.value("dt").toInt(0);
+            if(dt < currentDt) continue;
+
+            PollutionData data;
+            parsePollutionEntry(entry, data);
+
+            if(!hasEntry(data.dt)) m_pData << data;
+          }
+
+          if(!m_pData.isEmpty())
+          {
+            auto lessThan = [](const PollutionData &left, const PollutionData &right) { if(left.dt < right.dt) return true; return false; };
+            qSort(m_pData.begin(), m_pData.end(), lessThan);
           }
         }
         else
@@ -166,8 +199,13 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 
       if(m_weatherDialog)
       {
-        m_weatherDialog->setData(m_current, m_data, m_configuration);
+        m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
       }
+    }
+
+    if(!m_pData.isEmpty() && m_weatherDialog)
+    {
+      m_weatherDialog->setPollutionData(m_pData);
     }
 
     updateTooltip();
@@ -291,7 +329,12 @@ void TrayWeather::showConfiguration()
 
     if(m_weatherDialog && validData())
     {
-      m_weatherDialog->setData(m_current, m_data, m_configuration);
+      m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
+    }
+
+    if(m_weatherDialog && !m_pData.isEmpty())
+    {
+      m_weatherDialog->setPollutionData(m_pData);
     }
   }
 
@@ -524,7 +567,8 @@ void TrayWeather::showForecast()
   updateTooltip();
 
   m_weatherDialog = new WeatherDialog{};
-  m_weatherDialog->setData(m_current, m_data, m_configuration);
+  m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
+  m_weatherDialog->setPollutionData(m_pData);
 
   auto scr = QApplication::desktop()->screenGeometry();
   m_weatherDialog->move(scr.center() - m_weatherDialog->rect().center());
@@ -595,6 +639,11 @@ void TrayWeather::requestForecastData()
   url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
                                                                                                  .arg(m_configuration.longitude)
                                                                                                  .arg(m_configuration.owm_apikey))};
+  m_netManager->get(QNetworkRequest{url});
+
+  url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
+                                                                                                               .arg(m_configuration.longitude)
+                                                                                                               .arg(m_configuration.owm_apikey))};
   m_netManager->get(QNetworkRequest{url});
 }
 

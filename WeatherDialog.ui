@@ -562,15 +562,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
-      <attribute name="title">
-       <string>Forecast</string>
-      </attribute>
-      <attribute name="toolTip">
-       <string>Weather forecast</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_5"/>
-     </widget>
     </widget>
    </item>
    <item>

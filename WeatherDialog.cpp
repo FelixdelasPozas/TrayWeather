@@ -19,7 +19,8 @@
 
 // Project
 #include <WeatherDialog.h>
-#include <TooltipWidget.h>
+#include <WeatherWidget.h>
+#include <PollutionWidget.h>
 
 // Qt
 #include <QTime>
@@ -35,32 +36,47 @@
 #include <QEasingCurve>
 #include <QWebView>
 #include <QMessageBox>
+#include <iostream>
 
+const QStringList CONCENTRATION_NAMES{"CO", "NO", "NO<sub>2</sub>", "O<sub>3</sub>", "SO<sub>2</sub>", "PM<sub>2.5</sub>", "PM<sub>10</sub>", "NH<sub>3</sub>"};
+
+const QList<QColor> CONCENTRATION_COLORS{ QColor::fromHsv(0, 255, 255),   QColor::fromHsv(45, 255, 255),  QColor::fromHsv(90, 255, 255),
+                                          QColor::fromHsv(135, 255, 255), QColor::fromHsv(180, 255, 255), QColor::fromHsv(225, 255, 255),
+                                          QColor::fromHsv(270, 255, 255), QColor::fromHsv(315, 255, 255)};
 using namespace QtCharts;
 
 //--------------------------------------------------------------------
 WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
-: QDialog          {parent, flags}
-, m_temperatureLine{nullptr}
-, m_forecast       {nullptr}
-, m_config         {nullptr}
-, m_tooltip        {nullptr}
-, m_webpage        {nullptr}
+: QDialog           {parent, flags}
+, m_temperatureLine {nullptr}
+, m_forecast        {nullptr}
+, m_config          {nullptr}
+, m_weatherTooltip  {nullptr}
+, m_pollutionTooltip{nullptr}
+, m_webpage         {nullptr}
 {
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
   setupUi(this);
 
-  auto tab = m_tabWidget->widget(1);
-  m_tabWidget->removeTab(1);
-  if(tab) delete tab;
+  m_tabWidget->setContentsMargins(0, 0, 0, 0);
 
-  m_chartView = new QChartView;
-  m_chartView->setRenderHint(QPainter::Antialiasing);
-  m_chartView->setBackgroundBrush(QBrush{Qt::white});
-  m_chartView->setRubberBand(QChartView::HorizontalRubberBand);
-  m_chartView->setToolTip(tr("Weather forecast for the next days."));
+  m_weatherChart = new QChartView;
+  m_weatherChart->setRenderHint(QPainter::Antialiasing);
+  m_weatherChart->setBackgroundBrush(QBrush{Qt::white});
+  m_weatherChart->setRubberBand(QChartView::HorizontalRubberBand);
+  m_weatherChart->setToolTip(tr("Weather forecast for the next days."));
+  m_weatherChart->setContentsMargins(0, 0, 0, 0);
 
-  m_tabWidget->addTab(m_chartView, QIcon(), "Forecast");
+  m_tabWidget->addTab(m_weatherChart, QIcon(), "Forecast");
+
+  m_pollutionChart = new QChartView;
+  m_pollutionChart->setRenderHint(QPainter::Antialiasing);
+  m_pollutionChart->setBackgroundBrush(QBrush{Qt::white});
+  m_pollutionChart->setRubberBand(QChartView::HorizontalRubberBand);
+  m_pollutionChart->setToolTip(tr("Pollution forecast for the next days."));
+  m_pollutionChart->setContentsMargins(0, 0, 0, 0);
+
+  m_tabWidget->addTab(m_pollutionChart, QIcon(), "Pollution");
 
   connect(m_reset, SIGNAL(clicked()),
           this,    SLOT(onResetButtonPressed()));
@@ -75,7 +91,7 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 }
 
 //--------------------------------------------------------------------
-void WeatherDialog::setData(const ForecastData &current, const Forecast &data, Configuration &config)
+void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &data, Configuration &config)
 {
   m_forecast = &data;
   m_config   = &config;
@@ -202,11 +218,11 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
     auto temperature = convertKelvinTo(entry.temp, config.units);
     m_temperatureLine->append(dtTime.toMSecsSinceEpoch(), temperature);
 
-    if(tempMin > temperature) tempMin = temperature;
-    if(tempMax < temperature) tempMax = temperature;
+    tempMin = std::min(tempMin, temperature);
+    tempMax = std::max(tempMax, temperature);
 
-    if(rainMin > entry.rain) rainMin = entry.rain;
-    if(rainMax < entry.rain) rainMax = entry.rain;
+    rainMin = std::min(rainMin, entry.rain);
+    rainMax = std::max(rainMax, entry.rain);
 
     bars->append(entry.rain);
   }
@@ -230,9 +246,9 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
     rainBars->clear();
   }
 
-  auto oldChart = m_chartView->chart();
-  m_chartView->setChart(forecastChart);
-  m_chartView->chart()->zoomReset();
+  auto oldChart = m_weatherChart->chart();
+  m_weatherChart->setChart(forecastChart);
+  m_weatherChart->chart()->zoomReset();
 
   m_reset->setEnabled(false);
 
@@ -274,33 +290,61 @@ void WeatherDialog::setData(const ForecastData &current, const Forecast &data, C
 //--------------------------------------------------------------------
 void WeatherDialog::onResetButtonPressed()
 {
-  m_chartView->chart()->zoomReset();
+  if(m_tabWidget->currentIndex() == 1)
+  {
+    m_weatherChart->chart()->zoomReset();
+  }
+  else
+  {
+    m_pollutionChart->chart()->zoomReset();
+  }
 }
 
 //--------------------------------------------------------------------
 void WeatherDialog::onTabChanged(int index)
 {
-  m_reset->setVisible(index == 1);
+  m_reset->setVisible(index == 1 || index == 2);
+  onAreaChanged();
 }
 
 //--------------------------------------------------------------------
 void WeatherDialog::onChartHover(const QPointF& point, bool state)
 {
-  auto closeWidget = [](std::shared_ptr<TooltipWidget> w) { if(w && w.get()) { w->hide(); } w = nullptr; };
+  QtCharts::QLineSeries *currentLine = qobject_cast<QtCharts::QLineSeries *>(sender());
+  if(!currentLine) return;
+
+  QtCharts::QChartView *currentChart = (m_tabWidget->currentIndex() == 1) ? m_weatherChart : m_pollutionChart;
+
+  auto closeWidgets = [this, &currentChart]()
+  {
+    if(currentChart == m_weatherChart && m_weatherTooltip)
+    {
+      m_weatherTooltip->hide();
+      m_weatherTooltip = nullptr;
+    }
+    else
+    {
+      if(m_pollutionTooltip)
+      {
+        m_pollutionTooltip->hide();
+        m_pollutionTooltip = nullptr;
+      }
+    }
+  };
 
   if(state)
   {
-    closeWidget(m_tooltip);
+    closeWidgets();
 
     int closestPoint{-1};
     QPointF distance{100, 100};
-    auto iPoint = m_chartView->chart()->mapToPosition(point, m_temperatureLine);
+    auto iPoint = currentChart->chart()->mapToPosition(point, currentLine);
 
-    if(m_temperatureLine && m_temperatureLine->count() > 0)
+    if(currentLine && currentLine->count() > 0)
     {
-      for(int i = 0; i < m_temperatureLine->count(); ++i)
+      for(int i = 0; i < currentLine->count(); ++i)
       {
-        auto iPos = m_chartView->chart()->mapToPosition(m_temperatureLine->at(i), m_temperatureLine);
+        auto iPos = currentChart->chart()->mapToPosition(currentLine->at(i), currentLine);
         auto dist = iPoint - iPos;
         if(dist.manhattanLength() < distance.manhattanLength())
         {
@@ -311,25 +355,35 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
 
       if(distance.manhattanLength() < 30)
       {
-        m_tooltip = std::make_shared<TooltipWidget>(m_forecast->at(closestPoint), *m_config);
-
-        auto pos = m_chartView->mapToGlobal(m_chartView->chart()->mapToPosition(m_temperatureLine->at(closestPoint), m_temperatureLine).toPoint());
-        pos = QPoint{pos.x()-m_tooltip->width()/2, pos.y() - m_tooltip->height() - 5};
-        m_tooltip->move(pos);
-        m_tooltip->show();
+        if(currentChart == m_weatherChart)
+        {
+          m_weatherTooltip = std::make_shared<WeatherWidget>(m_forecast->at(closestPoint), *m_config);
+          auto pos = currentChart->mapToGlobal(currentChart->chart()->mapToPosition(currentLine->at(closestPoint), currentLine).toPoint());
+          pos = QPoint{pos.x()-m_weatherTooltip->width()/2, pos.y() - m_weatherTooltip->height() - 5};
+          m_weatherTooltip->move(pos);
+          m_weatherTooltip->show();
+        }
+        else
+        {
+          m_pollutionTooltip = std::make_shared<PollutionWidget>(m_pollution->at(closestPoint));
+          auto pos = currentChart->mapToGlobal(currentChart->chart()->mapToPosition(currentLine->at(closestPoint), currentLine).toPoint());
+          pos = QPoint{pos.x()-m_pollutionTooltip->width()/2, pos.y() - m_pollutionTooltip->height() - 5};
+          m_pollutionTooltip->move(pos);
+          m_pollutionTooltip->show();
+        }
       }
     }
   }
   else
   {
-    closeWidget(m_tooltip);
+    closeWidgets();
   }
 }
 
 //--------------------------------------------------------------------
 void WeatherDialog::onLoadFinished(bool value)
 {
-  m_tabWidget->setTabText(2, tr("Maps"));
+  m_tabWidget->setTabText(3, tr("Maps"));
 
   if(isVisible() && !value)
   {
@@ -344,7 +398,7 @@ void WeatherDialog::onLoadFinished(bool value)
 //--------------------------------------------------------------------
 bool WeatherDialog::mapsEnabled() const
 {
-  return m_tabWidget->count() == 3;
+  return m_tabWidget->count() == 4;
 }
 
 //--------------------------------------------------------------------
@@ -358,7 +412,7 @@ void WeatherDialog::onMapsButtonPressed()
     m_mapsButton->setText(tr("Show Maps"));
     m_mapsButton->setToolTip(tr("Show weather maps tab."));
 
-    m_tabWidget->removeTab(2);
+    m_tabWidget->removeTab(3);
     delete m_webpage;
     m_webpage = nullptr;
   }
@@ -403,12 +457,128 @@ void WeatherDialog::onLoadProgress(int progress)
 {
   if(mapsEnabled())
   {
-    m_tabWidget->setTabText(2, QObject::tr("Maps (%1%)").arg(progress, 2, 10, QChar('0')));
+    m_tabWidget->setTabText(3, QObject::tr("Maps (%1%)").arg(progress, 2, 10, QChar('0')));
   }
 }
 
 //--------------------------------------------------------------------
 void WeatherDialog::onAreaChanged()
 {
-  m_reset->setEnabled(m_chartView->chart() && m_chartView->chart()->isZoomed());
+  const auto currentIndex = m_tabWidget->currentIndex();
+
+  switch(currentIndex)
+  {
+    case 1:
+      m_reset->setEnabled(m_weatherChart->chart() && m_weatherChart->chart()->isZoomed());
+      break;
+    case 2:
+      m_reset->setEnabled(m_pollutionChart->chart() && m_pollutionChart->chart()->isZoomed());
+      break;
+    default:
+      m_reset->setEnabled(false);
+      break;
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::setPollutionData(const Pollution &data)
+{
+  m_pollution = &data;
+
+  const auto maxValues = std::min(m_forecast->size(), m_pollution->size());
+
+  auto axisX = new QDateTimeAxis();
+  axisX->setTickCount(maxValues/3);
+  axisX->setLabelsAngle(45);
+  axisX->setFormat("dd (hh)");
+  axisX->setTitleText("Day (Hour)");
+
+  auto axisY = new QValueAxis();
+  axisY->setLabelFormat("%i");
+  axisY->setTitleText(tr("Concentration in µg/m<sup>3</sup>"));
+  axisY->setGridLineVisible(true);
+
+  auto forecastChart = new QChart();
+  forecastChart->legend()->setVisible(true);
+  forecastChart->legend()->setAlignment(Qt::AlignBottom);
+  forecastChart->setAnimationDuration(400);
+  forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
+  forecastChart->setAnimationOptions(QChart::AllAnimations);
+  forecastChart->addAxis(axisX, Qt::AlignBottom);
+  forecastChart->addAxis(axisY, Qt::AlignLeft);
+
+  QPen pens[8];
+  for(int i = 0; i < 8; ++i)
+  {
+    pens[i].setWidth(2);
+    pens[i].setColor(CONCENTRATION_COLORS[i]);
+  }
+
+  for(int i = 0; i < 8; ++i)
+  {
+    m_pollutionLine[i] = new QSplineSeries(forecastChart);
+    m_pollutionLine[i]->setName(tr("%1").arg(CONCENTRATION_NAMES.at(i)));
+    m_pollutionLine[i]->setUseOpenGL(true);
+    m_pollutionLine[i]->setPointsVisible(true);
+    m_pollutionLine[i]->setPen(pens[i]);
+  }
+
+  double min = 1000, max = 0;
+  struct tm t;
+  for(int i = 0; i < maxValues; ++i)
+  {
+    const auto &entry = m_pollution->at(i);
+
+    unixTimeStampToDate(t, entry.dt);
+    auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+    const auto msec = dtTime.toMSecsSinceEpoch();
+
+    QList<double> values;
+
+    m_pollutionLine[0]->append(msec, entry.co);    values << entry.co;
+    m_pollutionLine[1]->append(msec, entry.no);    values << entry.no;
+    m_pollutionLine[2]->append(msec, entry.no2);   values << entry.no2;
+    m_pollutionLine[3]->append(msec, entry.o3);    values << entry.o3;
+    m_pollutionLine[4]->append(msec, entry.so2);   values << entry.so2;
+    m_pollutionLine[5]->append(msec, entry.pm2_5); values << entry.pm2_5;
+    m_pollutionLine[6]->append(msec, entry.pm10);  values << entry.pm10;
+    m_pollutionLine[7]->append(msec, entry.nh3);   values << entry.nh3;
+
+    std::sort(values.begin(), values.end());
+    min = std::min(min, values.first());
+    max = std::max(max, values.last());
+  }
+
+  axisY->setRange(min, max*1.1);
+
+  for(int i = 0; i < 8; ++i)
+  {
+    forecastChart->addSeries(m_pollutionLine[i]);
+    forecastChart->setAxisX(axisX, m_pollutionLine[i]);
+    forecastChart->setAxisY(axisY, m_pollutionLine[i]);
+
+    connect(m_pollutionLine[i], SIGNAL(hovered(const QPointF &, bool)),
+            this,              SLOT(onChartHover(const QPointF &, bool)));
+  }
+
+  auto oldChart = m_pollutionChart->chart();
+  m_pollutionChart->setChart(forecastChart);
+  m_pollutionChart->chart()->zoomReset();
+
+  m_reset->setEnabled(false);
+
+  connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+          this,  SLOT(onAreaChanged()));
+
+  if(oldChart)
+  {
+    auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
+    if(axis)
+    {
+      disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                 this, SLOT(onAreaChanged()));
+    }
+
+    delete oldChart;
+  }
 }

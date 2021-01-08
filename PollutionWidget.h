@@ -1,6 +1,6 @@
 /*
- File: TooltipWidget.h
- Created on: 26/11/2016
+ File: PollutionWidget.h
+ Created on: 08/01/2021
  Author: Felix de las Pozas Alvarez
 
  This program is free software: you can redistribute it and/or modify
@@ -17,40 +17,39 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TOOLTIPWIDGET_H_
-#define TOOLTIPWIDGET_H_
+#ifndef POLLUTIONWIDGET_H_
+#define POLLUTIONWIDGET_H_
 
 // Project
 #include <Utils.h>
 
 // Qt
 #include <QWidget>
-#include "ui_TooltipWidget.h"
+#include "ui_PollutionWidget.h"
 
-/** \class TooltipWidget
- * \brief Widget that acts as a tooltip for the chart dialog.
+/** \class PollutionWidget
+ * \brief Widget that acts as a tooltip for the pollution chart dialog.
  *
  */
-class TooltipWidget
+class PollutionWidget
 : public QWidget
-, public Ui_TooltipWidget
+, public Ui::PollutionWidget
 {
   public:
-    /** \brief TooltipWidget class constructor.
-     * \param[in] data forecast data entry.
-     * \param[in] config application configuragion.
+    /** \brief PollutionWidget class constructor.
+     * \param[in] data pollution forecast data entry.
      *
      */
-    explicit TooltipWidget(const ForecastData &data, const Configuration &config);
+    explicit PollutionWidget(const PollutionData &data);
 
-    /** \brief TooltipWidget class virtual destructor.
+    /** \brief PollutionWidget class virtual destructor.
      *
      */
-    virtual ~TooltipWidget()
+    virtual ~PollutionWidget()
     {};
 
   protected:
     virtual void paintEvent(QPaintEvent *event) override;
 };
 
-#endif // TOOLTIPWIDGET_H_
+#endif // POLLUTIONWIDGET_H_

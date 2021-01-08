@@ -103,7 +103,7 @@ struct Configuration
 };
 
 /** \struct ForecastData
- * \brief Contains the forecast data for a given time.
+ * \brief Contains the weather forecast data for a given time.
  *
  */
 struct ForecastData
@@ -137,6 +137,33 @@ struct ForecastData
 
 using Forecast = QList<ForecastData>;
 
+/** \brief PollutionData
+ * \brief Contains the pollution forecast data for a given time.
+ *
+ *   Air quality index = 1 Good, 2 Fair, 3 Moderate, 4 Poor and 5 Very Poor.
+ *   Concentrations units: micro-grams/cubic meter.
+ */
+struct PollutionData
+{
+    long long int dt;       /** date and time of the data.                 */
+    unsigned int  aqi;      /** air quality index in [1-5].                */
+    QString       aqi_text; /** air quality as text.                       */
+    double        co;       /** concentration of carbon monoxide.          */
+    double        no;       /** concentration of nitrogen monoxide.        */
+    double        no2;      /** concentration of nitrogen dioxide.         */
+    double        o3;       /** concentration of ozone.                    */
+    double        so2;      /** concentration of sulphur dioxide.          */
+    double        pm2_5;    /** concentration of fine particles matter.    */
+    double        pm10;     /** concentration of coarse particles martter. */
+    double        nh3;      /** concentration of ammonia.                  */
+
+    PollutionData(): dt{0}, aqi{1}, co{0}, no{0}, no2{0}, o3{0}, so2{0}, pm2_5{0}, pm10{0}, nh3{0} {};
+
+    bool isValid() const { return dt != 0; }
+};
+
+using Pollution = QList<PollutionData>;
+
 /** \brief Returns the icon corresponding to the given data.
  * \param[in] data forecast data struct.
  *
@@ -149,13 +176,20 @@ const QPixmap weatherPixmap(const ForecastData &data);
  */
 const QPixmap moonPixmap(const ForecastData& data);
 
-/** \brief Parses the information in the entry to the data object.
+/** \brief Parses the information in the entry to the weather data object.
  * \param[in] entry JSON object.
- * \param[out] data Forecast struct.
+ * \param[out] data ForecastData struct.
  * \param[in] unit temperature units.
  *
  */
 void parseForecastEntry(const QJsonObject &entry, ForecastData &data, const Temperature unit);
+
+/** \brief Parses the information in the entry to the pollution data object.
+ * \param[in] entry JSON object.
+ * \param[in] data PollutionData struct.
+ *
+ */
+void parsePollutionEntry(const QJsonObject &entry, PollutionData &data);
 
 /** \brief Prints the contents of the data to the QDebug stream.
  * \param[in] debug QDebug stream.

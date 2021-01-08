@@ -7,8 +7,8 @@ cmake_minimum_required (VERSION 3.0.0)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
-set (TRAYWEATHER_VERSION_MINOR 4)
-set (TRAYWEATHER_VERSION_PATCH 5)
+set (TRAYWEATHER_VERSION_MINOR 5)
+set (TRAYWEATHER_VERSION_PATCH 0)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -91,7 +91,8 @@ qt5_wrap_ui(CORE_UI
   ConfigurationDialog.ui
   AboutDialog.ui
   WeatherDialog.ui
-  TooltipWidget.ui
+  WeatherWidget.ui
+  PollutionWidget.ui
 )
 	
 set (CORE_SOURCES
@@ -105,7 +106,8 @@ set (CORE_SOURCES
   ConfigurationDialog.cpp
   TrayWeather.cpp
   WeatherDialog.cpp
-  TooltipWidget.cpp
+  WeatherWidget.cpp
+  PollutionWidget.cpp
 )
 
 set(CORE_EXTERNAL_LIBS

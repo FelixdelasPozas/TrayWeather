@@ -127,12 +127,12 @@ QDebug operator <<(QDebug d, const ForecastData& data)
 //--------------------------------------------------------------------
 void parseForecastEntry(const QJsonObject& entry, ForecastData& data, const Temperature unit)
 {
-  auto main    = entry.value("main").toObject();
-  auto weather = entry.value("weather").toArray().first().toObject();
-  auto wind    = entry.value("wind").toObject();
-  auto rain    = entry.value("rain").toObject();
-  auto snow    = entry.value("snow").toObject();
-  auto sys     = entry.value("sys").toObject();
+  const auto main    = entry.value("main").toObject();
+  const auto weather = entry.value("weather").toArray().first().toObject();
+  const auto wind    = entry.value("wind").toObject();
+  const auto rain    = entry.value("rain").toObject();
+  const auto snow    = entry.value("snow").toObject();
+  const auto sys     = entry.value("sys").toObject();
 
   data.dt          = entry.value("dt").toInt(0);
   data.cloudiness  = entry.value("clouds").toObject().value("all").toDouble(0);
@@ -161,6 +161,33 @@ void parseForecastEntry(const QJsonObject& entry, ForecastData& data, const Temp
   else
   {
     data.country = "Unknown";
+  }
+}
+
+//--------------------------------------------------------------------
+void parsePollutionEntry(const QJsonObject &entry, PollutionData &data)
+{
+  const auto main       = entry.value("main").toObject();
+  const auto components = entry.value("components").toObject();
+
+  data.dt    = entry.value("dt").toInt(0);
+  data.aqi   = main.value("aqi").toInt(1);
+  data.co    = components.value("co").toDouble(0);
+  data.no    = components.value("no").toDouble(0);
+  data.no2   = components.value("no2").toDouble(0);
+  data.o3    = components.value("o3").toDouble(0);
+  data.so2   = components.value("so2").toDouble(0);
+  data.pm2_5 = components.value("pm2_5").toDouble(0);
+  data.pm10  = components.value("pm10").toDouble(0);
+  data.nh3   = components.value("nh3").toDouble(0);
+
+  switch(data.aqi)
+  {
+    case 1:  data.aqi_text = "Good"; break;
+    case 2:  data.aqi_text = "Fair"; break;
+    case 3:  data.aqi_text = "Moderate"; break;
+    case 4:  data.aqi_text = "Poor"; break;
+    default: data.aqi_text = "Very poor"; break;
   }
 }
 

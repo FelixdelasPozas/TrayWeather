@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <TooltipWidget.h>
+#include <WeatherWidget.h>
 
 // Qt
 #include <QApplication>
@@ -31,7 +31,7 @@
 #include <time.h>
 
 //--------------------------------------------------------------------
-TooltipWidget::TooltipWidget(const ForecastData& data, const Configuration &config)
+WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &config)
 : QWidget(QApplication::desktop(), Qt::WindowFlags())
 {
   setupUi(this);
@@ -69,7 +69,7 @@ TooltipWidget::TooltipWidget(const ForecastData& data, const Configuration &conf
 }
 
 //--------------------------------------------------------------------
-void TooltipWidget::paintEvent(QPaintEvent* event)
+void WeatherWidget::paintEvent(QPaintEvent* event)
 {
   QPainter painter(this);
   painter.drawRect(0, 0, width()-1, height()-1);

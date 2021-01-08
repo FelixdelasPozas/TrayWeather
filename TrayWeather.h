@@ -137,6 +137,7 @@ class TrayWeather
     std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.                                  */
     Forecast                               m_data;          /** list of forecast data.                            */
     ForecastData                           m_current;       /** weather conditions now.                           */
+    Pollution                              m_pData;         /** list pollution data.                              */
     QTimer                                 m_timer;         /** timer for updates and retries.                    */
     WeatherDialog                         *m_weatherDialog; /** dialog to show weather and forecast data.         */
     AboutDialog                           *m_aboutDialog;   /** pointer to current (if any) about dialog.         */

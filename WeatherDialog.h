@@ -27,6 +27,7 @@
 #include "ui_WeatherDialog.h"
 #include <QDialog>
 #include <qwebview.h>
+#include <QWidget>
 
 // C++
 #include <memory>
@@ -38,8 +39,8 @@ namespace QtCharts
 }
 
 class QWebView;
-
-class TooltipWidget;
+class WeatherWidget;
+class PollutionWidget;
 
 /** \class WeatherDialog
  * \brief Implements the dialog showing the current weather and the forecast.
@@ -70,7 +71,13 @@ class WeatherDialog
      * \param[in] config application configuration.
      *
      */
-    void setData(const ForecastData &current, const Forecast &data, Configuration &config);
+    void setWeatherData(const ForecastData &current, const Forecast &data, Configuration &config);
+
+    /** \brief Sets the pollution forecast data.
+     * \param[in] data pollution forecast data.
+     *
+     */
+    void setPollutionData(const Pollution &data);
 
     /** \brief Returns true if the maps tab is visible and false otherwise.
      *
@@ -119,12 +126,16 @@ class WeatherDialog
     void onAreaChanged();
 
   private:
-    QtCharts::QChartView          *m_chartView;       /** chart view.                     */
-    QtCharts::QLineSeries         *m_temperatureLine; /** temperature series line.        */
-    const Forecast                *m_forecast;        /** forecast data for tooltip.      */
-    Configuration                 *m_config;          /** configuration data for tooltip. */
-    std::shared_ptr<TooltipWidget> m_tooltip;         /** tooltip widget.                 */
-    QWebView                      *m_webpage;         /** maps webpage.                   */
+    QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.          */
+    QtCharts::QChartView            *m_pollutionChart;   /** pollution forecast chart view.        */
+    QtCharts::QLineSeries           *m_temperatureLine;  /** temperature series line.              */
+    QtCharts::QLineSeries           *m_pollutionLine[8]; /** pollution concentrations series line. */
+    const Forecast                  *m_forecast;         /** forecast data for tooltip.            */
+    const Pollution                 *m_pollution;        /** pollution data for tooltip.           */
+    Configuration                   *m_config;           /** configuration data for tooltip.       */
+    std::shared_ptr<WeatherWidget>   m_weatherTooltip;   /** weather char tooltip widget.          */
+    std::shared_ptr<PollutionWidget> m_pollutionTooltip; /** pollution chart tooltip widget.       */
+    QWebView                        *m_webpage;          /** maps webpage.                         */
 };
 
 #endif // WEATHERDIALOG_H_
