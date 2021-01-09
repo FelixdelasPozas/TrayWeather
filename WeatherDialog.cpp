@@ -37,7 +37,6 @@
 #include <QEasingCurve>
 #include <QWebView>
 #include <QMessageBox>
-#include <iostream>
 
 using namespace QtCharts;
 
@@ -163,7 +162,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
   // Forecast tab
   auto axisX = new QDateTimeAxis();
-  axisX->setTickCount(data.size()/3);
+  axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText("Day (Hour)");
@@ -481,10 +480,8 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 {
   m_pollution = &data;
 
-  const auto maxValues = std::min(m_forecast->size(), m_pollution->size());
-
   auto axisX = new QDateTimeAxis();
-  axisX->setTickCount(maxValues/3);
+  axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText("Day (Hour)");
@@ -521,9 +518,9 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   double min = 1000, max = 0;
   struct tm t;
-  for(int i = 0; i < maxValues; ++i)
+  for(int i = 0; i < data.size(); ++i)
   {
-    const auto &entry = m_pollution->at(i);
+    const auto &entry = data.at(i);
 
     unixTimeStampToDate(t, entry.dt);
     auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
