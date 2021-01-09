@@ -501,14 +501,11 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   forecastChart->addAxis(axisY, Qt::AlignLeft);
 
   QPen pens[8];
+
   for(int i = 0; i < 8; ++i)
   {
     pens[i].setWidth(2);
     pens[i].setColor(CONCENTRATION_COLORS[i]);
-  }
-
-  for(int i = 0; i < 8; ++i)
-  {
     m_pollutionLine[i] = new QSplineSeries(forecastChart);
     m_pollutionLine[i]->setName(tr("%1").arg(CONCENTRATION_NAMES.at(i)));
     m_pollutionLine[i]->setUseOpenGL(true);

@@ -80,6 +80,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 
       if(!jsonDocument.isNull() && jsonDocument.isObject())
       {
+        // discard entries older than 'right now'.
         const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
 
         auto jsonObj = jsonDocument.object();
@@ -657,6 +658,7 @@ bool TrayWeather::validData() const
 void TrayWeather::invalidateData()
 {
   m_data.clear();
+  m_pData.clear();
   m_current = ForecastData();
 }
 
