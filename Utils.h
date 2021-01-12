@@ -228,6 +228,13 @@ void unixTimeStampToDate(struct tm &time, const long long timestamp);
  */
 int moonPhase(const time_t timestamp, double &percent);
 
+/** \brief Returns the moon phase as text for the given date (given in unix timestamp) Answer range [0-7] (0 = new moon, 4 = full moon).
+ * \param[in] timestamp unix timestamp.
+ * \param[out] percent % of phase.
+ *
+ */
+const QString moonPhaseText(const time_t timestamp, double &percent);
+
 /** \brief Returns the tooltip for the moon phase for the given date.
  * \param[in] timestamp unix timestamp.
  *

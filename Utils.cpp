@@ -248,10 +248,9 @@ int moonPhase(const time_t timestamp, double &percent)
 }
 
 //--------------------------------------------------------------------
-const QString moonTooltip(const time_t timestamp)
+const QString moonPhaseText(const time_t timestamp, double &percent)
 {
   QString result;
-  double percent;
   auto phase = moonPhase(timestamp, percent);
 
   switch(phase)
@@ -282,10 +281,19 @@ const QString moonTooltip(const time_t timestamp)
       break;
   }
 
+  return result;
+}
+
+//--------------------------------------------------------------------
+const QString moonTooltip(const time_t timestamp)
+{
+  double percent;
+  auto result = moonPhaseText(timestamp, percent);
   result += QObject::tr(" (%1% illumination)").arg(static_cast<int>(percent * 100));
 
   return result;
 }
+
 //--------------------------------------------------------------------
 const QPixmap weatherPixmap(const ForecastData& data)
 {

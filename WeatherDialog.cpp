@@ -117,6 +117,11 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   m_wind_speed->setText(tr("%1 meter/sec").arg(current.wind_speed));
   m_wind_dir->setText(tr("%1 º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
 
+  double illuminationPercent = 0;
+  const auto moonPhase = moonPhaseText(current.dt, illuminationPercent);
+  m_moon_phase->setText(moonPhase);
+  m_illumination->setText(tr("%1% Illumination").arg(static_cast<int>(illuminationPercent * 100)));
+
   m_moon->setToolTip(moonTooltip(current.dt));
   m_icon->setToolTip(tr("Current weather: %1").arg(current.description));
 
@@ -479,6 +484,8 @@ void WeatherDialog::onAreaChanged()
 void WeatherDialog::setPollutionData(const Pollution &data)
 {
   m_pollution = &data;
+
+  m_air_quality->setText(m_pollution->empty() ? "Unknown":m_pollution->first().aqi_text);
 
   auto axisX = new QDateTimeAxis();
   axisX->setTickCount(13);
