@@ -59,6 +59,9 @@ class ConfigurationDialog
      */
     void getConfiguration(Configuration &configuration) const;
 
+  protected:
+    virtual void showEvent(QShowEvent *e);
+
   private:
     /** \brief Request DNS IP
      *

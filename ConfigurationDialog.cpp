@@ -550,3 +550,15 @@ void ConfigurationDialog::updateRange()
 
   m_range->setPixmap(QPixmap::fromImage(range));
 }
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::showEvent(QShowEvent *e)
+{
+  QDialog::showEvent(e);
+
+  setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  setMinimumSize(0,0);
+
+  adjustSize();
+  setFixedSize(size());
+}

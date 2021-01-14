@@ -579,3 +579,15 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     delete oldChart;
   }
 }
+
+//--------------------------------------------------------------------
+void WeatherDialog::showEvent(QShowEvent *e)
+{
+  QDialog::showEvent(e);
+
+  setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  setMinimumSize(717,515);
+
+  adjustSize();
+  setFixedSize(size());
+}

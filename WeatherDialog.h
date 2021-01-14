@@ -84,6 +84,9 @@ class WeatherDialog
      */
     bool mapsEnabled() const;
 
+  protected:
+    virtual void showEvent(QShowEvent *e);
+
   private slots:
     /** \brief Shows weather data when the user hovers on the temperature line.
      * \param[in] point hover point.

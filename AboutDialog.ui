@@ -78,7 +78,7 @@
          <item>
           <widget class="QLabel" name="m_version">
            <property name="text">
-            <string>version 1.3.1</string>
+            <string>version 1.0.0</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -102,6 +102,19 @@
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
