@@ -141,8 +141,6 @@ int main(int argc, char *argv[])
 {
   qInstallMessageHandler(myMessageOutput);
 
-  QApplication::setAttribute(Qt::AA_Use96Dpi);
-
   QApplication app(argc, argv);
   app.setQuitOnLastWindowClosed(false);
 

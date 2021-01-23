@@ -128,7 +128,19 @@ class WeatherDialog
      */
     void onAreaChanged();
 
+    /** \brief Updates the state of the reset chart zoom button.
+     *
+     */
+    void onAreaChanged(QDateTime begin, QDateTime end);
+
   private:
+    /** \brief Returns the color of the given aqi value.
+     * \param[in] aqiValue aqi value in [1,5].
+     *
+     */
+    QColor pollutionColor(const int aqiValue);
+
+
     QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.          */
     QtCharts::QChartView            *m_pollutionChart;   /** pollution forecast chart view.        */
     QtCharts::QLineSeries           *m_temperatureLine;  /** temperature series line.              */

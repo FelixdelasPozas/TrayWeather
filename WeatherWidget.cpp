@@ -37,7 +37,8 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   setupUi(this);
   setWindowFlags(Qt::ToolTip|Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::WindowTransparentForInput);
   setPalette(QToolTip::palette());
-  layout()->setMargin(5);
+  layout()->setMargin(3);
+  layout()->setContentsMargins(QMargins{5,5,5,5});
 
   struct tm t;
   unixTimeStampToDate(t, data.dt);
@@ -71,6 +72,8 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
 //--------------------------------------------------------------------
 void WeatherWidget::paintEvent(QPaintEvent* event)
 {
+  setFixedSize(minimumSize());
+
   QPainter painter(this);
   painter.drawRect(0, 0, width()-1, height()-1);
   painter.end();

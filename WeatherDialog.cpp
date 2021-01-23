@@ -183,6 +183,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
   forecastChart->legend()->setAlignment(Qt::AlignBottom);
+  forecastChart->legend()->setAlignment(Qt::AlignBottom);
   forecastChart->setAnimationDuration(400);
   forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
   forecastChart->setAnimationOptions(QChart::AllAnimations);
@@ -244,6 +245,36 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   {
     axisYRain->setVisible(false);
     rainBars->clear();
+  }
+
+  const auto scale = dpiScale();
+  if(scale != 1.)
+  {
+    auto font = forecastChart->legend()->font();
+    font.setPointSize(font.pointSize()*scale);
+    forecastChart->legend()->setFont(font);
+
+    font = axisX->titleFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisX->setTitleFont(font);
+
+    font = axisYRain->labelsFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisYRain->setLabelsFont(font);
+
+    font = axisYRain->titleFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisYRain->setTitleFont(font);
+
+    font = axisYTemp->labelsFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisYTemp->setLabelsFont(font);
+
+    font = axisYTemp->titleFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisYTemp->setTitleFont(font);
+
+    forecastChart->adjustSize();
   }
 
   auto oldChart = m_weatherChart->chart();
@@ -492,11 +523,13 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText("Day (Hour)");
+  axisX->setGridLineColor(Qt::gray);
 
   auto axisY = new QValueAxis();
   axisY->setLabelFormat("%i");
   axisY->setTitleText(tr("Concentration in %1").arg(CONCENTRATION_UNITS));
   axisY->setGridLineVisible(true);
+  axisY->setGridLineColor(Qt::gray);
 
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
@@ -520,6 +553,11 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     m_pollutionLine[i]->setPen(pens[i]);
   }
 
+  QLinearGradient plotAreaGradient;
+  plotAreaGradient.setStart(QPointF(0, 0));
+  plotAreaGradient.setFinalStop(QPointF(1, 0));
+  plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+
   double min = 1000, max = 0;
   struct tm t;
   for(int i = 0; i < data.size(); ++i)
@@ -541,10 +579,15 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     m_pollutionLine[6]->append(msec, entry.pm10);  values << entry.pm10;
     m_pollutionLine[7]->append(msec, entry.nh3);   values << entry.nh3;
 
+    plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), pollutionColor(entry.aqi));
+
     std::sort(values.begin(), values.end());
     min = std::min(min, values.first());
     max = std::max(max, values.last());
   }
+
+  forecastChart->setPlotAreaBackgroundBrush(plotAreaGradient);
+  forecastChart->setPlotAreaBackgroundVisible(true);
 
   axisY->setRange(min, max*1.1);
 
@@ -558,6 +601,28 @@ void WeatherDialog::setPollutionData(const Pollution &data)
             this,              SLOT(onChartHover(const QPointF &, bool)));
   }
 
+  const auto scale = dpiScale();
+  if(scale != 1.)
+  {
+    auto font = forecastChart->legend()->font();
+    font.setPointSize(font.pointSize()*scale);
+    forecastChart->legend()->setFont(font);
+
+    font = axisX->titleFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisX->setTitleFont(font);
+
+    font = axisY->labelsFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisY->setLabelsFont(font);
+
+    font = axisY->titleFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisY->setTitleFont(font);
+
+    forecastChart->adjustSize();
+  }
+
   auto oldChart = m_pollutionChart->chart();
   m_pollutionChart->setChart(forecastChart);
   m_pollutionChart->chart()->zoomReset();
@@ -566,6 +631,8 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
           this,  SLOT(onAreaChanged()));
+  connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+          this,  SLOT(onAreaChanged(QDateTime, QDateTime)));
 
   if(oldChart)
   {
@@ -574,6 +641,9 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     {
       disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
                  this, SLOT(onAreaChanged()));
+
+      disconnect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                 this,  SLOT(onAreaChanged(QDateTime, QDateTime)));
     }
 
     delete oldChart;
@@ -585,9 +655,74 @@ void WeatherDialog::showEvent(QShowEvent *e)
 {
   QDialog::showEvent(e);
 
-  setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
-  setMinimumSize(717,515);
+  scaleDialog(this);
+}
 
-  adjustSize();
-  setFixedSize(size());
+//--------------------------------------------------------------------
+void WeatherDialog::onAreaChanged(QDateTime begin, QDateTime end)
+{
+  QLinearGradient plotAreaGradient;
+  plotAreaGradient.setStart(QPointF(0, 0));
+  plotAreaGradient.setFinalStop(QPointF(1, 0));
+  plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+
+  auto interpolateDt = [&begin, &end](const long long int dt)
+  {
+    return static_cast<double>(dt-begin.toMSecsSinceEpoch())/(end.toMSecsSinceEpoch()-begin.toMSecsSinceEpoch());
+  };
+
+  struct tm t;
+  for(int i = 0; i < m_pollution->size(); ++i)
+  {
+    const auto &entry = m_pollution->at(i);
+
+    unixTimeStampToDate(t, entry.dt);
+    const auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+    const auto msec = dtTime.toMSecsSinceEpoch();
+
+    if(msec < begin.toMSecsSinceEpoch())
+    {
+      plotAreaGradient.setColorAt(0., pollutionColor(entry.aqi));
+      continue;
+    }
+
+    if(msec > end.toMSecsSinceEpoch())
+    {
+      plotAreaGradient.setColorAt(1., pollutionColor(entry.aqi));
+      break;
+    }
+
+    plotAreaGradient.setColorAt(interpolateDt(msec), pollutionColor(entry.aqi));
+  }
+
+  auto chart = m_pollutionChart->chart();
+  chart->setPlotAreaBackgroundBrush(plotAreaGradient);
+  chart->setPlotAreaBackgroundVisible(true);
+  chart->update();
+}
+
+//--------------------------------------------------------------------
+QColor WeatherDialog::pollutionColor(const int aqiValue)
+{
+  QColor gradientColor;
+  switch(aqiValue)
+  {
+    case 1:
+      gradientColor = QColor::fromRgb(200, 230, 200);
+      break;
+    case 2:
+      gradientColor = QColor::fromRgb(200, 230, 230);
+      break;
+    case 3:
+      gradientColor = QColor::fromRgb(200, 200, 230);
+      break;
+    case 4:
+      gradientColor = QColor::fromRgb(230, 200, 230);
+      break;
+    default:
+      gradientColor = QColor::fromRgb(230, 200, 200);
+      break;
+  }
+
+  return gradientColor;
 }

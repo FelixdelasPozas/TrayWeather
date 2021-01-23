@@ -19,12 +19,13 @@
 
 // Project
 #include "AboutDialog.h"
+#include "Utils.h"
 
 // Qt
 #include <QtGlobal>
 #include <QDateTime>
 
-const QString AboutDialog::VERSION = QString("version 1.5.4");
+const QString AboutDialog::VERSION = QString("version 1.6.0");
 const QString COPYRIGHT = QString("Copyright (c) 2016-%1 Félix de las Pozas Álvarez");
 
 //-----------------------------------------------------------------
@@ -50,6 +51,5 @@ void AboutDialog::showEvent(QShowEvent *e)
 {
   QDialog::showEvent(e);
 
-  adjustSize();
-  setFixedSize(size());
+  scaleDialog(this);
 }

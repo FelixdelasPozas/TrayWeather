@@ -70,7 +70,8 @@ The graph can be zoomed by selecting the area to zoom with the mouse and resette
 ![forecast_tooltip](https://user-images.githubusercontent.com/12167134/34379927-4622b118-eafe-11e7-8933-c7fae870fb1d.jpg)
 
 Pollution forecast can be obtained in the third tab, showing the projections for the next days. The chart can be zoomed in the X axis and
-resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines. 
+resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines and
+the backgound is colored according to air quality value. 
 
 ![pollution](https://user-images.githubusercontent.com/12167134/104073647-83d92d00-520e-11eb-8b6c-901976f2429b.png)
 
@@ -83,7 +84,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.5.4
+**Version**: 1.6.0
 
 **Status**: finished.
 
@@ -91,8 +92,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 454         |   227            | 2030 |
-| C/C++ Header                 |   8           | 152         |   414            |  575 |
+| C++                          |   8           | 485         |   231            | 2158 |
+| C/C++ Header                 |   8           | 158         |   428            |  580 |
 | HTML                         |   1           |  28         |     0            |  138 |
 | CMake                        |   1           |  15         |    10            |   97 |
-| **Total**                    | **18**        | **649**     | **651**          | **2840** |
+| **Total**                    | **18**        | **686**     | **669**          | **2973** |

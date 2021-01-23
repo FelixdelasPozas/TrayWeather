@@ -30,6 +30,8 @@
 #include <QJsonObject>
 #include <QColor>
 
+class QDialog;
+
 enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
 
 /** \struct Configuration
@@ -264,5 +266,16 @@ const QString randomString(const int length = 32);
  *
  */
 const QStringList parseCSV(const QString &csvText);
+
+/** \brief Returs the dpi scale against an original scale of 96dpi.
+ *
+ */
+double dpiScale();
+
+/** \brief Scales the dialog according to dpi.
+ * \param[in] window QDialog instance pointer.
+ *
+ */
+void scaleDialog(QDialog *window);
 
 #endif // UTILS_H_

@@ -38,7 +38,8 @@ PollutionWidget::PollutionWidget(const PollutionData& data)
   setupUi(this);
   setWindowFlags(Qt::ToolTip|Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::WindowTransparentForInput);
   setPalette(QToolTip::palette());
-  layout()->setMargin(5);
+  layout()->setMargin(3);
+  layout()->setContentsMargins(QMargins{5,5,5,5});
 
   const QString units = tr("µg/m<sup>3</sup>");
 
@@ -81,6 +82,8 @@ PollutionWidget::PollutionWidget(const PollutionData& data)
 //--------------------------------------------------------------------
 void PollutionWidget::paintEvent(QPaintEvent* event)
 {
+  setFixedSize(minimumSize());
+
   QPainter painter(this);
   painter.drawRect(0, 0, width()-1, height()-1);
   painter.end();

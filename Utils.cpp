@@ -24,6 +24,9 @@
 // Qt
 #include <QJsonArray>
 #include <QIcon>
+#include <QScreen>
+#include <QApplication>
+#include <QDialog>
 
 // C++
 #include <functional>
@@ -57,6 +60,8 @@ static const QMap<QString, QString> Icons = { { "01d", ":/TrayWeather/01d.svg" }
                                               { "13n", ":/TrayWeather/13.svg" },
                                               { "50d", ":/TrayWeather/50.svg" },
                                               { "50n", ":/TrayWeather/50.svg" } };
+
+constexpr int DEFAULT_LOGICAL_DPI = 96;
 
 //--------------------------------------------------------------------
 const double convertKelvinTo(const double temp, const Temperature units)
@@ -416,4 +421,28 @@ const QStringList parseCSV(const QString& csvText)
   }
 
   return result;
+}
+
+//--------------------------------------------------------------------
+double dpiScale()
+{
+  auto screen = QApplication::screens().at(0);
+  const auto dpi = screen->logicalDotsPerInch();
+
+  return dpi/DEFAULT_LOGICAL_DPI;
+}
+
+//--------------------------------------------------------------------
+void scaleDialog(QDialog *window)
+{
+  if(window)
+  {
+    const auto scale = (window->logicalDpiX() == DEFAULT_LOGICAL_DPI) ? 1.:1.2;
+
+    window->setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+    window->setMinimumSize(0,0);
+
+    window->adjustSize();
+    window->setFixedSize(window->size()*scale);
+  }
 }
