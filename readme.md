@@ -84,7 +84,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.6.0
+**Version**: 1.6.1
 
 **Status**: finished.
 
@@ -92,8 +92,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 485         |   231            | 2158 |
+| C++                          |   8           | 485         |   231            | 2161 |
 | C/C++ Header                 |   8           | 158         |   428            |  580 |
 | HTML                         |   1           |  28         |     0            |  138 |
 | CMake                        |   1           |  15         |    10            |   97 |
-| **Total**                    | **18**        | **686**     | **669**          | **2973** |
+| **Total**                    | **18**        | **686**     | **669**          | **2976** |

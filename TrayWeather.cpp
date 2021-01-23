@@ -37,6 +37,7 @@
 
 // C++
 #include <chrono>
+#include <cmath>
 
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
@@ -360,7 +361,7 @@ void TrayWeather::updateTooltip()
     if(!m_configuration.country.isEmpty()) place << m_configuration.country;
 
     const auto temperature = convertKelvinTo(m_current.temp, m_configuration.units);
-    const auto tempString = QString::number(static_cast<int>(temperature));
+    const auto tempString = QString::number(temperature, 'f', 1);
     tooltip = tr("%1\n%2\n%3%4").arg(place.join(", "))
                                 .arg(toTitleCase(m_current.description))
                                 .arg(tempString)
@@ -393,8 +394,9 @@ void TrayWeather::updateTooltip()
       default:
       case 2:
         {
+          const auto tempRoundString = QString::number(static_cast<int>(std::nearbyint(temperature)));
           QFont font = painter.font();
-          font.setPixelSize(250 - (tempString.length() - 3) * 50);
+          font.setPixelSize(250 - (tempRoundString.length() - 3) * 50);
           font.setBold(true);
           painter.setFont(font);
 
@@ -412,7 +414,7 @@ void TrayWeather::updateTooltip()
 
           painter.setPen(color);
           painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
-          painter.drawText(pixmap.rect(), Qt::AlignCenter, tempString);
+          painter.drawText(pixmap.rect(), Qt::AlignCenter, tempRoundString);
         }
         break;
     }
