@@ -53,31 +53,31 @@ can be enabled here. Also a 'roaming' mode can be enabled, where the geographica
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
 The tray and application theme configuration can be found here in the miscellaneous options. Also the frequency of checks for updates can be set here.
 
-![config](https://user-images.githubusercontent.com/12167134/86063322-e933b080-ba6a-11ea-9d31-4f6c784a9d18.png)
+![config](https://user-images.githubusercontent.com/12167134/109207328-4c681500-77a9-11eb-8d0f-f971900a45c1.png)
 
 Configuration dialog, with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/86063324-ea64dd80-ba6a-11ea-9052-51b187717f20.png) 
+![config_dark](https://user-images.githubusercontent.com/12167134/109207329-4c681500-77a9-11eb-8883-9415983377bc.png)
 
 Weather dialog, showing the current weather tab. 
 
-![weather](https://cloud.githubusercontent.com/assets/12167134/20938101/f091d718-bbe9-11e6-8bb5-40be8d80f444.jpg)
+![weather](https://user-images.githubusercontent.com/12167134/109207321-4a9e5180-77a9-11eb-9ece-bc292d7c9bf5.png)
 
 Weather forecast for the next days. If the user puts the mouse over a point in the temperature line a tooltip will provide the weather conditions for that day and hour. 
 The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph.
 
-![forecast_graph](https://user-images.githubusercontent.com/12167134/34379926-460a5cbc-eafe-11e7-99f9-b0ee23005b73.jpg)
-![forecast_tooltip](https://user-images.githubusercontent.com/12167134/34379927-4622b118-eafe-11e7-8933-c7fae870fb1d.jpg)
+![forecast_graph](https://user-images.githubusercontent.com/12167134/109207324-4b36e800-77a9-11eb-9891-291c907d0aef.png)
 
 Pollution forecast can be obtained in the third tab, showing the projections for the next days. The chart can be zoomed in the X axis and
 resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines and
 the background is colored according to air quality value. 
 
-![pollution](https://user-images.githubusercontent.com/12167134/104073647-83d92d00-520e-11eb-8b6c-901976f2429b.png)
+![pollution](https://user-images.githubusercontent.com/12167134/109207327-4bcf7e80-77a9-11eb-89a0-dd704e8969ad.png)
 
 Weather maps are interactive. While initially the map is centered in the detected location it can be moved and zoomed in and out. The maps consumes much more memory than
 the rest of the application so the user can be disable them using the button below. 
 
+![maps0](https://user-images.githubusercontent.com/12167134/109207325-4bcf7e80-77a9-11eb-8744-8b928c5d2c3e.png)
 ![maps1](https://cloud.githubusercontent.com/assets/12167134/20938099/f07daa22-bbe9-11e6-9efb-07466ef36748.jpg)
 ![maps2](https://cloud.githubusercontent.com/assets/12167134/20938097/f0623792-bbe9-11e6-8ebf-0ae4b5b679a9.jpg)
 ![maps3](https://cloud.githubusercontent.com/assets/12167134/20938100/f0851d34-bbe9-11e6-80c9-d7d952632cc4.jpg)
