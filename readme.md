@@ -18,7 +18,7 @@ and maps information are obtained from [OpenWeatherMap](http://openweathermap.or
 into the Tray Weather configuration dialog. 
 
 ## Options
-The temperature units (celsius or fahrenheit) and the frequency of update requests are the only configurable options.
+The temperature units (celsius or fahrenheit) and the frequency of update requests are configurable options. Other visual configuration options can be seen in the configuration dialog screenshot.
 
 # Compilation requirements
 ## To build the tool:
@@ -30,7 +30,7 @@ from versions 5.6 onwards. So the easiest way to compile the application is to u
 
 ## External dependencies
 The following libraries are required:
-* [Qt 5.5.1 opensource framework](http://www.qt.io/).
+* [Qt 5.5.1 opensource framework](http://www.qt.io/) compiled with SSL support.
 * [Qt Charts 2.1.0 submodule](https://github.com/qt/qtcharts).
 
 # Install
@@ -51,7 +51,7 @@ or can change dynamically between a range of colors according to the current val
 Configuration dialog. It shows the detected location properties and the options to change the frequency of updates and temperature units. The OpenWeatherMap API Key must be entered here. If the location is better guessed with the DNS IP instead of the IP given by the provider the option
 can be enabled here. Also a 'roaming' mode can be enabled, where the geographical coordinates are requested before any weather data request, so the 
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
-The tray and application theme configuration can be found here in the miscellaneous options.  
+The tray and application theme configuration can be found here in the miscellaneous options. Also the frequency of checks for updates can be set here.
 
 ![config](https://user-images.githubusercontent.com/12167134/86063322-e933b080-ba6a-11ea-9d31-4f6c784a9d18.png)
 
@@ -71,7 +71,7 @@ The graph can be zoomed by selecting the area to zoom with the mouse and resette
 
 Pollution forecast can be obtained in the third tab, showing the projections for the next days. The chart can be zoomed in the X axis and
 resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines and
-the backgound is colored according to air quality value. 
+the background is colored according to air quality value. 
 
 ![pollution](https://user-images.githubusercontent.com/12167134/104073647-83d92d00-520e-11eb-8b6c-901976f2429b.png)
 
@@ -84,7 +84,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.6.1
+**Version**: 1.7.0
 
 **Status**: finished.
 
@@ -92,8 +92,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 485         |   231            | 2161 |
-| C/C++ Header                 |   8           | 158         |   428            |  580 |
+| C++                          |   8           | 497         |   233            | 2259 |
+| C/C++ Header                 |   8           | 159         |   431            |  587 |
 | HTML                         |   1           |  28         |     0            |  138 |
-| CMake                        |   1           |  15         |    10            |   97 |
-| **Total**                    | **18**        | **686**     | **669**          | **2976** |
+| CMake                        |   1           |  16         |    11            |   98 |
+| **Total**                    | **18**        | **700**     | **675**          | **3082** |

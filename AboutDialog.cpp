@@ -25,7 +25,7 @@
 #include <QtGlobal>
 #include <QDateTime>
 
-const QString AboutDialog::VERSION = QString("version 1.6.1");
+const QString AboutDialog::VERSION = QString("1.7.0");
 const QString COPYRIGHT = QString("Copyright (c) 2016-%1 Félix de las Pozas Álvarez");
 
 //-----------------------------------------------------------------
@@ -40,7 +40,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
   auto compilation_time = QString(" (") + QString(__TIME__) + QString(")");
 
   m_compilationDate->setText(tr("Compiled on ") + compilation_date + compilation_time);
-  m_version->setText(VERSION);
+  m_version->setText(tr("version %1").arg(VERSION));
 
   m_qtVersion->setText(tr("version %1").arg(qVersion()));
   m_copyright->setText(COPYRIGHT.arg(QDateTime::currentDateTime().date().year()));

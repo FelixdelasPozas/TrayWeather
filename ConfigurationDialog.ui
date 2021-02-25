@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>764</height>
+    <height>806</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -924,6 +924,43 @@ QGroupBox::title {
            <property name="icon">
             <iconset resource="rsc/resources.qrc">
              <normaloff>:/TrayWeather/temp-fahrenheit.svg</normaloff>:/TrayWeather/temp-fahrenheit.svg</iconset>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_17">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Check for updates</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="m_updatesCombo">
+          <item>
+           <property name="text">
+            <string>Never</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Once a day</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Once a week</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Once a month</string>
            </property>
           </item>
          </widget>

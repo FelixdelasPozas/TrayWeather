@@ -133,6 +133,11 @@ class TrayWeather
      */
     void requestForecastData();
 
+    /** \brief Helper method that checks for application updates.
+     *
+     */
+    void checkForUpdates();
+
     Configuration                         &m_configuration; /** application configuration.                        */
     std::shared_ptr<QNetworkAccessManager> m_netManager;    /** network manager.                                  */
     Forecast                               m_data;          /** list of forecast data.                            */
@@ -143,6 +148,7 @@ class TrayWeather
     AboutDialog                           *m_aboutDialog;   /** pointer to current (if any) about dialog.         */
     ConfigurationDialog                   *m_configDialog;  /** pointer to current (if any) configuration dialog. */
     QString                                m_DNSIP;         /** DNS IP used for geolocation.                      */
+    QTimer                                 m_updatesTimer;  /** timer to check for application updates.           */
 };
 
 

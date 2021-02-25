@@ -64,6 +64,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   m_apikey->setText(configuration.owm_apikey);
   m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
   m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
+  m_updatesCombo->setCurrentIndex(static_cast<int>(configuration.update));
 
   m_fixed->setChecked(configuration.trayTextMode);
   m_variable->setChecked(!configuration.trayTextMode);
@@ -312,6 +313,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.maximumColor   = QColor(m_maxColor->property("iconColor").toString());
   configuration.minimumValue   = m_minSpinBox->value();
   configuration.maximumValue   = m_maxSpinBox->value();
+  configuration.update         = static_cast<Update>(m_updatesCombo->currentIndex());
 
   if(m_useManual->isChecked())
   {

@@ -29,10 +29,12 @@
 #include <QDebug>
 #include <QJsonObject>
 #include <QColor>
+#include <QDateTime>
 
 class QDialog;
 
 enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
+enum class Update: char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
 
 /** \struct Configuration
  * \brief Contains the application configuration.
@@ -64,6 +66,8 @@ struct Configuration
     QColor       maximumColor;   /** maximum value dynamic color.                                */
     int          minimumValue;   /** dynamic color minimum value.                                */
     int          maximumValue;   /** dynamic color maximum value.                                */
+    Update       update;         /** frequency of check for update.                              */
+    QDateTime    lastCheck;      /** time of last update check.                                  */
 
 
     /** \brief Configuration struct constructor.
@@ -94,6 +98,8 @@ struct Configuration
     , maximumColor  {Qt::red}
     , minimumValue  {-10}
     , maximumValue  {45}
+    , update        {Update::WEEKLY}
+    , lastCheck     {QDateTime::currentDateTime()}
     {};
 
     bool isValid() const

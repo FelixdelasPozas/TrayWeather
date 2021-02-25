@@ -656,6 +656,9 @@ void WeatherDialog::showEvent(QShowEvent *e)
   QDialog::showEvent(e);
 
   scaleDialog(this);
+
+  const auto wSize = size();
+  if(wSize.width() < 717 || wSize.height() < 515) setFixedSize(717, 515);
 }
 
 //--------------------------------------------------------------------
@@ -708,19 +711,19 @@ QColor WeatherDialog::pollutionColor(const int aqiValue)
   switch(aqiValue)
   {
     case 1:
-      gradientColor = QColor::fromRgb(200, 230, 200);
+      gradientColor = QColor::fromRgb(180, 230, 180);
       break;
     case 2:
-      gradientColor = QColor::fromRgb(200, 230, 230);
+      gradientColor = QColor::fromRgb(180, 230, 230);
       break;
     case 3:
-      gradientColor = QColor::fromRgb(200, 200, 230);
+      gradientColor = QColor::fromRgb(180, 180, 230);
       break;
     case 4:
-      gradientColor = QColor::fromRgb(230, 200, 230);
+      gradientColor = QColor::fromRgb(230, 180, 230);
       break;
     default:
-      gradientColor = QColor::fromRgb(230, 200, 200);
+      gradientColor = QColor::fromRgb(230, 180, 180);
       break;
   }
 

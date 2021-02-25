@@ -39,6 +39,8 @@
 #include <chrono>
 #include <cmath>
 
+const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
+
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 : QSystemTrayIcon{parent}
@@ -64,6 +66,7 @@ TrayWeather::~TrayWeather()
   disconnectSignals();
 
   m_timer.stop();
+  m_updatesTimer.stop();
 }
 
 //--------------------------------------------------------------------
@@ -85,8 +88,9 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
 
         auto jsonObj = jsonDocument.object();
+        const auto keys = jsonObj.keys();
 
-        if(jsonObj.keys().contains("cnt"))
+        if(keys.contains("cnt"))
         {
           const auto values  = jsonObj.value("list").toArray();
 
@@ -119,7 +123,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
             qSort(m_data.begin(), m_data.end(), lessThan);
           }
         }
-        else if(jsonObj.keys().contains("list"))
+        else if(keys.contains("list"))
         {
           const auto values  = jsonObj.value("list").toArray();
 
@@ -151,6 +155,50 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
           {
             if(m_current.name    != "Unknown") m_configuration.region = m_configuration.city = m_current.name;
             if(m_current.country != "Unknown") m_configuration.country = m_current.country;
+          }
+        }
+      }
+      else if(!jsonDocument.isNull() && jsonDocument.isArray())
+      {
+        int currentNumbers[3], lastNumbers[3];
+        const auto currentVersion = AboutDialog::VERSION.split(".");
+
+        // Github parse tag of last release.
+        auto jsonObj = jsonDocument.array();
+        auto lastRelease = jsonObj.at(0).toObject();
+        const auto version = lastRelease.value("tag_name").toString();
+        const auto lastVersion = version.split(".");
+        const auto body = lastRelease.value("body").toString();
+
+        bool ok = false, error = false;
+        for(int i: {0,1,2})
+        {
+          currentNumbers[i] = currentVersion.at(i).toInt(&ok);
+          if(!ok) error = true;
+          lastNumbers[i] = lastVersion.at(i).toInt(&ok);
+          if(!ok) error = true;
+          if(error) break;
+        }
+
+        if(!error)
+        {
+          if((currentNumbers[0] < lastNumbers[0]) ||
+            ((currentNumbers[0] == lastNumbers[0]) && (currentNumbers[1] < lastNumbers[1])) ||
+            ((currentNumbers[0] == lastNumbers[0]) && (currentNumbers[1] == lastNumbers[1]) && currentNumbers[2] < lastNumbers[2]))
+          {
+            const auto message = tr("There is a new release of <b>Tray Weather</b> at the <a href=\"https://github.com/FelixdelasPozas/TrayWeather/releases\">github website</a>!");
+            const auto informative = tr("<center><b>Version %1</b> has been released!</center>").arg(version);
+            const auto details = tr("Release notes:\n%1").arg(body);
+            const auto title = tr("Tray Weather updated to version %1").arg(version);
+
+            QMessageBox msgBox;
+            msgBox.setWindowTitle(title);
+            msgBox.setText(message);
+            msgBox.setInformativeText(informative);
+            msgBox.setDetailedText(details);
+            msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+            msgBox.setIconPixmap(QIcon(":/TrayWeather/application.svg").pixmap(QSize{64,64}));
+            msgBox.exec();
           }
         }
       }
@@ -225,6 +273,10 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
   {
     tooltip = tr("Error requesting geolocation coordinates.");
   }
+  else if(url.contains("github", Qt::CaseInsensitive))
+  {
+    tooltip = tr("Error requesting Github releases data.");
+  }
   else
   {
     tooltip = tr("Error requesting weather data.");
@@ -262,7 +314,6 @@ void TrayWeather::showConfiguration()
   m_configDialog->getConfiguration(configuration);
 
   delete m_configDialog;
-
   m_configDialog = nullptr;
 
   m_configuration.lightTheme    = configuration.lightTheme;
@@ -293,6 +344,7 @@ void TrayWeather::showConfiguration()
     auto changedAPIKey  = (configuration.owm_apikey != m_configuration.owm_apikey);
     auto changedUnits   = (configuration.units != m_configuration.units);
     auto changedRoaming = (configuration.roamingEnabled != m_configuration.roamingEnabled);
+    auto changedUpdateCheck = configuration.update != m_configuration.update;
 
     if(changedIP || changedMethod || changedCoords || changedRoaming)
     {
@@ -337,6 +389,11 @@ void TrayWeather::showConfiguration()
     if(m_weatherDialog && !m_pData.isEmpty())
     {
       m_weatherDialog->setPollutionData(m_pData);
+    }
+
+    if(changedUpdateCheck)
+    {
+      checkForUpdates();
     }
   }
 
@@ -390,7 +447,7 @@ void TrayWeather::updateTooltip()
         break;
       case 1:
         pixmap.fill(Qt::transparent);
-        //no break
+        // no break
       default:
       case 2:
         {
@@ -615,6 +672,8 @@ void TrayWeather::requestData()
   {
     requestForecastData();
   }
+
+  checkForUpdates();
 }
 
 //--------------------------------------------------------------------
@@ -681,4 +740,46 @@ void TrayWeather::requestGeolocation()
   m_netManager->get(QNetworkRequest{QUrl{ipAddress}});
 
   m_DNSIP.clear();
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::checkForUpdates()
+{
+  m_updatesTimer.stop();
+
+  auto last = m_configuration.lastCheck;
+
+  switch(m_configuration.update)
+  {
+    case Update::MONTHLY:
+      if(last.isValid())
+        last = last.addMonths(1);
+      break;
+    case Update::WEEKLY:
+      if(last.isValid())
+        last = last.addDays(7);
+      break;
+    case Update::DAILY:
+      if(last.isValid())
+        last = last.addDays(1);
+      break;
+    default:
+    case Update::NEVER:
+      return;
+      break;
+  }
+
+  const auto now = QDateTime::currentDateTime();
+  if(last.isValid() && last > now)
+  {
+    auto msec = now.msecsTo(last);
+    m_updatesTimer.singleShot(msec, SLOT(checkForUpdates));
+  }
+  else
+  {
+    m_netManager->get(QNetworkRequest{QUrl{RELEASES_ADDRESS}});
+
+    m_configuration.lastCheck = now;
+    checkForUpdates();
+  }
 }

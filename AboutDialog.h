@@ -49,11 +49,10 @@ class AboutDialog
     virtual ~AboutDialog()
     {};
 
+    static const QString VERSION; /** application version string. */
+
   protected:
     virtual void showEvent(QShowEvent *e) override;
-
-  private:
-    static const QString VERSION; /** application version string. */
 };
 
 #endif // ABOUTDIALOG_H_
