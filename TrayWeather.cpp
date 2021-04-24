@@ -170,17 +170,24 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         const auto lastVersion = version.split(".");
         const auto body = lastRelease.value("body").toString();
 
-        bool ok = false, error = false;
-        for(int i: {0,1,2})
+        if(lastVersion.size() != 3 || body.isEmpty())
         {
-          currentNumbers[i] = currentVersion.at(i).toInt(&ok);
-          if(!ok) error = true;
-          lastNumbers[i] = lastVersion.at(i).toInt(&ok);
-          if(!ok) error = true;
-          if(error) break;
+          hasError = true;
+        }
+        else
+        {
+          bool ok = false;
+          for(int i: {0,1,2})
+          {
+            currentNumbers[i] = currentVersion.at(i).toInt(&ok);
+            if(!ok) hasError = true;
+            lastNumbers[i] = lastVersion.at(i).toInt(&ok);
+            if(!ok) hasError = true;
+            if(hasError) break;
+          }
         }
 
-        if(!error)
+        if(!hasError)
         {
           if((currentNumbers[0] < lastNumbers[0]) ||
             ((currentNumbers[0] == lastNumbers[0]) && (currentNumbers[1] < lastNumbers[1])) ||
@@ -201,6 +208,19 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
             msgBox.exec();
           }
         }
+        else
+        {
+          auto githubError = tr("Error requesting Github releases data.");
+          if(!toolTip().contains(githubError, Qt::CaseSensitive))
+          {
+            githubError = toolTip() + "\n\n" + githubError;
+            setToolTip(githubError);
+          }
+        }
+
+        reply->deleteLater();
+
+        return;
       }
     }
     else
@@ -272,10 +292,6 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
   if(url.contains("edns.ip", Qt::CaseInsensitive) || url.startsWith("http://ip-api.com/csv", Qt::CaseInsensitive))
   {
     tooltip = tr("Error requesting geolocation coordinates.");
-  }
-  else if(url.contains("github", Qt::CaseInsensitive))
-  {
-    tooltip = tr("Error requesting Github releases data.");
   }
   else
   {
@@ -447,7 +463,7 @@ void TrayWeather::updateTooltip()
         break;
       case 1:
         pixmap.fill(Qt::transparent);
-        // no break
+        /* fall through */
       default:
       case 2:
         {
