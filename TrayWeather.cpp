@@ -340,6 +340,7 @@ void TrayWeather::showConfiguration()
   m_configuration.maximumColor  = configuration.maximumColor;
   m_configuration.minimumValue  = configuration.minimumValue;
   m_configuration.maximumValue  = configuration.maximumValue;
+  m_configuration.autostart     = configuration.autostart;
 
   if(configuration.isValid())
   {

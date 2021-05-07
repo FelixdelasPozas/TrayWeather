@@ -33,6 +33,8 @@
 #include <QTextStream>
 #include <QColorDialog>
 #include <QPainter>
+#include <QSettings>
+#include <QDir>
 
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
@@ -45,6 +47,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   m_minSpinBox->setValue(configuration.minimumValue);
   m_maxSpinBox->setValue(configuration.maximumValue);
+  m_autostart->setChecked(configuration.autostart);
 
   connectSignals();
 
@@ -314,6 +317,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.minimumValue   = m_minSpinBox->value();
   configuration.maximumValue   = m_maxSpinBox->value();
   configuration.update         = static_cast<Update>(m_updatesCombo->currentIndex());
+  configuration.autostart      = m_autostart->isChecked();
 
   if(m_useManual->isChecked())
   {
@@ -431,6 +435,9 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_maxSpinBox, SIGNAL(valueChanged(int)),
           this,         SLOT(onTemperatureValueChanged(int)));
+
+  connect(m_autostart, SIGNAL(stateChanged(int)),
+          this,        SLOT(onAutostartValueChanged(int)));
 }
 
 //--------------------------------------------------------------------
@@ -559,4 +566,34 @@ void ConfigurationDialog::showEvent(QShowEvent *e)
   QDialog::showEvent(e);
 
   scaleDialog(this);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onAutostartValueChanged(int value)
+{
+  const QString APPLICATION_NAME{"TrayWeather"};
+  QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+  bool updated = false;
+
+  if(value == Qt::Checked)
+  {
+    if(!settings.allKeys().contains(APPLICATION_NAME, Qt::CaseInsensitive))
+    {
+      settings.setValue(APPLICATION_NAME, QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
+      updated = true;
+    }
+  }
+  else
+  {
+    if(settings.allKeys().contains(APPLICATION_NAME, Qt::CaseInsensitive))
+    {
+      settings.remove(APPLICATION_NAME);
+      updated = true;
+    }
+  }
+
+  if(updated)
+  {
+    settings.sync();
+  }
 }

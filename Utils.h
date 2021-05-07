@@ -68,6 +68,7 @@ struct Configuration
     int          maximumValue;   /** dynamic color maximum value.                                */
     Update       update;         /** frequency of check for update.                              */
     QDateTime    lastCheck;      /** time of last update check.                                  */
+    bool         autostart;      /** true to autostart at login, false otherwise.                */
 
 
     /** \brief Configuration struct constructor.
@@ -100,6 +101,7 @@ struct Configuration
     , maximumValue  {45}
     , update        {Update::WEEKLY}
     , lastCheck     {QDateTime::currentDateTime()}
+    , autostart     {false}
     {};
 
     bool isValid() const

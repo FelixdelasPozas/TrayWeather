@@ -122,6 +122,13 @@ class ConfigurationDialog
      */
     void onTemperatureValueChanged(int value);
 
+    /** \brief Helper that creates/removes the autostart registry entry depending on
+     * the value of the parameter.
+     * \param[in] value True to create and false to remove if it exists.
+     *
+     */
+    void onAutostartValueChanged(int value);
+
   private:
     /** \brief Helper method that draws the color interpolation of the range QLabel.
      *

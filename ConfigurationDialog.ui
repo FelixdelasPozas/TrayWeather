@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>806</height>
+    <height>815</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -837,6 +837,9 @@ QGroupBox::title {
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <layout class="QGridLayout" name="gridLayout">
+        <property name="verticalSpacing">
+         <number>6</number>
+        </property>
         <item row="0" column="0">
          <widget class="QLabel" name="label_12">
           <property name="font">
@@ -906,6 +909,19 @@ QGroupBox::title {
           </item>
          </widget>
         </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_17">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Check for updates</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="1">
          <widget class="QComboBox" name="m_tempComboBox">
           <item>
@@ -926,19 +942,6 @@ QGroupBox::title {
              <normaloff>:/TrayWeather/temp-fahrenheit.svg</normaloff>:/TrayWeather/temp-fahrenheit.svg</iconset>
            </property>
           </item>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_17">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Check for updates</string>
-          </property>
          </widget>
         </item>
         <item row="3" column="1">
@@ -963,6 +966,32 @@ QGroupBox::title {
             <string>Once a month</string>
            </property>
           </item>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_20">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Autostart at login</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QCheckBox" name="m_autostart">
+          <property name="text">
+           <string/>
+          </property>
          </widget>
         </item>
        </layout>
