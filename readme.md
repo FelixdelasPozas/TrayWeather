@@ -92,8 +92,9 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 503         |   234            | 2309 |
+| C++                          |   8           | 503         |   234            | 2316 |
 | C/C++ Header                 |   8           | 160         |   436            |  590 |
 | HTML                         |   1           |  28         |     0            |  138 |
 | CMake                        |   1           |  16         |    11            |   98 |
-| **Total**                    | **18**        | **707**     | **681**          | **3135** |
+| **Total**                    | **18**        | **707**     | **681**          | **3142** |
+

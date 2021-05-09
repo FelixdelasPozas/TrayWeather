@@ -472,14 +472,21 @@ void WeatherDialog::onMapsButtonPressed()
     m_tabWidget->addTab(m_webpage, QIcon(), "Maps");
 
     QFile webfile(":/TrayWeather/webpage.html");
-    webfile.open(QFile::ReadOnly);
-    QString webpage{webfile.readAll()};
+    if(webfile.open(QFile::ReadOnly))
+    {
+      QString webpage{webfile.readAll()};
 
-    webpage.replace("%%lat%%", QString::number(m_config->latitude));
-    webpage.replace("%%lon%%", QString::number(m_config->longitude));
-    webpage.replace("{api_key}", m_config->owm_apikey);
+      webpage.replace("%%lat%%", QString::number(m_config->latitude));
+      webpage.replace("%%lon%%", QString::number(m_config->longitude));
+      webpage.replace("{api_key}", m_config->owm_apikey);
 
-    m_webpage->setHtml(webpage);
+      m_webpage->setHtml(webpage);
+      webfile.close();
+    }
+    else
+    {
+      m_webpage->setHtml("<h1>Unable to load weather webpage</h1>");
+    }
   }
 }
 
