@@ -446,14 +446,15 @@ void TrayWeather::updateTooltip()
 
     auto interpolate = [this](int temp)
     {
-      auto minColor = m_configuration.minimumColor;
-      auto maxColor = m_configuration.maximumColor;
+      const auto minColor = m_configuration.minimumColor;
+      const auto maxColor = m_configuration.maximumColor;
+      const auto value = std::min(m_configuration.maximumValue, std::max(m_configuration.minimumValue, temp));
 
-      double inc = static_cast<double>(temp-m_configuration.minimumValue)/(m_configuration.maximumValue - m_configuration.minimumValue);
-      double rInc = (maxColor.red()   - minColor.red())   *inc;
-      double gInc = (maxColor.green() - minColor.green()) *inc;
-      double bInc = (maxColor.blue()  - minColor.blue())  *inc;
-      double aInc = (maxColor.alpha() - minColor.alpha()) *inc;
+      const double inc = static_cast<double>(value-m_configuration.minimumValue)/(m_configuration.maximumValue - m_configuration.minimumValue);
+      const double rInc = (maxColor.red()   - minColor.red())   * inc;
+      const double gInc = (maxColor.green() - minColor.green()) * inc;
+      const double bInc = (maxColor.blue()  - minColor.blue())  * inc;
+      const double aInc = (maxColor.alpha() - minColor.alpha()) * inc;
 
       return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
     };
@@ -468,7 +469,8 @@ void TrayWeather::updateTooltip()
       default:
       case 2:
         {
-          const auto tempRoundString = QString::number(static_cast<int>(std::nearbyint(temperature)));
+          const auto roundedTemp = static_cast<int>(std::nearbyint(temperature));
+          const auto tempRoundString = QString::number(roundedTemp);
           QFont font = painter.font();
           font.setPixelSize(250 - (tempRoundString.length() - 3) * 50);
           font.setBold(true);
@@ -481,9 +483,7 @@ void TrayWeather::updateTooltip()
           }
           else
           {
-            if(temperature < m_configuration.minimumValue) color = m_configuration.minimumColor;
-            else if(temperature > m_configuration.maximumValue) color = m_configuration.maximumColor;
-            else color = interpolate(temperature);
+            color = interpolate(roundedTemp);
           }
 
           painter.setPen(color);

@@ -84,7 +84,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.7.2
+**Version**: 1.7.3
 
 **Status**: finished.
 
@@ -97,4 +97,3 @@ the rest of the application so the user can be disable them using the button bel
 | HTML                         |   1           |  28         |     0            |  138 |
 | CMake                        |   1           |  16         |    11            |   98 |
 | **Total**                    | **18**        | **707**     | **681**          | **3142** |
-

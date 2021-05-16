@@ -842,6 +842,12 @@ QGroupBox::title {
         </property>
         <item row="0" column="0">
          <widget class="QLabel" name="label_12">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <weight>75</weight>
@@ -871,6 +877,12 @@ QGroupBox::title {
         </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_13">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <weight>75</weight>
@@ -884,6 +896,12 @@ QGroupBox::title {
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_14">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <weight>75</weight>
@@ -911,6 +929,12 @@ QGroupBox::title {
         </item>
         <item row="3" column="0">
          <widget class="QLabel" name="label_17">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>20</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <weight>75</weight>
@@ -973,7 +997,7 @@ QGroupBox::title {
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>0</height>
+            <height>20</height>
            </size>
           </property>
           <property name="font">
