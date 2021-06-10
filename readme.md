@@ -41,7 +41,7 @@ Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/re
 Tray icon showing the current weather icon. At night and on clear sky days it shows the current moon phase as the weather icon.
 
 ![icon](https://cloud.githubusercontent.com/assets/12167134/20938095/f03e2474-bbe9-11e6-83b9-e2bc8c716bf4.jpg)
-![icon_menu](https://cloud.githubusercontent.com/assets/12167134/20938103/f0b22126-bbe9-11e6-8639-30161344d1d3.jpg)
+![icon_menu](https://user-images.githubusercontent.com/12167134/121608218-c7e88c00-ca51-11eb-8501-9a45314cf2fc.png)
 
 Tray icon can also show the temperature alone or composed with the weather icon. The temperature text color can be set by the user
 or can change dynamically between a range of colors according to the current value. 
@@ -53,11 +53,11 @@ can be enabled here. Also a 'roaming' mode can be enabled, where the geographica
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
 The tray and application theme configuration can be found here in the miscellaneous options. Also the frequency of checks for updates can be set here.
 
-![config](https://user-images.githubusercontent.com/12167134/109207328-4c681500-77a9-11eb-8d0f-f971900a45c1.png)
+![config](https://user-images.githubusercontent.com/12167134/121608219-c8812280-ca51-11eb-8662-ce53a69cbe4b.png)
 
 Configuration dialog, with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/109207329-4c681500-77a9-11eb-8883-9415983377bc.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/121608216-c74ff580-ca51-11eb-825b-62519461f8d9.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -84,7 +84,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.7.3
+**Version**: 1.8.0
 
 **Status**: finished.
 
@@ -92,8 +92,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 503         |   234            | 2316 |
-| C/C++ Header                 |   8           | 160         |   436            |  590 |
-| HTML                         |   1           |  28         |     0            |  138 |
+| C++                          |   8           | 525         |   237            | 2413 |
+| C/C++ Header                 |   8           | 163         |   443            |  598 |
+| HTML                         |   1           |  34         |     0            |  150 |
 | CMake                        |   1           |  16         |    11            |   98 |
-| **Total**                    | **18**        | **707**     | **681**          | **3142** |
+| **Total**                    | **18**        | **738**     | **691**          | **3259** |

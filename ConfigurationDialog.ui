@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>815</height>
+    <height>845</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -579,7 +579,7 @@ QGroupBox::title {
        </layout>
       </item>
       <item>
-       <layout class="QGridLayout" name="gridLayout_4" columnstretch="0,1">
+       <layout class="QGridLayout" name="gridLayout_4" columnstretch="0,0">
         <item row="1" column="1">
          <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="0,1,1,1">
           <item>
@@ -714,6 +714,12 @@ QGroupBox::title {
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_16">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>22</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <weight>75</weight>
@@ -805,6 +811,64 @@ QGroupBox::title {
           </item>
          </layout>
         </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Temperature text size</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <widget class="QSpinBox" name="m_fontSize">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="suffix">
+             <string> pixels</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>1000</number>
+            </property>
+            <property name="value">
+             <number>250</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
        </layout>
       </item>
      </layout>
@@ -845,7 +909,7 @@ QGroupBox::title {
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>22</height>
            </size>
           </property>
           <property name="font">
@@ -880,7 +944,7 @@ QGroupBox::title {
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>22</height>
            </size>
           </property>
           <property name="font">
@@ -899,7 +963,7 @@ QGroupBox::title {
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>22</height>
            </size>
           </property>
           <property name="font">
@@ -932,7 +996,7 @@ QGroupBox::title {
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>22</height>
            </size>
           </property>
           <property name="font">
@@ -997,7 +1061,7 @@ QGroupBox::title {
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>20</height>
+            <height>22</height>
            </size>
           </property>
           <property name="font">

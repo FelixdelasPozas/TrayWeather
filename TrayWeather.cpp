@@ -336,6 +336,7 @@ void TrayWeather::showConfiguration()
   m_configuration.iconType      = configuration.iconType;
   m_configuration.trayTextColor = configuration.trayTextColor;
   m_configuration.trayTextMode  = configuration.trayTextMode;
+  m_configuration.trayTextSize  = configuration.trayTextSize;
   m_configuration.minimumColor  = configuration.minimumColor;
   m_configuration.maximumColor  = configuration.maximumColor;
   m_configuration.minimumValue  = configuration.minimumValue;
@@ -472,7 +473,7 @@ void TrayWeather::updateTooltip()
           const auto roundedTemp = static_cast<int>(std::nearbyint(temperature));
           const auto tempRoundString = QString::number(roundedTemp);
           QFont font = painter.font();
-          font.setPixelSize(250 - (tempRoundString.length() - 3) * 50);
+          font.setPixelSize(m_configuration.trayTextSize - (tempRoundString.length() - 3) * 50);
           font.setBold(true);
           painter.setFont(font);
 

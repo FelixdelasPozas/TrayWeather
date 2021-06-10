@@ -62,6 +62,7 @@ struct Configuration
     unsigned int iconType;        /** 0 if just icon, 1 if just temperature, 2 if both.           */
     QColor       trayTextColor;   /** Color of tray temperature text.                             */
     bool         trayTextMode;    /** true for fixed, false for dynamic.                          */
+    unsigned int trayTextSize;    /** base size of tray font in pixels.                           */
     QColor       minimumColor;    /** minimum value dynamic color.                                */
     QColor       maximumColor;    /** maximum value dynamic color.                                */
     int          minimumValue;    /** dynamic color minimum value.                                */
