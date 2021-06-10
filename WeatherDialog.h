@@ -62,8 +62,7 @@ class WeatherDialog
     /** \brief WeatherDialog class virtual destructor.
      *
      */
-    virtual ~WeatherDialog()
-    {};
+    virtual ~WeatherDialog();
 
     /** \brief Sets the weather and forecast data.
      * \param[in] current current weather data.
@@ -142,6 +141,11 @@ class WeatherDialog
      *
      */
     QColor pollutionColor(const int aqiValue);
+
+    /** \brief Updates the values of map layers in the configuration.
+     *
+     */
+    void updateMapLayerValues();
 
 
     QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.          */

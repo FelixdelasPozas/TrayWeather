@@ -36,6 +36,7 @@
 #include <charts/barchart/qbarset.h>
 #include <QEasingCurve>
 #include <QWebView>
+#include <QWebFrame>
 #include <QMessageBox>
 
 using namespace QtCharts;
@@ -83,6 +84,12 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
           this,        SLOT(onTabChanged(int)));
 
   m_reset->setVisible(false);
+}
+
+//--------------------------------------------------------------------
+WeatherDialog::~WeatherDialog()
+{
+  updateMapLayerValues();
 }
 
 //--------------------------------------------------------------------
@@ -431,6 +438,9 @@ void WeatherDialog::onMapsButtonPressed()
     m_mapsButton->setToolTip(tr("Show weather maps tab."));
 
     m_tabWidget->removeTab(3);
+
+    updateMapLayerValues();
+
     delete m_webpage;
     m_webpage = nullptr;
   }
@@ -466,6 +476,8 @@ void WeatherDialog::onMapsButtonPressed()
       webpage.replace("%%lat%%", QString::number(m_config->latitude));
       webpage.replace("%%lon%%", QString::number(m_config->longitude));
       webpage.replace("{api_key}", m_config->owm_apikey);
+      webpage.replace("%%streetmap%%", m_config->lastStreetLayer);
+      webpage.replace("%%layermap%%", m_config->lastLayer);
 
       m_webpage->setHtml(webpage);
       webfile.close();
@@ -738,4 +750,23 @@ QColor WeatherDialog::pollutionColor(const int aqiValue)
   }
 
   return gradientColor;
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::updateMapLayerValues()
+{
+  if(m_webpage != nullptr)
+  {
+    auto value = m_webpage->page()->mainFrame()->evaluateJavaScript("customGetLayer();");
+    if(!value.isNull())
+    {
+      m_config->lastLayer = value.toString().toLower();
+    }
+
+    value = m_webpage->page()->mainFrame()->evaluateJavaScript("customGetStreet();");
+    if(!value.isNull())
+    {
+      m_config->lastStreetLayer = value.toString().compare("OpenStreetMap", Qt::CaseInsensitive) == 0 ? "mapnik":"mapnikbw";
+    }
+  }
 }

@@ -24,29 +24,41 @@
 <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet-src.js"></script>
 <script src="leaflet-layercontrol.js"></script>
 <script>
+
+  var currentLayer;
+  var currentStreet;
+  
+  function customGetLayer() {
+  	return currentLayer;
+  }
+  
+  function customGetStreet() {
+  	return currentStreet;
+  }
+  
   (function () {
-        var mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' , {maxZoom: 18, attribution: ''} )
+        var mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' , {maxZoom: 18, attribution: ''} );
         var mapnikbw = L.tileLayer('http://a.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' });
 
         var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
-        })
+        });
 		
         var rain = L.tileLayer('http://{s}.tile.openweathermap.org/map/rain/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
-        })
+        });
 		
         var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
-        })
+        });
 		
         var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
-        })
+        });
 		
 		var legend = L.control({position: 'bottomright'});
 
@@ -90,76 +102,80 @@
 		};
 		
     var map = L.map('map', {
-        center: new L.LatLng(%%lat%%, %%lon%%), attributionControl: false, zoom: 11, layers: [mapnik, temperature]
+        center: new L.LatLng(%%lat%%, %%lon%%), attributionControl: false, zoom: 11, layers: [%%streetmap%%, %%layermap%%]
     });
 		
-		var numLayers = 1;
-    var currentLayer = temperature;
+	var numLayers = 1;
 		
-		legend.addTo(map);
+	legend.addTo(map);
 		
-    var baseMaps = {
+    map.on('baselayerchange', function(eo) {
+      currentStreet = eo.name;
+    });		
+		
+	map.on('overlayadd', function(eo) { 
+		++numLayers;
+			
+        currentLayer = eo.name;
+			
+		if(numLayers !== 1) {
+			if (eo.name === 'Rain') {
+				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
+			}
+			if (eo.name === 'Clouds') {
+				setTimeout(function() {	if(map.hasLayer(rain)) {map.removeLayer(rain) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
+			} 
+			if (eo.name === 'Wind') {
+				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(rain)) { map.removeLayer(rain) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
+			} 
+			if (eo.name === 'Temperature') {
+				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(rain)) { map.removeLayer(rain) } }, 10);
+			} 
+		}
+	});
+		
+	map.on('overlayremove', function(eo) {
+		--numLayers;
+
+		if(numLayers === 0)
+		{
+			if(eo.name === "Rain") { 
+				setTimeout(function() { map.addLayer(rain) }, 10); 
+			}
+			if(eo.name === "Clouds") { 
+				setTimeout(function() { map.addLayer(clouds) }, 10); 
+			}
+			if(eo.name === "Wind") {
+				setTimeout(function() { map.addLayer(wind) }, 10); 
+			}
+			if(eo.name === "Temperature") { 
+				setTimeout(function() { map.addLayer(temperature) }, 10); 
+			}
+		}
+		else
+		{
+			legend.removeFrom(this);
+			legend.addTo(this);
+		}
+	});
+	
+	var baseMaps = {
         "OpenStreetMap": mapnik, 
-		  	"OpenStreetMap BW": mapnikbw
+		"OpenStreetMap BW": mapnikbw
     };
     
     var overlayMaps = { 
         "Temperature": temperature,
-		    "Rain": rain,
+		"Rain": rain,
         "Clouds": clouds,
         "Wind": wind
     };
-		
-		map.on('overlayadd', function(eo) { 
-			++numLayers;
-      currentLayer = eo.name;
 			
-			if(numLayers !== 1) {
-				if (eo.name === 'Rain') {
-					setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
-				}
-				if (eo.name === 'Clouds') {
-					setTimeout(function() {	if(map.hasLayer(rain)) {map.removeLayer(rain) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
-				} 
-				if (eo.name === 'Wind') {
-					setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(rain)) { map.removeLayer(rain) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
-				} 
-				if (eo.name === 'Temperature') {
-					setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(rain)) { map.removeLayer(rain) } }, 10);
-				} 
-			}
-		});
-		
-		map.on('overlayremove', function(eo) {
-			--numLayers;
-
-			if(numLayers === 0)
-			{
-				if(eo.name === "Rain") { 
-					setTimeout(function() { map.addLayer(rain) }, 10); 
-				}
-				if(eo.name === "Clouds") { 
-					setTimeout(function() { map.addLayer(clouds) }, 10); 
-				}
-				if(eo.name === "Wind") {
-					setTimeout(function() { map.addLayer(wind) }, 10); 
-				}
-				if(eo.name === "Temperature") { 
-					setTimeout(function() { map.addLayer(temperature) }, 10); 
-				}
-			}
-			else
-			{
-				legend.removeFrom(this);
-				legend.addTo(this);
-			}
-		});
-		
-		L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'topright', autoZIndex: true, hideSingleBase: true, sortLayers: false}).addTo(map);
-		L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
-		L.marker([%%lat%%, %%lon%%]).addTo(map);
-		
-		})();
+	L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'topright', autoZIndex: true, hideSingleBase: true, sortLayers: false}).addTo(map);
+	L.control.scale({ position: 'bottomleft', imperial: false }).addTo(map);
+	L.marker([%%lat%%, %%lon%%]).addTo(map);
+	
+	})();
 		
 </script>
 

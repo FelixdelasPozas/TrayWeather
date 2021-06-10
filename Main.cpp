@@ -64,6 +64,8 @@ static const QString UPDATE_CHECKS_FREQUENCY = QObject::tr("Update checks freque
 static const QString UPDATE_LAST_CHECK       = QObject::tr("Update last check");
 static const QString AUTOSTART               = QObject::tr("Autostart");
 static const QString LAST_TAB                = QObject::tr("Last tab");
+static const QString LAST_MAP_LAYER          = QObject::tr("Last map layer");
+static const QString LAST_STREET_LAYER       = QObject::tr("Last street layer");
 
 //--------------------------------------------------------------------
 void saveConfiguration(const Configuration &configuration)
@@ -98,6 +100,8 @@ void saveConfiguration(const Configuration &configuration)
   settings.setValue(UPDATE_LAST_CHECK,       configuration.lastCheck);
   settings.setValue(AUTOSTART,               configuration.autostart);
   settings.setValue(LAST_TAB,                configuration.lastTab);
+  settings.setValue(LAST_MAP_LAYER,          configuration.lastLayer);
+  settings.setValue(LAST_STREET_LAYER,       configuration.lastStreetLayer);
 
   settings.sync();
 }
@@ -107,34 +111,36 @@ void loadConfiguration(Configuration &configuration)
 {
   QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
 
-  configuration.longitude      = settings.value(LONGITUDE, -181.0).toDouble();
-  configuration.latitude       = settings.value(LATITUDE, -91.0).toDouble();
-  configuration.country        = settings.value(COUNTRY, QString()).toString();
-  configuration.region         = settings.value(REGION, QString()).toString();
-  configuration.city           = settings.value(CITY, QString()).toString();
-  configuration.isp            = settings.value(ISP, QString()).toString();
-  configuration.ip             = settings.value(IP, QString()).toString();
-  configuration.timezone       = settings.value(TIMEZONE, QString()).toString();
-  configuration.zipcode        = settings.value(ZIPCODE, QString()).toString();
-  configuration.owm_apikey     = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
-  configuration.units          = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
-  configuration.updateTime     = settings.value(UPDATE_INTERVAL, 15).toUInt();
-  configuration.mapsEnabled    = settings.value(MAPS_TAB_ENABLED, true).toBool();
-  configuration.useDNS         = settings.value(USE_DNS_GEOLOCATION, false).toBool();
-  configuration.useGeolocation = settings.value(USE_GEOLOCATION_SERVICE, true).toBool();
-  configuration.roamingEnabled = settings.value(ROAMING_ENABLED, false).toBool();
-  configuration.lightTheme     = settings.value(THEME, true).toBool();
-  configuration.iconType       = settings.value(TRAY_ICON_TYPE, 0).toUInt();
-  configuration.trayTextColor  = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
-  configuration.trayTextMode   = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
-  configuration.minimumColor   = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
-  configuration.maximumColor   = QColor(settings.value(TRAY_DYNAMIC_MAX_COLOR, "#FFFF0000").toString());
-  configuration.minimumValue   = settings.value(TRAY_DYNAMIC_MIN_VALUE, -15).toInt();
-  configuration.maximumValue   = settings.value(TRAY_DYNAMIC_MAX_VALUE, 45).toInt();
-  configuration.update         = static_cast<Update>(settings.value(UPDATE_CHECKS_FREQUENCY, 2).toInt());
-  configuration.lastCheck      = settings.value(UPDATE_LAST_CHECK, QDateTime()).toDateTime();
-  configuration.autostart      = settings.value(AUTOSTART, false).toBool();
-  configuration.lastTab        = settings.value(LAST_TAB, 0).toInt();
+  configuration.longitude       = settings.value(LONGITUDE, -181.0).toDouble();
+  configuration.latitude        = settings.value(LATITUDE, -91.0).toDouble();
+  configuration.country         = settings.value(COUNTRY, QString()).toString();
+  configuration.region          = settings.value(REGION, QString()).toString();
+  configuration.city            = settings.value(CITY, QString()).toString();
+  configuration.isp             = settings.value(ISP, QString()).toString();
+  configuration.ip              = settings.value(IP, QString()).toString();
+  configuration.timezone        = settings.value(TIMEZONE, QString()).toString();
+  configuration.zipcode         = settings.value(ZIPCODE, QString()).toString();
+  configuration.owm_apikey      = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
+  configuration.units           = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
+  configuration.updateTime      = settings.value(UPDATE_INTERVAL, 15).toUInt();
+  configuration.mapsEnabled     = settings.value(MAPS_TAB_ENABLED, true).toBool();
+  configuration.useDNS          = settings.value(USE_DNS_GEOLOCATION, false).toBool();
+  configuration.useGeolocation  = settings.value(USE_GEOLOCATION_SERVICE, true).toBool();
+  configuration.roamingEnabled  = settings.value(ROAMING_ENABLED, false).toBool();
+  configuration.lightTheme      = settings.value(THEME, true).toBool();
+  configuration.iconType        = settings.value(TRAY_ICON_TYPE, 0).toUInt();
+  configuration.trayTextColor   = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
+  configuration.trayTextMode    = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
+  configuration.minimumColor    = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
+  configuration.maximumColor    = QColor(settings.value(TRAY_DYNAMIC_MAX_COLOR, "#FFFF0000").toString());
+  configuration.minimumValue    = settings.value(TRAY_DYNAMIC_MIN_VALUE, -15).toInt();
+  configuration.maximumValue    = settings.value(TRAY_DYNAMIC_MAX_VALUE, 45).toInt();
+  configuration.update          = static_cast<Update>(settings.value(UPDATE_CHECKS_FREQUENCY, 2).toInt());
+  configuration.lastCheck       = settings.value(UPDATE_LAST_CHECK, QDateTime()).toDateTime();
+  configuration.autostart       = settings.value(AUTOSTART, false).toBool();
+  configuration.lastTab         = settings.value(LAST_TAB, 0).toInt();
+  configuration.lastLayer       = settings.value(LAST_MAP_LAYER, "temperature").toString();
+  configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
 }
 
 //-----------------------------------------------------------------

@@ -42,34 +42,36 @@ enum class Update: char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
  */
 struct Configuration
 {
-    double       latitude;       /** location latitude in degrees.                               */
-    double       longitude;      /** location longitude in degrees.                              */
-    QString      country;        /** location's country.                                         */
-    QString      region;         /** location's region.                                          */
-    QString      city;           /** location's city.                                            */
-    QString      zipcode;        /** location's zip code.                                        */
-    QString      isp;            /** internet service provider.                                  */
-    QString      ip;             /** internet address.                                           */
-    QString      timezone;       /** location's timezone.                                        */
-    QString      owm_apikey;     /** OpenWeatherMap API Key.                                     */
-    Temperature  units;          /** temperature units.                                          */
-    unsigned int updateTime;     /** time between updates.                                       */
-    bool         mapsEnabled;    /** true if maps tab is visible, false otherwise.               */
-    bool         useDNS;         /** true to use DNS address for geo location instead of own IP. */
-    bool         useGeolocation; /** true to use the ip-api.com services, false to use manual.   */
-    bool         roamingEnabled; /** true if georaphical coordinates are asked on each forecast. */
-    bool         lightTheme;     /** true if light theme is being used, false if dark theme.     */
-    unsigned int iconType;       /** 0 if just icon, 1 if just temperature, 2 if both.           */
-    QColor       trayTextColor;  /** Color of tray temperature text.                             */
-    bool         trayTextMode;   /** true for fixed, false for dynamic.                          */
-    QColor       minimumColor;   /** minimum value dynamic color.                                */
-    QColor       maximumColor;   /** maximum value dynamic color.                                */
-    int          minimumValue;   /** dynamic color minimum value.                                */
-    int          maximumValue;   /** dynamic color maximum value.                                */
-    Update       update;         /** frequency of check for update.                              */
-    QDateTime    lastCheck;      /** time of last update check.                                  */
-    bool         autostart;      /** true to autostart at login, false otherwise.                */
-    int          lastTab;        /** last tab visualized.                                        */
+    double       latitude;        /** location latitude in degrees.                               */
+    double       longitude;       /** location longitude in degrees.                              */
+    QString      country;         /** location's country.                                         */
+    QString      region;          /** location's region.                                          */
+    QString      city;            /** location's city.                                            */
+    QString      zipcode;         /** location's zip code.                                        */
+    QString      isp;             /** internet service provider.                                  */
+    QString      ip;              /** internet address.                                           */
+    QString      timezone;        /** location's timezone.                                        */
+    QString      owm_apikey;      /** OpenWeatherMap API Key.                                     */
+    Temperature  units;           /** temperature units.                                          */
+    unsigned int updateTime;      /** time between updates.                                       */
+    bool         mapsEnabled;     /** true if maps tab is visible, false otherwise.               */
+    bool         useDNS;          /** true to use DNS address for geo location instead of own IP. */
+    bool         useGeolocation;  /** true to use the ip-api.com services, false to use manual.   */
+    bool         roamingEnabled;  /** true if georaphical coordinates are asked on each forecast. */
+    bool         lightTheme;      /** true if light theme is being used, false if dark theme.     */
+    unsigned int iconType;        /** 0 if just icon, 1 if just temperature, 2 if both.           */
+    QColor       trayTextColor;   /** Color of tray temperature text.                             */
+    bool         trayTextMode;    /** true for fixed, false for dynamic.                          */
+    QColor       minimumColor;    /** minimum value dynamic color.                                */
+    QColor       maximumColor;    /** maximum value dynamic color.                                */
+    int          minimumValue;    /** dynamic color minimum value.                                */
+    int          maximumValue;    /** dynamic color maximum value.                                */
+    Update       update;          /** frequency of check for update.                              */
+    QDateTime    lastCheck;       /** time of last update check.                                  */
+    bool         autostart;       /** true to autostart at login, false otherwise.                */
+    int          lastTab;         /** last tab visualized.                                        */
+    QString      lastLayer;       /** last maps layer used: temperature, rain, clouds, wind.      */
+    QString      lastStreetLayer; /** last street layer used: mapnik, mapnikbw.                   */
 
 
     /** \brief Configuration struct constructor.
