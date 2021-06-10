@@ -298,22 +298,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     delete oldChart;
   }
 
-  // Maps tab
-  if(config.mapsEnabled)
-  {
-    if(!mapsEnabled())
-    {
-      onMapsButtonPressed();
-    }
-    else
-    {
-      m_webpage->reload();
-    }
-  }
-  else
-  {
-    if(mapsEnabled()) onMapsButtonPressed();
-  }
+  // Maps tab handled on showEvent to avoid main widget resize problem.
 
   onResetButtonPressed();
 }
@@ -336,6 +321,7 @@ void WeatherDialog::onTabChanged(int index)
 {
   m_reset->setVisible(index == 1 || index == 2);
   onAreaChanged();
+  m_config->lastTab = index;
 }
 
 //--------------------------------------------------------------------
@@ -437,6 +423,7 @@ void WeatherDialog::onMapsButtonPressed()
 {
   auto enabled = mapsEnabled();
   m_config->mapsEnabled = !enabled;
+  emit mapsEnabled(m_config->mapsEnabled);
 
   if(enabled)
   {
@@ -666,6 +653,22 @@ void WeatherDialog::showEvent(QShowEvent *e)
 
   const auto wSize = size();
   if(wSize.width() < 717 || wSize.height() < 515) setFixedSize(717, 515);
+
+  if(m_config->mapsEnabled)
+  {
+    if(!mapsEnabled())
+    {
+      onMapsButtonPressed();
+    }
+    else
+    {
+      m_webpage->reload();
+    }
+  }
+  else
+  {
+    if(mapsEnabled()) onMapsButtonPressed();
+  }
 }
 
 //--------------------------------------------------------------------

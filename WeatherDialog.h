@@ -84,6 +84,9 @@ class WeatherDialog
      */
     bool mapsEnabled() const;
 
+  signals:
+    void mapsEnabled(bool);
+
   protected:
     virtual void showEvent(QShowEvent *e);
 

@@ -84,33 +84,35 @@
 
 				labels.push('<i style="background:' + colors[i] + '"></i> ' + from + (i < (grades.length - 1) ? '' : '+'));
 			}
-			
 
 			div.innerHTML = labels.join('<br>');
 			return div;
 		};
 		
-        var map = L.map('map', {
-            center: new L.LatLng(%%lat%%, %%lon%%), attributionControl: false, zoom: 11, layers: [mapnik, temperature]
-        });
+    var map = L.map('map', {
+        center: new L.LatLng(%%lat%%, %%lon%%), attributionControl: false, zoom: 11, layers: [mapnik, temperature]
+    });
 		
 		var numLayers = 1;
+    var currentLayer = temperature;
 		
 		legend.addTo(map);
 		
-        var baseMaps = {
-            "OpenStreetMap": mapnik, 
-			"OpenStreetMap BW": mapnikbw
-        };
-        var overlayMaps = { 
-            "Temperature": temperature,
+    var baseMaps = {
+        "OpenStreetMap": mapnik, 
+		  	"OpenStreetMap BW": mapnikbw
+    };
+    
+    var overlayMaps = { 
+        "Temperature": temperature,
 		    "Rain": rain,
-            "Clouds": clouds,
-            "Wind": wind
-        };
+        "Clouds": clouds,
+        "Wind": wind
+    };
 		
 		map.on('overlayadd', function(eo) { 
 			++numLayers;
+      currentLayer = eo.name;
 			
 			if(numLayers !== 1) {
 				if (eo.name === 'Rain') {

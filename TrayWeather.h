@@ -71,10 +71,10 @@ class TrayWeather
      */
     void showAboutDialog();
 
-    /** \brief Shows the weather forecast.
+    /** \brief Shows a tab depending on the caller.
      *
      */
-    void showForecast();
+    void showTab();
 
     /** \brief Shows the configuration dialog.
      *
@@ -91,6 +91,12 @@ class TrayWeather
      *
      */
     void requestData();
+
+    /** \brief Updates the tray icon context menu with the state of the maps.
+     * \param[in] value true if maps enabled and false otherwise.
+     *
+     */
+    void onMapsStateChanged(bool value);
 
   private:
     /** \brief Updates the tray icon tooltip.

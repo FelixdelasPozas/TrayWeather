@@ -508,10 +508,29 @@ void TrayWeather::createMenuEntries()
   auto menu = new QMenu(nullptr);
 
   QString iconLink = m_configuration.units == Temperature::CELSIUS ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
-  auto weather = new QAction{QIcon{iconLink}, tr("Weather && forecast..."), menu};
-  connect(weather, SIGNAL(triggered(bool)), this, SLOT(showForecast()));
+  auto weather = new QAction{QIcon{iconLink}, tr("Current weather..."), menu};
+  connect(weather, SIGNAL(triggered(bool)), this, SLOT(showTab()));
 
   menu->addAction(weather);
+
+  auto forecast = new QAction{tr("Forecast..."), menu};
+  connect(forecast, SIGNAL(triggered(bool)), this, SLOT(showTab()));
+
+  menu->addAction(forecast);
+
+  auto pollution = new QAction{tr("Pollution..."), menu};
+  connect(pollution, SIGNAL(triggered(bool)), this, SLOT(showTab()));
+
+  menu->addAction(pollution);
+
+  auto maps = new QAction{tr("Maps..."), menu};
+  connect(maps, SIGNAL(triggered(bool)), this, SLOT(showTab()));
+
+  menu->addAction(maps);
+
+  maps->setEnabled(m_configuration.mapsEnabled);
+
+  menu->addSeparator();
 
   auto refresh = new QAction{QIcon{":/TrayWeather/network_refresh_black.svg"}, tr("Refresh..."), menu};
   connect(refresh, SIGNAL(triggered(bool)), this, SLOT(requestData()));
@@ -600,13 +619,39 @@ void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
 {
   if(reason == QSystemTrayIcon::ActivationReason::DoubleClick)
   {
-    showForecast();
+    showTab();
   }
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::showForecast()
+void TrayWeather::showTab()
 {
+  static int lastTab = 0;
+
+  const auto caller = qobject_cast<QAction *>(sender());
+  if(caller)
+  {
+    const auto text = caller->text();
+
+    if(text.startsWith("Current", Qt::CaseInsensitive))
+      lastTab = 0;
+    else
+      if(text.startsWith("Forecast", Qt::CaseInsensitive))
+        lastTab = 1;
+      else
+        if(text.startsWith("Pollution", Qt::CaseInsensitive))
+          lastTab = 2;
+        else
+          if(text.startsWith("Maps", Qt::CaseInsensitive))
+            lastTab = 3;
+  }
+  else
+  {
+    lastTab = m_configuration.lastTab;
+  }
+
+  m_configuration.lastTab = lastTab;
+
   if(m_weatherDialog)
   {
     if(m_aboutDialog)
@@ -625,6 +670,7 @@ void TrayWeather::showForecast()
       }
     }
 
+    m_weatherDialog->m_tabWidget->setCurrentIndex(lastTab);
     return;
   }
 
@@ -647,12 +693,15 @@ void TrayWeather::showForecast()
   m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
   m_weatherDialog->setPollutionData(m_pData);
 
+  connect(m_weatherDialog, SIGNAL(mapsEnabled(bool)), this, SLOT(onMapsStateChanged(bool)));
+
+  m_weatherDialog->show();
+  m_weatherDialog->m_tabWidget->setCurrentIndex(lastTab);
+
   auto scr = QApplication::desktop()->screenGeometry();
   m_weatherDialog->move(scr.center() - m_weatherDialog->rect().center());
   m_weatherDialog->setModal(true);
   m_weatherDialog->exec();
-
-  m_configuration.mapsEnabled = m_weatherDialog->mapsEnabled();
 
   delete m_weatherDialog;
 
@@ -757,6 +806,29 @@ void TrayWeather::requestGeolocation()
   m_netManager->get(QNetworkRequest{QUrl{ipAddress}});
 
   m_DNSIP.clear();
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::onMapsStateChanged(bool value)
+{
+  auto menu = this->contextMenu();
+  if(menu)
+  {
+    auto entries = menu->actions();
+
+    auto updateMapsEntry = [value](QAction *a)
+    {
+      if(a->text().startsWith("Maps", Qt::CaseInsensitive))
+      {
+        a->setEnabled(value);
+        return true;
+      }
+      return false;
+    };
+    std::find_if(entries.begin(), entries.end(), updateMapsEntry);
+  }
+
+  m_configuration.mapsEnabled = value;
 }
 
 //--------------------------------------------------------------------

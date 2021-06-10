@@ -69,6 +69,7 @@ struct Configuration
     Update       update;         /** frequency of check for update.                              */
     QDateTime    lastCheck;      /** time of last update check.                                  */
     bool         autostart;      /** true to autostart at login, false otherwise.                */
+    int          lastTab;        /** last tab visualized.                                        */
 
 
     /** \brief Configuration struct constructor.
@@ -102,6 +103,7 @@ struct Configuration
     , update        {Update::WEEKLY}
     , lastCheck     {QDateTime::currentDateTime()}
     , autostart     {false}
+    , lastTab       {0}
     {};
 
     bool isValid() const

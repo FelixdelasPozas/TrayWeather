@@ -63,6 +63,7 @@ static const QString TRAY_DYNAMIC_MAX_VALUE  = QObject::tr("Tray text color dyna
 static const QString UPDATE_CHECKS_FREQUENCY = QObject::tr("Update checks frequency");
 static const QString UPDATE_LAST_CHECK       = QObject::tr("Update last check");
 static const QString AUTOSTART               = QObject::tr("Autostart");
+static const QString LAST_TAB                = QObject::tr("Last tab");
 
 //--------------------------------------------------------------------
 void saveConfiguration(const Configuration &configuration)
@@ -96,6 +97,7 @@ void saveConfiguration(const Configuration &configuration)
   settings.setValue(UPDATE_CHECKS_FREQUENCY, static_cast<int>(configuration.update));
   settings.setValue(UPDATE_LAST_CHECK,       configuration.lastCheck);
   settings.setValue(AUTOSTART,               configuration.autostart);
+  settings.setValue(LAST_TAB,                configuration.lastTab);
 
   settings.sync();
 }
@@ -132,6 +134,7 @@ void loadConfiguration(Configuration &configuration)
   configuration.update         = static_cast<Update>(settings.value(UPDATE_CHECKS_FREQUENCY, 2).toInt());
   configuration.lastCheck      = settings.value(UPDATE_LAST_CHECK, QDateTime()).toDateTime();
   configuration.autostart      = settings.value(AUTOSTART, false).toBool();
+  configuration.lastTab        = settings.value(LAST_TAB, 0).toInt();
 }
 
 //-----------------------------------------------------------------
