@@ -476,6 +476,10 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
+  // First tab is the larger one, so we need Qt to resize the dialog
+  // according to its contents...
+  m_tabWidget->setCurrentIndex(0);
+
   setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
   setMinimumSize(0,0);
 
@@ -493,7 +497,11 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
 
   adjustSize();
   setFixedSize(size());
+
   updateRange();
+
+  // ...and then return to the one tab the user is in.
+  m_tabWidget->setCurrentIndex(1);
 
   QApplication::restoreOverrideCursor();
 }

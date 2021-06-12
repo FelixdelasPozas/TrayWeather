@@ -647,9 +647,8 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     {
       disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
                  this, SLOT(onAreaChanged()));
-
-      disconnect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-                 this,  SLOT(onAreaChanged(QDateTime, QDateTime)));
+      disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                 this, SLOT(onAreaChanged(QDateTime, QDateTime)));
     }
 
     delete oldChart;
