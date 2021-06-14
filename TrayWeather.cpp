@@ -43,13 +43,14 @@ const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/T
 
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
-: QSystemTrayIcon{parent}
-, m_configuration{configuration}
-, m_netManager   {std::make_shared<QNetworkAccessManager>(this)}
-, m_timer        {this}
-, m_weatherDialog{nullptr}
-, m_aboutDialog  {nullptr}
-, m_configDialog {nullptr}
+: QSystemTrayIcon {parent}
+, m_configuration {configuration}
+, m_netManager    {std::make_shared<QNetworkAccessManager>(this)}
+, m_timer         {this}
+, m_weatherDialog {nullptr}
+, m_aboutDialog   {nullptr}
+, m_configDialog  {nullptr}
+, m_additionalTray{nullptr}
 {
   m_timer.setSingleShot(true);
 
@@ -431,6 +432,13 @@ void TrayWeather::updateTooltip()
   }
   else
   {
+    if(m_configuration.iconType != 3 && m_additionalTray)
+    {
+      m_additionalTray->hide();
+      m_additionalTray->deleteLater();
+      m_additionalTray = nullptr;
+    }
+
     QStringList place;
     if(!m_configuration.city.isEmpty())    place << m_configuration.city;
     if(!m_configuration.country.isEmpty()) place << m_configuration.country;
@@ -464,6 +472,15 @@ void TrayWeather::updateTooltip()
     {
       case 0:
         break;
+      case 3:
+        if(!m_additionalTray)
+        {
+          m_additionalTray = new QSystemTrayIcon{this};
+          m_additionalTray->setContextMenu(this->contextMenu());
+        }
+        m_additionalTray->setIcon(QIcon(pixmap));
+        if(!m_additionalTray->isVisible()) m_additionalTray->show();
+        /* fall through */
       case 1:
         pixmap.fill(Qt::transparent);
         /* fall through */

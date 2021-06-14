@@ -24,7 +24,7 @@
    <item>
     <widget class="QTabWidget" name="m_tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -586,12 +586,17 @@ QGroupBox::title {
               </item>
               <item>
                <property name="text">
-                <string>Current temperature</string>
+                <string>Temperature icon</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Weather icon &amp; temperature</string>
+                <string>Weather &amp; temperature icon</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Weather icon &amp; temperature icon</string>
                </property>
               </item>
              </widget>

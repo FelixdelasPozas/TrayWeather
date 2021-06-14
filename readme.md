@@ -43,8 +43,8 @@ Tray icon showing the current weather icon. At night and on clear sky days it sh
 ![icon](https://cloud.githubusercontent.com/assets/12167134/20938095/f03e2474-bbe9-11e6-83b9-e2bc8c716bf4.jpg)
 ![icon_menu](https://user-images.githubusercontent.com/12167134/121608218-c7e88c00-ca51-11eb-8501-9a45314cf2fc.png)
 
-Tray icon can also show the temperature alone or composed with the weather icon. The temperature text color can be set by the user
-or can change dynamically between a range of colors according to the current value. 
+Tray icon can also show the temperature alone or composed with the weather icon. It can also be configured to show two tray icons, one with the temperature and other with the weather icon. 
+The temperature text color can be set by the user or can change dynamically between a range of colors according to the current value. 
 
 ![icon_temp](https://user-images.githubusercontent.com/12167134/85929400-b6e05280-b8b4-11ea-9574-bf27537f38e3.png)
 
@@ -84,7 +84,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.8.1
+**Version**: 1.8.2
 
 **Status**: finished.
 
@@ -92,8 +92,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 527         |   240            | 2414 |
-| C/C++ Header                 |   8           | 163         |   443            |  598 |
+| C++                          |   8           | 528         |   241            | 2429 |
+| C/C++ Header                 |   8           | 163         |   443            |  599 |
 | HTML                         |   1           |  34         |     0            |  150 |
 | CMake                        |   1           |  16         |    11            |   98 |
-| **Total**                    | **18**        | **740**     | **694**          | **3260** |
+| **Total**                    | **18**        | **741**     | **695**          | **3276** |
