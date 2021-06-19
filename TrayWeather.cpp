@@ -286,7 +286,8 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
   }
 
   // change to error icon.
-  setIcon(QIcon{":/TrayWeather/network_error.svg"});
+  const auto errorIcon = QIcon{":/TrayWeather/network_error.svg"};
+  setIcon(errorIcon);
 
   QString tooltip;
   auto url = reply->url().toString();
@@ -299,6 +300,12 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     tooltip = tr("Error requesting weather data.");
   }
   setToolTip(tooltip);
+
+  if(m_additionalTray)
+  {
+    m_additionalTray->setIcon(errorIcon);
+    m_additionalTray->setToolTip(tooltip);
+  }
 
   reply->deleteLater();
 }
@@ -425,98 +432,117 @@ void TrayWeather::updateTooltip()
   QString tooltip;
   QIcon icon;
 
-  if(!validData())
+  if(m_configuration.iconType == 3)
   {
-    tooltip = tr("Requesting weather data from the server...");
-    icon = QIcon{":/TrayWeather/network_refresh.svg"};
+    if(!m_additionalTray)
+    {
+      m_additionalTray = new QSystemTrayIcon{this};
+      m_additionalTray->setContextMenu(this->contextMenu());
+    }
   }
   else
   {
-    if(m_configuration.iconType != 3 && m_additionalTray)
+    if(m_additionalTray)
     {
       m_additionalTray->hide();
       m_additionalTray->deleteLater();
       m_additionalTray = nullptr;
     }
-
-    QStringList place;
-    if(!m_configuration.city.isEmpty())    place << m_configuration.city;
-    if(!m_configuration.country.isEmpty()) place << m_configuration.country;
-
-    const auto temperature = convertKelvinTo(m_current.temp, m_configuration.units);
-    const auto tempString = QString::number(temperature, 'f', 1);
-    tooltip = tr("%1\n%2\n%3%4").arg(place.join(", "))
-                                .arg(toTitleCase(m_current.description))
-                                .arg(tempString)
-                                .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
-
-    QPixmap pixmap = weatherPixmap(m_current);
-    QPainter painter(&pixmap);
-
-    auto interpolate = [this](int temp)
-    {
-      const auto minColor = m_configuration.minimumColor;
-      const auto maxColor = m_configuration.maximumColor;
-      const auto value = std::min(m_configuration.maximumValue, std::max(m_configuration.minimumValue, temp));
-
-      const double inc = static_cast<double>(value-m_configuration.minimumValue)/(m_configuration.maximumValue - m_configuration.minimumValue);
-      const double rInc = (maxColor.red()   - minColor.red())   * inc;
-      const double gInc = (maxColor.green() - minColor.green()) * inc;
-      const double bInc = (maxColor.blue()  - minColor.blue())  * inc;
-      const double aInc = (maxColor.alpha() - minColor.alpha()) * inc;
-
-      return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
-    };
-
-    switch(m_configuration.iconType)
-    {
-      case 0:
-        break;
-      case 3:
-        if(!m_additionalTray)
-        {
-          m_additionalTray = new QSystemTrayIcon{this};
-          m_additionalTray->setContextMenu(this->contextMenu());
-        }
-        m_additionalTray->setIcon(QIcon(pixmap));
-        if(!m_additionalTray->isVisible()) m_additionalTray->show();
-        /* fall through */
-      case 1:
-        pixmap.fill(Qt::transparent);
-        /* fall through */
-      default:
-      case 2:
-        {
-          const auto roundedTemp = static_cast<int>(std::nearbyint(temperature));
-          const auto tempRoundString = QString::number(roundedTemp);
-          QFont font = painter.font();
-          font.setPixelSize(m_configuration.trayTextSize - (tempRoundString.length() - 3) * 50);
-          font.setBold(true);
-          painter.setFont(font);
-
-          QColor color;
-          if(m_configuration.trayTextMode)
-          {
-            color = m_configuration.trayTextColor;
-          }
-          else
-          {
-            color = interpolate(roundedTemp);
-          }
-
-          painter.setPen(color);
-          painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
-          painter.drawText(pixmap.rect(), Qt::AlignCenter, tempRoundString);
-        }
-        break;
-    }
-
-    painter.end();
-
-    icon = QIcon(pixmap);
   }
 
+  if(!validData())
+  {
+    tooltip = tr("Requesting weather data from the server...");
+    icon = QIcon{":/TrayWeather/network_refresh.svg"};
+
+    setToolTip(tooltip);
+    setIcon(icon);
+
+    if(m_additionalTray)
+    {
+      m_additionalTray->setToolTip(tooltip);
+      m_additionalTray->setIcon(icon);
+      if(!m_additionalTray->isVisible()) m_additionalTray->show();
+    }
+
+    return;
+  }
+
+  QStringList place;
+  if(!m_configuration.city.isEmpty())    place << m_configuration.city;
+  if(!m_configuration.country.isEmpty()) place << m_configuration.country;
+
+  const auto temperature = convertKelvinTo(m_current.temp, m_configuration.units);
+  const auto tempString = QString::number(temperature, 'f', 1);
+  tooltip = tr("%1\n%2\n%3%4").arg(place.join(", "))
+                              .arg(toTitleCase(m_current.description))
+                              .arg(tempString)
+                              .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
+
+  QPixmap pixmap = weatherPixmap(m_current);
+  QPainter painter(&pixmap);
+
+  auto interpolate = [this](int temp)
+  {
+    const auto minColor = m_configuration.minimumColor;
+    const auto maxColor = m_configuration.maximumColor;
+    const auto value = std::min(m_configuration.maximumValue, std::max(m_configuration.minimumValue, temp));
+
+    const double inc = static_cast<double>(value-m_configuration.minimumValue)/(m_configuration.maximumValue - m_configuration.minimumValue);
+    const double rInc = (maxColor.red()   - minColor.red())   * inc;
+    const double gInc = (maxColor.green() - minColor.green()) * inc;
+    const double bInc = (maxColor.blue()  - minColor.blue())  * inc;
+    const double aInc = (maxColor.alpha() - minColor.alpha()) * inc;
+
+    return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
+  };
+
+  switch(m_configuration.iconType)
+  {
+    case 0:
+      break;
+    case 3:
+      if(m_additionalTray)
+      {
+        m_additionalTray->setIcon(QIcon(pixmap));
+        if(!m_additionalTray->isVisible()) m_additionalTray->show();
+      }
+      /* fall through */
+    case 1:
+      pixmap.fill(Qt::transparent);
+      /* fall through */
+    default:
+    case 2:
+      {
+        const auto roundedTemp = static_cast<int>(std::nearbyint(temperature));
+        const auto tempRoundString = QString::number(roundedTemp);
+        QFont font = painter.font();
+        font.setPixelSize(m_configuration.trayTextSize - (tempRoundString.length() - 3) * 50);
+        font.setBold(true);
+        painter.setFont(font);
+
+        QColor color;
+        if(m_configuration.trayTextMode)
+        {
+          color = m_configuration.trayTextColor;
+        }
+        else
+        {
+          color = interpolate(roundedTemp);
+        }
+
+        painter.setPen(color);
+        painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
+        painter.drawText(pixmap.rect(), Qt::AlignCenter, tempRoundString);
+      }
+      break;
+  }
+
+  painter.end();
+  icon = QIcon(pixmap);
+
   setToolTip(tooltip);
+  if(m_additionalTray) m_additionalTray->setToolTip(tooltip);
   setIcon(icon);
 }
 
