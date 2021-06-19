@@ -573,6 +573,8 @@ void ConfigurationDialog::updateRange()
 //--------------------------------------------------------------------
 void ConfigurationDialog::showEvent(QShowEvent *e)
 {
+  this->m_tabWidget->setCurrentIndex(0);
+
   QDialog::showEvent(e);
 
   scaleDialog(this);
