@@ -329,16 +329,18 @@ void TrayWeather::showConfiguration()
 
   m_configDialog = new ConfigurationDialog{m_configuration};
 
-  auto scr = QApplication::desktop()->screenGeometry();
+  const auto scr = QApplication::desktop()->screenGeometry();
   m_configDialog->move(scr.center() - m_configDialog->rect().center());
   m_configDialog->setModal(true);
-  m_configDialog->exec();
+  const auto result = m_configDialog->exec();
 
   Configuration configuration;
   m_configDialog->getConfiguration(configuration);
 
   delete m_configDialog;
   m_configDialog = nullptr;
+
+  if(result != QDialog::Accepted) return;
 
   m_configuration.lightTheme    = configuration.lightTheme;
   m_configuration.iconType      = configuration.iconType;

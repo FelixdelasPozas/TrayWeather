@@ -73,6 +73,9 @@ void saveConfiguration(const Configuration &configuration)
 {
   QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
 
+  if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
+  if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
+
   settings.setValue(LONGITUDE,               configuration.longitude);
   settings.setValue(LATITUDE,                configuration.latitude);
   settings.setValue(COUNTRY,                 configuration.country);
@@ -144,6 +147,9 @@ void loadConfiguration(Configuration &configuration)
   configuration.lastTab         = settings.value(LAST_TAB, 0).toInt();
   configuration.lastLayer       = settings.value(LAST_MAP_LAYER, "temperature").toString();
   configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
+
+  if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
+  if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
 }
 
 //-----------------------------------------------------------------

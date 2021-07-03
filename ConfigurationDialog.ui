@@ -1151,6 +1151,13 @@ QGroupBox::title {
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="m_cancel">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="m_ok">
        <property name="text">
         <string>OK</string>
@@ -1178,6 +1185,22 @@ QGroupBox::title {
     <hint type="destinationlabel">
      <x>223</x>
      <y>179</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_cancel</sender>
+   <signal>pressed()</signal>
+   <receiver>ConfigurationDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>345</x>
+     <y>535</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>278</y>
     </hint>
    </hints>
   </connection>

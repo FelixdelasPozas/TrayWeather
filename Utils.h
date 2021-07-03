@@ -36,6 +36,9 @@ class QDialog;
 enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
 enum class Update: char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
 
+static const QStringList MAP_LAYERS = { "temperature", "rain", "clouds", "wind" };
+static const QStringList MAP_STREET = { "mapnik", "mapnikbw" };
+
 /** \struct Configuration
  * \brief Contains the application configuration.
  *
@@ -79,34 +82,37 @@ struct Configuration
      *
      */
     Configuration()
-    : latitude      {-91}
-    , longitude     {-181}
-    , country       {"Unknown"}
-    , region        {"Unknown"}
-    , city          {"Unknown"}
-    , zipcode       {"Unknown"}
-    , isp           {"Unknown"}
-    , ip            {"Unknown"}
-    , timezone      {"Unknown"}
-    , owm_apikey    {""}
-    , units         {Temperature::CELSIUS}
-    , updateTime    {0}
-    , mapsEnabled   {false}
-    , useDNS        {false}
-    , useGeolocation{true}
-    , roamingEnabled{false}
-    , lightTheme    {true}
-    , iconType      {0}
-    , trayTextColor {Qt::white}
-    , trayTextMode  {true}
-    , minimumColor  {Qt::blue}
-    , maximumColor  {Qt::red}
-    , minimumValue  {-10}
-    , maximumValue  {45}
-    , update        {Update::WEEKLY}
-    , lastCheck     {QDateTime::currentDateTime()}
-    , autostart     {false}
-    , lastTab       {0}
+    : latitude       {-91}
+    , longitude      {-181}
+    , country        {"Unknown"}
+    , region         {"Unknown"}
+    , city           {"Unknown"}
+    , zipcode        {"Unknown"}
+    , isp            {"Unknown"}
+    , ip             {"Unknown"}
+    , timezone       {"Unknown"}
+    , owm_apikey     {""}
+    , units          {Temperature::CELSIUS}
+    , updateTime     {15}
+    , mapsEnabled    {false}
+    , useDNS         {false}
+    , useGeolocation {true}
+    , roamingEnabled {false}
+    , lightTheme     {true}
+    , iconType       {0}
+    , trayTextColor  {Qt::white}
+    , trayTextMode   {true}
+    , trayTextSize   {250}
+    , minimumColor   {Qt::blue}
+    , maximumColor   {Qt::red}
+    , minimumValue   {-10}
+    , maximumValue   {45}
+    , update         {Update::WEEKLY}
+    , lastCheck      {QDateTime::currentDateTime()}
+    , autostart      {false}
+    , lastTab        {0}
+    , lastLayer      {"temperature"}
+    , lastStreetLayer{"mapnik"}
     {};
 
     bool isValid() const

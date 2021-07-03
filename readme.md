@@ -17,6 +17,8 @@ The computer location can be automatically obtained by using the services of [ht
 and maps information are obtained from [OpenWeatherMap](http://openweathermap.org/). To obtain weather information from OpenWeatherMap you need to register in their website and enter the given API Key
 into the Tray Weather configuration dialog. 
 
+> **_NOTE:_**  Please note that after you register in OpenWeatherMap and are given an API key, that key **may not be valid right away**. If you enter the API key in TrayWeather and get an "host requires authentication" error, you must wait a little longer until it becomes valid.
+
 ## Options
 The temperature units (celsius or fahrenheit) and the frequency of update requests are configurable options. Other visual configuration options can be seen in the configuration dialog screenshot.
 
@@ -84,7 +86,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.8.3
+**Version**: 1.8.4
 
 **Status**: finished.
 
@@ -92,8 +94,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 532         |   241            | 2451 |
-| C/C++ Header                 |   8           | 163         |   443            |  599 |
+| C++                          |   8           | 536         |   241            | 2457 |
+| C/C++ Header                 |   8           | 164         |   443            |  604 |
 | HTML                         |   1           |  34         |     0            |  150 |
 | CMake                        |   1           |  16         |    11            |   98 |
-| **Total**                    | **18**        | **745**     | **695**          | **3298** |
+| **Total**                    | **18**        | **750**     | **695**          | **3309** |
