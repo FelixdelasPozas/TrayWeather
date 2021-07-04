@@ -440,6 +440,9 @@ void TrayWeather::updateTooltip()
     {
       m_additionalTray = new QSystemTrayIcon{this};
       m_additionalTray->setContextMenu(this->contextMenu());
+
+      connect(m_additionalTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+              this,             SLOT(onActivation(QSystemTrayIcon::ActivationReason)));
     }
   }
   else
