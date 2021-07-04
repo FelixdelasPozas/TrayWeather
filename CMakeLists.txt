@@ -8,7 +8,7 @@ cmake_minimum_required (VERSION 3.0.0)
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
 set (TRAYWEATHER_VERSION_MINOR 8)
-set (TRAYWEATHER_VERSION_PATCH 4)
+set (TRAYWEATHER_VERSION_PATCH 5)
 
 # Current year, used in configured files. 
 string(TIMESTAMP CURRENT_YEAR "%Y")

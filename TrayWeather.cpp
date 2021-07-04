@@ -452,6 +452,10 @@ void TrayWeather::updateTooltip()
     if(m_additionalTray)
     {
       m_additionalTray->hide();
+
+      disconnect(m_additionalTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+                 this,             SLOT(onActivation(QSystemTrayIcon::ActivationReason)));
+
       m_additionalTray->deleteLater();
       m_additionalTray = nullptr;
     }
