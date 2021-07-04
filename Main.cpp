@@ -27,130 +27,12 @@
 #include <QSharedMemory>
 #include <QMessageBox>
 #include <QIcon>
-#include <QSettings>
 #include <QFile>
 #include <QTextStream>
-#include <QColor>
 #include <QDebug>
 
 // C++
 #include <iostream>
-
-static const QString LONGITUDE               = QObject::tr("Longitude");
-static const QString LATITUDE                = QObject::tr("Latitude");
-static const QString COUNTRY                 = QObject::tr("Country");
-static const QString REGION                  = QObject::tr("Region");
-static const QString CITY                    = QObject::tr("City");
-static const QString ISP                     = QObject::tr("Service provider");
-static const QString IP                      = QObject::tr("IP Address");
-static const QString TIMEZONE                = QObject::tr("Timezone");
-static const QString ZIPCODE                 = QObject::tr("Zipcode");
-static const QString OPENWEATHERMAP_APIKEY   = QObject::tr("OpenWeatherMap API Key");
-static const QString TEMP_UNITS              = QObject::tr("Units");
-static const QString UPDATE_INTERVAL         = QObject::tr("Update interval");
-static const QString MAPS_TAB_ENABLED        = QObject::tr("Maps tab enabled");
-static const QString USE_DNS_GEOLOCATION     = QObject::tr("Use DNS Geolocation");
-static const QString USE_GEOLOCATION_SERVICE = QObject::tr("Use ip-api.com services");
-static const QString ROAMING_ENABLED         = QObject::tr("Roaming enabled");
-static const QString THEME                   = QObject::tr("Light theme used");
-static const QString TRAY_ICON_TYPE          = QObject::tr("Tray icon type");
-static const QString TRAY_TEXT_COLOR         = QObject::tr("Tray text color");
-static const QString TRAY_TEXT_COLOR_MODE    = QObject::tr("Tray text color mode");
-static const QString TRAY_TEXT_SIZE          = QObject::tr("Tray text size");
-static const QString TRAY_DYNAMIC_MIN_COLOR  = QObject::tr("Tray text color dynamic minimum");
-static const QString TRAY_DYNAMIC_MAX_COLOR  = QObject::tr("Tray text color dynamic maximum");
-static const QString TRAY_DYNAMIC_MIN_VALUE  = QObject::tr("Tray text color dynamic minimum value");
-static const QString TRAY_DYNAMIC_MAX_VALUE  = QObject::tr("Tray text color dynamic maximum value");
-static const QString UPDATE_CHECKS_FREQUENCY = QObject::tr("Update checks frequency");
-static const QString UPDATE_LAST_CHECK       = QObject::tr("Update last check");
-static const QString AUTOSTART               = QObject::tr("Autostart");
-static const QString LAST_TAB                = QObject::tr("Last tab");
-static const QString LAST_MAP_LAYER          = QObject::tr("Last map layer");
-static const QString LAST_STREET_LAYER       = QObject::tr("Last street layer");
-
-//--------------------------------------------------------------------
-void saveConfiguration(const Configuration &configuration)
-{
-  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
-
-  if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
-  if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
-
-  settings.setValue(LONGITUDE,               configuration.longitude);
-  settings.setValue(LATITUDE,                configuration.latitude);
-  settings.setValue(COUNTRY,                 configuration.country);
-  settings.setValue(REGION,                  configuration.region);
-  settings.setValue(CITY,                    configuration.city);
-  settings.setValue(ISP,                     configuration.isp);
-  settings.setValue(IP,                      configuration.ip);
-  settings.setValue(TIMEZONE,                configuration.timezone);
-  settings.setValue(ZIPCODE,                 configuration.zipcode);
-  settings.setValue(OPENWEATHERMAP_APIKEY,   configuration.owm_apikey);
-  settings.setValue(TEMP_UNITS,              static_cast<int>(configuration.units));
-  settings.setValue(UPDATE_INTERVAL,         configuration.updateTime);
-  settings.setValue(MAPS_TAB_ENABLED,        configuration.mapsEnabled);
-  settings.setValue(USE_DNS_GEOLOCATION,     configuration.useDNS);
-  settings.setValue(USE_GEOLOCATION_SERVICE, configuration.useGeolocation);
-  settings.setValue(ROAMING_ENABLED,         configuration.roamingEnabled);
-  settings.setValue(THEME,                   configuration.lightTheme);
-  settings.setValue(TRAY_ICON_TYPE,          configuration.iconType);
-  settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor.name(QColor::HexArgb));
-  settings.setValue(TRAY_TEXT_COLOR_MODE,    configuration.trayTextMode);
-  settings.setValue(TRAY_TEXT_SIZE,          configuration.trayTextSize);
-  settings.setValue(TRAY_DYNAMIC_MIN_COLOR,  configuration.minimumColor.name(QColor::HexArgb));
-  settings.setValue(TRAY_DYNAMIC_MAX_COLOR,  configuration.maximumColor.name(QColor::HexArgb));
-  settings.setValue(TRAY_DYNAMIC_MIN_VALUE,  configuration.minimumValue);
-  settings.setValue(TRAY_DYNAMIC_MAX_VALUE,  configuration.maximumValue);
-  settings.setValue(UPDATE_CHECKS_FREQUENCY, static_cast<int>(configuration.update));
-  settings.setValue(UPDATE_LAST_CHECK,       configuration.lastCheck);
-  settings.setValue(AUTOSTART,               configuration.autostart);
-  settings.setValue(LAST_TAB,                configuration.lastTab);
-  settings.setValue(LAST_MAP_LAYER,          configuration.lastLayer);
-  settings.setValue(LAST_STREET_LAYER,       configuration.lastStreetLayer);
-
-  settings.sync();
-}
-
-//--------------------------------------------------------------------
-void loadConfiguration(Configuration &configuration)
-{
-  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
-
-  configuration.longitude       = settings.value(LONGITUDE, -181.0).toDouble();
-  configuration.latitude        = settings.value(LATITUDE, -91.0).toDouble();
-  configuration.country         = settings.value(COUNTRY, QString()).toString();
-  configuration.region          = settings.value(REGION, QString()).toString();
-  configuration.city            = settings.value(CITY, QString()).toString();
-  configuration.isp             = settings.value(ISP, QString()).toString();
-  configuration.ip              = settings.value(IP, QString()).toString();
-  configuration.timezone        = settings.value(TIMEZONE, QString()).toString();
-  configuration.zipcode         = settings.value(ZIPCODE, QString()).toString();
-  configuration.owm_apikey      = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
-  configuration.units           = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
-  configuration.updateTime      = settings.value(UPDATE_INTERVAL, 15).toUInt();
-  configuration.mapsEnabled     = settings.value(MAPS_TAB_ENABLED, true).toBool();
-  configuration.useDNS          = settings.value(USE_DNS_GEOLOCATION, false).toBool();
-  configuration.useGeolocation  = settings.value(USE_GEOLOCATION_SERVICE, true).toBool();
-  configuration.roamingEnabled  = settings.value(ROAMING_ENABLED, false).toBool();
-  configuration.lightTheme      = settings.value(THEME, true).toBool();
-  configuration.iconType        = settings.value(TRAY_ICON_TYPE, 0).toUInt();
-  configuration.trayTextColor   = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
-  configuration.trayTextMode    = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
-  configuration.trayTextSize    = settings.value(TRAY_TEXT_SIZE, 250).toUInt();
-  configuration.minimumColor    = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
-  configuration.maximumColor    = QColor(settings.value(TRAY_DYNAMIC_MAX_COLOR, "#FFFF0000").toString());
-  configuration.minimumValue    = settings.value(TRAY_DYNAMIC_MIN_VALUE, -15).toInt();
-  configuration.maximumValue    = settings.value(TRAY_DYNAMIC_MAX_VALUE, 45).toInt();
-  configuration.update          = static_cast<Update>(settings.value(UPDATE_CHECKS_FREQUENCY, 2).toInt());
-  configuration.lastCheck       = settings.value(UPDATE_LAST_CHECK, QDateTime()).toDateTime();
-  configuration.autostart       = settings.value(AUTOSTART, false).toBool();
-  configuration.lastTab         = settings.value(LAST_TAB, 0).toInt();
-  configuration.lastLayer       = settings.value(LAST_MAP_LAYER, "temperature").toString();
-  configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
-
-  if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
-  if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
-}
 
 //-----------------------------------------------------------------
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -200,7 +82,7 @@ int main(int argc, char *argv[])
   }
 
   Configuration configuration;
-  loadConfiguration(configuration);
+  load(configuration);
 
   if(!configuration.isValid())
   {
@@ -211,7 +93,7 @@ int main(int argc, char *argv[])
 
     if(configuration.isValid())
     {
-      saveConfiguration(configuration);
+      save(configuration);
     }
     else
     {
@@ -237,6 +119,7 @@ int main(int argc, char *argv[])
   }
 
   qApp->setStyleSheet(sheet);
+  QObject::connect(qApp, &QCoreApplication::aboutToQuit, [&configuration](){ save(configuration); });
 
   TrayWeather application{configuration};
   application.show();
@@ -244,8 +127,6 @@ int main(int argc, char *argv[])
   auto resultValue = app.exec();
 
   qDebug() << "terminated with value" << resultValue;
-
-  saveConfiguration(configuration);
 
   return resultValue;
 }

@@ -426,6 +426,8 @@ void TrayWeather::showConfiguration()
   }
 
   updateTooltip();
+
+  save(m_configuration);
 }
 
 //--------------------------------------------------------------------

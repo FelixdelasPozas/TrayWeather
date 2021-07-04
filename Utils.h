@@ -123,6 +123,18 @@ struct Configuration
     }
 };
 
+/** \brief Loads the application configuration from the system registry.
+ * \param[out] configuration Application Configuration struct.
+ *
+ */
+void load(Configuration &configuration);
+
+/** \brief Saves the application configuration to the system registry.
+ * \param[in] configuration Application Configuration struct.
+ *
+ */
+void save(const Configuration &configuration);
+
 /** \struct ForecastData
  * \brief Contains the weather forecast data for a given time.
  *
