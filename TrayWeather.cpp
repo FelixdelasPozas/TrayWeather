@@ -490,7 +490,7 @@ void TrayWeather::updateTooltip()
                               .arg(tempString)
                               .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
 
-  QPixmap pixmap = weatherPixmap(m_current);
+  QPixmap pixmap = weatherPixmap(m_current).scaled(384,384,Qt::KeepAspectRatio, Qt::SmoothTransformation);
   QPainter painter(&pixmap);
 
   auto interpolate = [this](int temp)
@@ -526,9 +526,9 @@ void TrayWeather::updateTooltip()
     case 2:
       {
         const auto roundedTemp = static_cast<int>(std::nearbyint(temperature));
-        const auto tempRoundString = QString::number(roundedTemp);
+        const auto roundedString = QString::number(roundedTemp);
         QFont font = painter.font();
-        font.setPixelSize(m_configuration.trayTextSize - (tempRoundString.length() - 3) * 50);
+        font.setPixelSize(m_configuration.trayTextSize - ((roundedString.length() - 3) * 50));
         font.setBold(true);
         painter.setFont(font);
 
@@ -544,7 +544,7 @@ void TrayWeather::updateTooltip()
 
         painter.setPen(color);
         painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
-        painter.drawText(pixmap.rect(), Qt::AlignCenter, tempRoundString);
+        painter.drawText(pixmap.rect(), Qt::AlignCenter, roundedString);
       }
       break;
   }
@@ -553,8 +553,9 @@ void TrayWeather::updateTooltip()
   icon = QIcon(pixmap);
 
   setToolTip(tooltip);
-  if(m_additionalTray) m_additionalTray->setToolTip(tooltip);
   setIcon(icon);
+
+  if(m_additionalTray) m_additionalTray->setToolTip(tooltip);
 }
 
 //--------------------------------------------------------------------

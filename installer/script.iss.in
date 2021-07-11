@@ -47,4 +47,4 @@ Name: "{group}\Tray Weather"; Filename: "{app}\TrayWeather.exe"; WorkingDir: "{a
 Name: "{group}\Uninstall Tray Weather"; Filename: "{uninstallexe}"
 
 [Run]
-Filename: "{app}\TrayWeather.exe"; Description: "Launch Tray Weather"; Flags: postinstall nowait skipifsilent unchecked
+Filename: "{app}\TrayWeather.exe"; Description: "Launch Tray Weather"; Flags: postinstall nowait skipifsilent
