@@ -51,15 +51,17 @@ The temperature text color can be set by the user or can change dynamically betw
 ![icon_temp](https://user-images.githubusercontent.com/12167134/85929400-b6e05280-b8b4-11ea-9574-bf27537f38e3.png)
 
 Configuration dialog. It shows the detected location properties and the options to change the frequency of updates and temperature units. The OpenWeatherMap API Key must be entered here. If the location is better guessed with the DNS IP instead of the IP given by the provider the option
-can be enabled here. Also a 'roaming' mode can be enabled, where the geographical coordinates are requested before any weather data request, so the 
+can be enabled here. A 'roaming' mode can be enabled, where the geographical coordinates are requested before any weather data request, so the 
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
 The tray and application theme configuration can be found here in the miscellaneous options. Also the frequency of checks for updates can be set here.
 
-![config](https://user-images.githubusercontent.com/12167134/121784619-3003b300-cbb5-11eb-949f-8f45ae26befb.png)
+Configuration dialog, with the application light theme, in spanish.
 
-Configuration dialog, with the application dark theme.
+![config](https://user-images.githubusercontent.com/12167134/126078725-dbd729e7-7490-44ab-b938-5dd26ba00d7e.png)
 
-![config_dark](https://user-images.githubusercontent.com/12167134/121784618-2f6b1c80-cbb5-11eb-83b8-c1182007a32c.png)
+Configuration dialog, with the application dark theme, in english.
+
+![config_dark](https://user-images.githubusercontent.com/12167134/126078727-7a66a6aa-0fb7-487e-8e06-5baba72f8bac.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -86,7 +88,7 @@ the rest of the application so the user can be disable them using the button bel
 
 # Repository information
 
-**Version**: 1.8.6
+**Version**: 1.9.0
 
 **Status**: finished.
 
@@ -94,8 +96,8 @@ the rest of the application so the user can be disable them using the button bel
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 540         |   241            | 2463 |
-| C/C++ Header                 |   8           | 166         |   451            |  606 |
+| C++                          |   8           | 581         |   255            | 2641 |
+| C/C++ Header                 |   8           | 175         |   482            |  636 |
 | HTML                         |   1           |  34         |     0            |  150 |
-| CMake                        |   1           |  16         |    11            |   98 |
-| **Total**                    | **18**        | **756**     | **703**          | **3317** |
+| CMake                        |   1           |  16         |    11            |  106 |
+| **Total**                    | **18**        | **808**     | **748**          | **3533** |

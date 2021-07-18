@@ -594,6 +594,8 @@ void ConfigurationDialog::changeEvent(QEvent *e)
       const auto translation = QApplication::translate("QObject", TRANSLATIONS.at(i).name.toUtf8(), 0);
       m_languageCombo->setItemText(i, translation);
     }
+
+    requestOpenWeatherMapAPIKeyTest();
   }
 
   QDialog::changeEvent(e);
