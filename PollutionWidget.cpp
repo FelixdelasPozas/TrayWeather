@@ -41,42 +41,51 @@ PollutionWidget::PollutionWidget(const PollutionData& data)
   layout()->setMargin(3);
   layout()->setContentsMargins(QMargins{5,5,5,5});
 
-  const QString units = tr("µg/m<sup>3</sup>");
+  const QString units{"µg/m<sup>3</sup>"};
 
   struct tm t;
   unixTimeStampToDate(t, data.dt);
   QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+
   m_dateTime->setText(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm")));
   m_description->setText(data.aqi_text);
-  m_co->setText(tr("<font color=%1><b>CO:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(0).name()).arg(data.co).arg(units));
-  m_no->setText(tr("<font color=%1><b>NO:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(1).name()).arg(data.no).arg(units));
-  m_no2->setText(tr("<font color=%1><b>NO<sub>2</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(2).name()).arg(data.no2).arg(units));
-  m_o3->setText(tr("<font color=%1><b>O<sub>3</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(3).name()).arg(data.o3).arg(units));
-  m_so2->setText(tr("<font color=%1><b>SO<sub>2</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(4).name()).arg(data.so2).arg(units));
-  m_pm25->setText(tr("<font color=%1><b>PM<sub>2.5</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(5).name()).arg(data.pm2_5).arg(units));
-  m_pm10->setText(tr("<font color=%1><b>PM<sub>10</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(6).name()).arg(data.pm10).arg(units));
-  m_nh3->setText(tr("<font color=%1><b>NH<sub>3</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(7).name()).arg(data.nh3).arg(units));
+  m_co->setText(QString("<font color=%1><b>CO:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(0).name()).arg(data.co).arg(units));
+  m_no->setText(QString("<font color=%1><b>NO:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(1).name()).arg(data.no).arg(units));
+  m_no2->setText(QString("<font color=%1><b>NO<sub>2</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(2).name()).arg(data.no2).arg(units));
+  m_o3->setText(QString("<font color=%1><b>O<sub>3</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(3).name()).arg(data.o3).arg(units));
+  m_so2->setText(QString("<font color=%1><b>SO<sub>2</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(4).name()).arg(data.so2).arg(units));
+  m_pm25->setText(QString("<font color=%1><b>PM<sub>2.5</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(5).name()).arg(data.pm2_5).arg(units));
+  m_pm10->setText(QString("<font color=%1><b>PM<sub>10</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(6).name()).arg(data.pm10).arg(units));
+  m_nh3->setText(QString("<font color=%1><b>NH<sub>3</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(7).name()).arg(data.nh3).arg(units));
 
-  QString description(tr("<b>Air Quality: "));
+  const auto airStr = tr("Air Quality");
+
+  QString colorStr, qualityStr;
   switch(data.aqi)
   {
     case 1:
-      description += tr("<font color=green>Good</font></b>");
+      colorStr = "green";
+      qualityStr = tr("Good");
       break;
     case 2:
-      description += tr("<font color=cyan><b>Fair</font></b>");
+      colorStr = "cyan";
+      qualityStr = tr("Fair");
       break;
     case 3:
-      description += tr("<font color=blue><b>Moderate</font></b>");
+      colorStr = "blue";
+      qualityStr = tr("Moderate");
       break;
     case 4:
-      description += tr("<font color=purple><b>Poor</font></b>");
+      colorStr = "purple";
+      qualityStr = tr("Poor");
       break;
     default:
-      description += tr("<font color=red><b>Very poor</font></b>");
+      colorStr = "red";
+      qualityStr = tr("Very poor");
       break;
   }
-  m_description->setText(description);
+
+  m_description->setText(QString("<b>%1: <font color=%2>%3</font></b>").arg(airStr).arg(colorStr).arg(qualityStr));
 }
 
 //--------------------------------------------------------------------
@@ -91,5 +100,13 @@ void PollutionWidget::paintEvent(QPaintEvent* event)
   QWidget::paintEvent(event);
 }
 
+//--------------------------------------------------------------------
+void PollutionWidget::changeEvent(QEvent *e)
+{
+  if(e && e->type() == QEvent::LanguageChange)
+  {
+    retranslateUi(this);
+  }
 
-
+  QWidget::changeEvent(e);
+}

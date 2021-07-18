@@ -63,7 +63,7 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
   m_weatherChart->setToolTip(tr("Weather forecast for the next days."));
   m_weatherChart->setContentsMargins(0, 0, 0, 0);
 
-  m_tabWidget->addTab(m_weatherChart, QIcon(), "Forecast");
+  m_tabWidget->addTab(m_weatherChart, QIcon(), tr("Forecast"));
 
   m_pollutionChart = new QChartView;
   m_pollutionChart->setRenderHint(QPainter::Antialiasing);
@@ -72,7 +72,7 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
   m_pollutionChart->setToolTip(tr("Pollution forecast for the next days."));
   m_pollutionChart->setContentsMargins(0, 0, 0, 0);
 
-  m_tabWidget->addTab(m_pollutionChart, QIcon(), "Pollution");
+  m_tabWidget->addTab(m_pollutionChart, QIcon(), tr("Pollution"));
 
   connect(m_reset, SIGNAL(clicked()),
           this,    SLOT(onResetButtonPressed()));
@@ -102,52 +102,61 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   struct tm t;
   unixTimeStampToDate(t, current.dt);
   QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-  auto temperatureUnits = (config.units == Temperature::CELSIUS ? tr("ºC") : tr("Fº"));
+  auto temperatureUnits = (config.units == Temperature::CELSIUS ? "ºC" : "Fº");
+
+  // translation
+  const auto windUnits = tr("meter/sec");
+  const auto illuStr   = tr("Illumination");
+  const auto currStr   = tr("Current weather");
+  const auto noneStr   = tr("None");
+  const auto unknStr   = tr("Unknown");
+  const auto tempStr   = tr("Temperature");
+  const auto rainStr   = tr("Rain accumulation");
 
   if(config.useGeolocation)
   {
-    m_location->setText(tr("%1, %2 - %3").arg(config.city).arg(config.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
+    m_location->setText(QString("%1, %2 - %3").arg(config.city).arg(config.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
   }
   else
   {
-    m_location->setText(tr("%1, %2 - %3").arg(current.name).arg(current.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
+    m_location->setText(QString("%1, %2 - %3").arg(current.name).arg(current.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
   }
   m_moon->setPixmap(moonPixmap(current).scaled(QSize{64,64}));
   m_description->setText(toTitleCase(current.description));
   m_icon->setPixmap(weatherPixmap(current).scaled(QSize{236,236}));
-  m_temp->setText(tr("%1 %2").arg(convertKelvinTo(current.temp, config.units)).arg(temperatureUnits));
-  m_temp_max->setText(tr("%1 %2").arg(convertKelvinTo(current.temp_max, config.units)).arg(temperatureUnits));
-  m_temp_min->setText(tr("%1 %2").arg(convertKelvinTo(current.temp_min, config.units)).arg(temperatureUnits));
-  m_cloudiness->setText(tr("%1%").arg(current.cloudiness));
-  m_humidity->setText(tr("%1%").arg(current.humidity));
-  m_pressure->setText(tr("%1 hPa").arg(current.pressure));
-  m_wind_speed->setText(tr("%1 meter/sec").arg(current.wind_speed));
-  m_wind_dir->setText(tr("%1 º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
+  m_temp->setText(QString("%1 %2").arg(convertKelvinTo(current.temp, config.units)).arg(temperatureUnits));
+  m_temp_max->setText(QString("%1 %2").arg(convertKelvinTo(current.temp_max, config.units)).arg(temperatureUnits));
+  m_temp_min->setText(QString("%1 %2").arg(convertKelvinTo(current.temp_min, config.units)).arg(temperatureUnits));
+  m_cloudiness->setText(QString("%1%").arg(current.cloudiness));
+  m_humidity->setText(QString("%1%").arg(current.humidity));
+  m_pressure->setText(QString("%1 hPa").arg(current.pressure));
+  m_wind_speed->setText(QString("%1 %2").arg(current.wind_speed).arg(windUnits));
+  m_wind_dir->setText(QString("%1 º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
 
   double illuminationPercent = 0;
   const auto moonPhase = moonPhaseText(current.dt, illuminationPercent);
   m_moon_phase->setText(moonPhase);
-  m_illumination->setText(tr("%1% Illumination").arg(static_cast<int>(illuminationPercent * 100)));
+  m_illumination->setText(QString("%1% %2").arg(static_cast<int>(illuminationPercent * 100)).arg(illuStr));
 
   m_moon->setToolTip(moonTooltip(current.dt));
-  m_icon->setToolTip(tr("Current weather: %1").arg(current.description));
+  m_icon->setToolTip(QString("%1: %2").arg(currStr).arg(current.description));
 
   if(current.rain == 0)
   {
-    m_rain->setText("None");
+    m_rain->setText(noneStr);
   }
   else
   {
-    m_rain->setText(tr("%1 mm").arg(current.rain));
+    m_rain->setText(QString("%1 mm").arg(current.rain));
   }
 
   if(current.snow == 0)
   {
-    m_snow->setText("None");
+    m_snow->setText(noneStr);
   }
   else
   {
-    m_snow->setText(tr("%1 mm").arg(current.snow));
+    m_snow->setText(QString("%1 mm").arg(current.snow));
   }
 
   if(current.sunrise != 0)
@@ -158,7 +167,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
   else
   {
-    m_sunrise->setText("Unknown");
+    m_sunrise->setText(unknStr);
   }
 
   if(current.sunset != 0)
@@ -169,23 +178,23 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
   else
   {
-    m_sunset->setText("Unknown");
+    m_sunset->setText(unknStr);
   }
 
   // Forecast tab
   auto axisX = new QDateTimeAxis();
   axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
-  axisX->setFormat("dd (hh)");
-  axisX->setTitleText("Day (Hour)");
+  axisX->setFormat(tr("dd (hh)"));
+  axisX->setTitleText(tr("Day (Hour)"));
 
   auto axisYTemp = new QValueAxis();
   axisYTemp->setLabelFormat("%i");
-  axisYTemp->setTitleText(tr("Temperature in %1").arg(temperatureUnits));
+  axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(temperatureUnits));
 
   auto axisYRain = new QValueAxis();
   axisYRain->setLabelFormat("%.2f");
-  axisYRain->setTitleText("Rain accumulation in mm");
+  axisYRain->setTitleText(tr("%1 in mm").arg(rainStr));
 
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
@@ -203,12 +212,12 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   pen.setColor(QColor{90,90,235});
 
   m_temperatureLine = new QSplineSeries(forecastChart);
-  m_temperatureLine->setName(tr("Temperature"));
+  m_temperatureLine->setName(tempStr);
   m_temperatureLine->setUseOpenGL(true);
   m_temperatureLine->setPointsVisible(true);
   m_temperatureLine->setPen(pen);
 
-  auto bars = new QBarSet("Rain accumulation");
+  auto bars = new QBarSet(rainStr);
   bars->setColor(QColor{100,235,100});
 
   auto rainBars = new QBarSeries(forecastChart);
@@ -306,7 +315,6 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
 
   // Maps tab handled on showEvent to avoid main widget resize problem.
-
   onResetButtonPressed();
 }
 
@@ -458,7 +466,7 @@ void WeatherDialog::onMapsButtonPressed()
     m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, false);
     m_webpage->settings()->setAttribute(QWebSettings::AcceleratedCompositingEnabled, true);
     m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanCloseWindows, false);
-    m_webpage->setToolTip("Weather Maps.");
+    m_webpage->setToolTip(tr("Weather Maps."));
 
     connect(m_webpage, SIGNAL(loadFinished(bool)),
             this,      SLOT(onLoadFinished(bool)));
@@ -466,26 +474,9 @@ void WeatherDialog::onMapsButtonPressed()
     connect(m_webpage, SIGNAL(loadProgress(int)),
             this,      SLOT(onLoadProgress(int)));
 
-    m_tabWidget->addTab(m_webpage, QIcon(), "Maps");
+    m_tabWidget->addTab(m_webpage, QIcon(), tr("Maps"));
 
-    QFile webfile(":/TrayWeather/webpage.html");
-    if(webfile.open(QFile::ReadOnly))
-    {
-      QString webpage{webfile.readAll()};
-
-      webpage.replace("%%lat%%", QString::number(m_config->latitude));
-      webpage.replace("%%lon%%", QString::number(m_config->longitude));
-      webpage.replace("{api_key}", m_config->owm_apikey);
-      webpage.replace("%%streetmap%%", m_config->lastStreetLayer);
-      webpage.replace("%%layermap%%", m_config->lastLayer);
-
-      m_webpage->setHtml(webpage);
-      webfile.close();
-    }
-    else
-    {
-      m_webpage->setHtml("<h1>Unable to load weather webpage</h1>");
-    }
+    loadMaps();
   }
 }
 
@@ -494,7 +485,8 @@ void WeatherDialog::onLoadProgress(int progress)
 {
   if(mapsEnabled())
   {
-    m_tabWidget->setTabText(3, QObject::tr("Maps (%1%)").arg(progress, 2, 10, QChar('0')));
+    const auto mapsStr = tr("Maps");
+    m_tabWidget->setTabText(3, QString("%1 (%2%)").arg(mapsStr).arg(progress, 2, 10, QChar('0')));
   }
 }
 
@@ -522,13 +514,37 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 {
   m_pollution = &data;
 
-  m_air_quality->setText(m_pollution->empty() ? "Unknown":m_pollution->first().aqi_text);
+  QString qualityStr = tr("Unknown");
+
+  if(!m_pollution->empty())
+  {
+    switch(m_pollution->first().aqi)
+    {
+      case 1:
+        qualityStr = tr("Good");
+        break;
+      case 2:
+        qualityStr = tr("Fair");
+        break;
+      case 3:
+        qualityStr = tr("Moderate");
+        break;
+      case 4:
+        qualityStr = tr("Poor");
+        break;
+      default:
+        qualityStr = tr("Very poor");
+        break;
+    }
+  }
+
+  m_air_quality->setText(qualityStr);
 
   auto axisX = new QDateTimeAxis();
   axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
-  axisX->setFormat("dd (hh)");
-  axisX->setTitleText("Day (Hour)");
+  axisX->setFormat(tr("dd (hh)"));
+  axisX->setTitleText(tr("Day (Hour)"));
   axisX->setGridLineColor(Qt::gray);
 
   auto axisY = new QValueAxis();
@@ -553,7 +569,7 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     pens[i].setWidth(2);
     pens[i].setColor(CONCENTRATION_COLORS[i]);
     m_pollutionLine[i] = new QSplineSeries(forecastChart);
-    m_pollutionLine[i]->setName(tr("%1").arg(CONCENTRATION_NAMES.at(i)));
+    m_pollutionLine[i]->setName(CONCENTRATION_NAMES.at(i));
     m_pollutionLine[i]->setUseOpenGL(true);
     m_pollutionLine[i]->setPointsVisible(true);
     m_pollutionLine[i]->setPen(pens[i]);
@@ -759,7 +775,16 @@ void WeatherDialog::updateMapLayerValues()
     auto value = m_webpage->page()->mainFrame()->evaluateJavaScript("customGetLayer();");
     if(!value.isNull())
     {
-      m_config->lastLayer = value.toString().toLower();
+      auto result = value.toString();
+
+      QStringList translations, original;
+      translations << tr("Temperature") << tr("Rain") << tr("Wind") << tr("Clouds");
+      original     << "temperature"     << "rain"     << "wind"     << "clouds";
+
+      const auto it = std::find(translations.cbegin(), translations.cend(), result);
+      int dist = 0;
+      if(it != translations.cend()) dist = std::distance(translations.cbegin(), it);
+      m_config->lastLayer = original.at(dist);
     }
 
     value = m_webpage->page()->mainFrame()->evaluateJavaScript("customGetStreet();");
@@ -767,5 +792,55 @@ void WeatherDialog::updateMapLayerValues()
     {
       m_config->lastStreetLayer = value.toString().compare("OpenStreetMap", Qt::CaseInsensitive) == 0 ? "mapnik":"mapnikbw";
     }
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::changeEvent(QEvent *e)
+{
+  if(e && e->type() == QEvent::LanguageChange)
+  {
+    retranslateUi(this);
+
+    if(mapsEnabled())
+    {
+      loadMaps();
+    }
+  }
+
+  QDialog::changeEvent(e);
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::loadMaps()
+{
+  QFile webfile(":/TrayWeather/webpage.html");
+  if(webfile.open(QFile::ReadOnly))
+  {
+    QString webpage{webfile.readAll()};
+
+    // translation
+    QStringList translations;
+    translations << tr("Temperature") << tr("Rain") << tr("Wind") << tr("Clouds");
+
+    webpage.replace("%%tempStr%%", tr("Temperature"), Qt::CaseSensitive);
+    webpage.replace("%%rainStr%%", tr("Rain"), Qt::CaseSensitive);
+    webpage.replace("%%windStr%%", tr("Wind"), Qt::CaseSensitive);
+    webpage.replace("%%cloudStr%%", tr("Clouds"), Qt::CaseSensitive);
+
+    // config
+    webpage.replace("%%lat%%", QString::number(m_config->latitude), Qt::CaseSensitive);
+    webpage.replace("%%lon%%", QString::number(m_config->longitude), Qt::CaseSensitive);
+    webpage.replace("{api_key}", m_config->owm_apikey, Qt::CaseSensitive);
+    webpage.replace("%%streetmap%%", m_config->lastStreetLayer, Qt::CaseSensitive);
+    webpage.replace("%%layermap%%", m_config->lastLayer, Qt::CaseSensitive);
+
+    m_webpage->setHtml(webpage);
+    webfile.close();
+  }
+  else
+  {
+    const auto message = tr("Unable to load weather webpage");
+    m_webpage->setHtml(QString("<p style=\"color:red\"><h1>%1</h1></p>").arg(message));
   }
 }

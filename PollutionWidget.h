@@ -35,6 +35,7 @@ class PollutionWidget
 : public QWidget
 , public Ui::PollutionWidget
 {
+    Q_OBJECT
   public:
     /** \brief PollutionWidget class constructor.
      * \param[in] data pollution forecast data entry.
@@ -50,6 +51,7 @@ class PollutionWidget
 
   protected:
     virtual void paintEvent(QPaintEvent *event) override;
+    virtual void changeEvent(QEvent *e) override;
 };
 
 #endif // POLLUTIONWIDGET_H_

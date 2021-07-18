@@ -87,7 +87,8 @@ class WeatherDialog
     void mapsEnabled(bool);
 
   protected:
-    virtual void showEvent(QShowEvent *e);
+    virtual void showEvent(QShowEvent *e) override;
+    virtual void changeEvent(QEvent *e) override;
 
   private slots:
     /** \brief Shows weather data when the user hovers on the temperature line.
@@ -146,6 +147,11 @@ class WeatherDialog
      *
      */
     void updateMapLayerValues();
+
+    /** \brief Loads and translated the web page of the maps.
+     *
+     */
+    void loadMaps();
 
 
     QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.          */

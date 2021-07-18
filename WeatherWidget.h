@@ -35,6 +35,7 @@ class WeatherWidget
 : public QWidget
 , public Ui::WeatherWidget
 {
+    Q_OBJECT
   public:
     /** \brief TooltipWidget class constructor.
      * \param[in] data forecast data entry.
@@ -51,6 +52,7 @@ class WeatherWidget
 
   protected:
     virtual void paintEvent(QPaintEvent *event) override;
+    virtual void changeEvent(QEvent *e) override;
 };
 
 #endif // WEATHERWIDGET_H_

@@ -39,6 +39,33 @@ enum class Update: char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
 static const QStringList MAP_LAYERS = { "temperature", "rain", "clouds", "wind" };
 static const QStringList MAP_STREET = { "mapnik", "mapnikbw" };
 
+/** \struct LanguageData
+ * \brief Contains a translation data.
+ *
+ */
+struct LanguageData
+{
+    QString name;
+    QString icon;
+    QString file;
+
+    /** \brief LanguageData constructor.
+     * \param[in] n Language name.
+     * \param[in] i Language flag icon path in resources.
+     * \param[in] f Filename of the translation file without extension.
+     *
+     */
+    LanguageData(const QString n, const QString i, const QString f ): name{n}, icon{i}, file{f} {};
+};
+
+/** Translations
+ *
+ */
+static QList<LanguageData> TRANSLATIONS = {
+    { QObject::tr("English"), ":/TrayWeather/languages/en.svg", "en_EN" } ,
+    { QObject::tr("Spanish"), ":/TrayWeather/languages/es.svg", "es_ES" }
+};
+
 /** \struct Configuration
  * \brief Contains the application configuration.
  *
@@ -76,6 +103,7 @@ struct Configuration
     int          lastTab;         /** last tab visualized.                                        */
     QString      lastLayer;       /** last maps layer used: temperature, rain, clouds, wind.      */
     QString      lastStreetLayer; /** last street layer used: mapnik, mapnikbw.                   */
+    QString      language;        /** application language.                                       */
 
 
     /** \brief Configuration struct constructor.
@@ -113,6 +141,7 @@ struct Configuration
     , lastTab        {0}
     , lastLayer      {"temperature"}
     , lastStreetLayer{"mapnik"}
+    , language       {"en_EN"}
     {};
 
     bool isValid() const

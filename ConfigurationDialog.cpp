@@ -139,6 +139,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   setFixedSize(size());
   updateRange();
+  updateLanguageCombo(configuration.language);
 }
 
 //--------------------------------------------------------------------
@@ -163,7 +164,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
       else
       {
         message = tr("Invalid reply from Geo-Locator server.\n.Couldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
-        details = tr("%1").arg(reply->errorString());
+        details = reply->errorString();
 
         auto box = std::make_shared<QMessageBox>(this);
         box->setWindowTitle(tr("Network Error"));
@@ -220,7 +221,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
       m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
 
       message = tr("Invalid reply from OpenWeatherMap server.");
-      details = tr("%1").arg(reply->errorString());
+      details = reply->errorString();
     }
   }
   else
@@ -277,7 +278,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
       m_ipapiLabel->setText(tr("Failure"));
 
       message = tr("Invalid reply from Geo-Locator server.");
-      details = tr("%1").arg(reply->errorString());
+      details = reply->errorString();
     }
   }
 
@@ -320,6 +321,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.maximumValue   = m_maxSpinBox->value();
   configuration.update         = static_cast<Update>(m_updatesCombo->currentIndex());
   configuration.autostart      = m_autostart->isChecked();
+  configuration.language       = m_languageCombo->itemData(m_languageCombo->currentIndex(), Qt::UserRole).toString();
 
   if(m_useManual->isChecked())
   {
@@ -369,9 +371,9 @@ void ConfigurationDialog::requestDNSIPGeolocation()
 //--------------------------------------------------------------------
 void ConfigurationDialog::requestOpenWeatherMapAPIKeyTest() const
 {
-  auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_latitude->text())
-                                                                                                     .arg(m_longitude->text())
-                                                                                                     .arg(m_apikey->text()))};
+  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_latitude->text())
+                                                                                                  .arg(m_longitude->text())
+                                                                                                  .arg(m_apikey->text())};
   m_netManager->get(QNetworkRequest{url});
 
   m_apiTest->setEnabled(false);
@@ -581,6 +583,23 @@ void ConfigurationDialog::showEvent(QShowEvent *e)
 }
 
 //--------------------------------------------------------------------
+void ConfigurationDialog::changeEvent(QEvent *e)
+{
+  if(e && e->type() == QEvent::LanguageChange)
+  {
+    retranslateUi(this);
+
+    for(int i = 0; i < m_languageCombo->count(); ++i)
+    {
+      const auto translation = QApplication::translate("QObject", TRANSLATIONS.at(i).name.toUtf8(), 0);
+      m_languageCombo->setItemText(i, translation);
+    }
+  }
+
+  QDialog::changeEvent(e);
+}
+
+//--------------------------------------------------------------------
 void ConfigurationDialog::onAutostartValueChanged(int value)
 {
   const QString APPLICATION_NAME{"TrayWeather"};
@@ -608,4 +627,28 @@ void ConfigurationDialog::onAutostartValueChanged(int value)
   {
     settings.sync();
   }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::updateLanguageCombo(const QString &current)
+{
+  int selected = 0;
+  for(int i = 0; i < TRANSLATIONS.size(); ++i)
+  {
+    const auto &lang = TRANSLATIONS.at(i);
+    const auto translated = QApplication::translate("QObject", lang.name.toUtf8());
+    m_languageCombo->addItem(QIcon(lang.icon), translated, lang.file);
+    if(lang.file.compare(current) == 0) selected = i;
+  }
+  m_languageCombo->setCurrentIndex(selected);
+
+  connect(m_languageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(onLanguageChanged(int)));
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onLanguageChanged(int index)
+{
+  auto idx = std::max(std::min(index, TRANSLATIONS.size() - 1), 0);
+
+  emit languageChanged(TRANSLATIONS.at(idx).file);
 }

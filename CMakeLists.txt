@@ -7,8 +7,8 @@ cmake_minimum_required (VERSION 3.0.0)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
-set (TRAYWEATHER_VERSION_MINOR 8)
-set (TRAYWEATHER_VERSION_PATCH 6)
+set (TRAYWEATHER_VERSION_MINOR 9)
+set (TRAYWEATHER_VERSION_PATCH 0)
 
 # Current year, used in configured files. 
 string(TIMESTAMP CURRENT_YEAR "%Y")
@@ -20,7 +20,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
 # Find the Qt5 library
-find_package(Qt5 COMPONENTS Widgets Network WebkitWidgets Charts)
+find_package(Qt5 COMPONENTS Widgets Network WebkitWidgets Charts LinguistTools)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated -std=c++11 -mwindows -m64")
@@ -83,10 +83,19 @@ include_directories(
   ${CHARTS_INCLUDE_DIRS}
   )
 
+set(TRANSLATIONS_TS_FILES
+  languages/es_ES.ts
+)
+
+qt5_add_translation(TRANSLATIONS_QM_FILES ${TRANSLATIONS_TS_FILES})
+add_custom_target(translations DEPENDS ${TRANSLATIONS_QM_FILES})
+configure_file(languages/translations.qrc ${CMAKE_BINARY_DIR} COPYONLY)
+
 # Add Qt Resource files
 qt5_add_resources(RESOURCES
   rsc/resources.qrc
   rsc/darktheme/style.qrc
+  ${CMAKE_BINARY_DIR}/translations.qrc
 )
 
 qt5_wrap_ui(CORE_UI
@@ -103,6 +112,7 @@ set (CORE_SOURCES
   ${CORE_SOURCES}
   ${RESOURCES}
   ${CORE_UI}
+  ${TRANSLATIONS_QM_FILES}
   Main.cpp
   Utils.cpp
   AboutDialog.cpp
@@ -119,7 +129,7 @@ set(CORE_EXTERNAL_LIBS
   Qt5::Network
   Qt5::WebKitWidgets
 )
-  
+ 
 add_executable(TrayWeather ${CORE_SOURCES})
 target_link_libraries (TrayWeather ${CORE_EXTERNAL_LIBS})
 qt5_use_modules(TrayWeather Widgets Network WebKitWidgets Charts)

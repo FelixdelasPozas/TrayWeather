@@ -25,8 +25,8 @@
 #include <QtGlobal>
 #include <QDateTime>
 
-const QString AboutDialog::VERSION = QString("1.8.6");
-const QString COPYRIGHT = QString("Copyright (c) 2016-%1 Félix de las Pozas Álvarez");
+const QString AboutDialog::VERSION{"1.9.0"};
+const QString COPYRIGHT{"Copyright (c) 2016-%1 Félix de las Pozas Álvarez"};
 
 //-----------------------------------------------------------------
 AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
@@ -38,11 +38,12 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
 
   auto compilation_date = QString(__DATE__);
   auto compilation_time = QString(" (") + QString(__TIME__) + QString(")");
+  const auto verStr = tr("version");
 
   m_compilationDate->setText(tr("Compiled on ") + compilation_date + compilation_time);
-  m_version->setText(tr("version %1").arg(VERSION));
-
-  m_qtVersion->setText(tr("version %1").arg(qVersion()));
+  m_version->setText(QString("%1 %2").arg(verStr).arg(VERSION));
+  m_qtVersion->setText(QString("%1 %2").arg(verStr).arg(qVersion()));
+  m_chartsVersion->setText(QString("%1 %2").arg(verStr).arg("2.1.0"));
   m_copyright->setText(COPYRIGHT.arg(QDateTime::currentDateTime().date().year()));
 }
 
@@ -52,4 +53,15 @@ void AboutDialog::showEvent(QShowEvent *e)
   QDialog::showEvent(e);
 
   scaleDialog(this);
+}
+
+//-----------------------------------------------------------------
+void AboutDialog::changeEvent(QEvent *e)
+{
+  if(e && e->type() == QEvent::LanguageChange)
+  {
+    retranslateUi(this);
+  }
+
+  QDialog::changeEvent(e);
 }

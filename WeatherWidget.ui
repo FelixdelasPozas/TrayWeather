@@ -46,7 +46,7 @@
         </font>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string notr="true">TextLabel</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -92,7 +92,7 @@
             </size>
            </property>
            <property name="text">
-            <string>icon</string>
+            <string notr="true">icon</string>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -111,7 +111,7 @@
             </font>
            </property>
            <property name="text">
-            <string>description</string>
+            <string notr="true">description</string>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -150,7 +150,7 @@
             </font>
            </property>
            <property name="text">
-            <string>temp</string>
+            <string notr="true">temp</string>
            </property>
           </widget>
          </item>
@@ -163,7 +163,7 @@
             </font>
            </property>
            <property name="text">
-            <string>cloudiness</string>
+            <string notr="true">cloudiness</string>
            </property>
           </widget>
          </item>
@@ -176,7 +176,7 @@
             </font>
            </property>
            <property name="text">
-            <string>humidity</string>
+            <string notr="true">humidity</string>
            </property>
           </widget>
          </item>
@@ -189,7 +189,7 @@
             </font>
            </property>
            <property name="text">
-            <string>pressure</string>
+            <string notr="true">pressure</string>
            </property>
           </widget>
          </item>
@@ -202,7 +202,7 @@
             </font>
            </property>
            <property name="text">
-            <string>rain</string>
+            <string notr="true">rain</string>
            </property>
           </widget>
          </item>
@@ -215,7 +215,7 @@
             </font>
            </property>
            <property name="text">
-            <string>snow</string>
+            <string notr="true">snow</string>
            </property>
           </widget>
          </item>

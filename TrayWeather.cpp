@@ -34,6 +34,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QPainter>
+#include <QFile>
 
 // C++
 #include <chrono>
@@ -59,6 +60,8 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
   createMenuEntries();
 
   requestData();
+
+  onLanguageChanged(configuration.language);
 }
 
 //--------------------------------------------------------------------
@@ -329,6 +332,8 @@ void TrayWeather::showConfiguration()
 
   m_configDialog = new ConfigurationDialog{m_configuration};
 
+  connect(m_configDialog, SIGNAL(languageChanged(const QString &)), this, SLOT(onLanguageChanged(const QString &)));
+
   const auto scr = QApplication::desktop()->screenGeometry();
   m_configDialog->move(scr.center() - m_configDialog->rect().center());
   m_configDialog->setModal(true);
@@ -337,10 +342,34 @@ void TrayWeather::showConfiguration()
   Configuration configuration;
   m_configDialog->getConfiguration(configuration);
 
+  disconnect(m_configDialog, SIGNAL(languageChanged(const QString &)), this, SLOT(onLanguageChanged(const QString &)));
   delete m_configDialog;
   m_configDialog = nullptr;
 
-  if(result != QDialog::Accepted) return;
+  if(result != QDialog::Accepted)
+  {
+    if(configuration.language != m_configuration.language)
+    {
+      onLanguageChanged(m_configuration.language);
+    }
+
+    if(configuration.lightTheme != m_configuration.lightTheme)
+    {
+      QString sheet;
+
+      if(!m_configuration.lightTheme)
+      {
+        QFile file(":qdarkstyle/style.qss");
+        file.open(QFile::ReadOnly | QFile::Text);
+        QTextStream ts(&file);
+        sheet = ts.readAll();
+      }
+
+      qApp->setStyleSheet(sheet);
+    }
+
+    return;
+  }
 
   m_configuration.lightTheme    = configuration.lightTheme;
   m_configuration.iconType      = configuration.iconType;
@@ -352,12 +381,13 @@ void TrayWeather::showConfiguration()
   m_configuration.minimumValue  = configuration.minimumValue;
   m_configuration.maximumValue  = configuration.maximumValue;
   m_configuration.autostart     = configuration.autostart;
+  m_configuration.language      = configuration.language;
 
   if(configuration.isValid())
   {
     auto menu = this->contextMenu();
 
-    if(menu && menu->actions().size() > 1 && menu->actions().first()->text().startsWith("Weather"))
+    if(menu && menu->actions().size() > 1)
     {
       QString iconLink = configuration.units == Temperature::CELSIUS ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
       QIcon icon{iconLink};
@@ -485,10 +515,10 @@ void TrayWeather::updateTooltip()
 
   const auto temperature = convertKelvinTo(m_current.temp, m_configuration.units);
   const auto tempString = QString::number(temperature, 'f', 1);
-  tooltip = tr("%1\n%2\n%3%4").arg(place.join(", "))
-                              .arg(toTitleCase(m_current.description))
-                              .arg(tempString)
-                              .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
+  tooltip = QString("%1\n%2\n%3%4").arg(place.join(", "))
+                                   .arg(toTitleCase(m_current.description))
+                                   .arg(tempString)
+                                   .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
 
   QPixmap pixmap = weatherPixmap(m_current).scaled(384,384,Qt::KeepAspectRatio, Qt::SmoothTransformation);
   QPainter painter(&pixmap);
@@ -687,19 +717,16 @@ void TrayWeather::showTab()
   const auto caller = qobject_cast<QAction *>(sender());
   if(caller)
   {
-    const auto text = caller->text();
+    auto actions = contextMenu()->actions();
 
-    if(text.startsWith("Current", Qt::CaseInsensitive))
-      lastTab = 0;
-    else
-      if(text.startsWith("Forecast", Qt::CaseInsensitive))
-        lastTab = 1;
-      else
-        if(text.startsWith("Pollution", Qt::CaseInsensitive))
-          lastTab = 2;
-        else
-          if(text.startsWith("Maps", Qt::CaseInsensitive))
-            lastTab = 3;
+    for(const auto i: {0,1,2,3})
+    {
+      if(caller == actions.at(i))
+      {
+        lastTab = i;
+        break;
+      }
+    }
   }
   else
   {
@@ -815,19 +842,19 @@ void TrayWeather::requestForecastData()
             this,               SLOT(replyFinished(QNetworkReply*)));
   }
 
-  auto url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                                     .arg(m_configuration.longitude)
-                                                                                                     .arg(m_configuration.owm_apikey))};
+  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
+                                                                                                  .arg(m_configuration.longitude)
+                                                                                                  .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                                 .arg(m_configuration.longitude)
-                                                                                                 .arg(m_configuration.owm_apikey))};
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
+                                                                                              .arg(m_configuration.longitude)
+                                                                                              .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString(tr("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                                               .arg(m_configuration.longitude)
-                                                                                                               .arg(m_configuration.owm_apikey))};
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
+                                                                                                            .arg(m_configuration.longitude)
+                                                                                                            .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 }
 
@@ -868,20 +895,10 @@ void TrayWeather::requestGeolocation()
 void TrayWeather::onMapsStateChanged(bool value)
 {
   auto menu = this->contextMenu();
-  if(menu)
+  if(menu && menu->actions().size() >= 3)
   {
     auto entries = menu->actions();
-
-    auto updateMapsEntry = [value](QAction *a)
-    {
-      if(a->text().startsWith("Maps", Qt::CaseInsensitive))
-      {
-        a->setEnabled(value);
-        return true;
-      }
-      return false;
-    };
-    std::find_if(entries.begin(), entries.end(), updateMapsEntry);
+    entries.at(3)->setEnabled(value);
   }
 
   m_configuration.mapsEnabled = value;
@@ -927,4 +944,37 @@ void TrayWeather::checkForUpdates()
     m_configuration.lastCheck = now;
     checkForUpdates();
   }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::onLanguageChanged(const QString &lang)
+{
+  if(!m_appTranslator.isEmpty())
+  {
+    qApp->removeTranslator(&m_appTranslator);
+    m_appTranslator.load(QString());
+  }
+
+  if(lang.compare("en_EN") != 0)
+  {
+    m_appTranslator.load(QString(":/TrayWeather/%1.qm").arg(lang));
+  }
+
+  qApp->installTranslator(&m_appTranslator);
+
+  translateMenu();
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::translateMenu()
+{
+  const auto actions = contextMenu()->actions();
+  actions.at(0)->setText(tr("Current weather..."));
+  actions.at(1)->setText(tr("Forecast..."));
+  actions.at(2)->setText(tr("Pollution..."));
+  actions.at(3)->setText(tr("Maps..."));
+  actions.at(5)->setText(tr("Refresh..."));
+  actions.at(7)->setText(tr("Configuration..."));
+  actions.at(9)->setText(tr("About..."));
+  actions.at(10)->setText(tr("Quit"));
 }

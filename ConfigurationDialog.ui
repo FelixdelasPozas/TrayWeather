@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>474</width>
-    <height>557</height>
+    <height>542</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -257,7 +257,7 @@ QGroupBox::title {
             <item row="2" column="1">
              <widget class="QLabel" name="m_country">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
@@ -277,7 +277,7 @@ QGroupBox::title {
             <item row="3" column="1">
              <widget class="QLabel" name="m_region">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
@@ -310,21 +310,21 @@ QGroupBox::title {
             <item row="0" column="1">
              <widget class="QLabel" name="m_latitude">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
             <item row="1" column="1">
              <widget class="QLabel" name="m_longitude">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
             <item row="7" column="1">
              <widget class="QLabel" name="m_ip">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
@@ -357,7 +357,7 @@ QGroupBox::title {
             <item row="6" column="1">
              <widget class="QLabel" name="m_timezone">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
@@ -377,14 +377,14 @@ QGroupBox::title {
             <item row="5" column="1">
              <widget class="QLabel" name="m_zipCode">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
             <item row="4" column="1">
              <widget class="QLabel" name="m_city">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
@@ -417,7 +417,7 @@ QGroupBox::title {
             <item row="8" column="1">
              <widget class="QLabel" name="m_isp">
               <property name="text">
-               <string>Unknown</string>
+               <string notr="true">Unknown</string>
               </property>
              </widget>
             </item>
@@ -534,7 +534,7 @@ QGroupBox::title {
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Visuals &amp;&amp; Others</string>
+       <string>Visuals &amp;&amp; Misc</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_8">
        <item>
@@ -611,7 +611,7 @@ QGroupBox::title {
                <widget class="QRadioButton" name="m_variable">
                 <property name="minimumSize">
                  <size>
-                  <width>60</width>
+                  <width>61</width>
                   <height>0</height>
                  </size>
                 </property>
@@ -655,6 +655,9 @@ QGroupBox::title {
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -810,6 +813,9 @@ QGroupBox::title {
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                 </property>
+                <property name="indent">
+                 <number>5</number>
+                </property>
                </widget>
               </item>
               <item>
@@ -950,6 +956,12 @@ QGroupBox::title {
             </item>
             <item row="0" column="1">
              <widget class="QSpinBox" name="m_updateTime">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
               <property name="suffix">
                <string> minutes</string>
               </property>
@@ -1035,28 +1047,6 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="m_tempComboBox">
-              <item>
-               <property name="text">
-                <string>Celsius</string>
-               </property>
-               <property name="icon">
-                <iconset resource="rsc/resources.qrc">
-                 <normaloff>:/TrayWeather/temp-celsius.svg</normaloff>:/TrayWeather/temp-celsius.svg</iconset>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Fahrenheit</string>
-               </property>
-               <property name="icon">
-                <iconset resource="rsc/resources.qrc">
-                 <normaloff>:/TrayWeather/temp-fahrenheit.svg</normaloff>:/TrayWeather/temp-fahrenheit.svg</iconset>
-               </property>
-              </item>
-             </widget>
-            </item>
             <item row="3" column="1">
              <widget class="QComboBox" name="m_updatesCombo">
               <item>
@@ -1077,6 +1067,28 @@ QGroupBox::title {
               <item>
                <property name="text">
                 <string>Once a month</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="m_tempComboBox">
+              <item>
+               <property name="text">
+                <string>Celsius</string>
+               </property>
+               <property name="icon">
+                <iconset resource="rsc/resources.qrc">
+                 <normaloff>:/TrayWeather/temp-celsius.svg</normaloff>:/TrayWeather/temp-celsius.svg</iconset>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Fahrenheit</string>
+               </property>
+               <property name="icon">
+                <iconset resource="rsc/resources.qrc">
+                 <normaloff>:/TrayWeather/temp-fahrenheit.svg</normaloff>:/TrayWeather/temp-fahrenheit.svg</iconset>
                </property>
               </item>
              </widget>
@@ -1106,6 +1118,28 @@ QGroupBox::title {
                <string/>
               </property>
              </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_22">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Language</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QComboBox" name="m_languageCombo"/>
             </item>
            </layout>
           </item>

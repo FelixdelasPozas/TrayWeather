@@ -38,39 +38,40 @@
 #include <time.h>
 #include <cmath>
 
-static const QString LONGITUDE               = QObject::tr("Longitude");
-static const QString LATITUDE                = QObject::tr("Latitude");
-static const QString COUNTRY                 = QObject::tr("Country");
-static const QString REGION                  = QObject::tr("Region");
-static const QString CITY                    = QObject::tr("City");
-static const QString ISP                     = QObject::tr("Service provider");
-static const QString IP                      = QObject::tr("IP Address");
-static const QString TIMEZONE                = QObject::tr("Timezone");
-static const QString ZIPCODE                 = QObject::tr("Zipcode");
-static const QString OPENWEATHERMAP_APIKEY   = QObject::tr("OpenWeatherMap API Key");
-static const QString TEMP_UNITS              = QObject::tr("Units");
-static const QString UPDATE_INTERVAL         = QObject::tr("Update interval");
-static const QString MAPS_TAB_ENABLED        = QObject::tr("Maps tab enabled");
-static const QString USE_DNS_GEOLOCATION     = QObject::tr("Use DNS Geolocation");
-static const QString USE_GEOLOCATION_SERVICE = QObject::tr("Use ip-api.com services");
-static const QString ROAMING_ENABLED         = QObject::tr("Roaming enabled");
-static const QString THEME                   = QObject::tr("Light theme used");
-static const QString TRAY_ICON_TYPE          = QObject::tr("Tray icon type");
-static const QString TRAY_TEXT_COLOR         = QObject::tr("Tray text color");
-static const QString TRAY_TEXT_COLOR_MODE    = QObject::tr("Tray text color mode");
-static const QString TRAY_TEXT_SIZE          = QObject::tr("Tray text size");
-static const QString TRAY_DYNAMIC_MIN_COLOR  = QObject::tr("Tray text color dynamic minimum");
-static const QString TRAY_DYNAMIC_MAX_COLOR  = QObject::tr("Tray text color dynamic maximum");
-static const QString TRAY_DYNAMIC_MIN_VALUE  = QObject::tr("Tray text color dynamic minimum value");
-static const QString TRAY_DYNAMIC_MAX_VALUE  = QObject::tr("Tray text color dynamic maximum value");
-static const QString UPDATE_CHECKS_FREQUENCY = QObject::tr("Update checks frequency");
-static const QString UPDATE_LAST_CHECK       = QObject::tr("Update last check");
-static const QString AUTOSTART               = QObject::tr("Autostart");
-static const QString LAST_TAB                = QObject::tr("Last tab");
-static const QString LAST_MAP_LAYER          = QObject::tr("Last map layer");
-static const QString LAST_STREET_LAYER       = QObject::tr("Last street layer");
+static const QString LONGITUDE               = QString("Longitude");
+static const QString LATITUDE                = QString("Latitude");
+static const QString COUNTRY                 = QString("Country");
+static const QString REGION                  = QString("Region");
+static const QString CITY                    = QString("City");
+static const QString ISP                     = QString("Service provider");
+static const QString IP                      = QString("IP Address");
+static const QString TIMEZONE                = QString("Timezone");
+static const QString ZIPCODE                 = QString("Zipcode");
+static const QString OPENWEATHERMAP_APIKEY   = QString("OpenWeatherMap API Key");
+static const QString TEMP_UNITS              = QString("Units");
+static const QString UPDATE_INTERVAL         = QString("Update interval");
+static const QString MAPS_TAB_ENABLED        = QString("Maps tab enabled");
+static const QString USE_DNS_GEOLOCATION     = QString("Use DNS Geolocation");
+static const QString USE_GEOLOCATION_SERVICE = QString("Use ip-api.com services");
+static const QString ROAMING_ENABLED         = QString("Roaming enabled");
+static const QString THEME                   = QString("Light theme used");
+static const QString TRAY_ICON_TYPE          = QString("Tray icon type");
+static const QString TRAY_TEXT_COLOR         = QString("Tray text color");
+static const QString TRAY_TEXT_COLOR_MODE    = QString("Tray text color mode");
+static const QString TRAY_TEXT_SIZE          = QString("Tray text size");
+static const QString TRAY_DYNAMIC_MIN_COLOR  = QString("Tray text color dynamic minimum");
+static const QString TRAY_DYNAMIC_MAX_COLOR  = QString("Tray text color dynamic maximum");
+static const QString TRAY_DYNAMIC_MIN_VALUE  = QString("Tray text color dynamic minimum value");
+static const QString TRAY_DYNAMIC_MAX_VALUE  = QString("Tray text color dynamic maximum value");
+static const QString UPDATE_CHECKS_FREQUENCY = QString("Update checks frequency");
+static const QString UPDATE_LAST_CHECK       = QString("Update last check");
+static const QString AUTOSTART               = QString("Autostart");
+static const QString LAST_TAB                = QString("Last tab");
+static const QString LAST_MAP_LAYER          = QString("Last map layer");
+static const QString LAST_STREET_LAYER       = QString("Last street layer");
+static const QString LANGUAGE                = QString("Language");
 
-static const QMap<QString, QString> Icons = { { "01d", ":/TrayWeather/01d.svg" },
+static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/01d.svg" },
                                               { "01n-0", ":/TrayWeather/01n-0.svg" },
                                               { "01n-1", ":/TrayWeather/01n-1.svg" },
                                               { "01n-2", ":/TrayWeather/01n-2.svg" },
@@ -327,9 +328,12 @@ const QString moonPhaseText(const time_t timestamp, double &percent)
 //--------------------------------------------------------------------
 const QString moonTooltip(const time_t timestamp)
 {
+  const auto illuStr = QObject::tr("illumination");
+
   double percent;
   auto result = moonPhaseText(timestamp, percent);
-  result += QObject::tr(" (%1% illumination)").arg(static_cast<int>(percent * 100));
+
+  result += QString(" (%1% %2)").arg(static_cast<int>(percent * 100)).arg(illuStr);
 
   return result;
 }
@@ -337,15 +341,20 @@ const QString moonTooltip(const time_t timestamp)
 //--------------------------------------------------------------------
 const QPixmap weatherPixmap(const ForecastData& data)
 {
-  QString iconId = data.icon_id;
-
-  if(data.icon_id == "01n")
+  if(!data.icon_id.isEmpty())
   {
-    double unused;
-    iconId += QObject::tr("-%1").arg(moonPhase(data.dt, unused));
+    QString iconId = data.icon_id;
+
+    if(data.icon_id == "01n")
+    {
+      double unused;
+      iconId += QString("-%1").arg(moonPhase(data.dt, unused));
+    }
+
+    return QPixmap(ICONS.value(iconId));
   }
 
-  return QPixmap(Icons.value(iconId));
+  return QPixmap{":/TrayWeather/network_error.svg"};
 }
 
 //--------------------------------------------------------------------
@@ -355,9 +364,9 @@ const QPixmap moonPixmap(const ForecastData& data)
   {
     double unused;
     QString iconId{"01n"};
-    iconId += QObject::tr("-%1").arg(moonPhase(data.dt, unused));
+    iconId += QString("-%1").arg(moonPhase(data.dt, unused));
 
-    return QPixmap(Icons.value(iconId));
+    return QPixmap(ICONS.value(iconId));
   }
 
   return QPixmap{":/TrayWeather/network_error.svg"};
@@ -518,6 +527,7 @@ void load(Configuration &configuration)
   configuration.lastTab         = settings.value(LAST_TAB, 0).toInt();
   configuration.lastLayer       = settings.value(LAST_MAP_LAYER, "temperature").toString();
   configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
+  configuration.language        = settings.value(LANGUAGE, "en_EN").toString();
 
   if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
   if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
@@ -562,6 +572,7 @@ void save(const Configuration &configuration)
   settings.setValue(LAST_TAB,                configuration.lastTab);
   settings.setValue(LAST_MAP_LAYER,          configuration.lastLayer);
   settings.setValue(LAST_STREET_LAYER,       configuration.lastStreetLayer);
+  settings.setValue(LANGUAGE,                configuration.language);
 
   settings.sync();
 }

@@ -490,7 +490,7 @@
               <string>Current weather icon</string>
              </property>
              <property name="text">
-              <string>WeatherIcon</string>
+              <string notr="true">WeatherIcon</string>
              </property>
              <property name="scaledContents">
               <bool>false</bool>
@@ -513,7 +513,7 @@
               <string>Current weather description</string>
              </property>
              <property name="text">
-              <string>description</string>
+              <string notr="true">description</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -556,7 +556,7 @@
                <item>
                 <widget class="QLabel" name="m_moon_phase">
                  <property name="text">
-                  <string>moon_phase</string>
+                  <string notr="true">moon_phase</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -566,7 +566,7 @@
                <item>
                 <widget class="QLabel" name="m_illumination">
                  <property name="text">
-                  <string>Illumination</string>
+                  <string notr="true">Illumination</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -587,7 +587,7 @@
                 <string>Current moon phase</string>
                </property>
                <property name="text">
-                <string>MoonIcon</string>
+                <string notr="true">MoonIcon</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>

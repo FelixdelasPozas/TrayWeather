@@ -60,7 +60,8 @@ class ConfigurationDialog
     void getConfiguration(Configuration &configuration) const;
 
   protected:
-    virtual void showEvent(QShowEvent *e);
+    virtual void showEvent(QShowEvent *e) override;
+    virtual void changeEvent(QEvent *e) override;
 
   private:
     /** \brief Request DNS IP
@@ -129,11 +130,26 @@ class ConfigurationDialog
      */
     void onAutostartValueChanged(int value);
 
+    /** \brief Updates the application translation when the user changes it.
+     * \param[in] index Current index of language combo box.
+     *
+     */
+    void onLanguageChanged(int index);
+
+  signals:
+    void languageChanged(const QString &);
+
   private:
     /** \brief Helper method that draws the color interpolation of the range QLabel.
      *
      */
     void updateRange();
+
+    /** \brief Fills the language combo box with the available translations.
+     * \param[in] current Current language in configuration.
+     *
+     */
+    void updateLanguageCombo(const QString &current);
 
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
     bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */

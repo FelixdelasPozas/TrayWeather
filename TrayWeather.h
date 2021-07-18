@@ -28,6 +28,7 @@
 // Qt
 #include <QSystemTrayIcon>
 #include <QTimer>
+#include <QTranslator>
 
 class QNetworkReply;
 class QNetworkAccessManager;
@@ -98,6 +99,12 @@ class TrayWeather
      */
     void onMapsStateChanged(bool value);
 
+    /** \brief Changes the application language to the one specified.
+     * \param[in] lang Language id.
+     *
+     */
+    void onLanguageChanged(const QString &lang);
+
   private:
     /** \brief Updates the tray icon tooltip.
      *
@@ -144,18 +151,25 @@ class TrayWeather
      */
     void checkForUpdates();
 
-    Configuration                         &m_configuration;  /** application configuration.                        */
-    std::shared_ptr<QNetworkAccessManager> m_netManager;     /** network manager.                                  */
-    Forecast                               m_data;           /** list of forecast data.                            */
-    ForecastData                           m_current;        /** weather conditions now.                           */
-    Pollution                              m_pData;          /** list pollution data.                              */
-    QTimer                                 m_timer;          /** timer for updates and retries.                    */
-    WeatherDialog                         *m_weatherDialog;  /** dialog to show weather and forecast data.         */
-    AboutDialog                           *m_aboutDialog;    /** pointer to current (if any) about dialog.         */
-    ConfigurationDialog                   *m_configDialog;   /** pointer to current (if any) configuration dialog. */
-    QString                                m_DNSIP;          /** DNS IP used for geolocation.                      */
-    QTimer                                 m_updatesTimer;   /** timer to check for application updates.           */
-    QSystemTrayIcon                       *m_additionalTray; /** Additional tray icon for two icon mode.           */
+    /** \brief Updates the context menu translations.
+     *
+     */
+    void translateMenu();
+
+    Configuration                         &m_configuration;   /** application configuration.                        */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                  */
+    Forecast                               m_data;            /** list of forecast data.                            */
+    ForecastData                           m_current;         /** weather conditions now.                           */
+    Pollution                              m_pData;           /** list pollution data.                              */
+    QTimer                                 m_timer;           /** timer for updates and retries.                    */
+    WeatherDialog                         *m_weatherDialog;   /** dialog to show weather and forecast data.         */
+    AboutDialog                           *m_aboutDialog;     /** pointer to current (if any) about dialog.         */
+    ConfigurationDialog                   *m_configDialog;    /** pointer to current (if any) configuration dialog. */
+    QString                                m_DNSIP;           /** DNS IP used for geolocation.                      */
+    QTimer                                 m_updatesTimer;    /** timer to check for application updates.           */
+    QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.           */
+    QTranslator                            m_appTranslator;   /** application language translator.                  */
+    QTranslator                            m_appTranslatorQt; /** application language Qt translator.               */
 };
 
 

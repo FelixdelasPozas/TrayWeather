@@ -70,22 +70,22 @@
 				from, to;
 				
 			if (map.hasLayer(rain)) {
-				labels.push('Rain (mm)');
+				labels.push('%%rainStr%% (mm)');
 			    grades = [0.1, 2, 6, 8, 10, 14, 16, 20, 26, 32, 42, 48, 52, 70];
 				colors = ['#E6E6E6', '#BCBCBC', '#646464', '#0072FE', '#1464D2', '#50A5F5', '#96D2FA', '#1EB41E', '#C8FFBE', '#FFA000', '#A50000', '#8C645A', '#E1BEB4', '#C83C3C'];
 			}
 			if (map.hasLayer(clouds)) {
-				labels.push('Clouds (%)');
+				labels.push('%%cloudStr%% (%)');
 				grades = [11, 16, 21, 27, 33, 41, 51, 61, 72, 82, 93, 100];
 				colors = ['#FFFFFF', '#F5F5F5', '#E0E0E0', '#C0C0C0', '#A0A0A0', '#808080', '#606060', '#404040', '#202020', '#0E0E0E', '#0A0A0A', '#040404'];
 			} 
 			if (map.hasLayer(wind)) {
-				labels.push('Wind (m/s)');
+				labels.push('%%windStr%% (m/s)');
 				grades = [0, 1.5, 3, 5, 8.5, 12, 15.5, 19, 22.5, 25.5, 29];
 				colors = ['#000099', '#0000B4', '#0000DF', '#0018FE', '#00ADFE', '#2BFED3', '#9BFE63', '#FEF300', '#FE7900', '#FE1700', '#AD0000'];
 			} 
 			if (map.hasLayer(temperature)) {
-				labels.push('Temp (Celsius)');
+				labels.push('%%tempStr%% (ºC)');
 				grades = [-24, -20, -16, -8, -4, 0, 4, 8, 16, 20, 24, 32, 36];
 				colors = ['#0018FE', '#0072FE', '#00ADFE', '#2BFED3', '#67FE97', '#9BFE63', '#D3FE2B', '#FEF300', '#FE7900', '#FE4B00', '#FE1700', '#DC0000', '#FF0000'];
 			} 
@@ -119,16 +119,16 @@
         currentLayer = eo.name;
 			
 		if(numLayers !== 1) {
-			if (eo.name === 'Rain') {
+			if (eo.name === '%%rainStr%%') {
 				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
 			}
-			if (eo.name === 'Clouds') {
+			if (eo.name === '%%cloudStr%%') {
 				setTimeout(function() {	if(map.hasLayer(rain)) {map.removeLayer(rain) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
 			} 
-			if (eo.name === 'Wind') {
+			if (eo.name === '%%windStr%%') {
 				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(rain)) { map.removeLayer(rain) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
 			} 
-			if (eo.name === 'Temperature') {
+			if (eo.name === '%%tempStr%%') {
 				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(rain)) { map.removeLayer(rain) } }, 10);
 			} 
 		}
@@ -139,16 +139,16 @@
 
 		if(numLayers === 0)
 		{
-			if(eo.name === "Rain") { 
+			if(eo.name === "%%rainStr%%") { 
 				setTimeout(function() { map.addLayer(rain) }, 10); 
 			}
-			if(eo.name === "Clouds") { 
+			if(eo.name === "%%cloudStr%%") { 
 				setTimeout(function() { map.addLayer(clouds) }, 10); 
 			}
-			if(eo.name === "Wind") {
+			if(eo.name === "%%windStr%%") {
 				setTimeout(function() { map.addLayer(wind) }, 10); 
 			}
-			if(eo.name === "Temperature") { 
+			if(eo.name === "%%tempStr%%") { 
 				setTimeout(function() { map.addLayer(temperature) }, 10); 
 			}
 		}
@@ -165,10 +165,10 @@
     };
     
     var overlayMaps = { 
-        "Temperature": temperature,
-		"Rain": rain,
-        "Clouds": clouds,
-        "Wind": wind
+        "%%tempStr%%": temperature,
+		"%%rainStr%%": rain,
+        "%%cloudStr%%": clouds,
+        "%%windStr%%": wind
     };
 			
 	L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'topright', autoZIndex: true, hideSingleBase: true, sortLayers: false}).addTo(map);

@@ -53,6 +53,7 @@ class AboutDialog
 
   protected:
     virtual void showEvent(QShowEvent *e) override;
+    virtual void changeEvent(QEvent *e) override;
 };
 
 #endif // ABOUTDIALOG_H_
