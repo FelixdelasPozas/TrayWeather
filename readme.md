@@ -6,6 +6,7 @@ Tray Weather
 - [Compilation](#compilation-requirements)
 - [Install](#install)
 - [Screenshots](#screenshots)
+- [Translations](#translations)
 - [Repository information](#repository-information)
 
 # Description
@@ -85,6 +86,34 @@ the rest of the application so the user can be disable them using the button bel
 ![maps1](https://cloud.githubusercontent.com/assets/12167134/20938099/f07daa22-bbe9-11e6-9efb-07466ef36748.jpg)
 ![maps2](https://cloud.githubusercontent.com/assets/12167134/20938097/f0623792-bbe9-11e6-8ebf-0ae4b5b679a9.jpg)
 ![maps3](https://cloud.githubusercontent.com/assets/12167134/20938100/f0851d34-bbe9-11e6-80c9-d7d952632cc4.jpg)
+
+# Translations
+
+If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
+[Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) or manually editing the
+['empty' translation source file](https://github.com/FelixdelasPozas/TrayWeather/blob/master/languages/empty.ts)
+and making a pull request. Currently it's just 200 texts.
+
+To do it manually just edit the 'empty translation' file and replace the untranslated messages:
+
+```
+    <message>
+        <location filename="../AboutDialog.ui" line="429"/>
+        <source>Weather data provided by</source>
+        <translation type="unfinished"></translation>
+    </message>
+```
+    
+To
+
+```
+    <message>
+        <location filename="../AboutDialog.ui" line="429"/>
+        <source>Weather data provided by</source>
+        <translation>Datos meteorológicos proporcionados por</translation>
+    </message>
+```
+
 
 # Repository information
 
