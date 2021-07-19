@@ -752,12 +752,12 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../WeatherDialog.ui" line="145"/>
         <location filename="../WeatherDialog.ui" line="270"/>
         <source>Snow accumulation in the last 3 hours</source>
-        <translation>Накопление снега за последние 3 часа</translation>
+        <translation>Количество снега за последние 3 часа</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="148"/>
         <source>Snow accumulation (last 3 hours)</source>
-        <translation>Накопление снега (за 3 последних часа)</translation>
+        <translation>Количество снега (за 3 последних часа)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="161"/>
@@ -770,12 +770,12 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../WeatherDialog.ui" line="177"/>
         <location filename="../WeatherDialog.ui" line="414"/>
         <source>Rain accumulation in the last 3 hours</source>
-        <translation>Накопление осадков за последние 3 ча</translation>
+        <translation>Количество осадков за последние 3 ча</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="180"/>
         <source>Rain accumulation (last 3 hours)</source>
-        <translation>Накопление осадков (за 3 последних часа)</translation>
+        <translation>Количество осадков (за 3 последних часа)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="193"/>
@@ -962,7 +962,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../WeatherDialog.cpp" line="114"/>
         <source>Rain accumulation</source>
-        <translation>Накопление осадков</translation>
+        <translation>Количество осадков</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="188"/>
@@ -1105,12 +1105,12 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../WeatherWidget.cpp" line="54"/>
         <source>Rain acc</source>
-        <translation>Накоп. дождя</translation>
+        <translation>Кол-во дождя</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="55"/>
         <source>Snow acc</source>
-        <translation>Накоп. снега</translation>
+        <translation>Кол-во снега</translation>
     </message>
 </context>
 </TS>
