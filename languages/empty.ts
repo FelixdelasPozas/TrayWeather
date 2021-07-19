@@ -409,12 +409,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1190"/>
+        <location filename="../ConfigurationDialog.ui" line="1152"/>
+        <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="1203"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1197"/>
+        <location filename="../ConfigurationDialog.ui" line="1210"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
