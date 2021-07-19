@@ -842,19 +842,28 @@ void TrayWeather::requestForecastData()
             this,               SLOT(replyFinished(QNetworkReply*)));
   }
 
-  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                                  .arg(m_configuration.longitude)
-                                                                                                  .arg(m_configuration.owm_apikey)};
+  QString lang = "en";
+  if(!m_configuration.language.isEmpty() && m_configuration.language.contains('_'))
+  {
+    lang = m_configuration.language.split('_').first();
+  }
+
+  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&appid=%4").arg(m_configuration.latitude)
+                                                                                                          .arg(m_configuration.longitude)
+                                                                                                          .arg(lang)
+                                                                                                          .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                              .arg(m_configuration.longitude)
-                                                                                              .arg(m_configuration.owm_apikey)};
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&lang=%3&appid=%4").arg(m_configuration.latitude)
+                                                                                                      .arg(m_configuration.longitude)
+                                                                                                      .arg(lang)
+                                                                                                      .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&appid=%3").arg(m_configuration.latitude)
-                                                                                                            .arg(m_configuration.longitude)
-                                                                                                            .arg(m_configuration.owm_apikey)};
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&lang=%3&appid=%4").arg(m_configuration.latitude)
+                                                                                                                    .arg(m_configuration.longitude)
+                                                                                                                    .arg(lang)
+                                                                                                                    .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 }
 

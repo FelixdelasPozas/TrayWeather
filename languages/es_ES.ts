@@ -891,7 +891,7 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
     <message>
         <location filename="../WeatherDialog.ui" line="549"/>
         <source>Moon phase</source>
-        <translation>Moon phase</translation>
+        <translation>Fase lunar</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="619"/>

@@ -55,7 +55,7 @@ struct LanguageData
      * \param[in] f Filename of the translation file without extension.
      *
      */
-    LanguageData(const QString n, const QString i, const QString f ): name{n}, icon{i}, file{f} {};
+    LanguageData(const QString n, const QString i, const QString f): name{n}, icon{i}, file{f} {};
 };
 
 /** Translations
