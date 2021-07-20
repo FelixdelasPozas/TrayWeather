@@ -249,7 +249,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="594"/>
         <source>Weather &amp; temperature icon</source>
-        <translation>Значок погоды и температуры</translation>
+        <translation>Значок погоды с температурой</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="599"/>
@@ -442,7 +442,7 @@
 .Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
         <translation>Неверный ответ от сервера геолокации.
- Не удалось получить данные местоположения.
+Не удалось получить данные местоположения.
 Если у вас есть брандмауэр, измените его настройки, чтобы разрешить этой программе доступ к сети.</translation>
     </message>
     <message>
@@ -770,12 +770,12 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../WeatherDialog.ui" line="177"/>
         <location filename="../WeatherDialog.ui" line="414"/>
         <source>Rain accumulation in the last 3 hours</source>
-        <translation>Количество осадков за последние 3 ча</translation>
+        <translation>Количество дождя за последние 3 часа</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="180"/>
         <source>Rain accumulation (last 3 hours)</source>
-        <translation>Количество осадков (за 3 последних часа)</translation>
+        <translation>Количество дождя (за 3 последних часа)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="193"/>
@@ -962,7 +962,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../WeatherDialog.cpp" line="114"/>
         <source>Rain accumulation</source>
-        <translation>Количество осадков</translation>
+        <translation>Количество дождя</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="188"/>
