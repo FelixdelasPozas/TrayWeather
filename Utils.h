@@ -48,6 +48,7 @@ struct LanguageData
     QString name;
     QString icon;
     QString file;
+    QString author;
 
     /** \brief LanguageData constructor.
      * \param[in] n Language name.
@@ -55,15 +56,16 @@ struct LanguageData
      * \param[in] f Filename of the translation file without extension.
      *
      */
-    LanguageData(const QString n, const QString i, const QString f): name{n}, icon{i}, file{f} {};
+    LanguageData(const QString n, const QString i, const QString f, const QString a): name{n}, icon{i}, file{f}, author{a} {};
 };
 
 /** Translations
  *
  */
 static QList<LanguageData> TRANSLATIONS = {
-    { QObject::tr("English"), ":/TrayWeather/languages/en.svg", "en_EN" } ,
-    { QObject::tr("Spanish"), ":/TrayWeather/languages/es.svg", "es_ES" }
+    { QObject::tr("English"), ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
+    { QObject::tr("Spanish"), ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
+    { QObject::tr("Russian"), ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            }
 };
 
 /** \struct Configuration

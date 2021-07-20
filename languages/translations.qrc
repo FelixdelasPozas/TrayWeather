@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/TrayWeather">
     <file>es_ES.qm</file>
+    <file>ru_RU.qm</file>
   </qresource>
 </RCC>

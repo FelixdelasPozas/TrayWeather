@@ -54,6 +54,12 @@ class AboutDialog
   protected:
     virtual void showEvent(QShowEvent *e) override;
     virtual void changeEvent(QEvent *e) override;
+
+  private:
+    /** \brief Fill the translations table information.
+     *
+     */
+    void fillTranslationsTable() const;
 };
 
 #endif // ABOUTDIALOG_H_

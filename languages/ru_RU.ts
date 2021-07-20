@@ -9,42 +9,57 @@
         <translation>О программе...</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="101"/>
+        <location filename="../AboutDialog.ui" line="28"/>
+        <source>Tray Weather</source>
+        <translation>Tray Weather</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.ui" line="111"/>
         <source>Compiled on</source>
         <translation>Скомпилировано</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="111"/>
+        <location filename="../AboutDialog.ui" line="121"/>
         <source>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</source>
         <translation>Домашняя страница расположена на &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="167"/>
+        <location filename="../AboutDialog.ui" line="177"/>
         <source>Powered by</source>
         <translation>Используемое ПО</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="347"/>
+        <location filename="../AboutDialog.ui" line="357"/>
         <source>Icons courtesy of</source>
         <translation>Значки предоставлены</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="388"/>
+        <location filename="../AboutDialog.ui" line="398"/>
         <source>IP Geolocation provided by</source>
         <translation>Геолокация IP предоставлена</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="429"/>
+        <location filename="../AboutDialog.ui" line="439"/>
         <source>Weather data provided by</source>
         <translation>Данные погоды предоставлены</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="41"/>
+        <location filename="../AboutDialog.ui" line="464"/>
+        <source>Translations</source>
+        <translation>Переводы</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.ui" line="515"/>
+        <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
+        <translation>Если вашего языка нет, вы можете помочь с &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;переводом&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.cpp" line="42"/>
         <source>version</source>
         <translation>версия</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="43"/>
+        <location filename="../AboutDialog.cpp" line="44"/>
         <source>Compiled on </source>
         <translation>Скомпилировано </translation>
     </message>
@@ -439,7 +454,7 @@
         <location filename="../ConfigurationDialog.cpp" line="166"/>
         <location filename="../ConfigurationDialog.cpp" line="233"/>
         <source>Invalid reply from Geo-Locator server.
-.Couldn&apos;t get location information.
+Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
         <translation>Неверный ответ от сервера геолокации.
 Не удалось получить данные местоположения.
@@ -585,14 +600,19 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>освещённость</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="65"/>
+        <location filename="../Utils.h" line="66"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="66"/>
+        <location filename="../Utils.h" line="67"/>
         <source>Spanish</source>
         <translation>Испанский</translation>
+    </message>
+    <message>
+        <location filename="../Utils.h" line="68"/>
+        <source>Russian</source>
+        <translation>Русский</translation>
     </message>
 </context>
 <context>
@@ -697,6 +717,7 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
         <source>Current Weather</source>
         <translation>Текущая погода</translation>
     </message>
@@ -787,8 +808,8 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../WeatherDialog.ui" line="199"/>
         <location filename="../WeatherDialog.cpp" line="113"/>
         <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
-        <location filename="../WeatherDialog.cpp" line="826"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="832"/>
         <source>Temperature</source>
         <translation>Температура</translation>
     </message>
@@ -931,6 +952,7 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="66"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
         <source>Forecast</source>
         <translation>Прогноз</translation>
     </message>
@@ -941,6 +963,7 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="75"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
         <source>Pollution</source>
         <translation>Загрязнение</translation>
     </message>
@@ -990,6 +1013,7 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../WeatherDialog.cpp" line="418"/>
         <location filename="../WeatherDialog.cpp" line="477"/>
         <location filename="../WeatherDialog.cpp" line="488"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
         <source>Maps</source>
         <translation>Карты</translation>
     </message>
@@ -1055,27 +1079,27 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
-        <location filename="../WeatherDialog.cpp" line="827"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="833"/>
         <source>Rain</source>
         <translation>Дождь</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
-        <location filename="../WeatherDialog.cpp" line="828"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="834"/>
         <source>Wind</source>
         <translation>Ветер</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
-        <location filename="../WeatherDialog.cpp" line="829"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="835"/>
         <source>Clouds</source>
         <translation>Облака</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="843"/>
+        <location filename="../WeatherDialog.cpp" line="849"/>
         <source>Unable to load weather webpage</source>
         <translation>Не удалось загрузить веб-страницу погоды</translation>
     </message>

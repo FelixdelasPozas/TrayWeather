@@ -9,42 +9,57 @@
         <translation>Acerca de...</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="101"/>
+        <location filename="../AboutDialog.ui" line="28"/>
+        <source>Tray Weather</source>
+        <translation>Tray Weather</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.ui" line="111"/>
         <source>Compiled on</source>
         <translation>Compilado en</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="111"/>
+        <location filename="../AboutDialog.ui" line="121"/>
         <source>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</source>
         <translation>Página web hospedada en &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="167"/>
+        <location filename="../AboutDialog.ui" line="177"/>
         <source>Powered by</source>
         <translation>Energizado por</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="347"/>
+        <location filename="../AboutDialog.ui" line="357"/>
         <source>Icons courtesy of</source>
         <translation>Iconos cortesía de</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="388"/>
+        <location filename="../AboutDialog.ui" line="398"/>
         <source>IP Geolocation provided by</source>
         <translation>Geolocalización proporcionada por</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="429"/>
+        <location filename="../AboutDialog.ui" line="439"/>
         <source>Weather data provided by</source>
         <translation>Datos meteorológicos proporcionados por</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="41"/>
+        <location filename="../AboutDialog.ui" line="464"/>
+        <source>Translations</source>
+        <translation>Traducciones</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.ui" line="515"/>
+        <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
+        <translation>Si tu idioma no está disponible puedes ayudar con una &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;traducción&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.cpp" line="42"/>
         <source>version</source>
         <translation>versión</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="43"/>
+        <location filename="../AboutDialog.cpp" line="44"/>
         <source>Compiled on </source>
         <translation>Compilado en </translation>
     </message>
@@ -439,10 +454,10 @@
         <location filename="../ConfigurationDialog.cpp" line="166"/>
         <location filename="../ConfigurationDialog.cpp" line="233"/>
         <source>Invalid reply from Geo-Locator server.
-.Couldn&apos;t get location information.
+Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
         <translation>Repuesta inválida desde el servidor de Geo-Localización.
-. Imposible obtener información de localización.
+Imposible obtener información de localización.
 Si tiene un firewall cambie la configuración para permitir a este programa acceder a la red.</translation>
     </message>
     <message>
@@ -585,14 +600,19 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
         <translation>iluminación</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="65"/>
+        <location filename="../Utils.h" line="66"/>
         <source>English</source>
         <translation>Inglés</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="66"/>
+        <location filename="../Utils.h" line="67"/>
         <source>Spanish</source>
         <translation>Español</translation>
+    </message>
+    <message>
+        <location filename="../Utils.h" line="68"/>
+        <source>Russian</source>
+        <translation>Ruso</translation>
     </message>
 </context>
 <context>
@@ -697,6 +717,7 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
         <source>Current Weather</source>
         <translation>Clima Actual</translation>
     </message>
@@ -787,8 +808,8 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
         <location filename="../WeatherDialog.ui" line="199"/>
         <location filename="../WeatherDialog.cpp" line="113"/>
         <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
-        <location filename="../WeatherDialog.cpp" line="826"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="832"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
@@ -931,6 +952,7 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="66"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
         <source>Forecast</source>
         <translation>Pronóstico</translation>
     </message>
@@ -941,6 +963,7 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="75"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
         <source>Pollution</source>
         <translation>Polución</translation>
     </message>
@@ -990,6 +1013,7 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
         <location filename="../WeatherDialog.cpp" line="418"/>
         <location filename="../WeatherDialog.cpp" line="477"/>
         <location filename="../WeatherDialog.cpp" line="488"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
         <source>Maps</source>
         <translation>Mapas</translation>
     </message>
@@ -1050,29 +1074,29 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
-        <location filename="../WeatherDialog.cpp" line="827"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="833"/>
         <source>Rain</source>
         <translation>Lluvia</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
-        <location filename="../WeatherDialog.cpp" line="828"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="834"/>
         <source>Wind</source>
         <translation>Viento</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
-        <location filename="../WeatherDialog.cpp" line="829"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="835"/>
         <source>Clouds</source>
         <translation>Nubes</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="843"/>
+        <location filename="../WeatherDialog.cpp" line="849"/>
         <source>Unable to load weather webpage</source>
-        <translation>No se pudo cargar la página de clima.</translation>
+        <translation>No se pudo cargar la página de clima</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="552"/>

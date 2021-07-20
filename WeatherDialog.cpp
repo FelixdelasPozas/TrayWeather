@@ -806,6 +806,12 @@ void WeatherDialog::changeEvent(QEvent *e)
     {
       loadMaps();
     }
+
+    const QStringList tabNames{ tr("Current Weather"), tr("Forecast"), tr("Pollution"), tr("Maps") };
+    for(int i = 0; i < m_tabWidget->count(); ++i)
+    {
+      m_tabWidget->setTabText(i, tabNames.at(i));
+    }
   }
 
   QDialog::changeEvent(e);

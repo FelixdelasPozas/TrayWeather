@@ -33,5 +33,6 @@
     <file>webpage.html</file>
     <file>languages/en.svg</file>
     <file>languages/es.svg</file>
+    <file>languages/ru.svg</file>
   </qresource>
 </RCC>

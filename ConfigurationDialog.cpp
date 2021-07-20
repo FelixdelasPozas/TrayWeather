@@ -163,7 +163,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
       }
       else
       {
-        message = tr("Invalid reply from Geo-Locator server.\n.Couldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
+        message = tr("Invalid reply from Geo-Locator server.\nCouldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
         details = reply->errorString();
 
         auto box = std::make_shared<QMessageBox>(this);
@@ -230,7 +230,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 
     if(reply->error() == QNetworkReply::NetworkError::NoError)
     {
-      message = tr("Invalid reply from Geo-Locator server.\n.Couldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
+      message = tr("Invalid reply from Geo-Locator server.\nCouldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
 
       auto type = reply->header(QNetworkRequest::ContentTypeHeader);
       if(type.toString().startsWith("text/plain", Qt::CaseInsensitive))

@@ -24,8 +24,9 @@
 // Qt
 #include <QtGlobal>
 #include <QDateTime>
+#include <QApplication>
 
-const QString AboutDialog::VERSION{"1.9.1"};
+const QString AboutDialog::VERSION{"1.9.2"};
 const QString COPYRIGHT{"Copyright (c) 2016-%1 Félix de las Pozas Álvarez"};
 
 //-----------------------------------------------------------------
@@ -45,6 +46,8 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
   m_qtVersion->setText(QString("%1 %2").arg(verStr).arg(qVersion()));
   m_chartsVersion->setText(QString("%1 %2").arg(verStr).arg("2.1.0"));
   m_copyright->setText(COPYRIGHT.arg(QDateTime::currentDateTime().date().year()));
+
+  fillTranslationsTable();
 }
 
 //-----------------------------------------------------------------
@@ -64,4 +67,27 @@ void AboutDialog::changeEvent(QEvent *e)
   }
 
   QDialog::changeEvent(e);
+}
+
+//-----------------------------------------------------------------
+void AboutDialog::fillTranslationsTable() const
+{
+  m_translations->verticalHeader()->setVisible(false);
+  m_translations->horizontalHeader()->setVisible(false);
+  m_translations->setRowCount(TRANSLATIONS.size());
+  m_translations->setColumnCount(2);
+
+  for(int i = 0; i < TRANSLATIONS.size(); ++i)
+  {
+    const auto &lang = TRANSLATIONS.at(i);
+
+    auto item = new QTableWidgetItem();
+    item->setIcon(QIcon(lang.icon));
+    item->setData(Qt::DisplayRole, QApplication::translate("QObject", lang.name.toLocal8Bit()));
+    m_translations->setItem(i, 0, item);
+
+    item = new QTableWidgetItem();
+    item->setData(Qt::DisplayRole, lang.author);
+    m_translations->setItem(i, 1, item);
+  }
 }
