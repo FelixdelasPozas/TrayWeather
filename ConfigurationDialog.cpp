@@ -43,103 +43,10 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 , m_testedAPIKey{false}
 {
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
+
   setupUi(this);
 
-  m_minSpinBox->setValue(configuration.minimumValue);
-  m_maxSpinBox->setValue(configuration.maximumValue);
-  m_autostart->setChecked(configuration.autostart);
-
-  connectSignals();
-
-  m_useManual->setChecked(!configuration.useGeolocation);
-  m_useGeolocation->setChecked(configuration.useGeolocation);
-  m_city->setText(configuration.city);
-  m_country->setText(configuration.country);
-  m_ip->setText(configuration.ip);
-  m_isp->setText(configuration.isp);
-  m_region->setText(configuration.region);
-  m_timezone->setText(configuration.timezone);
-  m_zipCode->setText(configuration.zipcode);
-  m_updateTime->setValue(configuration.updateTime);
-  m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
-  m_useDNS->setChecked(configuration.useDNS);
-  m_roamingCheck->setChecked(configuration.roamingEnabled);
-  m_apikey->setText(configuration.owm_apikey);
-  m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
-  m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
-  m_fontSize->setValue(configuration.trayTextSize);
-  m_updatesCombo->setCurrentIndex(static_cast<int>(configuration.update));
-
-  m_fixed->setChecked(configuration.trayTextMode);
-  m_variable->setChecked(!configuration.trayTextMode);
-
-  m_minSpinBox->setMaximum(configuration.maximumValue-1);
-  m_maxSpinBox->setMinimum(configuration.minimumValue+1);
-
-  QPixmap icon(QSize(64,64));
-  icon.fill(configuration.trayTextColor);
-  m_trayTempColor->setIcon(QIcon(icon));
-  m_trayTempColor->setProperty("iconColor", configuration.trayTextColor.name(QColor::HexArgb));
-
-  icon.fill(configuration.minimumColor);
-  m_minColor->setIcon(QIcon(icon));
-  m_minColor->setProperty("iconColor", configuration.minimumColor.name(QColor::HexArgb));
-
-  icon.fill(configuration.maximumColor);
-  m_maxColor->setIcon(QIcon(icon));
-  m_maxColor->setProperty("iconColor", configuration.maximumColor.name(QColor::HexArgb));
-
-  if(!configuration.isValid())
-  {
-    m_longitudeSpin->setValue(0.);
-    m_latitudeSpin->setValue(0.);
-
-    m_latitude->setText("0");
-    m_longitude->setText("0");
-
-    m_updateTime->setValue(15);
-    m_tempComboBox->setCurrentIndex(0);
-  }
-  else
-  {
-    m_longitudeSpin->setValue(configuration.longitude);
-    m_latitudeSpin->setValue(configuration.latitude);
-
-    m_latitude->setText(QString::number(configuration.latitude));
-    m_longitude->setText(QString::number(configuration.longitude));
-  }
-
-  if(configuration.useGeolocation)
-  {
-    requestGeolocation();
-  }
-
-  onRadioChanged();
-  onCoordinatesChanged();
-
-  if(configuration.isValid())
-  {
-    requestOpenWeatherMapAPIKeyTest();
-  }
-  else
-  {
-    m_apiTest->setEnabled(true);
-
-    if(configuration.owm_apikey.isEmpty())
-    {
-      m_testLabel->setStyleSheet("QLabel { color : red; }");
-      m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
-    }
-    else
-    {
-      m_testLabel->setStyleSheet("QLabel { color : red; }");
-      m_testLabel->setText(tr("Untested OpenWeatherMap API Key!"));
-    }
-  }
-
-  setFixedSize(size());
-  updateRange();
-  updateLanguageCombo(configuration.language);
+  setConfiguration(configuration);
 }
 
 //--------------------------------------------------------------------
@@ -442,6 +349,9 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_autostart, SIGNAL(stateChanged(int)),
           this,        SLOT(onAutostartValueChanged(int)));
+
+  connect(m_languageCombo, SIGNAL(currentIndexChanged(int)),
+          this,            SLOT(onLanguageChanged(int)));
 }
 
 //--------------------------------------------------------------------
@@ -587,15 +497,27 @@ void ConfigurationDialog::changeEvent(QEvent *e)
 {
   if(e && e->type() == QEvent::LanguageChange)
   {
+    Configuration backup;
+    getConfiguration(backup);
+
     retranslateUi(this);
 
-    for(int i = 0; i < m_languageCombo->count(); ++i)
+    disconnectSignals();
+    m_languageCombo->blockSignals(true);
+    setConfiguration(backup);
+    m_languageCombo->blockSignals(false);
+
+    QString sheet;
+
+    if(!backup.lightTheme)
     {
-      const auto translation = QApplication::translate("QObject", TRANSLATIONS.at(i).name.toUtf8(), 0);
-      m_languageCombo->setItemText(i, translation);
+      QFile file(":qdarkstyle/style.qss");
+      file.open(QFile::ReadOnly | QFile::Text);
+      QTextStream ts(&file);
+      sheet = ts.readAll();
     }
 
-    requestOpenWeatherMapAPIKeyTest();
+    qApp->setStyleSheet(sheet);
   }
 
   QDialog::changeEvent(e);
@@ -632,8 +554,162 @@ void ConfigurationDialog::onAutostartValueChanged(int value)
 }
 
 //--------------------------------------------------------------------
+void ConfigurationDialog::setConfiguration(const Configuration &configuration)
+{
+  m_minSpinBox->setValue(configuration.minimumValue);
+  m_maxSpinBox->setValue(configuration.maximumValue);
+  m_autostart->setChecked(configuration.autostart);
+
+  connectSignals();
+
+  m_useManual->setChecked(!configuration.useGeolocation);
+  m_useGeolocation->setChecked(configuration.useGeolocation);
+  m_city->setText(configuration.city);
+  m_country->setText(configuration.country);
+  m_ip->setText(configuration.ip);
+  m_isp->setText(configuration.isp);
+  m_region->setText(configuration.region);
+  m_timezone->setText(configuration.timezone);
+  m_zipCode->setText(configuration.zipcode);
+  m_updateTime->setValue(configuration.updateTime);
+  m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
+  m_useDNS->setChecked(configuration.useDNS);
+  m_roamingCheck->setChecked(configuration.roamingEnabled);
+  m_apikey->setText(configuration.owm_apikey);
+  m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
+  m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
+  m_fontSize->setValue(configuration.trayTextSize);
+  m_updatesCombo->setCurrentIndex(static_cast<int>(configuration.update));
+
+  m_fixed->setChecked(configuration.trayTextMode);
+  m_variable->setChecked(!configuration.trayTextMode);
+
+  m_minSpinBox->setMaximum(configuration.maximumValue-1);
+  m_maxSpinBox->setMinimum(configuration.minimumValue+1);
+
+  QPixmap icon(QSize(64,64));
+  icon.fill(configuration.trayTextColor);
+  m_trayTempColor->setIcon(QIcon(icon));
+  m_trayTempColor->setProperty("iconColor", configuration.trayTextColor.name(QColor::HexArgb));
+
+  icon.fill(configuration.minimumColor);
+  m_minColor->setIcon(QIcon(icon));
+  m_minColor->setProperty("iconColor", configuration.minimumColor.name(QColor::HexArgb));
+
+  icon.fill(configuration.maximumColor);
+  m_maxColor->setIcon(QIcon(icon));
+  m_maxColor->setProperty("iconColor", configuration.maximumColor.name(QColor::HexArgb));
+
+  if(!configuration.isValid())
+  {
+    m_longitudeSpin->setValue(0.);
+    m_latitudeSpin->setValue(0.);
+
+    m_latitude->setText("0");
+    m_longitude->setText("0");
+
+    m_updateTime->setValue(15);
+    m_tempComboBox->setCurrentIndex(0);
+  }
+  else
+  {
+    m_longitudeSpin->setValue(configuration.longitude);
+    m_latitudeSpin->setValue(configuration.latitude);
+
+    m_latitude->setText(QString::number(configuration.latitude));
+    m_longitude->setText(QString::number(configuration.longitude));
+  }
+
+  if(configuration.useGeolocation || !m_ipapiLabel->text().isEmpty())
+  {
+    requestGeolocation();
+  }
+
+  onRadioChanged();
+  onCoordinatesChanged();
+
+  if(configuration.isValid())
+  {
+    requestOpenWeatherMapAPIKeyTest();
+  }
+  else
+  {
+    m_apiTest->setEnabled(true);
+
+    if(configuration.owm_apikey.isEmpty())
+    {
+      m_testLabel->setStyleSheet("QLabel { color : red; }");
+      m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
+    }
+    else
+    {
+      m_testLabel->setStyleSheet("QLabel { color : red; }");
+      m_testLabel->setText(tr("Untested OpenWeatherMap API Key!"));
+    }
+  }
+
+  setFixedSize(size());
+  updateRange();
+  updateLanguageCombo(configuration.language);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::disconnectSignals()
+{
+  disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+             this,               SLOT(replyFinished(QNetworkReply*)));
+
+  disconnect(m_apiTest, SIGNAL(pressed()),
+             this,      SLOT(requestOpenWeatherMapAPIKeyTest()));
+
+  disconnect(m_geoRequest, SIGNAL(pressed()),
+             this,         SLOT(requestGeolocation()));
+
+  disconnect(m_useDNS, SIGNAL(stateChanged(int)),
+             this,     SLOT(onDNSRequestStateChanged(int)));
+
+  disconnect(m_useGeolocation, SIGNAL(toggled(bool)),
+             this,             SLOT(onRadioChanged()));
+
+  disconnect(m_useManual, SIGNAL(toggled(bool)),
+             this,        SLOT(onRadioChanged()));
+
+  disconnect(m_longitudeSpin, SIGNAL(editingFinished()),
+             this,            SLOT(onCoordinatesChanged()));
+
+  disconnect(m_latitudeSpin, SIGNAL(editingFinished()),
+             this,           SLOT(onCoordinatesChanged()));
+
+  disconnect(m_theme, SIGNAL(currentIndexChanged(int)),
+            this,     SLOT(onThemeIndexChanged(int)));
+
+  disconnect(m_trayTempColor, SIGNAL(clicked()),
+             this,            SLOT(onColorButtonClicked()));
+
+  disconnect(m_minColor, SIGNAL(clicked()),
+             this,       SLOT(onColorButtonClicked()));
+
+  disconnect(m_maxColor, SIGNAL(clicked()),
+             this,       SLOT(onColorButtonClicked()));
+
+  disconnect(m_minSpinBox, SIGNAL(valueChanged(int)),
+             this,         SLOT(onTemperatureValueChanged(int)));
+
+  disconnect(m_maxSpinBox, SIGNAL(valueChanged(int)),
+             this,         SLOT(onTemperatureValueChanged(int)));
+
+  disconnect(m_autostart, SIGNAL(stateChanged(int)),
+             this,        SLOT(onAutostartValueChanged(int)));
+
+  disconnect(m_languageCombo, SIGNAL(currentIndexChanged(int)),
+             this,            SLOT(onLanguageChanged(int)));
+}
+
+//--------------------------------------------------------------------
 void ConfigurationDialog::updateLanguageCombo(const QString &current)
 {
+  m_languageCombo->clear();
+
   int selected = 0;
   for(int i = 0; i < TRANSLATIONS.size(); ++i)
   {
@@ -642,9 +718,9 @@ void ConfigurationDialog::updateLanguageCombo(const QString &current)
     m_languageCombo->addItem(QIcon(lang.icon), translated, lang.file);
     if(lang.file.compare(current) == 0) selected = i;
   }
+  m_languageCombo->blockSignals(true);
   m_languageCombo->setCurrentIndex(selected);
-
-  connect(m_languageCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(onLanguageChanged(int)));
+  m_languageCombo->blockSignals(false);
 }
 
 //--------------------------------------------------------------------

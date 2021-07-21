@@ -153,6 +153,11 @@ class WeatherDialog
      */
     void loadMaps();
 
+    /** \brief Removes the maps tab.
+     *
+     */
+    void removeMaps();
+
 
     QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.          */
     QtCharts::QChartView            *m_pollutionChart;   /** pollution forecast chart view.        */

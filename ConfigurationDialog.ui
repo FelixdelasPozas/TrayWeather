@@ -1207,7 +1207,7 @@ QGroupBox::title {
      <item>
       <widget class="QPushButton" name="m_ok">
        <property name="text">
-        <string>OK</string>
+        <string>Ok</string>
        </property>
       </widget>
      </item>

@@ -371,6 +371,8 @@ void TrayWeather::showConfiguration()
     return;
   }
 
+  const auto changedLanguage = configuration.language != m_configuration.language;
+
   m_configuration.lightTheme    = configuration.lightTheme;
   m_configuration.iconType      = configuration.iconType;
   m_configuration.trayTextColor = configuration.trayTextColor;
@@ -382,6 +384,18 @@ void TrayWeather::showConfiguration()
   m_configuration.maximumValue  = configuration.maximumValue;
   m_configuration.autostart     = configuration.autostart;
   m_configuration.language      = configuration.language;
+
+  bool requestedData = false;
+  auto updateData = [this, &requestedData]()
+  {
+    if(!requestedData)
+    {
+      requestedData = true;
+      requestData();
+    }
+  };
+
+  if(changedLanguage) updateData();
 
   if(configuration.isValid())
   {
@@ -395,14 +409,14 @@ void TrayWeather::showConfiguration()
       menu->actions().first()->setIcon(icon);
     }
 
-    auto changedCoords  = (configuration.latitude != m_configuration.latitude) || (configuration.longitude != m_configuration.longitude);
-    auto changedMethod  = (configuration.useGeolocation != m_configuration.useGeolocation);
-    auto changedIP      = (configuration.ip != m_configuration.ip);
-    auto changedUpdate  = (configuration.updateTime != m_configuration.updateTime);
-    auto changedAPIKey  = (configuration.owm_apikey != m_configuration.owm_apikey);
-    auto changedUnits   = (configuration.units != m_configuration.units);
-    auto changedRoaming = (configuration.roamingEnabled != m_configuration.roamingEnabled);
-    auto changedUpdateCheck = configuration.update != m_configuration.update;
+    const auto changedCoords      = (configuration.latitude != m_configuration.latitude) || (configuration.longitude != m_configuration.longitude);
+    const auto changedMethod      = (configuration.useGeolocation != m_configuration.useGeolocation);
+    const auto changedIP          = (configuration.ip != m_configuration.ip);
+    const auto changedUpdate      = (configuration.updateTime != m_configuration.updateTime);
+    const auto changedAPIKey      = (configuration.owm_apikey != m_configuration.owm_apikey);
+    const auto changedUnits       = (configuration.units != m_configuration.units);
+    const auto changedRoaming     = (configuration.roamingEnabled != m_configuration.roamingEnabled);
+    const auto changedUpdateCheck = configuration.update != m_configuration.update;
 
     if(changedIP || changedMethod || changedCoords || changedRoaming)
     {
@@ -418,7 +432,7 @@ void TrayWeather::showConfiguration()
       m_configuration.useDNS         = configuration.useDNS;
       m_configuration.useGeolocation = configuration.useGeolocation;
       m_configuration.roamingEnabled = configuration.roamingEnabled;
-      requestData();
+      updateData();
     }
 
     if(changedUpdate)
@@ -431,7 +445,7 @@ void TrayWeather::showConfiguration()
     if(changedAPIKey)
     {
       m_configuration.owm_apikey = configuration.owm_apikey;
-      requestData();
+      updateData();
     }
 
     if(changedUnits)

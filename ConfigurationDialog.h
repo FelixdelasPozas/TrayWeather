@@ -63,17 +63,6 @@ class ConfigurationDialog
     virtual void showEvent(QShowEvent *e) override;
     virtual void changeEvent(QEvent *e) override;
 
-  private:
-    /** \brief Request DNS IP
-     *
-     */
-    void requestDNSIPGeolocation();
-
-    /** \brief Helper method to connect UI signals to the slots.
-     *
-     */
-    void connectSignals();
-
   private slots:
     /** \brief Manages replies from the network requests.
      * \param[in] reply network reply object pointer.
@@ -140,6 +129,27 @@ class ConfigurationDialog
     void languageChanged(const QString &);
 
   private:
+    /** \brief Helper method to fill the configuration values and initilize the UI.
+     * \param[in] configuration Configuration struct reference.
+     *
+     */
+    void setConfiguration(const Configuration &configuration);
+
+    /** \brief Request DNS IP
+     *
+     */
+    void requestDNSIPGeolocation();
+
+    /** \brief Helper method to connect UI signals to the slots.
+     *
+     */
+    void connectSignals();
+
+    /** \brief Helper method to disconnect UI signals to the slots.
+     *
+     */
+    void disconnectSignals();
+
     /** \brief Helper method that draws the color interpolation of the range QLabel.
      *
      */

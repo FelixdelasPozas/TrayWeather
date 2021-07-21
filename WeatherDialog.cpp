@@ -185,7 +185,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   auto axisX = new QDateTimeAxis();
   axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
-  axisX->setFormat(tr("dd (hh)"));
+  axisX->setFormat("dd (hh)");
   axisX->setTitleText(tr("Day (Hour)"));
 
   auto axisYTemp = new QValueAxis();
@@ -415,7 +415,9 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
 //--------------------------------------------------------------------
 void WeatherDialog::onLoadFinished(bool value)
 {
-  m_tabWidget->setTabText(3, tr("Maps"));
+  if(m_tabWidget->count() == 4) m_tabWidget->setTabText(3, tr("Maps"));
+
+  if(m_webpage) m_webpage->setProperty("finished", value);
 
   if(isVisible() && !value)
   {
@@ -424,6 +426,8 @@ void WeatherDialog::onLoadFinished(bool value)
     msg.setWindowIcon(QIcon{":/TrayWeather/application.ico"});
     msg.setText(tr("The weather maps couldn't be loaded."));
     msg.exec();
+
+    removeMaps();
   }
 }
 
@@ -442,15 +446,7 @@ void WeatherDialog::onMapsButtonPressed()
 
   if(enabled)
   {
-    m_mapsButton->setText(tr("Show Maps"));
-    m_mapsButton->setToolTip(tr("Show weather maps tab."));
-
-    m_tabWidget->removeTab(3);
-
-    updateMapLayerValues();
-
-    delete m_webpage;
-    m_webpage = nullptr;
+    removeMaps();
   }
   else
   {
@@ -458,6 +454,7 @@ void WeatherDialog::onMapsButtonPressed()
     m_mapsButton->setToolTip(tr("Hide weather maps tab."));
 
     m_webpage = new QWebView;
+    m_webpage->setProperty("finished", false);
     m_webpage->setRenderHint(QPainter::HighQualityAntialiasing, true);
     m_webpage->setContextMenuPolicy(Qt::NoContextMenu);
     m_webpage->setAcceptDrops(false);
@@ -543,7 +540,7 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   auto axisX = new QDateTimeAxis();
   axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
-  axisX->setFormat(tr("dd (hh)"));
+  axisX->setFormat("dd (hh)");
   axisX->setTitleText(tr("Day (Hour)"));
   axisX->setGridLineColor(Qt::gray);
 
@@ -770,7 +767,7 @@ QColor WeatherDialog::pollutionColor(const int aqiValue)
 //--------------------------------------------------------------------
 void WeatherDialog::updateMapLayerValues()
 {
-  if(m_webpage != nullptr)
+  if(m_webpage != nullptr && m_webpage->property("finished").toBool())
   {
     auto value = m_webpage->page()->mainFrame()->evaluateJavaScript("customGetLayer();");
     if(!value.isNull())
@@ -848,5 +845,31 @@ void WeatherDialog::loadMaps()
   {
     const auto message = tr("Unable to load weather webpage");
     m_webpage->setHtml(QString("<p style=\"color:red\"><h1>%1</h1></p>").arg(message));
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::removeMaps()
+{
+  m_mapsButton->setText(tr("Show Maps"));
+  m_mapsButton->setToolTip(tr("Show weather maps tab."));
+
+  m_tabWidget->removeTab(3);
+
+  if(m_webpage)
+  {
+    if(m_webpage->property("finished").toBool())
+    {
+      updateMapLayerValues();
+    }
+
+    disconnect(m_webpage, SIGNAL(loadFinished(bool)),
+               this,      SLOT(onLoadFinished(bool)));
+
+    disconnect(m_webpage, SIGNAL(loadProgress(int)),
+               this,      SLOT(onLoadProgress(int)));
+
+    m_webpage->deleteLater();
+    m_webpage = nullptr;
   }
 }
