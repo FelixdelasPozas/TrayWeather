@@ -50,6 +50,11 @@ int main(int argc, char *argv[])
 {
   qInstallMessageHandler(myMessageOutput);
 
+  // To fix networking problems as Qt looks for updated networks every 10 seconds...
+  // https://bugreports.qt.io/browse/QTBUG-46015
+  // WARNING: This could break wifi detection
+  qputenv("QT_BEARER_POLL_TIMEOUT", QByteArray::number(-1));
+
   QApplication app(argc, argv);
   app.setQuitOnLastWindowClosed(false);
 
