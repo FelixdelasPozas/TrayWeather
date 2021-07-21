@@ -227,7 +227,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="505"/>
-        <location filename="../ConfigurationDialog.cpp" line="381"/>
+        <location filename="../ConfigurationDialog.cpp" line="288"/>
         <source>Testing API Key...</source>
         <translation>Проверка ключа API...</translation>
     </message>
@@ -361,12 +361,12 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="994"/>
         <source>Temperature units</source>
-        <translation>Единицы измерения температуры</translation>
+        <translation>Единица  измерения температуры</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1013"/>
         <source>Visual theme</source>
-        <translation>Визуальная тема</translation>
+        <translation>Тема оформления</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1021"/>
@@ -406,12 +406,12 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1078"/>
         <source>Celsius</source>
-        <translation>По Цельсию</translation>
+        <translation>Градус Цельсия</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1087"/>
         <source>Fahrenheit</source>
-        <translation>По Фаренгейту</translation>
+        <translation>Градус Фаренгейта</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1111"/>
@@ -435,24 +435,24 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1210"/>
-        <source>OK</source>
-        <translation>Хорошо</translation>
+        <source>Ok</source>
+        <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="131"/>
-        <location filename="../ConfigurationDialog.cpp" line="214"/>
-        <location filename="../ConfigurationDialog.cpp" line="221"/>
+        <location filename="../ConfigurationDialog.cpp" line="121"/>
+        <location filename="../ConfigurationDialog.cpp" line="128"/>
+        <location filename="../ConfigurationDialog.cpp" line="637"/>
         <source>Invalid OpenWeatherMap API Key!</source>
         <translation>Неверный ключ API OpenWeatherMap!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="136"/>
+        <location filename="../ConfigurationDialog.cpp" line="642"/>
         <source>Untested OpenWeatherMap API Key!</source>
         <translation>Непроверенный ключ API OpenWeatherMap!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="166"/>
-        <location filename="../ConfigurationDialog.cpp" line="233"/>
+        <location filename="../ConfigurationDialog.cpp" line="73"/>
+        <location filename="../ConfigurationDialog.cpp" line="140"/>
         <source>Invalid reply from Geo-Locator server.
 Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
@@ -461,56 +461,56 @@ If you have a firewall change the configuration to allow this program to access 
 Если у вас есть брандмауэр, измените его настройки, чтобы разрешить этой программе доступ к сети.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="170"/>
-        <location filename="../ConfigurationDialog.cpp" line="286"/>
+        <location filename="../ConfigurationDialog.cpp" line="77"/>
+        <location filename="../ConfigurationDialog.cpp" line="193"/>
         <source>Network Error</source>
         <translation>Ошибка сети</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="207"/>
+        <location filename="../ConfigurationDialog.cpp" line="114"/>
         <source>The API Key is valid!</source>
-        <translation>Неверный ключ API!</translation>
+        <translation>Ключ API действителен!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="216"/>
+        <location filename="../ConfigurationDialog.cpp" line="123"/>
         <source>Invalid OpenWeatherMap API Key.</source>
         <translation>Неверный ключ API OpenWeatherMap.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="223"/>
+        <location filename="../ConfigurationDialog.cpp" line="130"/>
         <source>Invalid reply from OpenWeatherMap server.</source>
         <translation>Недопустимый ответ от сервера OpenWeatherMap.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="254"/>
+        <location filename="../ConfigurationDialog.cpp" line="161"/>
         <source>Success</source>
         <translation>Успешно</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="262"/>
-        <location filename="../ConfigurationDialog.cpp" line="270"/>
-        <location filename="../ConfigurationDialog.cpp" line="278"/>
+        <location filename="../ConfigurationDialog.cpp" line="169"/>
+        <location filename="../ConfigurationDialog.cpp" line="177"/>
+        <location filename="../ConfigurationDialog.cpp" line="185"/>
         <source>Failure</source>
         <translation>Сбой</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="264"/>
+        <location filename="../ConfigurationDialog.cpp" line="171"/>
         <source>Error parsing location data. Failure or invalid number of fields.</source>
         <translation>Ошибка разбора данных местоположения. Сбой или недопустимое количество полей.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="272"/>
+        <location filename="../ConfigurationDialog.cpp" line="179"/>
         <source>Data request failure. Invalid data format.</source>
         <translation>Ошибка запроса данных. Неверный формат данных.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="280"/>
+        <location filename="../ConfigurationDialog.cpp" line="187"/>
         <source>Invalid reply from Geo-Locator server.</source>
         <translation>Неверный ответ от сервера геолокации.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="355"/>
-        <location filename="../ConfigurationDialog.cpp" line="368"/>
+        <location filename="../ConfigurationDialog.cpp" line="262"/>
+        <location filename="../ConfigurationDialog.cpp" line="275"/>
         <source>Requesting...</source>
         <translation>Запрос...</translation>
     </message>
@@ -530,12 +530,12 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../PollutionWidget.cpp" line="72"/>
         <source>Fair</source>
-        <translation>Удовлетворительное</translation>
+        <translation>Приемлемое</translation>
     </message>
     <message>
         <location filename="../PollutionWidget.cpp" line="76"/>
         <source>Moderate</source>
-        <translation>Среднее</translation>
+        <translation>Умеренное</translation>
     </message>
     <message>
         <location filename="../PollutionWidget.cpp" line="80"/>
@@ -551,10 +551,10 @@ If you have a firewall change the configuration to allow this program to access 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Main.cpp" line="60"/>
-        <location filename="../Main.cpp" line="76"/>
-        <location filename="../Main.cpp" line="102"/>
-        <location filename="../TrayWeather.cpp" line="764"/>
+        <location filename="../Main.cpp" line="64"/>
+        <location filename="../Main.cpp" line="80"/>
+        <location filename="../Main.cpp" line="106"/>
+        <location filename="../TrayWeather.cpp" line="778"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
     </message>
@@ -655,55 +655,55 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>Ошибка при получении данных о погоде.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="496"/>
+        <location filename="../TrayWeather.cpp" line="510"/>
         <source>Requesting weather data from the server...</source>
         <translation>Запрос данных о погоде с сервера...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="597"/>
-        <location filename="../TrayWeather.cpp" line="981"/>
+        <location filename="../TrayWeather.cpp" line="611"/>
+        <location filename="../TrayWeather.cpp" line="995"/>
         <source>Current weather...</source>
         <translation>Текущая погода...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="602"/>
-        <location filename="../TrayWeather.cpp" line="982"/>
+        <location filename="../TrayWeather.cpp" line="616"/>
+        <location filename="../TrayWeather.cpp" line="996"/>
         <source>Forecast...</source>
         <translation>Прогноз...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="607"/>
-        <location filename="../TrayWeather.cpp" line="983"/>
+        <location filename="../TrayWeather.cpp" line="621"/>
+        <location filename="../TrayWeather.cpp" line="997"/>
         <source>Pollution...</source>
         <translation>Загрязнение...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="612"/>
-        <location filename="../TrayWeather.cpp" line="984"/>
+        <location filename="../TrayWeather.cpp" line="626"/>
+        <location filename="../TrayWeather.cpp" line="998"/>
         <source>Maps...</source>
         <translation>Карты...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="621"/>
-        <location filename="../TrayWeather.cpp" line="985"/>
+        <location filename="../TrayWeather.cpp" line="635"/>
+        <location filename="../TrayWeather.cpp" line="999"/>
         <source>Refresh...</source>
         <translation>Обновить...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="628"/>
-        <location filename="../TrayWeather.cpp" line="986"/>
+        <location filename="../TrayWeather.cpp" line="642"/>
+        <location filename="../TrayWeather.cpp" line="1000"/>
         <source>Configuration...</source>
         <translation>Настройки...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="635"/>
-        <location filename="../TrayWeather.cpp" line="987"/>
+        <location filename="../TrayWeather.cpp" line="649"/>
+        <location filename="../TrayWeather.cpp" line="1001"/>
         <source>About...</source>
         <translation>О программе...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="640"/>
-        <location filename="../TrayWeather.cpp" line="988"/>
+        <location filename="../TrayWeather.cpp" line="654"/>
+        <location filename="../TrayWeather.cpp" line="1002"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
@@ -717,7 +717,7 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="810"/>
+        <location filename="../WeatherDialog.cpp" line="807"/>
         <source>Current Weather</source>
         <translation>Текущая погода</translation>
     </message>
@@ -807,9 +807,9 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../WeatherDialog.ui" line="199"/>
         <location filename="../WeatherDialog.cpp" line="113"/>
-        <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="830"/>
-        <location filename="../WeatherDialog.cpp" line="832"/>
+        <location filename="../WeatherDialog.cpp" line="778"/>
+        <location filename="../WeatherDialog.cpp" line="827"/>
+        <location filename="../WeatherDialog.cpp" line="829"/>
         <source>Temperature</source>
         <translation>Температура</translation>
     </message>
@@ -832,7 +832,7 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../WeatherDialog.ui" line="459"/>
         <location filename="../WeatherDialog.ui" line="479"/>
         <location filename="../WeatherDialog.cpp" line="112"/>
-        <location filename="../WeatherDialog.cpp" line="517"/>
+        <location filename="../WeatherDialog.cpp" line="514"/>
         <source>Unknown</source>
         <translation>Неизвестно</translation>
     </message>
@@ -921,7 +921,7 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="622"/>
-        <location filename="../WeatherDialog.cpp" line="445"/>
+        <location filename="../WeatherDialog.cpp" line="854"/>
         <source>Show Maps</source>
         <translation>Показать карты</translation>
     </message>
@@ -952,7 +952,7 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="66"/>
-        <location filename="../WeatherDialog.cpp" line="810"/>
+        <location filename="../WeatherDialog.cpp" line="807"/>
         <source>Forecast</source>
         <translation>Прогноз</translation>
     </message>
@@ -963,7 +963,7 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="75"/>
-        <location filename="../WeatherDialog.cpp" line="810"/>
+        <location filename="../WeatherDialog.cpp" line="807"/>
         <source>Pollution</source>
         <translation>Загрязнение</translation>
     </message>
@@ -988,14 +988,8 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>Количество дождя</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="188"/>
-        <location filename="../WeatherDialog.cpp" line="546"/>
-        <source>dd (hh)</source>
-        <translation>дд (чч)</translation>
-    </message>
-    <message>
         <location filename="../WeatherDialog.cpp" line="189"/>
-        <location filename="../WeatherDialog.cpp" line="547"/>
+        <location filename="../WeatherDialog.cpp" line="544"/>
         <source>Day (Hour)</source>
         <translation>День (час)</translation>
     </message>
@@ -1011,95 +1005,95 @@ If you have a firewall change the configuration to allow this program to access 
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="418"/>
-        <location filename="../WeatherDialog.cpp" line="477"/>
-        <location filename="../WeatherDialog.cpp" line="488"/>
-        <location filename="../WeatherDialog.cpp" line="810"/>
+        <location filename="../WeatherDialog.cpp" line="474"/>
+        <location filename="../WeatherDialog.cpp" line="485"/>
+        <location filename="../WeatherDialog.cpp" line="807"/>
         <source>Maps</source>
         <translation>Карты</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="423"/>
+        <location filename="../WeatherDialog.cpp" line="425"/>
         <source>TrayWeather Maps</source>
         <translation>Карты TrayWeather</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="425"/>
+        <location filename="../WeatherDialog.cpp" line="427"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>Карты погоды не удалось загрузить.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="446"/>
+        <location filename="../WeatherDialog.cpp" line="855"/>
         <source>Show weather maps tab.</source>
         <translation>Показать вкладку карт погоды.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="457"/>
+        <location filename="../WeatherDialog.cpp" line="453"/>
         <source>Hide Maps</source>
         <translation>Скрыть карты</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="458"/>
+        <location filename="../WeatherDialog.cpp" line="454"/>
         <source>Hide weather maps tab.</source>
         <translation>Скрыть вкладку карт погоды.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="469"/>
+        <location filename="../WeatherDialog.cpp" line="466"/>
         <source>Weather Maps.</source>
         <translation>Карты погоды.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="524"/>
+        <location filename="../WeatherDialog.cpp" line="521"/>
         <source>Good</source>
         <translation>Хорошее</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="527"/>
+        <location filename="../WeatherDialog.cpp" line="524"/>
         <source>Fair</source>
         <translation>Удовлетворительное</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="530"/>
+        <location filename="../WeatherDialog.cpp" line="527"/>
         <source>Moderate</source>
         <translation>Среднее</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="533"/>
+        <location filename="../WeatherDialog.cpp" line="530"/>
         <source>Poor</source>
         <translation>Плохое</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="536"/>
+        <location filename="../WeatherDialog.cpp" line="533"/>
         <source>Very poor</source>
         <translation>Ужасное</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="552"/>
+        <location filename="../WeatherDialog.cpp" line="549"/>
         <source>Concentration in %1</source>
         <translation>Концентрация в %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="781"/>
+        <location filename="../WeatherDialog.cpp" line="778"/>
+        <location filename="../WeatherDialog.cpp" line="827"/>
         <location filename="../WeatherDialog.cpp" line="830"/>
-        <location filename="../WeatherDialog.cpp" line="833"/>
         <source>Rain</source>
         <translation>Дождь</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="830"/>
-        <location filename="../WeatherDialog.cpp" line="834"/>
+        <location filename="../WeatherDialog.cpp" line="778"/>
+        <location filename="../WeatherDialog.cpp" line="827"/>
+        <location filename="../WeatherDialog.cpp" line="831"/>
         <source>Wind</source>
         <translation>Ветер</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="781"/>
-        <location filename="../WeatherDialog.cpp" line="830"/>
-        <location filename="../WeatherDialog.cpp" line="835"/>
+        <location filename="../WeatherDialog.cpp" line="778"/>
+        <location filename="../WeatherDialog.cpp" line="827"/>
+        <location filename="../WeatherDialog.cpp" line="832"/>
         <source>Clouds</source>
         <translation>Облака</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="849"/>
+        <location filename="../WeatherDialog.cpp" line="846"/>
         <source>Unable to load weather webpage</source>
         <translation>Не удалось загрузить веб-страницу погоды</translation>
     </message>
