@@ -436,7 +436,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1210"/>
         <source>OK</source>
-        <translation>Хорошо</translation>
+        <translation>ОК</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="131"/>
@@ -943,7 +943,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../WeatherDialog.ui" line="655"/>
         <source>Ok</source>
-        <translation>Хорошо</translation>
+        <translation>ОК</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="63"/>
@@ -1055,12 +1055,12 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../WeatherDialog.cpp" line="527"/>
         <source>Fair</source>
-        <translation>Удовлетворительное</translation>
+        <translation>Приемлемое</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="530"/>
         <source>Moderate</source>
-        <translation>Среднее</translation>
+        <translation>Умеренное</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="533"/>
