@@ -26,7 +26,7 @@
 #include <QDateTime>
 #include <QApplication>
 
-const QString AboutDialog::VERSION{"1.9.2"};
+const QString AboutDialog::VERSION{"1.9.3"};
 const QString COPYRIGHT{"Copyright (c) 2016-%1 Félix de las Pozas Álvarez"};
 
 //-----------------------------------------------------------------
@@ -64,6 +64,7 @@ void AboutDialog::changeEvent(QEvent *e)
   if(e && e->type() == QEvent::LanguageChange)
   {
     retranslateUi(this);
+    fillTranslationsTable();
   }
 
   QDialog::changeEvent(e);
@@ -72,6 +73,7 @@ void AboutDialog::changeEvent(QEvent *e)
 //-----------------------------------------------------------------
 void AboutDialog::fillTranslationsTable() const
 {
+  m_translations->clear();
   m_translations->verticalHeader()->setVisible(false);
   m_translations->horizontalHeader()->setVisible(false);
   m_translations->setRowCount(TRANSLATIONS.size());
