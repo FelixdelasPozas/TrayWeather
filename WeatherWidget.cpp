@@ -79,13 +79,14 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   {
     m_snow->setText(QString("%1: %2 mm").arg(snowStr).arg(data.snow));
   }
+
+  adjustSize();
+  setFixedSize(size());
 }
 
 //--------------------------------------------------------------------
 void WeatherWidget::paintEvent(QPaintEvent* event)
 {
-  setFixedSize(minimumSize());
-
   QPainter painter(this);
   painter.drawRect(0, 0, width()-1, height()-1);
   painter.end();

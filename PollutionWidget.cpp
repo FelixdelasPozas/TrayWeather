@@ -86,13 +86,14 @@ PollutionWidget::PollutionWidget(const PollutionData& data)
   }
 
   m_description->setText(QString("<b>%1: <font color=%2>%3</font></b>").arg(airStr).arg(colorStr).arg(qualityStr));
+
+  adjustSize();
+  setFixedSize(size());
 }
 
 //--------------------------------------------------------------------
 void PollutionWidget::paintEvent(QPaintEvent* event)
 {
-  setFixedSize(minimumSize());
-
   QPainter painter(this);
   painter.drawRect(0, 0, width()-1, height()-1);
   painter.end();

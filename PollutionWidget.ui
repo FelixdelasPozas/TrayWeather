@@ -19,21 +19,27 @@
   <property name="minimumSize">
    <size>
     <width>200</width>
-    <height>153</height>
+    <height>150</height>
    </size>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
+   <property name="spacing">
+    <number>5</number>
+   </property>
+   <property name="sizeConstraint">
+    <enum>QLayout::SetMinimumSize</enum>
+   </property>
    <property name="leftMargin">
-    <number>12</number>
+    <number>10</number>
    </property>
    <property name="topMargin">
-    <number>12</number>
+    <number>10</number>
    </property>
    <property name="rightMargin">
-    <number>12</number>
+    <number>10</number>
    </property>
    <property name="bottomMargin">
-    <number>12</number>
+    <number>10</number>
    </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0,1">
