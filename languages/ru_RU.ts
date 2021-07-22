@@ -441,12 +441,12 @@
     <message>
         <location filename="../ConfigurationDialog.cpp" line="121"/>
         <location filename="../ConfigurationDialog.cpp" line="128"/>
-        <location filename="../ConfigurationDialog.cpp" line="637"/>
+        <location filename="../ConfigurationDialog.cpp" line="642"/>
         <source>Invalid OpenWeatherMap API Key!</source>
         <translation>Неверный ключ API OpenWeatherMap!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="642"/>
+        <location filename="../ConfigurationDialog.cpp" line="647"/>
         <source>Untested OpenWeatherMap API Key!</source>
         <translation>Непроверенный ключ API OpenWeatherMap!</translation>
     </message>
@@ -551,9 +551,9 @@ If you have a firewall change the configuration to allow this program to access 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Main.cpp" line="64"/>
-        <location filename="../Main.cpp" line="80"/>
-        <location filename="../Main.cpp" line="106"/>
+        <location filename="../Main.cpp" line="65"/>
+        <location filename="../Main.cpp" line="81"/>
+        <location filename="../Main.cpp" line="107"/>
         <location filename="../TrayWeather.cpp" line="778"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
@@ -598,6 +598,86 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../Utils.cpp" line="331"/>
         <source>illumination</source>
         <translation>освещённость</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="400"/>
+        <source>NNE</source>
+        <translation>CCB</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="401"/>
+        <source>NE</source>
+        <translation>CB</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="402"/>
+        <source>ENE</source>
+        <translation>BCB</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="403"/>
+        <source>E</source>
+        <translation>B</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="404"/>
+        <source>ESE</source>
+        <translation>ВЮВ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="405"/>
+        <source>SE</source>
+        <translation>ЮВ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="406"/>
+        <source>SSE</source>
+        <translation>ЮЮВ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="407"/>
+        <source>S</source>
+        <translation>Ю</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="408"/>
+        <source>SSW</source>
+        <translation>ЮЮЗ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="409"/>
+        <source>SW</source>
+        <translation>ЮЗ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="410"/>
+        <source>WSW</source>
+        <translation>ЗЮЗ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="411"/>
+        <source>W</source>
+        <translation>З</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="412"/>
+        <source>WNW</source>
+        <translation>ЗСЗ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="413"/>
+        <source>NW</source>
+        <translation>СЗ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="414"/>
+        <source>NNW</source>
+        <translation>CСЗ</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="416"/>
+        <source>N</source>
+        <translation>C</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="66"/>

@@ -436,17 +436,17 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1210"/>
         <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="121"/>
         <location filename="../ConfigurationDialog.cpp" line="128"/>
-        <location filename="../ConfigurationDialog.cpp" line="637"/>
+        <location filename="../ConfigurationDialog.cpp" line="642"/>
         <source>Invalid OpenWeatherMap API Key!</source>
         <translation>Llave API OpenWeatherMap Inválida</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="642"/>
+        <location filename="../ConfigurationDialog.cpp" line="647"/>
         <source>Untested OpenWeatherMap API Key!</source>
         <translation>Llave API de OpenWeatherMap sin probar!</translation>
     </message>
@@ -551,9 +551,9 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Main.cpp" line="64"/>
-        <location filename="../Main.cpp" line="80"/>
-        <location filename="../Main.cpp" line="106"/>
+        <location filename="../Main.cpp" line="65"/>
+        <location filename="../Main.cpp" line="81"/>
+        <location filename="../Main.cpp" line="107"/>
         <location filename="../TrayWeather.cpp" line="778"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
@@ -598,6 +598,86 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
         <location filename="../Utils.cpp" line="331"/>
         <source>illumination</source>
         <translation>iluminación</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="400"/>
+        <source>NNE</source>
+        <translation>NNE</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="401"/>
+        <source>NE</source>
+        <translation>NE</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="402"/>
+        <source>ENE</source>
+        <translation>ENE</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="403"/>
+        <source>E</source>
+        <translation>E</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="404"/>
+        <source>ESE</source>
+        <translation>ESE</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="405"/>
+        <source>SE</source>
+        <translation>SE</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="406"/>
+        <source>SSE</source>
+        <translation>SSE</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="407"/>
+        <source>S</source>
+        <translation>S</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="408"/>
+        <source>SSW</source>
+        <translation>SSO</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="409"/>
+        <source>SW</source>
+        <translation>SO</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="410"/>
+        <source>WSW</source>
+        <translation>OSO</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="411"/>
+        <source>W</source>
+        <translation>O</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="412"/>
+        <source>WNW</source>
+        <translation>ONO</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="413"/>
+        <source>NW</source>
+        <translation>NO</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="414"/>
+        <source>NNW</source>
+        <translation>NNO</translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="416"/>
+        <source>N</source>
+        <translation>N</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="66"/>
