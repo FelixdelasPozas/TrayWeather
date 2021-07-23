@@ -351,7 +351,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="953"/>
         <source>Time between update requests</source>
-        <translation>Интервал запросов обновления</translation>
+        <translation>Интервал обновления погоды</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="966"/>
@@ -361,7 +361,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="994"/>
         <source>Temperature units</source>
-        <translation>Единица  измерения температуры</translation>
+        <translation>Единица температуры</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1013"/>
@@ -817,7 +817,7 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../WeatherDialog.ui" line="206"/>
         <location filename="../WeatherDialog.ui" line="260"/>
         <source>Current ground pressure</source>
-        <translation>Текущее давление на грунт</translation>
+        <translation>Текущее атмосферное давление</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="215"/>
@@ -846,7 +846,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../WeatherDialog.ui" line="263"/>
         <source>Ground pressure</source>
-        <translation>Давление на грунт</translation>
+        <translation>Атмосферное давление</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="279"/>
