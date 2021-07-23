@@ -76,238 +76,78 @@ TrayWeather::~TrayWeather()
 //--------------------------------------------------------------------
 void TrayWeather::replyFinished(QNetworkReply* reply)
 {
-  bool hasError = false;
-
-  if(reply->error() == QNetworkReply::NoError)
+  auto setErrorTooltip = [this](const QString &text)
   {
-    auto type = reply->header(QNetworkRequest::ContentTypeHeader).toString();
+    const auto errorIcon = QIcon{":/TrayWeather/network_error.svg"};
+    setIcon(errorIcon);
 
-    if(type.startsWith("application/json"))
+    setToolTip(text);
+
+    if(m_additionalTray)
     {
-      auto jsonDocument = QJsonDocument::fromJson(reply->readAll());
+      m_additionalTray->setIcon(errorIcon);
+      m_additionalTray->setToolTip(text);
+    }
+  };
 
-      if(!jsonDocument.isNull() && jsonDocument.isObject())
-      {
-        // discard entries older than 'right now'.
-        const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
+  const auto originUrl = reply->request().url().toString();
+  const auto contents  = reply->readAll();
 
-        auto jsonObj = jsonDocument.object();
-        const auto keys = jsonObj.keys();
-
-        if(keys.contains("cnt"))
-        {
-          const auto values  = jsonObj.value("list").toArray();
-
-          auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_data) if(entry.dt == dt) return true; return false; };
-
-          for(auto i = 0; i < values.count(); ++i)
-          {
-            auto entry = values.at(i).toObject();
-
-            const auto dt = entry.value("dt").toInt(0);
-            if(dt < currentDt) continue;
-
-            ForecastData data;
-            parseForecastEntry(entry, data, m_configuration.units);
-
-            if(!hasEntry(data.dt))
-            {
-              m_data << data;
-              if(!m_configuration.useGeolocation)
-              {
-                if(data.name    != "Unknown") m_configuration.region = m_configuration.city = data.name;
-                if(data.country != "Unknown") m_configuration.country = data.country;
-              }
-            }
-          }
-
-          if(!m_data.isEmpty())
-          {
-            auto lessThan = [](const ForecastData &left, const ForecastData &right) { if(left.dt < right.dt) return true; return false; };
-            qSort(m_data.begin(), m_data.end(), lessThan);
-          }
-        }
-        else if(keys.contains("list"))
-        {
-          const auto values  = jsonObj.value("list").toArray();
-
-          auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_pData) if(entry.dt == dt) return true; return false; };
-
-          for(auto i = 0; i < values.count(); ++i)
-          {
-            auto entry = values.at(i).toObject();
-
-            const auto dt = entry.value("dt").toInt(0);
-            if(dt < currentDt) continue;
-
-            PollutionData data;
-            parsePollutionEntry(entry, data);
-
-            if(!hasEntry(data.dt)) m_pData << data;
-          }
-
-          if(!m_pData.isEmpty())
-          {
-            auto lessThan = [](const PollutionData &left, const PollutionData &right) { if(left.dt < right.dt) return true; return false; };
-            qSort(m_pData.begin(), m_pData.end(), lessThan);
-          }
-        }
-        else
-        {
-          parseForecastEntry(jsonObj, m_current, m_configuration.units);
-          if(!m_configuration.useGeolocation)
-          {
-            if(m_current.name    != "Unknown") m_configuration.region = m_configuration.city = m_current.name;
-            if(m_current.country != "Unknown") m_configuration.country = m_current.country;
-          }
-        }
-      }
-      else if(!jsonDocument.isNull() && jsonDocument.isArray())
-      {
-        int currentNumbers[3], lastNumbers[3];
-        const auto currentVersion = AboutDialog::VERSION.split(".");
-
-        // Github parse tag of last release.
-        auto jsonObj = jsonDocument.array();
-        auto lastRelease = jsonObj.at(0).toObject();
-        const auto version = lastRelease.value("tag_name").toString();
-        const auto lastVersion = version.split(".");
-        const auto body = lastRelease.value("body").toString();
-
-        if(lastVersion.size() != 3 || body.isEmpty())
-        {
-          hasError = true;
-        }
-        else
-        {
-          bool ok = false;
-          for(int i: {0,1,2})
-          {
-            currentNumbers[i] = currentVersion.at(i).toInt(&ok);
-            if(!ok) hasError = true;
-            lastNumbers[i] = lastVersion.at(i).toInt(&ok);
-            if(!ok) hasError = true;
-            if(hasError) break;
-          }
-        }
-
-        if(!hasError)
-        {
-          if((currentNumbers[0] < lastNumbers[0]) ||
-            ((currentNumbers[0] == lastNumbers[0]) && (currentNumbers[1] < lastNumbers[1])) ||
-            ((currentNumbers[0] == lastNumbers[0]) && (currentNumbers[1] == lastNumbers[1]) && currentNumbers[2] < lastNumbers[2]))
-          {
-            const auto message = tr("There is a new release of <b>Tray Weather</b> at the <a href=\"https://github.com/FelixdelasPozas/TrayWeather/releases\">github website</a>!");
-            const auto informative = tr("<center><b>Version %1</b> has been released!</center>").arg(version);
-            const auto details = tr("Release notes:\n%1").arg(body);
-            const auto title = tr("Tray Weather updated to version %1").arg(version);
-
-            QMessageBox msgBox;
-            msgBox.setWindowTitle(title);
-            msgBox.setText(message);
-            msgBox.setInformativeText(informative);
-            msgBox.setDetailedText(details);
-            msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
-            msgBox.setIconPixmap(QIcon(":/TrayWeather/application.svg").pixmap(QSize{64,64}));
-            msgBox.exec();
-          }
-        }
-        else
-        {
-          auto githubError = tr("Error requesting Github releases data.");
-          if(!toolTip().contains(githubError, Qt::CaseSensitive))
-          {
-            githubError = toolTip() + "\n\n" + githubError;
-            setToolTip(githubError);
-          }
-        }
-
-        reply->deleteLater();
-
-        return;
-      }
+  if(originUrl.contains("github", Qt::CaseInsensitive))
+  {
+    if(reply->error() == QNetworkReply::NoError)
+    {
+      processGithubData(contents);
     }
     else
     {
-      if(type.startsWith("text/plain"))
+      auto githubError = tr("Error requesting Github releases data.");
+      if(!toolTip().contains(githubError, Qt::CaseSensitive))
       {
-        auto url = reply->url();
-        if(url.toString().contains("edns.ip", Qt::CaseInsensitive))
-        {
-          auto data = reply->readAll();
-
-          m_DNSIP = data.split(' ').at(1);
-          requestGeolocation();
-        }
-        else
-        {
-          const auto data = QString::fromUtf8(reply->readAll());
-          const auto values = parseCSV(data);
-
-          if((values.first().compare("success", Qt::CaseInsensitive) == 0) && (values.size() == 14))
-          {
-            m_configuration.country   = values.at(1);
-            m_configuration.region    = values.at(4);
-            m_configuration.city      = values.at(5);
-            m_configuration.zipcode   = values.at(6);
-            m_configuration.latitude  = values.at(7).toDouble();
-            m_configuration.longitude = values.at(8).toDouble();
-            m_configuration.timezone  = values.at(9);
-            m_configuration.isp       = values.at(10);
-            m_configuration.ip        = values.at(13);
-
-            requestForecastData();
-          }
-          else
-          {
-            hasError = true;
-          }
-        }
+        githubError = toolTip() + "\n\n" + githubError;
+        setToolTip(githubError);
+        if(m_additionalTray) m_additionalTray->setToolTip(githubError);
       }
     }
+  }
 
-    if(validData())
+  if(originUrl.contains("ip-api", Qt::CaseInsensitive))
+  {
+    if(reply->error() == QNetworkReply::NoError)
     {
-      m_timer.setInterval(m_configuration.updateTime*60*1000);
-      m_timer.start();
-
-      if(m_weatherDialog)
-      {
-        m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
-      }
+      processGeolocationData(contents, originUrl.contains("edns", Qt::CaseInsensitive));
     }
-
-    if(!m_pData.isEmpty() && m_weatherDialog)
+    else
     {
-      m_weatherDialog->setPollutionData(m_pData);
+      const auto tooltip = tr("Error requesting geolocation coordinates.");
+      setErrorTooltip(tooltip);
     }
-
-    updateTooltip();
-
-    reply->deleteLater();
-    if(!hasError) return;
   }
 
-  // change to error icon.
-  const auto errorIcon = QIcon{":/TrayWeather/network_error.svg"};
-  setIcon(errorIcon);
-
-  QString tooltip;
-  auto url = reply->url().toString();
-  if(url.contains("edns.ip", Qt::CaseInsensitive) || url.startsWith("http://ip-api.com/csv", Qt::CaseInsensitive))
+  if(originUrl.contains("pollution", Qt::CaseInsensitive))
   {
-    tooltip = tr("Error requesting geolocation coordinates.");
+    if(reply->error() == QNetworkReply::NoError)
+    {
+      processPollutionData(contents);
+    }
+    else
+    {
+      const auto tooltip = tr("Error requesting weather data.");
+      setErrorTooltip(tooltip);
+    }
   }
-  else
-  {
-    tooltip = tr("Error requesting weather data.");
-  }
-  setToolTip(tooltip);
 
-  if(m_additionalTray)
+  if(originUrl.contains("openweathermap", Qt::CaseInsensitive) && !originUrl.contains("pollution", Qt::CaseInsensitive))
   {
-    m_additionalTray->setIcon(errorIcon);
-    m_additionalTray->setToolTip(tooltip);
+    if(reply->error() == QNetworkReply::NoError)
+    {
+      processWeatherData(contents);
+    }
+    else
+    {
+      const auto tooltip = tr("Error requesting weather data.");
+      setErrorTooltip(tooltip);
+    }
   }
 
   reply->deleteLater();
@@ -859,7 +699,8 @@ void TrayWeather::requestForecastData()
   QString lang = "en";
   if(!m_configuration.language.isEmpty() && m_configuration.language.contains('_'))
   {
-    lang = m_configuration.language.split('_').first();
+    const auto settings_lang = m_configuration.language.split('_').first();
+    if(OWM_LANGUAGES.contains(settings_lang, Qt::CaseSensitive)) lang = settings_lang;
   }
 
   auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&appid=%4").arg(m_configuration.latitude)
@@ -879,6 +720,12 @@ void TrayWeather::requestForecastData()
                                                                                                                     .arg(lang)
                                                                                                                     .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
+
+//  url = QUrl{QString("http://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&lang=%3&exclude=minutely&appid=%4").arg(m_configuration.latitude)
+//                                                                                                                      .arg(m_configuration.longitude)
+//                                                                                                                      .arg(lang)
+//                                                                                                                      .arg(m_configuration.owm_apikey)};
+//  m_netManager->get(QNetworkRequest{url});
 }
 
 //--------------------------------------------------------------------
@@ -1000,4 +847,225 @@ void TrayWeather::translateMenu()
   actions.at(7)->setText(tr("Configuration..."));
   actions.at(9)->setText(tr("About..."));
   actions.at(10)->setText(tr("Quit"));
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::processGithubData(const QByteArray &data)
+{
+  const auto jsonDocument = QJsonDocument::fromJson(data);
+
+  int currentNumbers[3], lastNumbers[3];
+  const auto currentVersion = AboutDialog::VERSION.split(".");
+
+  // Github parse tag of last release.
+  auto jsonObj = jsonDocument.array();
+  auto lastRelease = jsonObj.at(0).toObject();
+  const auto version = lastRelease.value("tag_name").toString();
+  const auto lastVersion = version.split(".");
+  const auto body = lastRelease.value("body").toString();
+  bool hasError = false;
+
+  if(lastVersion.size() != 3 || body.isEmpty())
+  {
+    hasError = true;
+  }
+  else
+  {
+    bool ok = false;
+    for(int i: {0,1,2})
+    {
+      currentNumbers[i] = currentVersion.at(i).toInt(&ok);
+      if(!ok) hasError = true;
+      lastNumbers[i] = lastVersion.at(i).toInt(&ok);
+      if(!ok) hasError = true;
+      if(hasError) break;
+    }
+  }
+
+  if(!hasError)
+  {
+    if((currentNumbers[0] < lastNumbers[0]) ||
+      ((currentNumbers[0] == lastNumbers[0]) && (currentNumbers[1] < lastNumbers[1])) ||
+      ((currentNumbers[0] == lastNumbers[0]) && (currentNumbers[1] == lastNumbers[1]) && currentNumbers[2] < lastNumbers[2]))
+    {
+      const auto message = tr("There is a new release of <b>Tray Weather</b> at the <a href=\"https://github.com/FelixdelasPozas/TrayWeather/releases\">github website</a>!");
+      const auto informative = tr("<center><b>Version %1</b> has been released!</center>").arg(version);
+      const auto details = tr("Release notes:\n%1").arg(body);
+      const auto title = tr("Tray Weather updated to version %1").arg(version);
+
+      QMessageBox msgBox;
+      msgBox.setWindowTitle(title);
+      msgBox.setText(message);
+      msgBox.setInformativeText(informative);
+      msgBox.setDetailedText(details);
+      msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+      msgBox.setIconPixmap(QIcon(":/TrayWeather/application.svg").pixmap(QSize{64,64}));
+      msgBox.exec();
+    }
+  }
+  else
+  {
+    auto githubError = tr("Error requesting Github releases data.");
+    if(!toolTip().contains(githubError, Qt::CaseSensitive))
+    {
+      githubError = toolTip() + "\n\n" + githubError;
+      setToolTip(githubError);
+    }
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::processWeatherData(const QByteArray &data)
+{
+  const auto jsonDocument = QJsonDocument::fromJson(data);
+
+  if(!jsonDocument.isNull() && jsonDocument.isObject())
+  {
+    // to discard entries older than 'right now'.
+    const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
+    const auto jsonObj = jsonDocument.object();
+
+    const auto keys = jsonObj.keys();
+
+    if(keys.contains("cnt"))
+    {
+      const auto values  = jsonObj.value("list").toArray();
+
+      auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_data) if(entry.dt == dt) return true; return false; };
+
+      for(auto i = 0; i < values.count(); ++i)
+      {
+        auto entry = values.at(i).toObject();
+
+        const auto dt = entry.value("dt").toInt(0);
+        if(dt < currentDt) continue;
+
+        ForecastData data;
+        parseForecastEntry(entry, data, m_configuration.units);
+
+        if(!hasEntry(data.dt))
+        {
+          m_data << data;
+          if(!m_configuration.useGeolocation)
+          {
+            if(data.name    != "Unknown") m_configuration.region = m_configuration.city = data.name;
+            if(data.country != "Unknown") m_configuration.country = data.country;
+          }
+        }
+      }
+
+      if(!m_data.isEmpty())
+      {
+        auto lessThan = [](const ForecastData &left, const ForecastData &right) { if(left.dt < right.dt) return true; return false; };
+        qSort(m_data.begin(), m_data.end(), lessThan);
+      }
+    }
+    else
+    {
+      parseForecastEntry(jsonObj, m_current, m_configuration.units);
+      if(!m_configuration.useGeolocation)
+      {
+        if(m_current.name    != "Unknown") m_configuration.region = m_configuration.city = m_current.name;
+        if(m_current.country != "Unknown") m_configuration.country = m_current.country;
+      }
+    }
+
+    if(validData())
+    {
+      m_timer.setInterval(m_configuration.updateTime*60*1000);
+      m_timer.start();
+
+      if(m_weatherDialog)
+      {
+        m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
+      }
+    }
+
+    updateTooltip();
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::processGeolocationData(const QByteArray &data, const bool isDNS)
+{
+  if(isDNS)
+  {
+    m_DNSIP = data.split(' ').at(1);
+    requestGeolocation();
+  }
+  else
+  {
+    const auto csvData = QString::fromUtf8(data);
+    const auto values = parseCSV(csvData);
+
+    if((values.first().compare("success", Qt::CaseInsensitive) == 0) && (values.size() == 14))
+    {
+      m_configuration.country   = values.at(1);
+      m_configuration.region    = values.at(4);
+      m_configuration.city      = values.at(5);
+      m_configuration.zipcode   = values.at(6);
+      m_configuration.latitude  = values.at(7).toDouble();
+      m_configuration.longitude = values.at(8).toDouble();
+      m_configuration.timezone  = values.at(9);
+      m_configuration.isp       = values.at(10);
+      m_configuration.ip        = values.at(13);
+
+      requestForecastData();
+    }
+    else
+    {
+      const auto errorIcon = QIcon{":/TrayWeather/network_error.svg"};
+      setIcon(errorIcon);
+
+      QString tooltip;
+      tooltip = tr("Error requesting geolocation coordinates.");
+      setToolTip(tooltip);
+
+      if(m_additionalTray)
+      {
+        m_additionalTray->setIcon(errorIcon);
+        m_additionalTray->setToolTip(tooltip);
+      }
+    }
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::processPollutionData(const QByteArray &data)
+{
+  const auto jsonDocument = QJsonDocument::fromJson(data);
+
+  if(!jsonDocument.isNull() && jsonDocument.isObject())
+  {
+    // to discard entries older than 'right now'.
+    const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
+    const auto jsonObj = jsonDocument.object();
+    const auto values  = jsonObj.value("list").toArray();
+
+    auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_pData) if(entry.dt == dt) return true; return false; };
+
+    for(auto i = 0; i < values.count(); ++i)
+    {
+      auto entry = values.at(i).toObject();
+
+      const auto dt = entry.value("dt").toInt(0);
+      if(dt < currentDt) continue;
+
+      PollutionData data;
+      parsePollutionEntry(entry, data);
+
+      if(!hasEntry(data.dt)) m_pData << data;
+    }
+
+    if(!m_pData.isEmpty())
+    {
+      auto lessThan = [](const PollutionData &left, const PollutionData &right) { if(left.dt < right.dt) return true; return false; };
+      qSort(m_pData.begin(), m_pData.end(), lessThan);
+    }
+  }
+
+  if(!m_pData.isEmpty() && m_weatherDialog)
+  {
+    m_weatherDialog->setPollutionData(m_pData);
+  }
 }

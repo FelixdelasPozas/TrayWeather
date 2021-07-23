@@ -156,6 +156,11 @@ class TrayWeather
      */
     void translateMenu();
 
+    void processGithubData(const QByteArray &data);
+    void processWeatherData(const QByteArray &data);
+    void processGeolocationData(const QByteArray &data, const bool isDNS);
+    void processPollutionData(const QByteArray &data);
+
     Configuration                         &m_configuration;   /** application configuration.                        */
     std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                  */
     Forecast                               m_data;            /** list of forecast data.                            */
