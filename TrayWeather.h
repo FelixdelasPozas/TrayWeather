@@ -156,16 +156,42 @@ class TrayWeather
      */
     void translateMenu();
 
+    /** \brief Parses Gihub reply data.
+     * \param[in] data Github reply data.
+     *
+     */
     void processGithubData(const QByteArray &data);
+
+    /** \brief Parses OWM old API weather and forecast data.
+     * \param[in] data OWM old API data.
+     *
+     */
     void processWeatherData(const QByteArray &data);
+
+    /** \brief Parses geo-location data.
+     * \param[in] data Geo-location data in CSV.
+     *
+     */
     void processGeolocationData(const QByteArray &data, const bool isDNS);
+
+    /** \brief Parses OWM pollution forecast data.
+     * \param[in] data OWM pollution data.
+     *
+     */
     void processPollutionData(const QByteArray &data);
+
+    /** \brief Parses OWM OneCall API reply data.
+     * \param[in] data OWM OneCall reply data.
+     *
+     */
+    void processOneCallData(const QByteArray &data);
 
     Configuration                         &m_configuration;   /** application configuration.                        */
     std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                  */
     Forecast                               m_data;            /** list of forecast data.                            */
     ForecastData                           m_current;         /** weather conditions now.                           */
     Pollution                              m_pData;           /** list pollution data.                              */
+    UV                                     m_vData;           /** list of uv data.                                  */
     QTimer                                 m_timer;           /** timer for updates and retries.                    */
     WeatherDialog                         *m_weatherDialog;   /** dialog to show weather and forecast data.         */
     AboutDialog                           *m_aboutDialog;     /** pointer to current (if any) about dialog.         */

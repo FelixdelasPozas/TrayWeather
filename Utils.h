@@ -207,7 +207,7 @@ struct ForecastData
 
 using Forecast = QList<ForecastData>;
 
-/** \brief PollutionData
+/** \struct PollutionData
  * \brief Contains the pollution forecast data for a given time.
  *
  *   Air quality index = 1 Good, 2 Fair, 3 Moderate, 4 Poor and 5 Very Poor.
@@ -233,6 +233,18 @@ struct PollutionData
 };
 
 using Pollution = QList<PollutionData>;
+
+/** \struct UVData
+ * \brief Contains the UV index forecast data for a given time.
+ *
+ */
+struct UVData
+{
+    long long int dt;  /** date and time of the data. */
+    double        idx; /** uv index for that date.    */
+};
+
+using UV = QList<UVData>;
 
 const QString CONCENTRATION_UNITS{"µg/m<sup>3</sup>"};
 
@@ -276,6 +288,14 @@ void parsePollutionEntry(const QJsonObject &entry, PollutionData &data);
  *
  */
 QDebug operator<< (QDebug d, const ForecastData &data);
+
+/** \brief Prints the contents of the data to the QDebug stream.
+ * \param[in] debug QDebug stream.
+ * \param[in] data UVData struct.
+ *
+ */
+QDebug operator<< (QDebug d, const UVData &data);
+
 
 /** \brief Converts the given temp to the given units and returns the value.
  * \param[in] temp temperature in Kelvin.
@@ -345,5 +365,11 @@ double dpiScale();
  *
  */
 void scaleDialog(QDialog *window);
+
+/** \brief Returns the color corresponding to the given UV index.
+ * \param[in] value UV index value.
+ *
+ */
+QColor uvColor(const double value);
 
 #endif // UTILS_H_

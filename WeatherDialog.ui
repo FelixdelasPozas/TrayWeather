@@ -475,6 +475,35 @@
            </item>
            <item row="12" column="1">
             <widget class="QLabel" name="m_air_quality">
+             <property name="toolTip">
+              <string>Air quality</string>
+             </property>
+             <property name="text">
+              <string>Unknown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="0">
+            <widget class="QLabel" name="label_14">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Current ultraviolet radiation index.</string>
+             </property>
+             <property name="text">
+              <string>Ultraviolet radiation index</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="1">
+            <widget class="QLabel" name="m_uvi">
+             <property name="toolTip">
+              <string>UV index</string>
+             </property>
              <property name="text">
               <string>Unknown</string>
              </property>

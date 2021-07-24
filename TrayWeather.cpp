@@ -136,17 +136,34 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
       setErrorTooltip(tooltip);
     }
   }
-
-  if(originUrl.contains("openweathermap", Qt::CaseInsensitive) && !originUrl.contains("pollution", Qt::CaseInsensitive))
+  else
   {
-    if(reply->error() == QNetworkReply::NoError)
+    if(originUrl.contains("onecall", Qt::CaseInsensitive))
     {
-      processWeatherData(contents);
+      if(reply->error() == QNetworkReply::NoError)
+      {
+        processOneCallData(contents);
+      }
+      else
+      {
+        const auto tooltip = tr("Error requesting weather data.");
+        setErrorTooltip(tooltip);
+      }
     }
     else
     {
-      const auto tooltip = tr("Error requesting weather data.");
-      setErrorTooltip(tooltip);
+      if(originUrl.contains("openweathermap", Qt::CaseInsensitive))
+      {
+        if(reply->error() == QNetworkReply::NoError)
+        {
+          processWeatherData(contents);
+        }
+        else
+        {
+          const auto tooltip = tr("Error requesting weather data.");
+          setErrorTooltip(tooltip);
+        }
+      }
     }
   }
 
@@ -293,14 +310,22 @@ void TrayWeather::showConfiguration()
       m_configuration.units = configuration.units;
     }
 
-    if(m_weatherDialog && validData())
+    if(!requestedData)
     {
-      m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
-    }
+      if(m_weatherDialog && validData())
+      {
+        m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
+      }
 
-    if(m_weatherDialog && !m_pData.isEmpty())
-    {
-      m_weatherDialog->setPollutionData(m_pData);
+      if(m_weatherDialog && !m_pData.isEmpty())
+      {
+        m_weatherDialog->setPollutionData(m_pData);
+      }
+
+      if(m_weatherDialog && !m_vData.isEmpty())
+      {
+        m_weatherDialog->setUVData(m_vData);
+      }
     }
 
     if(changedUpdateCheck)
@@ -463,6 +488,11 @@ void TrayWeather::createMenuEntries()
 
   menu->addAction(pollution);
 
+  auto uv = new QAction{tr("UV..."), menu};
+  connect(uv, SIGNAL(triggered(bool)), this, SLOT(showTab()));
+
+  menu->addAction(uv);
+
   auto maps = new QAction{tr("Maps..."), menu};
   connect(maps, SIGNAL(triggered(bool)), this, SLOT(showTab()));
 
@@ -573,7 +603,7 @@ void TrayWeather::showTab()
   {
     auto actions = contextMenu()->actions();
 
-    for(const auto i: {0,1,2,3})
+    for(const auto i: {0,1,2,3,4})
     {
       if(caller == actions.at(i))
       {
@@ -629,6 +659,7 @@ void TrayWeather::showTab()
   m_weatherDialog = new WeatherDialog{};
   m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
   m_weatherDialog->setPollutionData(m_pData);
+  m_weatherDialog->setUVData(m_vData);
 
   connect(m_weatherDialog, SIGNAL(mapsEnabled(bool)), this, SLOT(onMapsStateChanged(bool)));
 
@@ -721,11 +752,11 @@ void TrayWeather::requestForecastData()
                                                                                                                     .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-//  url = QUrl{QString("http://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&lang=%3&exclude=minutely&appid=%4").arg(m_configuration.latitude)
-//                                                                                                                      .arg(m_configuration.longitude)
-//                                                                                                                      .arg(lang)
-//                                                                                                                      .arg(m_configuration.owm_apikey)};
-//  m_netManager->get(QNetworkRequest{url});
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&lang=%3&exclude=minutely&appid=%4").arg(m_configuration.latitude)
+                                                                                                                      .arg(m_configuration.longitude)
+                                                                                                                      .arg(lang)
+                                                                                                                      .arg(m_configuration.owm_apikey)};
+  m_netManager->get(QNetworkRequest{url});
 }
 
 //--------------------------------------------------------------------
@@ -739,6 +770,7 @@ void TrayWeather::invalidateData()
 {
   m_data.clear();
   m_pData.clear();
+  m_vData.clear();
   m_current = ForecastData();
 }
 
@@ -765,10 +797,10 @@ void TrayWeather::requestGeolocation()
 void TrayWeather::onMapsStateChanged(bool value)
 {
   auto menu = this->contextMenu();
-  if(menu && menu->actions().size() >= 3)
+  if(menu && menu->actions().size() >= 5)
   {
     auto entries = menu->actions();
-    entries.at(3)->setEnabled(value);
+    entries.at(4)->setEnabled(value);
   }
 
   m_configuration.mapsEnabled = value;
@@ -842,11 +874,12 @@ void TrayWeather::translateMenu()
   actions.at(0)->setText(tr("Current weather..."));
   actions.at(1)->setText(tr("Forecast..."));
   actions.at(2)->setText(tr("Pollution..."));
-  actions.at(3)->setText(tr("Maps..."));
-  actions.at(5)->setText(tr("Refresh..."));
-  actions.at(7)->setText(tr("Configuration..."));
-  actions.at(9)->setText(tr("About..."));
-  actions.at(10)->setText(tr("Quit"));
+  actions.at(3)->setText(tr("UV..."));
+  actions.at(4)->setText(tr("Maps..."));
+  actions.at(6)->setText(tr("Refresh..."));
+  actions.at(8)->setText(tr("Configuration..."));
+  actions.at(10)->setText(tr("About..."));
+  actions.at(11)->setText(tr("Quit"));
 }
 
 //--------------------------------------------------------------------
@@ -1067,5 +1100,49 @@ void TrayWeather::processPollutionData(const QByteArray &data)
   if(!m_pData.isEmpty() && m_weatherDialog)
   {
     m_weatherDialog->setPollutionData(m_pData);
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::processOneCallData(const QByteArray &data)
+{
+  const auto jsonDocument = QJsonDocument::fromJson(data);
+
+  if(!jsonDocument.isNull() && jsonDocument.isObject())
+  {
+    const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
+    const auto jsonObj   = jsonDocument.object();
+    const auto current   = jsonObj.value("current").toObject();
+
+    UVData data;
+    data.dt = current.value("dt").toInt(0);
+    data.idx = current.value("uvi").toDouble(0);
+    m_vData << data;
+
+    auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_vData) if(entry.dt == dt) return true; return false; };
+
+    if(jsonObj.keys().contains("hourly"))
+    {
+      auto uvList = jsonObj.value("hourly").toArray();
+
+      for(int i = 0; i < uvList.count(); ++i)
+      {
+        const auto entry = uvList.at(i).toObject();
+
+        const auto dt = entry.value("dt").toInt(0);
+        if(dt < currentDt) continue;
+
+        UVData data;
+        data.dt = dt;
+        data.idx = entry.value("uvi").toDouble(0);
+
+        if(!hasEntry(data.dt)) m_vData << data;
+      }
+    }
+  }
+
+  if(!m_vData.isEmpty() && m_weatherDialog)
+  {
+    m_weatherDialog->setUVData(m_vData);
   }
 }

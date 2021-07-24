@@ -35,7 +35,6 @@
 #include <functional>
 #include <exception>
 #include <memory>
-#include <time.h>
 #include <cmath>
 
 static const QString LONGITUDE               = QString("Longitude");
@@ -575,4 +574,70 @@ void save(const Configuration &configuration)
   settings.setValue(LANGUAGE,                configuration.language);
 
   settings.sync();
+}
+
+//--------------------------------------------------------------------
+QColor uvColor(const double uvIndex)
+{
+  const int value = static_cast<int>(std::nearbyint(uvIndex));
+
+  QColor gradientColor;
+  switch(value)
+  {
+    case 0:
+      gradientColor = QColor("#FFFFFF");
+      break;
+    case 1:
+      gradientColor = QColor("#4EB400");
+      break;
+    case 2:
+      gradientColor = QColor("#A0CE00");
+      break;
+    case 3:
+      gradientColor = QColor("#F7E400");
+      break;
+    case 4:
+      gradientColor = QColor("#F8B600");
+      break;
+    case 5:
+      gradientColor = QColor("#F88700");
+      break;
+    case 6:
+      gradientColor = QColor("#F85900");
+      break;
+    case 7:
+      gradientColor = QColor("#E82C0E");
+      break;
+    case 8:
+      gradientColor = QColor("#D8001D");
+      break;
+    case 9:
+      gradientColor = QColor("#FF0099");
+      break;
+    case 10:
+      gradientColor = QColor("#B54CFF");
+      break;
+    default:
+      gradientColor = QColor("#998CFF");
+      break;
+  }
+
+  return gradientColor;
+}
+
+//--------------------------------------------------------------------
+QDebug operator <<(QDebug d, const UVData &data)
+{
+  QChar fillChar('0');
+  struct tm t;
+  localtime_s(&t, &data.dt);
+
+  d << "-- Forecast " << QString("%1/%2/%3 - %4:%5:%6 --").arg(t.tm_mday, 2, 10, fillChar)
+                                                          .arg(t.tm_mon + 1, 2, 10, fillChar)
+                                                          .arg(t.tm_year + 1900, 4, 10, fillChar)
+                                                          .arg(t.tm_hour, 2, 10, fillChar)
+                                                          .arg(t.tm_min, 2, 10, fillChar)
+                                                          .arg(t.tm_sec, 2, 10, fillChar) << "\n";
+  d << "UV Index: " << data.idx << "\n";
+  return d;
 }
