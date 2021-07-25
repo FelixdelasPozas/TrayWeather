@@ -269,11 +269,11 @@ void TrayWeather::showConfiguration()
     const auto changedCoords      = (configuration.latitude != m_configuration.latitude) || (configuration.longitude != m_configuration.longitude);
     const auto changedMethod      = (configuration.useGeolocation != m_configuration.useGeolocation);
     const auto changedIP          = (configuration.ip != m_configuration.ip);
-    const auto changedUpdate      = (configuration.updateTime != m_configuration.updateTime);
+    const auto changedUpdateTime  = (configuration.updateTime != m_configuration.updateTime);
     const auto changedAPIKey      = (configuration.owm_apikey != m_configuration.owm_apikey);
     const auto changedUnits       = (configuration.units != m_configuration.units);
     const auto changedRoaming     = (configuration.roamingEnabled != m_configuration.roamingEnabled);
-    const auto changedUpdateCheck = configuration.update != m_configuration.update;
+    const auto changedUpdateCheck = (configuration.update != m_configuration.update);
 
     if(changedIP || changedMethod || changedCoords || changedRoaming)
     {
@@ -292,7 +292,7 @@ void TrayWeather::showConfiguration()
       updateData();
     }
 
-    if(changedUpdate)
+    if(changedUpdateTime)
     {
       m_configuration.updateTime = configuration.updateTime;
       m_timer.setInterval(m_configuration.updateTime);
@@ -330,6 +330,7 @@ void TrayWeather::showConfiguration()
 
     if(changedUpdateCheck)
     {
+      m_configuration.update = configuration.update;
       checkForUpdates();
     }
   }
