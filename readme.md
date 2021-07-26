@@ -41,10 +41,13 @@ The following libraries are required:
 Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/releases/) installer.
 
 # Screenshots
+
+> **_NOTE:_**  Some screenshots are from older versions of Tray Weather and are missing tabs present in the latest version. 
+
 Tray icon showing the current weather icon. At night and on clear sky days it shows the current moon phase as the weather icon.
 
 ![icon](https://cloud.githubusercontent.com/assets/12167134/20938095/f03e2474-bbe9-11e6-83b9-e2bc8c716bf4.jpg)
-![icon_menu](https://user-images.githubusercontent.com/12167134/121608218-c7e88c00-ca51-11eb-8501-9a45314cf2fc.png)
+![icon_menu](https://user-images.githubusercontent.com/12167134/127046992-9473dbe7-faf1-41d2-9120-319af72ce33a.png)
 
 Tray icon can also show the temperature alone or composed with the weather icon. It can also be configured to show two tray icons, one with the temperature and other with the weather icon. 
 The temperature text color can be set by the user or can change dynamically between a range of colors according to the current value. 
@@ -66,7 +69,7 @@ Configuration dialog, with the application dark theme, in english.
 
 Weather dialog, showing the current weather tab. 
 
-![weather](https://user-images.githubusercontent.com/12167134/109207321-4a9e5180-77a9-11eb-9ece-bc292d7c9bf5.png)
+![weather](https://user-images.githubusercontent.com/12167134/127046991-e2eb1e5c-73d7-4ece-b9c4-dfff8dd1648e.png)
 
 Weather forecast for the next days. If the user puts the mouse over a point in the temperature line a tooltip will provide the weather conditions for that day and hour. 
 The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph.
@@ -78,6 +81,12 @@ resetted by using the reset button below. The pollution chart also has a tooltip
 the background is colored according to air quality value. 
 
 ![pollution](https://user-images.githubusercontent.com/12167134/109207327-4bcf7e80-77a9-11eb-89a0-dd704e8969ad.png)
+
+Ultraviolet radiation forecast can be obtained in the "UV" tab, showing the projection for the next 24 hours colored according to the World
+Health Organization color code. The UV chart also has a information tooltip that appears when the mouse cursor is near a point of the radiation
+index line showing the index value and recommendations.  
+
+![radiation](https://user-images.githubusercontent.com/12167134/127046989-ad7a3d32-adb9-486f-a37b-1dddf95b935a.png)
 
 Weather maps are interactive. While initially the map is centered in the detected location it can be moved and zoomed in and out. The maps consumes much more memory than
 the rest of the application so the user can be disable them using the button below. 
@@ -92,7 +101,7 @@ the rest of the application so the user can be disable them using the button bel
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) or manually editing the
 ['empty' translation source file](https://github.com/FelixdelasPozas/TrayWeather/blob/master/languages/empty.ts)
-and making a pull request. Currently it's just 200 texts.
+and making a pull request. Currently it's just 240 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 
@@ -117,7 +126,7 @@ To
 
 # Repository information
 
-**Version**: 1.9.3
+**Version**: 1.10.0
 
 **Status**: finished.
 
@@ -125,8 +134,9 @@ To
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   8           | 619         |   262            | 2757 |
-| C/C++ Header                 |   8           | 179         |   495            |  642 |
+| C++                          |   9           | 699         |   293            | 3217 |
+| C/C++ Header                 |   9           | 202         |   563            |  687 |
 | HTML                         |   1           |  34         |     0            |  150 |
-| CMake                        |   1           |  18         |    11            |  107 |
-| **Total**                    | **18**        | **850**     | **768**          | **3656** |
+| CMake                        |   1           |  18         |    11            |  109 |
+| **Total**                    | **20**        | **953**     | **867**          | **4163** |
+

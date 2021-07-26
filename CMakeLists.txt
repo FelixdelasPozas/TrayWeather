@@ -7,8 +7,8 @@ cmake_minimum_required (VERSION 3.0.0)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
-set (TRAYWEATHER_VERSION_MINOR 9)
-set (TRAYWEATHER_VERSION_PATCH 3)
+set (TRAYWEATHER_VERSION_MINOR 10)
+set (TRAYWEATHER_VERSION_PATCH 0)
 
 # Current year, used in configured files. 
 string(TIMESTAMP CURRENT_YEAR "%Y")
@@ -106,6 +106,7 @@ qt5_wrap_ui(CORE_UI
   WeatherDialog.ui
   WeatherWidget.ui
   PollutionWidget.ui
+  UVWidget.ui
 )
 	
 set (CORE_SOURCES
@@ -122,6 +123,7 @@ set (CORE_SOURCES
   WeatherDialog.cpp
   WeatherWidget.cpp
   PollutionWidget.cpp
+  UVWidget.cpp
 )
 
 set(CORE_EXTERNAL_LIBS

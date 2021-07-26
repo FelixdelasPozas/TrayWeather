@@ -495,7 +495,7 @@
               <string>Current ultraviolet radiation index.</string>
              </property>
              <property name="text">
-              <string>Ultraviolet radiation index</string>
+              <string>Ultraviolet radiation</string>
              </property>
             </widget>
            </item>
