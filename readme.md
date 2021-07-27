@@ -98,6 +98,12 @@ the rest of the application so the user can be disable them using the button bel
 
 # Translations
 
+
+Tray Weather is available in:
+* English
+* Spanish
+* Russian
+
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) or manually editing the
 ['empty' translation source file](https://github.com/FelixdelasPozas/TrayWeather/blob/master/languages/empty.ts)
@@ -113,7 +119,7 @@ To do it manually just edit the 'empty translation' file and replace the untrans
     </message>
 ```
     
-To
+To the translation in your language. For example in Spanish it is:
 
 ```
     <message>
@@ -122,7 +128,6 @@ To
         <translation>Datos meteorológicos proporcionados por</translation>
     </message>
 ```
-
 
 # Repository information
 
@@ -139,4 +144,3 @@ To
 | HTML                         |   1           |  34         |     0            |  150 |
 | CMake                        |   1           |  18         |    11            |  109 |
 | **Total**                    | **20**        | **953**     | **867**          | **4163** |
-
