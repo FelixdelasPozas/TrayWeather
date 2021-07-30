@@ -765,7 +765,7 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../TrayWeather.cpp" line="492"/>
         <location filename="../TrayWeather.cpp" line="878"/>
         <source>UV...</source>
-        <translation>УФ...</translation>
+        <translation>УФ-индекс...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="497"/>
@@ -1052,7 +1052,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="765"/>
         <source>Ultraviolet radiation index</source>
-        <translation>Ультрафиолетовое излучение-индекс</translation>
+        <translation>Индекс ультрафиолетового излучения</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="505"/>
@@ -1142,7 +1142,7 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="89"/>
         <location filename="../WeatherDialog.cpp" line="1055"/>
         <source>UV</source>
-        <translation>УФ</translation>
+        <translation>УФ-индекс</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="122"/>
