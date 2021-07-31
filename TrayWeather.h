@@ -199,8 +199,6 @@ class TrayWeather
     QString                                m_DNSIP;           /** DNS IP used for geolocation.                      */
     QTimer                                 m_updatesTimer;    /** timer to check for application updates.           */
     QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.           */
-    QTranslator                            m_appTranslator;   /** application language translator.                  */
-    QTranslator                            m_appTranslatorQt; /** application language Qt translator.               */
 };
 
 

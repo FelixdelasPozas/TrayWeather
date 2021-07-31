@@ -30,6 +30,7 @@
 #include <QJsonObject>
 #include <QColor>
 #include <QDateTime>
+#include <QTranslator>
 
 class QDialog;
 
@@ -44,6 +45,8 @@ static const QStringList OWM_LANGUAGES = { "af", "al", "ar", "az", "bg", "ca", "
                                            "ja", "kr", "la", "lt", "mk", "no", "nl", "pl", "pt", "pt_br", "ro",
                                            "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua",
                                            "uk", "vi", "zh_cn", "zh_tw", "zu" };
+
+static QTranslator s_appTranslator; /** application language translator. */
 
 /** \struct LanguageData
  * \brief Contains a translation data.
@@ -371,5 +374,17 @@ void scaleDialog(QDialog *window);
  *
  */
 QColor uvColor(const double value);
+
+/** \brief Returns the value of the ROAMING_ENABLED registry key
+ *  using the microsoft API.
+ *
+ */
+bool getRoamingRegistryValue();
+
+/** \brief Changes the application language to the given lang abbreviation.
+ * \param[in] lang Language tranlation file.
+ *
+ */
+void changeLanguage(const QString &lang);
 
 #endif // UTILS_H_

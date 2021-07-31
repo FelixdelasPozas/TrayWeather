@@ -30,12 +30,15 @@
 #include <QSettings>
 #include <QColor>
 #include <QMap>
+#include <QApplication>
 
 // C++
 #include <functional>
 #include <exception>
 #include <memory>
 #include <cmath>
+#include <windows.h>
+#include <iostream>
 
 static const QString LONGITUDE               = QString("Longitude");
 static const QString LATITUDE                = QString("Latitude");
@@ -640,4 +643,66 @@ QDebug operator <<(QDebug d, const UVData &data)
                                                           .arg(t.tm_sec, 2, 10, fillChar) << "\n";
   d << "UV Index: " << data.idx << "\n";
   return d;
+}
+
+//--------------------------------------------------------------------
+bool getRoamingRegistryValue()
+{
+  const std::wstring KEY_PATH = L"SOFTWARE\\Felix de las Pozas Alvarez\\TrayWeather";
+  const std::wstring KEY = L"Roaming enabled";
+
+  HKEY key;
+  if (RegOpenKeyExW(HKEY_CURRENT_USER, KEY_PATH.c_str(), 0, KEY_READ, &key) != ERROR_SUCCESS)
+  {
+    std::cout << "getRoamingRegistryValue: Cannot open the registry!" << std::endl;
+    return false;
+  }
+
+  DWORD type;
+  DWORD cbData;
+  if (RegQueryValueExW(key, KEY.c_str(), NULL, &type, NULL, &cbData) != ERROR_SUCCESS)
+  {
+    std::cout << "getRoamingRegistryValue: Could not read registry value!" << std::endl;
+    RegCloseKey(key);
+    return false;
+  }
+
+  if (type != REG_SZ)
+  {
+    std::cout << "getRoamingRegistryValue: Invalid type of registry value." << std::endl;
+    RegCloseKey(key);
+    return false;
+  }
+
+  std::wstring value(cbData / sizeof(wchar_t), L'\0');
+  if (RegQueryValueExW(key, KEY.c_str(), NULL, NULL, reinterpret_cast<LPBYTE>(&value[0]), &cbData) != ERROR_SUCCESS)
+  {
+    std::cout << "getRoamingRegistryValue: Could not read registry value" << std::endl;
+    RegCloseKey(key);
+    return false;
+  }
+
+  RegCloseKey(key);
+
+  size_t firstNull = value.find_first_of(L'\0');
+  if (firstNull != std::wstring::npos) value.resize(firstNull);
+
+  return value == L"true";
+}
+
+//--------------------------------------------------------------------
+void changeLanguage(const QString &lang)
+{
+  if(!s_appTranslator.isEmpty())
+  {
+    qApp->removeTranslator(&s_appTranslator);
+    s_appTranslator.load(QString());
+  }
+
+  if(lang.compare("en_EN") != 0)
+  {
+    s_appTranslator.load(QString(":/TrayWeather/%1.qm").arg(lang));
+  }
+
+  qApp->installTranslator(&s_appTranslator);
 }

@@ -53,10 +53,16 @@ int main(int argc, char *argv[])
   // To fix networking problems as Qt looks for updated networks every 10 seconds...
   // https://bugreports.qt.io/browse/QTBUG-46015
   // WARNING: This could break wifi detection
-  qputenv("QT_BEARER_POLL_TIMEOUT", QByteArray::number(-1));
+  const QByteArray ROAMING_POLL_VALUE = getRoamingRegistryValue() ? QByteArray::number(30000) : QByteArray::number(-1);
+  qputenv("QT_BEARER_POLL_TIMEOUT", ROAMING_POLL_VALUE);
 
   QApplication app(argc, argv);
   app.setQuitOnLastWindowClosed(false);
+
+  Configuration configuration;
+  load(configuration);
+
+  changeLanguage(configuration.language);
 
   if(!QSystemTrayIcon::isSystemTrayAvailable())
   {
@@ -64,7 +70,7 @@ int main(int argc, char *argv[])
     msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
     msgBox.setWindowTitle(QObject::tr("Tray Weather"));
     msgBox.setIcon(QMessageBox::Warning);
-    msgBox.setText("TrayWeather cannot execute in this computer because there isn't a tray available!.\nThe application will exit now.");
+    msgBox.setText(QObject::tr("TrayWeather cannot execute in this computer because there isn't a tray available!.\nThe application will exit now."));
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.exec();
     std::exit(0);
@@ -80,14 +86,11 @@ int main(int argc, char *argv[])
     msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
     msgBox.setWindowTitle(QObject::tr("Tray Weather"));
     msgBox.setIcon(QMessageBox::Warning);
-    msgBox.setText("TrayWeather is already running!");
+    msgBox.setText(QObject::tr("TrayWeather is already running!"));
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.exec();
     std::exit(0);
   }
-
-  Configuration configuration;
-  load(configuration);
 
   if(!configuration.isValid())
   {
@@ -106,7 +109,7 @@ int main(int argc, char *argv[])
       msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
       msgBox.setWindowTitle(QObject::tr("Tray Weather"));
       msgBox.setIcon(QMessageBox::Warning);
-      msgBox.setText("TrayWeather cannot execute without a valid location and a valid OpenWeatherMap API Key.\nThe application will exit now.");
+      msgBox.setText(QObject::tr("TrayWeather cannot execute without a valid location and a valid OpenWeatherMap API Key.\nThe application will exit now."));
       msgBox.setStandardButtons(QMessageBox::Ok);
       msgBox.exec();
       std::exit(0);

@@ -131,6 +131,7 @@ set(CORE_EXTERNAL_LIBS
   Qt5::Widgets
   Qt5::Network
   Qt5::WebKitWidgets
+  advapi32
 )
  
 add_executable(TrayWeather ${CORE_SOURCES})

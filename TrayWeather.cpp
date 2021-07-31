@@ -39,6 +39,7 @@
 // C++
 #include <chrono>
 #include <cmath>
+#include <iostream>
 
 const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
 
@@ -60,8 +61,6 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
   createMenuEntries();
 
   requestData();
-
-  onLanguageChanged(configuration.language);
 }
 
 //--------------------------------------------------------------------
@@ -228,7 +227,8 @@ void TrayWeather::showConfiguration()
     return;
   }
 
-  const auto changedLanguage = configuration.language != m_configuration.language;
+  const auto changedLanguage = (configuration.language != m_configuration.language);
+  const auto changedRoaming  = (configuration.roamingEnabled != m_configuration.roamingEnabled);
 
   m_configuration.lightTheme    = configuration.lightTheme;
   m_configuration.iconType      = configuration.iconType;
@@ -272,7 +272,6 @@ void TrayWeather::showConfiguration()
     const auto changedUpdateTime  = (configuration.updateTime != m_configuration.updateTime);
     const auto changedAPIKey      = (configuration.owm_apikey != m_configuration.owm_apikey);
     const auto changedUnits       = (configuration.units != m_configuration.units);
-    const auto changedRoaming     = (configuration.roamingEnabled != m_configuration.roamingEnabled);
     const auto changedUpdateCheck = (configuration.update != m_configuration.update);
 
     if(changedIP || changedMethod || changedCoords || changedRoaming)
@@ -338,6 +337,19 @@ void TrayWeather::showConfiguration()
   updateTooltip();
 
   save(m_configuration);
+
+  if(changedRoaming)
+  {
+    QMessageBox msgBox;
+    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgBox.setWindowTitle(QObject::tr("Tray Weather"));
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText(QObject::tr("TrayWeather needs to be restarted for the new configuration to take effect.\nThe application will exit now."));
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.exec();
+
+    exitApplication();
+  }
 }
 
 //--------------------------------------------------------------------
@@ -648,7 +660,7 @@ void TrayWeather::showTab()
     msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
     msgBox.setWindowTitle(QObject::tr("Tray Weather"));
     msgBox.setIcon(QMessageBox::Warning);
-    msgBox.setText("TrayWeather has requested the weather data for your geographic location\nand it's still waiting for the response.");
+    msgBox.setText(QObject::tr("TrayWeather has requested the weather data for your geographic location\nand it's still waiting for the response."));
     msgBox.setStandardButtons(QMessageBox::Ok);
     msgBox.exec();
 
@@ -852,18 +864,7 @@ void TrayWeather::checkForUpdates()
 //--------------------------------------------------------------------
 void TrayWeather::onLanguageChanged(const QString &lang)
 {
-  if(!m_appTranslator.isEmpty())
-  {
-    qApp->removeTranslator(&m_appTranslator);
-    m_appTranslator.load(QString());
-  }
-
-  if(lang.compare("en_EN") != 0)
-  {
-    m_appTranslator.load(QString(":/TrayWeather/%1.qm").arg(lang));
-  }
-
-  qApp->installTranslator(&m_appTranslator);
+  changeLanguage(lang);
 
   translateMenu();
 }

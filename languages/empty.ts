@@ -549,248 +549,278 @@ If you have a firewall change the configuration to allow this program to access 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Main.cpp" line="65"/>
-        <location filename="../Main.cpp" line="81"/>
-        <location filename="../Main.cpp" line="107"/>
-        <location filename="../TrayWeather.cpp" line="649"/>
+        <location filename="../Main.cpp" line="71"/>
+        <location filename="../Main.cpp" line="87"/>
+        <location filename="../Main.cpp" line="110"/>
+        <location filename="../TrayWeather.cpp" line="345"/>
+        <location filename="../TrayWeather.cpp" line="661"/>
         <source>Tray Weather</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="299"/>
-        <source>New moon</source>
+        <location filename="../Main.cpp" line="73"/>
+        <source>TrayWeather cannot execute in this computer because there isn&apos;t a tray available!.
+The application will exit now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Main.cpp" line="89"/>
+        <source>TrayWeather is already running!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Main.cpp" line="112"/>
+        <source>TrayWeather cannot execute without a valid location and a valid OpenWeatherMap API Key.
+The application will exit now.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="302"/>
-        <location filename="../Utils.cpp" line="320"/>
-        <source>Waxing crescent</source>
+        <source>New moon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="305"/>
-        <source>First quarter</source>
+        <location filename="../Utils.cpp" line="323"/>
+        <source>Waxing crescent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="308"/>
-        <source>Waxing gibbous</source>
+        <source>First quarter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="311"/>
-        <source>Full moon</source>
+        <source>Waxing gibbous</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="314"/>
-        <source>Waning gibbous</source>
+        <source>Full moon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="317"/>
+        <source>Waning gibbous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils.cpp" line="320"/>
         <source>Last quarter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="330"/>
+        <location filename="../Utils.cpp" line="333"/>
         <source>illumination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="399"/>
+        <location filename="../Utils.cpp" line="402"/>
         <source>NNE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="400"/>
+        <location filename="../Utils.cpp" line="403"/>
         <source>NE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="401"/>
+        <location filename="../Utils.cpp" line="404"/>
         <source>ENE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="402"/>
+        <location filename="../Utils.cpp" line="405"/>
         <source>E</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="403"/>
+        <location filename="../Utils.cpp" line="406"/>
         <source>ESE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="404"/>
+        <location filename="../Utils.cpp" line="407"/>
         <source>SE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="405"/>
+        <location filename="../Utils.cpp" line="408"/>
         <source>SSE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="406"/>
+        <location filename="../Utils.cpp" line="409"/>
         <source>S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="407"/>
+        <location filename="../Utils.cpp" line="410"/>
         <source>SSW</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="408"/>
+        <location filename="../Utils.cpp" line="411"/>
         <source>SW</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="409"/>
+        <location filename="../Utils.cpp" line="412"/>
         <source>WSW</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="410"/>
+        <location filename="../Utils.cpp" line="413"/>
         <source>W</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="411"/>
+        <location filename="../Utils.cpp" line="414"/>
         <source>WNW</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="412"/>
+        <location filename="../Utils.cpp" line="415"/>
         <source>NW</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="413"/>
+        <location filename="../Utils.cpp" line="416"/>
         <source>NNW</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="415"/>
+        <location filename="../Utils.cpp" line="418"/>
         <source>N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="72"/>
+        <location filename="../Utils.h" line="75"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="73"/>
+        <location filename="../Utils.h" line="76"/>
         <source>Spanish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="74"/>
+        <location filename="../Utils.h" line="77"/>
         <source>Russian</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="347"/>
+        <source>TrayWeather needs to be restarted for the new configuration to take effect.
+The application will exit now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="663"/>
+        <source>TrayWeather has requested the weather data for your geographic location
+and it&apos;s still waiting for the response.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="925"/>
+        <location filename="../TrayWeather.cpp" line="926"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="926"/>
+        <location filename="../TrayWeather.cpp" line="927"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="927"/>
+        <location filename="../TrayWeather.cpp" line="928"/>
         <source>Release notes:
 %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="928"/>
+        <location filename="../TrayWeather.cpp" line="929"/>
         <source>Tray Weather updated to version %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="104"/>
-        <location filename="../TrayWeather.cpp" line="942"/>
+        <location filename="../TrayWeather.cpp" line="103"/>
+        <location filename="../TrayWeather.cpp" line="943"/>
         <source>Error requesting Github releases data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="122"/>
-        <location filename="../TrayWeather.cpp" line="1055"/>
+        <location filename="../TrayWeather.cpp" line="121"/>
+        <location filename="../TrayWeather.cpp" line="1056"/>
         <source>Error requesting geolocation coordinates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="135"/>
-        <location filename="../TrayWeather.cpp" line="149"/>
-        <location filename="../TrayWeather.cpp" line="163"/>
+        <location filename="../TrayWeather.cpp" line="134"/>
+        <location filename="../TrayWeather.cpp" line="148"/>
+        <location filename="../TrayWeather.cpp" line="162"/>
         <source>Error requesting weather data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="376"/>
+        <location filename="../TrayWeather.cpp" line="388"/>
         <source>Requesting weather data from the server...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="477"/>
-        <location filename="../TrayWeather.cpp" line="875"/>
+        <location filename="../TrayWeather.cpp" line="489"/>
+        <location filename="../TrayWeather.cpp" line="876"/>
         <source>Current weather...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="482"/>
-        <location filename="../TrayWeather.cpp" line="876"/>
+        <location filename="../TrayWeather.cpp" line="494"/>
+        <location filename="../TrayWeather.cpp" line="877"/>
         <source>Forecast...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="487"/>
-        <location filename="../TrayWeather.cpp" line="877"/>
+        <location filename="../TrayWeather.cpp" line="499"/>
+        <location filename="../TrayWeather.cpp" line="878"/>
         <source>Pollution...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="492"/>
-        <location filename="../TrayWeather.cpp" line="878"/>
+        <location filename="../TrayWeather.cpp" line="504"/>
+        <location filename="../TrayWeather.cpp" line="879"/>
         <source>UV...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="497"/>
-        <location filename="../TrayWeather.cpp" line="879"/>
+        <location filename="../TrayWeather.cpp" line="509"/>
+        <location filename="../TrayWeather.cpp" line="880"/>
         <source>Maps...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="506"/>
-        <location filename="../TrayWeather.cpp" line="880"/>
+        <location filename="../TrayWeather.cpp" line="518"/>
+        <location filename="../TrayWeather.cpp" line="881"/>
         <source>Refresh...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="513"/>
-        <location filename="../TrayWeather.cpp" line="881"/>
+        <location filename="../TrayWeather.cpp" line="525"/>
+        <location filename="../TrayWeather.cpp" line="882"/>
         <source>Configuration...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="520"/>
-        <location filename="../TrayWeather.cpp" line="882"/>
+        <location filename="../TrayWeather.cpp" line="532"/>
+        <location filename="../TrayWeather.cpp" line="883"/>
         <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="525"/>
-        <location filename="../TrayWeather.cpp" line="883"/>
+        <location filename="../TrayWeather.cpp" line="537"/>
+        <location filename="../TrayWeather.cpp" line="884"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
