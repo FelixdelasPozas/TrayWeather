@@ -107,7 +107,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) or manually editing the
 ['empty' translation source file](https://github.com/FelixdelasPozas/TrayWeather/blob/master/languages/empty.ts)
-and making a pull request. Currently it's just 240 texts.
+and making a pull request. Currently it's just 256 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 
@@ -131,7 +131,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.10.1
+**Version**: 1.11.0
 
 **Status**: finished.
 
@@ -139,8 +139,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   9           | 710         |   295            | 3273 |
-| C/C++ Header                 |   9           | 205         |   571            |  689 |
-| HTML                         |   1           |  34         |     0            |  150 |
+| C++                          |   9           | 722         |   302            | 3343 |
+| C/C++ Header                 |   9           | 211         |   591            |  698 |
+| HTML                         |   1           |  33         |     0            |  150 |
 | CMake                        |   1           |  18         |    11            |  110 |
-| **Total**                    | **20**        | **967**     | **877**          | **4222** |
+| **Total**                    | **20**        | **984**     | **904**          | **4301** |
