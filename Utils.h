@@ -23,6 +23,7 @@
 
 // C++
 #include <time.h>
+#include <functional>
 
 // Qt
 #include <QString>
@@ -34,7 +35,7 @@
 
 class QDialog;
 
-enum class Temperature: char { CELSIUS = 0, FAHRENHEIT };
+enum class Units: char { METRIC = 0, IMPERIAL, STANDARD };
 enum class Update: char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
 
 static const QStringList MAP_LAYERS = { "temperature", "rain", "clouds", "wind" };
@@ -47,6 +48,10 @@ static const QStringList OWM_LANGUAGES = { "af", "al", "ar", "az", "bg", "ca", "
                                            "uk", "vi", "zh_cn", "zh_tw", "zu" };
 
 static QTranslator s_appTranslator; /** application language translator. */
+
+static const std::list<double> RAIN_MAP_LAYER_GRADES_MM      = { 0.1, 2, 6, 8, 10, 14, 16, 20, 26, 32, 42, 48, 52, 70 };
+static const std::list<double> TEMP_MAP_LAYER_GRADES_CELSIUS = { -24, -20, -16, -8, -4, 0, 4, 8, 16, 20, 24, 32, 36 };
+static const std::list<double> WIND_MAP_LAYER_GRADES_METSEC  = { 0, 1.5, 3, 5, 8.5, 12, 15.5, 19, 22.5, 25.5, 29 };
 
 /** \struct LanguageData
  * \brief Contains a translation data.
@@ -93,7 +98,7 @@ struct Configuration
     QString      ip;              /** internet address.                                           */
     QString      timezone;        /** location's timezone.                                        */
     QString      owm_apikey;      /** OpenWeatherMap API Key.                                     */
-    Temperature  units;           /** temperature units.                                          */
+    Units        units;           /** measurement units.                                          */
     unsigned int updateTime;      /** time between updates.                                       */
     bool         mapsEnabled;     /** true if maps tab is visible, false otherwise.               */
     bool         useDNS;          /** true to use DNS address for geo location instead of own IP. */
@@ -131,7 +136,7 @@ struct Configuration
     , ip             {"Unknown"}
     , timezone       {"Unknown"}
     , owm_apikey     {""}
-    , units          {Temperature::CELSIUS}
+    , units          {Units::METRIC}
     , updateTime     {15}
     , mapsEnabled    {false}
     , useDNS         {false}
@@ -276,7 +281,7 @@ const QPixmap moonPixmap(const ForecastData& data);
  * \param[in] unit temperature units.
  *
  */
-void parseForecastEntry(const QJsonObject &entry, ForecastData &data, const Temperature unit);
+void parseForecastEntry(const QJsonObject &entry, ForecastData &data);
 
 /** \brief Parses the information in the entry to the pollution data object.
  * \param[in] entry JSON object.
@@ -300,12 +305,29 @@ QDebug operator<< (QDebug d, const ForecastData &data);
 QDebug operator<< (QDebug d, const UVData &data);
 
 
-/** \brief Converts the given temp to the given units and returns the value.
- * \param[in] temp temperature in Kelvin.
- * \param[in] units units to convert to.
+/** \brief Converts the given mm value to inches.
+ * \param[in] value mm value.
  *
  */
-const double convertKelvinTo(const double temp, const Temperature units);
+const double convertMmToInches(const double value);
+
+/* \brief Converts the given celsius to fahrenheit.
+ * \param[in] value Celsius degrees value.
+ *
+ */
+const double convertCelsiusToFahrenheit(const double value);
+
+/** \brief Converts the given meters/second to miles/hour.
+ * \param[in] value Meters/sec value.
+ *
+ */
+const double convertMetersSecondToMilesHour(const double value);
+
+/** \brief Converts hectoPascals to pounds per square inch.
+ * \param[in] value hPa value.
+ *
+ */
+const double converthPaToPSI(const double value);
 
 /** \brief Converts the given unix timestamp to a struct tm and returns it.
  * \param[out] time struct tm.
@@ -339,6 +361,12 @@ const QString moonTooltip(const time_t timestamp);
  *
  */
 const QString toTitleCase(const QString &string);
+
+/** \brief Returns the text name of the given units.
+ * \param[in] u Units enum value.
+ *
+ */
+const QString unitsToText(const Units &u);
 
 /** \brief Returns the wind direction string of the given degrees.
  * \param[in] degrees Wind direction in degrees.
@@ -386,5 +414,12 @@ bool getRoamingRegistryValue();
  *
  */
 void changeLanguage(const QString &lang);
+
+/** \brief Returns the QString of concatenated grades applying the transformation function f.
+ * \param[in] grades List of grades to transform.
+ * \param[in] f Transformation function.
+ *
+ */
+const QString generateMapGrades(const std::list<double> &grades, std::function<double(double)> f);
 
 #endif // UTILS_H_

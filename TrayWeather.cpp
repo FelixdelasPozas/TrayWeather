@@ -260,7 +260,7 @@ void TrayWeather::showConfiguration()
 
     if(menu && menu->actions().size() > 1)
     {
-      QString iconLink = configuration.units == Temperature::CELSIUS ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
+      QString iconLink = configuration.units == Units::METRIC ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
       QIcon icon{iconLink};
 
       menu->actions().first()->setIcon(icon);
@@ -307,6 +307,7 @@ void TrayWeather::showConfiguration()
     if(changedUnits)
     {
       m_configuration.units = configuration.units;
+      updateData();
     }
 
     if(!requestedData)
@@ -405,12 +406,11 @@ void TrayWeather::updateTooltip()
   if(!m_configuration.city.isEmpty())    place << m_configuration.city;
   if(!m_configuration.country.isEmpty()) place << m_configuration.country;
 
-  const auto temperature = convertKelvinTo(m_current.temp, m_configuration.units);
-  const auto tempString = QString::number(temperature, 'f', 1);
+  const auto tempString = QString::number(m_current.temp, 'f', 1);
   tooltip = QString("%1\n%2\n%3%4").arg(place.join(", "))
                                    .arg(toTitleCase(m_current.description))
                                    .arg(tempString)
-                                   .arg(m_configuration.units == Temperature::CELSIUS ? "ºC" : "ºF");
+                                   .arg(m_configuration.units == Units::METRIC ? "ºC" : "ºF");
 
   QPixmap pixmap = weatherPixmap(m_current).scaled(384,384,Qt::KeepAspectRatio, Qt::SmoothTransformation);
   QPainter painter(&pixmap);
@@ -447,7 +447,7 @@ void TrayWeather::updateTooltip()
     default:
     case 2:
       {
-        const auto roundedTemp = static_cast<int>(std::nearbyint(temperature));
+        const auto roundedTemp = static_cast<int>(std::nearbyint(m_current.temp));
         const auto roundedString = QString::number(roundedTemp);
         QFont font = painter.font();
         font.setPixelSize(m_configuration.trayTextSize - ((roundedString.length() - 3) * 50));
@@ -485,7 +485,7 @@ void TrayWeather::createMenuEntries()
 {
   auto menu = new QMenu(nullptr);
 
-  QString iconLink = m_configuration.units == Temperature::CELSIUS ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
+  QString iconLink = m_configuration.units == Units::METRIC ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
   auto weather = new QAction{QIcon{iconLink}, tr("Current weather..."), menu};
   connect(weather, SIGNAL(triggered(bool)), this, SLOT(showTab()));
 
@@ -747,28 +747,32 @@ void TrayWeather::requestForecastData()
     if(OWM_LANGUAGES.contains(settings_lang, Qt::CaseSensitive)) lang = settings_lang;
   }
 
-  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&appid=%4").arg(m_configuration.latitude)
-                                                                                                          .arg(m_configuration.longitude)
-                                                                                                          .arg(lang)
-                                                                                                          .arg(m_configuration.owm_apikey)};
+  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_configuration.latitude)
+                                                                                                                   .arg(m_configuration.longitude)
+                                                                                                                   .arg(lang)
+                                                                                                                   .arg(unitsToText(m_configuration.units))
+                                                                                                                   .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&lang=%3&appid=%4").arg(m_configuration.latitude)
-                                                                                                      .arg(m_configuration.longitude)
-                                                                                                      .arg(lang)
-                                                                                                      .arg(m_configuration.owm_apikey)};
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_configuration.latitude)
+                                                                                                               .arg(m_configuration.longitude)
+                                                                                                               .arg(lang)
+                                                                                                               .arg(unitsToText(m_configuration.units))
+                                                                                                               .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&lang=%3&appid=%4").arg(m_configuration.latitude)
-                                                                                                                    .arg(m_configuration.longitude)
-                                                                                                                    .arg(lang)
-                                                                                                                    .arg(m_configuration.owm_apikey)};
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_configuration.latitude)
+                                                                                                                             .arg(m_configuration.longitude)
+                                                                                                                             .arg(lang)
+                                                                                                                             .arg(unitsToText(m_configuration.units))
+                                                                                                                             .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&lang=%3&exclude=minutely&appid=%4").arg(m_configuration.latitude)
-                                                                                                                      .arg(m_configuration.longitude)
-                                                                                                                      .arg(lang)
-                                                                                                                      .arg(m_configuration.owm_apikey)};
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&lang=%3&exclude=minutely&units=%4&appid=%5").arg(m_configuration.latitude)
+                                                                                                                               .arg(m_configuration.longitude)
+                                                                                                                               .arg(lang)
+                                                                                                                               .arg(unitsToText(m_configuration.units))
+                                                                                                                               .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 }
 
@@ -976,7 +980,7 @@ void TrayWeather::processWeatherData(const QByteArray &data)
         if(dt < currentDt) continue;
 
         ForecastData data;
-        parseForecastEntry(entry, data, m_configuration.units);
+        parseForecastEntry(entry, data);
 
         if(!hasEntry(data.dt))
         {
@@ -997,7 +1001,7 @@ void TrayWeather::processWeatherData(const QByteArray &data)
     }
     else
     {
-      parseForecastEntry(jsonObj, m_current, m_configuration.units);
+      parseForecastEntry(jsonObj, m_current);
       if(!m_configuration.useGeolocation)
       {
         if(m_current.name    != "Unknown") m_configuration.region = m_configuration.city = m_current.name;

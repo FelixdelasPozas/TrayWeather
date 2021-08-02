@@ -50,7 +50,7 @@ static const QString IP                      = QString("IP Address");
 static const QString TIMEZONE                = QString("Timezone");
 static const QString ZIPCODE                 = QString("Zipcode");
 static const QString OPENWEATHERMAP_APIKEY   = QString("OpenWeatherMap API Key");
-static const QString TEMP_UNITS              = QString("Units");
+static const QString UNITS                   = QString("Units");
 static const QString UPDATE_INTERVAL         = QString("Update interval");
 static const QString MAPS_TAB_ENABLED        = QString("Maps tab enabled");
 static const QString USE_DNS_GEOLOCATION     = QString("Use DNS Geolocation");
@@ -102,20 +102,31 @@ static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/01d.svg" }
 constexpr int DEFAULT_LOGICAL_DPI = 96;
 
 //--------------------------------------------------------------------
-const double convertKelvinTo(const double temp, const Temperature units)
+const double convertMmToInches(const double value)
 {
-  switch(units)
-  {
-    case Temperature::FAHRENHEIT:
-      return (temp * 9./5.) - 459.67;
-      break;
-    default:
-    case Temperature::CELSIUS:
-      return temp - 273.15;
-      break;
-  }
+  // return only 2 digits.
+  return static_cast<int>(value * 0.0393701 * 100)/100.;
+}
 
-  throw std::bad_function_call();
+//--------------------------------------------------------------------
+const double convertCelsiusToFahrenheit(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(((value * 9.)/5.)*100)/100. + 32;
+}
+
+//--------------------------------------------------------------------
+const double convertMetersSecondToMilesHour(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(value * 2.23694 * 100)/100.;
+}
+
+//--------------------------------------------------------------------
+const double converthPaToPSI(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(value * 0.014503773773 * 100)/100.;
 }
 
 //--------------------------------------------------------------------
@@ -168,7 +179,7 @@ QDebug operator <<(QDebug d, const ForecastData& data)
 }
 
 //--------------------------------------------------------------------
-void parseForecastEntry(const QJsonObject& entry, ForecastData& data, const Temperature unit)
+void parseForecastEntry(const QJsonObject& entry, ForecastData& data)
 {
   const auto main    = entry.value("main").toObject();
   const auto weather = entry.value("weather").toArray().first().toObject();
@@ -508,7 +519,7 @@ void load(Configuration &configuration)
   configuration.timezone        = settings.value(TIMEZONE, QString()).toString();
   configuration.zipcode         = settings.value(ZIPCODE, QString()).toString();
   configuration.owm_apikey      = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
-  configuration.units           = static_cast<Temperature>(settings.value(TEMP_UNITS, 0).toInt());
+  configuration.units           = static_cast<Units>(settings.value(UNITS, 0).toInt());
   configuration.updateTime      = settings.value(UPDATE_INTERVAL, 15).toUInt();
   configuration.mapsEnabled     = settings.value(MAPS_TAB_ENABLED, true).toBool();
   configuration.useDNS          = settings.value(USE_DNS_GEOLOCATION, false).toBool();
@@ -553,7 +564,7 @@ void save(const Configuration &configuration)
   settings.setValue(TIMEZONE,                configuration.timezone);
   settings.setValue(ZIPCODE,                 configuration.zipcode);
   settings.setValue(OPENWEATHERMAP_APIKEY,   configuration.owm_apikey);
-  settings.setValue(TEMP_UNITS,              static_cast<int>(configuration.units));
+  settings.setValue(UNITS,                   static_cast<int>(configuration.units));
   settings.setValue(UPDATE_INTERVAL,         configuration.updateTime);
   settings.setValue(MAPS_TAB_ENABLED,        configuration.mapsEnabled);
   settings.setValue(USE_DNS_GEOLOCATION,     configuration.useDNS);
@@ -705,4 +716,26 @@ void changeLanguage(const QString &lang)
   }
 
   qApp->installTranslator(&s_appTranslator);
+}
+
+//--------------------------------------------------------------------
+const QString unitsToText(const Units &u)
+{
+  const QStringList UNITS_TEXT{"metric", "imperial", "standard"};
+
+  return UNITS_TEXT.at(static_cast<int>(u));
+}
+
+//--------------------------------------------------------------------
+const QString generateMapGrades(const std::list<double> &grades, std::function<double(double)> f)
+{
+  QStringList result;
+
+  for(auto value: grades)
+  {
+    value = f(value);
+    result << QString::number(value, 'f', 2);
+  }
+
+  return result.join(',');
 }

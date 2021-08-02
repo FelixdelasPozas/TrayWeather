@@ -116,16 +116,18 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   struct tm t;
   unixTimeStampToDate(t, current.dt);
   QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-  auto temperatureUnits = (config.units == Temperature::CELSIUS ? "ºC" : "Fº");
 
   // translation
-  const auto windUnits = tr("meter/sec");
   const auto illuStr   = tr("Illumination");
   const auto currStr   = tr("Current weather");
   const auto noneStr   = tr("None");
   const auto unknStr   = tr("Unknown");
   const auto tempStr   = tr("Temperature");
   const auto rainStr   = tr("Rain accumulation");
+  const auto accuStr   = config.units == Units::METRIC ? tr("mm") : tr("inches");
+  const auto pressStr  = config.units == Units::METRIC ? tr("hPa") : tr("psi");
+  const auto windUnits = config.units == Units::METRIC ? tr("meter/sec") : tr("miles/hour");
+  const auto tempUnits = config.units == Units::METRIC ? "ºC" : "ºF";
 
   if(config.useGeolocation)
   {
@@ -138,14 +140,16 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   m_moon->setPixmap(moonPixmap(current).scaled(QSize{64,64}));
   m_description->setText(toTitleCase(current.description));
   m_icon->setPixmap(weatherPixmap(current).scaled(QSize{236,236}));
-  m_temp->setText(QString("%1 %2").arg(convertKelvinTo(current.temp, config.units)).arg(temperatureUnits));
-  m_temp_max->setText(QString("%1 %2").arg(convertKelvinTo(current.temp_max, config.units)).arg(temperatureUnits));
-  m_temp_min->setText(QString("%1 %2").arg(convertKelvinTo(current.temp_min, config.units)).arg(temperatureUnits));
+  m_temp->setText(QString("%1 %2").arg(current.temp).arg(tempUnits));
+  m_temp_max->setText(QString("%1 %2").arg(current.temp_max).arg(tempUnits));
+  m_temp_min->setText(QString("%1 %2").arg(current.temp_min).arg(tempUnits));
   m_cloudiness->setText(QString("%1%").arg(current.cloudiness));
   m_humidity->setText(QString("%1%").arg(current.humidity));
-  m_pressure->setText(QString("%1 hPa").arg(current.pressure));
   m_wind_speed->setText(QString("%1 %2").arg(current.wind_speed).arg(windUnits));
-  m_wind_dir->setText(QString("%1 º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
+  m_wind_dir->setText(QString("%1º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
+
+  const auto pValue = config.units == Units::METRIC ? current.pressure : converthPaToPSI(current.pressure);
+  m_pressure->setText(QString("%1 %2").arg(pValue).arg(pressStr));
 
   double illuminationPercent = 0;
   const auto moonPhase = moonPhaseText(current.dt, illuminationPercent);
@@ -161,7 +165,8 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
   else
   {
-    m_rain->setText(QString("%1 mm").arg(current.rain));
+    const double value = config.units == Units::METRIC ? current.rain : convertMmToInches(current.rain);
+    m_rain->setText(QString("%1 %2").arg(value).arg(accuStr));
   }
 
   if(current.snow == 0)
@@ -170,7 +175,8 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
   else
   {
-    m_snow->setText(QString("%1 mm").arg(current.snow));
+    const double value = config.units == Units::METRIC ? current.snow : convertMmToInches(current.snow);
+    m_snow->setText(QString("%1 %2").arg(value).arg(accuStr));
   }
 
   if(current.sunrise != 0)
@@ -204,11 +210,11 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
   auto axisYTemp = new QValueAxis();
   axisYTemp->setLabelFormat("%i");
-  axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(temperatureUnits));
+  axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(tempUnits));
 
   auto axisYRain = new QValueAxis();
   axisYRain->setLabelFormat("%.2f");
-  axisYRain->setTitleText(tr("%1 in mm").arg(rainStr));
+  axisYRain->setTitleText(tr("%1 in %2").arg(rainStr).arg(accuStr));
 
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
@@ -246,16 +252,16 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     unixTimeStampToDate(t, entry.dt);
     dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
 
-    auto temperature = convertKelvinTo(entry.temp, config.units);
-    m_temperatureLine->append(dtTime.toMSecsSinceEpoch(), temperature);
+    m_temperatureLine->append(dtTime.toMSecsSinceEpoch(), entry.temp);
 
-    tempMin = std::min(tempMin, temperature);
-    tempMax = std::max(tempMax, temperature);
+    tempMin = std::min(tempMin, entry.temp);
+    tempMax = std::max(tempMax, entry.temp);
 
-    rainMin = std::min(rainMin, entry.rain);
-    rainMax = std::max(rainMax, entry.rain);
+    const auto rValue = config.units == Units::METRIC ? entry.rain : convertMmToInches(entry.rain);
+    rainMin = std::min(rainMin, rValue);
+    rainMax = std::max(rainMax, rValue);
 
-    bars->append(entry.rain);
+    bars->append(rValue);
   }
 
   axisYTemp->setRange(tempMin-1, tempMax+1);
@@ -328,8 +334,13 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     delete oldChart;
   }
 
-  // Maps tab handled on showEvent to avoid main widget resize problem.
   onResetButtonPressed();
+
+  if(mapsEnabled())
+  {
+    updateMapLayerValues();
+    loadMaps();
+  }
 }
 
 //--------------------------------------------------------------------
@@ -1065,14 +1076,48 @@ void WeatherDialog::changeEvent(QEvent *e)
 //--------------------------------------------------------------------
 void WeatherDialog::loadMaps()
 {
+  if(!m_webpage) return;
+
   QFile webfile(":/TrayWeather/webpage.html");
   if(webfile.open(QFile::ReadOnly))
   {
     QString webpage{webfile.readAll()};
 
-    // translation
-    QStringList translations;
-    translations << tr("Temperature") << tr("Rain") << tr("Wind") << tr("Clouds");
+    QString isMetric, isImperial, degrees, windUnit, rainUnit, rainGrades, windGrades, tempGrades;
+    switch(m_config->units)
+    {
+      case Units::IMPERIAL:
+        isMetric = "false";
+        isImperial = "true";
+        degrees = "ºF";
+        windUnit = tr("miles/h");
+        rainUnit = tr("inches");
+        rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, convertMmToInches);
+        windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToMilesHour);
+        tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, convertCelsiusToFahrenheit);
+        break;
+      default:
+      case Units::METRIC:
+        isMetric = "true";
+        isImperial = "false";
+        degrees = "ºC";
+        windUnit = tr("met/sec");
+        rainUnit = tr("mm");
+        auto nullF = [](double d){return d;};
+        rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, nullF);
+        windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, nullF);
+        tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, nullF);
+        break;
+    }
+
+    webpage.replace("%%metric%%", isMetric);
+    webpage.replace("%%imperial%%", isImperial);
+    webpage.replace("%%degrees%%", degrees);
+    webpage.replace("%%windUnit%%", windUnit);
+    webpage.replace("%%rainUnit%%", rainUnit);
+    webpage.replace("%%rainGrades%%", rainGrades);
+    webpage.replace("%%windGrades%%", windGrades);
+    webpage.replace("%%tempGrades%%", tempGrades);
 
     webpage.replace("%%tempStr%%", tr("Temperature"), Qt::CaseSensitive);
     webpage.replace("%%rainStr%%", tr("Rain"), Qt::CaseSensitive);

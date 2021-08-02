@@ -991,7 +991,7 @@ QGroupBox::title {
                </font>
               </property>
               <property name="text">
-               <string>Temperature units</string>
+               <string>Measurement units</string>
               </property>
              </widget>
             </item>
@@ -1072,23 +1072,15 @@ QGroupBox::title {
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QComboBox" name="m_tempComboBox">
+             <widget class="QComboBox" name="m_unitsComboBox">
               <item>
                <property name="text">
-                <string>Celsius</string>
-               </property>
-               <property name="icon">
-                <iconset resource="rsc/resources.qrc">
-                 <normaloff>:/TrayWeather/temp-celsius.svg</normaloff>:/TrayWeather/temp-celsius.svg</iconset>
+                <string>Metric system (ºC)</string>
                </property>
               </item>
               <item>
                <property name="text">
-                <string>Fahrenheit</string>
-               </property>
-               <property name="icon">
-                <iconset resource="rsc/resources.qrc">
-                 <normaloff>:/TrayWeather/temp-fahrenheit.svg</normaloff>:/TrayWeather/temp-fahrenheit.svg</iconset>
+                <string>Imperial system (ºF)</string>
                </property>
               </item>
              </widget>

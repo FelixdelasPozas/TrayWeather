@@ -53,14 +53,19 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   const auto presStr = tr("Pressure");
   const auto rainStr = tr("Rain acc");
   const auto snowStr = tr("Snow acc");
+  const auto degUnits  = config.units == Units::METRIC ? "ºC" : "ºF";
+  const auto presUnits = config.units == Units::METRIC ? tr("hPa"):tr("psi");
+  const auto accUnits  = config.units == Units::METRIC ? tr("mm") : tr("inch");
 
   m_dateTime->setText(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm")));
   m_description->setText(toTitleCase(data.description));
 
-  m_temperature->setText(QString("%1: %2 %3").arg(tempStr).arg(convertKelvinTo(data.temp, config.units)).arg(config.units == Temperature::CELSIUS ? "ºC" : "ºF"));
+  m_temperature->setText(QString("%1: %2 %3").arg(tempStr).arg(data.temp).arg(degUnits));
   m_cloudiness->setText(QString("%1: %2%").arg(clouStr).arg(data.cloudiness));
   m_humidity->setText(QString("%1: %2%").arg(humiStr).arg(data.humidity));
-  m_pressure->setText(QString("%1: %2 hPa").arg(presStr).arg(data.pressure));
+
+  const auto pValue = config.units == Units::METRIC ? data.pressure : converthPaToPSI(data.pressure);
+  m_pressure->setText(QString("%1: %2 %3").arg(presStr).arg(pValue).arg(presUnits));
 
   if(data.rain == 0)
   {
@@ -68,7 +73,8 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   }
   else
   {
-    m_rain->setText(QString("%1: %2 mm").arg(rainStr).arg(data.rain));
+    const double value = config.units == Units::METRIC ? data.rain : convertMmToInches(data.rain);
+    m_rain->setText(QString("%1: %2 %3").arg(rainStr).arg(value).arg(accUnits));
   }
 
   if(data.snow == 0)
@@ -77,7 +83,8 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   }
   else
   {
-    m_snow->setText(QString("%1: %2 mm").arg(snowStr).arg(data.snow));
+    const double value = config.units == Units::METRIC ? data.snow : convertMmToInches(data.snow);
+    m_snow->setText(QString("%1: %2 %3").arg(snowStr).arg(value).arg(accUnits));
   }
 
   adjustSize();

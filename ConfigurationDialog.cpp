@@ -213,7 +213,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.timezone       = m_timezone->text();
   configuration.zipcode        = m_zipCode->text();
   configuration.updateTime     = m_updateTime->value();
-  configuration.units          = static_cast<Temperature>(m_tempComboBox->currentIndex());
+  configuration.units          = static_cast<Units>(m_unitsComboBox->currentIndex());
   configuration.useDNS         = m_useDNS->isChecked();
   configuration.useGeolocation = m_useGeolocation->isChecked();
   configuration.roamingEnabled = m_roamingCheck->isChecked();
@@ -572,7 +572,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_timezone->setText(configuration.timezone);
   m_zipCode->setText(configuration.zipcode);
   m_updateTime->setValue(configuration.updateTime);
-  m_tempComboBox->setCurrentIndex(static_cast<int>(configuration.units));
+  m_unitsComboBox->setCurrentIndex(static_cast<int>(configuration.units));
   m_useDNS->setChecked(configuration.useDNS);
   m_roamingCheck->setChecked(configuration.roamingEnabled);
   m_apikey->setText(configuration.owm_apikey);
@@ -609,7 +609,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
     m_longitude->setText("0");
 
     m_updateTime->setValue(15);
-    m_tempComboBox->setCurrentIndex(0);
+    m_unitsComboBox->setCurrentIndex(0);
   }
   else
   {
