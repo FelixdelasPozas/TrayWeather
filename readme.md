@@ -61,11 +61,11 @@ The tray and application theme configuration can be found here in the miscellane
 
 Configuration dialog, with the application light theme, in spanish.
 
-![config](https://user-images.githubusercontent.com/12167134/126078725-dbd729e7-7490-44ab-b938-5dd26ba00d7e.png)
+![config](https://user-images.githubusercontent.com/12167134/128199211-f404feef-a6a6-408c-b89c-5325e9eabd0f.png)
 
 Configuration dialog, with the application dark theme, in english.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/126078727-7a66a6aa-0fb7-487e-8e06-5baba72f8bac.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/128199214-dc121cd6-66d5-4c82-ab61-5e6e89e86c1f.png)
 
 Weather dialog, showing the current weather tab. 
 
