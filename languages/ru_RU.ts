@@ -715,6 +715,11 @@ The application will exit now.</source>
         <translation>Русский</translation>
     </message>
     <message>
+        <location filename="../Utils.h" line="83"/>
+        <source>German</source>
+        <translation>Немецкий</translation>
+    </message>
+    <message>
         <location filename="../TrayWeather.cpp" line="348"/>
         <source>TrayWeather needs to be restarted for the new configuration to take effect.
 The application will exit now.</source>

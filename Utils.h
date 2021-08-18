@@ -79,7 +79,8 @@ struct LanguageData
 static QList<LanguageData> TRANSLATIONS = {
     { QObject::tr("English"), ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
     { QObject::tr("Spanish"), ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
-    { QObject::tr("Russian"), ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            }
+    { QObject::tr("Russian"), ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
+    { QObject::tr("German"),  ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             }
 };
 
 /** \struct Configuration

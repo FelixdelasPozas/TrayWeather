@@ -8,7 +8,7 @@ cmake_minimum_required (VERSION 3.0.0)
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
 set (TRAYWEATHER_VERSION_MINOR 11)
-set (TRAYWEATHER_VERSION_PATCH 0)
+set (TRAYWEATHER_VERSION_PATCH 1)
 
 # Current year, used in configured files. 
 string(TIMESTAMP CURRENT_YEAR "%Y")
@@ -86,6 +86,7 @@ include_directories(
 set(TRANSLATIONS_TS_FILES
   languages/es_ES.ts
   languages/ru_RU.ts
+  languages/de_DE.ts
 )
 
 qt5_add_translation(TRANSLATIONS_QM_FILES ${TRANSLATIONS_TS_FILES})
