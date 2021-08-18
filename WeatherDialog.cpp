@@ -506,9 +506,6 @@ void WeatherDialog::onMapsButtonPressed()
   }
   else
   {
-    m_mapsButton->setText(tr("Hide Maps"));
-    m_mapsButton->setToolTip(tr("Hide weather maps tab."));
-
     m_webpage = new QWebView;
     m_webpage->setProperty("finished", false);
     m_webpage->setRenderHint(QPainter::HighQualityAntialiasing, true);
@@ -1077,6 +1074,9 @@ void WeatherDialog::changeEvent(QEvent *e)
 void WeatherDialog::loadMaps()
 {
   if(!m_webpage) return;
+
+  m_mapsButton->setText(tr("Hide Maps"));
+  m_mapsButton->setToolTip(tr("Hide weather maps tab."));
 
   QFile webfile(":/TrayWeather/webpage.html");
   if(webfile.open(QFile::ReadOnly))
