@@ -246,17 +246,9 @@ void TrayWeather::showConfiguration()
   m_configuration.autostart     = configuration.autostart;
   m_configuration.language      = configuration.language;
 
-  bool requestedData = false;
-  auto updateData = [this, &requestedData]()
-  {
-    if(!requestedData)
-    {
-      requestedData = true;
-      requestData();
-    }
-  };
+  bool requestNewData = false;
 
-  if(changedLanguage) updateData();
+  if(changedLanguage) requestNewData = true;
 
   if(configuration.isValid())
   {
@@ -264,7 +256,7 @@ void TrayWeather::showConfiguration()
 
     if(menu && menu->actions().size() > 1)
     {
-      QString iconLink = configuration.units == Units::METRIC ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
+      QString iconLink = temperatureIconString(configuration);
       QIcon icon{iconLink};
 
       menu->actions().first()->setIcon(icon);
@@ -275,8 +267,12 @@ void TrayWeather::showConfiguration()
     const auto changedIP          = (configuration.ip != m_configuration.ip);
     const auto changedUpdateTime  = (configuration.updateTime != m_configuration.updateTime);
     const auto changedAPIKey      = (configuration.owm_apikey != m_configuration.owm_apikey);
-    const auto changedUnits       = (configuration.units != m_configuration.units);
     const auto changedUpdateCheck = (configuration.update != m_configuration.update);
+    const auto changedUnits       = (configuration.units != m_configuration.units) ||
+                                    (configuration.units == Units::CUSTOM && (configuration.tempUnits != m_configuration.tempUnits ||
+                                                                              configuration.precUnits != m_configuration.precUnits ||
+                                                                              configuration.windUnits != m_configuration.windUnits ||
+                                                                              configuration.pressureUnits != m_configuration.pressureUnits));
 
     if(changedIP || changedMethod || changedCoords || changedRoaming)
     {
@@ -292,7 +288,7 @@ void TrayWeather::showConfiguration()
       m_configuration.useDNS         = configuration.useDNS;
       m_configuration.useGeolocation = configuration.useGeolocation;
       m_configuration.roamingEnabled = configuration.roamingEnabled;
-      updateData();
+      requestNewData = true;
     }
 
     if(changedUpdateTime)
@@ -305,16 +301,23 @@ void TrayWeather::showConfiguration()
     if(changedAPIKey)
     {
       m_configuration.owm_apikey = configuration.owm_apikey;
-      updateData();
+      requestNewData = true;
     }
 
     if(changedUnits)
     {
       m_configuration.units = configuration.units;
-      updateData();
+      if(m_configuration.units == Units::CUSTOM)
+      {
+        m_configuration.tempUnits     = configuration.tempUnits;
+        m_configuration.pressureUnits = configuration.pressureUnits;
+        m_configuration.windUnits     = configuration.windUnits;
+        m_configuration.precUnits     = configuration.precUnits;
+      }
+      requestNewData = true;
     }
 
-    if(!requestedData)
+    if(!requestNewData)
     {
       if(m_weatherDialog && validData())
       {
@@ -354,6 +357,11 @@ void TrayWeather::showConfiguration()
     msgBox.exec();
 
     exitApplication();
+  }
+
+  if(requestNewData)
+  {
+    requestData();
   }
 }
 
@@ -410,11 +418,16 @@ void TrayWeather::updateTooltip()
   if(!m_configuration.city.isEmpty())    place << m_configuration.city;
   if(!m_configuration.country.isEmpty()) place << m_configuration.country;
 
-  const auto tempString = QString::number(m_current.temp, 'f', 1);
+  double temperatureValue = m_current.temp;
+  if(m_configuration.units == Units::CUSTOM && m_configuration.tempUnits == TemperatureUnits::FAHRENHEIT)
+  {
+    temperatureValue = convertCelsiusToFahrenheit(m_current.temp);
+  }
+  const auto temperatureString = QString::number(temperatureValue, 'f', 1);
   tooltip = QString("%1\n%2\n%3%4").arg(place.join(", "))
                                    .arg(toTitleCase(m_current.description))
-                                   .arg(tempString)
-                                   .arg(m_configuration.units == Units::METRIC ? "ºC" : "ºF");
+                                   .arg(temperatureString)
+                                   .arg(temperatureIconText(m_configuration));
 
   QPixmap pixmap = weatherPixmap(m_current).scaled(384,384,Qt::KeepAspectRatio, Qt::SmoothTransformation);
   QPainter painter(&pixmap);
@@ -451,7 +464,7 @@ void TrayWeather::updateTooltip()
     default:
     case 2:
       {
-        const auto roundedTemp = static_cast<int>(std::nearbyint(m_current.temp));
+        const auto roundedTemp = static_cast<int>(std::nearbyint(temperatureValue));
         const auto roundedString = QString::number(roundedTemp);
         QFont font = painter.font();
         font.setPixelSize(m_configuration.trayTextSize - ((roundedString.length() - 3) * 50));
@@ -489,7 +502,7 @@ void TrayWeather::createMenuEntries()
 {
   auto menu = new QMenu(nullptr);
 
-  QString iconLink = m_configuration.units == Units::METRIC ? ":/TrayWeather/temp-celsius.svg" : ":/TrayWeather/temp-fahrenheit.svg";
+  QString iconLink = temperatureIconString(m_configuration);
   auto weather = new QAction{QIcon{iconLink}, tr("Current weather..."), menu};
   connect(weather, SIGNAL(triggered(bool)), this, SLOT(showTab()));
 
@@ -1149,6 +1162,21 @@ void TrayWeather::processOneCallData(const QByteArray &data)
         if(!hasEntry(data.dt)) m_vData << data;
       }
     }
+
+//    if(jsonObj.keys().contains("alerts"))
+//    {
+//      auto alerts = jsonObj.value("alerts").toObject();
+//      if(!alerts.value("event").toString().isEmpty())
+//      {
+//        qDebug() << "ALERT";
+//        qDebug() << "sender: " << alerts.value("sender_name").toString();
+//        qDebug() << "event:  " << alerts.value("event").toString();
+//        qDebug() << "start:  " << alerts.value("start").toInt(0);
+//        qDebug() << "end:    " << alerts.value("end").toInt(0);
+//        qDebug() << "desc:   " << alerts.value("description").toString();
+//        qDebug() << "tags:   " << alerts.value("tags").toString();
+//      }
+//    }
   }
 
   if(!m_vData.isEmpty() && m_weatherDialog)

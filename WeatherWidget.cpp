@@ -53,38 +53,97 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   const auto presStr = tr("Pressure");
   const auto rainStr = tr("Rain acc");
   const auto snowStr = tr("Snow acc");
-  const auto degUnits  = config.units == Units::METRIC ? "ºC" : "ºF";
-  const auto presUnits = config.units == Units::METRIC ? tr("hPa"):tr("psi");
-  const auto accUnits  = config.units == Units::METRIC ? tr("mm") : tr("inch");
+
+  QString tempUnits, presUnits, accUnits;
+  double tempValue = data.temp;
+  double presValue = data.pressure;
+  double rainValue = data.rain;
+  double snowValue = data.snow;
+
+  switch(config.units)
+  {
+    case Units::METRIC:
+      tempUnits = "ºC";
+      presUnits = tr("hPa");
+      accUnits  = tr("mm");
+      break;
+    case Units::IMPERIAL:
+      tempUnits = "ºF";
+      presUnits = tr("PSI");
+      accUnits  = tr("inch");
+      break;
+    case Units::CUSTOM:
+      switch(config.tempUnits)
+      {
+        case TemperatureUnits::FAHRENHEIT:
+          tempValue = convertCelsiusToFahrenheit(data.temp);
+          tempUnits = "ºF";
+          break;
+        default:
+        case TemperatureUnits::CELSIUS:
+          tempUnits = "ºC";
+          break;
+      }
+      switch(config.pressureUnits)
+      {
+        case PressureUnits::INHG:
+          presValue = converthPaToinHg(data.pressure);
+          presUnits = tr("inHg");
+          break;
+        case PressureUnits::MMGH:
+          presValue = converthPaTommHg(data.pressure);
+          presUnits = tr("mmHg");
+          break;
+        case PressureUnits::PSI:
+          presValue = converthPaToPSI(data.pressure);
+          presUnits = tr("PSI");
+          break;
+        default:
+        case PressureUnits::HPA:
+          presUnits = tr("hPa");
+          break;
+      }
+      switch(config.precUnits)
+      {
+        case PrecipitationUnits::INCH:
+          accUnits = tr("inches");
+          rainValue = convertMmToInches(data.rain);
+          snowValue = convertMmToInches(data.snow);
+          break;
+        default:
+        case PrecipitationUnits::MM:
+          accUnits = tr("mm");
+          break;
+      }
+      break;
+    default:
+      break;
+  }
 
   m_dateTime->setText(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm")));
   m_description->setText(toTitleCase(data.description));
 
-  m_temperature->setText(QString("%1: %2 %3").arg(tempStr).arg(data.temp).arg(degUnits));
+  m_temperature->setText(QString("%1: %2 %3").arg(tempStr).arg(tempValue).arg(tempUnits));
   m_cloudiness->setText(QString("%1: %2%").arg(clouStr).arg(data.cloudiness));
   m_humidity->setText(QString("%1: %2%").arg(humiStr).arg(data.humidity));
+  m_pressure->setText(QString("%1: %2 %3").arg(presStr).arg(presValue).arg(presUnits));
 
-  const auto pValue = config.units == Units::METRIC ? data.pressure : converthPaToPSI(data.pressure);
-  m_pressure->setText(QString("%1: %2 %3").arg(presStr).arg(pValue).arg(presUnits));
-
-  if(data.rain == 0)
+  if(rainValue == 0)
   {
     m_rain->hide();
   }
   else
   {
-    const double value = config.units == Units::METRIC ? data.rain : convertMmToInches(data.rain);
-    m_rain->setText(QString("%1: %2 %3").arg(rainStr).arg(value).arg(accUnits));
+    m_rain->setText(QString("%1: %2 %3").arg(rainStr).arg(rainValue).arg(accUnits));
   }
 
-  if(data.snow == 0)
+  if(snowValue == 0)
   {
     m_snow->hide();
   }
   else
   {
-    const double value = config.units == Units::METRIC ? data.snow : convertMmToInches(data.snow);
-    m_snow->setText(QString("%1: %2 %3").arg(snowStr).arg(value).arg(accUnits));
+    m_snow->setText(QString("%1: %2 %3").arg(snowStr).arg(snowValue).arg(accUnits));
   }
 
   adjustSize();

@@ -36,6 +36,8 @@
 #include <QSettings>
 #include <QDir>
 
+const char SELECTED[] = "Selected";
+
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
 : QDialog       {parent}
@@ -229,6 +231,10 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.update         = static_cast<Update>(m_updatesCombo->currentIndex());
   configuration.autostart      = m_autostart->isChecked();
   configuration.language       = m_languageCombo->itemData(m_languageCombo->currentIndex(), Qt::UserRole).toString();
+  configuration.tempUnits      = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
+  configuration.pressureUnits  = static_cast<PressureUnits>(m_pressionCombo->currentIndex());
+  configuration.precUnits      = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
+  configuration.windUnits      = static_cast<WindUnits>(m_windCombo->currentIndex());
 
   if(m_useManual->isChecked())
   {
@@ -352,6 +358,14 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_languageCombo, SIGNAL(currentIndexChanged(int)),
           this,            SLOT(onLanguageChanged(int)));
+
+  connect(m_unitsComboBox, SIGNAL(currentIndexChanged(int)),
+          this,            SLOT(onUnitsValueChanged(int)));
+
+  for(auto &w: {m_tempCombo, m_pressionCombo, m_windCombo, m_precipitationCombo})
+  {
+    connect(w, SIGNAL(currentIndexChanged(int)), this, SLOT(onUnitComboChanged(int)));
+  }
 }
 
 //--------------------------------------------------------------------
@@ -413,7 +427,7 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
   updateRange();
 
   // ...and then return to the one tab the user is in.
-  m_tabWidget->setCurrentIndex(1);
+  m_tabWidget->setCurrentIndex(2);
 
   QApplication::restoreOverrideCursor();
 }
@@ -572,7 +586,6 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_timezone->setText(configuration.timezone);
   m_zipCode->setText(configuration.zipcode);
   m_updateTime->setValue(configuration.updateTime);
-  m_unitsComboBox->setCurrentIndex(static_cast<int>(configuration.units));
   m_useDNS->setChecked(configuration.useDNS);
   m_roamingCheck->setChecked(configuration.roamingEnabled);
   m_apikey->setText(configuration.owm_apikey);
@@ -580,6 +593,12 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
   m_fontSize->setValue(configuration.trayTextSize);
   m_updatesCombo->setCurrentIndex(static_cast<int>(configuration.update));
+
+  m_unitsComboBox->setCurrentIndex(static_cast<int>(configuration.units));
+  m_tempCombo->setCurrentIndex(static_cast<int>(configuration.tempUnits));
+  m_pressionCombo->setCurrentIndex(static_cast<int>(configuration.pressureUnits));
+  m_precipitationCombo->setCurrentIndex(static_cast<int>(configuration.precUnits));
+  m_windCombo->setCurrentIndex(static_cast<int>(configuration.windUnits));
 
   m_fixed->setChecked(configuration.trayTextMode);
   m_variable->setChecked(!configuration.trayTextMode);
@@ -647,6 +666,11 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
       m_testLabel->setText(tr("Untested OpenWeatherMap API Key!"));
     }
   }
+
+  m_tempCombo->setProperty(SELECTED, static_cast<int>(configuration.tempUnits));
+  m_pressionCombo->setProperty(SELECTED, static_cast<int>(configuration.pressureUnits));
+  m_windCombo->setProperty(SELECTED, static_cast<int>(configuration.windUnits));
+  m_precipitationCombo->setProperty(SELECTED, static_cast<int>(configuration.precUnits));
 
   setFixedSize(size());
   updateRange();
@@ -729,4 +753,55 @@ void ConfigurationDialog::onLanguageChanged(int index)
   auto idx = std::max(std::min(index, TRANSLATIONS.size() - 1), 0);
 
   emit languageChanged(TRANSLATIONS.at(idx).file);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onUnitsValueChanged(int index)
+{
+  auto setCustomUnits = [this](int idx)
+  {
+    m_customBox->setEnabled(false);
+    for(auto w: {m_tempCombo, m_pressionCombo, m_windCombo, m_precipitationCombo})
+    {
+      w->blockSignals(true);
+      w->setCurrentIndex(idx);
+      w->blockSignals(false);
+    }
+  };
+
+  switch(index)
+  {
+    default:
+      m_unitsComboBox->blockSignals(true);
+      m_unitsComboBox->setCurrentIndex(0);
+      m_unitsComboBox->blockSignals(false);
+      /* fall through */
+    case 0:
+      setCustomUnits(0);
+      break;
+    case 1:
+      setCustomUnits(1);
+      break;
+    case 2:
+      m_customBox->setEnabled(true);
+      for(auto &w: {m_tempCombo, m_pressionCombo, m_windCombo, m_precipitationCombo})
+      {
+        const auto value = w->property(SELECTED);
+        if(value.isValid() && value.canConvert<int>())
+        {
+          w->setCurrentIndex(value.toInt());
+        }
+      }
+      break;
+  }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onUnitComboChanged(int index)
+{
+  auto w = qobject_cast<QComboBox*>(sender());
+  if(w)
+  {
+    w->setProperty(SELECTED, index);
+  }
 }

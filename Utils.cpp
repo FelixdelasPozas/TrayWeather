@@ -72,6 +72,10 @@ static const QString LAST_TAB                = QString("Last tab");
 static const QString LAST_MAP_LAYER          = QString("Last map layer");
 static const QString LAST_STREET_LAYER       = QString("Last street layer");
 static const QString LANGUAGE                = QString("Language");
+static const QString CUSTOM_TEMP_UNITS       = QString("Custom temperature units");
+static const QString CUSTOM_PRES_UNITS       = QString("Custom pressure units");
+static const QString CUSTOM_PREC_UNITS       = QString("Custom precipitation units");
+static const QString CUSTOM_WIND_UNITS       = QString("Custom wind units");
 
 static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/01d.svg" },
                                               { "01n-0", ":/TrayWeather/01n-0.svg" },
@@ -123,10 +127,38 @@ const double convertMetersSecondToMilesHour(const double value)
 }
 
 //--------------------------------------------------------------------
+const double convertMetersSecondToKilometersHour(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(value * 3.6 * 100)/100.;
+}
+
+//--------------------------------------------------------------------
+const double convertMetersSecondToFeetSecond(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(value * 3.28084 * 100)/100.;
+}
+
+//--------------------------------------------------------------------
 const double converthPaToPSI(const double value)
 {
   // return only 2 digits.
   return static_cast<int>(value * 0.014503773773 * 100)/100.;
+}
+
+//--------------------------------------------------------------------
+const double converthPaTommHg(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(value * 0.750064 * 100)/100.;
+}
+
+//--------------------------------------------------------------------
+const double converthPaToinHg(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(value * 0.02953 * 100)/100.;
 }
 
 //--------------------------------------------------------------------
@@ -519,7 +551,8 @@ void load(Configuration &configuration)
   configuration.timezone        = settings.value(TIMEZONE, QString()).toString();
   configuration.zipcode         = settings.value(ZIPCODE, QString()).toString();
   configuration.owm_apikey      = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
-  configuration.units           = static_cast<Units>(settings.value(UNITS, 0).toInt());
+  const auto units = settings.value(UNITS, 0).toInt();
+  configuration.units           = static_cast<Units>(units);
   configuration.updateTime      = settings.value(UPDATE_INTERVAL, 15).toUInt();
   configuration.mapsEnabled     = settings.value(MAPS_TAB_ENABLED, true).toBool();
   configuration.useDNS          = settings.value(USE_DNS_GEOLOCATION, false).toBool();
@@ -541,6 +574,11 @@ void load(Configuration &configuration)
   configuration.lastLayer       = settings.value(LAST_MAP_LAYER, "temperature").toString();
   configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
   configuration.language        = settings.value(LANGUAGE, "en_EN").toString();
+  // if CUSTOM_UNITS values doesn't exists (first run) use units value.
+  configuration.tempUnits       = static_cast<TemperatureUnits>(settings.value(CUSTOM_TEMP_UNITS, units).toInt());
+  configuration.pressureUnits   = static_cast<PressureUnits>(settings.value(CUSTOM_PRES_UNITS, units).toInt());
+  configuration.precUnits       = static_cast<PrecipitationUnits>(settings.value(CUSTOM_PREC_UNITS, units).toInt());
+  configuration.windUnits       = static_cast<WindUnits>(settings.value(CUSTOM_WIND_UNITS, units).toInt());
 
   if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
   if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
@@ -586,6 +624,10 @@ void save(const Configuration &configuration)
   settings.setValue(LAST_MAP_LAYER,          configuration.lastLayer);
   settings.setValue(LAST_STREET_LAYER,       configuration.lastStreetLayer);
   settings.setValue(LANGUAGE,                configuration.language);
+  settings.setValue(CUSTOM_TEMP_UNITS,       static_cast<int>(configuration.tempUnits));
+  settings.setValue(CUSTOM_PRES_UNITS,       static_cast<int>(configuration.pressureUnits));
+  settings.setValue(CUSTOM_PREC_UNITS,       static_cast<int>(configuration.precUnits));
+  settings.setValue(CUSTOM_WIND_UNITS,       static_cast<int>(configuration.windUnits));
 
   settings.sync();
 }
@@ -721,7 +763,7 @@ void changeLanguage(const QString &lang)
 //--------------------------------------------------------------------
 const QString unitsToText(const Units &u)
 {
-  const QStringList UNITS_TEXT{"metric", "imperial", "standard"};
+  const QStringList UNITS_TEXT{"metric", "imperial", "metric"};
 
   return UNITS_TEXT.at(static_cast<int>(u));
 }
@@ -738,4 +780,60 @@ const QString generateMapGrades(const std::list<double> &grades, std::function<d
   }
 
   return result.join(',');
+}
+
+//--------------------------------------------------------------------
+QString temperatureIconString(const Configuration &c)
+{
+  switch(c.units)
+  {
+    default:
+    case Units::METRIC:
+      return ":/TrayWeather/temp-celsius.svg";
+      break;
+    case Units::IMPERIAL:
+      return ":/TrayWeather/temp-fahrenheit.svg";
+      break;
+    case Units::CUSTOM:
+      switch(c.tempUnits)
+      {
+        default:
+        case TemperatureUnits::CELSIUS:
+          return ":/TrayWeather/temp-celsius.svg";
+          break;
+        case TemperatureUnits::FAHRENHEIT:
+          return ":/TrayWeather/temp-fahrenheit.svg";
+          break;
+      }
+  }
+
+  return ":/TrayWeather/temp-celsius.svg";
+}
+
+//--------------------------------------------------------------------
+QString temperatureIconText(const Configuration &c)
+{
+  switch(c.units)
+  {
+    default:
+    case Units::METRIC:
+      return "ºC";
+      break;
+    case Units::IMPERIAL:
+      return "ºF";
+      break;
+    case Units::CUSTOM:
+      switch(c.tempUnits)
+      {
+        default:
+        case TemperatureUnits::CELSIUS:
+          return "ºC";
+          break;
+        case TemperatureUnits::FAHRENHEIT:
+          return "ºF";
+          break;
+      }
+  }
+
+  return "ºC";
 }

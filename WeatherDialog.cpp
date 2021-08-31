@@ -124,10 +124,92 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   const auto unknStr   = tr("Unknown");
   const auto tempStr   = tr("Temperature");
   const auto rainStr   = tr("Rain accumulation");
-  const auto accuStr   = config.units == Units::METRIC ? tr("mm") : tr("inches");
-  const auto pressStr  = config.units == Units::METRIC ? tr("hPa") : tr("psi");
-  const auto windUnits = config.units == Units::METRIC ? tr("meter/sec") : tr("miles/hour");
-  const auto tempUnits = config.units == Units::METRIC ? "ºC" : "ºF";
+
+  // conversions
+  QString accuStr, pressStr, windUnits, tempUnits;
+  std::function<double(double)> tempFunc = [](double d){ return d; };
+  std::function<double(double)> precipitationFunc = [](double d){ return d; };
+  double pressureValue = current.pressure;
+  double windValue = current.wind_speed;
+
+  switch(config.units)
+  {
+    case Units::IMPERIAL:
+      accuStr = tr("inches");
+      pressStr = tr("PSI");
+      windUnits = tr("miles/hour");
+      tempUnits = "ºF";
+      break;
+    default:
+    case Units::METRIC:
+      accuStr = tr("mm");
+      pressStr = tr("hPa");
+      windUnits = tr("meter/sec");
+      tempUnits = "ºC";
+      break;
+    case Units::CUSTOM:
+      switch(config.tempUnits)
+      {
+        case TemperatureUnits::FAHRENHEIT:
+          tempFunc = convertCelsiusToFahrenheit;
+          tempUnits = "ºF";
+          break;
+        default:
+        case TemperatureUnits::CELSIUS:
+          tempUnits = "ºC";
+          break;
+      }
+      switch(config.pressureUnits)
+      {
+        case PressureUnits::INHG:
+          pressureValue = converthPaToinHg(current.pressure);
+          pressStr = tr("inHg");
+          break;
+        case PressureUnits::MMGH:
+          pressureValue = converthPaTommHg(current.pressure);
+          pressStr = tr("mmHg");
+          break;
+        case PressureUnits::PSI:
+          pressureValue = converthPaToPSI(current.pressure);
+          pressStr = tr("PSI");
+          break;
+        default:
+        case PressureUnits::HPA:
+          pressStr = tr("hPa");
+          break;
+      }
+      switch(config.precUnits)
+      {
+        case PrecipitationUnits::INCH:
+          accuStr = tr("inches");
+          precipitationFunc = convertMmToInches;
+          break;
+        default:
+        case PrecipitationUnits::MM:
+          accuStr = tr("mm");
+          break;
+      }
+      switch(config.windUnits)
+      {
+        case WindUnits::FEETSEC:
+          windUnits = tr("feet/s");
+          windValue = convertMetersSecondToFeetSecond(current.wind_speed);
+          break;
+        case WindUnits::KMHR:
+          windUnits = tr("km/h");
+          windValue = convertMetersSecondToKilometersHour(current.wind_speed);
+          break;
+        case WindUnits::MILHR:
+          windUnits = tr("miles/h");
+          windValue = convertMetersSecondToMilesHour(current.wind_speed);
+          break;
+        default:
+        case WindUnits::METSEC:
+          windUnits = tr("meter/sec");
+          break;
+      }
+      break;
+  }
 
   if(config.useGeolocation)
   {
@@ -140,16 +222,14 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   m_moon->setPixmap(moonPixmap(current).scaled(QSize{64,64}));
   m_description->setText(toTitleCase(current.description));
   m_icon->setPixmap(weatherPixmap(current).scaled(QSize{236,236}));
-  m_temp->setText(QString("%1 %2").arg(current.temp).arg(tempUnits));
-  m_temp_max->setText(QString("%1 %2").arg(current.temp_max).arg(tempUnits));
-  m_temp_min->setText(QString("%1 %2").arg(current.temp_min).arg(tempUnits));
+  m_temp->setText(QString("%1 %2").arg(tempFunc(current.temp)).arg(tempUnits));
+  m_temp_max->setText(QString("%1 %2").arg(tempFunc(current.temp_max)).arg(tempUnits));
+  m_temp_min->setText(QString("%1 %2").arg(tempFunc(current.temp_min)).arg(tempUnits));
   m_cloudiness->setText(QString("%1%").arg(current.cloudiness));
   m_humidity->setText(QString("%1%").arg(current.humidity));
-  m_wind_speed->setText(QString("%1 %2").arg(current.wind_speed).arg(windUnits));
+  m_wind_speed->setText(QString("%1 %2").arg(windValue).arg(windUnits));
   m_wind_dir->setText(QString("%1º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
-
-  const auto pValue = config.units == Units::METRIC ? current.pressure : converthPaToPSI(current.pressure);
-  m_pressure->setText(QString("%1 %2").arg(pValue).arg(pressStr));
+  m_pressure->setText(QString("%1 %2").arg(pressureValue).arg(pressStr));
 
   double illuminationPercent = 0;
   const auto moonPhase = moonPhaseText(current.dt, illuminationPercent);
@@ -165,8 +245,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
   else
   {
-    const double value = config.units == Units::METRIC ? current.rain : convertMmToInches(current.rain);
-    m_rain->setText(QString("%1 %2").arg(value).arg(accuStr));
+    m_rain->setText(QString("%1 %2").arg(precipitationFunc(current.rain)).arg(accuStr));
   }
 
   if(current.snow == 0)
@@ -175,8 +254,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
   else
   {
-    const double value = config.units == Units::METRIC ? current.snow : convertMmToInches(current.snow);
-    m_snow->setText(QString("%1 %2").arg(value).arg(accuStr));
+    m_snow->setText(QString("%1 %2").arg(precipitationFunc(current.snow)).arg(accuStr));
   }
 
   if(current.sunrise != 0)
@@ -252,16 +330,16 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     unixTimeStampToDate(t, entry.dt);
     dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
 
-    m_temperatureLine->append(dtTime.toMSecsSinceEpoch(), entry.temp);
+    m_temperatureLine->append(dtTime.toMSecsSinceEpoch(), tempFunc(entry.temp));
 
-    tempMin = std::min(tempMin, entry.temp);
-    tempMax = std::max(tempMax, entry.temp);
+    tempMin = std::min(tempMin, tempFunc(entry.temp));
+    tempMax = std::max(tempMax, tempFunc(entry.temp));
 
-    const auto rValue = config.units == Units::METRIC ? entry.rain : convertMmToInches(entry.rain);
-    rainMin = std::min(rainMin, rValue);
-    rainMax = std::max(rainMax, rValue);
+    const auto rainValue = precipitationFunc(entry.rain);
+    rainMin = std::min(rainMin, rainValue);
+    rainMax = std::max(rainMax, rainValue);
 
-    bars->append(rValue);
+    bars->append(rainValue);
   }
 
   axisYTemp->setRange(tempMin-1, tempMax+1);
@@ -1083,30 +1161,78 @@ void WeatherDialog::loadMaps()
   {
     QString webpage{webfile.readAll()};
 
+    auto nullF = [](double d){return d;};
     QString isMetric, isImperial, degrees, windUnit, rainUnit, rainGrades, windGrades, tempGrades;
     switch(m_config->units)
     {
       case Units::IMPERIAL:
-        isMetric = "false";
+        isMetric   = "false";
         isImperial = "true";
-        degrees = "ºF";
-        windUnit = tr("miles/h");
-        rainUnit = tr("inches");
+        degrees    = "ºF";
+        windUnit   = tr("miles/h");
+        rainUnit   = tr("inches");
         rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, convertMmToInches);
         windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToMilesHour);
         tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, convertCelsiusToFahrenheit);
         break;
-      default:
       case Units::METRIC:
-        isMetric = "true";
+        isMetric   = "true";
         isImperial = "false";
-        degrees = "ºC";
-        windUnit = tr("met/sec");
-        rainUnit = tr("mm");
-        auto nullF = [](double d){return d;};
+        degrees    = "ºC";
+        windUnit   = tr("met/sec");
+        rainUnit   = tr("mm");
         rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, nullF);
         windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, nullF);
         tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, nullF);
+        break;
+      case Units::CUSTOM:
+        isMetric   = (m_config->windUnits == WindUnits::METSEC  || m_config->windUnits == WindUnits::KMHR) ? "true":"false";
+        isImperial = (m_config->windUnits == WindUnits::FEETSEC || m_config->windUnits == WindUnits::MILHR) ? "true":"false";
+        degrees    = m_config->tempUnits == TemperatureUnits::CELSIUS ? "ºC" : "ºF";
+        switch(m_config->precUnits)
+        {
+          case PrecipitationUnits::INCH:
+            rainUnit   = tr("inches");
+            rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, convertMmToInches);
+            break;
+          default:
+          case PrecipitationUnits::MM:
+            rainUnit   = tr("mm");
+            rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, nullF);
+            break;
+        }
+        switch(m_config->windUnits)
+        {
+          case WindUnits::FEETSEC:
+            windUnit = tr("feet/sec");
+            windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToFeetSecond);
+            break;
+          case WindUnits::KMHR:
+            windUnit = tr("km/h");
+            windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToKilometersHour);
+            break;
+          case WindUnits::MILHR:
+            windUnit = tr("miles/h");
+            windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToMilesHour);
+            break;
+          case WindUnits::METSEC:
+            windUnit = tr("met/sec");
+            windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, nullF);
+            break;
+        }
+        switch(m_config->tempUnits)
+        {
+          case TemperatureUnits::FAHRENHEIT:
+            tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, convertCelsiusToFahrenheit);
+            break;
+          default:
+          case TemperatureUnits::CELSIUS:
+            tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, nullF);
+            break;
+        }
+        break;
+      default:
+        return;
         break;
     }
 

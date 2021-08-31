@@ -125,6 +125,18 @@ class ConfigurationDialog
      */
     void onLanguageChanged(int index);
 
+    /** \brief Updates the UI when the user changes the measurement units.
+     * \param[in] index Current index of units combo.
+     *
+     */
+    void onUnitsValueChanged(int index);
+
+    /** \brief Updates the "Selected" property in the combo.
+     * \param[in] index Current index of the combo.
+     *
+     */
+    void onUnitComboChanged(int index);
+
   signals:
     void languageChanged(const QString &);
 

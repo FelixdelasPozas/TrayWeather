@@ -35,8 +35,12 @@
 
 class QDialog;
 
-enum class Units: char { METRIC = 0, IMPERIAL, STANDARD };
-enum class Update: char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
+enum class Units:              char { METRIC = 0, IMPERIAL, CUSTOM };
+enum class PressureUnits:      char { HPA =  0, PSI, MMGH, INHG };
+enum class TemperatureUnits:   char { CELSIUS = 0, FAHRENHEIT };
+enum class PrecipitationUnits: char { MM = 0, INCH };
+enum class WindUnits:          char { METSEC = 0, MILHR, KMHR, FEETSEC };
+enum class Update:             char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
 
 static const QStringList MAP_LAYERS = { "temperature", "rain", "clouds", "wind" };
 static const QStringList MAP_STREET = { "mapnik", "mapnikbw" };
@@ -80,7 +84,8 @@ static QList<LanguageData> TRANSLATIONS = {
     { QObject::tr("English"), ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
     { QObject::tr("Spanish"), ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
     { QObject::tr("Russian"), ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
-    { QObject::tr("German"),  ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             }
+    { QObject::tr("German"),  ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             },
+    { QObject::tr("French"),  ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                }
 };
 
 /** \struct Configuration
@@ -89,39 +94,42 @@ static QList<LanguageData> TRANSLATIONS = {
  */
 struct Configuration
 {
-    double       latitude;        /** location latitude in degrees.                               */
-    double       longitude;       /** location longitude in degrees.                              */
-    QString      country;         /** location's country.                                         */
-    QString      region;          /** location's region.                                          */
-    QString      city;            /** location's city.                                            */
-    QString      zipcode;         /** location's zip code.                                        */
-    QString      isp;             /** internet service provider.                                  */
-    QString      ip;              /** internet address.                                           */
-    QString      timezone;        /** location's timezone.                                        */
-    QString      owm_apikey;      /** OpenWeatherMap API Key.                                     */
-    Units        units;           /** measurement units.                                          */
-    unsigned int updateTime;      /** time between updates.                                       */
-    bool         mapsEnabled;     /** true if maps tab is visible, false otherwise.               */
-    bool         useDNS;          /** true to use DNS address for geo location instead of own IP. */
-    bool         useGeolocation;  /** true to use the ip-api.com services, false to use manual.   */
-    bool         roamingEnabled;  /** true if georaphical coordinates are asked on each forecast. */
-    bool         lightTheme;      /** true if light theme is being used, false if dark theme.     */
-    unsigned int iconType;        /** 0 if just icon, 1 if just temperature, 2 if both.           */
-    QColor       trayTextColor;   /** Color of tray temperature text.                             */
-    bool         trayTextMode;    /** true for fixed, false for dynamic.                          */
-    unsigned int trayTextSize;    /** base size of tray font in pixels.                           */
-    QColor       minimumColor;    /** minimum value dynamic color.                                */
-    QColor       maximumColor;    /** maximum value dynamic color.                                */
-    int          minimumValue;    /** dynamic color minimum value.                                */
-    int          maximumValue;    /** dynamic color maximum value.                                */
-    Update       update;          /** frequency of check for update.                              */
-    QDateTime    lastCheck;       /** time of last update check.                                  */
-    bool         autostart;       /** true to autostart at login, false otherwise.                */
-    int          lastTab;         /** last tab visualized.                                        */
-    QString      lastLayer;       /** last maps layer used: temperature, rain, clouds, wind.      */
-    QString      lastStreetLayer; /** last street layer used: mapnik, mapnikbw.                   */
-    QString      language;        /** application language.                                       */
-
+    double             latitude;        /** location latitude in degrees.                               */
+    double             longitude;       /** location longitude in degrees.                              */
+    QString            country;         /** location's country.                                         */
+    QString            region;          /** location's region.                                          */
+    QString            city;            /** location's city.                                            */
+    QString            zipcode;         /** location's zip code.                                        */
+    QString            isp;             /** internet service provider.                                  */
+    QString            ip;              /** internet address.                                           */
+    QString            timezone;        /** location's timezone.                                        */
+    QString            owm_apikey;      /** OpenWeatherMap API Key.                                     */
+    Units              units;           /** measurement units.                                          */
+    unsigned int       updateTime;      /** time between updates.                                       */
+    bool               mapsEnabled;     /** true if maps tab is visible, false otherwise.               */
+    bool               useDNS;          /** true to use DNS address for geo location instead of own IP. */
+    bool               useGeolocation;  /** true to use the ip-api.com services, false to use manual.   */
+    bool               roamingEnabled;  /** true if georaphical coordinates are asked on each forecast. */
+    bool               lightTheme;      /** true if light theme is being used, false if dark theme.     */
+    unsigned int       iconType;        /** 0 if just icon, 1 if just temperature, 2 if both.           */
+    QColor             trayTextColor;   /** Color of tray temperature text.                             */
+    bool               trayTextMode;    /** true for fixed, false for dynamic.                          */
+    unsigned int       trayTextSize;    /** base size of tray font in pixels.                           */
+    QColor             minimumColor;    /** minimum value dynamic color.                                */
+    QColor             maximumColor;    /** maximum value dynamic color.                                */
+    int                minimumValue;    /** dynamic color minimum value.                                */
+    int                maximumValue;    /** dynamic color maximum value.                                */
+    Update             update;          /** frequency of check for update.                              */
+    QDateTime          lastCheck;       /** time of last update check.                                  */
+    bool               autostart;       /** true to autostart at login, false otherwise.                */
+    int                lastTab;         /** last tab visualized.                                        */
+    QString            lastLayer;       /** last maps layer used: temperature, rain, clouds, wind.      */
+    QString            lastStreetLayer; /** last street layer used: mapnik, mapnikbw.                   */
+    QString            language;        /** application language.                                       */
+    TemperatureUnits   tempUnits;       /** custom temperature units.                                   */
+    PressureUnits      pressureUnits;   /** custom pressure units.                                      */
+    PrecipitationUnits precUnits;       /** custom precipitation units.                                 */
+    WindUnits          windUnits;       /** custom wind units.                                          */
 
     /** \brief Configuration struct constructor.
      *
@@ -159,6 +167,10 @@ struct Configuration
     , lastLayer      {"temperature"}
     , lastStreetLayer{"mapnik"}
     , language       {"en_EN"}
+    , tempUnits      {TemperatureUnits::CELSIUS}
+    , pressureUnits  {PressureUnits::HPA}
+    , precUnits      {PrecipitationUnits::MM}
+    , windUnits      {WindUnits::METSEC}
     {};
 
     bool isValid() const
@@ -324,11 +336,35 @@ const double convertCelsiusToFahrenheit(const double value);
  */
 const double convertMetersSecondToMilesHour(const double value);
 
+/** \brief Converts the given meters/second to kilometers/hour.
+ * \param[in] value Meters/sec value.
+ *
+ */
+const double convertMetersSecondToKilometersHour(const double value);
+
+/** \brief Converts the given meters/second to feet/second.
+ * \param[in] value Meters/sec value.
+ *
+ */
+const double convertMetersSecondToFeetSecond(const double value);
+
 /** \brief Converts hectoPascals to pounds per square inch.
  * \param[in] value hPa value.
  *
  */
 const double converthPaToPSI(const double value);
+
+/** \brief Converts hectoPascals to millimeters of mercury.
+ * \param[in] value hPa value.
+ *
+ */
+const double converthPaTommHg(const double value);
+
+/** \brief Converts hectopascals to inches of mercury.
+ * \param[in] value hPa value.
+ *
+ */
+const double converthPaToinHg(const double value);
 
 /** \brief Converts the given unix timestamp to a struct tm and returns it.
  * \param[out] time struct tm.
@@ -422,5 +458,17 @@ void changeLanguage(const QString &lang);
  *
  */
 const QString generateMapGrades(const std::list<double> &grades, std::function<double(double)> f);
+
+/** \brief Returns the temperature icon string for the given configuration.
+ * \param[in] c Configuration struct reference.
+ *
+ */
+QString temperatureIconString(const Configuration &c);
+
+/** \brief Returns the temperature degrees text for the given configuration.
+ * \param[in] c Configuration struct reference.
+ *
+ */
+QString temperatureIconText(const Configuration &c);
 
 #endif // UTILS_H_
