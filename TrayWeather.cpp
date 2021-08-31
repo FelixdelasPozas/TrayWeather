@@ -35,6 +35,7 @@
 #include <QJsonArray>
 #include <QPainter>
 #include <QFile>
+#include <QtWinExtras/QtWinExtrasDepends>
 
 // C++
 #include <chrono>
@@ -53,8 +54,11 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 , m_aboutDialog   {nullptr}
 , m_configDialog  {nullptr}
 , m_additionalTray{nullptr}
+, m_eventFilter   {this}
 {
   m_timer.setSingleShot(true);
+
+  qApp->installNativeEventFilter(&m_eventFilter);
 
   connectSignals();
 
@@ -1151,4 +1155,17 @@ void TrayWeather::processOneCallData(const QByteArray &data)
   {
     m_weatherDialog->setUVData(m_vData);
   }
+}
+
+//--------------------------------------------------------------------
+bool NativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
+{
+  const auto msg = reinterpret_cast<MSG*>(message);
+
+  if(msg->message == WM_POWERBROADCAST && msg->wParam == PBT_APMRESUMEAUTOMATIC && m_tw)
+  {
+    m_tw->requestData();
+  }
+
+  return false;
 }

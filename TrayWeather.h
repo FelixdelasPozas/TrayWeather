@@ -29,10 +29,40 @@
 #include <QSystemTrayIcon>
 #include <QTimer>
 #include <QTranslator>
+#include <QAbstractNativeEventFilter>
 
 class QNetworkReply;
 class QNetworkAccessManager;
 class AboutDialog;
+class TrayWeather;
+
+/** \class NativeEventFilter
+ * \brief Filters the events from windows to catch the one for 'wake up' signal.
+ *
+ */
+class NativeEventFilter
+: public QAbstractNativeEventFilter
+{
+  public:
+    /** \brief NativeEventFilter class constructor.
+     * \param[in] tw TrayWeather application pointer.
+     *
+     */
+    explicit NativeEventFilter(TrayWeather *tw)
+    : QAbstractNativeEventFilter()
+    , m_tw{tw}
+    {};
+
+    /** \brief NativeEventFilter class virtual destructor.
+     *
+     */
+    virtual ~NativeEventFilter()
+    {};
+
+    virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *result);
+  private:
+    TrayWeather *m_tw; /** tray weather application reference. */
+};
 
 /** \class TrayWeather
  * \brief Implements the tray icon and application logic.
@@ -199,6 +229,9 @@ class TrayWeather
     QString                                m_DNSIP;           /** DNS IP used for geolocation.                      */
     QTimer                                 m_updatesTimer;    /** timer to check for application updates.           */
     QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.           */
+    NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                          */
+
+    friend class NativeEventFilter;
 };
 
 
