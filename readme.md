@@ -59,13 +59,13 @@ can be enabled here. A 'roaming' mode can be enabled, where the geographical coo
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
 The tray and application theme configuration can be found here in the miscellaneous options. Also the frequency of checks for updates can be set here.
 
-Configuration dialog, with the application light theme, in spanish.
+Configuration dialog, with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/128199211-f404feef-a6a6-408c-b89c-5325e9eabd0f.png)
+![config](https://user-images.githubusercontent.com/12167134/132100171-a68dbc5b-9fff-4e90-9f6a-935bf39b4faf.png)
 
-Configuration dialog, with the application dark theme, in english.
+Configuration dialog, with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/128199214-dc121cd6-66d5-4c82-ab61-5e6e89e86c1f.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/132100169-dc03717f-1206-4abe-b6f6-a5bba7b0a28e.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -109,7 +109,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 258 texts.
+and making a pull request. Currently it's just 284 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 
@@ -133,7 +133,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.11.1
+**Version**: 1.12.0
 
 **Status**: finished.
 
@@ -141,8 +141,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   9           | 722         |   302            | 3343 |
-| C/C++ Header                 |   9           | 211         |   591            |  699 |
+| C++                          |   9           | 746         |   332            | 3692 |
+| C/C++ Header                 |   9           | 222         |   634            |  738 |
 | HTML                         |   1           |  33         |     0            |  150 |
-| CMake                        |   1           |  18         |    11            |  111 |
-| **Total**                    | **20**        | **984**     | **904**          | **4303** |
+| CMake                        |   1           |  18         |    11            |  112 |
+| **Total**                    | **20**        | **1019**    | **977**          | **4692** |
