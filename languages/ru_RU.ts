@@ -304,12 +304,12 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="705"/>
         <source>miles/hour</source>
-        <translation>миля/час</translation>
+        <translation>миля в час</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="710"/>
         <source>kilometers/hour</source>
-        <translation>километр в секунду</translation>
+        <translation>километр в час</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="715"/>
@@ -810,7 +810,7 @@ The application will exit now.</source>
     <message>
         <location filename="../Utils.h" line="88"/>
         <source>French</source>
-        <translation>французы</translation>
+        <translation>Французский</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="355"/>
@@ -823,8 +823,8 @@ The application will exit now.</source>
         <location filename="../TrayWeather.cpp" line="680"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
-        <translation>TrayWeather запросил погодные данные для вашего географического местоположения
-и всё ещё ожидает ответа.</translation>
+        <translation>TrayWeather запросил погодные данные для вашего географического
+местоположения и всё ещё ожидает ответа.</translation>
     </message>
 </context>
 <context>
