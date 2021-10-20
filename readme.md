@@ -133,7 +133,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.12.0
+**Version**: 1.12.1
 
 **Status**: finished.
 
