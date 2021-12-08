@@ -626,63 +626,63 @@ QString TrayWeather::tooltipText() const
         if (!m_vData.isEmpty())
         {
           const auto index = static_cast<int>(std::nearbyint(m_vData.first().idx));
-          fieldsText << tr("UV: %1").arg(index);
+          fieldsText << tr("UV: ") + QString("%1").arg(index);
         }
         break;
       case TooltipText::AIR_CO:
         if (!m_pData.empty())
         {
           const auto &data = m_pData.first();
-          fieldsText << tr("CO: ") + QString("%1%2").arg(data.co).arg(pollutionUnits);
+          fieldsText << QString("CO: ") + QString("%1%2").arg(data.co).arg(pollutionUnits);
         }
         break;
       case TooltipText::AIR_O3:
         if (!m_pData.empty())
         {
           const auto &data = m_pData.first();
-          fieldsText << tr("O3: ") + QString("%1%2").arg(data.o3).arg(pollutionUnits);
+          fieldsText << QString("O3: ") + QString("%1%2").arg(data.o3).arg(pollutionUnits);
         }
         break;
       case TooltipText::AIR_NO:
         if (!m_pData.empty())
         {
           const auto &data = m_pData.first();
-          fieldsText << tr("NO: ") + QString("%1%2").arg(data.no).arg(pollutionUnits);
+          fieldsText << QString("NO: ") + QString("%1%2").arg(data.no).arg(pollutionUnits);
         }
         break;
       case TooltipText::AIR_NO2:
         if (!m_pData.empty())
         {
           const auto &data = m_pData.first();
-          fieldsText << tr("NO2: ") + QString("%1%2").arg(data.no2).arg(pollutionUnits);
+          fieldsText << QString("NO2: ") + QString("%1%2").arg(data.no2).arg(pollutionUnits);
         }
         break;
       case TooltipText::AIR_SO2:
         if (!m_pData.empty())
         {
           const auto &data = m_pData.first();
-          fieldsText << tr("SO2: ") + QString("%1%2").arg(data.so2).arg(pollutionUnits);
+          fieldsText << QString("SO2: ") + QString("%1%2").arg(data.so2).arg(pollutionUnits);
         }
         break;
       case TooltipText::AIR_NH3:
         if (!m_pData.empty())
         {
           const auto &data = m_pData.first();
-          fieldsText << tr("NH3: ") + QString("%1%2").arg(data.nh3).arg(pollutionUnits);
+          fieldsText << QString("NH3: ") + QString("%1%2").arg(data.nh3).arg(pollutionUnits);
         }
         break;
       case TooltipText::AIR_PM25:
         if (!m_pData.empty())
         {
           const auto &data = m_pData.first();
-          fieldsText << tr("PM2.5: ") + QString("%1%2").arg(data.pm2_5).arg(pollutionUnits);
+          fieldsText << QString("PM2.5: ") + QString("%1%2").arg(data.pm2_5).arg(pollutionUnits);
         }
         break;
       case TooltipText::AIR_PM10:
         if (!m_pData.empty())
         {
           const auto &data = m_pData.first();
-          fieldsText << tr("PM10: ") + QString("%1%2").arg(data.pm10).arg(pollutionUnits);
+          fieldsText << QString("PM10: ") + QString("%1%2").arg(data.pm10).arg(pollutionUnits);
         }
         break;
       default:
@@ -964,6 +964,9 @@ void TrayWeather::requestForecastData()
   {
     const auto settings_lang = m_configuration.language.split('_').first();
     if(OWM_LANGUAGES.contains(settings_lang, Qt::CaseSensitive)) lang = settings_lang;
+
+    const auto settings_compl = m_configuration.language.toLower();
+    if(OWM_LANGUAGES.contains(settings_compl, Qt::CaseInsensitive)) lang = settings_compl;
   }
 
   auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_configuration.latitude)

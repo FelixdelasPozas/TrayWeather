@@ -88,6 +88,7 @@ set(TRANSLATIONS_TS_FILES
   languages/ru_RU.ts
   languages/de_DE.ts
   languages/fr_FR.ts
+  languages/zh_CN.ts
 )
 
 qt5_add_translation(TRANSLATIONS_QM_FILES ${TRANSLATIONS_TS_FILES})

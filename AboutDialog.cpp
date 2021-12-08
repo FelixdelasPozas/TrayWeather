@@ -92,4 +92,6 @@ void AboutDialog::fillTranslationsTable() const
     item->setData(Qt::DisplayRole, lang.author);
     m_translations->setItem(i, 1, item);
   }
+
+  m_translations->resizeColumnToContents(0);
 }

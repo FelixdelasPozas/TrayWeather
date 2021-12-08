@@ -40,5 +40,6 @@
     <file>languages/ru.svg</file>
     <file>languages/de.svg</file>
     <file>languages/fr.svg</file>
+    <file>languages/cn.svg</file>
   </qresource>
 </RCC>

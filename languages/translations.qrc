@@ -4,5 +4,6 @@
     <file>ru_RU.qm</file>
     <file>de_DE.qm</file>
     <file>fr_FR.qm</file>
+    <file>zh_CN.qm</file>
   </qresource>
 </RCC>

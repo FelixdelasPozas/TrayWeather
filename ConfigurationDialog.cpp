@@ -450,7 +450,7 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
   updateRange();
 
   // ...and then return to the one tab the user is in.
-  m_tabWidget->setCurrentIndex(2);
+  m_tabWidget->setCurrentIndex(3);
 
   QApplication::restoreOverrideCursor();
 }
@@ -629,26 +629,30 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_minSpinBox->setMaximum(configuration.maximumValue-1);
   m_maxSpinBox->setMinimum(configuration.minimumValue+1);
 
+  m_tooltipList->clear();
   m_tooltipList->setAlternatingRowColors(true);
 
-  QFont font;
+  for(int i = 0; i < configuration.tooltipFields.size(); ++i)
+  {
+    const auto field = configuration.tooltipFields.at(i);
+    const auto idx   = static_cast<int>(field);
+    const auto fieldText = QApplication::translate("QObject", TooltipTextFields.at(idx).toStdString().c_str());
+
+    auto item = new QListWidgetItem();
+    item->setData(Qt::UserRole, idx);
+    item->setData(Qt::DisplayRole, fieldText);
+    m_tooltipList->addItem(item);
+  }
+
+  m_tooltipValueCombo->clear();
+
   for(int i = 0; i < static_cast<int>(TooltipText::MAX); ++i)
   {
     auto field = static_cast<TooltipText>(i);
-    if(configuration.tooltipFields.contains(field))
-    {
-      auto item = new QListWidgetItem();
-      item->setData(Qt::UserRole, i);
-      item->setData(Qt::DisplayRole, TooltipTextFields.at(i));
-      auto font = item->font();
-      font.setBold(true);
-      item->setFont(font);
-      m_tooltipList->addItem(item);
-    }
-    else
-    {
-      m_tooltipValueCombo->addItem(QIcon(), TooltipTextFields.at(i), i);
-    }
+    if(configuration.tooltipFields.contains(field)) continue;
+
+    const auto fieldText = QApplication::translate("QObject", TooltipTextFields.at(i).toStdString().c_str());
+    m_tooltipValueCombo->addItem(QIcon(), fieldText, i);
   }
 
   m_tooltipList->setCurrentRow(0);
@@ -783,11 +787,12 @@ void ConfigurationDialog::disconnectSignals()
 //--------------------------------------------------------------------
 void ConfigurationDialog::onTooltipTextAdded()
 {
-  auto index = m_tooltipValueCombo->currentIndex();
-  auto tooltipIndex = m_tooltipValueCombo->itemData(index, Qt::UserRole).toInt();
+  const auto index = m_tooltipValueCombo->currentIndex();
+  const auto tooltipIndex = m_tooltipValueCombo->itemData(index, Qt::UserRole).toInt();
+  const auto text = m_tooltipValueCombo->itemData(index, Qt::DisplayRole).toString();
   m_tooltipValueCombo->removeItem(index);
 
-  auto item = new QListWidgetItem(TooltipTextFields.at(tooltipIndex));
+  auto item = new QListWidgetItem(text);
   item->setData(Qt::UserRole, tooltipIndex);
   m_tooltipList->addItem(item);
 
@@ -798,11 +803,12 @@ void ConfigurationDialog::onTooltipTextAdded()
 void ConfigurationDialog::onTooltipTextDeleted()
 {
   const auto row = m_tooltipList->currentRow();
-  auto item = m_tooltipList->takeItem(row);
-  auto tooltipIndex = item->data(Qt::UserRole).toInt();
+  const auto item = m_tooltipList->takeItem(row);
+  const auto tooltipIndex = item->data(Qt::UserRole).toInt();
+  const auto text = item->data(Qt::DisplayRole).toString();
   delete item;
 
-  m_tooltipValueCombo->addItem(QIcon(), TooltipTextFields.at(tooltipIndex), tooltipIndex);
+  m_tooltipValueCombo->addItem(QIcon(), text, tooltipIndex);
 
   updateTooltipFieldsButtons();
 }
@@ -815,10 +821,11 @@ void ConfigurationDialog::onTooltipTextMoved()
 
   auto row = m_tooltipList->currentRow();
   auto item = m_tooltipList->takeItem(row);
-  auto tooltipIdx = item->data(Qt::UserRole).toInt();
+  const auto tooltipIdx = item->data(Qt::UserRole).toInt();
+  const auto text = item->data(Qt::DisplayRole).toString();
 
   delete item;
-  item = new QListWidgetItem(TooltipTextFields.at(tooltipIdx));
+  item = new QListWidgetItem(text);
   item->setData(Qt::UserRole, tooltipIdx);
 
   if(button == m_tooltipUp)

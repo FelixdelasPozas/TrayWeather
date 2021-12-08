@@ -71,14 +71,14 @@ const QStringList TooltipTextFields = { QObject::tr("Location"), QObject::tr("Cu
                                         QObject::tr("Cloudiness"), QObject::tr("Humidity"), QObject::tr("Ground Pressure"),
                                         QObject::tr("Wind Speed"), QObject::tr("Sunrise"), QObject::tr("Sunset"),
                                         QObject::tr("UV"), QObject::tr("Air Quality"),
-                                        QObject::tr("Air Quality ") + QString("(CO)"),
-                                        QObject::tr("Air Quality ") + QString("(O<sub>3</sub>)"),
-                                        QObject::tr("Air Quality ") + QString("(NO)"),
-                                        QObject::tr("Air Quality ") + QString("(NO<sub>2</sub>)"),
-                                        QObject::tr("Air Quality ") + QString("(SO<sub>2</sub>)"),
-                                        QObject::tr("Air Quality ") + QString("(NH<sub>3</sub>)"),
-                                        QObject::tr("Air Quality ") + QString("(PM<sub>2.5</sub>)"),
-                                        QObject::tr("Air Quality ") + QString("(PM<sub>10</sub>)") };
+                                        QObject::tr("Air Quality (CO)"),
+                                        QObject::tr("Air Quality (O<sub>3</sub>)"),
+                                        QObject::tr("Air Quality (NO)"),
+                                        QObject::tr("Air Quality (NO<sub>2</sub>)"),
+                                        QObject::tr("Air Quality (SO<sub>2</sub>)"),
+                                        QObject::tr("Air Quality (NH<sub>3</sub>)"),
+                                        QObject::tr("Air Quality (PM<sub>2.5</sub>)"),
+                                        QObject::tr("Air Quality (PM<sub>10</sub>)") };
 
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
@@ -106,11 +106,12 @@ struct LanguageData
  *
  */
 static QList<LanguageData> TRANSLATIONS = {
-    { QObject::tr("English"), ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
-    { QObject::tr("Spanish"), ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
-    { QObject::tr("Russian"), ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
-    { QObject::tr("German"),  ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             },
-    { QObject::tr("French"),  ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                }
+    { QObject::tr("English"),              ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
+    { QObject::tr("Spanish"),              ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
+    { QObject::tr("Russian"),              ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
+    { QObject::tr("German"),               ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             },
+    { QObject::tr("French"),               ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                },
+    { QObject::tr("Chinese (Simplified)"), ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"              }
 };
 
 /** \struct Configuration
