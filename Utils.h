@@ -32,7 +32,12 @@
 #include <QColor>
 #include <QDateTime>
 #include <QTranslator>
+#include <QStyledItemDelegate>
+#include <QAbstractItemModel>
+#include <QStyleOption>
+#include <QComboBox>
 
+class QPainter;
 class QDialog;
 
 enum class Units:              char { METRIC = 0, IMPERIAL, CUSTOM };
@@ -56,6 +61,26 @@ static QTranslator s_appTranslator; /** application language translator. */
 static const std::list<double> RAIN_MAP_LAYER_GRADES_MM      = { 0.1, 2, 6, 8, 10, 14, 16, 20, 26, 32, 42, 48, 52, 70 };
 static const std::list<double> TEMP_MAP_LAYER_GRADES_CELSIUS = { -24, -20, -16, -8, -4, 0, 4, 8, 16, 20, 24, 32, 36 };
 static const std::list<double> WIND_MAP_LAYER_GRADES_METSEC  = { 0, 1.5, 3, 5, 8.5, 12, 15.5, 19, 22.5, 25.5, 29 };
+
+enum class TooltipText: char { LOCATION = 0, WEATHER, TEMPERATURE, CLOUDINESS, HUMIDITY,
+                               PRESSURE, WIND_SPEED, SUNRISE, SUNSET, UV, AIR_QUALITY,
+                               AIR_CO, AIR_O3, AIR_NO, AIR_NO2, AIR_SO2, AIR_NH3, AIR_PM25,
+                               AIR_PM10, MAX };
+
+const QStringList TooltipTextFields = { QObject::tr("Location"), QObject::tr("Current Weather"), QObject::tr("Temperature"),
+                                        QObject::tr("Cloudiness"), QObject::tr("Humidity"), QObject::tr("Ground Pressure"),
+                                        QObject::tr("Wind Speed"), QObject::tr("Sunrise"), QObject::tr("Sunset"),
+                                        QObject::tr("UV"), QObject::tr("Air Quality"),
+                                        QObject::tr("Air Quality ") + QString("(CO)"),
+                                        QObject::tr("Air Quality ") + QString("(O<sub>3</sub>)"),
+                                        QObject::tr("Air Quality ") + QString("(NO)"),
+                                        QObject::tr("Air Quality ") + QString("(NO<sub>2</sub>)"),
+                                        QObject::tr("Air Quality ") + QString("(SO<sub>2</sub>)"),
+                                        QObject::tr("Air Quality ") + QString("(NH<sub>3</sub>)"),
+                                        QObject::tr("Air Quality ") + QString("(PM<sub>2.5</sub>)"),
+                                        QObject::tr("Air Quality ") + QString("(PM<sub>10</sub>)") };
+
+static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
 /** \struct LanguageData
  * \brief Contains a translation data.
@@ -126,6 +151,7 @@ struct Configuration
     QString            lastLayer;       /** last maps layer used: temperature, rain, clouds, wind.      */
     QString            lastStreetLayer; /** last street layer used: mapnik, mapnikbw.                   */
     QString            language;        /** application language.                                       */
+    QList<TooltipText> tooltipFields;   /** tooltip fields in order.                                    */
     TemperatureUnits   tempUnits;       /** custom temperature units.                                   */
     PressureUnits      pressureUnits;   /** custom pressure units.                                      */
     PrecipitationUnits precUnits;       /** custom precipitation units.                                 */
@@ -135,42 +161,43 @@ struct Configuration
      *
      */
     Configuration()
-    : latitude       {-91}
-    , longitude      {-181}
-    , country        {"Unknown"}
-    , region         {"Unknown"}
-    , city           {"Unknown"}
-    , zipcode        {"Unknown"}
-    , isp            {"Unknown"}
-    , ip             {"Unknown"}
-    , timezone       {"Unknown"}
-    , owm_apikey     {""}
-    , units          {Units::METRIC}
-    , updateTime     {15}
-    , mapsEnabled    {false}
-    , useDNS         {false}
-    , useGeolocation {true}
-    , roamingEnabled {false}
-    , lightTheme     {true}
-    , iconType       {0}
-    , trayTextColor  {Qt::white}
-    , trayTextMode   {true}
-    , trayTextSize   {250}
-    , minimumColor   {Qt::blue}
-    , maximumColor   {Qt::red}
-    , minimumValue   {-10}
-    , maximumValue   {45}
-    , update         {Update::WEEKLY}
-    , lastCheck      {QDateTime::currentDateTime()}
-    , autostart      {false}
-    , lastTab        {0}
-    , lastLayer      {"temperature"}
-    , lastStreetLayer{"mapnik"}
-    , language       {"en_EN"}
-    , tempUnits      {TemperatureUnits::CELSIUS}
-    , pressureUnits  {PressureUnits::HPA}
-    , precUnits      {PrecipitationUnits::MM}
-    , windUnits      {WindUnits::METSEC}
+    : latitude        {-91}
+    , longitude       {-181}
+    , country         {"Unknown"}
+    , region          {"Unknown"}
+    , city            {"Unknown"}
+    , zipcode         {"Unknown"}
+    , isp             {"Unknown"}
+    , ip              {"Unknown"}
+    , timezone        {"Unknown"}
+    , owm_apikey      {""}
+    , units           {Units::METRIC}
+    , updateTime      {15}
+    , mapsEnabled     {false}
+    , useDNS          {false}
+    , useGeolocation  {true}
+    , roamingEnabled  {false}
+    , lightTheme      {true}
+    , iconType        {0}
+    , trayTextColor   {Qt::white}
+    , trayTextMode    {true}
+    , trayTextSize    {250}
+    , minimumColor    {Qt::blue}
+    , maximumColor    {Qt::red}
+    , minimumValue    {-10}
+    , maximumValue    {45}
+    , update          {Update::WEEKLY}
+    , lastCheck       {QDateTime::currentDateTime()}
+    , autostart       {false}
+    , lastTab         {0}
+    , lastLayer       {"temperature"}
+    , lastStreetLayer {"mapnik"}
+    , language        {"en_EN"}
+    , tooltipFields   {TooltipText::LOCATION, TooltipText::WEATHER, TooltipText::TEMPERATURE}
+    , tempUnits       {TemperatureUnits::CELSIUS}
+    , pressureUnits   {PressureUnits::HPA}
+    , precUnits       {PrecipitationUnits::MM}
+    , windUnits       {WindUnits::METSEC}
     {};
 
     bool isValid() const
@@ -470,5 +497,58 @@ QString temperatureIconString(const Configuration &c);
  *
  */
 QString temperatureIconText(const Configuration &c);
+
+/** \class RichTextComboBox
+ * \brief ComboBox that uses rich text for selected item.
+ *
+ */
+class CustomComboBox
+: public QComboBox
+{
+  public:
+    /** \brief CustomComboBox class constructor.
+     * \param[in] parent Raw pointer of the QObject parent of this one.
+     *
+     */
+    explicit CustomComboBox(QWidget *parent = nullptr)
+    : QComboBox(parent)
+    {};
+
+    virtual ~CustomComboBox()
+    {};
+
+    virtual void paintEvent(QPaintEvent* e) override;
+};
+
+
+/** \class RichTextDelegate
+ * \brief Item delegate for QListView and QComboBox.
+ *
+ */
+class RichTextItemDelegate
+: public QStyledItemDelegate
+{
+  public:
+    /** \brief RichTextItemDelegate class constructor.
+     * \param[in] parent Raw pointer of the QObject parent of this one.
+     *
+     */
+    explicit RichTextItemDelegate(QObject *parent = nullptr)
+    : QStyledItemDelegate(parent)
+    {};
+
+    /** \brief RichTextItemDelegate class virtual destructor.
+     *
+     */
+    virtual ~RichTextItemDelegate()
+    {};
+
+    virtual void paint(QPainter *painter,
+                       const QStyleOptionViewItem &option,
+                       const QModelIndex &index) const;
+
+    virtual QSize sizeHint(const QStyleOptionViewItem &option,
+                           const QModelIndex &index) const;
+};
 
 #endif // UTILS_H_

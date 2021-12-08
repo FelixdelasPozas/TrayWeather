@@ -137,6 +137,26 @@ class ConfigurationDialog
      */
     void onUnitComboChanged(int index);
 
+    /** \brief Adds the selected tooltip field in the combo to the shown list.
+     *
+     */
+    void onTooltipTextAdded();
+
+    /** \brief Removes the selected tooltip field from the shown list to the combo.
+     *
+     */
+    void onTooltipTextDeleted();
+
+    /** \brief Moves the selected tooltip field up/down in the shown list.
+     *
+     */
+    void onTooltipTextMoved();
+
+    /** \brief Updates the UI when the user moves the tooltip fields.
+     * \param[in] row Current selected row.
+     */
+    void onTooltipFieldsRowChanged(int row);
+
   signals:
     void languageChanged(const QString &);
 
@@ -172,6 +192,11 @@ class ConfigurationDialog
      *
      */
     void updateLanguageCombo(const QString &current);
+
+    /** \brief Updates the UI when the user adds/removes fields from the tooltip.
+     *
+     */
+    void updateTooltipFieldsButtons();
 
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
     bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */

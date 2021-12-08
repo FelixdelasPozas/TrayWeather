@@ -141,6 +141,11 @@ class TrayWeather
      */
     void updateTooltip();
 
+    /** \brief Returns the tray icon tooltip text according to current configuration.
+     *
+     */
+    QString tooltipText() const;
+
     /** \brief Helper method to connect all the signals and slots.
      *
      */

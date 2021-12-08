@@ -118,12 +118,12 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
 
   // translation
-  const auto illuStr   = tr("Illumination");
-  const auto currStr   = tr("Current weather");
-  const auto noneStr   = tr("None");
-  const auto unknStr   = tr("Unknown");
-  const auto tempStr   = tr("Temperature");
-  const auto rainStr   = tr("Rain accumulation");
+  const auto illuStr = tr("Illumination");
+  const auto currStr = tr("Current weather");
+  const auto noneStr = tr("None");
+  const auto unknStr = tr("Unknown");
+  const auto tempStr = tr("Temperature");
+  const auto rainStr = tr("Rain accumulation");
 
   // conversions
   QString accuStr, pressStr, windUnits, tempUnits;

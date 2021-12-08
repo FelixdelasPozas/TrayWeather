@@ -31,6 +31,9 @@
 #include <QColor>
 #include <QMap>
 #include <QApplication>
+#include <QTextDocument>
+#include <QPainter>
+#include <QAbstractTextDocumentLayout>
 
 // C++
 #include <functional>
@@ -76,6 +79,7 @@ static const QString CUSTOM_TEMP_UNITS       = QString("Custom temperature units
 static const QString CUSTOM_PRES_UNITS       = QString("Custom pressure units");
 static const QString CUSTOM_PREC_UNITS       = QString("Custom precipitation units");
 static const QString CUSTOM_WIND_UNITS       = QString("Custom wind units");
+static const QString TOOLTIP_FIELDS          = QString("Tooltip text fields");
 
 static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/01d.svg" },
                                               { "01n-0", ":/TrayWeather/01n-0.svg" },
@@ -574,11 +578,25 @@ void load(Configuration &configuration)
   configuration.lastLayer       = settings.value(LAST_MAP_LAYER, "temperature").toString();
   configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
   configuration.language        = settings.value(LANGUAGE, "en_EN").toString();
+
   // if CUSTOM_UNITS values doesn't exists (first run) use units value.
-  configuration.tempUnits       = static_cast<TemperatureUnits>(settings.value(CUSTOM_TEMP_UNITS, units).toInt());
-  configuration.pressureUnits   = static_cast<PressureUnits>(settings.value(CUSTOM_PRES_UNITS, units).toInt());
-  configuration.precUnits       = static_cast<PrecipitationUnits>(settings.value(CUSTOM_PREC_UNITS, units).toInt());
-  configuration.windUnits       = static_cast<WindUnits>(settings.value(CUSTOM_WIND_UNITS, units).toInt());
+  configuration.tempUnits        = static_cast<TemperatureUnits>(settings.value(CUSTOM_TEMP_UNITS, units).toInt());
+  configuration.pressureUnits    = static_cast<PressureUnits>(settings.value(CUSTOM_PRES_UNITS, units).toInt());
+  configuration.precUnits        = static_cast<PrecipitationUnits>(settings.value(CUSTOM_PREC_UNITS, units).toInt());
+  configuration.windUnits        = static_cast<WindUnits>(settings.value(CUSTOM_WIND_UNITS, units).toInt());
+
+  const auto fields = settings.value(TOOLTIP_FIELDS, "0,1,2").toString().split(',');
+  bool ok = false;
+  for(int i = 0; i < fields.size(); ++i)
+  {
+    auto number = fields.at(i).toInt(&ok);
+    if(!ok) continue;
+    const auto field = static_cast<TooltipText>(number);
+    if(!configuration.tooltipFields.contains(field))
+    {
+      configuration.tooltipFields << field;
+    }
+  }
 
   if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
   if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
@@ -628,6 +646,20 @@ void save(const Configuration &configuration)
   settings.setValue(CUSTOM_PRES_UNITS,       static_cast<int>(configuration.pressureUnits));
   settings.setValue(CUSTOM_PREC_UNITS,       static_cast<int>(configuration.precUnits));
   settings.setValue(CUSTOM_WIND_UNITS,       static_cast<int>(configuration.windUnits));
+
+  QStringList fieldList;
+  QList<int> fieldNums;
+  for(int i = 0; i < configuration.tooltipFields.size(); ++i)
+  {
+    const auto field = configuration.tooltipFields.at(i);
+    const auto number = static_cast<int>(field);
+    if(!fieldNums.contains(number))
+    {
+      fieldNums << number;
+      fieldList << QString("%1").arg(number);
+    }
+  }
+  settings.setValue(TOOLTIP_FIELDS, fieldList.join(","));
 
   settings.sync();
 }
@@ -836,4 +868,57 @@ QString temperatureIconText(const Configuration &c)
   }
 
   return "ºC";
+}
+
+//--------------------------------------------------------------------
+void RichTextItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+  QStyleOptionViewItemV4 optionV4 = option;
+  initStyleOption(&optionV4, index);
+
+  QStyle *style = optionV4.widget? optionV4.widget->style() : QApplication::style();
+
+  QTextDocument doc;
+  doc.setHtml(optionV4.text);
+
+  /// Painting item without text
+  optionV4.text = QString();
+  style->drawControl(QStyle::CE_ItemViewItem, &optionV4, painter);
+
+  QAbstractTextDocumentLayout::PaintContext ctx;
+
+  QRect textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &optionV4);
+  painter->save();
+  painter->translate(textRect.topLeft());
+  painter->setClipRect(textRect.translated(-textRect.topLeft()));
+  doc.documentLayout()->draw(painter, ctx);
+  painter->restore();}
+
+//--------------------------------------------------------------------
+QSize RichTextItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+  QStyleOptionViewItemV4 options = option;
+  initStyleOption(&options, index);
+
+  QTextDocument doc;
+  doc.setHtml(options.text);
+  doc.setTextWidth(options.rect.width());
+  return QSize(doc.idealWidth(), doc.size().height());
+}
+
+//--------------------------------------------------------------------
+void CustomComboBox::paintEvent(QPaintEvent *e)
+{
+  const auto idx = this->currentIndex();
+  const auto text = this->itemData(idx, Qt::DisplayRole).toString();
+  this->setItemData(idx, QString(), Qt::DisplayRole);
+
+  QComboBox::paintEvent(e);
+
+  this->setItemData(idx, text, Qt::DisplayRole);
+
+  QPainter p(this);
+  QTextDocument doc;
+  doc.setHtml(text);
+  doc.drawContents(&p, rect());
 }

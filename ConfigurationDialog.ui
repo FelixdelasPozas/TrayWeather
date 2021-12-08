@@ -27,7 +27,7 @@
    <item>
     <widget class="QTabWidget" name="m_tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -764,7 +764,7 @@ QGroupBox::title {
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Visuals &amp;&amp; Misc</string>
+       <string>Visuals</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_8">
        <item>
@@ -791,7 +791,7 @@ QGroupBox::title {
          <property name="title">
           <string>Tray Icon</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
+         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
@@ -1143,6 +1143,9 @@ QGroupBox::title {
            <bold>true</bold>
           </font>
          </property>
+         <property name="toolTip">
+          <string>Configure the tray icon tooltip text. </string>
+         </property>
          <property name="styleSheet">
           <string notr="true">QGroupBox {
     border: 1px solid gray;
@@ -1157,199 +1160,313 @@ QGroupBox::title {
 }</string>
          </property>
          <property name="title">
-          <string>Miscellaneous</string>
+          <string>Tray Tooltip</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
-           <layout class="QGridLayout" name="gridLayout">
-            <property name="verticalSpacing">
-             <number>6</number>
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, tob to bottom of the list.</string>
             </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_12">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,1,0">
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_29">
               <property name="text">
-               <string>Time between update requests</string>
+               <string>Value:</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QSpinBox" name="m_updateTime">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="suffix">
-               <string> minutes</string>
-              </property>
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>300</number>
-              </property>
-              <property name="value">
-               <number>15</number>
+            <item>
+             <widget class="CustomComboBox" name="m_tooltipValueCombo">
+              <property name="toolTip">
+               <string>Value to add to the list.</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_14">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
+            <item>
+             <widget class="QPushButton" name="m_tooltipAdd">
+              <property name="toolTip">
+               <string>Add value to tooltip text</string>
               </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Visual theme</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QComboBox" name="m_theme">
-              <item>
-               <property name="text">
-                <string>Light</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Dark</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_17">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Check for updates</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QComboBox" name="m_updatesCombo">
-              <item>
-               <property name="text">
-                <string>Never</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Once a day</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Once a week</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Once a month</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_20">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Autostart at login</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QCheckBox" name="m_autostart">
               <property name="text">
                <string/>
               </property>
+              <property name="icon">
+               <iconset resource="rsc/resources.qrc">
+                <normaloff>:/TrayWeather/add.svg</normaloff>:/TrayWeather/add.svg</iconset>
+              </property>
              </widget>
             </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_22">
-              <property name="minimumSize">
+           </layout>
+          </item>
+          <item>
+           <widget class="QListWidget" name="m_tooltipList"/>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="0,0,0,0">
+            <property name="spacing">
+             <number>3</number>
+            </property>
+            <item>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
                <size>
-                <width>0</width>
-                <height>22</height>
+                <width>40</width>
+                <height>20</height>
                </size>
               </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="m_tooltipUp">
+              <property name="toolTip">
+               <string>Move value up.</string>
               </property>
               <property name="text">
-               <string>Language</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="rsc/resources.qrc">
+                <normaloff>:/TrayWeather/up.svg</normaloff>:/TrayWeather/up.svg</iconset>
               </property>
              </widget>
             </item>
-            <item row="4" column="1">
-             <widget class="QComboBox" name="m_languageCombo"/>
+            <item>
+             <widget class="QPushButton" name="m_tooltipDown">
+              <property name="toolTip">
+               <string>Move value down.</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="rsc/resources.qrc">
+                <normaloff>:/TrayWeather/down.svg</normaloff>:/TrayWeather/down.svg</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="m_tooltipDelete">
+              <property name="toolTip">
+               <string>Remove value from tooltip text</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="rsc/resources.qrc">
+                <normaloff>:/TrayWeather/remove.svg</normaloff>:/TrayWeather/remove.svg</iconset>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
          </layout>
         </widget>
        </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>Miscellaneous</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QLabel" name="label_23">
+        <layout class="QGridLayout" name="gridLayout">
+         <property name="verticalSpacing">
+          <number>6</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_12">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Time between update requests</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="m_updateTime">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="suffix">
+            <string> minutes</string>
+           </property>
+           <property name="minimum">
+            <number>5</number>
+           </property>
+           <property name="maximum">
+            <number>300</number>
+           </property>
+           <property name="value">
+            <number>15</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_14">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Visual theme</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="m_theme">
+           <item>
+            <property name="text">
+             <string>Light</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Dark</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_17">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Check for updates</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="m_updatesCombo">
+           <item>
+            <property name="text">
+             <string>Never</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Once a day</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Once a week</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Once a month</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_20">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Autostart at login</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QCheckBox" name="m_autostart">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_22">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Language</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="m_languageCombo"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_28">
          <property name="text">
           <string>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer">
+        <spacer name="verticalSpacer_3">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -1404,6 +1521,13 @@ QGroupBox::title {
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CustomComboBox</class>
+   <extends>QComboBox</extends>
+   <header>Utils.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="rsc/resources.qrc"/>
  </resources>

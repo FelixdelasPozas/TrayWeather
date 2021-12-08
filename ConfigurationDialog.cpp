@@ -35,6 +35,7 @@
 #include <QPainter>
 #include <QSettings>
 #include <QDir>
+#include <iostream>
 
 const char SELECTED[] = "Selected";
 
@@ -206,35 +207,42 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 //--------------------------------------------------------------------
 void ConfigurationDialog::getConfiguration(Configuration &configuration) const
 {
-  configuration.city           = m_city->text();
-  configuration.country        = m_country->text();
-  configuration.ip             = m_ip->text();
-  configuration.isp            = m_isp->text();
-  configuration.owm_apikey     = m_testedAPIKey ? m_apikey->text() : QString();
-  configuration.region         = m_region->text();
-  configuration.timezone       = m_timezone->text();
-  configuration.zipcode        = m_zipCode->text();
-  configuration.updateTime     = m_updateTime->value();
-  configuration.units          = static_cast<Units>(m_unitsComboBox->currentIndex());
-  configuration.useDNS         = m_useDNS->isChecked();
-  configuration.useGeolocation = m_useGeolocation->isChecked();
-  configuration.roamingEnabled = m_roamingCheck->isChecked();
-  configuration.lightTheme     = m_theme->currentIndex() == 0;
-  configuration.iconType       = static_cast<unsigned int>(m_trayIconType->currentIndex());
-  configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
-  configuration.trayTextMode   = m_fixed->isChecked();
-  configuration.trayTextSize   = m_fontSize->value();
-  configuration.minimumColor   = QColor(m_minColor->property("iconColor").toString());
-  configuration.maximumColor   = QColor(m_maxColor->property("iconColor").toString());
-  configuration.minimumValue   = m_minSpinBox->value();
-  configuration.maximumValue   = m_maxSpinBox->value();
-  configuration.update         = static_cast<Update>(m_updatesCombo->currentIndex());
-  configuration.autostart      = m_autostart->isChecked();
-  configuration.language       = m_languageCombo->itemData(m_languageCombo->currentIndex(), Qt::UserRole).toString();
-  configuration.tempUnits      = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
-  configuration.pressureUnits  = static_cast<PressureUnits>(m_pressionCombo->currentIndex());
-  configuration.precUnits      = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
-  configuration.windUnits      = static_cast<WindUnits>(m_windCombo->currentIndex());
+  configuration.city             = m_city->text();
+  configuration.country          = m_country->text();
+  configuration.ip               = m_ip->text();
+  configuration.isp              = m_isp->text();
+  configuration.owm_apikey       = m_testedAPIKey ? m_apikey->text() : QString();
+  configuration.region           = m_region->text();
+  configuration.timezone         = m_timezone->text();
+  configuration.zipcode          = m_zipCode->text();
+  configuration.updateTime       = m_updateTime->value();
+  configuration.units            = static_cast<Units>(m_unitsComboBox->currentIndex());
+  configuration.useDNS           = m_useDNS->isChecked();
+  configuration.useGeolocation   = m_useGeolocation->isChecked();
+  configuration.roamingEnabled   = m_roamingCheck->isChecked();
+  configuration.lightTheme       = m_theme->currentIndex() == 0;
+  configuration.iconType         = static_cast<unsigned int>(m_trayIconType->currentIndex());
+  configuration.trayTextColor    = QColor(m_trayTempColor->property("iconColor").toString());
+  configuration.trayTextMode     = m_fixed->isChecked();
+  configuration.trayTextSize     = m_fontSize->value();
+  configuration.minimumColor     = QColor(m_minColor->property("iconColor").toString());
+  configuration.maximumColor     = QColor(m_maxColor->property("iconColor").toString());
+  configuration.minimumValue     = m_minSpinBox->value();
+  configuration.maximumValue     = m_maxSpinBox->value();
+  configuration.update           = static_cast<Update>(m_updatesCombo->currentIndex());
+  configuration.autostart        = m_autostart->isChecked();
+  configuration.language         = m_languageCombo->itemData(m_languageCombo->currentIndex(), Qt::UserRole).toString();
+  configuration.tempUnits        = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
+  configuration.pressureUnits    = static_cast<PressureUnits>(m_pressionCombo->currentIndex());
+  configuration.precUnits        = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
+  configuration.windUnits        = static_cast<WindUnits>(m_windCombo->currentIndex());
+
+  configuration.tooltipFields.clear();
+  for(int row = 0; row < m_tooltipList->count(); ++row)
+  {
+    const auto item = m_tooltipList->item(row);
+    configuration.tooltipFields << static_cast<TooltipText>(item->data(Qt::UserRole).toInt());
+  }
 
   if(m_useManual->isChecked())
   {
@@ -361,6 +369,21 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_unitsComboBox, SIGNAL(currentIndexChanged(int)),
           this,            SLOT(onUnitsValueChanged(int)));
+
+  connect(m_tooltipAdd, SIGNAL(clicked()),
+          this,         SLOT(onTooltipTextAdded()));
+
+  connect(m_tooltipDelete, SIGNAL(clicked()),
+          this,            SLOT(onTooltipTextDeleted()));
+
+  connect(m_tooltipDown, SIGNAL(clicked()),
+          this,          SLOT(onTooltipTextMoved()));
+
+  connect(m_tooltipUp, SIGNAL(clicked()),
+          this,        SLOT(onTooltipTextMoved()));
+
+  connect(m_tooltipList, SIGNAL(currentRowChanged(int)),
+          this,          SLOT(onTooltipFieldsRowChanged(int)));
 
   for(auto &w: {m_tempCombo, m_pressionCombo, m_windCombo, m_precipitationCombo})
   {
@@ -606,6 +629,34 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_minSpinBox->setMaximum(configuration.maximumValue-1);
   m_maxSpinBox->setMinimum(configuration.minimumValue+1);
 
+  m_tooltipList->setAlternatingRowColors(true);
+
+  QFont font;
+  for(int i = 0; i < static_cast<int>(TooltipText::MAX); ++i)
+  {
+    auto field = static_cast<TooltipText>(i);
+    if(configuration.tooltipFields.contains(field))
+    {
+      auto item = new QListWidgetItem();
+      item->setData(Qt::UserRole, i);
+      item->setData(Qt::DisplayRole, TooltipTextFields.at(i));
+      auto font = item->font();
+      font.setBold(true);
+      item->setFont(font);
+      m_tooltipList->addItem(item);
+    }
+    else
+    {
+      m_tooltipValueCombo->addItem(QIcon(), TooltipTextFields.at(i), i);
+    }
+  }
+
+  m_tooltipList->setCurrentRow(0);
+  m_tooltipValueCombo->setCurrentIndex(0);
+
+  m_tooltipList->setItemDelegate(new RichTextItemDelegate());
+  m_tooltipValueCombo->setItemDelegate(new RichTextItemDelegate());
+
   QPixmap icon(QSize(64,64));
   icon.fill(configuration.trayTextColor);
   m_trayTempColor->setIcon(QIcon(icon));
@@ -730,6 +781,60 @@ void ConfigurationDialog::disconnectSignals()
 }
 
 //--------------------------------------------------------------------
+void ConfigurationDialog::onTooltipTextAdded()
+{
+  auto index = m_tooltipValueCombo->currentIndex();
+  auto tooltipIndex = m_tooltipValueCombo->itemData(index, Qt::UserRole).toInt();
+  m_tooltipValueCombo->removeItem(index);
+
+  auto item = new QListWidgetItem(TooltipTextFields.at(tooltipIndex));
+  item->setData(Qt::UserRole, tooltipIndex);
+  m_tooltipList->addItem(item);
+
+  updateTooltipFieldsButtons();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onTooltipTextDeleted()
+{
+  const auto row = m_tooltipList->currentRow();
+  auto item = m_tooltipList->takeItem(row);
+  auto tooltipIndex = item->data(Qt::UserRole).toInt();
+  delete item;
+
+  m_tooltipValueCombo->addItem(QIcon(), TooltipTextFields.at(tooltipIndex), tooltipIndex);
+
+  updateTooltipFieldsButtons();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onTooltipTextMoved()
+{
+  auto button = qobject_cast<QPushButton *>(sender());
+  if(!button) return;
+
+  auto row = m_tooltipList->currentRow();
+  auto item = m_tooltipList->takeItem(row);
+  auto tooltipIdx = item->data(Qt::UserRole).toInt();
+
+  delete item;
+  item = new QListWidgetItem(TooltipTextFields.at(tooltipIdx));
+  item->setData(Qt::UserRole, tooltipIdx);
+
+  if(button == m_tooltipUp)
+  {
+    row -= 1;
+  }
+  else
+  {
+    row += 1;
+  }
+
+  m_tooltipList->insertItem(row, item);
+  m_tooltipList->setCurrentRow(row);
+}
+
+//--------------------------------------------------------------------
 void ConfigurationDialog::updateLanguageCombo(const QString &current)
 {
   m_languageCombo->clear();
@@ -804,4 +909,22 @@ void ConfigurationDialog::onUnitComboChanged(int index)
   {
     w->setProperty(SELECTED, index);
   }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onTooltipFieldsRowChanged(int row)
+{
+  m_tooltipUp->setEnabled(row != 0);
+  m_tooltipDown->setEnabled(row + 1 != m_tooltipList->count());
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::updateTooltipFieldsButtons()
+{
+  auto enabled = (m_tooltipValueCombo->count() != 0);
+  m_tooltipValueCombo->setEnabled(enabled);
+  m_tooltipAdd->setEnabled(enabled);
+
+  enabled = m_tooltipList->count() != 0;
+  m_tooltipDelete->setEnabled(enabled);
 }

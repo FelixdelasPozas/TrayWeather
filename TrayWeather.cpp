@@ -234,17 +234,18 @@ void TrayWeather::showConfiguration()
   const auto changedLanguage = (configuration.language != m_configuration.language);
   const auto changedRoaming  = (configuration.roamingEnabled != m_configuration.roamingEnabled);
 
-  m_configuration.lightTheme    = configuration.lightTheme;
-  m_configuration.iconType      = configuration.iconType;
-  m_configuration.trayTextColor = configuration.trayTextColor;
-  m_configuration.trayTextMode  = configuration.trayTextMode;
-  m_configuration.trayTextSize  = configuration.trayTextSize;
-  m_configuration.minimumColor  = configuration.minimumColor;
-  m_configuration.maximumColor  = configuration.maximumColor;
-  m_configuration.minimumValue  = configuration.minimumValue;
-  m_configuration.maximumValue  = configuration.maximumValue;
-  m_configuration.autostart     = configuration.autostart;
-  m_configuration.language      = configuration.language;
+  m_configuration.lightTheme       = configuration.lightTheme;
+  m_configuration.iconType         = configuration.iconType;
+  m_configuration.trayTextColor    = configuration.trayTextColor;
+  m_configuration.trayTextMode     = configuration.trayTextMode;
+  m_configuration.trayTextSize     = configuration.trayTextSize;
+  m_configuration.minimumColor     = configuration.minimumColor;
+  m_configuration.maximumColor     = configuration.maximumColor;
+  m_configuration.minimumValue     = configuration.minimumValue;
+  m_configuration.maximumValue     = configuration.maximumValue;
+  m_configuration.autostart        = configuration.autostart;
+  m_configuration.language         = configuration.language;
+  m_configuration.tooltipFields    = configuration.tooltipFields;
 
   bool requestNewData = false;
 
@@ -414,20 +415,7 @@ void TrayWeather::updateTooltip()
     return;
   }
 
-  QStringList place;
-  if(!m_configuration.city.isEmpty())    place << m_configuration.city;
-  if(!m_configuration.country.isEmpty()) place << m_configuration.country;
-
-  double temperatureValue = m_current.temp;
-  if(m_configuration.units == Units::CUSTOM && m_configuration.tempUnits == TemperatureUnits::FAHRENHEIT)
-  {
-    temperatureValue = convertCelsiusToFahrenheit(m_current.temp);
-  }
-  const auto temperatureString = QString::number(temperatureValue, 'f', 1);
-  tooltip = QString("%1\n%2\n%3%4").arg(place.join(", "))
-                                   .arg(toTitleCase(m_current.description))
-                                   .arg(temperatureString)
-                                   .arg(temperatureIconText(m_configuration));
+  tooltip = tooltipText();
 
   QPixmap pixmap = weatherPixmap(m_current).scaled(384,384,Qt::KeepAspectRatio, Qt::SmoothTransformation);
   QPainter painter(&pixmap);
@@ -464,6 +452,11 @@ void TrayWeather::updateTooltip()
     default:
     case 2:
       {
+        double temperatureValue = m_current.temp;
+        if(m_configuration.units == Units::CUSTOM && m_configuration.tempUnits == TemperatureUnits::FAHRENHEIT)
+        {
+          temperatureValue = convertCelsiusToFahrenheit(m_current.temp);
+        }
         const auto roundedTemp = static_cast<int>(std::nearbyint(temperatureValue));
         const auto roundedString = QString::number(roundedTemp);
         QFont font = painter.font();
@@ -495,6 +488,215 @@ void TrayWeather::updateTooltip()
   setIcon(icon);
 
   if(m_additionalTray) m_additionalTray->setToolTip(tooltip);
+}
+
+//--------------------------------------------------------------------
+QString TrayWeather::tooltipText() const
+{
+  QStringList fieldsText;
+  const QString pollutionUnits = "µg/m3";
+
+  for(int i = 0; i < m_configuration.tooltipFields.size(); ++i)
+  {
+    switch(m_configuration.tooltipFields.at(i))
+    {
+      case TooltipText::LOCATION:
+        {
+          QStringList place;
+          if(!m_configuration.city.isEmpty())    place << m_configuration.city;
+          if(!m_configuration.country.isEmpty()) place << m_configuration.country;
+          fieldsText << place.join(", ");
+        }
+        break;
+      case TooltipText::WEATHER:
+        fieldsText << toTitleCase(m_current.description);
+        break;
+      case TooltipText::TEMPERATURE:
+        {
+          double temperatureValue = m_current.temp;
+          if(m_configuration.units == Units::CUSTOM && m_configuration.tempUnits == TemperatureUnits::FAHRENHEIT)
+          {
+            temperatureValue = convertCelsiusToFahrenheit(m_current.temp);
+          }
+          fieldsText << QString::number(temperatureValue, 'f', 1) + temperatureIconText(m_configuration);
+        }
+        break;
+      case TooltipText::CLOUDINESS:
+        fieldsText << tr("Cloudiness: ") + QString("%1%").arg(m_current.cloudiness);
+        break;
+      case TooltipText::HUMIDITY:
+        fieldsText << tr("Humidity: ") + QString("%1%").arg(m_current.humidity);
+        break;
+      case TooltipText::PRESSURE:
+        {
+          QString pressUnits;
+          double pressureValue = m_current.pressure;
+          switch(m_configuration.pressureUnits)
+          {
+            case PressureUnits::INHG:
+              pressureValue = converthPaToinHg(m_current.pressure);
+              pressUnits = tr("inHg");
+              break;
+            case PressureUnits::MMGH:
+              pressureValue = converthPaTommHg(m_current.pressure);
+              pressUnits = tr("mmHg");
+              break;
+            case PressureUnits::PSI:
+              pressureValue = converthPaToPSI(m_current.pressure);
+              pressUnits = tr("PSI");
+              break;
+            default:
+            case PressureUnits::HPA:
+              pressUnits = tr("hPa");
+              break;
+          }
+          fieldsText << tr("Pressure: ") + QString("%1 %2").arg(pressureValue).arg(pressUnits);
+        }
+        break;
+      case TooltipText::WIND_SPEED:
+        {
+          QString windUnits;
+          double windValue = m_current.wind_speed;
+          switch(m_configuration.windUnits)
+          {
+            case WindUnits::FEETSEC:
+              windUnits = tr("feet/s");
+              windValue = convertMetersSecondToFeetSecond(m_current.wind_speed);
+              break;
+            case WindUnits::KMHR:
+              windUnits = tr("km/h");
+              windValue = convertMetersSecondToKilometersHour(m_current.wind_speed);
+              break;
+            case WindUnits::MILHR:
+              windUnits = tr("mil/h");
+              windValue = convertMetersSecondToMilesHour(m_current.wind_speed);
+              break;
+            default:
+            case WindUnits::METSEC:
+              windUnits = tr("met/sec");
+              break;
+          }
+          fieldsText << tr("Wind: ") + QString("%1 %2").arg(windValue).arg(windUnits);
+        }
+        break;
+      case TooltipText::SUNRISE:
+        if(m_current.sunrise != 0)
+        {
+          struct tm t;
+          unixTimeStampToDate(t, m_current.sunrise);
+          QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+          fieldsText << tr("Sunrise: ") + dtTime.toString("hh:mm");
+        }
+        break;
+      case TooltipText::SUNSET:
+        if(m_current.sunset != 0)
+        {
+          struct tm t;
+          unixTimeStampToDate(t, m_current.sunset);
+          QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+          fieldsText << tr("Sunset: ") + dtTime.toString("hh:mm");
+        }
+        break;
+      case TooltipText::AIR_QUALITY:
+        if(!m_pData.empty())
+        {
+          QString airQuality;
+          switch(m_pData.first().aqi)
+          {
+            case 1:
+              airQuality = tr("Good");
+              break;
+            case 2:
+              airQuality = tr("Fair");
+              break;
+            case 3:
+              airQuality = tr("Moderate");
+              break;
+            case 4:
+              airQuality = tr("Poor");
+              break;
+            default:
+              airQuality = tr("Very poor");
+              break;
+          }
+          fieldsText << tr("Air: ") + airQuality;
+        }
+        break;
+      case TooltipText::UV:
+        if (!m_vData.isEmpty())
+        {
+          const auto index = static_cast<int>(std::nearbyint(m_vData.first().idx));
+          fieldsText << tr("UV: %1").arg(index);
+        }
+        break;
+      case TooltipText::AIR_CO:
+        if (!m_pData.empty())
+        {
+          const auto &data = m_pData.first();
+          fieldsText << tr("CO: ") + QString("%1%2").arg(data.co).arg(pollutionUnits);
+        }
+        break;
+      case TooltipText::AIR_O3:
+        if (!m_pData.empty())
+        {
+          const auto &data = m_pData.first();
+          fieldsText << tr("O3: ") + QString("%1%2").arg(data.o3).arg(pollutionUnits);
+        }
+        break;
+      case TooltipText::AIR_NO:
+        if (!m_pData.empty())
+        {
+          const auto &data = m_pData.first();
+          fieldsText << tr("NO: ") + QString("%1%2").arg(data.no).arg(pollutionUnits);
+        }
+        break;
+      case TooltipText::AIR_NO2:
+        if (!m_pData.empty())
+        {
+          const auto &data = m_pData.first();
+          fieldsText << tr("NO2: ") + QString("%1%2").arg(data.no2).arg(pollutionUnits);
+        }
+        break;
+      case TooltipText::AIR_SO2:
+        if (!m_pData.empty())
+        {
+          const auto &data = m_pData.first();
+          fieldsText << tr("SO2: ") + QString("%1%2").arg(data.so2).arg(pollutionUnits);
+        }
+        break;
+      case TooltipText::AIR_NH3:
+        if (!m_pData.empty())
+        {
+          const auto &data = m_pData.first();
+          fieldsText << tr("NH3: ") + QString("%1%2").arg(data.nh3).arg(pollutionUnits);
+        }
+        break;
+      case TooltipText::AIR_PM25:
+        if (!m_pData.empty())
+        {
+          const auto &data = m_pData.first();
+          fieldsText << tr("PM2.5: ") + QString("%1%2").arg(data.pm2_5).arg(pollutionUnits);
+        }
+        break;
+      case TooltipText::AIR_PM10:
+        if (!m_pData.empty())
+        {
+          const auto &data = m_pData.first();
+          fieldsText << tr("PM10: ") + QString("%1%2").arg(data.pm10).arg(pollutionUnits);
+        }
+        break;
+      default:
+        break;
+    }
+  }
+
+  auto text = fieldsText.join("\n");
+
+  // NOTE: https://docs.microsoft.com/es-es/windows/win32/api/shellapi/ns-shellapi-notifyicondataa
+  // Length of tooltip text is 128 including null termination in Windows.
+  if(text.length() > 127) text = text.left(123) + " ...";
+
+  return text;
 }
 
 //--------------------------------------------------------------------
@@ -1118,6 +1320,8 @@ void TrayWeather::processPollutionData(const QByteArray &data)
       auto lessThan = [](const PollutionData &left, const PollutionData &right) { if(left.dt < right.dt) return true; return false; };
       qSort(m_pData.begin(), m_pData.end(), lessThan);
     }
+
+    updateTooltip();
   }
 
   if(!m_pData.isEmpty() && m_weatherDialog)
@@ -1162,6 +1366,8 @@ void TrayWeather::processOneCallData(const QByteArray &data)
         if(!hasEntry(data.dt)) m_vData << data;
       }
     }
+
+    updateTooltip();
 
 //    if(jsonObj.keys().contains("alerts"))
 //    {
