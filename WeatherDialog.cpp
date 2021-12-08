@@ -123,7 +123,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   const auto noneStr = tr("None");
   const auto unknStr = tr("Unknown");
   const auto tempStr = tr("Temperature");
-  const auto rainStr = tr("Rain accumulation");
+  const auto precStr = config.graphUseRain ? tr("Rain accumulation") : tr("Snow accumulation");
 
   // conversions
   QString accuStr, pressStr, windUnits, tempUnits;
@@ -290,9 +290,9 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   axisYTemp->setLabelFormat("%i");
   axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(tempUnits));
 
-  auto axisYRain = new QValueAxis();
-  axisYRain->setLabelFormat("%.2f");
-  axisYRain->setTitleText(tr("%1 in %2").arg(rainStr).arg(accuStr));
+  auto axisYPrec = new QValueAxis();
+  axisYPrec->setLabelFormat("%.2f");
+  axisYPrec->setTitleText(tr("%1 in %2").arg(precStr).arg(accuStr));
 
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
@@ -303,7 +303,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   forecastChart->setAnimationOptions(QChart::AllAnimations);
   forecastChart->addAxis(axisX, Qt::AlignBottom);
   forecastChart->addAxis(axisYTemp, Qt::AlignLeft);
-  forecastChart->addAxis(axisYRain, Qt::AlignRight);
+  forecastChart->addAxis(axisYPrec, Qt::AlignRight);
 
   QPen pen;
   pen.setWidth(2);
@@ -315,16 +315,16 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   m_temperatureLine->setPointsVisible(true);
   m_temperatureLine->setPen(pen);
 
-  auto bars = new QBarSet(rainStr);
+  auto bars = new QBarSet(precStr);
   bars->setColor(QColor{100,235,100});
 
-  auto rainBars = new QBarSeries(forecastChart);
-  rainBars->setUseOpenGL(true);
-  rainBars->setBarWidth(rainBars->barWidth()*2);
-  rainBars->append(bars);
+  auto precBars = new QBarSeries(forecastChart);
+  precBars->setUseOpenGL(true);
+  precBars->setBarWidth(precBars->barWidth()*2);
+  precBars->append(bars);
 
   double tempMin = 100, tempMax = -100;
-  double rainMin = 100, rainMax = -100;
+  double precMin = 100, precMax = -100;
   for(auto &entry: data)
   {
     unixTimeStampToDate(t, entry.dt);
@@ -335,30 +335,31 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     tempMin = std::min(tempMin, tempFunc(entry.temp));
     tempMax = std::max(tempMax, tempFunc(entry.temp));
 
-    const auto rainValue = precipitationFunc(entry.rain);
-    rainMin = std::min(rainMin, rainValue);
-    rainMax = std::max(rainMax, rainValue);
+    const auto precField = config.graphUseRain ? entry.rain : entry.snow;
+    const auto precValue = precipitationFunc(precField);
+    precMin = std::min(precMin, precValue);
+    precMax = std::max(precMax, precValue);
 
-    bars->append(rainValue);
+    bars->append(precValue);
   }
 
   axisYTemp->setRange(tempMin-1, tempMax+1);
-  axisYRain->setRange(rainMin, rainMax*1.25);
+  axisYPrec->setRange(precMin, precMax*1.25);
 
-  forecastChart->addSeries(rainBars);
+  forecastChart->addSeries(precBars);
   forecastChart->addSeries(m_temperatureLine);
 
   forecastChart->setAxisX(axisX, m_temperatureLine);
   forecastChart->setAxisY(axisYTemp, m_temperatureLine);
-  forecastChart->setAxisY(axisYRain, rainBars);
+  forecastChart->setAxisY(axisYPrec, precBars);
 
   connect(m_temperatureLine, SIGNAL(hovered(const QPointF &, bool)),
           this,              SLOT(onChartHover(const QPointF &, bool)));
 
-  if(rainMin == 0 && rainMax == 0)
+  if(precMin == 0 && precMax == 0)
   {
-    axisYRain->setVisible(false);
-    rainBars->clear();
+    axisYPrec->setVisible(false);
+    precBars->clear();
   }
 
   const auto scale = dpiScale();
@@ -372,13 +373,13 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     font.setPointSize(font.pointSize()*scale);
     axisX->setTitleFont(font);
 
-    font = axisYRain->labelsFont();
+    font = axisYPrec->labelsFont();
     font.setPointSize(font.pointSize()*scale);
-    axisYRain->setLabelsFont(font);
+    axisYPrec->setLabelsFont(font);
 
-    font = axisYRain->titleFont();
+    font = axisYPrec->titleFont();
     font.setPointSize(font.pointSize()*scale);
-    axisYRain->setTitleFont(font);
+    axisYPrec->setTitleFont(font);
 
     font = axisYTemp->labelsFont();
     font.setPointSize(font.pointSize()*scale);

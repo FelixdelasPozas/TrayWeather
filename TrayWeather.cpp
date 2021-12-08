@@ -246,6 +246,7 @@ void TrayWeather::showConfiguration()
   m_configuration.autostart        = configuration.autostart;
   m_configuration.language         = configuration.language;
   m_configuration.tooltipFields    = configuration.tooltipFields;
+  m_configuration.graphUseRain     = configuration.graphUseRain;
 
   bool requestNewData = false;
 

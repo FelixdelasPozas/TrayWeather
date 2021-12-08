@@ -207,35 +207,36 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 //--------------------------------------------------------------------
 void ConfigurationDialog::getConfiguration(Configuration &configuration) const
 {
-  configuration.city             = m_city->text();
-  configuration.country          = m_country->text();
-  configuration.ip               = m_ip->text();
-  configuration.isp              = m_isp->text();
-  configuration.owm_apikey       = m_testedAPIKey ? m_apikey->text() : QString();
-  configuration.region           = m_region->text();
-  configuration.timezone         = m_timezone->text();
-  configuration.zipcode          = m_zipCode->text();
-  configuration.updateTime       = m_updateTime->value();
-  configuration.units            = static_cast<Units>(m_unitsComboBox->currentIndex());
-  configuration.useDNS           = m_useDNS->isChecked();
-  configuration.useGeolocation   = m_useGeolocation->isChecked();
-  configuration.roamingEnabled   = m_roamingCheck->isChecked();
-  configuration.lightTheme       = m_theme->currentIndex() == 0;
-  configuration.iconType         = static_cast<unsigned int>(m_trayIconType->currentIndex());
-  configuration.trayTextColor    = QColor(m_trayTempColor->property("iconColor").toString());
-  configuration.trayTextMode     = m_fixed->isChecked();
-  configuration.trayTextSize     = m_fontSize->value();
-  configuration.minimumColor     = QColor(m_minColor->property("iconColor").toString());
-  configuration.maximumColor     = QColor(m_maxColor->property("iconColor").toString());
-  configuration.minimumValue     = m_minSpinBox->value();
-  configuration.maximumValue     = m_maxSpinBox->value();
-  configuration.update           = static_cast<Update>(m_updatesCombo->currentIndex());
-  configuration.autostart        = m_autostart->isChecked();
-  configuration.language         = m_languageCombo->itemData(m_languageCombo->currentIndex(), Qt::UserRole).toString();
-  configuration.tempUnits        = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
-  configuration.pressureUnits    = static_cast<PressureUnits>(m_pressionCombo->currentIndex());
-  configuration.precUnits        = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
-  configuration.windUnits        = static_cast<WindUnits>(m_windCombo->currentIndex());
+  configuration.city           = m_city->text();
+  configuration.country        = m_country->text();
+  configuration.ip             = m_ip->text();
+  configuration.isp            = m_isp->text();
+  configuration.owm_apikey     = m_testedAPIKey ? m_apikey->text() : QString();
+  configuration.region         = m_region->text();
+  configuration.timezone       = m_timezone->text();
+  configuration.zipcode        = m_zipCode->text();
+  configuration.updateTime     = m_updateTime->value();
+  configuration.units          = static_cast<Units>(m_unitsComboBox->currentIndex());
+  configuration.useDNS         = m_useDNS->isChecked();
+  configuration.useGeolocation = m_useGeolocation->isChecked();
+  configuration.roamingEnabled = m_roamingCheck->isChecked();
+  configuration.lightTheme     = m_theme->currentIndex() == 0;
+  configuration.iconType       = static_cast<unsigned int>(m_trayIconType->currentIndex());
+  configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
+  configuration.trayTextMode   = m_fixed->isChecked();
+  configuration.trayTextSize   = m_fontSize->value();
+  configuration.minimumColor   = QColor(m_minColor->property("iconColor").toString());
+  configuration.maximumColor   = QColor(m_maxColor->property("iconColor").toString());
+  configuration.minimumValue   = m_minSpinBox->value();
+  configuration.maximumValue   = m_maxSpinBox->value();
+  configuration.update         = static_cast<Update>(m_updatesCombo->currentIndex());
+  configuration.autostart      = m_autostart->isChecked();
+  configuration.language       = m_languageCombo->itemData(m_languageCombo->currentIndex(), Qt::UserRole).toString();
+  configuration.tempUnits      = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
+  configuration.pressureUnits  = static_cast<PressureUnits>(m_pressionCombo->currentIndex());
+  configuration.precUnits      = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
+  configuration.windUnits      = static_cast<WindUnits>(m_windCombo->currentIndex());
+  configuration.graphUseRain   = m_rainGraph->isChecked();
 
   configuration.tooltipFields.clear();
   for(int row = 0; row < m_tooltipList->count(); ++row)
@@ -631,6 +632,9 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 
   m_tooltipList->clear();
   m_tooltipList->setAlternatingRowColors(true);
+
+  m_rainGraph->setChecked(configuration.graphUseRain);
+  m_snowGraph->setChecked(!configuration.graphUseRain);
 
   for(int i = 0; i < configuration.tooltipFields.size(); ++i)
   {

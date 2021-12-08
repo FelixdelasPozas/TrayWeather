@@ -27,7 +27,7 @@
    <item>
     <widget class="QTabWidget" name="m_tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -541,52 +541,7 @@ QGroupBox::title {
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_9">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_9">
-         <item>
-          <widget class="QLabel" name="label_13">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>22</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Measurement units</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="m_unitsComboBox">
-           <item>
-            <property name="text">
-             <string>Metric system (ºC)</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Imperial system (ºF)</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Custom</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="m_customBox">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
+        <widget class="QGroupBox" name="groupBox_5">
          <property name="font">
           <font>
            <weight>75</weight>
@@ -607,16 +562,55 @@ QGroupBox::title {
 }</string>
          </property>
          <property name="title">
-          <string>Custom Measurement Units</string>
+          <string>Measurement Units</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5" columnstretch="0,0" columnminimumwidth="0,0">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_24">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
+         <layout class="QVBoxLayout" name="verticalLayout_11">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_13">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>22</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Measurement units</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="m_unitsComboBox">
+              <item>
+               <property name="text">
+                <string>Metric system (ºC)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Imperial system (ºF)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Custom</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="m_customBox">
+            <property name="enabled">
+             <bool>false</bool>
             </property>
             <property name="font">
              <font>
@@ -624,131 +618,214 @@ QGroupBox::title {
               <bold>true</bold>
              </font>
             </property>
-            <property name="text">
-             <string>Temperature</string>
+            <property name="styleSheet">
+             <string notr="true">QGroupBox {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 2ex;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* position at the top center */
+    padding: 0px 5px;
+}</string>
             </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="m_tempCombo">
-            <item>
-             <property name="text">
-              <string>Celsius</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Fahrenheit</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_25">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
+            <property name="title">
+             <string>Custom Measurement Units</string>
             </property>
-            <property name="text">
-             <string>Pressure</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="m_pressionCombo">
-            <item>
-             <property name="text">
-              <string>hPa</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>PSI</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>mmHg</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>inHg</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_26">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Wind</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QComboBox" name="m_windCombo">
-            <item>
-             <property name="text">
-              <string>meters/second</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>miles/hour</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>kilometers/hour</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>feet/second</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_27">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Precipitation</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QComboBox" name="m_precipitationCombo">
-            <item>
-             <property name="text">
-              <string>millimeters</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>inches</string>
-             </property>
-            </item>
+            <layout class="QGridLayout" name="gridLayout_5" columnstretch="0,0" columnminimumwidth="0,0">
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_24">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Temperature</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="m_tempCombo">
+               <item>
+                <property name="text">
+                 <string>Celsius</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fahrenheit</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_25">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Pressure</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="m_pressionCombo">
+               <item>
+                <property name="text">
+                 <string>hPa</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>PSI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mmHg</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>inHg</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_26">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Wind</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="m_windCombo">
+               <item>
+                <property name="text">
+                 <string>meters/second</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>miles/hour</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>kilometers/hour</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>feet/second</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_27">
+               <property name="font">
+                <font>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>Precipitation</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QComboBox" name="m_precipitationCombo">
+               <item>
+                <property name="text">
+                 <string>millimeters</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>inches</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_2">
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 2ex;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* position at the top center */
+    padding: 0px 5px;
+}</string>
+         </property>
+         <property name="title">
+          <string>Forecast Graph</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item>
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>Precipitation of:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="m_rainGraph">
+            <property name="text">
+             <string>Rain</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="m_snowGraph">
+            <property name="text">
+             <string>Snow</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>

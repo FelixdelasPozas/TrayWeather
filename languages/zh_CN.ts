@@ -242,332 +242,357 @@
         <translation>单位</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="578"/>
+        <location filename="../ConfigurationDialog.ui" line="565"/>
+        <source>Measurement Units</source>
+        <translation>衡量单位</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="603"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="610"/>
+        <location filename="../ConfigurationDialog.ui" line="635"/>
         <source>Custom Measurement Units</source>
         <translation>自定义衡量单位</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="628"/>
+        <location filename="../ConfigurationDialog.ui" line="653"/>
         <source>Temperature</source>
         <translation>温度</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="636"/>
+        <location filename="../ConfigurationDialog.ui" line="661"/>
         <source>Celsius</source>
         <translation>摄氏度</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="641"/>
+        <location filename="../ConfigurationDialog.ui" line="666"/>
         <source>Fahrenheit</source>
         <translation>华氏度</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="655"/>
+        <location filename="../ConfigurationDialog.ui" line="680"/>
         <source>Pressure</source>
         <translation>气压</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="663"/>
+        <location filename="../ConfigurationDialog.ui" line="688"/>
         <source>hPa</source>
         <translation>百帕</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="668"/>
+        <location filename="../ConfigurationDialog.ui" line="693"/>
         <source>PSI</source>
         <translation>磅力/平方英寸</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="673"/>
+        <location filename="../ConfigurationDialog.ui" line="698"/>
         <source>mmHg</source>
         <translation>毫米汞柱</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="678"/>
+        <location filename="../ConfigurationDialog.ui" line="703"/>
         <source>inHg</source>
         <translation>英寸汞柱</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="692"/>
+        <location filename="../ConfigurationDialog.ui" line="717"/>
         <source>Wind</source>
         <translation>风力</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="700"/>
+        <location filename="../ConfigurationDialog.ui" line="725"/>
         <source>meters/second</source>
         <translation>米/秒</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="705"/>
+        <location filename="../ConfigurationDialog.ui" line="730"/>
         <source>miles/hour</source>
         <translation>英里/小时</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="710"/>
+        <location filename="../ConfigurationDialog.ui" line="735"/>
         <source>kilometers/hour</source>
         <translation>千米/小时</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="715"/>
+        <location filename="../ConfigurationDialog.ui" line="740"/>
         <source>feet/second</source>
         <translation>英尺/秒</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="729"/>
+        <location filename="../ConfigurationDialog.ui" line="754"/>
         <source>Precipitation</source>
         <translation>降水</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="737"/>
+        <location filename="../ConfigurationDialog.ui" line="762"/>
         <source>millimeters</source>
         <translation>毫米</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="742"/>
+        <location filename="../ConfigurationDialog.ui" line="767"/>
         <source>inches</source>
         <translation>英寸</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="792"/>
+        <location filename="../ConfigurationDialog.ui" line="800"/>
+        <source>Forecast Graph</source>
+        <translation>预测图</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="806"/>
+        <source>Precipitation of:</source>
+        <translation>降水：</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="813"/>
+        <source>Rain</source>
+        <translation>雨</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="820"/>
+        <source>Snow</source>
+        <translation>雪</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="869"/>
         <source>Tray Icon</source>
         <translation>托盘图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="806"/>
+        <location filename="../ConfigurationDialog.ui" line="883"/>
         <source>Icon type</source>
         <translation>图标类型</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="814"/>
+        <location filename="../ConfigurationDialog.ui" line="891"/>
         <source>Weather icon</source>
         <translation>天气图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="819"/>
+        <location filename="../ConfigurationDialog.ui" line="896"/>
         <source>Temperature icon</source>
         <translation>温度图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="824"/>
+        <location filename="../ConfigurationDialog.ui" line="901"/>
         <source>Weather &amp; temperature icon</source>
         <translation>天气 &amp; 温度图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="829"/>
+        <location filename="../ConfigurationDialog.ui" line="906"/>
         <source>Weather icon &amp; temperature icon</source>
         <translation>天气图标 &amp; 温度图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="849"/>
+        <location filename="../ConfigurationDialog.ui" line="926"/>
         <source>Variable</source>
         <translation>可变的</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="868"/>
+        <location filename="../ConfigurationDialog.ui" line="945"/>
         <source>Click to change minimum value color...</source>
         <translation>点击更改最小值的颜色...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="884"/>
+        <location filename="../ConfigurationDialog.ui" line="961"/>
         <source>Range</source>
         <translation>范围</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="909"/>
+        <location filename="../ConfigurationDialog.ui" line="986"/>
         <source>Click to change maximum value color...</source>
         <translation>点击更改最大值的颜色</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="929"/>
+        <location filename="../ConfigurationDialog.ui" line="1006"/>
         <source>Fixed</source>
         <translation>固定的</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="951"/>
+        <location filename="../ConfigurationDialog.ui" line="1028"/>
         <source>Click to change fixed color...</source>
         <translation>点击更改固定的颜色</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="988"/>
+        <location filename="../ConfigurationDialog.ui" line="1065"/>
         <source>Temperature text color</source>
         <translation>温度文字的颜色</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1003"/>
+        <location filename="../ConfigurationDialog.ui" line="1080"/>
         <source>from</source>
         <translation>从</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1019"/>
+        <location filename="../ConfigurationDialog.ui" line="1096"/>
         <source>Minimum range value</source>
         <translation>最小范围值</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1041"/>
+        <location filename="../ConfigurationDialog.ui" line="1118"/>
         <source>to</source>
         <translation>到</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1060"/>
+        <location filename="../ConfigurationDialog.ui" line="1137"/>
         <source>Maximum range value</source>
         <translation>最大范围值</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1090"/>
+        <location filename="../ConfigurationDialog.ui" line="1167"/>
         <source>Temperature text size</source>
         <translation>温度文字的大小</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1105"/>
+        <location filename="../ConfigurationDialog.ui" line="1182"/>
         <source> pixels</source>
         <translation>像素</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1147"/>
+        <location filename="../ConfigurationDialog.ui" line="1224"/>
         <source>Configure the tray icon tooltip text. </source>
         <translation>配置托盘图标工具提示文本。 </translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1163"/>
+        <location filename="../ConfigurationDialog.ui" line="1240"/>
         <source>Tray Tooltip</source>
         <translation>托盘工具提示</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1169"/>
+        <location filename="../ConfigurationDialog.ui" line="1246"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, tob to bottom of the list.</source>
         <translation>工具提示中显示的值是当前值或当前本地时间的最接近预测值。 值按顺序显示，从列表的顶部到底部。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1184"/>
+        <location filename="../ConfigurationDialog.ui" line="1261"/>
         <source>Value:</source>
         <translation>价值：</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1191"/>
+        <location filename="../ConfigurationDialog.ui" line="1268"/>
         <source>Value to add to the list.</source>
         <translation>要添加到列表中的值。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1198"/>
+        <location filename="../ConfigurationDialog.ui" line="1275"/>
         <source>Add value to tooltip text</source>
         <translation>为工具提示文本添加值</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1235"/>
+        <location filename="../ConfigurationDialog.ui" line="1312"/>
         <source>Move value up.</source>
         <translation>提升价值。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1249"/>
+        <location filename="../ConfigurationDialog.ui" line="1326"/>
         <source>Move value down.</source>
         <translation>下移价值。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1263"/>
+        <location filename="../ConfigurationDialog.ui" line="1340"/>
         <source>Remove value from tooltip text</source>
         <translation>从工具提示文本中删除值</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1283"/>
+        <location filename="../ConfigurationDialog.ui" line="1360"/>
         <source>Miscellaneous</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1306"/>
+        <location filename="../ConfigurationDialog.ui" line="1383"/>
         <source>Time between update requests</source>
         <translation>更新请求的间隔时长</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1319"/>
+        <location filename="../ConfigurationDialog.ui" line="1396"/>
         <source> minutes</source>
         <translation>分钟</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="560"/>
+        <location filename="../ConfigurationDialog.ui" line="585"/>
         <source>Measurement units</source>
         <translation>衡量单位</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="767"/>
+        <location filename="../ConfigurationDialog.ui" line="844"/>
         <source>Visuals</source>
         <translation>视觉效果</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1347"/>
+        <location filename="../ConfigurationDialog.ui" line="1424"/>
         <source>Visual theme</source>
         <translation>图示主题</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1355"/>
+        <location filename="../ConfigurationDialog.ui" line="1432"/>
         <source>Light</source>
         <translation>亮</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1360"/>
+        <location filename="../ConfigurationDialog.ui" line="1437"/>
         <source>Dark</source>
         <translation>暗</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1380"/>
+        <location filename="../ConfigurationDialog.ui" line="1457"/>
         <source>Check for updates</source>
         <translation>检查更新</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1388"/>
+        <location filename="../ConfigurationDialog.ui" line="1465"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1393"/>
+        <location filename="../ConfigurationDialog.ui" line="1470"/>
         <source>Once a day</source>
         <translation>每天一次</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1398"/>
+        <location filename="../ConfigurationDialog.ui" line="1475"/>
         <source>Once a week</source>
         <translation>每周一次</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1403"/>
+        <location filename="../ConfigurationDialog.ui" line="1480"/>
         <source>Once a month</source>
         <translation>每月一次</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="568"/>
+        <location filename="../ConfigurationDialog.ui" line="593"/>
         <source>Metric system (ºC)</source>
         <translation>公制单位 (ºC)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="573"/>
+        <location filename="../ConfigurationDialog.ui" line="598"/>
         <source>Imperial system (ºF)</source>
         <translation>英制单位 (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1423"/>
+        <location filename="../ConfigurationDialog.ui" line="1500"/>
         <source>Autostart at login</source>
         <translation>登录时自动启动</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1449"/>
+        <location filename="../ConfigurationDialog.ui" line="1526"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1461"/>
+        <location filename="../ConfigurationDialog.ui" line="1538"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>如果尚未提供你的语言，你可以帮助提供一个 &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1509"/>
+        <location filename="../ConfigurationDialog.ui" line="1586"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1516"/>
+        <location filename="../ConfigurationDialog.ui" line="1593"/>
         <source>Ok</source>
         <translation>好的</translation>
     </message>
@@ -593,7 +618,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../ConfigurationDialog.cpp" line="124"/>
         <location filename="../ConfigurationDialog.cpp" line="131"/>
-        <location filename="../ConfigurationDialog.cpp" line="716"/>
+        <location filename="../ConfigurationDialog.cpp" line="719"/>
         <source>Invalid OpenWeatherMap API Key!</source>
         <translation>此OpenWeatherMap的API密钥无效！</translation>
     </message>
@@ -641,7 +666,7 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>请求中...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="721"/>
+        <location filename="../ConfigurationDialog.cpp" line="724"/>
         <source>Untested OpenWeatherMap API Key!</source>
         <translation>未经测试的OpenWeatherMap API密钥！</translation>
     </message>
@@ -708,123 +733,123 @@ The application will exit now.</source>
         <translation>托盘天气无法在没有一个有效的地址或一个合法的OpenWeatherMap API密钥下执行。程序将退出。</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="349"/>
+        <location filename="../Utils.cpp" line="350"/>
         <source>New moon</source>
         <translation>新月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="352"/>
-        <location filename="../Utils.cpp" line="370"/>
+        <location filename="../Utils.cpp" line="353"/>
+        <location filename="../Utils.cpp" line="371"/>
         <source>Waxing crescent</source>
         <translation>蜡化镰刀月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="355"/>
+        <location filename="../Utils.cpp" line="356"/>
         <source>First quarter</source>
         <translation>上弦月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="358"/>
+        <location filename="../Utils.cpp" line="359"/>
         <source>Waxing gibbous</source>
         <translation>蜡化凸月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="361"/>
+        <location filename="../Utils.cpp" line="362"/>
         <source>Full moon</source>
         <translation>圆月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="364"/>
+        <location filename="../Utils.cpp" line="365"/>
         <source>Waning gibbous</source>
         <translation>凸渐亏月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="367"/>
+        <location filename="../Utils.cpp" line="368"/>
         <source>Last quarter</source>
         <translation>下弦月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="380"/>
+        <location filename="../Utils.cpp" line="381"/>
         <source>illumination</source>
         <translation>光照强度</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="449"/>
+        <location filename="../Utils.cpp" line="450"/>
         <source>NNE</source>
         <translation>东北偏北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="450"/>
+        <location filename="../Utils.cpp" line="451"/>
         <source>NE</source>
         <translation>东北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="451"/>
+        <location filename="../Utils.cpp" line="452"/>
         <source>ENE</source>
         <translation>东北偏东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="452"/>
+        <location filename="../Utils.cpp" line="453"/>
         <source>E</source>
         <translation>东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="453"/>
+        <location filename="../Utils.cpp" line="454"/>
         <source>ESE</source>
         <translation>东南偏东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="454"/>
+        <location filename="../Utils.cpp" line="455"/>
         <source>SE</source>
         <translation>东南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="455"/>
+        <location filename="../Utils.cpp" line="456"/>
         <source>SSE</source>
         <translation>东南偏南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="456"/>
+        <location filename="../Utils.cpp" line="457"/>
         <source>S</source>
         <translation>南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="457"/>
+        <location filename="../Utils.cpp" line="458"/>
         <source>SSW</source>
         <translation>西南偏南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="458"/>
+        <location filename="../Utils.cpp" line="459"/>
         <source>SW</source>
         <translation>西南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="459"/>
+        <location filename="../Utils.cpp" line="460"/>
         <source>WSW</source>
         <translation>西南偏西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="460"/>
+        <location filename="../Utils.cpp" line="461"/>
         <source>W</source>
         <translation>西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="461"/>
+        <location filename="../Utils.cpp" line="462"/>
         <source>WNW</source>
         <translation>西北偏西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="462"/>
+        <location filename="../Utils.cpp" line="463"/>
         <source>NW</source>
         <translation>西北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="463"/>
+        <location filename="../Utils.cpp" line="464"/>
         <source>NNW</source>
         <translation>西北偏北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="465"/>
+        <location filename="../Utils.cpp" line="466"/>
         <source>N</source>
         <translation>北</translation>
     </message>
@@ -1231,7 +1256,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1141"/>
+        <location filename="../WeatherDialog.cpp" line="1142"/>
         <source>Current Weather</source>
         <translation>当前天气</translation>
     </message>
@@ -1321,8 +1346,8 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="199"/>
         <location filename="../WeatherDialog.cpp" line="125"/>
-        <location filename="../WeatherDialog.cpp" line="1112"/>
-        <location filename="../WeatherDialog.cpp" line="1248"/>
+        <location filename="../WeatherDialog.cpp" line="1113"/>
+        <location filename="../WeatherDialog.cpp" line="1249"/>
         <source>Temperature</source>
         <translation>温度</translation>
     </message>
@@ -1346,8 +1371,8 @@ during midday hours.</source>
         <location filename="../WeatherDialog.ui" line="482"/>
         <location filename="../WeatherDialog.ui" line="508"/>
         <location filename="../WeatherDialog.cpp" line="124"/>
-        <location filename="../WeatherDialog.cpp" line="648"/>
-        <location filename="../WeatherDialog.cpp" line="810"/>
+        <location filename="../WeatherDialog.cpp" line="649"/>
+        <location filename="../WeatherDialog.cpp" line="811"/>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -1424,7 +1449,7 @@ during midday hours.</source>
         <translation>紫外线辐射</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="851"/>
+        <location filename="../WeatherDialog.cpp" line="852"/>
         <source>Ultraviolet radiation index</source>
         <translation>紫外线辐射指数</translation>
     </message>
@@ -1461,7 +1486,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="651"/>
-        <location filename="../WeatherDialog.cpp" line="1273"/>
+        <location filename="../WeatherDialog.cpp" line="1274"/>
         <source>Show Maps</source>
         <translation>展示地图</translation>
     </message>
@@ -1492,7 +1517,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="71"/>
-        <location filename="../WeatherDialog.cpp" line="1141"/>
+        <location filename="../WeatherDialog.cpp" line="1142"/>
         <source>Forecast</source>
         <translation>预测</translation>
     </message>
@@ -1503,7 +1528,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="80"/>
-        <location filename="../WeatherDialog.cpp" line="1141"/>
+        <location filename="../WeatherDialog.cpp" line="1142"/>
         <source>Pollution</source>
         <translation>污染</translation>
     </message>
@@ -1514,23 +1539,23 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="89"/>
-        <location filename="../WeatherDialog.cpp" line="1141"/>
+        <location filename="../WeatherDialog.cpp" line="1142"/>
         <source>UV</source>
         <translation>紫外线</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="145"/>
         <location filename="../WeatherDialog.cpp" line="189"/>
-        <location filename="../WeatherDialog.cpp" line="1183"/>
-        <location filename="../WeatherDialog.cpp" line="1200"/>
+        <location filename="../WeatherDialog.cpp" line="1184"/>
+        <location filename="../WeatherDialog.cpp" line="1201"/>
         <source>mm</source>
         <translation>毫米</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="138"/>
         <location filename="../WeatherDialog.cpp" line="184"/>
-        <location filename="../WeatherDialog.cpp" line="1173"/>
-        <location filename="../WeatherDialog.cpp" line="1195"/>
+        <location filename="../WeatherDialog.cpp" line="1174"/>
+        <location filename="../WeatherDialog.cpp" line="1196"/>
         <source>inches</source>
         <translation>英寸</translation>
     </message>
@@ -1568,8 +1593,8 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="287"/>
-        <location filename="../WeatherDialog.cpp" line="678"/>
-        <location filename="../WeatherDialog.cpp" line="846"/>
+        <location filename="../WeatherDialog.cpp" line="679"/>
+        <location filename="../WeatherDialog.cpp" line="847"/>
         <source>Day (Hour)</source>
         <translation>天（小时）</translation>
     </message>
@@ -1580,37 +1605,42 @@ during midday hours.</source>
         <translation>%1 在 %2</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="552"/>
-        <location filename="../WeatherDialog.cpp" line="605"/>
-        <location filename="../WeatherDialog.cpp" line="616"/>
-        <location filename="../WeatherDialog.cpp" line="1141"/>
+        <location filename="../WeatherDialog.cpp" line="553"/>
+        <location filename="../WeatherDialog.cpp" line="606"/>
+        <location filename="../WeatherDialog.cpp" line="617"/>
+        <location filename="../WeatherDialog.cpp" line="1142"/>
         <source>Maps</source>
         <translation>地图</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="559"/>
+        <location filename="../WeatherDialog.cpp" line="560"/>
         <source>TrayWeather Maps</source>
         <translation>托盘天气地图</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="561"/>
+        <location filename="../WeatherDialog.cpp" line="562"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>天气地图无法加载</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1156"/>
+        <location filename="../WeatherDialog.cpp" line="1157"/>
         <source>Hide Maps</source>
         <translation>隐藏地图</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1157"/>
+        <location filename="../WeatherDialog.cpp" line="1158"/>
         <source>Hide weather maps tab.</source>
         <translation>隐藏天气地图页</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="597"/>
+        <location filename="../WeatherDialog.cpp" line="598"/>
         <source>Weather Maps.</source>
         <translation>天气地图</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="126"/>
+        <source>Snow accumulation</source>
+        <translation>降雪量</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="139"/>
@@ -1635,109 +1665,109 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="199"/>
-        <location filename="../WeatherDialog.cpp" line="1211"/>
+        <location filename="../WeatherDialog.cpp" line="1212"/>
         <source>km/h</source>
         <translation>千米/小时</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="655"/>
+        <location filename="../WeatherDialog.cpp" line="656"/>
         <source>Good</source>
         <translation>优</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="658"/>
+        <location filename="../WeatherDialog.cpp" line="659"/>
         <source>Fair</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="661"/>
-        <location filename="../WeatherDialog.cpp" line="824"/>
+        <location filename="../WeatherDialog.cpp" line="662"/>
+        <location filename="../WeatherDialog.cpp" line="825"/>
         <source>Moderate</source>
         <translation>中等</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="664"/>
+        <location filename="../WeatherDialog.cpp" line="665"/>
         <source>Poor</source>
         <translation>差</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="667"/>
+        <location filename="../WeatherDialog.cpp" line="668"/>
         <source>Very poor</source>
         <translation>非常差</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="683"/>
+        <location filename="../WeatherDialog.cpp" line="684"/>
         <source>Concentration in %1</source>
         <translation>集中在 %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="819"/>
+        <location filename="../WeatherDialog.cpp" line="820"/>
         <source>Low</source>
         <translation>低</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="828"/>
+        <location filename="../WeatherDialog.cpp" line="829"/>
         <source>High</source>
         <translation>高</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="833"/>
+        <location filename="../WeatherDialog.cpp" line="834"/>
         <source>Very high</source>
         <translation>非常高</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="836"/>
+        <location filename="../WeatherDialog.cpp" line="837"/>
         <source>Extreme</source>
         <translation>极端</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="869"/>
+        <location filename="../WeatherDialog.cpp" line="870"/>
         <source>UV Index</source>
         <translation>紫外线指数</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1112"/>
-        <location filename="../WeatherDialog.cpp" line="1249"/>
+        <location filename="../WeatherDialog.cpp" line="1113"/>
+        <location filename="../WeatherDialog.cpp" line="1250"/>
         <source>Rain</source>
         <translation>雨</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1112"/>
-        <location filename="../WeatherDialog.cpp" line="1250"/>
+        <location filename="../WeatherDialog.cpp" line="1113"/>
+        <location filename="../WeatherDialog.cpp" line="1251"/>
         <source>Wind</source>
         <translation>风</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1112"/>
-        <location filename="../WeatherDialog.cpp" line="1251"/>
+        <location filename="../WeatherDialog.cpp" line="1113"/>
+        <location filename="../WeatherDialog.cpp" line="1252"/>
         <source>Clouds</source>
         <translation>云</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="203"/>
-        <location filename="../WeatherDialog.cpp" line="1172"/>
-        <location filename="../WeatherDialog.cpp" line="1215"/>
+        <location filename="../WeatherDialog.cpp" line="1173"/>
+        <location filename="../WeatherDialog.cpp" line="1216"/>
         <source>miles/h</source>
         <translation>英里/小时</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1182"/>
-        <location filename="../WeatherDialog.cpp" line="1219"/>
+        <location filename="../WeatherDialog.cpp" line="1183"/>
+        <location filename="../WeatherDialog.cpp" line="1220"/>
         <source>met/sec</source>
         <translation>米/秒</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1207"/>
+        <location filename="../WeatherDialog.cpp" line="1208"/>
         <source>feet/sec</source>
         <translation>英尺/秒</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1265"/>
+        <location filename="../WeatherDialog.cpp" line="1266"/>
         <source>Unable to load weather webpage</source>
         <translation>无法加载天气网页</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1274"/>
+        <location filename="../WeatherDialog.cpp" line="1275"/>
         <source>Show weather maps tab.</source>
         <translation>展示天气地图页</translation>
     </message>

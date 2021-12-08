@@ -80,6 +80,7 @@ static const QString CUSTOM_PRES_UNITS       = QString("Custom pressure units");
 static const QString CUSTOM_PREC_UNITS       = QString("Custom precipitation units");
 static const QString CUSTOM_WIND_UNITS       = QString("Custom wind units");
 static const QString TOOLTIP_FIELDS          = QString("Tooltip text fields");
+static const QString GRAPH_USE_RAIN          = QString("Forecast graph uses rain data");
 
 static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/01d.svg" },
                                               { "01n-0", ":/TrayWeather/01n-0.svg" },
@@ -578,6 +579,7 @@ void load(Configuration &configuration)
   configuration.lastLayer       = settings.value(LAST_MAP_LAYER, "temperature").toString();
   configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
   configuration.language        = settings.value(LANGUAGE, "en_EN").toString();
+  configuration.graphUseRain    = settings.value(GRAPH_USE_RAIN, true).toBool();
 
   // if CUSTOM_UNITS values doesn't exists (first run) use units value.
   configuration.tempUnits        = static_cast<TemperatureUnits>(settings.value(CUSTOM_TEMP_UNITS, units).toInt());
@@ -646,6 +648,7 @@ void save(const Configuration &configuration)
   settings.setValue(CUSTOM_PRES_UNITS,       static_cast<int>(configuration.pressureUnits));
   settings.setValue(CUSTOM_PREC_UNITS,       static_cast<int>(configuration.precUnits));
   settings.setValue(CUSTOM_WIND_UNITS,       static_cast<int>(configuration.windUnits));
+  settings.setValue(GRAPH_USE_RAIN,          configuration.graphUseRain);
 
   QStringList fieldList;
   QList<int> fieldNums;

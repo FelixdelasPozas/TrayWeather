@@ -153,6 +153,7 @@ struct Configuration
     QString            lastStreetLayer; /** last street layer used: mapnik, mapnikbw.                   */
     QString            language;        /** application language.                                       */
     QList<TooltipText> tooltipFields;   /** tooltip fields in order.                                    */
+    bool               graphUseRain;    /** true if the forecast graph uses rain data, false if snow.   */
     TemperatureUnits   tempUnits;       /** custom temperature units.                                   */
     PressureUnits      pressureUnits;   /** custom pressure units.                                      */
     PrecipitationUnits precUnits;       /** custom precipitation units.                                 */
@@ -195,6 +196,7 @@ struct Configuration
     , lastStreetLayer {"mapnik"}
     , language        {"en_EN"}
     , tooltipFields   {TooltipText::LOCATION, TooltipText::WEATHER, TooltipText::TEMPERATURE}
+    , graphUseRain    {true}
     , tempUnits       {TemperatureUnits::CELSIUS}
     , pressureUnits   {PressureUnits::HPA}
     , precUnits       {PrecipitationUnits::MM}
