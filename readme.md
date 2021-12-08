@@ -59,13 +59,13 @@ can be enabled here. A 'roaming' mode can be enabled, where the geographical coo
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
 The tray and application theme configuration can be found here in the miscellaneous options. Also the frequency of checks for updates can be set here.
 
-Configuration dialog, with the application light theme.
+Configuration dialog in English with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/132100171-a68dbc5b-9fff-4e90-9f6a-935bf39b4faf.png)
+![config](https://user-images.githubusercontent.com/12167134/145277269-72607fbc-b212-4362-866b-5757dc2124e7.png)
 
-Configuration dialog, with the application dark theme.
+Configuration dialog in Spanish with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/132100169-dc03717f-1206-4abe-b6f6-a5bba7b0a28e.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/145277271-8559bfb0-d4f3-4a2b-9125-8f04efa429b5.png)
 
 Weather dialog, showing the current weather tab. 
 
