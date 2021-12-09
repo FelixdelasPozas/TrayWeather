@@ -501,7 +501,7 @@ QString temperatureIconString(const Configuration &c);
  */
 QString temperatureIconText(const Configuration &c);
 
-/** \class RichTextComboBox
+/** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.
  *
  */
@@ -517,6 +517,9 @@ class CustomComboBox
     : QComboBox(parent)
     {};
 
+    /** \brief CustomComboBox class virtual destructor.
+     *
+     */
     virtual ~CustomComboBox()
     {};
 

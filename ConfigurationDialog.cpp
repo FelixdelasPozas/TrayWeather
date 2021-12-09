@@ -49,6 +49,9 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   setupUi(this);
 
+  m_tooltipList->setItemDelegate(new RichTextItemDelegate());
+  m_tooltipValueCombo->setItemDelegate(new RichTextItemDelegate());
+
   setConfiguration(configuration);
 }
 
@@ -76,13 +79,13 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
         message = tr("Invalid reply from Geo-Locator server.\nCouldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
         details = reply->errorString();
 
-        auto box = std::make_shared<QMessageBox>(this);
-        box->setWindowTitle(tr("Network Error"));
-        box->setWindowIcon(QIcon(":/TrayWeather/application.ico"));
-        box->setDetailedText(details);
-        box->setText(message);
-        box->setBaseSize(400, 400);
-        box->exec();
+        QMessageBox box(this);
+        box.setWindowTitle(tr("Network Error"));
+        box.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+        box.setDetailedText(details);
+        box.setText(message);
+        box.setBaseSize(400, 400);
+        box.exec();
       }
     }
 
@@ -192,14 +195,13 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     }
   }
 
-  auto box = std::make_shared<QMessageBox>(this);
-  box->setWindowTitle(tr("Network Error"));
-  box->setWindowIcon(QIcon(":/TrayWeather/application.ico"));
-  box->setDetailedText(details);
-  box->setText(message);
-  box->setBaseSize(400, 400);
-
-  box->exec();
+  QMessageBox box(this);
+  box.setWindowTitle(tr("Network Error"));
+  box.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+  box.setDetailedText(details);
+  box.setText(message);
+  box.setBaseSize(400, 400);
+  box.exec();
 
   reply->deleteLater();
 }
@@ -662,9 +664,6 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_tooltipList->setCurrentRow(0);
   m_tooltipValueCombo->setCurrentIndex(0);
 
-  m_tooltipList->setItemDelegate(new RichTextItemDelegate());
-  m_tooltipValueCombo->setItemDelegate(new RichTextItemDelegate());
-
   QPixmap icon(QSize(64,64));
   icon.fill(configuration.trayTextColor);
   m_trayTempColor->setIcon(QIcon(icon));
@@ -820,7 +819,7 @@ void ConfigurationDialog::onTooltipTextDeleted()
 //--------------------------------------------------------------------
 void ConfigurationDialog::onTooltipTextMoved()
 {
-  auto button = qobject_cast<QPushButton *>(sender());
+  auto button = qobject_cast<QToolButton *>(sender());
   if(!button) return;
 
   auto row = m_tooltipList->currentRow();

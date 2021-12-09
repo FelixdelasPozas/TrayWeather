@@ -879,18 +879,19 @@ void RichTextItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
   QStyleOptionViewItemV4 optionV4 = option;
   initStyleOption(&optionV4, index);
 
-  QStyle *style = optionV4.widget? optionV4.widget->style() : QApplication::style();
+  auto style = optionV4.widget ? optionV4.widget->style() : QApplication::style();
 
   QTextDocument doc;
   doc.setHtml(optionV4.text);
 
-  /// Painting item without text
+  // Painting item without text
   optionV4.text = QString();
   style->drawControl(QStyle::CE_ItemViewItem, &optionV4, painter);
 
   QAbstractTextDocumentLayout::PaintContext ctx;
+  ctx.palette = optionV4.palette;
 
-  QRect textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &optionV4);
+  const auto textRect = style->subElementRect(QStyle::SE_ItemViewItemText, &optionV4);
   painter->save();
   painter->translate(textRect.topLeft());
   painter->setClipRect(textRect.translated(-textRect.topLeft()));
@@ -913,15 +914,27 @@ QSize RichTextItemDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
 void CustomComboBox::paintEvent(QPaintEvent *e)
 {
   const auto idx = this->currentIndex();
-  const auto text = this->itemData(idx, Qt::DisplayRole).toString();
-  this->setItemData(idx, QString(), Qt::DisplayRole);
+
+  QString text;
+  if(idx != -1)
+  {
+    text = this->itemData(idx, Qt::DisplayRole).toString();
+    this->setItemData(idx, QString(), Qt::DisplayRole);
+  }
 
   QComboBox::paintEvent(e);
+
+  if(idx == -1) return;
 
   this->setItemData(idx, text, Qt::DisplayRole);
 
   QPainter p(this);
+  p.setClipRect(rect());
+
+  QAbstractTextDocumentLayout::PaintContext ctx;
+  ctx.palette = this->parentWidget()->palette();
+
   QTextDocument doc;
   doc.setHtml(text);
-  doc.drawContents(&p, rect());
+  doc.documentLayout()->draw(&p, ctx);
 }

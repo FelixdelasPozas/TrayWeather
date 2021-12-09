@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>474</width>
-    <height>542</height>
+    <width>500</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
    <item>
     <widget class="QTabWidget" name="m_tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -1243,7 +1243,7 @@ QGroupBox::title {
           <item>
            <widget class="QLabel" name="label_23">
             <property name="text">
-             <string>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, tob to bottom of the list.</string>
+             <string>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
@@ -1270,7 +1270,13 @@ QGroupBox::title {
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="m_tooltipAdd">
+             <widget class="QToolButton" name="m_tooltipAdd">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="toolTip">
                <string>Add value to tooltip text</string>
               </property>
@@ -1307,7 +1313,7 @@ QGroupBox::title {
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="m_tooltipUp">
+             <widget class="QToolButton" name="m_tooltipUp">
               <property name="toolTip">
                <string>Move value up.</string>
               </property>
@@ -1321,7 +1327,7 @@ QGroupBox::title {
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="m_tooltipDown">
+             <widget class="QToolButton" name="m_tooltipDown">
               <property name="toolTip">
                <string>Move value down.</string>
               </property>
@@ -1335,7 +1341,7 @@ QGroupBox::title {
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="m_tooltipDelete">
+             <widget class="QToolButton" name="m_tooltipDelete">
               <property name="toolTip">
                <string>Remove value from tooltip text</string>
               </property>
