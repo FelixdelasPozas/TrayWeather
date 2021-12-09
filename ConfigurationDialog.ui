@@ -1243,7 +1243,7 @@ QGroupBox::title {
           <item>
            <widget class="QLabel" name="label_23">
             <property name="text">
-             <string>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, tob to bottom of the list.</string>
+             <string>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>
