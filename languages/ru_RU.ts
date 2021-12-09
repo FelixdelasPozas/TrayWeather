@@ -464,37 +464,37 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1246"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, tob to bottom of the list.</source>
-        <translation>Значения, отображаемые во всплывающей подсказке, являются текущими значениями или ближайшим прогнозным значением к текущему местному времени. Значения отображаются в порядке сверху вниз в списке.</translation>
+        <translation>Величины, отображаемые во всплывающей подсказке, являются текущими или ближайшими прогнозными к текущему местному времени. Порядок величин соответствует порядку списка, т.е. сверху вниз.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1261"/>
         <source>Value:</source>
-        <translation>Ценить:</translation>
+        <translation>Величина:</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1268"/>
         <source>Value to add to the list.</source>
-        <translation>Значение, которое нужно добавить в список.</translation>
+        <translation>Величина, которую можно добавить в список.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1275"/>
         <source>Add value to tooltip text</source>
-        <translation>Добавьте значение в текст всплывающей подсказки</translation>
+        <translation>Добавить величину в текст всплывающей подсказки</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1312"/>
         <source>Move value up.</source>
-        <translation>Переместите значение вверх.</translation>
+        <translation>Сдвинуть величину вверх.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1326"/>
         <source>Move value down.</source>
-        <translation>Сдвинуть значение вниз.</translation>
+        <translation>Сдвинуть величину вниз.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1340"/>
         <source>Remove value from tooltip text</source>
-        <translation>Удалить значение из текста всплывающей подсказки</translation>
+        <translation>Удалить величину из текста всплывающей подсказки</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1360"/>
@@ -519,7 +519,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="844"/>
         <source>Visuals</source>
-        <translation>Визуальные эффекты</translation>
+        <translation>Оформление</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1424"/>
@@ -980,7 +980,7 @@ The application will exit now.</source>
     <message>
         <location filename="../Utils.h" line="114"/>
         <source>Chinese (Simplified)</source>
-        <translation>Упрощенный китайский</translation>
+        <translation>Китайский (упрощённый)</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="356"/>
