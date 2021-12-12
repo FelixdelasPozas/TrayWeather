@@ -587,6 +587,7 @@ void load(Configuration &configuration)
   configuration.precUnits        = static_cast<PrecipitationUnits>(settings.value(CUSTOM_PREC_UNITS, units).toInt());
   configuration.windUnits        = static_cast<WindUnits>(settings.value(CUSTOM_WIND_UNITS, units).toInt());
 
+  configuration.tooltipFields.clear();
   const auto fields = settings.value(TOOLTIP_FIELDS, "0,1,2").toString().split(',');
   bool ok = false;
   for(int i = 0; i < fields.size(); ++i)
