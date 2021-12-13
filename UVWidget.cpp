@@ -80,7 +80,7 @@ UVWidget::UVWidget(const UVData &data)
       break;
   }
 
-  const auto color = index == 0 ? "black":uvColor(data.idx).name();
+  const auto color = index == 0 ? "" : uvColor(data.idx).name();
   m_level->setText(QString("<font color=%1><b>%2</b></font>").arg(color).arg(index));
   m_description->setText(QString("<b><font color=%1>%2</font></b>").arg(color).arg(indexStr));
   m_suggestion->setText(suggestionStr);

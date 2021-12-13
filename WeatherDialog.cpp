@@ -280,19 +280,29 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
 
   // Forecast tab
+  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
+
   auto axisX = new QDateTimeAxis();
   axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText(tr("Day (Hour)"));
+  axisX->setGridLineVisible(true);
+  axisX->setGridLineColor(linesColor);
 
   auto axisYTemp = new QValueAxis();
   axisYTemp->setLabelFormat("%i");
   axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(tempUnits));
+  axisYTemp->setGridLineVisible(true);
+  axisYTemp->setGridLineColor(linesColor);
 
   auto axisYPrec = new QValueAxis();
   axisYPrec->setLabelFormat("%.2f");
   axisYPrec->setTitleText(tr("%1 in %2").arg(precStr).arg(accuStr));
+  axisYPrec->setGridLineVisible(true);
+  axisYPrec->setGridLineColor(linesColor);
+
+  const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
 
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
@@ -304,6 +314,8 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   forecastChart->addAxis(axisX, Qt::AlignBottom);
   forecastChart->addAxis(axisYTemp, Qt::AlignLeft);
   forecastChart->addAxis(axisYPrec, Qt::AlignRight);
+  forecastChart->setBackgroundVisible(false);
+  forecastChart->setTheme(theme);
 
   QPen pen;
   pen.setWidth(2);
@@ -395,6 +407,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   auto oldChart = m_weatherChart->chart();
   m_weatherChart->setChart(forecastChart);
   m_weatherChart->chart()->zoomReset();
+  m_weatherChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
 
   m_reset->setEnabled(false);
 
@@ -672,18 +685,23 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   m_air_quality->setText(qualityStr);
 
+  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
+
   auto axisX = new QDateTimeAxis();
   axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText(tr("Day (Hour)"));
-  axisX->setGridLineColor(Qt::gray);
+  axisX->setGridLineVisible(true);
+  axisX->setGridLineColor(linesColor);
 
   auto axisY = new QValueAxis();
   axisY->setLabelFormat("%i");
   axisY->setTitleText(tr("Concentration in %1").arg(CONCENTRATION_UNITS));
-  axisY->setGridLineVisible(true);
-  axisY->setGridLineColor(Qt::gray);
+  axisX->setGridLineVisible(true);
+  axisX->setGridLineColor(linesColor);
+
+  const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
 
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
@@ -693,6 +711,8 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   forecastChart->setAnimationOptions(QChart::AllAnimations);
   forecastChart->addAxis(axisX, Qt::AlignBottom);
   forecastChart->addAxis(axisY, Qt::AlignLeft);
+  forecastChart->setBackgroundVisible(false);
+  forecastChart->setTheme(theme);
 
   QPen pens[8];
 
@@ -780,6 +800,7 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   auto oldChart = m_pollutionChart->chart();
   m_pollutionChart->setChart(forecastChart);
   m_pollutionChart->chart()->zoomReset();
+  m_pollutionChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
 
   m_reset->setEnabled(false);
 
@@ -840,18 +861,23 @@ void WeatherDialog::setUVData(const UV &data)
   }
   m_uvi->setText(indexStr);
 
+  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
+
   auto axisX = new QDateTimeAxis();
   axisX->setTickCount(13);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText(tr("Day (Hour)"));
-  axisX->setGridLineColor(Qt::gray);
+  axisX->setGridLineVisible(true);
+  axisX->setGridLineColor(linesColor);
 
   auto axisY = new QValueAxis();
   axisY->setLabelFormat("%i");
   axisY->setTitleText(tr("Ultraviolet radiation index"));
   axisY->setGridLineVisible(true);
-  axisY->setGridLineColor(Qt::gray);
+  axisY->setGridLineColor(linesColor);
+
+  const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
 
   auto uvChart = new QChart();
   uvChart->legend()->setVisible(true);
@@ -861,6 +887,8 @@ void WeatherDialog::setUVData(const UV &data)
   uvChart->setAnimationOptions(QChart::AllAnimations);
   uvChart->addAxis(axisX, Qt::AlignBottom);
   uvChart->addAxis(axisY, Qt::AlignLeft);
+  uvChart->setBackgroundVisible(false);
+  uvChart->setTheme(theme);
 
   QPen pen;
   pen.setWidth(2);
@@ -890,6 +918,7 @@ void WeatherDialog::setUVData(const UV &data)
     m_uvLine->append(msec, entry.idx);
 
     auto color = uvColor(entry.idx);
+    if(static_cast<int>(std::nearbyint(entry.idx)) == 0) color = m_config->lightTheme ? this->palette().base().color() : QColor("#232629");
     color.setAlpha(210);
     plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), color);
 
@@ -934,6 +963,7 @@ void WeatherDialog::setUVData(const UV &data)
   auto oldChart = m_uvChart->chart();
   m_uvChart->setChart(uvChart);
   m_uvChart->chart()->zoomReset();
+  m_uvChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
 
   m_reset->setEnabled(false);
 
@@ -1050,6 +1080,7 @@ void WeatherDialog::onUVAreaChanged(QDateTime begin, QDateTime end)
     const auto msec = dtTime.toMSecsSinceEpoch();
 
     auto color = uvColor(entry.idx);
+    if(static_cast<int>(std::nearbyint(entry.idx)) == 0) color = m_config->lightTheme ? this->palette().base().color() : QColor("#232629");
     color.setAlpha(210);
 
     if(msec < begin.toMSecsSinceEpoch())
