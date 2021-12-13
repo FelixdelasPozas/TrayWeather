@@ -35,6 +35,7 @@ class QNetworkReply;
 class QNetworkAccessManager;
 class AboutDialog;
 class TrayWeather;
+class AlertDialog;
 
 /** \class NativeEventFilter
  * \brief Filters the events from windows to catch the one for 'wake up' signal.
@@ -135,6 +136,16 @@ class TrayWeather
      */
     void onLanguageChanged(const QString &lang);
 
+    /** \brief Updates the alert data when the user closes an AlertDialog
+     *
+     */
+    void onAlertDialogClosed();
+
+    /** \brief Creates or raises the alert dialog.
+     *
+     */
+    void showAlert();
+
   private:
     /** \brief Updates the tray icon tooltip.
      *
@@ -221,20 +232,23 @@ class TrayWeather
      */
     void processOneCallData(const QByteArray &data);
 
-    Configuration                         &m_configuration;   /** application configuration.                        */
-    std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                  */
-    Forecast                               m_data;            /** list of forecast data.                            */
-    ForecastData                           m_current;         /** weather conditions now.                           */
-    Pollution                              m_pData;           /** list pollution data.                              */
-    UV                                     m_vData;           /** list of uv data.                                  */
-    QTimer                                 m_timer;           /** timer for updates and retries.                    */
-    WeatherDialog                         *m_weatherDialog;   /** dialog to show weather and forecast data.         */
-    AboutDialog                           *m_aboutDialog;     /** pointer to current (if any) about dialog.         */
-    ConfigurationDialog                   *m_configDialog;    /** pointer to current (if any) configuration dialog. */
-    QString                                m_DNSIP;           /** DNS IP used for geolocation.                      */
-    QTimer                                 m_updatesTimer;    /** timer to check for application updates.           */
-    QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.           */
-    NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                          */
+    Configuration                         &m_configuration;   /** application configuration.                             */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                       */
+    Forecast                               m_data;            /** list of forecast data.                                 */
+    ForecastData                           m_current;         /** weather conditions now.                                */
+    Pollution                              m_pData;           /** list pollution data.                                   */
+    UV                                     m_vData;           /** list of uv data.                                       */
+    QTimer                                 m_timer;           /** timer for updates and retries.                         */
+    WeatherDialog                         *m_weatherDialog;   /** dialog to show weather and forecast data.              */
+    AboutDialog                           *m_aboutDialog;     /** pointer to current (if any) about dialog.              */
+    ConfigurationDialog                   *m_configDialog;    /** pointer to current (if any) configuration dialog.      */
+    QString                                m_DNSIP;           /** DNS IP used for geolocation.                           */
+    QTimer                                 m_updatesTimer;    /** timer to check for application updates.                */
+    QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.                */
+    NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                               */
+    AlertDialog                           *m_alertsDialog;    /** Alerts dialog.                                         */
+    QJsonObject                            m_lastAlert;       /** Last shown alert.                                      */
+    bool                                   m_lastAlertShown;  /** true if last alert has been shown and false otherwise. */
 
     friend class NativeEventFilter;
 };

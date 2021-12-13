@@ -22,6 +22,7 @@
 #include <AboutDialog.h>
 #include <ConfigurationDialog.h>
 #include <Utils.h>
+#include <AlertDialog.h>
 
 // Qt
 #include <QMessageBox>
@@ -55,6 +56,7 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 , m_configDialog  {nullptr}
 , m_additionalTray{nullptr}
 , m_eventFilter   {this}
+, m_alertsDialog  {nullptr}
 {
   m_timer.setSingleShot(true);
 
@@ -247,6 +249,7 @@ void TrayWeather::showConfiguration()
   m_configuration.language         = configuration.language;
   m_configuration.tooltipFields    = configuration.tooltipFields;
   m_configuration.graphUseRain     = configuration.graphUseRain;
+  m_configuration.showAlerts       = configuration.showAlerts;
 
   bool requestNewData = false;
 
@@ -742,6 +745,15 @@ void TrayWeather::createMenuEntries()
 
   menu->addSeparator();
 
+  auto alertAction = new QAction(QIcon(":/TrayWeather/alert.svg"), tr("Last alert..."), menu);
+  connect(alertAction, SIGNAL(triggered(bool)), this, SLOT(showAlert()));
+
+  menu->addAction(alertAction);
+
+  alertAction->setEnabled(false);
+
+  menu->addSeparator();
+
   auto config = new QAction{QIcon{":/TrayWeather/settings.svg"}, tr("Configuration..."), menu};
   connect(config, SIGNAL(triggered(bool)), this, SLOT(showConfiguration()));
 
@@ -1106,9 +1118,10 @@ void TrayWeather::translateMenu()
   actions.at(3)->setText(tr("UV..."));
   actions.at(4)->setText(tr("Maps..."));
   actions.at(6)->setText(tr("Refresh..."));
-  actions.at(8)->setText(tr("Configuration..."));
-  actions.at(10)->setText(tr("About..."));
-  actions.at(11)->setText(tr("Quit"));
+  actions.at(8)->setText(tr("Last alert..."));
+  actions.at(10)->setText(tr("Configuration..."));
+  actions.at(12)->setText(tr("About..."));
+  actions.at(13)->setText(tr("Quit"));
 }
 
 //--------------------------------------------------------------------
@@ -1373,20 +1386,33 @@ void TrayWeather::processOneCallData(const QByteArray &data)
 
     updateTooltip();
 
-//    if(jsonObj.keys().contains("alerts"))
-//    {
-//      auto alerts = jsonObj.value("alerts").toObject();
-//      if(!alerts.value("event").toString().isEmpty())
-//      {
-//        qDebug() << "ALERT";
-//        qDebug() << "sender: " << alerts.value("sender_name").toString();
-//        qDebug() << "event:  " << alerts.value("event").toString();
-//        qDebug() << "start:  " << alerts.value("start").toInt(0);
-//        qDebug() << "end:    " << alerts.value("end").toInt(0);
-//        qDebug() << "desc:   " << alerts.value("description").toString();
-//        qDebug() << "tags:   " << alerts.value("tags").toString();
-//      }
-//    }
+    if(m_configuration.showAlerts)
+    {
+      if(jsonObj.keys().contains("alerts"))
+      {
+        const auto alert = jsonObj.value("alerts").toObject();
+
+        const bool isSame = (alert.value("event") == m_lastAlert.value("event") &&
+                             alert.value("description") == m_lastAlert.value("description"));
+        const bool isEmpty = alert.value("event").toString("").isEmpty();
+
+        m_lastAlert = alert;
+
+        contextMenu()->actions().at(8)->setEnabled(!isEmpty);
+
+        if((!isSame || !m_lastAlertShown) && !isEmpty)
+        {
+          showAlert();
+        }
+      }
+      else
+      {
+        contextMenu()->actions().at(8)->setEnabled(false);
+        m_lastAlert = QJsonObject();
+        m_lastAlertShown = false;
+        onAlertDialogClosed();
+      }
+    }
   }
 
   if(!m_vData.isEmpty() && m_weatherDialog)
@@ -1406,4 +1432,35 @@ bool NativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *mes
   }
 
   return false;
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::onAlertDialogClosed()
+{
+  if(m_alertsDialog)
+  {
+    m_lastAlertShown = m_alertsDialog->showAgain();
+
+    if(m_alertsDialog->isVisible())
+    {
+      m_alertsDialog->blockSignals(true);
+      m_alertsDialog->close();
+    }
+
+    delete m_alertsDialog;
+    m_alertsDialog = nullptr;
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::showAlert()
+{
+  if(!m_alertsDialog)
+  {
+    m_alertsDialog = new AlertDialog();
+    connect(m_alertsDialog, SIGNAL(finished(int)), this, SLOT(onAlertDialogClosed()));
+  }
+
+  m_alertsDialog->setAlertData(m_lastAlert);
+  m_alertsDialog->show();
 }

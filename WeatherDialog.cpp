@@ -406,8 +406,8 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
   auto oldChart = m_weatherChart->chart();
   m_weatherChart->setChart(forecastChart);
-  m_weatherChart->chart()->zoomReset();
   m_weatherChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
+  m_weatherChart->chart()->zoomReset();
 
   m_reset->setEnabled(false);
 
@@ -799,8 +799,8 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   auto oldChart = m_pollutionChart->chart();
   m_pollutionChart->setChart(forecastChart);
-  m_pollutionChart->chart()->zoomReset();
   m_pollutionChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
+  m_pollutionChart->chart()->zoomReset();
 
   m_reset->setEnabled(false);
 
@@ -962,8 +962,8 @@ void WeatherDialog::setUVData(const UV &data)
 
   auto oldChart = m_uvChart->chart();
   m_uvChart->setChart(uvChart);
-  m_uvChart->chart()->zoomReset();
   m_uvChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
+  m_uvChart->chart()->zoomReset();
 
   m_reset->setEnabled(false);
 

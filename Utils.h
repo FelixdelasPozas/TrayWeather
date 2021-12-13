@@ -154,6 +154,7 @@ struct Configuration
     QString            language;        /** application language.                                       */
     QList<TooltipText> tooltipFields;   /** tooltip fields in order.                                    */
     bool               graphUseRain;    /** true if the forecast graph uses rain data, false if snow.   */
+    bool               showAlerts;      /** true to show weather alerts and false otherwise.            */
     TemperatureUnits   tempUnits;       /** custom temperature units.                                   */
     PressureUnits      pressureUnits;   /** custom pressure units.                                      */
     PrecipitationUnits precUnits;       /** custom precipitation units.                                 */
@@ -197,6 +198,7 @@ struct Configuration
     , language        {"en_EN"}
     , tooltipFields   {TooltipText::LOCATION, TooltipText::WEATHER, TooltipText::TEMPERATURE}
     , graphUseRain    {true}
+    , showAlerts      {true}
     , tempUnits       {TemperatureUnits::CELSIUS}
     , pressureUnits   {PressureUnits::HPA}
     , precUnits       {PrecipitationUnits::MM}

@@ -239,6 +239,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.precUnits      = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
   configuration.windUnits      = static_cast<WindUnits>(m_windCombo->currentIndex());
   configuration.graphUseRain   = m_rainGraph->isChecked();
+  configuration.showAlerts     = m_showAlerts->isChecked();
 
   configuration.tooltipFields.clear();
   for(int row = 0; row < m_tooltipList->count(); ++row)
@@ -637,6 +638,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 
   m_rainGraph->setChecked(configuration.graphUseRain);
   m_snowGraph->setChecked(!configuration.graphUseRain);
+
+  m_showAlerts->setChecked(configuration.showAlerts);
 
   for(int i = 0; i < configuration.tooltipFields.size(); ++i)
   {
