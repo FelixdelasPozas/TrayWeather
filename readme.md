@@ -47,7 +47,7 @@ Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/re
 Tray icon showing the current weather icon. At night and on clear sky days it shows the current moon phase as the weather icon.
 
 ![icon](https://cloud.githubusercontent.com/assets/12167134/20938095/f03e2474-bbe9-11e6-83b9-e2bc8c716bf4.jpg)
-![icon_menu](https://user-images.githubusercontent.com/12167134/127046992-9473dbe7-faf1-41d2-9120-319af72ce33a.png)
+![icon_menu](https://user-images.githubusercontent.com/12167134/145942029-01678f72-11ae-4b55-b8f4-dbbc70183341.png)
 
 Tray icon can also show the temperature alone or composed with the weather icon. It can also be configured to show two tray icons, one with the temperature and other with the weather icon. 
 The temperature text color can be set by the user or can change dynamically between a range of colors according to the current value. 
@@ -59,13 +59,13 @@ can be enabled here. A 'roaming' mode can be enabled, where the geographical coo
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
 The tray and application theme configuration can be found here in the miscellaneous options. Also the frequency of checks for updates can be set here.
 
-Configuration dialog in English with the application light theme.
+Configuration dialog in Spanish with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/145436947-c78974f0-d3f5-481c-b96e-de4741bc9175.png)
+![config](https://user-images.githubusercontent.com/12167134/145942021-b2b691da-0dde-4f14-9924-82fbd38852d3.png)
 
-Configuration dialog in Spanish with the application dark theme.
+Configuration dialog in English with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/145436949-87a6d3ad-ed96-4f99-9069-ee5c49139df9.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/145942026-89cfeb5e-0bac-4728-b19e-89f6eb4a67a2.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -110,7 +110,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 340 texts.
+and making a pull request. Currently it's just 350 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 
@@ -134,7 +134,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.13.2
+**Version**: 1.14.0
 
 **Status**: finished.
 
@@ -142,8 +142,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |   9           | 802         |   344            | 4074 |
-| C/C++ Header                 |   9           | 239         |   674            |  797 |
+| C++                          |  10           | 835         |   354            | 4202 |
+| C/C++ Header                 |  10           | 253         |   715            |  825 |
 | HTML                         |   1           |  33         |     0            |  150 |
-| CMake                        |   1           |  18         |    11            |  113 |
-| **Total**                    | **20**        | **1092**    | **1029**         | **5134** |
+| CMake                        |   1           |  18         |    11            |  115 |
+| **Total**                    | **22**        | **1139**    | **1080**         | **5292** |
