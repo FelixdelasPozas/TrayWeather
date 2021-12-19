@@ -21,7 +21,7 @@
     <message>
         <location filename="../AboutDialog.ui" line="121"/>
         <source>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</source>
-        <translation>Домашняя страница расположена на &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
+        <translation>Домашняя страница в &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="177"/>
@@ -31,17 +31,17 @@
     <message>
         <location filename="../AboutDialog.ui" line="357"/>
         <source>Icons courtesy of</source>
-        <translation>Значки предоставлены</translation>
+        <translation>Значки любезно предоставлены</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="398"/>
         <source>IP Geolocation provided by</source>
-        <translation>Геолокация IP предоставлена</translation>
+        <translation>Геолокация IP обеспечена</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="439"/>
         <source>Weather data provided by</source>
-        <translation>Данные погоды предоставлены</translation>
+        <translation>Данные погоды обеспечены</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="464"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../AboutDialog.cpp" line="44"/>
         <source>Compiled on </source>
-        <translation>Скомпилировано </translation>
+        <translation>Дата сборки </translation>
     </message>
 </context>
 <context>
@@ -136,7 +136,7 @@
         <location filename="../ConfigurationDialog.ui" line="83"/>
         <location filename="../ConfigurationDialog.ui" line="86"/>
         <source>Latitude value</source>
-        <translation>Широта</translation>
+        <translation>Значение широты</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="76"/>
@@ -150,7 +150,7 @@
         <location filename="../ConfigurationDialog.ui" line="118"/>
         <location filename="../ConfigurationDialog.ui" line="121"/>
         <source>Longitude value</source>
-        <translation>Долгота</translation>
+        <translation>Значение долготы</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="111"/>
