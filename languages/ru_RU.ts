@@ -21,7 +21,7 @@
     <message>
         <location filename="../AboutDialog.ui" line="121"/>
         <source>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</source>
-        <translation>Домашняя страница расположена на &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
+        <translation>Домашняя страница в &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="177"/>
@@ -31,17 +31,17 @@
     <message>
         <location filename="../AboutDialog.ui" line="357"/>
         <source>Icons courtesy of</source>
-        <translation>Значки предоставлены</translation>
+        <translation>Значки любезно предоставлены</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="398"/>
         <source>IP Geolocation provided by</source>
-        <translation>Геолокация IP предоставлена</translation>
+        <translation>Геолокация IP обеспечена</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="439"/>
         <source>Weather data provided by</source>
-        <translation>Данные погоды предоставлены</translation>
+        <translation>Данные погоды обеспечены</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="464"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="../AboutDialog.ui" line="515"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
-        <translation>Если вашего языка нет, вы можете помочь с &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;переводом&lt;/a&gt;.</translation>
+        <translation>Если ваш язык отсутствует, вы можете помочь с &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;переводом&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../AboutDialog.cpp" line="42"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../AboutDialog.cpp" line="44"/>
         <source>Compiled on </source>
-        <translation>Скомпилировано </translation>
+        <translation>Дата сборки </translation>
     </message>
 </context>
 <context>
@@ -136,7 +136,7 @@
         <location filename="../ConfigurationDialog.ui" line="83"/>
         <location filename="../ConfigurationDialog.ui" line="86"/>
         <source>Latitude value</source>
-        <translation>Широта</translation>
+        <translation>Значение широты</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="76"/>
@@ -150,7 +150,7 @@
         <location filename="../ConfigurationDialog.ui" line="118"/>
         <location filename="../ConfigurationDialog.ui" line="121"/>
         <source>Longitude value</source>
-        <translation>Долгота</translation>
+        <translation>Значение долготы</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="111"/>
@@ -503,7 +503,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1224"/>
         <source>Configure the tray icon tooltip text. </source>
-        <translation>Настройте текст всплывающей подсказки значка в трее. </translation>
+        <translation>Настройка текста всплывающей подсказки значка в трее. </translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1240"/>
@@ -568,7 +568,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1246"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
-        <translation>Величины, отображаемые во всплывающей подсказке, являются текущими или ближайшими прогнозными к текущему местному времени. Порядок величин соответствует порядку списка, т.е. сверху вниз.</translation>
+        <translation>Величины во всплывающей подсказке являются текущими или ближайшими прогнозными к фактическому местному времени. Порядок величин в подсказке соответствует порядку из списка ниже.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1430"/>
@@ -638,7 +638,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1570"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
-        <translation>Если вашего языка нет, вы можете помочь с &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;переводом&lt;/a&gt;.</translation>
+        <translation>Если ваш язык отсутствует, вы можете помочь с &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;переводом&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1621"/>
@@ -648,7 +648,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1628"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>Ок</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="127"/>
@@ -1384,7 +1384,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="148"/>
         <source>Snow accumulation (last 3 hours)</source>
-        <translation>Количество снега (за 3 последних часа)</translation>
+        <translation>Количество снега (за последние 3 часа)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="161"/>
@@ -1402,7 +1402,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="180"/>
         <source>Rain accumulation (last 3 hours)</source>
-        <translation>Количество дождя (за 3 последних часа)</translation>
+        <translation>Количество дождя (за последние 3 часа)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="193"/>
@@ -1575,7 +1575,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="684"/>
         <source>Ok</source>
-        <translation>Хорошо</translation>
+        <translation>Ок</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="68"/>
