@@ -681,6 +681,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_roamingCheck->setChecked(configuration.roamingEnabled);
   m_apikey->setText(configuration.owm_apikey);
   m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
+  m_trayIconTheme->setCurrentIndex(static_cast<int>(configuration.iconTheme));
+
   m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
   m_fontSize->setValue(configuration.trayTextSize);
   m_updatesCombo->setCurrentIndex(static_cast<int>(configuration.update));
