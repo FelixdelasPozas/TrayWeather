@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 480 480"
+   version="1.1"
+   id="svg32"
+   sodipodi:docname="50d.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata36">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
+     id="namedview34"
+     showgrid="false"
+     inkscape:zoom="1.35"
+     inkscape:cx="240"
+     inkscape:cy="240"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg32"
+     inkscape:document-rotation="0" />
+  <defs
+     id="defs20">
+    <clipPath
+       id="a">
+      <rect
+         y="7.5"
+         width="64"
+         height="32"
+         fill="none"
+         id="rect2" />
+    </clipPath>
+    <linearGradient
+       id="b"
+       x1="26.75"
+       y1="29.91"
+       x2="37.25"
+       y2="48.09"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#fbbf24"
+         id="stop5" />
+      <stop
+         offset="0.45"
+         stop-color="#fbbf24"
+         id="stop7" />
+      <stop
+         offset="1"
+         stop-color="#f59e0b"
+         id="stop9" />
+    </linearGradient>
+    <linearGradient
+       id="c"
+       x1="15.5"
+       y1="44"
+       x2="48.5"
+       y2="44"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#d4d7dd"
+         id="stop12" />
+      <stop
+         offset="0.45"
+         stop-color="#d4d7dd"
+         id="stop14" />
+      <stop
+         offset="1"
+         stop-color="#bec1c6"
+         id="stop16" />
+    </linearGradient>
+    <linearGradient
+       id="d"
+       y1="51"
+       y2="51"
+       xlink:href="#c" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#c"
+       id="linearGradient868"
+       gradientUnits="userSpaceOnUse"
+       x1="15.5"
+       y1="44"
+       x2="48.5"
+       y2="44" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#c"
+       id="linearGradient868-6"
+       gradientUnits="userSpaceOnUse"
+       x1="15.5"
+       y1="44"
+       x2="48.5"
+       y2="44" />
+    <linearGradient
+       id="d-5"
+       y1="51"
+       y2="51"
+       xlink:href="#c" />
+  </defs>
+  <g
+     clip-path="url(#a)"
+     id="g26"
+     transform="matrix(9,0,0,9,-48,-63.75)" />
+  <g
+     id="g902"
+     transform="matrix(1.4,0,0,1.4,-94.444454,-184.18056)">
+    <line
+       x1="16.753088"
+       y1="30.496914"
+       x2="46.753086"
+       y2="30.496914"
+       fill="none"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="3"
+       stroke="url(#c)"
+       id="line28-5"
+       style="stroke:url(#linearGradient868-6)"
+       transform="matrix(9,0,0,9,-48,-63.75)" />
+    <line
+       x1="16.753088"
+       y1="37.331276"
+       x2="46.753086"
+       y2="37.331276"
+       fill="none"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="3"
+       stroke="url(#d)"
+       id="line30-9"
+       style="stroke:url(#d-5)"
+       transform="matrix(9,0,0,9,-48,-63.75)" />
+    <line
+       x1="105"
+       y1="333.74075"
+       x2="375"
+       y2="333.74075"
+       fill="none"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="27"
+       stroke="url(#c)"
+       id="line28"
+       style="stroke:url(#linearGradient868)" />
+    <line
+       x1="105"
+       y1="395.25"
+       x2="375"
+       y2="395.25"
+       fill="none"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="27"
+       stroke="url(#d)"
+       id="line30"
+       style="stroke:url(#d)" />
+  </g>
+</svg>
