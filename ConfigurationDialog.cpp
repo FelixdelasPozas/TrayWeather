@@ -35,7 +35,10 @@
 #include <QPainter>
 #include <QSettings>
 #include <QDir>
-#include <iostream>
+#include <QMouseEvent>
+
+// C++
+#include <chrono>
 
 const char SELECTED[] = "Selected";
 
@@ -224,6 +227,8 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.roamingEnabled = m_roamingCheck->isChecked();
   configuration.lightTheme     = m_theme->currentIndex() == 0;
   configuration.iconType       = static_cast<unsigned int>(m_trayIconType->currentIndex());
+  configuration.iconTheme      = static_cast<unsigned int>(m_trayIconTheme->currentIndex());
+  configuration.iconThemeColor = QColor(m_iconThemeColor->property("iconColor").toString());
   configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
   configuration.trayTextMode   = m_fixed->isChecked();
   configuration.trayTextSize   = m_fontSize->value();
@@ -263,6 +268,15 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
 //--------------------------------------------------------------------
 void ConfigurationDialog::requestGeolocation()
 {
+  // protect from abuse
+  static auto lastRequest = std::chrono::steady_clock::now();
+  const auto now = std::chrono::steady_clock::now();
+  const std::chrono::duration<double> interval = now - lastRequest;
+  const auto duration = interval.count();
+
+  if(duration > 0 && duration < 2.5) return;
+  lastRequest = now;
+
   if(m_useDNS->isChecked() && m_DNSIP.isEmpty())
   {
     requestDNSIPGeolocation();
@@ -283,6 +297,15 @@ void ConfigurationDialog::requestGeolocation()
 //--------------------------------------------------------------------
 void ConfigurationDialog::requestDNSIPGeolocation()
 {
+  // protect from abuse
+  static auto lastRequest = std::chrono::steady_clock::now();
+  const auto now = std::chrono::steady_clock::now();
+  const std::chrono::duration<double> interval = now - lastRequest;
+  const auto duration = interval.count();
+
+  if(duration > 0 && duration < 2.5) return;
+  lastRequest = now;
+
   // CSV is easier to parse later.
   m_DNSIP = randomString();
   auto requestAddress = QString("http://%1.edns.ip-api.com/csv").arg(m_DNSIP);
@@ -296,6 +319,15 @@ void ConfigurationDialog::requestDNSIPGeolocation()
 //--------------------------------------------------------------------
 void ConfigurationDialog::requestOpenWeatherMapAPIKeyTest() const
 {
+  // protect from abuse
+  static auto lastRequest = std::chrono::steady_clock::now();
+  const auto now = std::chrono::steady_clock::now();
+  const std::chrono::duration<double> interval = now - lastRequest;
+  const auto duration = interval.count();
+
+  if(duration > 0.1 && duration < 2.5) return;
+  lastRequest = now;
+
   auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_latitude->text())
                                                                                                   .arg(m_longitude->text())
                                                                                                   .arg(m_apikey->text())};
@@ -389,6 +421,15 @@ void ConfigurationDialog::connectSignals()
   connect(m_tooltipList, SIGNAL(currentRowChanged(int)),
           this,          SLOT(onTooltipFieldsRowChanged(int)));
 
+  connect(m_iconSummary, SIGNAL(pressed()),
+          this,          SLOT(onIconSummaryPressed()));
+
+  connect(m_trayIconTheme, SIGNAL(currentIndexChanged(int)),
+          this,            SLOT(onIconThemeIndexChanged(int)));
+
+  connect(m_iconThemeColor, SIGNAL(pressed()),
+          this,             SLOT(onColorButtonClicked()));
+
   for(auto &w: {m_tempCombo, m_pressionCombo, m_windCombo, m_precipitationCombo})
   {
     connect(w, SIGNAL(currentIndexChanged(int)), this, SLOT(onUnitComboChanged(int)));
@@ -479,6 +520,13 @@ void ConfigurationDialog::onColorButtonClicked()
   {
     updateRange();
   }
+  else
+  {
+    if(button == m_iconThemeColor)
+    {
+      onIconThemeIndexChanged(m_trayIconTheme->currentIndex());
+    }
+  }
 }
 
 //--------------------------------------------------------------------
@@ -529,6 +577,9 @@ void ConfigurationDialog::showEvent(QShowEvent *e)
   this->m_tabWidget->setCurrentIndex(0);
 
   QDialog::showEvent(e);
+
+  const auto width = m_trayIconType->width() - m_iconSummary->width() - m_iconThemeColor->width() - 12;
+  m_trayIconTheme->setMinimumWidth(width);
 
   scaleDialog(this);
 }
@@ -601,6 +652,19 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_maxSpinBox->setValue(configuration.maximumValue);
   m_autostart->setChecked(configuration.autostart);
 
+  m_trayIconTheme->clear();
+  for(int i = 0; i < ICON_THEMES.size(); ++i)
+  {
+    m_trayIconTheme->insertItem(i, ICON_THEMES.at(i).name);
+  }
+
+  QPixmap icon(QSize(64,64));
+  icon.fill(configuration.iconThemeColor);
+  m_iconThemeColor->setIcon(QIcon(icon));
+  m_iconThemeColor->setProperty("iconColor", configuration.iconThemeColor.name(QColor::HexArgb));
+
+  onIconThemeIndexChanged(static_cast<int>(configuration.iconTheme));
+
   connectSignals();
 
   m_useManual->setChecked(!configuration.useGeolocation);
@@ -667,7 +731,6 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_tooltipList->setCurrentRow(0);
   m_tooltipValueCombo->setCurrentIndex(0);
 
-  QPixmap icon(QSize(64,64));
   icon.fill(configuration.trayTextColor);
   m_trayTempColor->setIcon(QIcon(icon));
   m_trayTempColor->setProperty("iconColor", configuration.trayTextColor.name(QColor::HexArgb));
@@ -766,7 +829,7 @@ void ConfigurationDialog::disconnectSignals()
              this,           SLOT(onCoordinatesChanged()));
 
   disconnect(m_theme, SIGNAL(currentIndexChanged(int)),
-            this,     SLOT(onThemeIndexChanged(int)));
+             this,     SLOT(onThemeIndexChanged(int)));
 
   disconnect(m_trayTempColor, SIGNAL(clicked()),
              this,            SLOT(onColorButtonClicked()));
@@ -788,6 +851,38 @@ void ConfigurationDialog::disconnectSignals()
 
   disconnect(m_languageCombo, SIGNAL(currentIndexChanged(int)),
              this,            SLOT(onLanguageChanged(int)));
+
+  disconnect(m_unitsComboBox, SIGNAL(currentIndexChanged(int)),
+             this,            SLOT(onUnitsValueChanged(int)));
+
+  disconnect(m_tooltipAdd, SIGNAL(clicked()),
+             this,         SLOT(onTooltipTextAdded()));
+
+  disconnect(m_tooltipDelete, SIGNAL(clicked()),
+             this,            SLOT(onTooltipTextDeleted()));
+
+  disconnect(m_tooltipDown, SIGNAL(clicked()),
+             this,          SLOT(onTooltipTextMoved()));
+
+  disconnect(m_tooltipUp, SIGNAL(clicked()),
+             this,        SLOT(onTooltipTextMoved()));
+
+  disconnect(m_tooltipList, SIGNAL(currentRowChanged(int)),
+             this,          SLOT(onTooltipFieldsRowChanged(int)));
+
+  disconnect(m_iconSummary, SIGNAL(pressed()),
+             this,          SLOT(onIconSummaryPressed()));
+
+  disconnect(m_trayIconTheme, SIGNAL(currentIndexChanged(int)),
+             this,            SLOT(onIconThemeIndexChanged(int)));
+
+  disconnect(m_iconThemeColor, SIGNAL(pressed()),
+             this,             SLOT(onColorButtonClicked()));
+
+  for(auto &w: {m_tempCombo, m_pressionCombo, m_windCombo, m_precipitationCombo})
+  {
+    disconnect(w, SIGNAL(currentIndexChanged(int)), this, SLOT(onUnitComboChanged(int)));
+  }
 }
 
 //--------------------------------------------------------------------
@@ -940,4 +1035,48 @@ void ConfigurationDialog::updateTooltipFieldsButtons()
 
   enabled = m_tooltipList->count() != 0;
   m_tooltipDelete->setEnabled(enabled);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onIconSummaryPressed()
+{
+  const auto color = QColor(m_iconThemeColor->property("iconColor").toString());
+  const auto image = createIconsSummary(m_trayIconTheme->currentIndex(), 32, color);
+  auto summaryWidget = new IconSummaryWidget(image, this);
+
+  const QPoint pos = m_iconSummary->mapToGlobal(QPoint{0,0});
+  summaryWidget->move(pos);
+  summaryWidget->show();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onIconThemeIndexChanged(int idx)
+{
+  const auto iconColor = QColor(m_iconThemeColor->property("iconColor").toString());
+  m_iconSummary->setIcon(QIcon(weatherPixmap("01d", idx, iconColor)));
+  m_iconThemeColor->setEnabled(!ICON_THEMES.at(idx).colored);
+}
+
+//--------------------------------------------------------------------
+IconSummaryWidget::IconSummaryWidget(QPixmap image, QWidget *p)
+: QWidget(p, Qt::WindowFlags())
+{
+  setWindowFlags(Qt::ToolTip|Qt::FramelessWindowHint);
+  setLayout(new QVBoxLayout());
+  layout()->setMargin(3);
+  layout()->setContentsMargins(QMargins{5,5,5,5});
+
+  auto label = new QLabel(this);
+  label->setPixmap(image);
+
+  layout()->addWidget(label);
+}
+
+//--------------------------------------------------------------------
+void IconSummaryWidget::leaveEvent(QEvent *e)
+{
+  QWidget::leaveEvent(e);
+
+  close();
+  deleteLater();
 }

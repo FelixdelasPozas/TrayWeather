@@ -24,6 +24,7 @@
 // C++
 #include <time.h>
 #include <functional>
+#include <list>
 
 // Qt
 #include <QString>
@@ -67,18 +68,18 @@ enum class TooltipText: char { LOCATION = 0, WEATHER, TEMPERATURE, CLOUDINESS, H
                                AIR_CO, AIR_O3, AIR_NO, AIR_NO2, AIR_SO2, AIR_NH3, AIR_PM25,
                                AIR_PM10, MAX };
 
-const QStringList TooltipTextFields = { QObject::tr("Location"), QObject::tr("Current Weather"), QObject::tr("Temperature"),
-                                        QObject::tr("Cloudiness"), QObject::tr("Humidity"), QObject::tr("Ground Pressure"),
-                                        QObject::tr("Wind Speed"), QObject::tr("Sunrise"), QObject::tr("Sunset"),
-                                        QObject::tr("UV"), QObject::tr("Air Quality"),
-                                        QObject::tr("Air Quality (CO)"),
-                                        QObject::tr("Air Quality (O<sub>3</sub>)"),
-                                        QObject::tr("Air Quality (NO)"),
-                                        QObject::tr("Air Quality (NO<sub>2</sub>)"),
-                                        QObject::tr("Air Quality (SO<sub>2</sub>)"),
-                                        QObject::tr("Air Quality (NH<sub>3</sub>)"),
-                                        QObject::tr("Air Quality (PM<sub>2.5</sub>)"),
-                                        QObject::tr("Air Quality (PM<sub>10</sub>)") };
+static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject::tr("Current Weather"), QObject::tr("Temperature"),
+                                               QObject::tr("Cloudiness"), QObject::tr("Humidity"), QObject::tr("Ground Pressure"),
+                                               QObject::tr("Wind Speed"), QObject::tr("Sunrise"), QObject::tr("Sunset"),
+                                               QObject::tr("UV"), QObject::tr("Air Quality"),
+                                               QObject::tr("Air Quality (CO)"),
+                                               QObject::tr("Air Quality (O<sub>3</sub>)"),
+                                               QObject::tr("Air Quality (NO)"),
+                                               QObject::tr("Air Quality (NO<sub>2</sub>)"),
+                                               QObject::tr("Air Quality (SO<sub>2</sub>)"),
+                                               QObject::tr("Air Quality (NH<sub>3</sub>)"),
+                                               QObject::tr("Air Quality (PM<sub>2.5</sub>)"),
+                                               QObject::tr("Air Quality (PM<sub>10</sub>)") };
 
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
@@ -114,6 +115,27 @@ static QList<LanguageData> TRANSLATIONS = {
     { QObject::tr("Chinese (Simplified)"), ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"              }
 };
 
+/** \struct IconThemeData
+ * \brief Contains icon theme information.
+ *
+ */
+struct IconThemeData
+{
+    QString name;
+    QString id;
+    bool    colored;
+    QString author;
+};
+
+/** Icon themes.
+ *
+ */
+static const QList<IconThemeData> ICON_THEMES = { { "FlatIcon Colored",    "flaticon",      true,  "https://www.flaticon.com/" },
+                                                  { "FlatIcon Mono Black", "flaticon_mono", false, "https://www.flaticon.com/"},
+                                                  { "Tempestacons",        "tempestacons",  false, "https://github.com/zagortenay333/Tempestacons" },
+                                                  { "Meteocons",           "meteocons",     true,  "https://github.com/basmilius/weather-icons" }
+};
+
 /** \struct Configuration
  * \brief Contains the application configuration.
  *
@@ -138,6 +160,8 @@ struct Configuration
     bool               roamingEnabled;  /** true if georaphical coordinates are asked on each forecast. */
     bool               lightTheme;      /** true if light theme is being used, false if dark theme.     */
     unsigned int       iconType;        /** 0 if just icon, 1 if just temperature, 2 if both.           */
+    unsigned int       iconTheme;       /** icon theme. See ICON_THEMES var.                            */
+    QColor             iconThemeColor;  /** icon theme color for monocolor themes.                      */
     QColor             trayTextColor;   /** Color of tray temperature text.                             */
     bool               trayTextMode;    /** true for fixed, false for dynamic.                          */
     unsigned int       trayTextSize;    /** base size of tray font in pixels.                           */
@@ -182,6 +206,8 @@ struct Configuration
     , roamingEnabled  {false}
     , lightTheme      {true}
     , iconType        {0}
+    , iconTheme       {0}
+    , iconThemeColor  {Qt::black}
     , trayTextColor   {Qt::white}
     , trayTextMode    {true}
     , trayTextSize    {250}
@@ -310,15 +336,32 @@ const QList<QColor> CONCENTRATION_COLORS{ QColor::fromHsv(0, 255, 255),   QColor
 
 /** \brief Returns the icon corresponding to the given data.
  * \param[in] data forecast data struct.
+ * \param[in] theme Icon theme id.
  *
  */
-const QPixmap weatherPixmap(const ForecastData &data);
+const QPixmap weatherPixmap(const ForecastData &data, const unsigned int theme, const QColor &color = Qt::black);
+
+/** \brief Returns the icon corresponding to the given data.
+ * \param[in] iconId OpenWeatherMap icon id.
+ * \param[in] theme Icon theme id.
+ * \param[in] color Icon color for mono icon themes.
+ *
+ */
+const QPixmap weatherPixmap(const QString &iconId, const unsigned int theme, const QColor &color = Qt::black);
 
 /** \brief Returns the moon phase icon corresponding to the given data.
  * \param[in] data forecast data struct.
+ * \param[in] theme Icon theme id.
  *
  */
-const QPixmap moonPixmap(const ForecastData& data);
+const QPixmap moonPixmap(const ForecastData& data, const unsigned int theme, const QColor &color = Qt::black);
+
+/** \brief Changes the non alpha pixels of the given image with the given color.
+ * \param[in] img Source image reference.
+ * \param[in] color Color to paint.
+ *
+ */
+void paintPixmap(QImage &img, const QColor &color = Qt::black);
 
 /** \brief Parses the information in the entry to the weather data object.
  * \param[in] entry JSON object.
@@ -502,6 +545,23 @@ QString temperatureIconString(const Configuration &c);
  *
  */
 QString temperatureIconText(const Configuration &c);
+
+/** \brief Creates and writes an image with all the theme icons.
+ * \param[in] theme Icon theme index.
+ * \param[in] size Icon size in pixels.
+ * \param[in] color Icon theme color for monocolor themes.
+ *
+ */
+QPixmap createIconsSummary(const unsigned int theme, const int size, const QColor &color);
+
+/** \brief Adds a border of the given color to the given image and returns it. The method
+ * is fast in exchange of an inaccurate border.
+ * \param[in] src Source image.
+ * \param[in] color Color to use for border.
+ * \param[in] size Border size in pixels.
+ *
+ */
+QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int size);
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.

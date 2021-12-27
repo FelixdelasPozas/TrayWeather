@@ -27,7 +27,7 @@
    <item>
     <widget class="QTabWidget" name="m_tabWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -868,7 +868,7 @@ QGroupBox::title {
          <property name="title">
           <string>Tray Icon</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0">
+         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,0">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
@@ -906,6 +906,64 @@ QGroupBox::title {
                 <string>Weather icon &amp; temperature icon</string>
                </property>
               </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLabel" name="label_32">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string>Selects the icon theme.</string>
+              </property>
+              <property name="text">
+               <string>Icon theme</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="m_trayIconTheme">
+              <property name="toolTip">
+               <string>Selects the icon theme.</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>flaticon</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="m_iconThemeColor">
+              <property name="toolTip">
+               <string>Changes icon theme color.</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="m_iconSummary">
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>Shows a summary of theme icons.</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
              </widget>
             </item>
            </layout>

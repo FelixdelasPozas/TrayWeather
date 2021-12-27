@@ -34,6 +34,8 @@
 #include <QTextDocument>
 #include <QPainter>
 #include <QAbstractTextDocumentLayout>
+#include <QRgb>
+#include <QObject>
 
 // C++
 #include <functional>
@@ -61,6 +63,8 @@ static const QString USE_GEOLOCATION_SERVICE = QString("Use ip-api.com services"
 static const QString ROAMING_ENABLED         = QString("Roaming enabled");
 static const QString THEME                   = QString("Light theme used");
 static const QString TRAY_ICON_TYPE          = QString("Tray icon type");
+static const QString TRAY_ICON_THEME         = QString("Tray icon theme");
+static const QString TRAY_ICON_THEME_COLOR   = QString("Tray icon theme color");
 static const QString TRAY_TEXT_COLOR         = QString("Tray text color");
 static const QString TRAY_TEXT_COLOR_MODE    = QString("Tray text color mode");
 static const QString TRAY_TEXT_SIZE          = QString("Tray text size");
@@ -83,31 +87,31 @@ static const QString TOOLTIP_FIELDS          = QString("Tooltip text fields");
 static const QString GRAPH_USE_RAIN          = QString("Forecast graph uses rain data");
 static const QString SHOW_ALERTS             = QString("Show weather alerts");
 
-static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/01d.svg" },
-                                              { "01n-0", ":/TrayWeather/01n-0.svg" },
-                                              { "01n-1", ":/TrayWeather/01n-1.svg" },
-                                              { "01n-2", ":/TrayWeather/01n-2.svg" },
-                                              { "01n-3", ":/TrayWeather/01n-3.svg" },
-                                              { "01n-4", ":/TrayWeather/01n-4.svg" },
-                                              { "01n-5", ":/TrayWeather/01n-5.svg" },
-                                              { "01n-6", ":/TrayWeather/01n-6.svg" },
-                                              { "01n-7", ":/TrayWeather/01n-7.svg" },
-                                              { "02d", ":/TrayWeather/02d.svg" },
-                                              { "02n", ":/TrayWeather/02n.svg" },
-                                              { "03d", ":/TrayWeather/03.svg" },
-                                              { "03n", ":/TrayWeather/03.svg" },
-                                              { "04d", ":/TrayWeather/04.svg" },
-                                              { "04n", ":/TrayWeather/04.svg" },
-                                              { "09d", ":/TrayWeather/09.svg" },
-                                              { "09n", ":/TrayWeather/09.svg" },
-                                              { "10d", ":/TrayWeather/10d.svg" },
-                                              { "10n", ":/TrayWeather/10n.svg" },
-                                              { "11d", ":/TrayWeather/11.svg" },
-                                              { "11n", ":/TrayWeather/11.svg" },
-                                              { "13d", ":/TrayWeather/13.svg" },
-                                              { "13n", ":/TrayWeather/13.svg" },
-                                              { "50d", ":/TrayWeather/50.svg" },
-                                              { "50n", ":/TrayWeather/50.svg" } };
+static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/iconThemes/%1/01d.svg" },
+                                              { "01n-0", ":/TrayWeather/iconThemes/%1/01n-0.svg" },
+                                              { "01n-1", ":/TrayWeather/iconThemes/%1/01n-1.svg" },
+                                              { "01n-2", ":/TrayWeather/iconThemes/%1/01n-2.svg" },
+                                              { "01n-3", ":/TrayWeather/iconThemes/%1/01n-3.svg" },
+                                              { "01n-4", ":/TrayWeather/iconThemes/%1/01n-4.svg" },
+                                              { "01n-5", ":/TrayWeather/iconThemes/%1/01n-5.svg" },
+                                              { "01n-6", ":/TrayWeather/iconThemes/%1/01n-6.svg" },
+                                              { "01n-7", ":/TrayWeather/iconThemes/%1/01n-7.svg" },
+                                              { "02d", ":/TrayWeather/iconThemes/%1/02d.svg" },
+                                              { "02n", ":/TrayWeather/iconThemes/%1/02n.svg" },
+                                              { "03d", ":/TrayWeather/iconThemes/%1/03d.svg" },
+                                              { "03n", ":/TrayWeather/iconThemes/%1/03n.svg" },
+                                              { "04d", ":/TrayWeather/iconThemes/%1/04d.svg" },
+                                              { "04n", ":/TrayWeather/iconThemes/%1/04n.svg" },
+                                              { "09d", ":/TrayWeather/iconThemes/%1/09d.svg" },
+                                              { "09n", ":/TrayWeather/iconThemes/%1/09n.svg" },
+                                              { "10d", ":/TrayWeather/iconThemes/%1/10d.svg" },
+                                              { "10n", ":/TrayWeather/iconThemes/%1/10n.svg" },
+                                              { "11d", ":/TrayWeather/iconThemes/%1/11d.svg" },
+                                              { "11n", ":/TrayWeather/iconThemes/%1/11n.svg" },
+                                              { "13d", ":/TrayWeather/iconThemes/%1/13d.svg" },
+                                              { "13n", ":/TrayWeather/iconThemes/%1/13n.svg" },
+                                              { "50d", ":/TrayWeather/iconThemes/%1/50d.svg" },
+                                              { "50n", ":/TrayWeather/iconThemes/%1/50n.svg" } };
 
 constexpr int DEFAULT_LOGICAL_DPI = 96;
 
@@ -390,7 +394,24 @@ const QString moonTooltip(const time_t timestamp)
 }
 
 //--------------------------------------------------------------------
-const QPixmap weatherPixmap(const ForecastData& data)
+void paintPixmap(QImage &img, const QColor &color)
+{
+  auto ptr = reinterpret_cast<QRgb *>(img.bits());
+  for(long int i = 0; i < img.byteCount()/4; ++i)
+  {
+    auto alpha = qAlpha(*ptr);
+    if(alpha != 0)
+    {
+      const auto pixel = qRgba(color.red(), color.green(), color.blue(), alpha);
+      *ptr = pixel;
+    }
+
+    ++ptr;
+  }
+}
+
+//--------------------------------------------------------------------
+const QPixmap weatherPixmap(const ForecastData& data, const unsigned int theme, const QColor &color)
 {
   if(!data.icon_id.isEmpty())
   {
@@ -402,14 +423,48 @@ const QPixmap weatherPixmap(const ForecastData& data)
       iconId += QString("-%1").arg(moonPhase(data.dt, unused));
     }
 
-    return QPixmap(ICONS.value(iconId));
+    auto pix = QPixmap(ICONS.value(iconId).arg(ICON_THEMES.at(theme).id)).toImage();
+
+    if(!ICON_THEMES.at(theme).colored)
+    {
+      paintPixmap(pix, color);
+    }
+
+    return QPixmap::fromImage(pix);
   }
 
   return QPixmap{":/TrayWeather/network_error.svg"};
 }
 
 //--------------------------------------------------------------------
-const QPixmap moonPixmap(const ForecastData& data)
+const QPixmap weatherPixmap(const QString &iconId, const unsigned int theme, const QColor &color)
+{
+  if(!iconId.isEmpty())
+  {
+    QImage pix;
+
+    if(iconId == "01n")
+    {
+      pix = QPixmap(ICONS.value("01n-1").arg(ICON_THEMES.at(theme).id)).toImage();
+    }
+    else
+    {
+      pix = QPixmap(ICONS.value(iconId).arg(ICON_THEMES.at(theme).id)).toImage();
+    }
+
+    if(!ICON_THEMES.at(theme).colored)
+    {
+      paintPixmap(pix, color);
+    }
+
+    return QPixmap::fromImage(pix);
+  }
+
+  return QPixmap{":/TrayWeather/network_error.svg"};
+}
+
+//--------------------------------------------------------------------
+const QPixmap moonPixmap(const ForecastData& data, const unsigned int theme, const QColor &color)
 {
   if(!data.icon_id.isEmpty())
   {
@@ -417,7 +472,14 @@ const QPixmap moonPixmap(const ForecastData& data)
     QString iconId{"01n"};
     iconId += QString("-%1").arg(moonPhase(data.dt, unused));
 
-    return QPixmap(ICONS.value(iconId));
+    auto pix = QPixmap(ICONS.value(iconId).arg(ICON_THEMES.at(theme).id)).toImage();
+
+    if(!ICON_THEMES.at(theme).colored)
+    {
+      paintPixmap(pix, color);
+    }
+
+    return QPixmap::fromImage(pix);
   }
 
   return QPixmap{":/TrayWeather/network_error.svg"};
@@ -566,6 +628,8 @@ void load(Configuration &configuration)
   configuration.roamingEnabled  = settings.value(ROAMING_ENABLED, false).toBool();
   configuration.lightTheme      = settings.value(THEME, true).toBool();
   configuration.iconType        = settings.value(TRAY_ICON_TYPE, 0).toUInt();
+  configuration.iconTheme       = settings.value(TRAY_ICON_THEME, 0).toUInt();
+  configuration.iconThemeColor  = QColor(settings.value(TRAY_ICON_THEME_COLOR, "#FF000000").toString());
   configuration.trayTextColor   = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
   configuration.trayTextMode    = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
   configuration.trayTextSize    = settings.value(TRAY_TEXT_SIZE, 250).toUInt();
@@ -633,6 +697,8 @@ void save(const Configuration &configuration)
   settings.setValue(ROAMING_ENABLED,         configuration.roamingEnabled);
   settings.setValue(THEME,                   configuration.lightTheme);
   settings.setValue(TRAY_ICON_TYPE,          configuration.iconType);
+  settings.setValue(TRAY_ICON_THEME,         configuration.iconTheme);
+  settings.setValue(TRAY_ICON_THEME_COLOR,   configuration.iconThemeColor.name(QColor::HexArgb));
   settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor.name(QColor::HexArgb));
   settings.setValue(TRAY_TEXT_COLOR_MODE,    configuration.trayTextMode);
   settings.setValue(TRAY_TEXT_SIZE,          configuration.trayTextSize);
@@ -941,4 +1007,92 @@ void CustomComboBox::paintEvent(QPaintEvent *e)
   QTextDocument doc;
   doc.setHtml(text);
   doc.documentLayout()->draw(&p, ctx);
+}
+
+//--------------------------------------------------------------------
+QPixmap createIconsSummary(const unsigned int theme, const int size, const QColor &color)
+{
+  QImage poster(QSize{size*5,size*5}, QImage::Format_ARGB32);
+  const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
+  poster.fill(ICON_THEMES.at(theme).colored ? Qt::darkGray : invertedColor);
+  QPainter painter(&poster);
+
+  int x = 0, y = 0;
+  const QStringList names = {"01d", "01n-0", "01n-1", "01n-2", "01n-3", "01n-4", "01n-5", "01n-6", "01n-7",
+                             "02d", "02n", "03d", "03n", "04d", "04n", "09d", "09n", "10d", "10n",
+                             "11d", "11n", "13d", "13n", "50d", "50n" };
+
+  for(int i = 0; i < names.size();  ++i)
+  {
+    auto pixmap = weatherPixmap(names.at(i), theme, color);
+    pixmap = pixmap.scaled(QSize{size,size}, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    painter.drawPixmap(QPoint{x,y}, pixmap);
+    x += size; if(x == size*5) { x = 0; y+=size; }
+  }
+  painter.end();
+
+  return QPixmap::fromImage(poster);
+}
+
+//--------------------------------------------------------------------
+QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int size)
+{
+  const auto borderColor = qRgba(color.red(), color.green(), color.blue(), 255);
+
+  QImage border{src.size(), QImage::Format_ARGB32};
+  border.fill(Qt::transparent);
+
+  const auto ptr = src.bits();
+  const auto bpl = src.bytesPerLine();
+  const auto endPtr = ptr + src.byteCount();
+
+  auto validPtr = [&ptr, &endPtr](const uchar *other)
+  {
+    return (ptr <= other) && (other < endPtr);
+  };
+
+  auto sameLine = [&ptr, bpl](const uchar*src, const uchar *other)
+  {
+    auto line1 = static_cast<int>((src - ptr)/bpl);
+    auto line2 = static_cast<int>((other - ptr)/bpl);
+    return line1 == line2;
+  };
+
+  auto isPainted = [](const uchar * src)
+  {
+    auto rgba = reinterpret_cast<const QRgb*>(src);
+    return qAlpha(*rgba) != 0;
+  };
+
+  auto paintPixel = [&validPtr, &sameLine, &isPainted, size, bpl](const uchar *srcPtr)
+  {
+    if(isPainted(srcPtr)) return false;
+    if(validPtr(srcPtr - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr - size*4)) return true;
+    if(validPtr(srcPtr + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr + size*4)) return true;
+    if(validPtr(srcPtr - (size*bpl)) && isPainted(srcPtr - (size*bpl))) return true;
+    if(validPtr(srcPtr + (size*bpl)) && isPainted(srcPtr + (size*bpl))) return true;
+    if(validPtr(srcPtr - (size*bpl) - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr - (size*bpl) - size*4)) return true;
+    if(validPtr(srcPtr - (size*bpl) + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr - (size*bpl) + size*4)) return true;
+    if(validPtr(srcPtr + (size*bpl) - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr + (size*bpl) - size*4)) return true;
+    if(validPtr(srcPtr + (size*bpl) + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr + (size*bpl) + size*4)) return true;
+
+    return false;
+  };
+
+  auto bPtr = reinterpret_cast<QRgb*>(border.bits());
+  for(auto sPtr = ptr; sPtr < endPtr; sPtr += 4)
+  {
+    if(paintPixel(sPtr))
+    {
+      *bPtr = borderColor;
+    }
+    ++bPtr;
+  }
+
+  // draw on top of the border.
+  QPainter painter(&border);
+  painter.drawImage(QPoint{0,0}, src);
+  painter.end();
+
+  return border;
 }

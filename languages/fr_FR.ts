@@ -276,7 +276,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="508"/>
-        <location filename="../ConfigurationDialog.cpp" line="306"/>
+        <location filename="../ConfigurationDialog.cpp" line="336"/>
         <source>Testing API Key...</source>
         <translation>Test de clé API en cours...</translation>
     </message>
@@ -436,122 +436,132 @@
         <translation>Icône météo et icône de températura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="926"/>
+        <location filename="../ConfigurationDialog.ui" line="924"/>
+        <source>Icon theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="932"/>
+        <source>flaticon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="952"/>
         <source>Variable</source>
         <translation>Variable</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="945"/>
+        <location filename="../ConfigurationDialog.ui" line="971"/>
         <source>Click to change minimum value color...</source>
         <translation>Cliquer pour changer la couleur de valeur minimale...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="961"/>
+        <location filename="../ConfigurationDialog.ui" line="987"/>
         <source>Range</source>
         <translation>Plage</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="986"/>
+        <location filename="../ConfigurationDialog.ui" line="1012"/>
         <source>Click to change maximum value color...</source>
         <translation>Cliquer pour changer la couleur de valeur maximale...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1006"/>
+        <location filename="../ConfigurationDialog.ui" line="1032"/>
         <source>Fixed</source>
         <translation>Fixe</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1028"/>
+        <location filename="../ConfigurationDialog.ui" line="1054"/>
         <source>Click to change fixed color...</source>
         <translation>Cliquer pour changer la couleur fixe...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1065"/>
+        <location filename="../ConfigurationDialog.ui" line="1091"/>
         <source>Temperature text color</source>
         <translation>Couleur du texte de température</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1080"/>
+        <location filename="../ConfigurationDialog.ui" line="1106"/>
         <source>from</source>
         <translation>De</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1096"/>
+        <location filename="../ConfigurationDialog.ui" line="1122"/>
         <source>Minimum range value</source>
         <translation>Valeur minimum de la plage</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1118"/>
+        <location filename="../ConfigurationDialog.ui" line="1144"/>
         <source>to</source>
         <translation>à</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1137"/>
+        <location filename="../ConfigurationDialog.ui" line="1163"/>
         <source>Maximum range value</source>
         <translation>Valeur maximum de la plage</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1167"/>
+        <location filename="../ConfigurationDialog.ui" line="1193"/>
         <source>Temperature text size</source>
         <translation>Taille du texte de température</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1182"/>
+        <location filename="../ConfigurationDialog.ui" line="1208"/>
         <source> pixels</source>
         <translation> pixels</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1224"/>
+        <location filename="../ConfigurationDialog.ui" line="1250"/>
         <source>Configure the tray icon tooltip text. </source>
         <translation>Configurez le texte de l&apos;info-bulle de l&apos;icône de la barre d&apos;état système. </translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1240"/>
+        <location filename="../ConfigurationDialog.ui" line="1266"/>
         <source>Tray Tooltip</source>
         <translation>Info-bulle de la barre d&apos;état</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1261"/>
+        <location filename="../ConfigurationDialog.ui" line="1287"/>
         <source>Value:</source>
         <translation>Valeur:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1268"/>
+        <location filename="../ConfigurationDialog.ui" line="1294"/>
         <source>Value to add to the list.</source>
         <translation>Valeur à ajouter à la liste.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1281"/>
+        <location filename="../ConfigurationDialog.ui" line="1307"/>
         <source>Add value to tooltip text</source>
         <translation>Ajoutez la valeur au texte de l&apos;info-bulle</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1318"/>
+        <location filename="../ConfigurationDialog.ui" line="1344"/>
         <source>Move value up.</source>
         <translation>Déplacer la valeur vers le haut.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1332"/>
+        <location filename="../ConfigurationDialog.ui" line="1358"/>
         <source>Move value down.</source>
         <translation>Déplacer la valeur vers le bas.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1346"/>
+        <location filename="../ConfigurationDialog.ui" line="1372"/>
         <source>Remove value from tooltip text</source>
         <translation>Supprimer la valeur du texte de l&apos;info-bulle</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1366"/>
+        <location filename="../ConfigurationDialog.ui" line="1392"/>
         <source>Miscellaneous</source>
         <translation>Divers</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1389"/>
+        <location filename="../ConfigurationDialog.ui" line="1415"/>
         <source>Time between update requests</source>
         <translation>Durée entre deux rafraîchissements</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1402"/>
+        <location filename="../ConfigurationDialog.ui" line="1428"/>
         <source> minutes</source>
         <translation> minutes</translation>
     </message>
@@ -566,47 +576,47 @@
         <translation>Visuels</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1246"/>
+        <location filename="../ConfigurationDialog.ui" line="1272"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>Les valeurs affichées dans l&apos;info-bulle sont les valeurs actuelles ou la valeur prévisionnelle la plus proche de l&apos;heure locale actuelle. Les valeurs sont affichées dans l&apos;ordre, de haut en bas de la liste.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1430"/>
+        <location filename="../ConfigurationDialog.ui" line="1456"/>
         <source>Visual theme</source>
         <translation>Thème</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1438"/>
+        <location filename="../ConfigurationDialog.ui" line="1464"/>
         <source>Light</source>
         <translation>Clair</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1443"/>
+        <location filename="../ConfigurationDialog.ui" line="1469"/>
         <source>Dark</source>
         <translation>Sombre</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1463"/>
+        <location filename="../ConfigurationDialog.ui" line="1489"/>
         <source>Check for updates</source>
         <translation>Vérifier les mises à jour</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1471"/>
+        <location filename="../ConfigurationDialog.ui" line="1497"/>
         <source>Never</source>
         <translation>Jamais</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1476"/>
+        <location filename="../ConfigurationDialog.ui" line="1502"/>
         <source>Once a day</source>
         <translation>Tous les jours</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1481"/>
+        <location filename="../ConfigurationDialog.ui" line="1507"/>
         <source>Once a week</source>
         <translation>Une fois par semaine</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1486"/>
+        <location filename="../ConfigurationDialog.ui" line="1512"/>
         <source>Once a month</source>
         <translation>Une fois par mois</translation>
     </message>
@@ -621,50 +631,50 @@
         <translation>Système impérial (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1506"/>
+        <location filename="../ConfigurationDialog.ui" line="1532"/>
         <source>Autostart at login</source>
         <translation>Lancer avec Windows</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1532"/>
+        <location filename="../ConfigurationDialog.ui" line="1558"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1554"/>
+        <location filename="../ConfigurationDialog.ui" line="1580"/>
         <source>Show weather alerts</source>
         <translation>Afficher les alertes météo</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1570"/>
+        <location filename="../ConfigurationDialog.ui" line="1596"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Si votre langue n&apos;est pas disponible, vous pouvez apporter votre contribution avec une &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;traduction&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1621"/>
+        <location filename="../ConfigurationDialog.ui" line="1647"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1628"/>
+        <location filename="../ConfigurationDialog.ui" line="1654"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="127"/>
-        <location filename="../ConfigurationDialog.cpp" line="134"/>
-        <location filename="../ConfigurationDialog.cpp" line="722"/>
+        <location filename="../ConfigurationDialog.cpp" line="129"/>
+        <location filename="../ConfigurationDialog.cpp" line="136"/>
+        <location filename="../ConfigurationDialog.cpp" line="758"/>
         <source>Invalid OpenWeatherMap API Key!</source>
         <translation>Clé API OpenWeatherMap invalide!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="727"/>
+        <location filename="../ConfigurationDialog.cpp" line="763"/>
         <source>Untested OpenWeatherMap API Key!</source>
         <translation>Clé API de OpenWeatherMap non testée !</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="79"/>
-        <location filename="../ConfigurationDialog.cpp" line="146"/>
+        <location filename="../ConfigurationDialog.cpp" line="81"/>
+        <location filename="../ConfigurationDialog.cpp" line="148"/>
         <source>Invalid reply from Geo-Locator server.
 Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
@@ -673,56 +683,56 @@ Impossible d&apos;obtenir une information de localisation.
 Si vous disposez d&apos;un pare-feu, modifiez sa configuration pour permettre à ce programme d&apos;accéder au réseau.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="83"/>
-        <location filename="../ConfigurationDialog.cpp" line="199"/>
+        <location filename="../ConfigurationDialog.cpp" line="85"/>
+        <location filename="../ConfigurationDialog.cpp" line="201"/>
         <source>Network Error</source>
         <translation>Erreur réseau</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="120"/>
+        <location filename="../ConfigurationDialog.cpp" line="122"/>
         <source>The API Key is valid!</source>
         <translation>La clé API est valide !</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="129"/>
+        <location filename="../ConfigurationDialog.cpp" line="131"/>
         <source>Invalid OpenWeatherMap API Key.</source>
         <translation>Clé API OpenWeatherMap invalide.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="136"/>
+        <location filename="../ConfigurationDialog.cpp" line="138"/>
         <source>Invalid reply from OpenWeatherMap server.</source>
         <translation>Réponse invalide du serveur OpenWeatherMap.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="167"/>
+        <location filename="../ConfigurationDialog.cpp" line="169"/>
         <source>Success</source>
         <translation>Succès</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="175"/>
-        <location filename="../ConfigurationDialog.cpp" line="183"/>
-        <location filename="../ConfigurationDialog.cpp" line="191"/>
+        <location filename="../ConfigurationDialog.cpp" line="177"/>
+        <location filename="../ConfigurationDialog.cpp" line="185"/>
+        <location filename="../ConfigurationDialog.cpp" line="193"/>
         <source>Failure</source>
         <translation>Echec</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="177"/>
+        <location filename="../ConfigurationDialog.cpp" line="179"/>
         <source>Error parsing location data. Failure or invalid number of fields.</source>
         <translation>Error Analyse des données de localisation. Echec ou nombre de champs invalide.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="185"/>
+        <location filename="../ConfigurationDialog.cpp" line="187"/>
         <source>Data request failure. Invalid data format.</source>
         <translation>Echec de la requête. Format de données invalide.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="193"/>
+        <location filename="../ConfigurationDialog.cpp" line="195"/>
         <source>Invalid reply from Geo-Locator server.</source>
         <translation>Réponse invalide du serveur de géolocalisation.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="280"/>
-        <location filename="../ConfigurationDialog.cpp" line="293"/>
+        <location filename="../ConfigurationDialog.cpp" line="292"/>
+        <location filename="../ConfigurationDialog.cpp" line="314"/>
         <source>Requesting...</source>
         <translation>Requête en cours...</translation>
     </message>
@@ -766,8 +776,8 @@ Si vous disposez d&apos;un pare-feu, modifiez sa configuration pour permettre à
         <location filename="../Main.cpp" line="71"/>
         <location filename="../Main.cpp" line="87"/>
         <location filename="../Main.cpp" line="110"/>
-        <location filename="../TrayWeather.cpp" line="358"/>
-        <location filename="../TrayWeather.cpp" line="893"/>
+        <location filename="../TrayWeather.cpp" line="359"/>
+        <location filename="../TrayWeather.cpp" line="894"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
     </message>
@@ -790,123 +800,123 @@ The application will exit now.</source>
         <translation>TrayWeather ne peut pas s&apos;exécuter sans une localisation valide ni une clé API OpenWeatherMap valide. L&apos;application va se terminer maintenant.</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="351"/>
+        <location filename="../Utils.cpp" line="352"/>
         <source>New moon</source>
         <translation>Nouvelle Lune</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="354"/>
-        <location filename="../Utils.cpp" line="372"/>
+        <location filename="../Utils.cpp" line="355"/>
+        <location filename="../Utils.cpp" line="373"/>
         <source>Waxing crescent</source>
         <translation>Luna croissante</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="357"/>
+        <location filename="../Utils.cpp" line="358"/>
         <source>First quarter</source>
         <translation>Premier quartier</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="360"/>
+        <location filename="../Utils.cpp" line="361"/>
         <source>Waxing gibbous</source>
         <translation>Lune gibbeuse croissante</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="363"/>
+        <location filename="../Utils.cpp" line="364"/>
         <source>Full moon</source>
         <translation>Pleine Lune</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="366"/>
+        <location filename="../Utils.cpp" line="367"/>
         <source>Waning gibbous</source>
         <translation>Lune gibbeuse décroissante</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="370"/>
         <source>Last quarter</source>
         <translation>Dernier quartier</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="382"/>
+        <location filename="../Utils.cpp" line="383"/>
         <source>illumination</source>
         <translation>Luminosité</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="451"/>
+        <location filename="../Utils.cpp" line="452"/>
         <source>NNE</source>
         <translation>NNE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="452"/>
+        <location filename="../Utils.cpp" line="453"/>
         <source>NE</source>
         <translation>NE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="453"/>
+        <location filename="../Utils.cpp" line="454"/>
         <source>ENE</source>
         <translation>ENE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="454"/>
+        <location filename="../Utils.cpp" line="455"/>
         <source>E</source>
         <translation>E</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="455"/>
+        <location filename="../Utils.cpp" line="456"/>
         <source>ESE</source>
         <translation>ESE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="456"/>
+        <location filename="../Utils.cpp" line="457"/>
         <source>SE</source>
         <translation>SE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="457"/>
+        <location filename="../Utils.cpp" line="458"/>
         <source>SSE</source>
         <translation>SSE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="458"/>
+        <location filename="../Utils.cpp" line="459"/>
         <source>S</source>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="459"/>
+        <location filename="../Utils.cpp" line="460"/>
         <source>SSW</source>
         <translation>SSO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="460"/>
+        <location filename="../Utils.cpp" line="461"/>
         <source>SW</source>
         <translation>SO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="461"/>
+        <location filename="../Utils.cpp" line="462"/>
         <source>WSW</source>
         <translation>OSO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="462"/>
+        <location filename="../Utils.cpp" line="463"/>
         <source>W</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="463"/>
+        <location filename="../Utils.cpp" line="464"/>
         <source>WNW</source>
         <translation>ONO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="464"/>
+        <location filename="../Utils.cpp" line="465"/>
         <source>NW</source>
         <translation>NO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="465"/>
+        <location filename="../Utils.cpp" line="466"/>
         <source>NNW</source>
         <translation>NNO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="467"/>
+        <location filename="../Utils.cpp" line="468"/>
         <source>N</source>
         <translation>N</translation>
     </message>
@@ -1036,13 +1046,13 @@ The application will exit now.</source>
         <translation>Chinois simplifié</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="360"/>
+        <location filename="../TrayWeather.cpp" line="361"/>
         <source>TrayWeather needs to be restarted for the new configuration to take effect.
 The application will exit now.</source>
         <translation>TrayWeather doit être redémarré pour que la nouvelle configuration deveinne effective. L&apos;application va se terminer maintenant.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="895"/>
+        <location filename="../TrayWeather.cpp" line="896"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
         <translation>TrayWeather a requêté les données météorologiques pour votre localisation et attend toujours la réponse.</translation>
@@ -1051,36 +1061,36 @@ and it&apos;s still waiting for the response.</source>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="1166"/>
+        <location filename="../TrayWeather.cpp" line="1167"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translation>Il existe une nouvelle version de &lt;b&gt;Tray Weather&lt;/b&gt; sur la &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;page de github&lt;/a&gt;!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1167"/>
+        <location filename="../TrayWeather.cpp" line="1168"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation>&lt;center&gt;&lt;b&gt;la version %1&lt;/b&gt; a été publiée !&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1168"/>
+        <location filename="../TrayWeather.cpp" line="1169"/>
         <source>Release notes:
 %1</source>
         <translation>Notes de version :
 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1169"/>
+        <location filename="../TrayWeather.cpp" line="1170"/>
         <source>Tray Weather updated to version %1</source>
         <translation>Tray Weather mis à jour en version %1</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="109"/>
-        <location filename="../TrayWeather.cpp" line="1183"/>
+        <location filename="../TrayWeather.cpp" line="1184"/>
         <source>Error requesting Github releases data.</source>
         <translation>Erreur de requête de version de Github.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="127"/>
-        <location filename="../TrayWeather.cpp" line="1296"/>
+        <location filename="../TrayWeather.cpp" line="1297"/>
         <source>Error requesting geolocation coordinates.</source>
         <translation>Erreur de requête de coordonnées de géolocalisation.</translation>
     </message>
@@ -1092,172 +1102,172 @@ and it&apos;s still waiting for the response.</source>
         <translation>Erreur de requête de données météo.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="406"/>
+        <location filename="../TrayWeather.cpp" line="407"/>
         <source>Requesting weather data from the server...</source>
         <translation>Requête en cours du serveur de données de données météo...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="529"/>
+        <location filename="../TrayWeather.cpp" line="530"/>
         <source>Cloudiness: </source>
         <translation>Nébulosité: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="532"/>
+        <location filename="../TrayWeather.cpp" line="533"/>
         <source>Humidity: </source>
         <translation>Humidité: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="542"/>
+        <location filename="../TrayWeather.cpp" line="543"/>
         <source>inHg</source>
         <translation>inHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="546"/>
+        <location filename="../TrayWeather.cpp" line="547"/>
         <source>mmHg</source>
         <translation>mmHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="550"/>
+        <location filename="../TrayWeather.cpp" line="551"/>
         <source>PSI</source>
         <translation>PSI</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="554"/>
+        <location filename="../TrayWeather.cpp" line="555"/>
         <source>hPa</source>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="557"/>
+        <location filename="../TrayWeather.cpp" line="558"/>
         <source>Pressure: </source>
         <translation>Pression: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="567"/>
+        <location filename="../TrayWeather.cpp" line="568"/>
         <source>feet/s</source>
         <translation>pieds/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="571"/>
+        <location filename="../TrayWeather.cpp" line="572"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="575"/>
+        <location filename="../TrayWeather.cpp" line="576"/>
         <source>mil/h</source>
         <translation>mil/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="580"/>
+        <location filename="../TrayWeather.cpp" line="581"/>
         <source>met/sec</source>
         <translation>mètres/sec</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="583"/>
+        <location filename="../TrayWeather.cpp" line="584"/>
         <source>Wind: </source>
         <translation>Vent: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="592"/>
+        <location filename="../TrayWeather.cpp" line="593"/>
         <source>Sunrise: </source>
         <translation>Lever du soleil: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="601"/>
+        <location filename="../TrayWeather.cpp" line="602"/>
         <source>Sunset: </source>
         <translation>Coucher de soleil: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="611"/>
+        <location filename="../TrayWeather.cpp" line="612"/>
         <source>Good</source>
         <translation>Bonne</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="614"/>
+        <location filename="../TrayWeather.cpp" line="615"/>
         <source>Fair</source>
         <translation>Correcte</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="617"/>
+        <location filename="../TrayWeather.cpp" line="618"/>
         <source>Moderate</source>
         <translation>Modérée</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="620"/>
+        <location filename="../TrayWeather.cpp" line="621"/>
         <source>Poor</source>
         <translation>Pauvre</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="623"/>
+        <location filename="../TrayWeather.cpp" line="624"/>
         <source>Very poor</source>
         <translation>Très pauvre</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="626"/>
+        <location filename="../TrayWeather.cpp" line="627"/>
         <source>Air: </source>
         <translation>Air: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="633"/>
+        <location filename="../TrayWeather.cpp" line="634"/>
         <source>UV: </source>
         <translation>UV: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="712"/>
-        <location filename="../TrayWeather.cpp" line="1115"/>
+        <location filename="../TrayWeather.cpp" line="713"/>
+        <location filename="../TrayWeather.cpp" line="1116"/>
         <source>Current weather...</source>
         <translation>Temps actuel...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="717"/>
-        <location filename="../TrayWeather.cpp" line="1116"/>
+        <location filename="../TrayWeather.cpp" line="718"/>
+        <location filename="../TrayWeather.cpp" line="1117"/>
         <source>Forecast...</source>
         <translation>Prévisions...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="722"/>
-        <location filename="../TrayWeather.cpp" line="1117"/>
+        <location filename="../TrayWeather.cpp" line="723"/>
+        <location filename="../TrayWeather.cpp" line="1118"/>
         <source>Pollution...</source>
         <translation>Pollution...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="727"/>
-        <location filename="../TrayWeather.cpp" line="1118"/>
+        <location filename="../TrayWeather.cpp" line="728"/>
+        <location filename="../TrayWeather.cpp" line="1119"/>
         <source>UV...</source>
         <translation>UV...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="732"/>
-        <location filename="../TrayWeather.cpp" line="1119"/>
+        <location filename="../TrayWeather.cpp" line="733"/>
+        <location filename="../TrayWeather.cpp" line="1120"/>
         <source>Maps...</source>
         <translation>Cartes...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="741"/>
-        <location filename="../TrayWeather.cpp" line="1120"/>
+        <location filename="../TrayWeather.cpp" line="742"/>
+        <location filename="../TrayWeather.cpp" line="1121"/>
         <source>Refresh...</source>
         <translation>Rafraîchir...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="748"/>
-        <location filename="../TrayWeather.cpp" line="1121"/>
+        <location filename="../TrayWeather.cpp" line="749"/>
+        <location filename="../TrayWeather.cpp" line="1122"/>
         <source>Last alert...</source>
         <translation>Dernière alerte...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="757"/>
-        <location filename="../TrayWeather.cpp" line="1122"/>
+        <location filename="../TrayWeather.cpp" line="758"/>
+        <location filename="../TrayWeather.cpp" line="1123"/>
         <source>Configuration...</source>
         <translation>Configuration...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="764"/>
-        <location filename="../TrayWeather.cpp" line="1123"/>
+        <location filename="../TrayWeather.cpp" line="765"/>
+        <location filename="../TrayWeather.cpp" line="1124"/>
         <source>About...</source>
         <translation>A propos de...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="769"/>
-        <location filename="../TrayWeather.cpp" line="1124"/>
+        <location filename="../TrayWeather.cpp" line="770"/>
+        <location filename="../TrayWeather.cpp" line="1125"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>

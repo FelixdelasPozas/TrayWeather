@@ -219,9 +219,9 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   {
     m_location->setText(QString("%1, %2 - %3").arg(current.name).arg(current.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
   }
-  m_moon->setPixmap(moonPixmap(current).scaled(QSize{64,64}));
+  m_moon->setPixmap(moonPixmap(current, config.iconTheme, config.iconThemeColor).scaled(QSize{64,64}, Qt::KeepAspectRatio, Qt::SmoothTransformation));
   m_description->setText(toTitleCase(current.description));
-  m_icon->setPixmap(weatherPixmap(current).scaled(QSize{236,236}));
+  m_icon->setPixmap(weatherPixmap(current, config.iconTheme, config.iconThemeColor).scaled(QSize{236,236}, Qt::KeepAspectRatio, Qt::SmoothTransformation));
   m_temp->setText(QString("%1 %2").arg(tempFunc(current.temp)).arg(tempUnits));
   m_temp_max->setText(QString("%1 %2").arg(tempFunc(current.temp_max)).arg(tempUnits));
   m_temp_min->setText(QString("%1 %2").arg(tempFunc(current.temp_min)).arg(tempUnits));

@@ -32,8 +32,39 @@
 #include <memory>
 
 class QNetworkReply;
-class QDomNode;
+class QMouseEvent;
 
+/** \class IconSummaryWidget
+ * \brief Implements a widget to show an icon theme.
+ *
+ */
+class IconSummaryWidget
+: public QWidget
+{
+    Q_OBJECT
+  public:
+    /** \brief IconSummaryWidget class constructor.
+     * \param[in] image Image to show.
+     * \param[in] parent Raw pointer of the widget parent of this one.
+     *
+     *
+     */
+    explicit IconSummaryWidget(QPixmap image, QWidget* parent = nullptr);
+
+    /** \brief IconSummaryWidget class virtual destructor.
+     *
+     */
+    virtual ~IconSummaryWidget()
+    {};
+
+  protected:
+    virtual void leaveEvent(QEvent *e) override;
+};
+
+/** \class ConfigurationDialog
+ * \brief Implements the dialog to configure the settings.
+ *
+ */
 class ConfigurationDialog
 : public QDialog
 , private Ui_ConfigurationDialog
@@ -51,7 +82,7 @@ class ConfigurationDialog
      *
      */
     virtual ~ConfigurationDialog()
-    {}
+    {};
 
     /** \brief Returns the configuration values.
      * \param[out] configuration application configuration values.
@@ -156,6 +187,17 @@ class ConfigurationDialog
      * \param[in] row Current selected row.
      */
     void onTooltipFieldsRowChanged(int row);
+
+    /** \brief Show the icon theme summary.
+     *
+     */
+    void onIconSummaryPressed();
+
+    /** \brief Updates the UI when the user changes the icon theme.
+     * \param[in] idx Current index of icon theme combobox.
+     *
+     */
+    void onIconThemeIndexChanged(int idx);
 
   signals:
     void languageChanged(const QString &);

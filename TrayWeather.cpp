@@ -36,12 +36,11 @@
 #include <QJsonArray>
 #include <QPainter>
 #include <QFile>
+#include <QImage>
 #include <QtWinExtras/QtWinExtrasDepends>
 
 // C++
 #include <chrono>
-#include <cmath>
-#include <iostream>
 
 const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
 
@@ -238,6 +237,8 @@ void TrayWeather::showConfiguration()
 
   m_configuration.lightTheme       = configuration.lightTheme;
   m_configuration.iconType         = configuration.iconType;
+  m_configuration.iconTheme        = configuration.iconTheme;
+  m_configuration.iconThemeColor   = configuration.iconThemeColor;
   m_configuration.trayTextColor    = configuration.trayTextColor;
   m_configuration.trayTextMode     = configuration.trayTextMode;
   m_configuration.trayTextSize     = configuration.trayTextSize;
@@ -421,8 +422,7 @@ void TrayWeather::updateTooltip()
 
   tooltip = tooltipText();
 
-  QPixmap pixmap = weatherPixmap(m_current).scaled(384,384,Qt::KeepAspectRatio, Qt::SmoothTransformation);
-  QPainter painter(&pixmap);
+  QPixmap pixmap = weatherPixmap(m_current, m_configuration.iconTheme, m_configuration.iconThemeColor).scaled(384,384,Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
   auto interpolate = [this](int temp)
   {
@@ -461,11 +461,16 @@ void TrayWeather::updateTooltip()
         {
           temperatureValue = convertCelsiusToFahrenheit(m_current.temp);
         }
+
+        QPixmap tempPixmap{384,384};
+        tempPixmap.fill(Qt::transparent);
+        QPainter painter(&tempPixmap);
+
         const auto roundedTemp = static_cast<int>(std::nearbyint(temperatureValue));
         const auto roundedString = QString::number(roundedTemp);
         QFont font = painter.font();
         font.setPixelSize(m_configuration.trayTextSize - ((roundedString.length() - 3) * 50));
-        font.setBold(true);
+        font.setWeight(QFont::Bold);
         painter.setFont(font);
 
         QColor color;
@@ -480,12 +485,20 @@ void TrayWeather::updateTooltip()
 
         painter.setPen(color);
         painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
-        painter.drawText(pixmap.rect(), Qt::AlignCenter, roundedString);
+        painter.drawText(tempPixmap.rect(), Qt::AlignCenter, roundedString);
+
+        const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
+        const auto image = addQuickBorderToImage(tempPixmap.toImage(), invertedColor, 16);
+
+        painter.drawImage(QPoint{0,0}, image);
+        painter.end();
+
+        painter.begin(&pixmap);
+        painter.drawImage(QPoint{0,0}, tempPixmap.toImage());
       }
       break;
   }
 
-  painter.end();
   icon = QIcon(pixmap);
 
   setToolTip(tooltip);

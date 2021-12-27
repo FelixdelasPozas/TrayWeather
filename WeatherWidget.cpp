@@ -44,7 +44,7 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   unixTimeStampToDate(t, data.dt);
   QDateTime dtTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
 
-  m_icon->setPixmap(weatherPixmap(data).scaled(QSize{64,64}));
+  m_icon->setPixmap(weatherPixmap(data, config.iconTheme, config.iconThemeColor).scaled(QSize{64,64}, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
   // for translation
   const auto tempStr = tr("Temperature");
