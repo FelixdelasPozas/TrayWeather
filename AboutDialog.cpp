@@ -48,6 +48,9 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
   m_copyright->setText(COPYRIGHT.arg(QDateTime::currentDateTime().date().year()));
 
   fillTranslationsTable();
+  fillThemesTable();
+
+  tabWidget->setCurrentIndex(0);
 }
 
 //-----------------------------------------------------------------
@@ -94,4 +97,30 @@ void AboutDialog::fillTranslationsTable() const
   }
 
   m_translations->resizeColumnToContents(0);
+}
+
+//-----------------------------------------------------------------
+void AboutDialog::fillThemesTable() const
+{
+  m_themes->clear();
+  m_themes->verticalHeader()->setVisible(false);
+  m_themes->horizontalHeader()->setVisible(false);
+  m_themes->setRowCount(ICON_THEMES.size());
+  m_themes->setColumnCount(2);
+
+  for(int i = 0; i < ICON_THEMES.size(); ++i)
+  {
+    const auto &theme = ICON_THEMES.at(i);
+
+    auto item = new QTableWidgetItem();
+    item->setData(Qt::DisplayRole, theme.name);
+    m_themes->setItem(i, 0, item);
+
+    auto label = new QLabel{QString("<a href=\"%1\">%1</a>").arg(theme.author)};
+    label->setOpenExternalLinks(true);
+    m_themes->setCellWidget(i, 1, label);
+  }
+
+  m_themes->resizeColumnToContents(0);
+  m_themes->horizontalHeader()->setStretchLastSection(true);
 }

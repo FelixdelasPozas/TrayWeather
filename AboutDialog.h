@@ -60,6 +60,11 @@ class AboutDialog
      *
      */
     void fillTranslationsTable() const;
+
+    /** \brief Fill the icon themes table information.
+     *
+     */
+    void fillThemesTable() const;
 };
 
 #endif // ABOUTDIALOG_H_

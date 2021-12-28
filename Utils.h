@@ -130,10 +130,10 @@ struct IconThemeData
 /** Icon themes.
  *
  */
-static const QList<IconThemeData> ICON_THEMES = { { "FlatIcon Colored",    "flaticon",      true,  "https://www.flaticon.com/" },
-                                                  { "FlatIcon Mono Black", "flaticon_mono", false, "https://www.flaticon.com/"},
-                                                  { "Tempestacons",        "tempestacons",  false, "https://github.com/zagortenay333/Tempestacons" },
-                                                  { "Meteocons",           "meteocons",     true,  "https://github.com/basmilius/weather-icons" }
+static const QList<IconThemeData> ICON_THEMES = { { "FlatIcon Colored", "flaticon",      true,  "https://www.flaticon.com/" },
+                                                  { "FlatIcon Mono",    "flaticon_mono", false, "https://www.flaticon.com/"},
+                                                  { "Tempestacons",     "tempestacons",  false, "https://github.com/zagortenay333/Tempestacons" },
+                                                  { "Meteocons",        "meteocons",     true,  "https://github.com/basmilius/weather-icons" }
 };
 
 /** \struct Configuration
