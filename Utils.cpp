@@ -397,17 +397,23 @@ const QString moonTooltip(const time_t timestamp)
 void paintPixmap(QImage &img, const QColor &color)
 {
   auto ptr = reinterpret_cast<QRgb *>(img.bits());
+  const auto transparentPixel = QColor{Qt::transparent}.rgba();
+
   for(long int i = 0; i < img.byteCount()/4; ++i)
   {
-    auto alpha = qAlpha(*ptr);
-    if(alpha != 0)
+    // Need to make white transparent to paint "monocolor" images (black usually).
+    if((qAlpha(*ptr) != 0) && (qRed(*ptr) == 0xFF) && (qGreen(*ptr) == 0xFF) && (qBlue(*ptr) == 0xFF))
     {
-      const auto pixel = qRgba(color.red(), color.green(), color.blue(), alpha);
-      *ptr = pixel;
+      *ptr = transparentPixel;
     }
 
     ++ptr;
   }
+
+  QPainter painter(&img);
+  painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+  painter.fillRect(img.rect(), color);
+  painter.end();
 }
 
 //--------------------------------------------------------------------
@@ -1064,7 +1070,7 @@ QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int s
     return qAlpha(*rgba) != 0;
   };
 
-  auto paintPixel = [&validPtr, &sameLine, &isPainted, size, bpl](const uchar *srcPtr)
+  auto paintedPixel = [&validPtr, &sameLine, &isPainted, size, bpl](const uchar *srcPtr)
   {
     if(isPainted(srcPtr)) return false;
     if(validPtr(srcPtr - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr - size*4)) return true;
@@ -1082,7 +1088,7 @@ QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int s
   auto bPtr = reinterpret_cast<QRgb*>(border.bits());
   for(auto sPtr = ptr; sPtr < endPtr; sPtr += 4)
   {
-    if(paintPixel(sPtr))
+    if(paintedPixel(sPtr))
     {
       *bPtr = borderColor;
     }
