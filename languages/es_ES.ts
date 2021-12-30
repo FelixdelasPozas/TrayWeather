@@ -418,7 +418,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="883"/>
         <source>Icon type</source>
-        <translation>Tipo de Icono</translation>
+        <translation>Tipo de icono</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="891"/>
