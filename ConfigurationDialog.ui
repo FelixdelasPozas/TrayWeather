@@ -933,11 +933,9 @@ QGroupBox::title {
               <property name="toolTip">
                <string>Selects the icon theme.</string>
               </property>
-              <item>
-               <property name="text">
-                <string>flaticon</string>
-               </property>
-              </item>
+              <property name="currentText">
+               <string notr="true"/>
+              </property>
              </widget>
             </item>
             <item>
@@ -946,7 +944,7 @@ QGroupBox::title {
                <string>Changes icon theme color.</string>
               </property>
               <property name="text">
-               <string>...</string>
+               <string notr="true">...</string>
               </property>
              </widget>
             </item>
@@ -962,7 +960,7 @@ QGroupBox::title {
                <string>Shows a summary of theme icons.</string>
               </property>
               <property name="text">
-               <string>...</string>
+               <string notr="true">...</string>
               </property>
              </widget>
             </item>
