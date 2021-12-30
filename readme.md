@@ -98,7 +98,6 @@ the rest of the application so the user can be disable them using the button bel
 
 # Translations
 
-
 Tray Weather is available in:
 * English
 * Spanish
@@ -134,7 +133,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.14.0
+**Version**: 1.15.0
 
 **Status**: finished.
 
@@ -142,8 +141,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 835         |   354            | 4202 |
-| C/C++ Header                 |  10           | 253         |   715            |  825 |
+| C++                          |  10           | 907         |   369            | 4458 |
+| C/C++ Header                 |  10           | 265         |   775            |  860 |
 | HTML                         |   1           |  33         |     0            |  150 |
 | CMake                        |   1           |  18         |    11            |  115 |
-| **Total**                    | **22**        | **1139**    | **1080**         | **5292** |
+| **Total**                    | **22**        | **1223**    | **1155**         | **5583** |
