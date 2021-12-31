@@ -54,6 +54,10 @@ The temperature text color can be set by the user or can change dynamically betw
 
 ![icon_temp](https://user-images.githubusercontent.com/12167134/85929400-b6e05280-b8b4-11ea-9574-bf27537f38e3.png)
 
+Several different icon themes are available for the application weather icons. The color of the mono-color themes can be selected by the user.
+
+![icon_themes](https://user-images.githubusercontent.com/12167134/147830694-fed5769d-836f-4d75-9bc9-5510b7288f8e.png) 
+
 Configuration dialog. It shows the detected location properties and the options to change the frequency of updates and temperature units. The OpenWeatherMap API Key must be entered here. If the location is better guessed with the DNS IP instead of the IP given by the provider the option
 can be enabled here. A 'roaming' mode can be enabled, where the geographical coordinates are requested before any weather data request, so the 
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
@@ -61,11 +65,11 @@ The tray and application theme configuration can be found here in the miscellane
 
 Configuration dialog in Spanish with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/145942021-b2b691da-0dde-4f14-9924-82fbd38852d3.png)
+![config](https://user-images.githubusercontent.com/12167134/147830692-3f1e60c5-9d7b-435c-bb9e-9aedab4bbb5d.png)
 
 Configuration dialog in English with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/145942026-89cfeb5e-0bac-4728-b19e-89f6eb4a67a2.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/147830695-356c1716-566e-4da5-87be-c1ec2a92db3f.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -109,7 +113,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 350 texts.
+and making a pull request. Currently it's just 355 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 

@@ -533,6 +533,19 @@ QGroupBox::title {
          </layout>
         </widget>
        </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tab_3">
@@ -868,11 +881,17 @@ QGroupBox::title {
          <property name="title">
           <string>Tray Icon</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,0">
+         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
+           <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,1">
+            <item row="0" column="0">
              <widget class="QLabel" name="label_15">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -884,7 +903,7 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item>
+            <item row="0" column="1">
              <widget class="QComboBox" name="m_trayIconType">
               <item>
                <property name="text">
@@ -908,12 +927,14 @@ QGroupBox::title {
               </item>
              </widget>
             </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_10">
-            <item>
+            <item row="1" column="0">
              <widget class="QLabel" name="label_32">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -928,41 +949,45 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QComboBox" name="m_trayIconTheme">
-              <property name="toolTip">
-               <string>Selects the icon theme.</string>
-              </property>
-              <property name="currentText">
-               <string notr="true"/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="m_iconThemeColor">
-              <property name="toolTip">
-               <string>Changes icon theme color.</string>
-              </property>
-              <property name="text">
-               <string notr="true">...</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="m_iconSummary">
-              <property name="minimumSize">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="toolTip">
-               <string>Shows a summary of theme icons.</string>
-              </property>
-              <property name="text">
-               <string notr="true">...</string>
-              </property>
-             </widget>
+            <item row="1" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="1,0,0">
+              <item>
+               <widget class="QComboBox" name="m_trayIconTheme">
+                <property name="toolTip">
+                 <string>Selects the icon theme.</string>
+                </property>
+                <property name="currentText">
+                 <string notr="true"/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="m_iconThemeColor">
+                <property name="toolTip">
+                 <string>Changes icon theme color.</string>
+                </property>
+                <property name="text">
+                 <string notr="true">...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="m_iconSummary">
+                <property name="minimumSize">
+                 <size>
+                  <width>20</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Shows a summary of theme icons.</string>
+                </property>
+                <property name="text">
+                 <string notr="true">...</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>

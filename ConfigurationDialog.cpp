@@ -578,9 +578,6 @@ void ConfigurationDialog::showEvent(QShowEvent *e)
 
   QDialog::showEvent(e);
 
-  const auto width = m_trayIconType->width() - m_iconSummary->width() - m_iconThemeColor->width() - 12;
-  m_trayIconTheme->setMinimumWidth(width);
-
   scaleDialog(this);
 }
 
