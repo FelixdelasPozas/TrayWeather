@@ -56,7 +56,7 @@
     <message>
         <location filename="../AboutDialog.ui" line="529"/>
         <source>Icon Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Темы значков</translation>
     </message>
     <message>
         <location filename="../AboutDialog.cpp" line="42"/>
@@ -444,22 +444,22 @@
         <location filename="../ConfigurationDialog.ui" line="924"/>
         <location filename="../ConfigurationDialog.ui" line="934"/>
         <source>Selects the icon theme.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбор темы значков.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="927"/>
         <source>Icon theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема значков</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="944"/>
         <source>Changes icon theme color.</source>
-        <translation type="unfinished"></translation>
+        <translation>Смена цвета темы значков.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="960"/>
         <source>Shows a summary of theme icons.</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображение сводки по теме значков.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="982"/>
