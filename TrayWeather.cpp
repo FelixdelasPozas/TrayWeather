@@ -1102,7 +1102,7 @@ void TrayWeather::checkForUpdates()
   if(last.isValid() && last > now)
   {
     auto msec = now.msecsTo(last);
-    m_updatesTimer.singleShot(msec, SLOT(checkForUpdates));
+    m_updatesTimer.singleShot(msec, QApplication::instance(), SLOT(checkForUpdates));
   }
   else
   {
