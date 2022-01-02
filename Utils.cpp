@@ -288,7 +288,7 @@ void parsePollutionEntry(const QJsonObject &entry, PollutionData &data)
 }
 
 //--------------------------------------------------------------------
-void unixTimeStampToDate(struct tm &time, const long long timestamp)
+void unixTimeStampToDate(struct tm &time, const time_t timestamp)
 {
   const time_t stamp{timestamp};
 

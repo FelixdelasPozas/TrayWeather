@@ -1219,7 +1219,7 @@ void TrayWeather::processWeatherData(const QByteArray &data)
     {
       const auto values  = jsonObj.value("list").toArray();
 
-      auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_data) if(entry.dt == dt) return true; return false; };
+      auto hasEntry = [this](time_t dt) { for(auto entry: this->m_data) if(entry.dt == dt) return true; return false; };
 
       for(auto i = 0; i < values.count(); ++i)
       {
@@ -1330,7 +1330,7 @@ void TrayWeather::processPollutionData(const QByteArray &data)
     const auto jsonObj = jsonDocument.object();
     const auto values  = jsonObj.value("list").toArray();
 
-    auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_pData) if(entry.dt == dt) return true; return false; };
+    auto hasEntry = [this](time_t dt) { for(auto entry: this->m_pData) if(entry.dt == dt) return true; return false; };
 
     for(auto i = 0; i < values.count(); ++i)
     {
@@ -1376,7 +1376,7 @@ void TrayWeather::processOneCallData(const QByteArray &data)
     data.idx = current.value("uvi").toDouble(0);
     m_vData << data;
 
-    auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_vData) if(entry.dt == dt) return true; return false; };
+    auto hasEntry = [this](time_t dt) { for(auto entry: this->m_vData) if(entry.dt == dt) return true; return false; };
 
     if(jsonObj.keys().contains("hourly"))
     {

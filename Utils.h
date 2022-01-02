@@ -446,7 +446,7 @@ const double converthPaToinHg(const double value);
  * \param[in] timestamp unix timestamp.
  *
  */
-void unixTimeStampToDate(struct tm &time, const long long timestamp);
+void unixTimeStampToDate(struct tm &time, const time_t timestamp);
 
 /** \brief Returns the moon phase for the given date (given in unix timestamp) Answer range [0-7] (0 = new moon, 4 = full moon).
  * \param[in] timestamp unix timestamp.

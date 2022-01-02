@@ -1022,7 +1022,7 @@ void WeatherDialog::onPollutionAreaChanged(QDateTime begin, QDateTime end)
   plotAreaGradient.setFinalStop(QPointF(1, 0));
   plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
 
-  auto interpolateDt = [&begin, &end](const long long int dt)
+  auto interpolateDt = [&begin, &end](const time_t dt)
   {
     return static_cast<double>(dt-begin.toMSecsSinceEpoch())/(end.toMSecsSinceEpoch()-begin.toMSecsSinceEpoch());
   };
@@ -1065,7 +1065,7 @@ void WeatherDialog::onUVAreaChanged(QDateTime begin, QDateTime end)
   plotAreaGradient.setFinalStop(QPointF(1, 0));
   plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
 
-  auto interpolateDt = [&begin, &end](const long long int dt)
+  auto interpolateDt = [&begin, &end](const time_t dt)
   {
     return static_cast<double>(dt-begin.toMSecsSinceEpoch())/(end.toMSecsSinceEpoch()-begin.toMSecsSinceEpoch());
   };
