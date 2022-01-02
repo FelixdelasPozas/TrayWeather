@@ -34,12 +34,12 @@ jobs:
           cmake ..
           ninja
           echo "Searching for linked DLLs..."
-          for f in $(ntldd.exe -R TrayWeather.exe | grep "bin\\\.*\.dll" -o | cut -c5- | cat - <(echo Qt5Svg.dll)); do cp "/mingw64/bin/${f}" .; done
+          for f in $(ntldd.exe -R TrayWeather.exe | grep "bin\\\.*\.dll" -o | cut -c5- | cat - <(echo Qt5Svg.dll)); do cp "${MSYSTEM_PREFIX}/bin/${f}" .; done
           echo "Adding files from qt5/share..."
           mkdir platforms
-          cp "/mingw64/share/qt5/plugins/platforms/qwindows.dll" "platforms/"
+          cp "${MSYSTEM_PREFIX}/share/qt5/plugins/platforms/qwindows.dll" "platforms/"
           mkdir imageformats
-          cp "/mingw64/share/qt5/plugins/imageformats/qsvg.dll" "imageformats/"
+          cp "${MSYSTEM_PREFIX}/share/qt5/plugins/imageformats/qsvg.dll" "imageformats/"
       - name: Building the installer
         run: |
           cd build
