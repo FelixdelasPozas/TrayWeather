@@ -33,3 +33,14 @@ jobs:
           cd build
           cmake ..
           ninja
+      - name: Building the installer
+        run: |
+          cd build
+          "%programfiles(x86)%\Inno Setup 6\iscc.exe" "script.iss"
+        shell: cmd
+      - name: Upload the installer as an artifact
+        uses: actions/upload-artifact@v2
+        #if: ${{ github.event_name != 'pull_request' }}
+        with:
+          path: "build/*Setup.exe"
+          name: wininstaller-innosetup
