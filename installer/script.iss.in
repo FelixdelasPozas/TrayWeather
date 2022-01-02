@@ -3,7 +3,7 @@
 [Setup]
 AppName=Tray Weather
 AppVersion=@TRAYWEATHER_VERSION_MAJOR@.@TRAYWEATHER_VERSION_MINOR@.@TRAYWEATHER_VERSION_PATCH@
-DefaultDirName={pf64}\Tray Weather
+DefaultDirName={commonpf}\Tray Weather
 DefaultGroupName=Tray Weather
 OutputDir=@PROJECT_BINARY_DIR@
 AppComments=Tray Weather

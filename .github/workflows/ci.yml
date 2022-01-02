@@ -19,11 +19,15 @@ jobs:
     defaults:
       run:
         shell: msys2 {0}
+    strategy:
+      fail-fast: false
+      matrix:
+        sys: [ MINGW64, MINGW32 ]
     steps:
       - uses: actions/checkout@v2
       - uses: msys2/setup-msys2@v2
         with:
-          msystem: MINGW64
+          msystem: ${{matrix.sys}}
           update: true
           pacboy: toolchain:p cmake:p ninja ntldd-git:p qtwebkit:p qt5-charts:p qt5-tools:p qt5-winextras:p qt5-svg:p
       - name: CI-Build
@@ -50,4 +54,4 @@ jobs:
         #if: ${{ github.event_name != 'pull_request' }}
         with:
           path: "build/*Setup.exe"
-          name: wininstaller-innosetup
+          name: wininstaller-innosetup ${{matrix.sys}}
