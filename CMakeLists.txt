@@ -10,7 +10,7 @@ set (TRAYWEATHER_VERSION_MAJOR 1)
 set (TRAYWEATHER_VERSION_MINOR 15)
 set (TRAYWEATHER_VERSION_PATCH 0)
 
-# Current year, used in configured files. 
+# Current year, used in configured files.
 string(TIMESTAMP CURRENT_YEAR "%Y")
 
 # Find includes in corresponding build directories
@@ -83,7 +83,7 @@ qt5_wrap_ui(CORE_UI
   UVWidget.ui
   AlertDialog.ui
 )
-	
+
 set (CORE_SOURCES
   # project files
   ${CORE_SOURCES}
@@ -109,6 +109,6 @@ set(CORE_EXTERNAL_LIBS
   Qt5::WebKitWidgets
   advapi32
 )
- 
+
 add_executable(TrayWeather ${CORE_SOURCES})
 target_link_libraries (TrayWeather ${CORE_EXTERNAL_LIBS})
