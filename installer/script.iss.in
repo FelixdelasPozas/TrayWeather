@@ -29,8 +29,6 @@ WizardSmallImageFile=@CMAKE_SOURCE_DIR@/installer/smallimage.bmp
 [Files]
 Source: "TrayWeather.exe"; DestDir: "{app}"; Flags: ignoreversion; BeforeInstall: TaskKill('TrayWeather.exe')
 Source: "*.dll"; DestDir: "{app}";
-Source: "bearer/*.*"; DestDir: "{app}/bearer/";
-Source: "iconengines/*.*"; DestDir: "{app}/iconengines/";
 Source: "imageformats/*.*"; DestDir: "{app}/imageformats/";
 Source: "platforms/*.*"; DestDir: "{app}/platforms/";
 

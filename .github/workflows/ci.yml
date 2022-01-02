@@ -25,7 +25,7 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja mingw-w64-x86_64-qt5 mingw-w64-x86_64-qtwebkit
+          install: git mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja mingw-w64-x86_64-ntldd-git mingw-w64-x86_64-qt5 mingw-w64-x86_64-qtwebkit
       - name: CI-Build
         run: |
           echo 'Running in MSYS2!'
@@ -33,6 +33,15 @@ jobs:
           cd build
           cmake ..
           ninja
+          echo "Searching for linked DLLs..."
+          for f in $(ntldd.exe -R TrayWeather.exe | grep "bin\\\.*\.dll" -o | cut -c5- | cat - <(echo Qt5Svg.dll)); do cp "/mingw64/bin/${f}" .; done
+          echo "Manually adding Qt5Svg.dll..."
+          cp "/mingw64/bin/Qt5Svg.dll" .
+          echo "Adding files from qt5/share..."
+          mkdir platforms
+          cp "/mingw64/share/qt5/plugins/platforms/qwindows.dll" "platforms/"
+          mkdir imageformats
+          cp "/mingw64/share/qt5/plugins/imageformats/qsvg.dll" "imageformats/"
       - name: Building the installer
         run: |
           cd build
