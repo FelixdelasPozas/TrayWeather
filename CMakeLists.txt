@@ -29,40 +29,6 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
   set(CORE_EXTERNAL_LIBS ${CORE_EXTERNAL_LIBS} ${QT_QTTEST_LIBRARY})
 endif (CMAKE_BUILD_TYPE MATCHES Debug)
 
-set(CHARTS_INCLUDE_DIR "D:/Desarrollo/Bibliotecas/qtcharts-dev/src")
-set(CHARTS_INCLUDE_DIRS
-  "${CHARTS_INCLUDE_DIR}" 
-  "${CHARTS_INCLUDE_DIR}/charts"
-  "${CHARTS_INCLUDE_DIR}/charts/animations"
-  "${CHARTS_INCLUDE_DIR}/charts/areachart"
-  "${CHARTS_INCLUDE_DIR}/charts/axis"
-  "${CHARTS_INCLUDE_DIR}/axis/barcategoryaxis"
-  "${CHARTS_INCLUDE_DIR}/charts/axis/categoryaxis"
-  "${CHARTS_INCLUDE_DIR}/charts/axis/datetimeaxis"
-  "${CHARTS_INCLUDE_DIR}/charts/axis/logvalueaxis"
-  "${CHARTS_INCLUDE_DIR}/charts/axis/valueaxis"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart/vertical"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart/vertical/bar"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart/vertical/percent"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart/vertical/stacked"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart/horizontal"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart/horizontal/bar"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart/horizontal/percent"
-  "${CHARTS_INCLUDE_DIR}/charts/barchart/horizontal/stacked"
-  "${CHARTS_INCLUDE_DIR}/charts/boxplotchart"
-  "${CHARTS_INCLUDE_DIR}/charts/domain"
-  "${CHARTS_INCLUDE_DIR}/charts/candlestickchart"
-  "${CHARTS_INCLUDE_DIR}/charts/layout"
-  "${CHARTS_INCLUDE_DIR}/charts/legend"
-  "${CHARTS_INCLUDE_DIR}/charts/linechart"
-  "${CHARTS_INCLUDE_DIR}/charts/piechart"
-  "${CHARTS_INCLUDE_DIR}/charts/scatterchart"
-  "${CHARTS_INCLUDE_DIR}/charts/splinechart"
-  "${CHARTS_INCLUDE_DIR}/charts/themes"
-  "${CHARTS_INCLUDE_DIR}/charts/xychart"
-)
-
 if(DEFINED MINGW)
   configure_file("${PROJECT_SOURCE_DIR}/resources.rc.in" "${PROJECT_BINARY_DIR}/resources.rc")
   configure_file("${PROJECT_SOURCE_DIR}/installer/script.iss.in" "${PROJECT_BINARY_DIR}/script.iss")
