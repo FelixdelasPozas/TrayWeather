@@ -257,7 +257,7 @@ void save(const Configuration &configuration);
  */
 struct ForecastData
 {
-    long long int dt;          /** date and time of the data.         */
+    time_t        dt;          /** date and time of the data.         */
     double        temp;        /** temperature in Kelvin.             */
     double        temp_max;    /** max temperature in Kelvin.         */
     double        temp_min;    /** min temperature in Kelvin.         */
@@ -272,8 +272,8 @@ struct ForecastData
     double        wind_dir;    /** wind direction in degrees.         */
     double        rain;        /** rain accumulation in last 3 hours. */
     double        snow;        /** snow accumulation in last 3 hours. */
-    long long int sunrise;     /** time of sunrise.                   */
-    long long int sunset;      /** time of sunset.                    */
+    time_t        sunrise;     /** time of sunrise.                   */
+    time_t        sunset;      /** time of sunset.                    */
     QString       name;        /** place name.                        */
     QString       country;     /** country.                           */
 
@@ -294,7 +294,7 @@ using Forecast = QList<ForecastData>;
  */
 struct PollutionData
 {
-    long long int dt;       /** date and time of the data.                 */
+    time_t        dt;       /** date and time of the data.                 */
     unsigned int  aqi;      /** air quality index in [1-5].                */
     QString       aqi_text; /** air quality as text.                       */
     double        co;       /** concentration of carbon monoxide.          */
@@ -319,7 +319,7 @@ using Pollution = QList<PollutionData>;
  */
 struct UVData
 {
-    long long int dt;  /** date and time of the data. */
+    time_t        dt;  /** date and time of the data. */
     double        idx; /** uv index for that date.    */
 };
 
