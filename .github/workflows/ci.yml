@@ -29,7 +29,7 @@ jobs:
         with:
           msystem: ${{matrix.sys}}
           update: true
-          pacboy: toolchain:p cmake:p ninja ntldd-git:p qtwebkit:p qt5-charts:p qt5-tools:p qt5-winextras:p qt5-svg:p
+          pacboy: toolchain:p cmake:p ninja:p ntldd-git:p qtwebkit:p qt5-charts:p qt5-tools:p qt5-winextras:p qt5-svg:p
       - name: CI-Build
         run: |
           echo 'Running in MSYS2!'
