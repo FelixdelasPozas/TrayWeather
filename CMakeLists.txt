@@ -112,4 +112,3 @@ set(CORE_EXTERNAL_LIBS
  
 add_executable(TrayWeather ${CORE_SOURCES})
 target_link_libraries (TrayWeather ${CORE_EXTERNAL_LIBS})
-qt5_use_modules(TrayWeather Widgets Network WebKitWidgets Charts)
