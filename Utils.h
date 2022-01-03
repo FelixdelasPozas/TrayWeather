@@ -57,7 +57,11 @@ static const QStringList OWM_LANGUAGES = { "af", "al", "ar", "az", "bg", "ca", "
                                            "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua",
                                            "uk", "vi", "zh_cn", "zh_tw", "zu" };
 
-static QTranslator s_appTranslator; /** application language translator. */
+static const QStringList QT_LANGUAGES = { "bg", "ca", "cs", "da", "de", "en", "es", "fi", "fr", "gd",
+                                          "he", "hu", "it", "ja", "ko", "lv", "pl", "ru", "sk", "uk" };
+
+static QTranslator s_appTranslator; /** application language translator.   */
+static QTranslator s_qtTranslator;  /** application Qt dialogs translator. */
 
 static const std::list<double> RAIN_MAP_LAYER_GRADES_MM      = { 0.1, 2, 6, 8, 10, 14, 16, 20, 26, 32, 42, 48, 52, 70 };
 static const std::list<double> TEMP_MAP_LAYER_GRADES_CELSIUS = { -24, -20, -16, -8, -4, 0, 4, 8, 16, 20, 24, 32, 36 };

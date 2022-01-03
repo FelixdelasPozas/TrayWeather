@@ -507,6 +507,7 @@ void ConfigurationDialog::onColorButtonClicked()
 
   QColorDialog dialog;
   dialog.setCurrentColor(color);
+  dialog.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
 
   if(dialog.exec() != QColorDialog::Accepted) return;
 

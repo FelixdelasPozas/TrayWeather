@@ -860,12 +860,25 @@ void changeLanguage(const QString &lang)
     s_appTranslator.load(QString());
   }
 
+  if(!s_qtTranslator.isEmpty())
+  {
+    qApp->removeTranslator(&s_qtTranslator);
+    s_qtTranslator.load(QString());
+  }
+
   if(lang.compare("en_EN") != 0)
   {
     s_appTranslator.load(QString(":/TrayWeather/%1.qm").arg(lang));
+
+    auto lang_single = lang.split('_').first();
+    if(QT_LANGUAGES.contains(lang_single, Qt::CaseInsensitive))
+    {
+      s_qtTranslator.load(QString(":/TrayWeather/translations/qt_%1.qm").arg(lang_single));
+    }
   }
 
   qApp->installTranslator(&s_appTranslator);
+  qApp->installTranslator(&s_qtTranslator);
 }
 
 //--------------------------------------------------------------------
