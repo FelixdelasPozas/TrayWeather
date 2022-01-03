@@ -164,7 +164,6 @@ struct Configuration
     QColor             iconThemeColor;  /** icon theme color for monocolor themes.                      */
     QColor             trayTextColor;   /** Color of tray temperature text.                             */
     bool               trayTextMode;    /** true for fixed, false for dynamic.                          */
-    unsigned int       trayTextSize;    /** base size of tray font in pixels.                           */
     QColor             minimumColor;    /** minimum value dynamic color.                                */
     QColor             maximumColor;    /** maximum value dynamic color.                                */
     int                minimumValue;    /** dynamic color minimum value.                                */
@@ -210,7 +209,6 @@ struct Configuration
     , iconThemeColor  {Qt::black}
     , trayTextColor   {Qt::white}
     , trayTextMode    {true}
-    , trayTextSize    {250}
     , minimumColor    {Qt::blue}
     , maximumColor    {Qt::red}
     , minimumValue    {-10}
@@ -562,6 +560,13 @@ QPixmap createIconsSummary(const unsigned int theme, const int size, const QColo
  *
  */
 QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int size);
+
+/** \brief Adjusts the size of the font in the given painter to render the given text.
+ * \param[in] painter QPainter reference.
+ * \param[in] text Text to render reference.
+ *
+ */
+void adjustFontSize(QPainter &painter, const QString &text);
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.

@@ -231,7 +231,6 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.iconThemeColor = QColor(m_iconThemeColor->property("iconColor").toString());
   configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
   configuration.trayTextMode   = m_fixed->isChecked();
-  configuration.trayTextSize   = m_fontSize->value();
   configuration.minimumColor   = QColor(m_minColor->property("iconColor").toString());
   configuration.maximumColor   = QColor(m_maxColor->property("iconColor").toString());
   configuration.minimumValue   = m_minSpinBox->value();
@@ -681,7 +680,6 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_trayIconTheme->setCurrentIndex(static_cast<int>(configuration.iconTheme));
 
   m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
-  m_fontSize->setValue(configuration.trayTextSize);
   m_updatesCombo->setCurrentIndex(static_cast<int>(configuration.update));
 
   m_unitsComboBox->setCurrentIndex(static_cast<int>(configuration.units));

@@ -67,7 +67,6 @@ static const QString TRAY_ICON_THEME         = QString("Tray icon theme");
 static const QString TRAY_ICON_THEME_COLOR   = QString("Tray icon theme color");
 static const QString TRAY_TEXT_COLOR         = QString("Tray text color");
 static const QString TRAY_TEXT_COLOR_MODE    = QString("Tray text color mode");
-static const QString TRAY_TEXT_SIZE          = QString("Tray text size");
 static const QString TRAY_DYNAMIC_MIN_COLOR  = QString("Tray text color dynamic minimum");
 static const QString TRAY_DYNAMIC_MAX_COLOR  = QString("Tray text color dynamic maximum");
 static const QString TRAY_DYNAMIC_MIN_VALUE  = QString("Tray text color dynamic minimum value");
@@ -638,7 +637,6 @@ void load(Configuration &configuration)
   configuration.iconThemeColor  = QColor(settings.value(TRAY_ICON_THEME_COLOR, "#FF000000").toString());
   configuration.trayTextColor   = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
   configuration.trayTextMode    = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
-  configuration.trayTextSize    = settings.value(TRAY_TEXT_SIZE, 250).toUInt();
   configuration.minimumColor    = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
   configuration.maximumColor    = QColor(settings.value(TRAY_DYNAMIC_MAX_COLOR, "#FFFF0000").toString());
   configuration.minimumValue    = settings.value(TRAY_DYNAMIC_MIN_VALUE, -15).toInt();
@@ -707,7 +705,6 @@ void save(const Configuration &configuration)
   settings.setValue(TRAY_ICON_THEME_COLOR,   configuration.iconThemeColor.name(QColor::HexArgb));
   settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor.name(QColor::HexArgb));
   settings.setValue(TRAY_TEXT_COLOR_MODE,    configuration.trayTextMode);
-  settings.setValue(TRAY_TEXT_SIZE,          configuration.trayTextSize);
   settings.setValue(TRAY_DYNAMIC_MIN_COLOR,  configuration.minimumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MAX_COLOR,  configuration.maximumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MIN_VALUE,  configuration.minimumValue);
@@ -1101,4 +1098,63 @@ QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int s
   painter.end();
 
   return border;
+}
+
+//--------------------------------------------------------------------
+void adjustFontSize(QPainter &painter, const QString &text)
+{
+  // NOTE: this method requires a painter with a font with a
+  // previous setPixelSize() call.
+  const auto MAX_LENGTH = painter.window().width();
+  auto font = painter.font();
+
+  auto sign = [](int n){ if(n < 0) return -1; if(n > 0) return 1; return 0; };
+
+  bool validSize = false;
+  bool adjustHeight = false;
+  int increment = 0;
+  while(!validSize)
+  {
+    QFontMetrics metrics(font);
+    const int measure = metrics.width(text);
+
+    if(measure > MAX_LENGTH)
+    {
+      if(sign(increment) == 1)
+      {
+        validSize = true;
+        adjustHeight = metrics.ascent() > MAX_LENGTH;
+      }
+
+      increment = -5;
+    }
+    else
+    {
+      if(sign(increment) == -1)
+      {
+        validSize = true;
+        adjustHeight = metrics.ascent() > MAX_LENGTH;
+      }
+
+      increment = 5;
+    }
+
+    font.setPixelSize(font.pixelSize() + increment);
+  }
+
+  while(adjustHeight)
+  {
+    QFontMetrics metrics(font);
+    const auto measure = metrics.ascent();
+    if(measure > MAX_LENGTH)
+    {
+      font.setPixelSize(font.pixelSize() - 2);
+    }
+    else
+    {
+      adjustHeight = false;
+    }
+  }
+
+  painter.setFont(font);
 }

@@ -241,7 +241,6 @@ void TrayWeather::showConfiguration()
   m_configuration.iconThemeColor   = configuration.iconThemeColor;
   m_configuration.trayTextColor    = configuration.trayTextColor;
   m_configuration.trayTextMode     = configuration.trayTextMode;
-  m_configuration.trayTextSize     = configuration.trayTextSize;
   m_configuration.minimumColor     = configuration.minimumColor;
   m_configuration.maximumColor     = configuration.maximumColor;
   m_configuration.minimumValue     = configuration.minimumValue;
@@ -468,10 +467,13 @@ void TrayWeather::updateTooltip()
 
         const auto roundedTemp = static_cast<int>(std::nearbyint(temperatureValue));
         const auto roundedString = QString::number(roundedTemp);
-        QFont font = painter.font();
-        font.setPixelSize(m_configuration.trayTextSize - ((roundedString.length() - 3) * 50));
+
+        auto font = painter.font();
         font.setWeight(QFont::Bold);
+        font.setStretch(QFont::SemiCondensed);
+        font.setPixelSize(250);
         painter.setFont(font);
+        adjustFontSize(painter, roundedString);
 
         QColor color;
         if(m_configuration.trayTextMode)
@@ -485,7 +487,7 @@ void TrayWeather::updateTooltip()
 
         painter.setPen(color);
         painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
-        painter.drawText(tempPixmap.rect(), Qt::AlignCenter, roundedString);
+        painter.drawText(tempPixmap.rect() - QMargins{-30,0,30,0}, Qt::AlignCenter, roundedString);
 
         const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
         const auto image = addQuickBorderToImage(tempPixmap.toImage(), invertedColor, 16);
