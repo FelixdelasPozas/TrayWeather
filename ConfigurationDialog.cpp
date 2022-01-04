@@ -591,6 +591,12 @@ void ConfigurationDialog::changeEvent(QEvent *e)
 
     retranslateUi(this);
 
+    // Fix Visuals layout.
+    const int visualsFix = std::max(m_fixed->width(), m_variable->width());
+    m_fixed->setFixedWidth(visualsFix);
+    m_variable->setFixedWidth(visualsFix);
+    m_from->setFixedWidth(visualsFix);
+
     disconnectSignals();
     m_languageCombo->blockSignals(true);
     setConfiguration(backup);

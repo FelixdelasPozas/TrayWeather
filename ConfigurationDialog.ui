@@ -1145,12 +1145,18 @@ QGroupBox::title {
               <property name="text">
                <string>Temperature text color</string>
               </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item row="2" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,0,1,0">
+              <property name="spacing">
+               <number>0</number>
+              </property>
               <item>
-               <widget class="QLabel" name="label_18">
+               <widget class="QLabel" name="m_from">
                 <property name="minimumSize">
                  <size>
                   <width>61</width>
@@ -1162,6 +1168,9 @@ QGroupBox::title {
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+                <property name="indent">
+                 <number>6</number>
                 </property>
                </widget>
               </item>
