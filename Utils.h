@@ -58,7 +58,7 @@ static const QStringList OWM_LANGUAGES = { "af", "al", "ar", "az", "bg", "ca", "
                                            "uk", "vi", "zh_cn", "zh_tw", "zu" };
 
 static const QStringList QT_LANGUAGES = { "bg", "ca", "cs", "da", "de", "en", "es", "fi", "fr", "gd",
-                                          "he", "hu", "it", "ja", "ko", "lv", "pl", "ru", "sk", "uk" };
+                                          "he", "hu", "it", "ja", "ko", "lv", "pl", "ru", "sk", "uk", "zh_cn" };
 
 static QTranslator s_appTranslator; /** application language translator.   */
 static QTranslator s_qtTranslator;  /** application Qt dialogs translator. */

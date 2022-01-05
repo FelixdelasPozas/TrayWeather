@@ -875,6 +875,10 @@ void changeLanguage(const QString &lang)
     {
       s_qtTranslator.load(QString(":/TrayWeather/translations/qt_%1.qm").arg(lang_single));
     }
+    else if(QT_LANGUAGES.contains(lang, Qt::CaseInsensitive))
+    {
+      s_qtTranslator.load(QString(":/TrayWeather/translations/qt_%1.qm").arg(lang));
+    }
   }
 
   qApp->installTranslator(&s_appTranslator);
