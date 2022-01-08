@@ -87,6 +87,8 @@ static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject:
 
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
+constexpr int ICON_TEXT_BORDER = 30;
+
 /** \struct LanguageData
  * \brief Contains a translation data.
  *

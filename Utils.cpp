@@ -35,6 +35,7 @@
 #include <QPainter>
 #include <QAbstractTextDocumentLayout>
 #include <QRgb>
+#include <QLayout>
 #include <QObject>
 
 // C++
@@ -1122,7 +1123,7 @@ void adjustFontSize(QPainter &painter, const QString &text)
 {
   // NOTE: this method requires a painter with a font with a
   // previous setPixelSize() call.
-  const auto MAX_LENGTH = painter.window().width();
+  const auto MAX_LENGTH = (painter.device()->width() - ICON_TEXT_BORDER);
   auto font = painter.font();
 
   auto sign = [](int n){ if(n < 0) return -1; if(n > 0) return 1; return 0; };
@@ -1143,7 +1144,7 @@ void adjustFontSize(QPainter &painter, const QString &text)
         adjustHeight = metrics.ascent() > MAX_LENGTH;
       }
 
-      increment = -5;
+      increment = -1;
     }
     else
     {
@@ -1153,7 +1154,7 @@ void adjustFontSize(QPainter &painter, const QString &text)
         adjustHeight = metrics.ascent() > MAX_LENGTH;
       }
 
-      increment = 5;
+      increment = 1;
     }
 
     font.setPixelSize(font.pixelSize() + increment);

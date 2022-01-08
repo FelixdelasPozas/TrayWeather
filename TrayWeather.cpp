@@ -487,7 +487,8 @@ void TrayWeather::updateTooltip()
 
         painter.setPen(color);
         painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
-        painter.drawText(tempPixmap.rect() - QMargins{-30,0,30,0}, Qt::AlignCenter, roundedString);
+        const auto margins = QMargins{ICON_TEXT_BORDER,ICON_TEXT_BORDER,0,0};
+        painter.drawText(tempPixmap.rect() + margins, Qt::AlignCenter, roundedString);
 
         const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
         const auto image = addQuickBorderToImage(tempPixmap.toImage(), invertedColor, 16);
