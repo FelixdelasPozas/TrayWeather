@@ -240,6 +240,11 @@ class ConfigurationDialog
      */
     void updateTooltipFieldsButtons();
 
+    /** \brief Fixes some layout problems that ocurr when changing language or app theme.
+     *
+     */
+    void fixVisuals();
+
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
     bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */
     QString                                m_DNSIP;        /** DNS server IP.                                                                    */

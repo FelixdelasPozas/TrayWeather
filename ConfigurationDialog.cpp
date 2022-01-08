@@ -489,7 +489,8 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
   qApp->setStyleSheet(sheet);
 
   adjustSize();
-  setFixedSize(size());
+  fixVisuals();
+  setFixedSize(size() + QSize{8,8});
 
   updateRange();
 
@@ -579,6 +580,7 @@ void ConfigurationDialog::showEvent(QShowEvent *e)
   QDialog::showEvent(e);
 
   scaleDialog(this);
+  fixVisuals();
 }
 
 //--------------------------------------------------------------------
@@ -591,11 +593,7 @@ void ConfigurationDialog::changeEvent(QEvent *e)
 
     retranslateUi(this);
 
-    // Fix Visuals layout.
-    const int visualsFix = std::max(m_fixed->width(), m_variable->width());
-    m_fixed->setFixedWidth(visualsFix);
-    m_variable->setFixedWidth(visualsFix);
-    m_from->setFixedWidth(visualsFix);
+    fixVisuals();
 
     disconnectSignals();
     m_languageCombo->blockSignals(true);
@@ -1083,4 +1081,14 @@ void IconSummaryWidget::leaveEvent(QEvent *e)
 
   close();
   deleteLater();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::fixVisuals()
+{
+  // Fix Visuals layout.
+  const int visualsFix = std::max(m_fixed->width(), m_variable->width());
+  m_fixed->setFixedWidth(visualsFix);
+  m_variable->setFixedWidth(visualsFix);
+  m_from->setFixedWidth(visualsFix);
 }
