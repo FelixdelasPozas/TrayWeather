@@ -5,6 +5,7 @@
     <file>de_DE.qm</file>
     <file>fr_FR.qm</file>
     <file>zh_CN.qm</file>
+    <file>pt_BR.qm</file>
     <file>translations/qt_bg.qm</file>
     <file>translations/qt_ca.qm</file>
     <file>translations/qt_cs.qm</file>
@@ -22,6 +23,7 @@
     <file>translations/qt_ko.qm</file>
     <file>translations/qt_lv.qm</file>
     <file>translations/qt_pl.qm</file>
+    <file>translations/qt_pt_BR.qm</file>
     <file>translations/qt_ru.qm</file>
     <file>translations/qt_sk.qm</file>
     <file>translations/qt_uk.qm</file>

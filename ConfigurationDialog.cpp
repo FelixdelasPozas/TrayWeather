@@ -953,8 +953,7 @@ void ConfigurationDialog::updateLanguageCombo(const QString &current)
   for(int i = 0; i < TRANSLATIONS.size(); ++i)
   {
     const auto &lang = TRANSLATIONS.at(i);
-    const auto translated = QApplication::translate("QObject", lang.name.toUtf8());
-    m_languageCombo->addItem(QIcon(lang.icon), translated, lang.file);
+    m_languageCombo->addItem(QIcon(lang.icon), lang.name, lang.file);
     if(lang.file.compare(current) == 0) selected = i;
   }
   m_languageCombo->blockSignals(true);

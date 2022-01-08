@@ -57,8 +57,8 @@ static const QStringList OWM_LANGUAGES = { "af", "al", "ar", "az", "bg", "ca", "
                                            "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua",
                                            "uk", "vi", "zh_cn", "zh_tw", "zu" };
 
-static const QStringList QT_LANGUAGES = { "bg", "ca", "cs", "da", "de", "en", "es", "fi", "fr", "gd",
-                                          "he", "hu", "it", "ja", "ko", "lv", "pl", "ru", "sk", "uk", "zh_cn" };
+static const QStringList QT_LANGUAGES = { "bg", "ca", "cs", "da", "de", "en", "es", "fi", "fr", "gd", "he", "hu",
+                                          "it", "ja", "ko", "lv", "pl", "pt_br", "ru", "sk", "uk", "zh_cn" };
 
 static QTranslator s_appTranslator; /** application language translator.   */
 static QTranslator s_qtTranslator;  /** application Qt dialogs translator. */
@@ -113,12 +113,13 @@ struct LanguageData
  *
  */
 static QList<LanguageData> TRANSLATIONS = {
-    { QObject::tr("English"),              ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
-    { QObject::tr("Spanish"),              ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
-    { QObject::tr("Russian"),              ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
-    { QObject::tr("German"),               ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             },
-    { QObject::tr("French"),               ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                },
-    { QObject::tr("Chinese (Simplified)"), ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"              }
+    { "English",                ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
+    { "Español (España)",       ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
+    { "Русский",                ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
+    { "Deutsch",                ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             },
+    { "Français",               ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                },
+    { "简体中文",                ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"              },
+    { "Português (Brasileiro)", ":/TrayWeather/languages/br.svg", "pt_BR", "Autergame"                  },
 };
 
 /** \struct IconThemeData
