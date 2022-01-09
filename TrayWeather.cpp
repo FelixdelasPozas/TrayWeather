@@ -241,6 +241,7 @@ void TrayWeather::showConfiguration()
   m_configuration.iconThemeColor   = configuration.iconThemeColor;
   m_configuration.trayTextColor    = configuration.trayTextColor;
   m_configuration.trayTextMode     = configuration.trayTextMode;
+  m_configuration.trayTextBorder   = configuration.trayTextBorder;
   m_configuration.minimumColor     = configuration.minimumColor;
   m_configuration.maximumColor     = configuration.maximumColor;
   m_configuration.minimumValue     = configuration.minimumValue;
@@ -473,7 +474,7 @@ void TrayWeather::updateTooltip()
         font.setStretch(QFont::SemiCondensed);
         font.setPixelSize(250);
         painter.setFont(font);
-        adjustFontSize(painter, roundedString);
+        adjustFontSize(painter, roundedString, m_configuration.trayTextBorder);
 
         QColor color;
         if(m_configuration.trayTextMode)
@@ -490,14 +491,18 @@ void TrayWeather::updateTooltip()
         const auto margins = QMargins{ICON_TEXT_BORDER,ICON_TEXT_BORDER,0,0};
         painter.drawText(tempPixmap.rect() + margins, Qt::AlignCenter, roundedString);
 
-        const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
-        const auto image = addQuickBorderToImage(tempPixmap.toImage(), invertedColor, 16);
+        if(m_configuration.trayTextBorder)
+        {
+          const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
+          const auto image = addQuickBorderToImage(tempPixmap.toImage(), invertedColor, 16);
 
-        painter.drawImage(QPoint{0,0}, image);
+          painter.drawImage(QPoint{0,0}, image);
+        }
         painter.end();
 
         painter.begin(&pixmap);
         painter.drawImage(QPoint{0,0}, tempPixmap.toImage());
+        painter.end();
       }
       break;
   }

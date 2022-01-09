@@ -231,6 +231,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.iconThemeColor = QColor(m_iconThemeColor->property("iconColor").toString());
   configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
   configuration.trayTextMode   = m_fixed->isChecked();
+  configuration.trayTextBorder = m_border->isChecked();
   configuration.minimumColor   = QColor(m_minColor->property("iconColor").toString());
   configuration.maximumColor   = QColor(m_maxColor->property("iconColor").toString());
   configuration.minimumValue   = m_minSpinBox->value();
@@ -695,6 +696,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 
   m_fixed->setChecked(configuration.trayTextMode);
   m_variable->setChecked(!configuration.trayTextMode);
+  m_border->setChecked(configuration.trayTextBorder);
 
   m_minSpinBox->setMaximum(configuration.maximumValue-1);
   m_maxSpinBox->setMinimum(configuration.minimumValue+1);
@@ -1086,6 +1088,19 @@ void IconSummaryWidget::leaveEvent(QEvent *e)
 void ConfigurationDialog::fixVisuals()
 {
   // Fix Visuals layout.
+  m_fixed->setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  m_fixed->setMinimumSize(0,0);
+  m_variable->setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  m_variable->setMinimumSize(0,0);
+  m_from->setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  m_from->setMinimumSize(0,0);
+
+  m_fixed->updateGeometry();
+  m_variable->updateGeometry();
+
+  m_fixed->adjustSize();
+  m_variable->adjustSize();
+
   const int visualsFix = std::max(m_fixed->width(), m_variable->width());
   m_fixed->setFixedWidth(visualsFix);
   m_variable->setFixedWidth(visualsFix);

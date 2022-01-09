@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>479</width>
-    <height>610</height>
+    <height>632</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,15 +30,21 @@
    <item>
     <widget class="QTabWidget" name="m_tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>Location</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,1,0">
+      <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,0,0,1">
        <item>
         <widget class="QGroupBox" name="groupBox_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -63,7 +69,7 @@ QGroupBox::title {
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <layout class="QGridLayout" name="gridLayout_3">
+           <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1">
             <item row="0" column="1">
              <widget class="QLabel" name="m_latitudeLabel">
               <property name="toolTip">
@@ -219,6 +225,12 @@ QGroupBox::title {
        </item>
        <item>
         <widget class="QGroupBox" name="m_geoBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -242,13 +254,22 @@ QGroupBox::title {
           <string>Geographic Coordinates</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetMinAndMaxSize</enum>
-          </property>
           <item>
-           <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0,0,0,0,0,0" columnstretch="1,1">
+           <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1">
             <item row="2" column="0">
              <widget class="QLabel" name="label">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -262,6 +283,18 @@ QGroupBox::title {
             </item>
             <item row="2" column="1">
              <widget class="QLabel" name="m_country">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -269,6 +302,18 @@ QGroupBox::title {
             </item>
             <item row="3" column="0">
              <widget class="QLabel" name="label_5">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -282,6 +327,18 @@ QGroupBox::title {
             </item>
             <item row="3" column="1">
              <widget class="QLabel" name="m_region">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -289,6 +346,18 @@ QGroupBox::title {
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label_7">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -302,6 +371,18 @@ QGroupBox::title {
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_9">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -315,6 +396,18 @@ QGroupBox::title {
             </item>
             <item row="0" column="1">
              <widget class="QLabel" name="m_latitude">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -322,6 +415,18 @@ QGroupBox::title {
             </item>
             <item row="1" column="1">
              <widget class="QLabel" name="m_longitude">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -329,6 +434,18 @@ QGroupBox::title {
             </item>
             <item row="7" column="1">
              <widget class="QLabel" name="m_ip">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -336,6 +453,18 @@ QGroupBox::title {
             </item>
             <item row="6" column="0">
              <widget class="QLabel" name="label_4">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -349,6 +478,18 @@ QGroupBox::title {
             </item>
             <item row="7" column="0">
              <widget class="QLabel" name="label_3">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -362,6 +503,18 @@ QGroupBox::title {
             </item>
             <item row="6" column="1">
              <widget class="QLabel" name="m_timezone">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -369,6 +522,18 @@ QGroupBox::title {
             </item>
             <item row="5" column="0">
              <widget class="QLabel" name="label_6">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -382,6 +547,18 @@ QGroupBox::title {
             </item>
             <item row="5" column="1">
              <widget class="QLabel" name="m_zipCode">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -389,6 +566,18 @@ QGroupBox::title {
             </item>
             <item row="4" column="1">
              <widget class="QLabel" name="m_city">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -396,6 +585,18 @@ QGroupBox::title {
             </item>
             <item row="4" column="0">
              <widget class="QLabel" name="label_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -409,6 +610,18 @@ QGroupBox::title {
             </item>
             <item row="8" column="0">
              <widget class="QLabel" name="label_8">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="font">
                <font>
                 <weight>75</weight>
@@ -422,6 +635,18 @@ QGroupBox::title {
             </item>
             <item row="8" column="1">
              <widget class="QLabel" name="m_isp">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>18</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>18</height>
+               </size>
+              </property>
               <property name="text">
                <string notr="true">Unknown</string>
               </property>
@@ -434,6 +659,12 @@ QGroupBox::title {
        </item>
        <item>
         <widget class="QGroupBox" name="m_keyBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -460,7 +691,7 @@ QGroupBox::title {
           <item>
            <widget class="QLabel" name="label_10">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from OpenWeatherMap for your location an API Key must be obtained from the &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;. It's free.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>To obtain weather forecast data from OpenWeatherMap for your location an API Key must be obtained from the &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;website&lt;/a&gt;. It's free.</string>
             </property>
             <property name="textFormat">
              <enum>Qt::RichText</enum>
@@ -535,6 +766,19 @@ QGroupBox::title {
           </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>0</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -975,6 +1219,12 @@ QGroupBox::title {
               </item>
               <item>
                <widget class="QToolButton" name="m_iconThemeColor">
+                <property name="minimumSize">
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
+                </property>
                 <property name="toolTip">
                  <string>Changes icon theme color.</string>
                 </property>
@@ -987,8 +1237,8 @@ QGroupBox::title {
                <widget class="QToolButton" name="m_iconSummary">
                 <property name="minimumSize">
                  <size>
-                  <width>20</width>
-                  <height>20</height>
+                  <width>24</width>
+                  <height>24</height>
                  </size>
                 </property>
                 <property name="toolTip">
@@ -1137,10 +1387,7 @@ QGroupBox::title {
              </layout>
             </item>
             <item row="4" column="1">
-             <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,0,1,0">
-              <property name="spacing">
-               <number>0</number>
-              </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
               <item>
                <widget class="QLabel" name="m_from">
                 <property name="minimumSize">
@@ -1224,6 +1471,22 @@ QGroupBox::title {
                </widget>
               </item>
              </layout>
+            </item>
+            <item row="5" column="1">
+             <widget class="QCheckBox" name="m_border">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="toolTip">
+               <string>Draw a border around temperature icon text.</string>
+              </property>
+              <property name="text">
+               <string>Draw a border around text for better contrast.</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

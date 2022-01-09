@@ -170,7 +170,8 @@ struct Configuration
     unsigned int       iconTheme;       /** icon theme. See ICON_THEMES var.                            */
     QColor             iconThemeColor;  /** icon theme color for monocolor themes.                      */
     QColor             trayTextColor;   /** Color of tray temperature text.                             */
-    bool               trayTextMode;    /** true for fixed, false for dynamic.                          */
+    bool               trayTextMode;    /** true for fixed color, false for dynamic color.              */
+    bool               trayTextBorder;  /** true to draw a border around icon text, false otherwise.    */
     QColor             minimumColor;    /** minimum value dynamic color.                                */
     QColor             maximumColor;    /** maximum value dynamic color.                                */
     int                minimumValue;    /** dynamic color minimum value.                                */
@@ -216,6 +217,7 @@ struct Configuration
     , iconThemeColor  {Qt::black}
     , trayTextColor   {Qt::white}
     , trayTextMode    {true}
+    , trayTextBorder  {true}
     , minimumColor    {Qt::blue}
     , maximumColor    {Qt::red}
     , minimumValue    {-10}
@@ -571,9 +573,10 @@ QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int s
 /** \brief Adjusts the size of the font in the given painter to render the given text.
  * \param[in] painter QPainter reference.
  * \param[in] text Text to render reference.
+ * \param[in] withBorder true to take into consideration the icon text border, false otherwise.
  *
  */
-void adjustFontSize(QPainter &painter, const QString &text);
+void adjustFontSize(QPainter &painter, const QString &text, const bool withBorder = true);
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.
