@@ -520,12 +520,12 @@
         <location filename="../ConfigurationDialog.ui" line="1492"/>
         <location filename="../ConfigurationDialog.ui" line="1502"/>
         <source>Draw a border around temperature icon text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenhar uma borda ao redor do texto do ícone de temperatura.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1505"/>
         <source>Draw a border around text for better contrast.</source>
-        <translation type="unfinished"></translation>
+        <translation>Desenhar uma borda ao redor do texto para melhor contraste.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1528"/>
