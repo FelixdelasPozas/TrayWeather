@@ -52,6 +52,9 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   setupUi(this);
 
+  QObject::connect(m_borderLabel, &ClickableLabel::clicked,
+                   [this](){ m_border->setChecked(!m_border->isChecked()); });
+
   m_tooltipList->setItemDelegate(new RichTextItemDelegate());
   m_tooltipValueCombo->setItemDelegate(new RichTextItemDelegate());
 

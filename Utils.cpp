@@ -1163,7 +1163,7 @@ void adjustFontSize(QPainter &painter, const QString &text, const bool withBorde
     font.setPixelSize(font.pixelSize() + increment);
   }
   // give the text a little more space
-  font.setPixelSize(font.pixelSize() - 3);
+  font.setPixelSize(font.pixelSize() - 5);
 
   while(adjustHeight)
   {

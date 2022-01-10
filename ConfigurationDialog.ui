@@ -691,7 +691,7 @@ QGroupBox::title {
           <item>
            <widget class="QLabel" name="label_10">
             <property name="text">
-             <string>To obtain weather forecast data from OpenWeatherMap for your location an API Key must be obtained from the &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;website&lt;/a&gt;. It's free.</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from OpenWeatherMap for your location an API Key must be obtained from the &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;. It's free.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="textFormat">
              <enum>Qt::RichText</enum>
@@ -1473,20 +1473,43 @@ QGroupBox::title {
              </layout>
             </item>
             <item row="5" column="1">
-             <widget class="QCheckBox" name="m_border">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>24</height>
-               </size>
-              </property>
-              <property name="toolTip">
-               <string>Draw a border around temperature icon text.</string>
-              </property>
-              <property name="text">
-               <string>Draw a border around text for better contrast.</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
+              <item>
+               <widget class="QCheckBox" name="m_border">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Draw a border around temperature icon text.</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="ClickableLabel" name="m_borderLabel">
+                <property name="toolTip">
+                 <string>Draw a border around temperature icon text.</string>
+                </property>
+                <property name="text">
+                 <string>Draw a border around text for better contrast.</string>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -1931,6 +1954,11 @@ QGroupBox::title {
   <customwidget>
    <class>CustomComboBox</class>
    <extends>QComboBox</extends>
+   <header>Utils.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
    <header>Utils.h</header>
   </customwidget>
  </customwidgets>

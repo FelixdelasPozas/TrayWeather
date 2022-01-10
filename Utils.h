@@ -37,6 +37,7 @@
 #include <QAbstractItemModel>
 #include <QStyleOption>
 #include <QComboBox>
+#include <QLabel>
 
 class QPainter;
 class QDialog;
@@ -87,7 +88,7 @@ static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject:
 
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
-constexpr int ICON_TEXT_BORDER = 30;
+constexpr int ICON_TEXT_BORDER = 26;
 
 /** \struct LanguageData
  * \brief Contains a translation data.
@@ -632,6 +633,51 @@ class RichTextItemDelegate
 
     virtual QSize sizeHint(const QStyleOptionViewItem &option,
                            const QModelIndex &index) const;
+};
+
+/** \class ClickableLabel
+ * \brief QLabel subclass that emits a signal when clicked.
+ *
+ */
+class ClickableLabel
+: public QLabel
+{
+    Q_OBJECT
+  public:
+    /** \brief ClickableLabel class constructor.
+     * \param[in] parent Raw pointer of the widget parent of this one.
+     * \f Widget flags.
+     *
+     */
+    explicit ClickableLabel(QWidget *parent=0, Qt::WindowFlags f=0)
+    : QLabel(parent, f)
+    {};
+
+    /** \brief ClickableLabel class constructor.
+     * \param[in] text Label text.
+     * \param[in] parent Raw pointer of the widget parent of this one.
+     * \f Widget flags.
+     *
+     */
+    explicit ClickableLabel(const QString &text, QWidget *parent=0, Qt::WindowFlags f=0)
+    : QLabel(text, parent, f)
+    {};
+
+    /** \brief ClickableLabel class virtual destructor.
+     *
+     */
+    virtual ~ClickableLabel()
+    {};
+
+  signals:
+    void clicked();
+
+  protected:
+    void mousePressEvent(QMouseEvent* e)
+    {
+      emit clicked();
+      QLabel::mousePressEvent(e);
+    }
 };
 
 #endif // UTILS_H_
