@@ -34,27 +34,27 @@
 class QNetworkReply;
 class QMouseEvent;
 
-/** \class IconSummaryWidget
- * \brief Implements a widget to show an icon theme.
+/** \class PreviewWidget
+ * \brief Implements a widget to show a pixmap and close when the mouse leaves it.
  *
  */
-class IconSummaryWidget
+class PreviewWidget
 : public QWidget
 {
     Q_OBJECT
   public:
-    /** \brief IconSummaryWidget class constructor.
+    /** \brief PreviewWidget class constructor.
      * \param[in] image Image to show.
      * \param[in] parent Raw pointer of the widget parent of this one.
      *
      *
      */
-    explicit IconSummaryWidget(QPixmap image, QWidget* parent = nullptr);
+    explicit PreviewWidget(QPixmap image, QWidget* parent = nullptr);
 
-    /** \brief IconSummaryWidget class virtual destructor.
+    /** \brief PreviewWidget class virtual destructor.
      *
      */
-    virtual ~IconSummaryWidget()
+    virtual ~PreviewWidget()
     {};
 
   protected:
@@ -89,6 +89,12 @@ class ConfigurationDialog
      *
      */
     void getConfiguration(Configuration &configuration) const;
+
+    /** \brief Sets the temperature value to use for icon preview.
+     * \param[in] value Temperature value.
+     *
+     */
+    void setCurrentTemperature(const int value);
 
   protected:
     virtual void showEvent(QShowEvent *e) override;
@@ -191,13 +197,28 @@ class ConfigurationDialog
     /** \brief Show the icon theme summary.
      *
      */
-    void onIconSummaryPressed();
+    void onIconPreviewPressed();
+
+    /** \brief Show the temperature icon preview.
+     *
+     */
+    void onFontPreviewPressed();
+
+    /** \brief Displays the font selector dialog and gets the result.
+     *
+     */
+    void onFontSelectorPressed();
 
     /** \brief Updates the UI when the user changes the icon theme.
      * \param[in] idx Current index of icon theme combobox.
      *
      */
     void onIconThemeIndexChanged(int idx);
+
+    /** \brief Updates the temperature icon according to current settings.
+     *
+     */
+    void updateTemperatureIcon();
 
   signals:
     void languageChanged(const QString &);
@@ -245,9 +266,19 @@ class ConfigurationDialog
      */
     void fixVisuals();
 
+    /** \brief Generates and returns a pixmap for the preview and the font preview button.
+     * \param[in] font QFont used to generate the pixmap.
+     *
+     */
+    QPixmap generateTemperatureIconPixmap(QFont &font);
+
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
     bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */
     QString                                m_DNSIP;        /** DNS server IP.                                                                    */
+    QFont                                  m_font;         /** temperature tray icon font.                                                       */
+    QPixmap                                m_pixmap;       /** checkered pixmap for font preview.                                                */
+    int                                    m_temp;         /** temperature used to generate icon preview if not given.                           */
+    bool                                   m_validFont;    /** true if current selected font can render the temperature, false otherwise.        */
 };
 
 #endif // CONFIGURATIONDIALOG_H_

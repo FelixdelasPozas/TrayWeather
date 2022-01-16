@@ -173,6 +173,7 @@ struct Configuration
     QColor             trayTextColor;   /** Color of tray temperature text.                             */
     bool               trayTextMode;    /** true for fixed color, false for dynamic color.              */
     bool               trayTextBorder;  /** true to draw a border around icon text, false otherwise.    */
+    QString            trayTextFont;    /** font used for temperature icon.                             */
     QColor             minimumColor;    /** minimum value dynamic color.                                */
     QColor             maximumColor;    /** maximum value dynamic color.                                */
     int                minimumValue;    /** dynamic color minimum value.                                */
@@ -219,6 +220,7 @@ struct Configuration
     , trayTextColor   {Qt::white}
     , trayTextMode    {true}
     , trayTextBorder  {true}
+    , trayTextFont    {"MS Shell Dlg 2,-1,350,5,75,0,0,0,0,0"}
     , minimumColor    {Qt::blue}
     , maximumColor    {Qt::red}
     , minimumValue    {-10}
@@ -571,13 +573,11 @@ QPixmap createIconsSummary(const unsigned int theme, const int size, const QColo
  */
 QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int size);
 
-/** \brief Adjusts the size of the font in the given painter to render the given text.
- * \param[in] painter QPainter reference.
- * \param[in] text Text to render reference.
- * \param[in] withBorder true to take into consideration the icon text border, false otherwise.
+/** \brief Computes the Qt::Rect of drawn pixels in the given image.
+ * \param[in] image QImage object reference.
  *
  */
-void adjustFontSize(QPainter &painter, const QString &text, const bool withBorder = true);
+QRect computeDrawnRect(const QImage &image);
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.

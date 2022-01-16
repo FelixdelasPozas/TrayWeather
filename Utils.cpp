@@ -69,6 +69,7 @@ static const QString TRAY_ICON_THEME_COLOR   = QString("Tray icon theme color");
 static const QString TRAY_TEXT_COLOR         = QString("Tray text color");
 static const QString TRAY_TEXT_COLOR_MODE    = QString("Tray text color mode");
 static const QString TRAY_TEXT_BORDER        = QString("Tray text border");
+static const QString TRAY_TEXT_FONT          = QString("Tray text font");
 static const QString TRAY_DYNAMIC_MIN_COLOR  = QString("Tray text color dynamic minimum");
 static const QString TRAY_DYNAMIC_MAX_COLOR  = QString("Tray text color dynamic maximum");
 static const QString TRAY_DYNAMIC_MIN_VALUE  = QString("Tray text color dynamic minimum value");
@@ -640,6 +641,7 @@ void load(Configuration &configuration)
   configuration.trayTextColor   = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
   configuration.trayTextMode    = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
   configuration.trayTextBorder  = settings.value(TRAY_TEXT_BORDER, true).toBool();
+  configuration.trayTextFont    = settings.value(TRAY_TEXT_FONT, QString()).toString();
   configuration.minimumColor    = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
   configuration.maximumColor    = QColor(settings.value(TRAY_DYNAMIC_MAX_COLOR, "#FFFF0000").toString());
   configuration.minimumValue    = settings.value(TRAY_DYNAMIC_MIN_VALUE, -15).toInt();
@@ -676,6 +678,13 @@ void load(Configuration &configuration)
 
   if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
   if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
+
+  if(configuration.trayTextFont.isEmpty())
+  {
+    QFont font;
+    font.setFamily(font.defaultFamily());
+    configuration.trayTextFont = font.toString();
+  }
 }
 
 //--------------------------------------------------------------------
@@ -709,6 +718,7 @@ void save(const Configuration &configuration)
   settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor.name(QColor::HexArgb));
   settings.setValue(TRAY_TEXT_COLOR_MODE,    configuration.trayTextMode);
   settings.setValue(TRAY_TEXT_BORDER,        configuration.trayTextBorder);
+  settings.setValue(TRAY_TEXT_FONT,          configuration.trayTextFont);
   settings.setValue(TRAY_DYNAMIC_MIN_COLOR,  configuration.minimumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MAX_COLOR,  configuration.maximumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MIN_VALUE,  configuration.minimumValue);
@@ -1122,62 +1132,32 @@ QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int s
 }
 
 //--------------------------------------------------------------------
-void adjustFontSize(QPainter &painter, const QString &text, const bool withBorder)
+QRect computeDrawnRect(const QImage &image)
 {
-  // NOTE: this method requires a painter with a font with a
-  // previous setPixelSize() call.
-  const auto MAX_LENGTH = (painter.device()->width() - (withBorder ? ICON_TEXT_BORDER : 0));
-  auto font = painter.font();
+  const auto size = image.size();
+  if(!size.isValid()) return QRect();
 
-  auto sign = [](int n){ if(n < 0) return -1; if(n > 0) return 1; return 0; };
+  std::vector<int> countX(size.width(), 0);
+  std::vector<int> countY(size.height(), 0);
 
-  bool validSize = false;
-  bool adjustHeight = false;
-  int increment = 0;
-  while(!validSize)
+  for(int x = 0; x < size.width(); ++x)
   {
-    QFontMetrics metrics(font);
-    const int measure = metrics.width(text);
-
-    if(measure > MAX_LENGTH)
+    for(int y = 0; y < size.height(); ++y)
     {
-      if(sign(increment) == 1)
+      if(qAlpha(image.pixel(x,y)) != 0)
       {
-        validSize = true;
-        adjustHeight = metrics.ascent() > MAX_LENGTH;
+        countX[x]++;
+        countY[y]++;
       }
-
-      increment = -1;
-    }
-    else
-    {
-      if(sign(increment) == -1)
-      {
-        validSize = true;
-        adjustHeight = metrics.ascent() > MAX_LENGTH;
-      }
-
-      increment = 1;
-    }
-
-    font.setPixelSize(font.pixelSize() + increment);
-  }
-  // give the text a little more space
-  font.setPixelSize(font.pixelSize() - 5);
-
-  while(adjustHeight)
-  {
-    QFontMetrics metrics(font);
-    const auto measure = metrics.ascent();
-    if(measure > MAX_LENGTH)
-    {
-      font.setPixelSize(font.pixelSize() - 2);
-    }
-    else
-    {
-      adjustHeight = false;
     }
   }
 
-  painter.setFont(font);
+  const auto ident = [](const auto& x) { return x != 0; };
+  const auto firstX = std::distance(countX.cbegin(), std::find_if(countX.cbegin(), countX.cend(), ident));
+  const auto firstY = std::distance(countY.cbegin(), std::find_if(countY.cbegin(), countY.cend(), ident));
+  const auto lastX = image.width() - std::distance(countX.crbegin(), std::find_if(countX.crbegin(), countX.crend(), ident));
+  const auto lastY = image.height() - std::distance(countY.crbegin(), std::find_if(countY.crbegin(), countY.crend(), ident));
+  const auto maxX = lastX-firstX;
+  const auto maxY = lastY-firstY;
+  return QRect(firstX, firstY, maxX, maxY);
 }

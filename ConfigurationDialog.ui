@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>479</width>
-    <height>632</height>
+    <height>676</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
    <item>
     <widget class="QTabWidget" name="m_tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -179,19 +179,6 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="m_ipapiLabel">
-              <property name="toolTip">
-               <string>Geolocation service status</string>
-              </property>
-              <property name="statusTip">
-               <string>Geolocation service status</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
             <item row="2" column="0">
              <widget class="QRadioButton" name="m_useGeolocation">
               <property name="toolTip">
@@ -215,6 +202,26 @@ QGroupBox::title {
               </property>
               <property name="text">
                <string>Enable roaming</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_39">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabel" name="m_ipapiLabel">
+              <property name="toolTip">
+               <string>Geolocation service status</string>
+              </property>
+              <property name="statusTip">
+               <string>Geolocation service status</string>
+              </property>
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
@@ -1090,9 +1097,15 @@ QGroupBox::title {
       <attribute name="title">
        <string>Visuals</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,1">
+      <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0">
        <item>
         <widget class="QGroupBox" name="groupBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1115,7 +1128,7 @@ QGroupBox::title {
          <property name="title">
           <string>Tray Icon</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0">
+         <layout class="QVBoxLayout" name="_2">
           <item>
            <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,1">
             <item row="2" column="0">
@@ -1131,6 +1144,9 @@ QGroupBox::title {
                 <weight>75</weight>
                 <bold>true</bold>
                </font>
+              </property>
+              <property name="toolTip">
+               <string>Selects the temperature icon text color</string>
               </property>
               <property name="text">
                <string>Temperature text color</string>
@@ -1511,6 +1527,58 @@ QGroupBox::title {
               </item>
              </layout>
             </item>
+            <item row="6" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QPushButton" name="m_fontButton">
+                <property name="toolTip">
+                 <string>Selects the temperature icon text font</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton { Text-align:left }</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QToolButton" name="m_fontPreview">
+                <property name="minimumSize">
+                 <size>
+                  <width>24</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Preview of the temperature icon</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_18">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string>Selects the temperature icon text font</string>
+              </property>
+              <property name="text">
+               <string>Temperature text font</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>
@@ -1518,6 +1586,12 @@ QGroupBox::title {
        </item>
        <item>
         <widget class="QGroupBox" name="m_tooltipBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <weight>75</weight>
@@ -1543,13 +1617,7 @@ QGroupBox::title {
          <property name="title">
           <string>Tray Tooltip</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_10" stretch="0,0,1,0">
-          <property name="spacing">
-           <number>3</number>
-          </property>
-          <property name="sizeConstraint">
-           <enum>QLayout::SetMaximumSize</enum>
-          </property>
+         <layout class="QVBoxLayout" name="_3">
           <item>
            <widget class="QLabel" name="label_23">
             <property name="text">
@@ -1603,8 +1671,14 @@ QGroupBox::title {
           </item>
           <item>
            <widget class="QListWidget" name="m_tooltipList">
-            <property name="layoutMode">
-             <enum>QListView::Batched</enum>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="showDropIndicator" stdset="0">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
