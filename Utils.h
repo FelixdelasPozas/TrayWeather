@@ -564,15 +564,6 @@ QString temperatureIconText(const Configuration &c);
  */
 QPixmap createIconsSummary(const unsigned int theme, const int size, const QColor &color);
 
-/** \brief Adds a border of the given color to the given image and returns it. The method
- * is fast in exchange of an inaccurate border.
- * \param[in] src Source image.
- * \param[in] color Color to use for border.
- * \param[in] size Border size in pixels.
- *
- */
-QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int size);
-
 /** \brief Computes the Qt::Rect of drawn pixels in the given image.
  * \param[in] image QImage object reference.
  *

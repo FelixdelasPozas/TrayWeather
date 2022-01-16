@@ -37,6 +37,7 @@
 #include <QDir>
 #include <QMouseEvent>
 #include <QFontDialog>
+#include <QGraphicsPixmapItem>
 
 // C++
 #include <chrono>
@@ -1306,9 +1307,19 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   if(m_border->isChecked())
   {
     const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
-    const auto image = addQuickBorderToImage(pixmap.toImage(), invertedColor, 16);
 
-    painter.drawImage(QPoint{0,0}, image);
+    //constructing temp object only to get path for border.
+    QGraphicsPixmapItem tempItem(pixmap);
+    tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
+    const auto path = tempItem.shape();
+
+    QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    painter.setPen(pen);
+    painter.drawPath(path);
+
+    // repaint the temperature, it was overwritten by path.
+    painter.setPen(color);
+    painter.drawText(pixmap.rect(), Qt::AlignCenter, roundedString);
   }
   painter.end();
 

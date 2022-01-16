@@ -1069,69 +1069,6 @@ QPixmap createIconsSummary(const unsigned int theme, const int size, const QColo
 }
 
 //--------------------------------------------------------------------
-QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int size)
-{
-  const auto borderColor = qRgba(color.red(), color.green(), color.blue(), 255);
-
-  QImage border{src.size(), QImage::Format_ARGB32};
-  border.fill(Qt::transparent);
-
-  const auto ptr = src.bits();
-  const auto bpl = src.bytesPerLine();
-  const auto endPtr = ptr + src.byteCount();
-
-  auto validPtr = [&ptr, &endPtr](const uchar *other)
-  {
-    return (ptr <= other) && (other < endPtr);
-  };
-
-  auto sameLine = [&ptr, bpl](const uchar*src, const uchar *other)
-  {
-    auto line1 = static_cast<int>((src - ptr)/bpl);
-    auto line2 = static_cast<int>((other - ptr)/bpl);
-    return line1 == line2;
-  };
-
-  auto isPainted = [](const uchar * src)
-  {
-    auto rgba = reinterpret_cast<const QRgb*>(src);
-    return qAlpha(*rgba) != 0;
-  };
-
-  auto paintedPixel = [&validPtr, &sameLine, &isPainted, size, bpl](const uchar *srcPtr)
-  {
-    if(isPainted(srcPtr)) return false;
-    if(validPtr(srcPtr - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr - size*4)) return true;
-    if(validPtr(srcPtr + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr + size*4)) return true;
-    if(validPtr(srcPtr - (size*bpl)) && isPainted(srcPtr - (size*bpl))) return true;
-    if(validPtr(srcPtr + (size*bpl)) && isPainted(srcPtr + (size*bpl))) return true;
-    if(validPtr(srcPtr - (size*bpl) - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr - (size*bpl) - size*4)) return true;
-    if(validPtr(srcPtr - (size*bpl) + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr - (size*bpl) + size*4)) return true;
-    if(validPtr(srcPtr + (size*bpl) - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr + (size*bpl) - size*4)) return true;
-    if(validPtr(srcPtr + (size*bpl) + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr + (size*bpl) + size*4)) return true;
-
-    return false;
-  };
-
-  auto bPtr = reinterpret_cast<QRgb*>(border.bits());
-  for(auto sPtr = ptr; sPtr < endPtr; sPtr += 4)
-  {
-    if(paintedPixel(sPtr))
-    {
-      *bPtr = borderColor;
-    }
-    ++bPtr;
-  }
-
-  // draw on top of the border.
-  QPainter painter(&border);
-  painter.drawImage(QPoint{0,0}, src);
-  painter.end();
-
-  return border;
-}
-
-//--------------------------------------------------------------------
 QRect computeDrawnRect(const QImage &image)
 {
   const auto size = image.size();

@@ -37,6 +37,7 @@
 #include <QPainter>
 #include <QFile>
 #include <QImage>
+#include <QGraphicsPixmapItem>
 #include <QtWinExtras/QtWinExtrasDepends>
 
 // C++
@@ -489,15 +490,24 @@ void TrayWeather::updateTooltip()
         painter.setPen(color);
         painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, true);
         painter.setRenderHint(QPainter::RenderHint::HighQualityAntialiasing, true);
-        const auto margins = QMargins{ICON_TEXT_BORDER,ICON_TEXT_BORDER,0,0};
-        painter.drawText(tempPixmap.rect() + margins, Qt::AlignCenter, roundedString);
+        painter.drawText(tempPixmap.rect(), Qt::AlignCenter, roundedString);
 
         if(m_configuration.trayTextBorder)
         {
           const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
-          const auto image = addQuickBorderToImage(tempPixmap.toImage(), invertedColor, 16);
 
-          painter.drawImage(QPoint{0,0}, image);
+          //constructing temp object only to get path for border.
+          QGraphicsPixmapItem tempItem(tempPixmap);
+          tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
+          const auto path = tempItem.shape();
+
+          QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+          painter.setPen(pen);
+          painter.drawPath(path);
+
+          // repaint the temperature, it was overwritten by path.
+          painter.setPen(color);
+          painter.drawText(tempPixmap.rect(), Qt::AlignCenter, roundedString);
         }
         painter.end();
 
