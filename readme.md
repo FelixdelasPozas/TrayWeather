@@ -65,11 +65,11 @@ The tray and application theme configuration can be found here in the miscellane
 
 Configuration dialog in Spanish with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/148751936-cf3e3c6f-6151-4211-8d9e-85dd012c8817.png)
+![config](https://user-images.githubusercontent.com/12167134/149714715-29a199fb-7036-473e-a311-50161e82393e.png)
 
 Configuration dialog in English with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/148751940-9b2bb463-c8d5-4fca-9382-4f2a419b0f28.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/149714718-284eae53-80c5-4d52-9e3c-5dd962b6447a.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -114,7 +114,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 349 texts.
+and making a pull request. Currently it's just 356 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 
@@ -138,7 +138,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.17.0
+**Version**: 1.18.0
 
 **Status**: finished.
 
@@ -146,8 +146,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 924         |   375            | 4548 |
-| C/C++ Header                 |  10           | 274         |   802            |  890 |
+| C++                          |  10           | 954         |   380            | 4685 |
+| C/C++ Header                 |  10           | 278         |   810            |  900 |
 | HTML                         |   1           |  33         |     0            |  150 |
 | CMake                        |   1           |  19         |    11            |  119 |
-| **Total**                    | **22**        | **1250**    | **1188**         | **5707** |
+| **Total**                    | **22**        | **1284**    | **1201**         | **5854** |

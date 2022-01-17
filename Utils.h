@@ -220,7 +220,7 @@ struct Configuration
     , trayTextColor   {Qt::white}
     , trayTextMode    {true}
     , trayTextBorder  {true}
-    , trayTextFont    {"MS Shell Dlg 2,-1,350,5,75,0,0,0,0,0"}
+    , trayTextFont    {""}
     , minimumColor    {Qt::blue}
     , maximumColor    {Qt::red}
     , minimumValue    {-10}
