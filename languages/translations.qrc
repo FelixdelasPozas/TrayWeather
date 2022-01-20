@@ -6,27 +6,5 @@
     <file>fr_FR.qm</file>
     <file>zh_CN.qm</file>
     <file>pt_BR.qm</file>
-    <file>translations/qt_bg.qm</file>
-    <file>translations/qt_ca.qm</file>
-    <file>translations/qt_cs.qm</file>
-    <file>translations/qt_da.qm</file>
-    <file>translations/qt_de.qm</file>
-    <file>translations/qt_en.qm</file>
-    <file>translations/qt_es.qm</file>
-    <file>translations/qt_fi.qm</file>
-    <file>translations/qt_fr.qm</file>
-    <file>translations/qt_gd.qm</file>
-    <file>translations/qt_he.qm</file>
-    <file>translations/qt_hu.qm</file>
-    <file>translations/qt_it.qm</file>
-    <file>translations/qt_ja.qm</file>
-    <file>translations/qt_ko.qm</file>
-    <file>translations/qt_lv.qm</file>
-    <file>translations/qt_pl.qm</file>
-    <file>translations/qt_pt_BR.qm</file>
-    <file>translations/qt_ru.qm</file>
-    <file>translations/qt_sk.qm</file>
-    <file>translations/qt_uk.qm</file>
-    <file>translations/qt_zh_CN.qm</file>
   </qresource>
 </RCC>
