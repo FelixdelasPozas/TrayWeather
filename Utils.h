@@ -37,6 +37,7 @@
 #include <QAbstractItemModel>
 #include <QStyleOption>
 #include <QComboBox>
+#include <QLabel>
 
 class QPainter;
 class QDialog;
@@ -57,7 +58,11 @@ static const QStringList OWM_LANGUAGES = { "af", "al", "ar", "az", "bg", "ca", "
                                            "ru", "sv", "se", "sk", "sl", "sp", "es", "sr", "th", "tr", "ua",
                                            "uk", "vi", "zh_cn", "zh_tw", "zu" };
 
-static QTranslator s_appTranslator; /** application language translator. */
+static const QStringList QT_LANGUAGES = { "bg", "ca", "cs", "da", "de", "en", "es", "fi", "fr", "gd", "he", "hu",
+                                          "it", "ja", "ko", "lv", "pl", "pt_br", "ru", "sk", "uk", "zh_cn" };
+
+static QTranslator s_appTranslator; /** application language translator.   */
+static QTranslator s_qtTranslator;  /** application Qt dialogs translator. */
 
 static const std::list<double> RAIN_MAP_LAYER_GRADES_MM      = { 0.1, 2, 6, 8, 10, 14, 16, 20, 26, 32, 42, 48, 52, 70 };
 static const std::list<double> TEMP_MAP_LAYER_GRADES_CELSIUS = { -24, -20, -16, -8, -4, 0, 4, 8, 16, 20, 24, 32, 36 };
@@ -83,6 +88,8 @@ static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject:
 
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
+constexpr int ICON_TEXT_BORDER = 26;
+
 /** \struct LanguageData
  * \brief Contains a translation data.
  *
@@ -107,12 +114,13 @@ struct LanguageData
  *
  */
 static QList<LanguageData> TRANSLATIONS = {
-    { QObject::tr("English"),              ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
-    { QObject::tr("Spanish"),              ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
-    { QObject::tr("Russian"),              ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
-    { QObject::tr("German"),               ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             },
-    { QObject::tr("French"),               ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                },
-    { QObject::tr("Chinese (Simplified)"), ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"              }
+    { "English",                ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
+    { "Español (España)",       ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
+    { "Русский",                ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
+    { "Deutsch",                ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             },
+    { "Français",               ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                },
+    { "简体中文",                ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"              },
+    { "Português (Brasileiro)", ":/TrayWeather/languages/br.svg", "pt_BR", "Autergame"                  },
 };
 
 /** \struct IconThemeData
@@ -163,8 +171,9 @@ struct Configuration
     unsigned int       iconTheme;       /** icon theme. See ICON_THEMES var.                            */
     QColor             iconThemeColor;  /** icon theme color for monocolor themes.                      */
     QColor             trayTextColor;   /** Color of tray temperature text.                             */
-    bool               trayTextMode;    /** true for fixed, false for dynamic.                          */
-    unsigned int       trayTextSize;    /** base size of tray font in pixels.                           */
+    bool               trayTextMode;    /** true for fixed color, false for dynamic color.              */
+    bool               trayTextBorder;  /** true to draw a border around icon text, false otherwise.    */
+    QString            trayTextFont;    /** font used for temperature icon.                             */
     QColor             minimumColor;    /** minimum value dynamic color.                                */
     QColor             maximumColor;    /** maximum value dynamic color.                                */
     int                minimumValue;    /** dynamic color minimum value.                                */
@@ -210,7 +219,8 @@ struct Configuration
     , iconThemeColor  {Qt::black}
     , trayTextColor   {Qt::white}
     , trayTextMode    {true}
-    , trayTextSize    {250}
+    , trayTextBorder  {true}
+    , trayTextFont    {""}
     , minimumColor    {Qt::blue}
     , maximumColor    {Qt::red}
     , minimumValue    {-10}
@@ -554,14 +564,11 @@ QString temperatureIconText(const Configuration &c);
  */
 QPixmap createIconsSummary(const unsigned int theme, const int size, const QColor &color);
 
-/** \brief Adds a border of the given color to the given image and returns it. The method
- * is fast in exchange of an inaccurate border.
- * \param[in] src Source image.
- * \param[in] color Color to use for border.
- * \param[in] size Border size in pixels.
+/** \brief Computes the Qt::Rect of drawn pixels in the given image.
+ * \param[in] image QImage object reference.
  *
  */
-QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int size);
+QRect computeDrawnRect(const QImage &image);
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.
@@ -617,6 +624,51 @@ class RichTextItemDelegate
 
     virtual QSize sizeHint(const QStyleOptionViewItem &option,
                            const QModelIndex &index) const;
+};
+
+/** \class ClickableLabel
+ * \brief QLabel subclass that emits a signal when clicked.
+ *
+ */
+class ClickableLabel
+: public QLabel
+{
+    Q_OBJECT
+  public:
+    /** \brief ClickableLabel class constructor.
+     * \param[in] parent Raw pointer of the widget parent of this one.
+     * \f Widget flags.
+     *
+     */
+    explicit ClickableLabel(QWidget *parent=0, Qt::WindowFlags f=0)
+    : QLabel(parent, f)
+    {};
+
+    /** \brief ClickableLabel class constructor.
+     * \param[in] text Label text.
+     * \param[in] parent Raw pointer of the widget parent of this one.
+     * \f Widget flags.
+     *
+     */
+    explicit ClickableLabel(const QString &text, QWidget *parent=0, Qt::WindowFlags f=0)
+    : QLabel(text, parent, f)
+    {};
+
+    /** \brief ClickableLabel class virtual destructor.
+     *
+     */
+    virtual ~ClickableLabel()
+    {};
+
+  signals:
+    void clicked();
+
+  protected:
+    void mousePressEvent(QMouseEvent* e)
+    {
+      emit clicked();
+      QLabel::mousePressEvent(e);
+    }
 };
 
 #endif // UTILS_H_

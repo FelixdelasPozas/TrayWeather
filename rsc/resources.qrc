@@ -17,12 +17,14 @@
     <file>add.svg</file>
     <file>remove.svg</file>
     <file>webpage.html</file>
+    
     <file>languages/en.svg</file>
     <file>languages/es.svg</file>
     <file>languages/ru.svg</file>
     <file>languages/de.svg</file>
     <file>languages/fr.svg</file>
     <file>languages/cn.svg</file>
+    <file>languages/br.svg</file>
     
     <file>iconThemes/flaticon/01d.svg</file>
     <file>iconThemes/flaticon/01n-0.svg</file>

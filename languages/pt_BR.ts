@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU" sourcelanguage="en_GB">
+<TS version="2.1" language="pt_BR" sourcelanguage="en_GB">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../AboutDialog.ui" line="14"/>
         <source>About...</source>
-        <translation>О программе...</translation>
+        <translation>Sobre...</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="28"/>
@@ -16,57 +16,57 @@
     <message>
         <location filename="../AboutDialog.ui" line="111"/>
         <source>Compiled on</source>
-        <translation>Скомпилировано</translation>
+        <translation>Compilado em</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="121"/>
         <source>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</source>
-        <translation>Домашняя страница в &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
+        <translation>Página oficial no &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="177"/>
         <source>Powered by</source>
-        <translation>Используемое ПО</translation>
+        <translation>Possibilitado por</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="357"/>
         <source>Icons courtesy of</source>
-        <translation>Значки любезно предоставлены</translation>
+        <translation>Ícones cortesia de</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="398"/>
         <source>IP Geolocation provided by</source>
-        <translation>Геолокация IP обеспечена</translation>
+        <translation>Geolocalização por IP fornecida por</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="439"/>
         <source>Weather data provided by</source>
-        <translation>Данные погоды обеспечены</translation>
+        <translation>Dados meteorológicos fornecidos por</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="464"/>
         <source>Translations</source>
-        <translation>Переводы</translation>
+        <translation>Traduções</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="515"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
-        <translation>Если ваш язык отсутствует, вы можете помочь с &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;переводом&lt;/a&gt;.</translation>
+        <translation>Se o seu idioma não estiver disponível, você pode ajudar com a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;tradução&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="529"/>
         <source>Icon Themes</source>
-        <translation>Темы значков</translation>
+        <translation>Temas de ícones</translation>
     </message>
     <message>
         <location filename="../AboutDialog.cpp" line="42"/>
         <source>version</source>
-        <translation>версия</translation>
+        <translation>versão</translation>
     </message>
     <message>
         <location filename="../AboutDialog.cpp" line="44"/>
         <source>Compiled on </source>
-        <translation>Дата сборки </translation>
+        <translation>Compilado em </translation>
     </message>
 </context>
 <context>
@@ -75,37 +75,37 @@
         <location filename="../AlertDialog.ui" line="14"/>
         <location filename="../AlertDialog.ui" line="21"/>
         <source>Weather Alert</source>
-        <translation>Оповещение о погоде</translation>
+        <translation>Alerta Meteorológico</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="67"/>
         <source>Sender:</source>
-        <translation>Отправитель:</translation>
+        <translation>Remetente:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="80"/>
         <source>Start:</source>
-        <translation>Начало:</translation>
+        <translation>Começo:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="107"/>
         <source>Event:</source>
-        <translation>Событие:</translation>
+        <translation>Evento:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="127"/>
         <source>End:</source>
-        <translation>Конец:</translation>
+        <translation>Final:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="147"/>
         <source>Description:</source>
-        <translation>Описание:</translation>
+        <translation>Descrição:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="175"/>
         <source>Do not show this alert again.</source>
-        <translation>Не показывать это оповещение снова.</translation>
+        <translation>Não mostrar esse alerta novamente.</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="87"/>
@@ -115,7 +115,7 @@
         <location filename="../AlertDialog.ui" line="157"/>
         <location filename="../AlertDialog.cpp" line="37"/>
         <source>Unknown</source>
-        <translation>Неизвестно</translation>
+        <translation>Desconhecido</translation>
     </message>
 </context>
 <context>
@@ -123,17 +123,17 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="17"/>
         <source>Configuration</source>
-        <translation>Настройки</translation>
+        <translation>Configuração</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="37"/>
         <source>Location</source>
-        <translation>Местоположение</translation>
+        <translation>Localização</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="68"/>
         <source>Geographic Location Method</source>
-        <translation>Способ определения географического положения</translation>
+        <translation>Método de Localização Geográfica</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="76"/>
@@ -141,13 +141,13 @@
         <location filename="../ConfigurationDialog.ui" line="89"/>
         <location filename="../ConfigurationDialog.ui" line="92"/>
         <source>Latitude value</source>
-        <translation>Значение широты</translation>
+        <translation>Valor de latitude</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="82"/>
         <location filename="../ConfigurationDialog.ui" line="375"/>
         <source>Latitude</source>
-        <translation>Широта</translation>
+        <translation>Latitude</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="111"/>
@@ -155,185 +155,185 @@
         <location filename="../ConfigurationDialog.ui" line="124"/>
         <location filename="../ConfigurationDialog.ui" line="127"/>
         <source>Longitude value</source>
-        <translation>Значение долготы</translation>
+        <translation>Valor de longitude</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="117"/>
         <location filename="../ConfigurationDialog.ui" line="400"/>
         <source>Longitude</source>
-        <translation>Долгота</translation>
+        <translation>Longitude</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="146"/>
         <location filename="../ConfigurationDialog.ui" line="149"/>
         <source>Use DNS IP for geolocation</source>
-        <translation>Использовать DNS IP для геолокации</translation>
+        <translation>Usar IP de DNS para geolocalização</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="152"/>
         <source>Use DNS address</source>
-        <translation>Использовать адрес DNS</translation>
+        <translation>Usar endereço DNS</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="159"/>
         <location filename="../ConfigurationDialog.ui" line="162"/>
         <source>Request IP geolocation</source>
-        <translation>Запросить геолокацию по IP</translation>
+        <translation>Solicitar geolocalização por IP</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="165"/>
         <source>Request Geolocation</source>
-        <translation>Запросить геолокацию</translation>
+        <translation>Solicitar geolocalização</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="172"/>
         <location filename="../ConfigurationDialog.ui" line="175"/>
         <source>Specify geographic coordinates</source>
-        <translation>Укажите географические координаты</translation>
+        <translation>Especificar as coordenadas geográficas</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="178"/>
         <source>Manual Coordinates</source>
-        <translation>Ручные координаты</translation>
+        <translation>Coordenadas Manuais</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="218"/>
         <location filename="../ConfigurationDialog.ui" line="221"/>
         <source>Geolocation service status</source>
-        <translation>Статус службы геолокации</translation>
+        <translation>Estado do serviço de geolocalização</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="185"/>
         <location filename="../ConfigurationDialog.ui" line="188"/>
         <source>Use IP geolocation service</source>
-        <translation>Использовать службу IP-геолокации</translation>
+        <translation>Usar serviço de geolocalização por IP</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="191"/>
         <source>IP Geolocation</source>
-        <translation>Геолокация по IP</translation>
+        <translation>Geolocalização por IP</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="198"/>
         <location filename="../ConfigurationDialog.ui" line="201"/>
         <source>Obtain geographical coordinates before each weather data request.</source>
-        <translation>Получать географические координаты перед каждым запросом данных о погоде.</translation>
+        <translation>Obter as coordenadas geográficas antes de cada solicitação de dados meteorológicos.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="204"/>
         <source>Enable roaming</source>
-        <translation>Включить роуминг</translation>
+        <translation>Habilitar roaming</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="261"/>
         <source>Geographic Coordinates</source>
-        <translation>Географические координаты</translation>
+        <translation>Coordenadas geográficas</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="287"/>
         <source>Country</source>
-        <translation>Страна</translation>
+        <translation>País</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="331"/>
         <source>Region</source>
-        <translation>Регион</translation>
+        <translation>Região</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="482"/>
         <source>Timezone</source>
-        <translation>Часовой пояс</translation>
+        <translation>Fuso horário</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="507"/>
         <source>IP Address</source>
-        <translation>Адрес IP</translation>
+        <translation>Endereço IP</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="551"/>
         <source>ZIP Code</source>
-        <translation>Почтовый индекс</translation>
+        <translation>CEP</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="614"/>
         <source>City</source>
-        <translation>Город</translation>
+        <translation>Cidade</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="639"/>
         <source>Service Provider</source>
-        <translation>Провайдер</translation>
+        <translation>Provedor de serviço</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="695"/>
         <source>OpenWeatherMap Configuration</source>
-        <translation>Настройки OpenWeatherMap</translation>
+        <translation>Configuração do OpenWeatherMap</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="701"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from OpenWeatherMap for your location an API Key must be obtained from the &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;. It&apos;s free.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Чтобы получать прогноз погоды для вашего местоположения с OpenWeatherMap, нужно создать ключ API на &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;сайте&lt;/span&gt;&lt;/a&gt;. Это бесплатно.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Para obter dados de previsão do tempo do OpenWeatherMap para sua localização, uma chave API deve ser obtida no &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;site&lt;/span&gt;&lt;/a&gt;. É de graça.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="728"/>
         <source>API Key:</source>
-        <translation>Ключ API:</translation>
+        <translation>Chave API:</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="749"/>
         <location filename="../ConfigurationDialog.cpp" line="365"/>
         <source>Testing API Key...</source>
-        <translation>Проверка ключа API...</translation>
+        <translation>Testando chave API...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="768"/>
         <source>Test API Key</source>
-        <translation>Проверить ключ API</translation>
+        <translation>Testar chave API</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="794"/>
         <source>Units</source>
-        <translation>Единицы</translation>
+        <translation>Unidades</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="819"/>
         <source>Measurement Units</source>
-        <translation>Единицы измерения</translation>
+        <translation>Unidades de medida</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="857"/>
         <source>Custom</source>
-        <translation>Пользовательские</translation>
+        <translation>Personalizado</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="889"/>
         <source>Custom Measurement Units</source>
-        <translation>Пользовательские единицы измерения</translation>
+        <translation>Unidades de medição personalizadas</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="907"/>
         <source>Temperature</source>
-        <translation>Температура</translation>
+        <translation>Temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="915"/>
         <source>Celsius</source>
-        <translation>Градус Цельсия</translation>
+        <translation>Celsius</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="920"/>
         <source>Fahrenheit</source>
-        <translation>Градус Фаренгейта</translation>
+        <translation>Fahrenheit</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="934"/>
         <source>Pressure</source>
-        <translation>Давление</translation>
+        <translation>Pressão</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="942"/>
         <source>hPa</source>
-        <translation>гПа</translation>
+        <translation>hPa</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="947"/>
@@ -343,372 +343,360 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="952"/>
         <source>mmHg</source>
-        <translation>мм рт. ст.</translation>
+        <translation>mmHg</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="957"/>
         <source>inHg</source>
-        <translation>дюйм рт. ст.</translation>
+        <translation>inHg</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="971"/>
         <source>Wind</source>
-        <translation>Ветер</translation>
+        <translation>Vento</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="979"/>
         <source>meters/second</source>
-        <translation>метр в секунду</translation>
+        <translation>metros/segundo</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="984"/>
         <source>miles/hour</source>
-        <translation>миля в час</translation>
+        <translation>milhas/hora</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="989"/>
         <source>kilometers/hour</source>
-        <translation>километр в час</translation>
+        <translation>quilômetros/hora</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="994"/>
         <source>feet/second</source>
-        <translation>фут в секунду</translation>
+        <translation>pés/segundo</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1008"/>
         <source>Precipitation</source>
-        <translation>Осадки</translation>
+        <translation>Precipitação</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1016"/>
         <source>millimeters</source>
-        <translation>миллиметры</translation>
+        <translation>milímetros</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1021"/>
         <source>inches</source>
-        <translation>дюймы</translation>
+        <translation>polegadas</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1054"/>
         <source>Forecast Graph</source>
-        <translation>График прогноза</translation>
+        <translation>Gráfico de previsão</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1060"/>
         <source>Precipitation of:</source>
-        <translation>Осадки:</translation>
+        <translation>Precipitação de:</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1067"/>
         <source>Rain</source>
-        <translation>Дождь</translation>
+        <translation>Chuva</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1074"/>
         <source>Snow</source>
-        <translation>Снег</translation>
+        <translation>Neve</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1129"/>
         <source>Tray Icon</source>
-        <translation>Значок в трее</translation>
+        <translation>Ícone de bandeja</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1149"/>
         <source>Selects the temperature icon text color</source>
-        <translation>Выбор цвета текста значка температуры</translation>
+        <translation>Selecionar a cor do texto do ícone da temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1174"/>
         <source>Icon type</source>
-        <translation>Тип значка</translation>
+        <translation>Tipo de ícone</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1182"/>
         <source>Weather icon</source>
-        <translation>Значок погоды</translation>
+        <translation>Ícone do clima</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1187"/>
         <source>Temperature icon</source>
-        <translation>Значок температуры</translation>
+        <translation>Ícone de temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1192"/>
         <source>Weather &amp; temperature icon</source>
-        <translation>Значок погоды с температурой</translation>
+        <translation>Clima &amp; ícone de temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1197"/>
         <source>Weather icon &amp; temperature icon</source>
-        <translation>Значки погоды и температуры</translation>
+        <translation>Ícone do clima &amp; ícone de temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1217"/>
         <location filename="../ConfigurationDialog.ui" line="1229"/>
         <source>Selects the icon theme.</source>
-        <translation>Выбор темы значков.</translation>
+        <translation>Selecione o tema do ícone.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1220"/>
         <source>Icon theme</source>
-        <translation>Тема значков</translation>
+        <translation>Tema de ícone</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1245"/>
         <source>Changes icon theme color.</source>
-        <translation>Смена цвета темы значков.</translation>
+        <translation>Alterar a cor do tema do ícone.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1261"/>
         <source>Shows a summary of theme icons.</source>
-        <translation>Отображение сводки по теме значков.</translation>
+        <translation>Mostrar um resumo dos ícones do tema.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1336"/>
         <source>Variable</source>
-        <translation>Переменный</translation>
+        <translation>Variável</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1355"/>
         <source>Click to change minimum value color...</source>
-        <translation>Щёлкните для смены цвета минимального значения...</translation>
+        <translation>Clique para alterar a cor do valor mínimo...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1371"/>
         <source>Range</source>
-        <translation>Диапазон</translation>
+        <translation>Alcance</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1396"/>
         <source>Click to change maximum value color...</source>
-        <translation>Щёлкните для смены цвета максимального значения...</translation>
+        <translation>Clique para alterar a cor do valor máximo...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1281"/>
         <source>Fixed</source>
-        <translation>Постоянный</translation>
+        <translation>Fixo</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1303"/>
         <source>Click to change fixed color...</source>
-        <translation>Щёлкните для смены постоянного цвета...</translation>
+        <translation>Clique para alterar a cor fixa...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1152"/>
         <source>Temperature text color</source>
-        <translation>Цвет текста температуры</translation>
+        <translation>Cor do texto de temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1416"/>
         <source>from</source>
-        <translation>от</translation>
+        <translation>de</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1435"/>
         <source>Minimum range value</source>
-        <translation>Минимальное значение диапазона</translation>
+        <translation>Valor mínimo de alcance</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1457"/>
         <source>to</source>
-        <translation>до</translation>
+        <translation>para</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1476"/>
         <source>Maximum range value</source>
-        <translation>Максимальное значение диапазона</translation>
+        <translation>Valor máximo de alcance</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1508"/>
         <location filename="../ConfigurationDialog.ui" line="1518"/>
         <source>Draw a border around temperature icon text.</source>
-        <translation>Рисовать обводку вокруг текста значка температуры.</translation>
+        <translation>Desenhar uma borda ao redor do texto do ícone de temperatura.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1521"/>
         <source>Draw a border around text for better contrast.</source>
-        <translation>Рисовать обводку вокруг текста для лучшего контраста.</translation>
+        <translation>Desenhar uma borda ao redor do texto para melhor contraste.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1535"/>
         <location filename="../ConfigurationDialog.ui" line="1572"/>
         <source>Selects the temperature icon text font</source>
-        <translation>Выбор шрифта текста значка температуры</translation>
+        <translation>Selecionar a fonte do texto do ícone da temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1554"/>
         <source>Preview of the temperature icon</source>
-        <translation>Предпросмотр значка температуры</translation>
+        <translation>Pré-visualização do ícone da temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1575"/>
         <source>Temperature text font</source>
-        <translation>Шрифт текста температуры</translation>
+        <translation>Fonte de texto da temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1602"/>
         <source>Configure the tray icon tooltip text. </source>
-        <translation>Настройка текста всплывающей подсказки значка в трее. </translation>
+        <translation>Configurar o texto de tooltip do ícone da bandeja. </translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1618"/>
         <source>Tray Tooltip</source>
-        <translation>Подсказка в трее</translation>
+        <translation>Tooltip da bandeja</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1639"/>
         <source>Value:</source>
-        <translation>Величина:</translation>
+        <translation>Valor:</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1646"/>
         <source>Value to add to the list.</source>
-        <translation>Величина, которую можно добавить в список.</translation>
+        <translation>Valor a ser adicionado à lista.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1659"/>
         <source>Add value to tooltip text</source>
-        <translation>Добавить величину в текст всплывающей подсказки</translation>
+        <translation>Adicionar valor ao texto da tooltip</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1706"/>
         <source>Move value up.</source>
-        <translation>Сдвинуть величину вверх.</translation>
+        <translation>Mover o valor para cima.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1720"/>
         <source>Move value down.</source>
-        <translation>Сдвинуть величину вниз.</translation>
+        <translation>Mover o valor para baixo.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1734"/>
         <source>Remove value from tooltip text</source>
-        <translation>Удалить величину из текста всплывающей подсказки</translation>
+        <translation>Remova o valor do texto do tooltip</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1754"/>
         <source>Miscellaneous</source>
-        <translation>Прочее</translation>
+        <translation>Diversos</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1777"/>
         <source>Time between update requests</source>
-        <translation>Интервал обновления погоды</translation>
+        <translation>Tempo entre os pedidos de atualização</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1790"/>
         <source> minutes</source>
-        <translation> минут</translation>
+        <translation> minutos</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="839"/>
         <source>Measurement units</source>
-        <translation>Единицы измерения</translation>
+        <translation>Unidades de medida</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1098"/>
         <source>Visuals</source>
-        <translation>Оформление</translation>
+        <translation>Visuais</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1624"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
-        <translation>Величины во всплывающей подсказке являются текущими или ближайшими прогнозными к фактическому местному времени. Порядок величин в подсказке соответствует порядку из списка ниже.</translation>
+        <translation>Os valores mostrados na tooltip são os valores atuais ou o valor de previsão mais próximo do horário local atual. Os valores são exibidos em ordem, de cima para baixo na lista.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1818"/>
         <source>Visual theme</source>
-        <translation>Тема оформления</translation>
+        <translation>Tema visual</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1826"/>
         <source>Light</source>
-        <translation>Светлая</translation>
+        <translation>Claro</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1831"/>
         <source>Dark</source>
-        <translation>Тёмная</translation>
+        <translation>Escuro</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1851"/>
         <source>Check for updates</source>
-        <translation>Проверка обновлений</translation>
+        <translation>Verificar se há atualizações</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1859"/>
         <source>Never</source>
-        <translation>Никогда</translation>
+        <translation>Nunca</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1864"/>
         <source>Once a day</source>
-        <translation>Ежедневно</translation>
+        <translation>Uma vez por dia</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1869"/>
         <source>Once a week</source>
-        <translation>Еженедельно</translation>
+        <translation>Uma vez por semana</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1874"/>
         <source>Once a month</source>
-        <translation>Ежемесячно</translation>
+        <translation>Uma vez por mês</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="847"/>
         <source>Metric system (ºC)</source>
-        <translation>Метрическая система (ºC)</translation>
+        <translation>Sistema métrico (ºC)</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="852"/>
         <source>Imperial system (ºF)</source>
-        <translation>Имперская система (ºF)</translation>
+        <translation>Sistema imperial (ºF)</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1894"/>
         <source>Autostart at login</source>
-        <translation>Автозапуск при входе</translation>
+        <translation>Auto iniciar no login</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1920"/>
         <source>Language</source>
-        <translation>Язык</translation>
+        <translation>Língua</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1942"/>
         <source>Show weather alerts</source>
-        <translation>Показывать оповещения о погоде</translation>
+        <translation>Mostrar alertas meteorológicos</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1958"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
-        <translation>Если ваш язык отсутствует, вы можете помочь с &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;переводом&lt;/a&gt;.</translation>
+        <translation>Se o seu idioma não estiver disponível, você pode ajudar com uma &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;tradução&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2012"/>
         <source>Cancel</source>
-        <translation>Отмена</translation>
+        <translation>Cancelar</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2019"/>
         <source>Ok</source>
-        <translation>Ок</translation>
-    </message>
-    <message>
-        <location filename="../ConfigurationDialog.cpp" line="156"/>
-        <location filename="../ConfigurationDialog.cpp" line="163"/>
-        <location filename="../ConfigurationDialog.cpp" line="833"/>
-        <source>Invalid OpenWeatherMap API Key!</source>
-        <translation>Неверный ключ API OpenWeatherMap!</translation>
-    </message>
-    <message>
-        <location filename="../ConfigurationDialog.cpp" line="838"/>
-        <source>Untested OpenWeatherMap API Key!</source>
-        <translation>Непроверенный ключ API OpenWeatherMap!</translation>
+        <translation>Salvar</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="108"/>
@@ -716,80 +704,92 @@
         <source>Invalid reply from Geo-Locator server.
 Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
-        <translation>Неверный ответ от сервера геолокации.
-Не удалось получить данные местоположения.
-Если у вас есть брандмауэр, измените его настройки, чтобы разрешить этой программе доступ к сети.</translation>
+        <translation>Resposta inválida do servidor Geo-Locator.
+Não foi possível obter informações de localização.
+Se você tiver um firewall, altere a configuração para permitir que este programa acesse a rede.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="112"/>
         <location filename="../ConfigurationDialog.cpp" line="228"/>
         <source>Network Error</source>
-        <translation>Ошибка сети</translation>
+        <translation>Erro de rede</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="149"/>
         <source>The API Key is valid!</source>
-        <translation>Ключ API действителен!</translation>
+        <translation>A chave API é válida!</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="156"/>
+        <location filename="../ConfigurationDialog.cpp" line="163"/>
+        <location filename="../ConfigurationDialog.cpp" line="833"/>
+        <source>Invalid OpenWeatherMap API Key!</source>
+        <translation>Chave API OpenWeatherMap inválida!</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="158"/>
         <source>Invalid OpenWeatherMap API Key.</source>
-        <translation>Неверный ключ API OpenWeatherMap.</translation>
+        <translation>Chave API OpenWeatherMap inválida.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="165"/>
         <source>Invalid reply from OpenWeatherMap server.</source>
-        <translation>Недопустимый ответ от сервера OpenWeatherMap.</translation>
+        <translation>Resposta inválida do servidor OpenWeatherMap.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="196"/>
         <source>Success</source>
-        <translation>Успешно</translation>
+        <translation>Sucesso</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="204"/>
         <location filename="../ConfigurationDialog.cpp" line="212"/>
         <location filename="../ConfigurationDialog.cpp" line="220"/>
         <source>Failure</source>
-        <translation>Сбой</translation>
+        <translation>Falha</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="206"/>
         <source>Error parsing location data. Failure or invalid number of fields.</source>
-        <translation>Ошибка разбора данных местоположения. Сбой или недопустимое количество полей.</translation>
+        <translation>Erro ao analisar dados de localização. Falha ou número de campos inválido.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="214"/>
         <source>Data request failure. Invalid data format.</source>
-        <translation>Ошибка запроса данных. Неверный формат данных.</translation>
+        <translation>Falha na solicitação de dados. Formato de dados inválido.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="222"/>
         <source>Invalid reply from Geo-Locator server.</source>
-        <translation>Неверный ответ от сервера геолокации.</translation>
+        <translation>Resposta inválida do servidor Geo-Locator.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="321"/>
         <location filename="../ConfigurationDialog.cpp" line="343"/>
         <source>Requesting...</source>
-        <translation>Запрос...</translation>
+        <translation>Solicitando...</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="838"/>
+        <source>Untested OpenWeatherMap API Key!</source>
+        <translation>Chave API OpenWeatherMap não testada!</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1123"/>
         <location filename="../ConfigurationDialog.cpp" line="1162"/>
         <source>Font Selection</source>
-        <translation>Выбор шрифта</translation>
+        <translation>Seleção de fonte</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1126"/>
         <location filename="../ConfigurationDialog.cpp" line="1165"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
-        <translation>Выбранный шрифт «%1» не подходит, потому что в нём нет необходимых символов.</translation>
+        <translation>A fonte selecionada &apos;%1&apos; não é válida porque não pode desenhar os caracteres necessários.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1153"/>
         <source>Select font for temperature icon</source>
-        <translation>Выбрать шрифт для значка температуры</translation>
+        <translation>Selecione a fonte para o ícone da temperatura</translation>
     </message>
 </context>
 <context>
@@ -797,32 +797,32 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../PollutionWidget.cpp" line="58"/>
         <source>Air Quality</source>
-        <translation>Качество воздуха</translation>
+        <translation>Qualidade do ar</translation>
     </message>
     <message>
         <location filename="../PollutionWidget.cpp" line="65"/>
         <source>Good</source>
-        <translation>Хорошее</translation>
+        <translation>Bom</translation>
     </message>
     <message>
         <location filename="../PollutionWidget.cpp" line="69"/>
         <source>Fair</source>
-        <translation>Приемлемое</translation>
+        <translation>Razoável</translation>
     </message>
     <message>
         <location filename="../PollutionWidget.cpp" line="73"/>
         <source>Moderate</source>
-        <translation>Умеренное</translation>
+        <translation>Moderado</translation>
     </message>
     <message>
         <location filename="../PollutionWidget.cpp" line="77"/>
         <source>Poor</source>
-        <translation>Плохое</translation>
+        <translation>Ruim</translation>
     </message>
     <message>
         <location filename="../PollutionWidget.cpp" line="81"/>
         <source>Very poor</source>
-        <translation>Ужасное</translation>
+        <translation>Muito ruim</translation>
     </message>
 </context>
 <context>
@@ -840,250 +840,250 @@ If you have a firewall change the configuration to allow this program to access 
         <location filename="../Main.cpp" line="73"/>
         <source>TrayWeather cannot execute in this computer because there isn&apos;t a tray available!.
 The application will exit now.</source>
-        <translation>TrayWeather не может запуститься на этом компьютере, потому что
-трей не доступен! Приложение сейчас завершит работу.</translation>
+        <translation>O TrayWeather não pode ser executado neste computador porque não há uma bandeja disponível!.
+O aplicativo será encerrado agora.</translation>
     </message>
     <message>
         <location filename="../Main.cpp" line="89"/>
         <source>TrayWeather is already running!</source>
-        <translation>TrayWeather уже запущен!</translation>
+        <translation>O TrayWeather já está em execução!</translation>
     </message>
     <message>
         <location filename="../Main.cpp" line="112"/>
         <source>TrayWeather cannot execute without a valid location and a valid OpenWeatherMap API Key.
 The application will exit now.</source>
-        <translation>TrayWeather не может запуститься без действительных местоположения
-и ключа API OpenWeatherMap. Приложение сейчас завершит работу.</translation>
+        <translation>O TrayWeather não pode ser executado sem um local válido e uma chave API OpenWeatherMap válida.
+O aplicativo será encerrado agora.</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="357"/>
         <source>New moon</source>
-        <translation>Новолуние</translation>
+        <translation>Lua nova</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="360"/>
         <location filename="../Utils.cpp" line="378"/>
         <source>Waxing crescent</source>
-        <translation>Молодая луна</translation>
+        <translation>Lua crescente</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="363"/>
         <source>First quarter</source>
-        <translation>Первая четверть</translation>
+        <translation>Quarto crescente</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="366"/>
         <source>Waxing gibbous</source>
-        <translation>Прибывающая луна</translation>
+        <translation>Lua crescente</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="369"/>
         <source>Full moon</source>
-        <translation>Полнолуние</translation>
+        <translation>Lua cheia</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="372"/>
         <source>Waning gibbous</source>
-        <translation>Убывающая луна</translation>
+        <translation>Lua minguante</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="375"/>
         <source>Last quarter</source>
-        <translation>Последняя четверть</translation>
+        <translation>Quarto minguante</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="388"/>
         <source>illumination</source>
-        <translation>освещённость</translation>
+        <translation>iluminação</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="521"/>
         <source>NNE</source>
-        <translation>CCB</translation>
+        <translation>NNL</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="522"/>
         <source>NE</source>
-        <translation>CB</translation>
+        <translation>NL</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="523"/>
         <source>ENE</source>
-        <translation>BCB</translation>
+        <translation>LNL</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="524"/>
         <source>E</source>
-        <translation>B</translation>
+        <translation>L</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="525"/>
         <source>ESE</source>
-        <translation>ВЮВ</translation>
+        <translation>LSL</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="526"/>
         <source>SE</source>
-        <translation>ЮВ</translation>
+        <translation>SL</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="527"/>
         <source>SSE</source>
-        <translation>ЮЮВ</translation>
+        <translation>SSL</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="528"/>
         <source>S</source>
-        <translation>Ю</translation>
+        <translation>S</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="529"/>
         <source>SSW</source>
-        <translation>ЮЮЗ</translation>
+        <translation>SSO</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="530"/>
         <source>SW</source>
-        <translation>ЮЗ</translation>
+        <translation>SO</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="531"/>
         <source>WSW</source>
-        <translation>ЗЮЗ</translation>
+        <translation>OSO</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="532"/>
         <source>W</source>
-        <translation>З</translation>
+        <translation>O</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="533"/>
         <source>WNW</source>
-        <translation>ЗСЗ</translation>
+        <translation>ONO</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="534"/>
         <source>NW</source>
-        <translation>СЗ</translation>
+        <translation>NO</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="535"/>
         <source>NNW</source>
-        <translation>CСЗ</translation>
+        <translation>NNO</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="537"/>
         <source>N</source>
-        <translation>C</translation>
+        <translation>N</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="76"/>
         <source>Location</source>
-        <translation>Местоположение</translation>
+        <translation>Localização</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="76"/>
         <source>Current Weather</source>
-        <translation>Текущая погода</translation>
+        <translation>Clima atual</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="76"/>
         <source>Temperature</source>
-        <translation>Температура</translation>
+        <translation>Temperatura</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="77"/>
         <source>Cloudiness</source>
-        <translation>Облачность</translation>
+        <translation>Nebulosidade</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="77"/>
         <source>Humidity</source>
-        <translation>Влажность</translation>
+        <translation>Umidade</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="77"/>
         <source>Ground Pressure</source>
-        <translation>Атмосферное давление</translation>
+        <translation>Pressão no Solo</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="78"/>
         <source>Wind Speed</source>
-        <translation>Скорость ветра</translation>
+        <translation>Velocidade do vento</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="78"/>
         <source>Sunrise</source>
-        <translation>Восход</translation>
+        <translation>Nascer do sol</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="78"/>
         <source>Sunset</source>
-        <translation>Закат</translation>
+        <translation>Pôr do sol</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="79"/>
         <source>UV</source>
-        <translation>УФ-индекс</translation>
+        <translation>UV</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="79"/>
         <source>Air Quality</source>
-        <translation>Качество воздуха</translation>
+        <translation>Qualidade do ar</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="80"/>
         <source>Air Quality (CO)</source>
-        <translation>Качество воздуха (CO)</translation>
+        <translation>Qualidade do ar (CO)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="81"/>
         <source>Air Quality (O&lt;sub&gt;3&lt;/sub&gt;)</source>
-        <translation>Качество воздуха (O&lt;sub&gt;3&lt;/sub&gt;)</translation>
+        <translation>Qualidade do ar (O&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="82"/>
         <source>Air Quality (NO)</source>
-        <translation>Качество воздуха (NO)</translation>
+        <translation>Qualidade do ar (NO)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="83"/>
         <source>Air Quality (NO&lt;sub&gt;2&lt;/sub&gt;)</source>
-        <translation>Качество воздуха (NO&lt;sub&gt;2&lt;/sub&gt;)</translation>
+        <translation>Qualidade do ar (NO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="84"/>
         <source>Air Quality (SO&lt;sub&gt;2&lt;/sub&gt;)</source>
-        <translation>Качество воздуха (SO&lt;sub&gt;2&lt;/sub&gt;)</translation>
+        <translation>Qualidade do ar (SO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="85"/>
         <source>Air Quality (NH&lt;sub&gt;3&lt;/sub&gt;)</source>
-        <translation>Качество воздуха (NH&lt;sub&gt;3&lt;/sub&gt;)</translation>
+        <translation>Qualidade do ar (NH&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="86"/>
         <source>Air Quality (PM&lt;sub&gt;2.5&lt;/sub&gt;)</source>
-        <translation>Качество воздуха (PM&lt;sub&gt;2.5&lt;/sub&gt;)</translation>
+        <translation>Qualidade do ar (PM&lt;sub&gt;2.5&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="87"/>
         <source>Air Quality (PM&lt;sub&gt;10&lt;/sub&gt;)</source>
-        <translation>Качество воздуха (PM&lt;sub&gt;10&lt;/sub&gt;)</translation>
+        <translation>Qualidade do ar (PM&lt;sub&gt;10&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="364"/>
         <source>TrayWeather needs to be restarted for the new configuration to take effect.
 The application will exit now.</source>
-        <translation>TrayWeather надо перезапустить, чтобы применить новые настройки.
-Приложение сейчас завершит работу.</translation>
+        <translation>O TrayWeather precisa ser reiniciado para que a nova configuração tenha efeito.
+O aplicativo será encerrado agora.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="939"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
-        <translation>TrayWeather запросил погодные данные для вашего географического
-местоположения и всё ещё ожидает ответа.</translation>
+        <translation>TrayWeather solicitou os dados meteorológicos para a sua localização geográfica
+e ainda está esperando a resposta.</translation>
     </message>
 </context>
 <context>
@@ -1091,68 +1091,68 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../TrayWeather.cpp" line="1210"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
-        <translation>Доступна новая версия &lt;b&gt;Tray Weather&lt;/b&gt; на &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;сайте GitHub&lt;/a&gt;!</translation>
+        <translation>Há uma nova versão do &lt;b&gt;Tray Weather&lt;/b&gt; na &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;página do github&lt;/a&gt;!</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="1211"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
-        <translation>&lt;center&gt;Вышла &lt;b&gt;версия %1&lt;/b&gt; !&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;&lt;b&gt;Versão %1&lt;/b&gt; foi lançada!&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="1212"/>
         <source>Release notes:
 %1</source>
-        <translation>Примечания к выпуску:
+        <translation>Notas de lançamento:
 %1</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="1213"/>
         <source>Tray Weather updated to version %1</source>
-        <translation>Tray Weather обновлён до версии %1</translation>
+        <translation>Tray Weather atualizado para a versão %1</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="109"/>
         <location filename="../TrayWeather.cpp" line="1227"/>
         <source>Error requesting Github releases data.</source>
-        <translation>Ошибка при получении данных о выпуске с GitHub.</translation>
+        <translation>Erro ao solicitar dados de lançamentos do Github.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="127"/>
         <location filename="../TrayWeather.cpp" line="1340"/>
         <source>Error requesting geolocation coordinates.</source>
-        <translation>Ошибка при получении координат геолокации.</translation>
+        <translation>Erro ao solicitar coordenadas de geolocalização.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="140"/>
         <location filename="../TrayWeather.cpp" line="154"/>
         <location filename="../TrayWeather.cpp" line="168"/>
         <source>Error requesting weather data.</source>
-        <translation>Ошибка при получении данных о погоде.</translation>
+        <translation>Erro ao solicitar dados meteorológicos.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="410"/>
         <source>Requesting weather data from the server...</source>
-        <translation>Запрос данных о погоде с сервера...</translation>
+        <translation>Solicitando dados meteorológicos do servidor...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="573"/>
         <source>Cloudiness: </source>
-        <translation>Облачность: </translation>
+        <translation>Nebulosidade: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="576"/>
         <source>Humidity: </source>
-        <translation>Влажность: </translation>
+        <translation>Umidade: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="586"/>
         <source>inHg</source>
-        <translation>дюйм рт. ст.</translation>
+        <translation>inHg</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="590"/>
         <source>mmHg</source>
-        <translation>мм рт. ст.</translation>
+        <translation>mmHg</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="594"/>
@@ -1162,142 +1162,142 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../TrayWeather.cpp" line="598"/>
         <source>hPa</source>
-        <translation>гПа</translation>
+        <translation>hPa</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="601"/>
         <source>Pressure: </source>
-        <translation>Давление: </translation>
+        <translation>Pressão: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="611"/>
         <source>feet/s</source>
-        <translation>фут/c</translation>
+        <translation>pés/s</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="615"/>
         <source>km/h</source>
-        <translation>км/ч</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="619"/>
         <source>mil/h</source>
-        <translation>миля/ч</translation>
+        <translation>mil/h</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="624"/>
         <source>met/sec</source>
-        <translation>м/с</translation>
+        <translation>met/sec</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="627"/>
         <source>Wind: </source>
-        <translation>Ветер: </translation>
+        <translation>Vento: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="636"/>
         <source>Sunrise: </source>
-        <translation>Восход: </translation>
+        <translation>Nascer do sol: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="645"/>
         <source>Sunset: </source>
-        <translation>Закат: </translation>
+        <translation>Pôr do sol: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="655"/>
         <source>Good</source>
-        <translation>Хорошее</translation>
+        <translation>Bom</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="658"/>
         <source>Fair</source>
-        <translation>Приемлемое</translation>
+        <translation>Razoável</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="661"/>
         <source>Moderate</source>
-        <translation>Умеренное</translation>
+        <translation>Moderado</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="664"/>
         <source>Poor</source>
-        <translation>Плохое</translation>
+        <translation>Ruim</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="667"/>
         <source>Very poor</source>
-        <translation>Ужасное</translation>
+        <translation>Muito ruim</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="670"/>
         <source>Air: </source>
-        <translation>Воздух: </translation>
+        <translation>Ar: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="677"/>
         <source>UV: </source>
-        <translation>УФ-индекс: </translation>
+        <translation>UV: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="756"/>
         <location filename="../TrayWeather.cpp" line="1159"/>
         <source>Current weather...</source>
-        <translation>Текущая погода...</translation>
+        <translation>Clima atual...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="761"/>
         <location filename="../TrayWeather.cpp" line="1160"/>
         <source>Forecast...</source>
-        <translation>Прогноз...</translation>
+        <translation>Previsão...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="766"/>
         <location filename="../TrayWeather.cpp" line="1161"/>
         <source>Pollution...</source>
-        <translation>Загрязнение...</translation>
+        <translation>Poluição...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="771"/>
         <location filename="../TrayWeather.cpp" line="1162"/>
         <source>UV...</source>
-        <translation>УФ-индекс...</translation>
+        <translation>UV...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="776"/>
         <location filename="../TrayWeather.cpp" line="1163"/>
         <source>Maps...</source>
-        <translation>Карты...</translation>
+        <translation>Mapas...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="785"/>
         <location filename="../TrayWeather.cpp" line="1164"/>
         <source>Refresh...</source>
-        <translation>Обновить...</translation>
+        <translation>Atualizar...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="792"/>
         <location filename="../TrayWeather.cpp" line="1165"/>
         <source>Last alert...</source>
-        <translation>Последнее оповещение...</translation>
+        <translation>Último alerta...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="801"/>
         <location filename="../TrayWeather.cpp" line="1166"/>
         <source>Configuration...</source>
-        <translation>Настройки...</translation>
+        <translation>Configuração...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="808"/>
         <location filename="../TrayWeather.cpp" line="1167"/>
         <source>About...</source>
-        <translation>О программе...</translation>
+        <translation>Sobre...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="813"/>
         <location filename="../TrayWeather.cpp" line="1168"/>
         <source>Quit</source>
-        <translation>Выход</translation>
+        <translation>Sair</translation>
     </message>
 </context>
 <context>
@@ -1305,33 +1305,33 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../UVWidget.cpp" line="57"/>
         <source>Low</source>
-        <translation>Низкий</translation>
+        <translation>Baixo</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="58"/>
         <source>No protection required.</source>
-        <translation>Защита не требуется.</translation>
+        <translation>Nenhuma proteção necessária.</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="63"/>
         <source>Moderate</source>
-        <translation>Умеренный</translation>
+        <translation>Razoável</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="64"/>
         <location filename="../UVWidget.cpp" line="69"/>
         <source>Protection required.</source>
-        <translation>Требуется защита.</translation>
+        <translation>Proteção necessária.</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="68"/>
         <source>High</source>
-        <translation>Высокий</translation>
+        <translation>Alto</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="74"/>
         <source>Very high</source>
-        <translation>Очень высокий</translation>
+        <translation>Muito alto</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="75"/>
@@ -1339,14 +1339,14 @@ and it&apos;s still waiting for the response.</source>
         <source>Extra protection.
 Avoid being outside
 during midday hours.</source>
-        <translation>Требуется дополнительная
-защита. Старайтесь не
-выходить на улицу в полдень.</translation>
+        <translation>Proteção extra.
+Evite estar fora
+durante o meio-dia.</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="78"/>
         <source>Extreme</source>
-        <translation>Экстремальный</translation>
+        <translation>Extremo</translation>
     </message>
 </context>
 <context>
@@ -1360,90 +1360,90 @@ during midday hours.</source>
         <location filename="../WeatherDialog.ui" line="52"/>
         <location filename="../WeatherDialog.cpp" line="1173"/>
         <source>Current Weather</source>
-        <translation>Текущая погода</translation>
+        <translation>Clima atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="55"/>
         <source>Current weather information</source>
-        <translation>Сведения о текущей погоде</translation>
+        <translation>Informações meteorológicas atuais</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="68"/>
         <source>Location and date</source>
-        <translation>Местоположение и дата</translation>
+        <translation>Localização e data</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="71"/>
         <source>location</source>
-        <translation>местоположение</translation>
+        <translation>localização</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="97"/>
         <location filename="../WeatherDialog.ui" line="446"/>
         <source>Sunrise time</source>
-        <translation>Время восхода</translation>
+        <translation>Hora do nascer do sol</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="100"/>
         <source>Sunrise</source>
-        <translation>Восход</translation>
+        <translation>Nascer do sol</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="113"/>
         <location filename="../WeatherDialog.ui" line="366"/>
         <source>Current humidity</source>
-        <translation>Текущая влажность</translation>
+        <translation>Umidade atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="116"/>
         <source>Humidity</source>
-        <translation>Влажность</translation>
+        <translation>Umidade</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="129"/>
         <location filename="../WeatherDialog.ui" line="222"/>
         <source>Current cloudiness</source>
-        <translation>Текущая облачность</translation>
+        <translation>Nebulosidade atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="132"/>
         <source>Cloudiness</source>
-        <translation>Облачность</translation>
+        <translation>Nebulosidade</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="145"/>
         <location filename="../WeatherDialog.ui" line="270"/>
         <source>Snow accumulation in the last 3 hours</source>
-        <translation>Количество снега за последние 3 часа</translation>
+        <translation>Acumulação de neve nas últimas 3 horas</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="148"/>
         <source>Snow accumulation (last 3 hours)</source>
-        <translation>Количество снега (за последние 3 часа)</translation>
+        <translation>Acúmulo de neve (últimas 3 horas)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="161"/>
         <location filename="../WeatherDialog.ui" line="164"/>
         <location filename="../WeatherDialog.ui" line="286"/>
         <source>Minimum temperature</source>
-        <translation>Минимальная температура</translation>
+        <translation>Temperatura mínima</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="177"/>
         <location filename="../WeatherDialog.ui" line="414"/>
         <source>Rain accumulation in the last 3 hours</source>
-        <translation>Количество дождя за последние 3 часа</translation>
+        <translation>Acumulação de chuva nas últimas 3 horas</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="180"/>
         <source>Rain accumulation (last 3 hours)</source>
-        <translation>Количество дождя (за последние 3 часа)</translation>
+        <translation>Acumulação de chuva (últimas 3 horas)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="193"/>
         <location filename="../WeatherDialog.ui" line="398"/>
         <source>Current temperature</source>
-        <translation>Текущая температура</translation>
+        <translation>Temperatura atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="199"/>
@@ -1451,13 +1451,13 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="1144"/>
         <location filename="../WeatherDialog.cpp" line="1280"/>
         <source>Temperature</source>
-        <translation>Температура</translation>
+        <translation>Temperatura</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="206"/>
         <location filename="../WeatherDialog.ui" line="260"/>
         <source>Current ground pressure</source>
-        <translation>Текущее атмосферное давление</translation>
+        <translation>Pressão atual do solo</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="215"/>
@@ -1476,200 +1476,273 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="662"/>
         <location filename="../WeatherDialog.cpp" line="832"/>
         <source>Unknown</source>
-        <translation>Неизвестно</translation>
+        <translation>Desconhecido</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="238"/>
         <location filename="../WeatherDialog.ui" line="308"/>
         <location filename="../WeatherDialog.ui" line="311"/>
         <source>Maximum temperature</source>
-        <translation>Максимальная температура</translation>
+        <translation>Temperatura máxima</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="263"/>
         <source>Ground pressure</source>
-        <translation>Атмосферное давление</translation>
+        <translation>Pressão sobre o solo</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="279"/>
         <location filename="../WeatherDialog.ui" line="423"/>
         <location filename="../WeatherDialog.cpp" line="123"/>
         <source>None</source>
-        <translation>Нет</translation>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="324"/>
         <location filename="../WeatherDialog.ui" line="334"/>
         <source>Current wind direction</source>
-        <translation>Текущее направление ветра</translation>
+        <translation>Direção do vento atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="327"/>
         <source>Wind direction</source>
-        <translation>Направление ветра</translation>
+        <translation>Direção do vento</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="356"/>
         <location filename="../WeatherDialog.ui" line="382"/>
         <source>Current wind speed</source>
-        <translation>Текущая скорость ветра</translation>
+        <translation>Velocidade atual do vento</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="359"/>
         <source>Wind speed</source>
-        <translation>Скорость ветра</translation>
+        <translation>Velocidade do vento</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="436"/>
         <location filename="../WeatherDialog.ui" line="456"/>
         <source>Sunset time</source>
-        <translation>Время заката</translation>
+        <translation>Hora do pôr do sol</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="439"/>
         <source>Sunset</source>
-        <translation>Закат</translation>
+        <translation>Pôr do sol</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="472"/>
         <source>Air Quality</source>
-        <translation>Качество воздуха</translation>
+        <translation>Qualidade do Ar</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="479"/>
         <source>Air quality</source>
-        <translation>Качество воздуха</translation>
+        <translation>Qualidade do ar</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="495"/>
         <source>Current ultraviolet radiation index.</source>
-        <translation>Текущий индекс ультрафиолетового излучения.</translation>
+        <translation>Índice de radiação ultravioleta atual.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="498"/>
         <source>Ultraviolet radiation</source>
-        <translation>Ультрафиолетовое излучение</translation>
+        <translation>Radiação ultravioleta</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="876"/>
         <source>Ultraviolet radiation index</source>
-        <translation>Индекс ультрафиолетового излучения</translation>
+        <translation>Índice de radiação ultravioleta</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="505"/>
         <source>UV index</source>
-        <translation>УФ-индекс</translation>
+        <translation>Índice UV</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="519"/>
         <source>Current weather icon</source>
-        <translation>Значок текущей погоды</translation>
+        <translation>Ícone do clima atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="542"/>
         <source>Current weather description</source>
-        <translation>Описание текущей погоды</translation>
+        <translation>Descrição do clima atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="575"/>
         <location filename="../WeatherDialog.ui" line="616"/>
         <source>Current moon phase</source>
-        <translation>Текущая фаза луны</translation>
+        <translation>Fase da lua atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="578"/>
         <source>Moon phase</source>
-        <translation>Фаза луны</translation>
+        <translation>Fase da lua</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="648"/>
         <source>Show weather maps.</source>
-        <translation>Показать карты погоды.</translation>
+        <translation>Mostrar mapas meteorológicos.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="651"/>
         <location filename="../WeatherDialog.cpp" line="1305"/>
         <source>Show Maps</source>
-        <translation>Показать карты</translation>
+        <translation>Mostrar mapas</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="658"/>
         <source>Reset graph zoom</source>
-        <translation>Сбросить масштаб графика</translation>
+        <translation>Redefinir o zoom do gráfico</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="661"/>
         <source>Reset Zoom</source>
-        <translation>Сбросить масштаб</translation>
+        <translation>Redefinir o zoom</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="681"/>
         <source>Close dialog</source>
-        <translation>Закрыть окно</translation>
+        <translation>Fechar diálogo</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="684"/>
         <source>Ok</source>
-        <translation>Ок</translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="68"/>
         <source>Weather forecast for the next days.</source>
-        <translation>Прогноз погоды на ближайшие дни.</translation>
+        <translation>Previsão do clima para os próximos dias.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="71"/>
         <location filename="../WeatherDialog.cpp" line="1173"/>
         <source>Forecast</source>
-        <translation>Прогноз</translation>
+        <translation>Previsão</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="77"/>
         <source>Pollution forecast for the next days.</source>
-        <translation>Прогноз загрязнения на ближайшие дни.</translation>
+        <translation>Previsão de poluição para os próximos dias.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="80"/>
         <location filename="../WeatherDialog.cpp" line="1173"/>
         <source>Pollution</source>
-        <translation>Загрязнение</translation>
+        <translation>Poluição</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="86"/>
         <source>Ultraviolet radiation forecast for the next days.</source>
-        <translation>Прогноз ультрафиолетового излучения на ближайшие дни.</translation>
+        <translation>Previsão de radiação ultravioleta para os próximos dias.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="89"/>
         <location filename="../WeatherDialog.cpp" line="1173"/>
         <source>UV</source>
-        <translation>УФ-индекс</translation>
+        <translation>UV</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="145"/>
+        <location filename="../WeatherDialog.cpp" line="189"/>
+        <location filename="../WeatherDialog.cpp" line="1215"/>
+        <location filename="../WeatherDialog.cpp" line="1232"/>
+        <source>mm</source>
+        <translation>mm</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="138"/>
+        <location filename="../WeatherDialog.cpp" line="184"/>
+        <location filename="../WeatherDialog.cpp" line="1205"/>
+        <location filename="../WeatherDialog.cpp" line="1227"/>
+        <source>inches</source>
+        <translation>polegadas</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="147"/>
         <location filename="../WeatherDialog.cpp" line="208"/>
         <source>meter/sec</source>
-        <translation>м/с</translation>
+        <translation>metro/sec</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="121"/>
         <source>Illumination</source>
-        <translation>Освещённость</translation>
+        <translation>Iluminação</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="122"/>
         <source>Current weather</source>
-        <translation>Текущая погода</translation>
+        <translation>Clima atual</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="126"/>
         <source>Rain accumulation</source>
-        <translation>Количество дождя</translation>
+        <translation>Acúmulo de chuva</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="146"/>
+        <location filename="../WeatherDialog.cpp" line="178"/>
+        <source>hPa</source>
+        <translation>hPa</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="140"/>
+        <source>miles/hour</source>
+        <translation>milhas/hora</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="289"/>
+        <location filename="../WeatherDialog.cpp" line="694"/>
+        <location filename="../WeatherDialog.cpp" line="870"/>
+        <source>Day (Hour)</source>
+        <translation>Dia (Hora)</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="295"/>
+        <location filename="../WeatherDialog.cpp" line="301"/>
+        <source>%1 in %2</source>
+        <translation>%1 em %2</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="566"/>
+        <location filename="../WeatherDialog.cpp" line="619"/>
+        <location filename="../WeatherDialog.cpp" line="630"/>
+        <location filename="../WeatherDialog.cpp" line="1173"/>
+        <source>Maps</source>
+        <translation>Mapas</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="573"/>
+        <source>TrayWeather Maps</source>
+        <translation>TrayWeather Mapas</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="575"/>
+        <source>The weather maps couldn&apos;t be loaded.</source>
+        <translation>Os mapas meteorológicos não puderam ser carregados.</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="1188"/>
+        <source>Hide Maps</source>
+        <translation>Esconder Mapas</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="1189"/>
+        <source>Hide weather maps tab.</source>
+        <translation>Ocultar guia de mapas meteorológicos.</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="611"/>
+        <source>Weather Maps.</source>
+        <translation>Mapas do clima.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="126"/>
         <source>Snow accumulation</source>
-        <translation>Количество снега</translation>
+        <translation>Acúmulo de neve</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="139"/>
@@ -1680,198 +1753,125 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="166"/>
         <source>inHg</source>
-        <translation>дюйм рт. ст.</translation>
+        <translation>inHg</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="170"/>
         <source>mmHg</source>
-        <translation>мм рт. ст.</translation>
+        <translation>mmHg</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="195"/>
         <source>feet/s</source>
-        <translation>фут/c</translation>
+        <translation>pés/s</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="199"/>
         <location filename="../WeatherDialog.cpp" line="1243"/>
         <source>km/h</source>
-        <translation>км/ч</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="289"/>
-        <location filename="../WeatherDialog.cpp" line="694"/>
-        <location filename="../WeatherDialog.cpp" line="870"/>
-        <source>Day (Hour)</source>
-        <translation>День (час)</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="295"/>
-        <location filename="../WeatherDialog.cpp" line="301"/>
-        <source>%1 in %2</source>
-        <translation>%1 в %2</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="566"/>
-        <location filename="../WeatherDialog.cpp" line="619"/>
-        <location filename="../WeatherDialog.cpp" line="630"/>
-        <location filename="../WeatherDialog.cpp" line="1173"/>
-        <source>Maps</source>
-        <translation>Карты</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="573"/>
-        <source>TrayWeather Maps</source>
-        <translation>Карты TrayWeather</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="575"/>
-        <source>The weather maps couldn&apos;t be loaded.</source>
-        <translation>Карты погоды не удалось загрузить.</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="841"/>
-        <source>Low</source>
-        <translation>Низкий</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="850"/>
-        <source>High</source>
-        <translation>Высокий</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="855"/>
-        <source>Very high</source>
-        <translation>Очень высокий</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="858"/>
-        <source>Extreme</source>
-        <translation>Экстремальный</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="898"/>
-        <source>UV Index</source>
-        <translation>УФ-индекс</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="1239"/>
-        <source>feet/sec</source>
-        <translation>фут/с</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="1306"/>
-        <source>Show weather maps tab.</source>
-        <translation>Показать вкладку карт погоды.</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="1188"/>
-        <source>Hide Maps</source>
-        <translation>Скрыть карты</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="145"/>
-        <location filename="../WeatherDialog.cpp" line="189"/>
-        <location filename="../WeatherDialog.cpp" line="1215"/>
-        <location filename="../WeatherDialog.cpp" line="1232"/>
-        <source>mm</source>
-        <translation>мм</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="138"/>
-        <location filename="../WeatherDialog.cpp" line="184"/>
-        <location filename="../WeatherDialog.cpp" line="1205"/>
-        <location filename="../WeatherDialog.cpp" line="1227"/>
-        <source>inches</source>
-        <translation>дюймы</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="146"/>
-        <location filename="../WeatherDialog.cpp" line="178"/>
-        <source>hPa</source>
-        <translation>гПа</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="140"/>
-        <source>miles/hour</source>
-        <translation>миля/час</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="1189"/>
-        <source>Hide weather maps tab.</source>
-        <translation>Скрыть вкладку карт погоды.</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.cpp" line="611"/>
-        <source>Weather Maps.</source>
-        <translation>Карты погоды.</translation>
+        <translation>km/h</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="669"/>
         <source>Good</source>
-        <translation>Хорошее</translation>
+        <translation>Bom</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="672"/>
         <source>Fair</source>
-        <translation>Удовлетворительное</translation>
+        <translation>Razoável</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="675"/>
         <location filename="../WeatherDialog.cpp" line="846"/>
         <source>Moderate</source>
-        <translation>Среднее</translation>
+        <translation>Moderado</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="678"/>
         <source>Poor</source>
-        <translation>Плохое</translation>
+        <translation>Ruim</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="681"/>
         <source>Very poor</source>
-        <translation>Ужасное</translation>
+        <translation>Muito ruim</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="700"/>
         <source>Concentration in %1</source>
-        <translation>Концентрация в %1</translation>
+        <translation>Concentração em %1</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="841"/>
+        <source>Low</source>
+        <translation>Baixo</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="850"/>
+        <source>High</source>
+        <translation>Alto</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="855"/>
+        <source>Very high</source>
+        <translation>Muito alto</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="858"/>
+        <source>Extreme</source>
+        <translation>Extremo</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="898"/>
+        <source>UV Index</source>
+        <translation>Índice UV</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1144"/>
         <location filename="../WeatherDialog.cpp" line="1281"/>
         <source>Rain</source>
-        <translation>Дождь</translation>
+        <translation>Chuva</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1144"/>
         <location filename="../WeatherDialog.cpp" line="1282"/>
         <source>Wind</source>
-        <translation>Ветер</translation>
+        <translation>Vento</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1144"/>
         <location filename="../WeatherDialog.cpp" line="1283"/>
         <source>Clouds</source>
-        <translation>Облака</translation>
+        <translation>Nuvens</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="203"/>
         <location filename="../WeatherDialog.cpp" line="1204"/>
         <location filename="../WeatherDialog.cpp" line="1247"/>
         <source>miles/h</source>
-        <translation>миля/ч</translation>
+        <translation>milhas/h</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1214"/>
         <location filename="../WeatherDialog.cpp" line="1251"/>
         <source>met/sec</source>
-        <translation>м/с</translation>
+        <translation>met/sec</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="1239"/>
+        <source>feet/sec</source>
+        <translation>pés/sec</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1297"/>
         <source>Unable to load weather webpage</source>
-        <translation>Не удалось загрузить веб-страницу погоды</translation>
+        <translation>Não foi possível carregar a página de previsão do tempo</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="1306"/>
+        <source>Show weather maps tab.</source>
+        <translation>Mostrar guia de mapas meteorológicos.</translation>
     </message>
 </context>
 <context>
@@ -1879,59 +1879,59 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherWidget.cpp" line="50"/>
         <source>Temperature</source>
-        <translation>Температура</translation>
+        <translation>Temperatura</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="51"/>
         <source>Cloudiness</source>
-        <translation>Облачность</translation>
+        <translation>Nebulosidade</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="52"/>
         <source>Humidity</source>
-        <translation>Влажность</translation>
+        <translation>Umidade</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="53"/>
         <source>Pressure</source>
-        <translation>Давление</translation>
+        <translation>Pressão</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="54"/>
         <source>Rain acc</source>
-        <translation>Кол-во дождя</translation>
+        <translation>Chuva acc</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="55"/>
         <source>Snow acc</source>
-        <translation>Кол-во снега</translation>
+        <translation>Neve acc</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="67"/>
         <location filename="../WeatherWidget.cpp" line="103"/>
         <source>hPa</source>
-        <translation>гПа</translation>
+        <translation>hPa</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="91"/>
         <source>inHg</source>
-        <translation>дюйм рт. ст.</translation>
+        <translation>inHg</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="95"/>
         <source>mmHg</source>
-        <translation>мм рт. ст.</translation>
+        <translation>mmHg</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="109"/>
         <source>inches</source>
-        <translation>дюймы</translation>
+        <translation>polegadas</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="68"/>
         <location filename="../WeatherWidget.cpp" line="115"/>
         <source>mm</source>
-        <translation>мм</translation>
+        <translation>mm</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="72"/>
@@ -1942,7 +1942,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherWidget.cpp" line="73"/>
         <source>inch</source>
-        <translation>дюйм</translation>
+        <translation>polegada</translation>
     </message>
 </context>
 </TS>

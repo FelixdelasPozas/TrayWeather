@@ -7,10 +7,14 @@ cmake_minimum_required (VERSION 3.0.0)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
-set (TRAYWEATHER_VERSION_MINOR 15)
+set (TRAYWEATHER_VERSION_MINOR 18)
 set (TRAYWEATHER_VERSION_PATCH 0)
 
-# Current year, used in configured files.
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Current year, used in configured files. 
 string(TIMESTAMP CURRENT_YEAR "%Y")
 
 # Find includes in corresponding build directories
@@ -23,7 +27,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5 COMPONENTS Widgets Network WebkitWidgets Charts LinguistTools)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated-declarations -std=c++11 -mwindows")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated-declarations -mwindows")
 
 if (CMAKE_BUILD_TYPE MATCHES Debug)
   set(CORE_EXTERNAL_LIBS ${CORE_EXTERNAL_LIBS} ${QT_QTTEST_LIBRARY})
@@ -60,6 +64,7 @@ set(TRANSLATIONS_TS_FILES
   languages/de_DE.ts
   languages/fr_FR.ts
   languages/zh_CN.ts
+  languages/pt_BR.ts
 )
 
 qt5_add_translation(TRANSLATIONS_QM_FILES ${TRANSLATIONS_TS_FILES})

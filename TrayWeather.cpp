@@ -37,6 +37,7 @@
 #include <QPainter>
 #include <QFile>
 #include <QImage>
+#include <QGraphicsPixmapItem>
 #include <QtWinExtras/QtWinExtrasDepends>
 
 // C++
@@ -198,6 +199,7 @@ void TrayWeather::showConfiguration()
   const auto scr = QApplication::desktop()->screenGeometry();
   m_configDialog->move(scr.center() - m_configDialog->rect().center());
   m_configDialog->setModal(true);
+  if(m_current.isValid()) m_configDialog->setCurrentTemperature(std::nearbyint(m_current.temp));
   const auto result = m_configDialog->exec();
 
   Configuration configuration;
@@ -241,7 +243,8 @@ void TrayWeather::showConfiguration()
   m_configuration.iconThemeColor   = configuration.iconThemeColor;
   m_configuration.trayTextColor    = configuration.trayTextColor;
   m_configuration.trayTextMode     = configuration.trayTextMode;
-  m_configuration.trayTextSize     = configuration.trayTextSize;
+  m_configuration.trayTextBorder   = configuration.trayTextBorder;
+  m_configuration.trayTextFont     = configuration.trayTextFont;
   m_configuration.minimumColor     = configuration.minimumColor;
   m_configuration.maximumColor     = configuration.maximumColor;
   m_configuration.minimumValue     = configuration.minimumValue;
@@ -468,9 +471,10 @@ void TrayWeather::updateTooltip()
 
         const auto roundedTemp = static_cast<int>(std::nearbyint(temperatureValue));
         const auto roundedString = QString::number(roundedTemp);
-        QFont font = painter.font();
-        font.setPixelSize(m_configuration.trayTextSize - ((roundedString.length() - 3) * 50));
-        font.setWeight(QFont::Bold);
+
+        QFont font;
+        font.fromString(m_configuration.trayTextFont);
+        font.setPixelSize(250);
         painter.setFont(font);
 
         QColor color;
@@ -484,17 +488,44 @@ void TrayWeather::updateTooltip()
         }
 
         painter.setPen(color);
-        painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, false);
+        painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, true);
+        painter.setRenderHint(QPainter::RenderHint::HighQualityAntialiasing, true);
         painter.drawText(tempPixmap.rect(), Qt::AlignCenter, roundedString);
 
-        const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
-        const auto image = addQuickBorderToImage(tempPixmap.toImage(), invertedColor, 16);
+        if(m_configuration.trayTextBorder)
+        {
+          const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
 
-        painter.drawImage(QPoint{0,0}, image);
+          //constructing temp object only to get path for border.
+          QGraphicsPixmapItem tempItem(tempPixmap);
+          tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
+          const auto path = tempItem.shape();
+
+          QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+          painter.setPen(pen);
+          painter.drawPath(path);
+
+          // repaint the temperature, it was overwritten by path.
+          painter.setPen(color);
+          painter.drawText(tempPixmap.rect(), Qt::AlignCenter, roundedString);
+        }
         painter.end();
 
-        painter.begin(&pixmap);
-        painter.drawImage(QPoint{0,0}, tempPixmap.toImage());
+        const auto rect = computeDrawnRect(tempPixmap.toImage());
+        if(rect.isValid())
+        {
+          const double ratioX = pixmap.width() * 1.0 / rect.width();
+          const double ratioY = pixmap.height() * 1.0 / rect.height();
+          const auto minimum = std::min(ratioX, ratioY);
+          const auto difference = (pixmap.rect().center() - rect.center())/2.;
+
+          painter.begin(&pixmap);
+          painter.translate(rect.center());
+          painter.scale(minimum, minimum);
+          painter.translate(-rect.center()+difference);
+          painter.drawImage(QPoint{0,0}, tempPixmap.toImage());
+          painter.end();
+        }
       }
       break;
   }

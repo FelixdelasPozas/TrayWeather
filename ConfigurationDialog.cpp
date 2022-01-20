@@ -36,9 +36,12 @@
 #include <QSettings>
 #include <QDir>
 #include <QMouseEvent>
+#include <QFontDialog>
+#include <QGraphicsPixmapItem>
 
 // C++
 #include <chrono>
+#include <cmath>
 
 const char SELECTED[] = "Selected";
 
@@ -47,15 +50,38 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 : QDialog       {parent}
 , m_netManager  {std::make_shared<QNetworkAccessManager>(this)}
 , m_testedAPIKey{false}
+, m_temp        {28}
+, m_validFont   {true}
 {
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
   setupUi(this);
 
+  QObject::connect(m_borderLabel, &ClickableLabel::clicked,
+                   [this](){ m_border->setChecked(!m_border->isChecked()); });
+
   m_tooltipList->setItemDelegate(new RichTextItemDelegate());
   m_tooltipValueCombo->setItemDelegate(new RichTextItemDelegate());
 
+  // generate checkered pattern background for icon preview.
+  m_pixmap = QPixmap{384,384};
+  const QList<QColor> colors = { Qt::white, Qt::lightGray };
+  int color = 0;
+  QPainter painter(&m_pixmap);
+  for(int x = 0; x < 384; x +=16)
+  {
+    ++color;
+    for(int y = 0; y < 384; y +=16)
+    {
+      painter.setBrush(QBrush{colors.at(++color % 2)});
+      painter.setPen(colors.at(color % 2));
+      painter.drawRect(x, y, 16, 16);
+    }
+  }
+  painter.end();
+
   setConfiguration(configuration);
+  setCurrentTemperature(m_temp);
 }
 
 //--------------------------------------------------------------------
@@ -82,13 +108,13 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
         message = tr("Invalid reply from Geo-Locator server.\nCouldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
         details = reply->errorString();
 
-        QMessageBox box(this);
-        box.setWindowTitle(tr("Network Error"));
-        box.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
-        box.setDetailedText(details);
-        box.setText(message);
-        box.setBaseSize(400, 400);
-        box.exec();
+        QMessageBox msgbox(this);
+        msgbox.setWindowTitle(tr("Network Error"));
+        msgbox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+        msgbox.setDetailedText(details);
+        msgbox.setText(message);
+        msgbox.setBaseSize(400, 400);
+        msgbox.exec();
       }
     }
 
@@ -198,13 +224,13 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     }
   }
 
-  QMessageBox box(this);
-  box.setWindowTitle(tr("Network Error"));
-  box.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
-  box.setDetailedText(details);
-  box.setText(message);
-  box.setBaseSize(400, 400);
-  box.exec();
+  QMessageBox msgbox(this);
+  msgbox.setWindowTitle(tr("Network Error"));
+  msgbox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+  msgbox.setDetailedText(details);
+  msgbox.setText(message);
+  msgbox.setBaseSize(400, 400);
+  msgbox.exec();
 
   reply->deleteLater();
 }
@@ -231,7 +257,8 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.iconThemeColor = QColor(m_iconThemeColor->property("iconColor").toString());
   configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
   configuration.trayTextMode   = m_fixed->isChecked();
-  configuration.trayTextSize   = m_fontSize->value();
+  configuration.trayTextBorder = m_border->isChecked();
+  configuration.trayTextFont   = m_validFont ? m_font.toString() : m_fontButton->property("initial_font").toString();
   configuration.minimumColor   = QColor(m_minColor->property("iconColor").toString());
   configuration.maximumColor   = QColor(m_maxColor->property("iconColor").toString());
   configuration.minimumValue   = m_minSpinBox->value();
@@ -422,7 +449,7 @@ void ConfigurationDialog::connectSignals()
           this,          SLOT(onTooltipFieldsRowChanged(int)));
 
   connect(m_iconSummary, SIGNAL(pressed()),
-          this,          SLOT(onIconSummaryPressed()));
+          this,          SLOT(onIconPreviewPressed()));
 
   connect(m_trayIconTheme, SIGNAL(currentIndexChanged(int)),
           this,            SLOT(onIconThemeIndexChanged(int)));
@@ -434,6 +461,18 @@ void ConfigurationDialog::connectSignals()
   {
     connect(w, SIGNAL(currentIndexChanged(int)), this, SLOT(onUnitComboChanged(int)));
   }
+
+  connect(m_fontButton, SIGNAL(clicked()),
+          this,         SLOT(onFontSelectorPressed()));
+
+  connect(m_fontPreview, SIGNAL(clicked()),
+          this,          SLOT(onFontPreviewPressed()));
+
+  connect(m_border, SIGNAL(stateChanged(int)),
+          this,     SLOT(updateTemperatureIcon()));
+
+  connect(m_fixed, SIGNAL(toggled(bool)),
+          this,    SLOT(updateTemperatureIcon()));
 }
 
 //--------------------------------------------------------------------
@@ -490,7 +529,8 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
   qApp->setStyleSheet(sheet);
 
   adjustSize();
-  setFixedSize(size());
+  fixVisuals();
+  setFixedSize(size() + QSize{8,8});
 
   updateRange();
 
@@ -508,6 +548,7 @@ void ConfigurationDialog::onColorButtonClicked()
 
   QColorDialog dialog;
   dialog.setCurrentColor(color);
+  dialog.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
 
   if(dialog.exec() != QColorDialog::Accepted) return;
 
@@ -519,6 +560,7 @@ void ConfigurationDialog::onColorButtonClicked()
   if(button == m_minColor || button == m_maxColor)
   {
     updateRange();
+    updateTemperatureIcon();
   }
   else
   {
@@ -579,6 +621,7 @@ void ConfigurationDialog::showEvent(QShowEvent *e)
   QDialog::showEvent(e);
 
   scaleDialog(this);
+  fixVisuals();
 }
 
 //--------------------------------------------------------------------
@@ -590,6 +633,8 @@ void ConfigurationDialog::changeEvent(QEvent *e)
     getConfiguration(backup);
 
     retranslateUi(this);
+
+    fixVisuals();
 
     disconnectSignals();
     m_languageCombo->blockSignals(true);
@@ -680,8 +725,11 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
   m_trayIconTheme->setCurrentIndex(static_cast<int>(configuration.iconTheme));
 
+  m_font.fromString(configuration.trayTextFont);
+  m_fontButton->setText(m_font.toString().split(",").first());
+  if(m_validFont) m_fontButton->setProperty("initial_font", m_font.toString());
+
   m_trayIconType->setCurrentIndex(static_cast<int>(configuration.iconType));
-  m_fontSize->setValue(configuration.trayTextSize);
   m_updatesCombo->setCurrentIndex(static_cast<int>(configuration.update));
 
   m_unitsComboBox->setCurrentIndex(static_cast<int>(configuration.units));
@@ -692,6 +740,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 
   m_fixed->setChecked(configuration.trayTextMode);
   m_variable->setChecked(!configuration.trayTextMode);
+  m_border->setChecked(configuration.trayTextBorder);
 
   m_minSpinBox->setMaximum(configuration.maximumValue-1);
   m_maxSpinBox->setMinimum(configuration.minimumValue+1);
@@ -870,7 +919,7 @@ void ConfigurationDialog::disconnectSignals()
              this,          SLOT(onTooltipFieldsRowChanged(int)));
 
   disconnect(m_iconSummary, SIGNAL(pressed()),
-             this,          SLOT(onIconSummaryPressed()));
+             this,          SLOT(onIconPreviewPressed()));
 
   disconnect(m_trayIconTheme, SIGNAL(currentIndexChanged(int)),
              this,            SLOT(onIconThemeIndexChanged(int)));
@@ -882,6 +931,18 @@ void ConfigurationDialog::disconnectSignals()
   {
     disconnect(w, SIGNAL(currentIndexChanged(int)), this, SLOT(onUnitComboChanged(int)));
   }
+
+  disconnect(m_fontButton, SIGNAL(clicked()),
+             this,         SLOT(onFontSelectorPressed()));
+
+  disconnect(m_fontPreview, SIGNAL(clicked()),
+             this,          SLOT(onFontPreviewPressed()));
+
+  disconnect(m_border, SIGNAL(stateChanged(int)),
+             this,     SLOT(updateTemperatureIcon()));
+
+  disconnect(m_fixed, SIGNAL(toggled(bool)),
+             this,    SLOT(updateTemperatureIcon()));
 }
 
 //--------------------------------------------------------------------
@@ -950,8 +1011,7 @@ void ConfigurationDialog::updateLanguageCombo(const QString &current)
   for(int i = 0; i < TRANSLATIONS.size(); ++i)
   {
     const auto &lang = TRANSLATIONS.at(i);
-    const auto translated = QApplication::translate("QObject", lang.name.toUtf8());
-    m_languageCombo->addItem(QIcon(lang.icon), translated, lang.file);
+    m_languageCombo->addItem(QIcon(lang.icon), lang.name, lang.file);
     if(lang.file.compare(current) == 0) selected = i;
   }
   m_languageCombo->blockSignals(true);
@@ -1037,15 +1097,96 @@ void ConfigurationDialog::updateTooltipFieldsButtons()
 }
 
 //--------------------------------------------------------------------
-void ConfigurationDialog::onIconSummaryPressed()
+void ConfigurationDialog::onIconPreviewPressed()
 {
   const auto color = QColor(m_iconThemeColor->property("iconColor").toString());
   const auto image = createIconsSummary(m_trayIconTheme->currentIndex(), 32, color);
-  auto summaryWidget = new IconSummaryWidget(image, this);
+  auto previewWidget = new PreviewWidget(image, this);
 
   const QPoint pos = m_iconSummary->mapToGlobal(QPoint{0,0});
-  summaryWidget->move(pos);
-  summaryWidget->show();
+  previewWidget->move(pos);
+  previewWidget->show();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onFontPreviewPressed()
+{
+  QApplication::setOverrideCursor(Qt::WaitCursor);
+
+  const auto pixmap = generateTemperatureIconPixmap(m_font);
+  if(pixmap.isNull())
+  {
+    m_validFont = false;
+    QApplication::restoreOverrideCursor();
+
+    QMessageBox msgbox(this);
+    msgbox.setWindowTitle(tr("Font Selection"));
+    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgbox.setIcon(QMessageBox::Critical);
+    msgbox.setText(tr("The selected font '%1' is not valid because it cannot draw the needed characters.").arg(m_fontButton->text()));
+    msgbox.setBaseSize(400, 400);
+    msgbox.exec();
+    return;
+  }
+
+  auto previewWidget = new PreviewWidget(pixmap, this);
+  const QPoint pos = m_fontPreview->mapToGlobal(QPoint{0,0});
+  previewWidget->move(pos);
+
+  QApplication::restoreOverrideCursor();
+
+  previewWidget->show();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onFontSelectorPressed()
+{
+  const QString validChars("0123456789-");
+
+  auto font = m_font;
+  font.setPointSize(20);
+
+  QFontDialog dialog(font, this);
+  dialog.setOption(QFontDialog::NonScalableFonts, false);
+  dialog.setModal(true);
+  dialog.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+  dialog.setWindowTitle(tr("Select font for temperature icon"));
+  if(QDialog::Accepted != dialog.exec()) return;
+
+  font = dialog.currentFont();
+  const auto fontName = font.toString().split(',').first();
+
+  auto showErrorMessage = [&fontName, this]()
+  {
+    QMessageBox msgbox(this);
+    msgbox.setWindowTitle(tr("Font Selection"));
+    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgbox.setIcon(QMessageBox::Critical);
+    msgbox.setText(tr("The selected font '%1' is not valid because it cannot draw the needed characters.").arg(fontName));
+    msgbox.setBaseSize(400, 400);
+    msgbox.exec();
+  };
+
+  QFontMetrics metrics(font);
+  auto it = std::find_if_not(validChars.constBegin(), validChars.constEnd(), [&metrics](const QChar c){ return metrics.inFont(c); });
+  if(it != validChars.constEnd() || metrics.boundingRect("01234").width() == 0)
+  {
+    showErrorMessage();
+    return;
+  }
+
+  const auto pixmap = generateTemperatureIconPixmap(font);
+  if(pixmap.isNull())
+  {
+    showErrorMessage();
+  }
+  else
+  {
+    m_font = font;
+    m_validFont = true;
+    m_fontPreview->setIcon(QIcon(pixmap));
+    m_fontButton->setText(m_font.toString().split(",").first());
+  }
 }
 
 //--------------------------------------------------------------------
@@ -1057,7 +1198,7 @@ void ConfigurationDialog::onIconThemeIndexChanged(int idx)
 }
 
 //--------------------------------------------------------------------
-IconSummaryWidget::IconSummaryWidget(QPixmap image, QWidget *p)
+PreviewWidget::PreviewWidget(QPixmap image, QWidget *p)
 : QWidget(p, Qt::WindowFlags())
 {
   setWindowFlags(Qt::ToolTip|Qt::FramelessWindowHint);
@@ -1072,10 +1213,131 @@ IconSummaryWidget::IconSummaryWidget(QPixmap image, QWidget *p)
 }
 
 //--------------------------------------------------------------------
-void IconSummaryWidget::leaveEvent(QEvent *e)
+void PreviewWidget::leaveEvent(QEvent *e)
 {
   QWidget::leaveEvent(e);
 
   close();
   deleteLater();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::setCurrentTemperature(const int value)
+{
+  m_temp = value;
+
+  updateTemperatureIcon();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::updateTemperatureIcon()
+{
+  const auto pixmap = generateTemperatureIconPixmap(m_font);
+
+  m_fontPreview->setIcon(pixmap.isNull() ? QIcon(":/TrayWeather/alert.svg") : QIcon(pixmap));
+  m_validFont = !pixmap.isNull();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::fixVisuals()
+{
+  // Fix Visuals layout.
+  m_fixed->setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  m_fixed->setMinimumSize(0,0);
+  m_variable->setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  m_variable->setMinimumSize(0,0);
+  m_from->setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
+  m_from->setMinimumSize(0,0);
+
+  m_fixed->updateGeometry();
+  m_variable->updateGeometry();
+
+  m_fixed->adjustSize();
+  m_variable->adjustSize();
+
+  const int visualsFix = std::max(m_fixed->width(), m_variable->width());
+  m_fixed->setFixedWidth(visualsFix);
+  m_variable->setFixedWidth(visualsFix);
+  m_from->setFixedWidth(visualsFix);
+}
+
+//--------------------------------------------------------------------
+QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
+{
+  auto interpolate = [this](int temp)
+  {
+    const auto minVal = m_minSpinBox->value();
+    const auto maxVal = m_maxSpinBox->value();
+    const auto minColor = QColor(m_minColor->property("iconColor").toString());
+    const auto maxColor = QColor(m_maxColor->property("iconColor").toString());
+    const auto value = std::min(maxVal, std::max(minVal, temp));
+
+    const double inc = static_cast<double>(value-minVal)/(maxVal - minVal);
+    const double rInc = (maxColor.red()   - minColor.red())   * inc;
+    const double gInc = (maxColor.green() - minColor.green()) * inc;
+    const double bInc = (maxColor.blue()  - minColor.blue())  * inc;
+    const double aInc = (maxColor.alpha() - minColor.alpha()) * inc;
+
+    return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
+  };
+
+  const auto roundedString = QString::number(m_temp);
+
+  QPixmap pixmap(384,384);
+  pixmap.fill(Qt::transparent);
+  QPainter painter(&pixmap);
+  font.setPixelSize(250);
+  painter.setFont(font);
+
+  QColor color;
+  if(m_fixed->isChecked())
+  {
+    color = QColor(m_trayTempColor->property("iconColor").toString());
+  }
+  else
+  {
+    color = interpolate(m_temp);
+  }
+
+  painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, true);
+  painter.setRenderHint(QPainter::RenderHint::HighQualityAntialiasing, true);
+  painter.setPen(color);
+  painter.drawText(pixmap.rect(), Qt::AlignCenter, roundedString);
+
+  if(m_border->isChecked())
+  {
+    const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
+
+    //constructing temp object only to get path for border.
+    QGraphicsPixmapItem tempItem(pixmap);
+    tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
+    const auto path = tempItem.shape();
+
+    QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    painter.setPen(pen);
+    painter.drawPath(path);
+
+    // repaint the temperature, it was overwritten by path.
+    painter.setPen(color);
+    painter.drawText(pixmap.rect(), Qt::AlignCenter, roundedString);
+  }
+  painter.end();
+
+  const auto rect = computeDrawnRect(pixmap.toImage());
+  if(!rect.isValid()) return QPixmap();
+
+  const double ratioX = pixmap.width() * 1.0 / rect.width();
+  const double ratioY = pixmap.height() * 1.0 / rect.height();
+  const auto minimum = std::min(ratioX, ratioY);
+  const auto difference = (pixmap.rect().center() - rect.center())/2.;
+
+  QPixmap background(m_pixmap);
+  painter.begin(&background);
+  painter.translate(rect.center());
+  painter.scale(minimum, minimum);
+  painter.translate(-rect.center()+difference);
+  painter.drawImage(QPoint{0,0}, pixmap.toImage());
+  painter.end();
+
+  return background.scaled(160, 160, Qt::AspectRatioMode::KeepAspectRatio, Qt::TransformationMode::SmoothTransformation);
 }

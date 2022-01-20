@@ -35,6 +35,7 @@
 #include <QPainter>
 #include <QAbstractTextDocumentLayout>
 #include <QRgb>
+#include <QLayout>
 #include <QObject>
 
 // C++
@@ -67,7 +68,8 @@ static const QString TRAY_ICON_THEME         = QString("Tray icon theme");
 static const QString TRAY_ICON_THEME_COLOR   = QString("Tray icon theme color");
 static const QString TRAY_TEXT_COLOR         = QString("Tray text color");
 static const QString TRAY_TEXT_COLOR_MODE    = QString("Tray text color mode");
-static const QString TRAY_TEXT_SIZE          = QString("Tray text size");
+static const QString TRAY_TEXT_BORDER        = QString("Tray text border");
+static const QString TRAY_TEXT_FONT          = QString("Tray text font");
 static const QString TRAY_DYNAMIC_MIN_COLOR  = QString("Tray text color dynamic minimum");
 static const QString TRAY_DYNAMIC_MAX_COLOR  = QString("Tray text color dynamic maximum");
 static const QString TRAY_DYNAMIC_MIN_VALUE  = QString("Tray text color dynamic minimum value");
@@ -638,7 +640,8 @@ void load(Configuration &configuration)
   configuration.iconThemeColor  = QColor(settings.value(TRAY_ICON_THEME_COLOR, "#FF000000").toString());
   configuration.trayTextColor   = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
   configuration.trayTextMode    = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
-  configuration.trayTextSize    = settings.value(TRAY_TEXT_SIZE, 250).toUInt();
+  configuration.trayTextBorder  = settings.value(TRAY_TEXT_BORDER, true).toBool();
+  configuration.trayTextFont    = settings.value(TRAY_TEXT_FONT, QString()).toString();
   configuration.minimumColor    = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
   configuration.maximumColor    = QColor(settings.value(TRAY_DYNAMIC_MAX_COLOR, "#FFFF0000").toString());
   configuration.minimumValue    = settings.value(TRAY_DYNAMIC_MIN_VALUE, -15).toInt();
@@ -675,6 +678,13 @@ void load(Configuration &configuration)
 
   if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
   if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
+
+  if(configuration.trayTextFont.isEmpty())
+  {
+    QFont font;
+    font.setFamily(font.defaultFamily());
+    configuration.trayTextFont = font.toString();
+  }
 }
 
 //--------------------------------------------------------------------
@@ -707,7 +717,8 @@ void save(const Configuration &configuration)
   settings.setValue(TRAY_ICON_THEME_COLOR,   configuration.iconThemeColor.name(QColor::HexArgb));
   settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor.name(QColor::HexArgb));
   settings.setValue(TRAY_TEXT_COLOR_MODE,    configuration.trayTextMode);
-  settings.setValue(TRAY_TEXT_SIZE,          configuration.trayTextSize);
+  settings.setValue(TRAY_TEXT_BORDER,        configuration.trayTextBorder);
+  settings.setValue(TRAY_TEXT_FONT,          configuration.trayTextFont);
   settings.setValue(TRAY_DYNAMIC_MIN_COLOR,  configuration.minimumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MAX_COLOR,  configuration.maximumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MIN_VALUE,  configuration.minimumValue);
@@ -863,12 +874,29 @@ void changeLanguage(const QString &lang)
     s_appTranslator.load(QString());
   }
 
+  if(!s_qtTranslator.isEmpty())
+  {
+    qApp->removeTranslator(&s_qtTranslator);
+    s_qtTranslator.load(QString());
+  }
+
   if(lang.compare("en_EN") != 0)
   {
     s_appTranslator.load(QString(":/TrayWeather/%1.qm").arg(lang));
+
+    auto lang_single = lang.split('_').first();
+    if(QT_LANGUAGES.contains(lang_single, Qt::CaseInsensitive))
+    {
+      s_qtTranslator.load(QString(":/TrayWeather/translations/qt_%1.qm").arg(lang_single));
+    }
+    else if(QT_LANGUAGES.contains(lang, Qt::CaseInsensitive))
+    {
+      s_qtTranslator.load(QString(":/TrayWeather/translations/qt_%1.qm").arg(lang));
+    }
   }
 
   qApp->installTranslator(&s_appTranslator);
+  qApp->installTranslator(&s_qtTranslator);
 }
 
 //--------------------------------------------------------------------
@@ -1041,64 +1069,32 @@ QPixmap createIconsSummary(const unsigned int theme, const int size, const QColo
 }
 
 //--------------------------------------------------------------------
-QImage addQuickBorderToImage(const QImage &src, const QColor &color, const int size)
+QRect computeDrawnRect(const QImage &image)
 {
-  const auto borderColor = qRgba(color.red(), color.green(), color.blue(), 255);
+  const auto size = image.size();
+  if(!size.isValid()) return QRect();
 
-  QImage border{src.size(), QImage::Format_ARGB32};
-  border.fill(Qt::transparent);
+  std::vector<int> countX(size.width(), 0);
+  std::vector<int> countY(size.height(), 0);
 
-  const auto ptr = src.bits();
-  const auto bpl = src.bytesPerLine();
-  const auto endPtr = ptr + src.byteCount();
-
-  auto validPtr = [&ptr, &endPtr](const uchar *other)
+  for(int x = 0; x < size.width(); ++x)
   {
-    return (ptr <= other) && (other < endPtr);
-  };
-
-  auto sameLine = [&ptr, bpl](const uchar*src, const uchar *other)
-  {
-    auto line1 = static_cast<int>((src - ptr)/bpl);
-    auto line2 = static_cast<int>((other - ptr)/bpl);
-    return line1 == line2;
-  };
-
-  auto isPainted = [](const uchar * src)
-  {
-    auto rgba = reinterpret_cast<const QRgb*>(src);
-    return qAlpha(*rgba) != 0;
-  };
-
-  auto paintedPixel = [&validPtr, &sameLine, &isPainted, size, bpl](const uchar *srcPtr)
-  {
-    if(isPainted(srcPtr)) return false;
-    if(validPtr(srcPtr - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr - size*4)) return true;
-    if(validPtr(srcPtr + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr + size*4)) return true;
-    if(validPtr(srcPtr - (size*bpl)) && isPainted(srcPtr - (size*bpl))) return true;
-    if(validPtr(srcPtr + (size*bpl)) && isPainted(srcPtr + (size*bpl))) return true;
-    if(validPtr(srcPtr - (size*bpl) - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr - (size*bpl) - size*4)) return true;
-    if(validPtr(srcPtr - (size*bpl) + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr - (size*bpl) + size*4)) return true;
-    if(validPtr(srcPtr + (size*bpl) - size*4) && sameLine(srcPtr, srcPtr - size*4) && isPainted(srcPtr + (size*bpl) - size*4)) return true;
-    if(validPtr(srcPtr + (size*bpl) + size*4) && sameLine(srcPtr, srcPtr + size*4) && isPainted(srcPtr + (size*bpl) + size*4)) return true;
-
-    return false;
-  };
-
-  auto bPtr = reinterpret_cast<QRgb*>(border.bits());
-  for(auto sPtr = ptr; sPtr < endPtr; sPtr += 4)
-  {
-    if(paintedPixel(sPtr))
+    for(int y = 0; y < size.height(); ++y)
     {
-      *bPtr = borderColor;
+      if(qAlpha(image.pixel(x,y)) != 0)
+      {
+        countX[x]++;
+        countY[y]++;
+      }
     }
-    ++bPtr;
   }
 
-  // draw on top of the border.
-  QPainter painter(&border);
-  painter.drawImage(QPoint{0,0}, src);
-  painter.end();
-
-  return border;
+  const auto ident = [](const auto& x) { return x != 0; };
+  const auto firstX = std::distance(countX.cbegin(), std::find_if(countX.cbegin(), countX.cend(), ident));
+  const auto firstY = std::distance(countY.cbegin(), std::find_if(countY.cbegin(), countY.cend(), ident));
+  const auto lastX = image.width() - std::distance(countX.crbegin(), std::find_if(countX.crbegin(), countX.crend(), ident));
+  const auto lastY = image.height() - std::distance(countY.crbegin(), std::find_if(countY.crbegin(), countY.crend(), ident));
+  const auto maxX = lastX-firstX;
+  const auto maxY = lastY-firstY;
+  return QRect(firstX, firstY, maxX, maxY);
 }
