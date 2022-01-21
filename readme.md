@@ -65,11 +65,11 @@ The tray and application theme configuration can be found here in the miscellane
 
 Configuration dialog in Spanish with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/149714715-29a199fb-7036-473e-a311-50161e82393e.png)
+![config](https://user-images.githubusercontent.com/12167134/150610785-75a510b4-8592-4a66-ac98-494013526db3.png)
 
 Configuration dialog in English with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/149714718-284eae53-80c5-4d52-9e3c-5dd962b6447a.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/150610786-20286f48-0380-4c32-8edd-7c119681b654.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -138,7 +138,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.18.0
+**Version**: 1.19.0
 
 **Status**: finished.
 
@@ -146,8 +146,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 954         |   380            | 4685 |
-| C/C++ Header                 |  10           | 278         |   810            |  900 |
+| C++                          |  10           | 957         |   380            | 4697 |
+| C/C++ Header                 |  10           | 278         |   810            |  903 |
 | HTML                         |   1           |  33         |     0            |  150 |
-| CMake                        |   1           |  19         |    11            |  119 |
-| **Total**                    | **22**        | **1284**    | **1201**         | **5854** |
+| CMake                        |   1           |  19         |    11            |  120 |
+| **Total**                    | **22**        | **1287**    | **1201**         | **5870** |

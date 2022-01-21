@@ -1297,7 +1297,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   QPixmap pixmap(384,384);
   pixmap.fill(Qt::transparent);
   QPainter painter(&pixmap);
-  font.setPixelSize(250);
+  font.setPixelSize(200);
   painter.setFont(font);
 
   QColor color;
@@ -1324,7 +1324,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
     const auto path = tempItem.shape();
 
-    QPen pen(invertedColor, 32, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin);
+    QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     painter.setPen(pen);
     painter.drawPath(path);
 

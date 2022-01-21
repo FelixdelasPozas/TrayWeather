@@ -475,7 +475,7 @@ void TrayWeather::updateTooltip()
 
         QFont font;
         font.fromString(m_configuration.trayTextFont);
-        font.setPixelSize(250);
+        font.setPixelSize(200);
         painter.setFont(font);
 
         QColor color;
@@ -502,7 +502,7 @@ void TrayWeather::updateTooltip()
           tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
           const auto path = tempItem.shape();
 
-          QPen pen(invertedColor, 32, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin);
+          QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
           painter.setPen(pen);
           painter.drawPath(path);
 
