@@ -551,7 +551,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1606"/>
         <source>Stretch font vertically.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esticar a fonte verticalmente.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1632"/>
@@ -622,7 +622,7 @@
         <location filename="../ConfigurationDialog.ui" line="1593"/>
         <location filename="../ConfigurationDialog.ui" line="1603"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esticar a fonte verticalmente para ocupar todo o espaço disponível no ícone.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1654"/>
