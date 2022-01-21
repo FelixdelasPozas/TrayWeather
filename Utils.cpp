@@ -88,6 +88,7 @@ static const QString CUSTOM_WIND_UNITS       = QString("Custom wind units");
 static const QString TOOLTIP_FIELDS          = QString("Tooltip text fields");
 static const QString GRAPH_USE_RAIN          = QString("Forecast graph uses rain data");
 static const QString SHOW_ALERTS             = QString("Show weather alerts");
+static const QString STRETCH_TEMP_ICON       = QString("Stretch temperature icon vertically");
 
 static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/iconThemes/%1/01d.svg" },
                                               { "01n-0", ":/TrayWeather/iconThemes/%1/01n-0.svg" },
@@ -642,6 +643,7 @@ void load(Configuration &configuration)
   configuration.trayTextMode    = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
   configuration.trayTextBorder  = settings.value(TRAY_TEXT_BORDER, true).toBool();
   configuration.trayTextFont    = settings.value(TRAY_TEXT_FONT, QString()).toString();
+  configuration.stretchTempIcon = settings.value(STRETCH_TEMP_ICON, false).toBool();
   configuration.minimumColor    = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
   configuration.maximumColor    = QColor(settings.value(TRAY_DYNAMIC_MAX_COLOR, "#FFFF0000").toString());
   configuration.minimumValue    = settings.value(TRAY_DYNAMIC_MIN_VALUE, -15).toInt();
@@ -719,6 +721,7 @@ void save(const Configuration &configuration)
   settings.setValue(TRAY_TEXT_COLOR_MODE,    configuration.trayTextMode);
   settings.setValue(TRAY_TEXT_BORDER,        configuration.trayTextBorder);
   settings.setValue(TRAY_TEXT_FONT,          configuration.trayTextFont);
+  settings.setValue(STRETCH_TEMP_ICON,       configuration.stretchTempIcon);
   settings.setValue(TRAY_DYNAMIC_MIN_COLOR,  configuration.minimumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MAX_COLOR,  configuration.maximumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MIN_VALUE,  configuration.minimumValue);

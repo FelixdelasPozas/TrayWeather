@@ -174,6 +174,7 @@ struct Configuration
     bool               trayTextMode;    /** true for fixed color, false for dynamic color.              */
     bool               trayTextBorder;  /** true to draw a border around icon text, false otherwise.    */
     QString            trayTextFont;    /** font used for temperature icon.                             */
+    bool               stretchTempIcon; /** true to strech the temp icon vertically, false otherwise.   */
     QColor             minimumColor;    /** minimum value dynamic color.                                */
     QColor             maximumColor;    /** maximum value dynamic color.                                */
     int                minimumValue;    /** dynamic color minimum value.                                */
@@ -221,6 +222,7 @@ struct Configuration
     , trayTextMode    {true}
     , trayTextBorder  {true}
     , trayTextFont    {""}
+    , stretchTempIcon {false}
     , minimumColor    {Qt::blue}
     , maximumColor    {Qt::red}
     , minimumValue    {-10}

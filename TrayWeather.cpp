@@ -237,23 +237,24 @@ void TrayWeather::showConfiguration()
   const auto changedLanguage = (configuration.language != m_configuration.language);
   const auto changedRoaming  = (configuration.roamingEnabled != m_configuration.roamingEnabled);
 
-  m_configuration.lightTheme       = configuration.lightTheme;
-  m_configuration.iconType         = configuration.iconType;
-  m_configuration.iconTheme        = configuration.iconTheme;
-  m_configuration.iconThemeColor   = configuration.iconThemeColor;
-  m_configuration.trayTextColor    = configuration.trayTextColor;
-  m_configuration.trayTextMode     = configuration.trayTextMode;
-  m_configuration.trayTextBorder   = configuration.trayTextBorder;
-  m_configuration.trayTextFont     = configuration.trayTextFont;
-  m_configuration.minimumColor     = configuration.minimumColor;
-  m_configuration.maximumColor     = configuration.maximumColor;
-  m_configuration.minimumValue     = configuration.minimumValue;
-  m_configuration.maximumValue     = configuration.maximumValue;
-  m_configuration.autostart        = configuration.autostart;
-  m_configuration.language         = configuration.language;
-  m_configuration.tooltipFields    = configuration.tooltipFields;
-  m_configuration.graphUseRain     = configuration.graphUseRain;
-  m_configuration.showAlerts       = configuration.showAlerts;
+  m_configuration.lightTheme      = configuration.lightTheme;
+  m_configuration.iconType        = configuration.iconType;
+  m_configuration.iconTheme       = configuration.iconTheme;
+  m_configuration.iconThemeColor  = configuration.iconThemeColor;
+  m_configuration.trayTextColor   = configuration.trayTextColor;
+  m_configuration.trayTextMode    = configuration.trayTextMode;
+  m_configuration.trayTextBorder  = configuration.trayTextBorder;
+  m_configuration.trayTextFont    = configuration.trayTextFont;
+  m_configuration.stretchTempIcon = configuration.stretchTempIcon;
+  m_configuration.minimumColor    = configuration.minimumColor;
+  m_configuration.maximumColor    = configuration.maximumColor;
+  m_configuration.minimumValue    = configuration.minimumValue;
+  m_configuration.maximumValue    = configuration.maximumValue;
+  m_configuration.autostart       = configuration.autostart;
+  m_configuration.language        = configuration.language;
+  m_configuration.tooltipFields   = configuration.tooltipFields;
+  m_configuration.graphUseRain    = configuration.graphUseRain;
+  m_configuration.showAlerts      = configuration.showAlerts;
 
   bool requestNewData = false;
 
@@ -501,7 +502,7 @@ void TrayWeather::updateTooltip()
           tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
           const auto path = tempItem.shape();
 
-          QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+          QPen pen(invertedColor, 32, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin);
           painter.setPen(pen);
           painter.drawPath(path);
 
@@ -521,7 +522,7 @@ void TrayWeather::updateTooltip()
 
           painter.begin(&pixmap);
           painter.translate(rect.center());
-          painter.scale(minimum, minimum);
+          painter.scale(minimum, m_configuration.stretchTempIcon ? ratioY : minimum);
           painter.translate(-rect.center()+difference);
           painter.drawImage(QPoint{0,0}, tempPixmap.toImage());
           painter.end();

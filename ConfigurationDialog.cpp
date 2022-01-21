@@ -60,6 +60,9 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   QObject::connect(m_borderLabel, &ClickableLabel::clicked,
                    [this](){ m_border->setChecked(!m_border->isChecked()); });
 
+  QObject::connect(m_stretchLabel, &ClickableLabel::clicked,
+                   [this](){ m_stretch->setChecked(!m_stretch->isChecked()); });
+
   m_tooltipList->setItemDelegate(new RichTextItemDelegate());
   m_tooltipValueCombo->setItemDelegate(new RichTextItemDelegate());
 
@@ -238,40 +241,41 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 //--------------------------------------------------------------------
 void ConfigurationDialog::getConfiguration(Configuration &configuration) const
 {
-  configuration.city           = m_city->text();
-  configuration.country        = m_country->text();
-  configuration.ip             = m_ip->text();
-  configuration.isp            = m_isp->text();
-  configuration.owm_apikey     = m_testedAPIKey ? m_apikey->text() : QString();
-  configuration.region         = m_region->text();
-  configuration.timezone       = m_timezone->text();
-  configuration.zipcode        = m_zipCode->text();
-  configuration.updateTime     = m_updateTime->value();
-  configuration.units          = static_cast<Units>(m_unitsComboBox->currentIndex());
-  configuration.useDNS         = m_useDNS->isChecked();
-  configuration.useGeolocation = m_useGeolocation->isChecked();
-  configuration.roamingEnabled = m_roamingCheck->isChecked();
-  configuration.lightTheme     = m_theme->currentIndex() == 0;
-  configuration.iconType       = static_cast<unsigned int>(m_trayIconType->currentIndex());
-  configuration.iconTheme      = static_cast<unsigned int>(m_trayIconTheme->currentIndex());
-  configuration.iconThemeColor = QColor(m_iconThemeColor->property("iconColor").toString());
-  configuration.trayTextColor  = QColor(m_trayTempColor->property("iconColor").toString());
-  configuration.trayTextMode   = m_fixed->isChecked();
-  configuration.trayTextBorder = m_border->isChecked();
-  configuration.trayTextFont   = m_validFont ? m_font.toString() : m_fontButton->property("initial_font").toString();
-  configuration.minimumColor   = QColor(m_minColor->property("iconColor").toString());
-  configuration.maximumColor   = QColor(m_maxColor->property("iconColor").toString());
-  configuration.minimumValue   = m_minSpinBox->value();
-  configuration.maximumValue   = m_maxSpinBox->value();
-  configuration.update         = static_cast<Update>(m_updatesCombo->currentIndex());
-  configuration.autostart      = m_autostart->isChecked();
-  configuration.language       = m_languageCombo->itemData(m_languageCombo->currentIndex(), Qt::UserRole).toString();
-  configuration.tempUnits      = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
-  configuration.pressureUnits  = static_cast<PressureUnits>(m_pressionCombo->currentIndex());
-  configuration.precUnits      = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
-  configuration.windUnits      = static_cast<WindUnits>(m_windCombo->currentIndex());
-  configuration.graphUseRain   = m_rainGraph->isChecked();
-  configuration.showAlerts     = m_showAlerts->isChecked();
+  configuration.city            = m_city->text();
+  configuration.country         = m_country->text();
+  configuration.ip              = m_ip->text();
+  configuration.isp             = m_isp->text();
+  configuration.owm_apikey      = m_testedAPIKey ? m_apikey->text() : QString();
+  configuration.region          = m_region->text();
+  configuration.timezone        = m_timezone->text();
+  configuration.zipcode         = m_zipCode->text();
+  configuration.updateTime      = m_updateTime->value();
+  configuration.units           = static_cast<Units>(m_unitsComboBox->currentIndex());
+  configuration.useDNS          = m_useDNS->isChecked();
+  configuration.useGeolocation  = m_useGeolocation->isChecked();
+  configuration.roamingEnabled  = m_roamingCheck->isChecked();
+  configuration.lightTheme      = m_theme->currentIndex() == 0;
+  configuration.iconType        = static_cast<unsigned int>(m_trayIconType->currentIndex());
+  configuration.iconTheme       = static_cast<unsigned int>(m_trayIconTheme->currentIndex());
+  configuration.iconThemeColor  = QColor(m_iconThemeColor->property("iconColor").toString());
+  configuration.trayTextColor   = QColor(m_trayTempColor->property("iconColor").toString());
+  configuration.trayTextMode    = m_fixed->isChecked();
+  configuration.trayTextBorder  = m_border->isChecked();
+  configuration.trayTextFont    = m_validFont ? m_font.toString() : m_fontButton->property("initial_font").toString();
+  configuration.stretchTempIcon = m_stretch->isChecked();
+  configuration.minimumColor    = QColor(m_minColor->property("iconColor").toString());
+  configuration.maximumColor    = QColor(m_maxColor->property("iconColor").toString());
+  configuration.minimumValue    = m_minSpinBox->value();
+  configuration.maximumValue    = m_maxSpinBox->value();
+  configuration.update          = static_cast<Update>(m_updatesCombo->currentIndex());
+  configuration.autostart       = m_autostart->isChecked();
+  configuration.language        = m_languageCombo->itemData(m_languageCombo->currentIndex(), Qt::UserRole).toString();
+  configuration.tempUnits       = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
+  configuration.pressureUnits   = static_cast<PressureUnits>(m_pressionCombo->currentIndex());
+  configuration.precUnits       = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
+  configuration.windUnits       = static_cast<WindUnits>(m_windCombo->currentIndex());
+  configuration.graphUseRain    = m_rainGraph->isChecked();
+  configuration.showAlerts      = m_showAlerts->isChecked();
 
   configuration.tooltipFields.clear();
   for(int row = 0; row < m_tooltipList->count(); ++row)
@@ -473,6 +477,9 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_fixed, SIGNAL(toggled(bool)),
           this,    SLOT(updateTemperatureIcon()));
+
+  connect(m_stretch, SIGNAL(stateChanged(int)),
+          this,      SLOT(updateTemperatureIcon()));
 }
 
 //--------------------------------------------------------------------
@@ -741,6 +748,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_fixed->setChecked(configuration.trayTextMode);
   m_variable->setChecked(!configuration.trayTextMode);
   m_border->setChecked(configuration.trayTextBorder);
+  m_stretch->setChecked(configuration.stretchTempIcon);
 
   m_minSpinBox->setMaximum(configuration.maximumValue-1);
   m_maxSpinBox->setMinimum(configuration.minimumValue+1);
@@ -943,6 +951,9 @@ void ConfigurationDialog::disconnectSignals()
 
   disconnect(m_fixed, SIGNAL(toggled(bool)),
              this,    SLOT(updateTemperatureIcon()));
+
+  disconnect(m_stretch, SIGNAL(stateChanged(int)),
+             this,      SLOT(updateTemperatureIcon()));
 }
 
 //--------------------------------------------------------------------
@@ -1313,7 +1324,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
     const auto path = tempItem.shape();
 
-    QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen(invertedColor, 32, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin);
     painter.setPen(pen);
     painter.drawPath(path);
 
@@ -1334,7 +1345,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   QPixmap background(m_pixmap);
   painter.begin(&background);
   painter.translate(rect.center());
-  painter.scale(minimum, minimum);
+  painter.scale(minimum, m_stretch->isChecked() ? ratioY : minimum);
   painter.translate(-rect.center()+difference);
   painter.drawImage(QPoint{0,0}, pixmap.toImage());
   painter.end();
