@@ -51,7 +51,7 @@
     <message>
         <location filename="../AboutDialog.ui" line="515"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
-        <translation></translation>
+        <translation>Če vaš jezik ni na voljo, lahko pomagate s &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;prevodom&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="529"/>
@@ -697,7 +697,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1988"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
-        <translation></translation>
+        <translation>Če vaš jezik ni na voljo, lahko pomagate s &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;prevodom&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2042"/>
