@@ -8,7 +8,7 @@ cmake_minimum_required (VERSION 3.0.0)
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
 set (TRAYWEATHER_VERSION_MINOR 19)
-set (TRAYWEATHER_VERSION_PATCH 0)
+set (TRAYWEATHER_VERSION_PATCH 1)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -95,6 +95,7 @@ set(TRANSLATIONS_TS_FILES
   languages/zh_CN.ts
   languages/pt_BR.ts
   languages/uk_UA.ts
+  languages/sl_SI.ts
 )
 
 qt5_add_translation(TRANSLATIONS_QM_FILES ${TRANSLATIONS_TS_FILES})

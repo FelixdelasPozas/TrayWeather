@@ -1680,7 +1680,7 @@ QGroupBox::title {
             <item>
              <widget class="QToolButton" name="m_tooltipAdd">
               <property name="sizePolicy">
-               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>0</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>

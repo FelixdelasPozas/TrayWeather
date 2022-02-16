@@ -59,7 +59,7 @@ static const QStringList OWM_LANGUAGES = { "af", "al", "ar", "az", "bg", "ca", "
                                            "uk", "vi", "zh_cn", "zh_tw", "zu" };
 
 static const QStringList QT_LANGUAGES = { "bg", "ca", "cs", "da", "de", "en", "es", "fi", "fr", "gd", "he", "hu",
-                                          "it", "ja", "ko", "lv", "pl", "pt_br", "ru", "sk", "uk", "zh_cn" };
+                                          "it", "ja", "ko", "lv", "pl", "pt_br", "ru", "sk", "sl", "uk", "zh_cn" };
 
 static QTranslator s_appTranslator; /** application language translator.   */
 static QTranslator s_qtTranslator;  /** application Qt dialogs translator. */
@@ -121,7 +121,8 @@ static QList<LanguageData> TRANSLATIONS = {
     { "Français",               ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                },
     { "简体中文",                ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"              },
     { "Português (Brasileiro)", ":/TrayWeather/languages/br.svg", "pt_BR", "Autergame"                  },
-    { "Українська",             ":/TrayWeather/languages/uk.svg", "uk_UA", "Aleksandr Popov"            }
+    { "Українська",             ":/TrayWeather/languages/uk.svg", "uk_UA", "Aleksandr Popov"            },
+    { "Slovenščina",            ":/TrayWeather/languages/sl.svg", "sl_SI", "datenshi888"                }
 };
 
 /** \struct IconThemeData
