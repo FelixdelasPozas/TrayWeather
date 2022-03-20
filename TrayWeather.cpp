@@ -255,6 +255,8 @@ void TrayWeather::showConfiguration()
   m_configuration.tooltipFields   = configuration.tooltipFields;
   m_configuration.graphUseRain    = configuration.graphUseRain;
   m_configuration.showAlerts      = configuration.showAlerts;
+  m_configuration.swapTrayIcons   = configuration.swapTrayIcons;
+  m_configuration.trayIconSize    = configuration.trayIconSize;
 
   bool requestNewData = false;
 
@@ -450,7 +452,14 @@ void TrayWeather::updateTooltip()
     case 3:
       if(m_additionalTray)
       {
-        m_additionalTray->setIcon(QIcon(pixmap));
+        if(m_configuration.swapTrayIcons)
+        {
+          setIcon(QIcon(pixmap));
+        }
+        else
+        {
+          m_additionalTray->setIcon(QIcon(pixmap));
+        }
         if(!m_additionalTray->isVisible()) m_additionalTray->show();
       }
       /* fall through */
@@ -515,14 +524,22 @@ void TrayWeather::updateTooltip()
         const auto rect = computeDrawnRect(tempPixmap.toImage());
         if(rect.isValid())
         {
-          const double ratioX = pixmap.width() * 1.0 / rect.width();
-          const double ratioY = pixmap.height() * 1.0 / rect.height();
-          const auto minimum = std::min(ratioX, ratioY);
           const auto difference = (pixmap.rect().center() - rect.center())/2.;
+          double ratioX = pixmap.width() * 1.0 / rect.width();
+          double ratioY = pixmap.height() * 1.0 / rect.height();
+          ratioX = std::min(ratioX, ratioY);
+          ratioY = m_configuration.stretchTempIcon ? ratioY : ratioX;
+
+          const auto ratio = static_cast<double>(m_configuration.trayIconSize) / 100.;
+          if(ratio != 1 && ratio >= 0.5)
+          {
+            ratioX *= ratio;
+            ratioY *= ratio;
+          }
 
           painter.begin(&pixmap);
           painter.translate(rect.center());
-          painter.scale(minimum, m_configuration.stretchTempIcon ? ratioY : minimum);
+          painter.scale(ratioX, ratioY);
           painter.translate(-rect.center()+difference);
           painter.drawImage(QPoint{0,0}, tempPixmap.toImage());
           painter.end();
@@ -531,12 +548,18 @@ void TrayWeather::updateTooltip()
       break;
   }
 
+  setToolTip(tooltip);
   icon = QIcon(pixmap);
 
-  setToolTip(tooltip);
-  setIcon(icon);
-
-  if(m_additionalTray) m_additionalTray->setToolTip(tooltip);
+  if(m_additionalTray && m_configuration.swapTrayIcons)
+  {
+    m_additionalTray->setIcon(icon);
+    m_additionalTray->setToolTip(tooltip);
+  }
+  else
+  {
+    setIcon(icon);
+  }
 }
 
 //--------------------------------------------------------------------

@@ -220,6 +220,11 @@ class ConfigurationDialog
      */
     void updateTemperatureIcon();
 
+    /** \brief Updates UI when the icon type changes.
+     *
+     */
+    void onIconTypeChanged(int);
+
   signals:
     void languageChanged(const QString &);
 

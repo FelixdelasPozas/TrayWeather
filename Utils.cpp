@@ -70,10 +70,12 @@ static const QString TRAY_TEXT_COLOR         = QString("Tray text color");
 static const QString TRAY_TEXT_COLOR_MODE    = QString("Tray text color mode");
 static const QString TRAY_TEXT_BORDER        = QString("Tray text border");
 static const QString TRAY_TEXT_FONT          = QString("Tray text font");
+static const QString TRAY_ICON_SIZE          = QString("Tray text icon size");
 static const QString TRAY_DYNAMIC_MIN_COLOR  = QString("Tray text color dynamic minimum");
 static const QString TRAY_DYNAMIC_MAX_COLOR  = QString("Tray text color dynamic maximum");
 static const QString TRAY_DYNAMIC_MIN_VALUE  = QString("Tray text color dynamic minimum value");
 static const QString TRAY_DYNAMIC_MAX_VALUE  = QString("Tray text color dynamic maximum value");
+static const QString TRAY_SWAP_ICONS         = QString{"Swap tray icons"};
 static const QString UPDATE_CHECKS_FREQUENCY = QString("Update checks frequency");
 static const QString UPDATE_LAST_CHECK       = QString("Update last check");
 static const QString AUTOSTART               = QString("Autostart");
@@ -657,6 +659,8 @@ void load(Configuration &configuration)
   configuration.language        = settings.value(LANGUAGE, "en_EN").toString();
   configuration.graphUseRain    = settings.value(GRAPH_USE_RAIN, true).toBool();
   configuration.showAlerts      = settings.value(SHOW_ALERTS, true).toBool();
+  configuration.swapTrayIcons   = settings.value(TRAY_SWAP_ICONS, false).toBool();
+  configuration.trayIconSize    = settings.value(TRAY_ICON_SIZE, 100).toInt();
 
   // if CUSTOM_UNITS values doesn't exists (first run) use units value.
   configuration.tempUnits        = static_cast<TemperatureUnits>(settings.value(CUSTOM_TEMP_UNITS, units).toInt());
@@ -739,6 +743,8 @@ void save(const Configuration &configuration)
   settings.setValue(CUSTOM_WIND_UNITS,       static_cast<int>(configuration.windUnits));
   settings.setValue(GRAPH_USE_RAIN,          configuration.graphUseRain);
   settings.setValue(SHOW_ALERTS,             configuration.showAlerts);
+  settings.setValue(TRAY_SWAP_ICONS,         configuration.swapTrayIcons);
+  settings.setValue(TRAY_ICON_SIZE,          configuration.trayIconSize);
 
   QStringList fieldList;
   QList<int> fieldNums;

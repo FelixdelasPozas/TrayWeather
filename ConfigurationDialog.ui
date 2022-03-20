@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>479</width>
-    <height>708</height>
+    <height>740</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
    <item>
     <widget class="QTabWidget" name="m_tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -1609,6 +1609,50 @@ QGroupBox::title {
               </item>
              </layout>
             </item>
+            <item row="9" column="1">
+             <widget class="QSlider" name="m_iconSize">
+              <property name="toolTip">
+               <string>Modifies the temperature icon size.</string>
+              </property>
+              <property name="minimum">
+               <number>50</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::NoTicks</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="label_21">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>24</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="toolTip">
+               <string>Modifies the temperature icon size.</string>
+              </property>
+              <property name="text">
+               <string>Temperature icon size</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>
@@ -1932,7 +1976,7 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
+         <item row="6" column="0">
           <widget class="QLabel" name="label_22">
            <property name="minimumSize">
             <size>
@@ -1951,7 +1995,7 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
+         <item row="6" column="1">
           <widget class="QComboBox" name="m_languageCombo"/>
          </item>
          <item row="4" column="0">
@@ -1975,6 +2019,44 @@ QGroupBox::title {
          </item>
          <item row="4" column="1">
           <widget class="QCheckBox" name="m_showAlerts">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="m_swapIconsLabel">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>Swaps tray icons. Only enabled if two icon representation is being used.</string>
+           </property>
+           <property name="text">
+            <string>Swap tray icons</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QCheckBox" name="m_swapIcons">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Swaps tray icons. Only enabled if two icon representation is being used.</string>
+           </property>
            <property name="text">
             <string/>
            </property>

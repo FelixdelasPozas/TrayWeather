@@ -50,7 +50,7 @@ Tray icon showing the current weather icon. At night and on clear sky days it sh
 ![icon_menu](https://user-images.githubusercontent.com/12167134/145942029-01678f72-11ae-4b55-b8f4-dbbc70183341.png)
 
 Tray icon can also show the temperature alone or composed with the weather icon. It can also be configured to show two tray icons, one with the temperature and other with the weather icon. 
-The temperature text color can be set by the user or can change dynamically between a range of colors according to the current value. 
+The temperature text color can be set by the user or can change dynamically between a range of colors according to the current value. Temperature icon color, size and composition can be modified in the configuration dialog. 
 
 ![icon_temp](https://user-images.githubusercontent.com/12167134/85929400-b6e05280-b8b4-11ea-9574-bf27537f38e3.png)
 
@@ -65,11 +65,11 @@ The tray and application theme configuration can be found here in the miscellane
 
 Configuration dialog in Spanish with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/150610785-75a510b4-8592-4a66-ac98-494013526db3.png)
+![config](https://user-images.githubusercontent.com/12167134/159188087-6643cc9b-d6a5-4987-85fb-49c260aaecb1.png)
 
 Configuration dialog in English with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/150610786-20286f48-0380-4c32-8edd-7c119681b654.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/159188084-e0d45212-7fd0-46b0-acea-5cde5c756473.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -116,7 +116,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 358 texts.
+and making a pull request. Currently it's just 360 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 
@@ -140,7 +140,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.19.1
+**Version**: 1.20.0
 
 **Status**: finished.
 
@@ -148,8 +148,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 957         |   380            | 4697 |
-| C/C++ Header                 |  10           | 278         |   810            |  904 |
+| C++                          |  10           | 968         |   383            | 4756 |
+| C/C++ Header                 |  10           | 279         |   813            |  909 |
 | HTML                         |   1           |  33         |     0            |  150 |
 | CMake                        |   1           |  19         |    11            |  121 |
-| **Total**                    | **22**        | **1287**    | **1201**         | **5872** |
+| **Total**                    | **22**        | **1299**    | **1207**         | **5936** |

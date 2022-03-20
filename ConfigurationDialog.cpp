@@ -38,6 +38,7 @@
 #include <QMouseEvent>
 #include <QFontDialog>
 #include <QGraphicsPixmapItem>
+#include <QTimer>
 
 // C++
 #include <chrono>
@@ -92,19 +93,19 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 {
   QString details, message;
 
-  auto url = reply->url();
+  const auto url = reply->url();
 
   if(url.toString().contains("edns.ip", Qt::CaseInsensitive))
   {
-    if(url.toString().contains(m_DNSIP, Qt::CaseSensitive))
+    if(!m_DNSIP.isEmpty() && url.toString().contains(m_DNSIP, Qt::CaseSensitive))
     {
       if(reply->error() == QNetworkReply::NetworkError::NoError)
       {
-        auto data = reply->readAll();
+        const auto data = reply->readAll();
 
         m_DNSIP = data.split(' ').at(1);
         m_DNSIP = m_DNSIP.remove('\n');
-        requestGeolocation();
+        QTimer::singleShot(2500, this, SLOT(requestGeolocation()));
       }
       else
       {
@@ -132,16 +133,16 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 
     if(reply->error() == QNetworkReply::NetworkError::NoError)
     {
-      auto type = reply->header(QNetworkRequest::ContentTypeHeader);
+      const auto type = reply->header(QNetworkRequest::ContentTypeHeader);
       if(type.toString().startsWith("application/json"))
       {
         const auto data = reply->readAll();
-        auto jsonDocument = QJsonDocument::fromJson(data);
+        const auto jsonDocument = QJsonDocument::fromJson(data);
 
         if(!jsonDocument.isNull() && jsonDocument.isObject() && jsonDocument.object().contains("cod"))
         {
-          auto jsonObj = jsonDocument.object();
-          auto code    = jsonObj.value("cod").toInt(0);
+          const auto jsonObj = jsonDocument.object();
+          const auto code    = jsonObj.value("cod").toInt(0);
 
           if(code != 401)
           {
@@ -177,10 +178,10 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     {
       message = tr("Invalid reply from Geo-Locator server.\nCouldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
 
-      auto type = reply->header(QNetworkRequest::ContentTypeHeader);
+      const auto type = reply->header(QNetworkRequest::ContentTypeHeader);
       if(type.toString().startsWith("text/plain", Qt::CaseInsensitive))
       {
-        auto data = QString::fromUtf8(reply->readAll());
+        const auto data = QString::fromUtf8(reply->readAll());
         const auto values = parseCSV(data);
 
         if((values.first().compare("success", Qt::CaseInsensitive) == 0) && (values.size() == 14))
@@ -276,6 +277,8 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.windUnits       = static_cast<WindUnits>(m_windCombo->currentIndex());
   configuration.graphUseRain    = m_rainGraph->isChecked();
   configuration.showAlerts      = m_showAlerts->isChecked();
+  configuration.swapTrayIcons   = m_swapIcons->isChecked();
+  configuration.trayIconSize    = m_iconSize->value();
 
   configuration.tooltipFields.clear();
   for(int row = 0; row < m_tooltipList->count(); ++row)
@@ -299,6 +302,8 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
 //--------------------------------------------------------------------
 void ConfigurationDialog::requestGeolocation()
 {
+  if(!m_useGeolocation->isChecked()) return;
+
   // protect from abuse
   static auto lastRequest = std::chrono::steady_clock::now();
   const auto now = std::chrono::steady_clock::now();
@@ -311,6 +316,12 @@ void ConfigurationDialog::requestGeolocation()
   if(m_useDNS->isChecked() && m_DNSIP.isEmpty())
   {
     requestDNSIPGeolocation();
+    return;
+  }
+
+  if(m_DNSIP.length() == 32)
+  {
+    // it hasn't received a reply for DNS IP.
     return;
   }
 
@@ -328,6 +339,8 @@ void ConfigurationDialog::requestGeolocation()
 //--------------------------------------------------------------------
 void ConfigurationDialog::requestDNSIPGeolocation()
 {
+  if(!m_useGeolocation->isChecked()) return;
+
   // protect from abuse
   static auto lastRequest = std::chrono::steady_clock::now();
   const auto now = std::chrono::steady_clock::now();
@@ -372,6 +385,8 @@ void ConfigurationDialog::requestOpenWeatherMapAPIKeyTest() const
 //--------------------------------------------------------------------
 void ConfigurationDialog::onDNSRequestStateChanged(int state)
 {
+  if(!m_useGeolocation->isChecked()) return;
+
   if(m_useDNS->isChecked())
   {
     requestDNSIPGeolocation();
@@ -480,6 +495,12 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_stretch, SIGNAL(stateChanged(int)),
           this,      SLOT(updateTemperatureIcon()));
+
+  connect(m_trayIconType, SIGNAL(currentIndexChanged(int)),
+          this,           SLOT(onIconTypeChanged(int)));
+
+  connect(m_iconSize, SIGNAL(valueChanged(int)),
+          this,       SLOT(updateTemperatureIcon()));
 }
 
 //--------------------------------------------------------------------
@@ -731,6 +752,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_apikey->setText(configuration.owm_apikey);
   m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
   m_trayIconTheme->setCurrentIndex(static_cast<int>(configuration.iconTheme));
+  m_iconSize->setValue(configuration.trayIconSize);
 
   m_font.fromString(configuration.trayTextFont);
   m_fontButton->setText(m_font.toString().split(",").first());
@@ -760,6 +782,9 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_snowGraph->setChecked(!configuration.graphUseRain);
 
   m_showAlerts->setChecked(configuration.showAlerts);
+
+  onIconTypeChanged(configuration.iconType);
+  m_swapIcons->setChecked(configuration.swapTrayIcons);
 
   for(int i = 0; i < configuration.tooltipFields.size(); ++i)
   {
@@ -819,11 +844,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
     m_longitude->setText(QString::number(configuration.longitude));
   }
 
-  if(configuration.useGeolocation || !m_ipapiLabel->text().isEmpty())
-  {
-    requestGeolocation();
-  }
-
+  // this requests geolocation if checked.
   onRadioChanged();
   onCoordinatesChanged();
 
@@ -954,6 +975,12 @@ void ConfigurationDialog::disconnectSignals()
 
   disconnect(m_stretch, SIGNAL(stateChanged(int)),
              this,      SLOT(updateTemperatureIcon()));
+
+  connect(m_trayIconType, SIGNAL(currentIndexChanged(int)),
+          this,           SLOT(onIconTypeChanged(int)));
+
+  disconnect(m_iconSize, SIGNAL(valueChanged(int)),
+             this,       SLOT(updateTemperatureIcon()));
 }
 
 //--------------------------------------------------------------------
@@ -1273,6 +1300,15 @@ void ConfigurationDialog::fixVisuals()
 }
 
 //--------------------------------------------------------------------
+void ConfigurationDialog::onIconTypeChanged(int value)
+{
+  const auto enabled = value > 2;
+
+  m_swapIcons->setEnabled(enabled);
+  m_swapIconsLabel->setEnabled(enabled);
+}
+
+//--------------------------------------------------------------------
 QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
 {
   auto interpolate = [this](int temp)
@@ -1319,7 +1355,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   {
     const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
 
-    //constructing temp object only to get path for border.
+    //constructing temporal object only to get path for border.
     QGraphicsPixmapItem tempItem(pixmap);
     tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
     const auto path = tempItem.shape();
@@ -1337,15 +1373,23 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   const auto rect = computeDrawnRect(pixmap.toImage());
   if(!rect.isValid()) return QPixmap();
 
-  const double ratioX = pixmap.width() * 1.0 / rect.width();
-  const double ratioY = pixmap.height() * 1.0 / rect.height();
-  const auto minimum = std::min(ratioX, ratioY);
   const auto difference = (pixmap.rect().center() - rect.center())/2.;
+  double ratioX = pixmap.width() * 1.0 / rect.width();
+  double ratioY = pixmap.height() * 1.0 / rect.height();
+  ratioX = std::min(ratioX, ratioY);
+  ratioY = m_stretch->isChecked() ? ratioY : ratioX;
+
+  const auto ratio = static_cast<double>(m_iconSize->value()) / 100.;
+  if(ratio != 1 && ratio >= 0.5)
+  {
+    ratioX *= ratio;
+    ratioY *= ratio;
+  }
 
   QPixmap background(m_pixmap);
   painter.begin(&background);
   painter.translate(rect.center());
-  painter.scale(minimum, m_stretch->isChecked() ? ratioY : minimum);
+  painter.scale(ratioX, ratioY);
   painter.translate(-rect.center()+difference);
   painter.drawImage(QPoint{0,0}, pixmap.toImage());
   painter.end();

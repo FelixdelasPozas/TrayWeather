@@ -169,7 +169,7 @@ struct Configuration
     bool               useGeolocation;  /** true to use the ip-api.com services, false to use manual.   */
     bool               roamingEnabled;  /** true if georaphical coordinates are asked on each forecast. */
     bool               lightTheme;      /** true if light theme is being used, false if dark theme.     */
-    unsigned int       iconType;        /** 0 if just icon, 1 if just temperature, 2 if both.           */
+    unsigned int       iconType;        /** 0 if just icon, 1 if just temperature, 2 and 3 if both.     */
     unsigned int       iconTheme;       /** icon theme. See ICON_THEMES var.                            */
     QColor             iconThemeColor;  /** icon theme color for monocolor themes.                      */
     QColor             trayTextColor;   /** Color of tray temperature text.                             */
@@ -195,6 +195,8 @@ struct Configuration
     PressureUnits      pressureUnits;   /** custom pressure units.                                      */
     PrecipitationUnits precUnits;       /** custom precipitation units.                                 */
     WindUnits          windUnits;       /** custom wind units.                                          */
+    bool               swapTrayIcons;   /** true to swap tray icons and false otherwise.                */
+    int                trayIconSize;    /** size of tray icon in [50-100] %.                            */
 
     /** \brief Configuration struct constructor.
      *
@@ -243,6 +245,8 @@ struct Configuration
     , pressureUnits   {PressureUnits::HPA}
     , precUnits       {PrecipitationUnits::MM}
     , windUnits       {WindUnits::METSEC}
+    , swapTrayIcons   {false}
+    , trayIconSize    {100}
     {};
 
     bool isValid() const
