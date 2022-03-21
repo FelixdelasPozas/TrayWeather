@@ -490,18 +490,18 @@
         <location filename="../ConfigurationDialog.ui" line="1615"/>
         <location filename="../ConfigurationDialog.ui" line="1646"/>
         <source>Modifies the temperature icon size.</source>
-        <translation type="unfinished"></translation>
+        <translation>修改温度图标大小。</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1649"/>
         <source>Temperature icon size</source>
-        <translation type="unfinished"></translation>
+        <translation>温度图标大小</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2045"/>
         <location filename="../ConfigurationDialog.ui" line="2058"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>切换托盘图标。 仅在已使用两种图标展示时启用。</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1281"/>
@@ -714,7 +714,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2048"/>
         <source>Swap tray icons</source>
-        <translation type="unfinished"></translation>
+        <translation>切换托盘图标</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2070"/>

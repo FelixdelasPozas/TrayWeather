@@ -490,18 +490,18 @@
         <location filename="../ConfigurationDialog.ui" line="1615"/>
         <location filename="../ConfigurationDialog.ui" line="1646"/>
         <source>Modifies the temperature icon size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Modificar o tamanho do ícone de temperatura.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1649"/>
         <source>Temperature icon size</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho do ícone de temperatura</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2045"/>
         <location filename="../ConfigurationDialog.ui" line="2058"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Troca os ícones da bandeja. Ativado apenas quando há dois ícones sendo utilizados.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1281"/>
@@ -714,7 +714,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2048"/>
         <source>Swap tray icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Trocar os ícones da bandeja</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2070"/>

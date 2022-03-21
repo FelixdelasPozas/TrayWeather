@@ -490,18 +490,18 @@
         <location filename="../ConfigurationDialog.ui" line="1615"/>
         <location filename="../ConfigurationDialog.ui" line="1646"/>
         <source>Modifies the temperature icon size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Меняет размер значка температуры.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1649"/>
         <source>Temperature icon size</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер значка температуры</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2045"/>
         <location filename="../ConfigurationDialog.ui" line="2058"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Меняет местами значки в трее. Активно, когда используется отображение в виде двух значков.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1281"/>
@@ -714,7 +714,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2048"/>
         <source>Swap tray icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Поменять местами значки в трее</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2070"/>
