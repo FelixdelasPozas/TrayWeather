@@ -1609,25 +1609,6 @@ QGroupBox::title {
               </item>
              </layout>
             </item>
-            <item row="9" column="1">
-             <widget class="QSlider" name="m_iconSize">
-              <property name="toolTip">
-               <string>Modifies the temperature icon size.</string>
-              </property>
-              <property name="minimum">
-               <number>50</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="tickPosition">
-               <enum>QSlider::NoTicks</enum>
-              </property>
-             </widget>
-            </item>
             <item row="9" column="0">
              <widget class="QLabel" name="label_21">
               <property name="minimumSize">
@@ -1652,6 +1633,45 @@ QGroupBox::title {
                <bool>true</bool>
               </property>
              </widget>
+            </item>
+            <item row="9" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_14">
+              <item>
+               <widget class="QSlider" name="m_iconSize">
+                <property name="toolTip">
+                 <string>Modifies the temperature icon size.</string>
+                </property>
+                <property name="minimum">
+                 <number>50</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="tickPosition">
+                 <enum>QSlider::TicksAbove</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="m_iconSizeSpinbox">
+                <property name="toolTip">
+                 <string>Modifies the temperature icon size.</string>
+                </property>
+                <property name="suffix">
+                 <string>%</string>
+                </property>
+                <property name="minimum">
+                 <number>50</number>
+                </property>
+                <property name="maximum">
+                 <number>100</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -2181,6 +2201,38 @@ QGroupBox::title {
     <hint type="destinationlabel">
      <x>236</x>
      <y>278</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_iconSize</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_iconSizeSpinbox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>418</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_iconSizeSpinbox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_iconSize</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>418</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>319</y>
     </hint>
    </hints>
   </connection>
