@@ -492,18 +492,18 @@
         <location filename="../ConfigurationDialog.ui" line="1615"/>
         <location filename="../ConfigurationDialog.ui" line="1646"/>
         <source>Modifies the temperature icon size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändert die Größe des Temperatursymbols.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1649"/>
         <source>Temperature icon size</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe des Temperatursymbols</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2045"/>
         <location filename="../ConfigurationDialog.ui" line="2058"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tauscht Taskleistensymbole aus. Nur aktiviert, wenn die Darstellung mit zwei Symbolen verwendet wird.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1281"/>
@@ -716,7 +716,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2048"/>
         <source>Swap tray icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Taskleistensymbole austauschen</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2070"/>
