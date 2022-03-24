@@ -487,19 +487,20 @@
         <translation>Spremeni barvo najnižje temperature...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1615"/>
-        <location filename="../ConfigurationDialog.ui" line="1646"/>
+        <location filename="../ConfigurationDialog.ui" line="1627"/>
+        <location filename="../ConfigurationDialog.ui" line="1642"/>
+        <location filename="../ConfigurationDialog.ui" line="1661"/>
         <source>Modifies the temperature icon size.</source>
         <translation>Spremeni velikost ikone temperature.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1649"/>
+        <location filename="../ConfigurationDialog.ui" line="1630"/>
         <source>Temperature icon size</source>
         <translation>Velikost ikone temperature</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2045"/>
-        <location filename="../ConfigurationDialog.ui" line="2058"/>
+        <location filename="../ConfigurationDialog.ui" line="2065"/>
+        <location filename="../ConfigurationDialog.ui" line="2078"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
         <translation>Zamenjaj vrstni red ikon v sistemski vrstici. Omogočeno samo, če se uporablja predstavitev dveh ikon.</translation>
     </message>
@@ -571,57 +572,57 @@
         <translation>Raztegni pisavo navpišno.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1676"/>
+        <location filename="../ConfigurationDialog.ui" line="1696"/>
         <source>Configure the tray icon tooltip text. </source>
         <translation>Nastavitve orodnega namiga ikone v sistemski vrstici. </translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1692"/>
+        <location filename="../ConfigurationDialog.ui" line="1712"/>
         <source>Tray Tooltip</source>
         <translation>Orodni namig v sistemski vrstici</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1713"/>
+        <location filename="../ConfigurationDialog.ui" line="1733"/>
         <source>Value:</source>
         <translation>Podatki:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1720"/>
+        <location filename="../ConfigurationDialog.ui" line="1740"/>
         <source>Value to add to the list.</source>
         <translation>Dodaj podatek na seznam.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1733"/>
+        <location filename="../ConfigurationDialog.ui" line="1753"/>
         <source>Add value to tooltip text</source>
         <translation>Dodaj podatek na orodni namig</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1780"/>
+        <location filename="../ConfigurationDialog.ui" line="1800"/>
         <source>Move value up.</source>
         <translation>Premakni podatek višje.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1794"/>
+        <location filename="../ConfigurationDialog.ui" line="1814"/>
         <source>Move value down.</source>
         <translation>Premakni podatek nižje.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1808"/>
+        <location filename="../ConfigurationDialog.ui" line="1828"/>
         <source>Remove value from tooltip text</source>
         <translation>Odstrani podatek iz orodnega namiga</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1828"/>
+        <location filename="../ConfigurationDialog.ui" line="1848"/>
         <source>Miscellaneous</source>
         <translation>Razno</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1851"/>
+        <location filename="../ConfigurationDialog.ui" line="1871"/>
         <source>Time between update requests</source>
         <translation>Čas med zahtevami za posodobitev</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1864"/>
+        <location filename="../ConfigurationDialog.ui" line="1884"/>
         <source> minutes</source>
         <translation> min</translation>
     </message>
@@ -642,47 +643,47 @@
         <translation>Raztegni pisavo navpično, da zasede ves razpoložljivi prostor v ikoni.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1698"/>
+        <location filename="../ConfigurationDialog.ui" line="1718"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>Vrednosti prikazane v orodnemu namigu so trenutne vrednosti ali najbližja napovedna vrednost v trenutnem lokalnem času. Vrednosti so prikazane po vrstnem redu, od vrha do dna seznama.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1892"/>
+        <location filename="../ConfigurationDialog.ui" line="1912"/>
         <source>Visual theme</source>
         <translation>Tema izgleda</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1900"/>
+        <location filename="../ConfigurationDialog.ui" line="1920"/>
         <source>Light</source>
         <translation>Svetla</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1905"/>
+        <location filename="../ConfigurationDialog.ui" line="1925"/>
         <source>Dark</source>
         <translation>Temna</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1925"/>
+        <location filename="../ConfigurationDialog.ui" line="1945"/>
         <source>Check for updates</source>
         <translation>Preveri za posodobitve</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1933"/>
+        <location filename="../ConfigurationDialog.ui" line="1953"/>
         <source>Never</source>
         <translation>Nikoli</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1938"/>
+        <location filename="../ConfigurationDialog.ui" line="1958"/>
         <source>Once a day</source>
         <translation>Enkrat na dan</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1943"/>
+        <location filename="../ConfigurationDialog.ui" line="1963"/>
         <source>Once a week</source>
         <translation>Enkrat na teden</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1948"/>
+        <location filename="../ConfigurationDialog.ui" line="1968"/>
         <source>Once a month</source>
         <translation>Enkrat na mesec</translation>
     </message>
@@ -697,37 +698,37 @@
         <translation>Imperijalni sistem (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1968"/>
+        <location filename="../ConfigurationDialog.ui" line="1988"/>
         <source>Autostart at login</source>
         <translation>Samodejni zagon ob prijavi</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1994"/>
+        <location filename="../ConfigurationDialog.ui" line="2014"/>
         <source>Language</source>
         <translation>Jezik</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2016"/>
+        <location filename="../ConfigurationDialog.ui" line="2036"/>
         <source>Show weather alerts</source>
         <translation>Pokaži vremenska obvestila</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2048"/>
+        <location filename="../ConfigurationDialog.ui" line="2068"/>
         <source>Swap tray icons</source>
         <translation>Zamenjaj vrstni red ikon v sistemski vrstici</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2070"/>
+        <location filename="../ConfigurationDialog.ui" line="2090"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Če vaš jezik ni na voljo, lahko pomagate s &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;prevodom&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2124"/>
+        <location filename="../ConfigurationDialog.ui" line="2144"/>
         <source>Cancel</source>
         <translation>Prekliči</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2131"/>
+        <location filename="../ConfigurationDialog.ui" line="2151"/>
         <source>Ok</source>
         <translation>V redu</translation>
     </message>

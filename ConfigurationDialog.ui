@@ -1661,7 +1661,7 @@ QGroupBox::title {
                  <string>Modifies the temperature icon size.</string>
                 </property>
                 <property name="suffix">
-                 <string>%</string>
+                 <string notr="true">%</string>
                 </property>
                 <property name="minimum">
                  <number>50</number>

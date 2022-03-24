@@ -40,7 +40,7 @@ class AlertDialog
      * \param[in] f Dialog flags.
      *
      */
-    explicit AlertDialog(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
+    explicit AlertDialog(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
 
     /** \brief AlertDialog class virtual destructor.
      *

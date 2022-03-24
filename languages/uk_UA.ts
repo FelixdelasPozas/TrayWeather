@@ -487,21 +487,22 @@
         <translation>Клацніть щоб змінити колір максимального значення...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1615"/>
-        <location filename="../ConfigurationDialog.ui" line="1646"/>
+        <location filename="../ConfigurationDialog.ui" line="1627"/>
+        <location filename="../ConfigurationDialog.ui" line="1642"/>
+        <location filename="../ConfigurationDialog.ui" line="1661"/>
         <source>Modifies the temperature icon size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Змінює розмір значка температури.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1649"/>
+        <location filename="../ConfigurationDialog.ui" line="1630"/>
         <source>Temperature icon size</source>
-        <translation type="unfinished"></translation>
+        <translation>Розмір значка температури</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2045"/>
-        <location filename="../ConfigurationDialog.ui" line="2058"/>
+        <location filename="../ConfigurationDialog.ui" line="2065"/>
+        <location filename="../ConfigurationDialog.ui" line="2078"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Міняє місцями значки в треї. Можливо лише у разі використання двох значків.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1281"/>
@@ -577,57 +578,57 @@
         <translation>Розтягнути шрифт по верикалі.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1676"/>
+        <location filename="../ConfigurationDialog.ui" line="1696"/>
         <source>Configure the tray icon tooltip text. </source>
         <translation>Налаштування тексту підказки значка в треї. </translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1692"/>
+        <location filename="../ConfigurationDialog.ui" line="1712"/>
         <source>Tray Tooltip</source>
         <translation>Підказка в треї</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1713"/>
+        <location filename="../ConfigurationDialog.ui" line="1733"/>
         <source>Value:</source>
         <translation>Величина:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1720"/>
+        <location filename="../ConfigurationDialog.ui" line="1740"/>
         <source>Value to add to the list.</source>
         <translation>Величина, яку можна додати до списоку.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1733"/>
+        <location filename="../ConfigurationDialog.ui" line="1753"/>
         <source>Add value to tooltip text</source>
         <translation>Додати величину у текст підказки</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1780"/>
+        <location filename="../ConfigurationDialog.ui" line="1800"/>
         <source>Move value up.</source>
         <translation>Рухати величину вгору.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1794"/>
+        <location filename="../ConfigurationDialog.ui" line="1814"/>
         <source>Move value down.</source>
         <translation>Рухати величину вниз.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1808"/>
+        <location filename="../ConfigurationDialog.ui" line="1828"/>
         <source>Remove value from tooltip text</source>
         <translation>Видалити величину з тексту підказки</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1828"/>
+        <location filename="../ConfigurationDialog.ui" line="1848"/>
         <source>Miscellaneous</source>
         <translation>Різне</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1851"/>
+        <location filename="../ConfigurationDialog.ui" line="1871"/>
         <source>Time between update requests</source>
         <translation>Інтервал оновлення погоди</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1864"/>
+        <location filename="../ConfigurationDialog.ui" line="1884"/>
         <source> minutes</source>
         <translation> хвилин</translation>
     </message>
@@ -642,47 +643,47 @@
         <translation>Оформлення</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1698"/>
+        <location filename="../ConfigurationDialog.ui" line="1718"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>Величини у підказці є поточними або найближчими прогнозними до фактичного місцевого часу. Порядок величин у підказці відповідає порядку зі списку нижче.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1892"/>
+        <location filename="../ConfigurationDialog.ui" line="1912"/>
         <source>Visual theme</source>
         <translation>Тема оформлення</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1900"/>
+        <location filename="../ConfigurationDialog.ui" line="1920"/>
         <source>Light</source>
         <translation>Світла</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1905"/>
+        <location filename="../ConfigurationDialog.ui" line="1925"/>
         <source>Dark</source>
         <translation>Темна</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1925"/>
+        <location filename="../ConfigurationDialog.ui" line="1945"/>
         <source>Check for updates</source>
         <translation>Перевірка оновлень</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1933"/>
+        <location filename="../ConfigurationDialog.ui" line="1953"/>
         <source>Never</source>
         <translation>Ніколи</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1938"/>
+        <location filename="../ConfigurationDialog.ui" line="1958"/>
         <source>Once a day</source>
         <translation>Щодня</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1943"/>
+        <location filename="../ConfigurationDialog.ui" line="1963"/>
         <source>Once a week</source>
         <translation>Щотижня</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1948"/>
+        <location filename="../ConfigurationDialog.ui" line="1968"/>
         <source>Once a month</source>
         <translation>Щомісяця</translation>
     </message>
@@ -697,37 +698,37 @@
         <translation>Імперська система (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1968"/>
+        <location filename="../ConfigurationDialog.ui" line="1988"/>
         <source>Autostart at login</source>
         <translation>Автозапуск при вході</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1994"/>
+        <location filename="../ConfigurationDialog.ui" line="2014"/>
         <source>Language</source>
         <translation>Мова</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2016"/>
+        <location filename="../ConfigurationDialog.ui" line="2036"/>
         <source>Show weather alerts</source>
         <translation>Показувати сповіщення про погоду</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2048"/>
+        <location filename="../ConfigurationDialog.ui" line="2068"/>
         <source>Swap tray icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Поміняти значки в треї місцями</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2070"/>
+        <location filename="../ConfigurationDialog.ui" line="2090"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Якщо ваша мова відсутня, ви можете допомогти з &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;перекладом&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2124"/>
+        <location filename="../ConfigurationDialog.ui" line="2144"/>
         <source>Cancel</source>
         <translation>Відмінити</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2131"/>
+        <location filename="../ConfigurationDialog.ui" line="2151"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>

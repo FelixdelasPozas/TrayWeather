@@ -65,11 +65,11 @@ The tray and application theme configuration can be found here in the miscellane
 
 Configuration dialog in Spanish with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/159188087-6643cc9b-d6a5-4987-85fb-49c260aaecb1.png)
+![config](https://user-images.githubusercontent.com/12167134/160021986-871ec316-c6b3-4543-a712-a538b49a4787.png)
 
 Configuration dialog in English with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/159188084-e0d45212-7fd0-46b0-acea-5cde5c756473.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/160021990-2bb65e1c-5927-4c38-b9a1-8aaf3588215c.png)
 
 Weather dialog, showing the current weather tab. 
 
@@ -116,7 +116,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 360 texts.
+and making a pull request. Currently it's just 362 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 

@@ -489,19 +489,20 @@
         <translation>Hier klicken um die Farbe für heißeste Temperatur festzulegen...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1615"/>
-        <location filename="../ConfigurationDialog.ui" line="1646"/>
+        <location filename="../ConfigurationDialog.ui" line="1627"/>
+        <location filename="../ConfigurationDialog.ui" line="1642"/>
+        <location filename="../ConfigurationDialog.ui" line="1661"/>
         <source>Modifies the temperature icon size.</source>
         <translation>Ändert die Größe des Temperatursymbols.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1649"/>
+        <location filename="../ConfigurationDialog.ui" line="1630"/>
         <source>Temperature icon size</source>
         <translation>Größe des Temperatursymbols</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2045"/>
-        <location filename="../ConfigurationDialog.ui" line="2058"/>
+        <location filename="../ConfigurationDialog.ui" line="2065"/>
+        <location filename="../ConfigurationDialog.ui" line="2078"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
         <translation>Tauscht Taskleistensymbole aus. Nur aktiviert, wenn die Darstellung mit zwei Symbolen verwendet wird.</translation>
     </message>
@@ -573,57 +574,57 @@
         <translation>Schrift vertikal dehnen.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1676"/>
+        <location filename="../ConfigurationDialog.ui" line="1696"/>
         <source>Configure the tray icon tooltip text. </source>
         <translation>Konfigurieren Sie den Tooltip-Text des Taskleistensymbols. </translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1692"/>
+        <location filename="../ConfigurationDialog.ui" line="1712"/>
         <source>Tray Tooltip</source>
         <translation>Tablett-Tooltip</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1713"/>
+        <location filename="../ConfigurationDialog.ui" line="1733"/>
         <source>Value:</source>
         <translation>Wert:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1720"/>
+        <location filename="../ConfigurationDialog.ui" line="1740"/>
         <source>Value to add to the list.</source>
         <translation>Wert, der der Liste hinzugefügt werden soll.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1733"/>
+        <location filename="../ConfigurationDialog.ui" line="1753"/>
         <source>Add value to tooltip text</source>
         <translation>Fügen Sie dem QuickInfo-Text einen Wert hinzu</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1780"/>
+        <location filename="../ConfigurationDialog.ui" line="1800"/>
         <source>Move value up.</source>
         <translation>Wert nach oben verschieben.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1794"/>
+        <location filename="../ConfigurationDialog.ui" line="1814"/>
         <source>Move value down.</source>
         <translation>Wert nach unten verschieben.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1808"/>
+        <location filename="../ConfigurationDialog.ui" line="1828"/>
         <source>Remove value from tooltip text</source>
         <translation>Wert aus dem QuickInfo-Text entfernen</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1828"/>
+        <location filename="../ConfigurationDialog.ui" line="1848"/>
         <source>Miscellaneous</source>
         <translation>Sonstiges</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1851"/>
+        <location filename="../ConfigurationDialog.ui" line="1871"/>
         <source>Time between update requests</source>
         <translation>Abfrageintervall</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1864"/>
+        <location filename="../ConfigurationDialog.ui" line="1884"/>
         <source> minutes</source>
         <translation> minuten</translation>
     </message>
@@ -644,47 +645,47 @@
         <translation>Streckt die Schriftart vertikal, um den gesamten verfügbaren Platz im Symbol zu belegen.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1698"/>
+        <location filename="../ConfigurationDialog.ui" line="1718"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>Die im Tooltip angezeigten Werte sind aktuelle Werte oder der der aktuellen Ortszeit am nächsten liegende Vorhersagewert. Die Werte werden in der Reihenfolge von oben nach unten in der Liste angezeigt.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1892"/>
+        <location filename="../ConfigurationDialog.ui" line="1912"/>
         <source>Visual theme</source>
         <translation>Erscheinungsbild</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1900"/>
+        <location filename="../ConfigurationDialog.ui" line="1920"/>
         <source>Light</source>
         <translation>Hell</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1905"/>
+        <location filename="../ConfigurationDialog.ui" line="1925"/>
         <source>Dark</source>
         <translation>Dunkel</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1925"/>
+        <location filename="../ConfigurationDialog.ui" line="1945"/>
         <source>Check for updates</source>
         <translation>Auf Updates prüfen</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1933"/>
+        <location filename="../ConfigurationDialog.ui" line="1953"/>
         <source>Never</source>
         <translation>Nie</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1938"/>
+        <location filename="../ConfigurationDialog.ui" line="1958"/>
         <source>Once a day</source>
         <translation>Täglich</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1943"/>
+        <location filename="../ConfigurationDialog.ui" line="1963"/>
         <source>Once a week</source>
         <translation>Wöchentlich</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1948"/>
+        <location filename="../ConfigurationDialog.ui" line="1968"/>
         <source>Once a month</source>
         <translation>Monatlich</translation>
     </message>
@@ -699,37 +700,37 @@
         <translation>Imperiales System (°F)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1968"/>
+        <location filename="../ConfigurationDialog.ui" line="1988"/>
         <source>Autostart at login</source>
         <translation>Automatisch beim Login starten</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1994"/>
+        <location filename="../ConfigurationDialog.ui" line="2014"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2016"/>
+        <location filename="../ConfigurationDialog.ui" line="2036"/>
         <source>Show weather alerts</source>
         <translation>Wetterwarnungen anzeigen</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2048"/>
+        <location filename="../ConfigurationDialog.ui" line="2068"/>
         <source>Swap tray icons</source>
         <translation>Taskleistensymbole austauschen</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2070"/>
+        <location filename="../ConfigurationDialog.ui" line="2090"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Wenn Deine Sprache nicht verfügbar ist, kannst Du mit einer  &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;Übersetzung&lt;/a&gt; helfen.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2124"/>
+        <location filename="../ConfigurationDialog.ui" line="2144"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2131"/>
+        <location filename="../ConfigurationDialog.ui" line="2151"/>
         <source>Ok</source>
         <translation>OK</translation>
     </message>
