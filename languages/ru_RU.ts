@@ -189,7 +189,7 @@
         <location filename="../ConfigurationDialog.ui" line="172"/>
         <location filename="../ConfigurationDialog.ui" line="175"/>
         <source>Specify geographic coordinates</source>
-        <translation>Укажите географические координаты</translation>
+        <translation>Указать географические координаты</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="178"/>
@@ -548,7 +548,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1521"/>
         <source>Draw a border around text for better contrast.</source>
-        <translation>Рисовать обводку вокруг текста для лучшего контраста.</translation>
+        <translation>Рисовать обводку текста для лучшего контраста.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1535"/>
@@ -640,7 +640,7 @@
         <location filename="../ConfigurationDialog.ui" line="1593"/>
         <location filename="../ConfigurationDialog.ui" line="1603"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
-        <translation>Растягивает шрифт по вертикали, чтобы тот занял всё пространство значка.</translation>
+        <translation>Растягивает шрифт по вертикали, чтобы занять всё пространство значка.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1718"/>
@@ -1142,7 +1142,7 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../TrayWeather.cpp" line="1237"/>
         <source>Tray Weather updated to version %1</source>
-        <translation>Tray Weather обновлён до версии %1</translation>
+        <translation>Вышла новая версия Tray Weather %1</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="109"/>
