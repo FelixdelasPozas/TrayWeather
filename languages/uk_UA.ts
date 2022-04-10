@@ -252,7 +252,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="551"/>
         <source>ZIP Code</source>
-        <translation>Поштовый індекс</translation>
+        <translation>Поштовий індекс</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="614"/>
@@ -418,7 +418,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1149"/>
         <source>Selects the temperature icon text color</source>
-        <translation>Выбір кольору тексту значка температури</translation>
+        <translation>Вибір кольору тексту значка температури</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1174"/>
@@ -763,7 +763,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../ConfigurationDialog.cpp" line="153"/>
         <source>The API Key is valid!</source>
-        <translation>Ключ API недійсний!</translation>
+        <translation>Ключ API дійсний!</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="162"/>
@@ -795,7 +795,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../ConfigurationDialog.cpp" line="218"/>
         <source>Data request failure. Invalid data format.</source>
-        <translation>Помилка запиту даних. Невірный формат даних.</translation>
+        <translation>Помилка запиту даних. Невірний формат даних.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="226"/>
