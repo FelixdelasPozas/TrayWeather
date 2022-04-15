@@ -1422,8 +1422,8 @@ void WeatherDialog::onLegendMarkerClicked()
     if(marker->series()->isVisible())
     {
       auto isVisible = [](const QAbstractSeries *s){ return s->isVisible(); };
-      auto series = chart->series();
-      auto visibleCount = std::count_if(series.cbegin(), series.cend(), isVisible);
+      const auto series = chart->series();
+      const auto visibleCount = std::count_if(series.cbegin(), series.cend(), isVisible);
 
       if(visibleCount == 1) return; // at least one should be visible.
 
