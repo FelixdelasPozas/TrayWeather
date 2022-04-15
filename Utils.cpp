@@ -88,9 +88,15 @@ static const QString CUSTOM_PRES_UNITS       = QString("Custom pressure units");
 static const QString CUSTOM_PREC_UNITS       = QString("Custom precipitation units");
 static const QString CUSTOM_WIND_UNITS       = QString("Custom wind units");
 static const QString TOOLTIP_FIELDS          = QString("Tooltip text fields");
-static const QString GRAPH_USE_RAIN          = QString("Forecast graph uses rain data");
 static const QString SHOW_ALERTS             = QString("Show weather alerts");
 static const QString STRETCH_TEMP_ICON       = QString("Stretch temperature icon vertically");
+static const QString GRAPH_TEMP_REPR         = QString("Forecast graph temperature representation");
+static const QString GRAPH_RAIN_REPR         = QString("Forecast graph rain representation");
+static const QString GRAPH_SNOW_REPR         = QString("Forecast graph snow representation");
+static const QString GRAPH_TEMP_COLOR        = QString("Forecast graph temperature color");
+static const QString GRAPH_RAIN_COLOR        = QString("Forecast graph rain color");
+static const QString GRAPH_SNOW_COLOR        = QString("Forecast graph snow color");
+
 
 static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/iconThemes/%1/01d.svg" },
                                               { "01n-0", ":/TrayWeather/iconThemes/%1/01n-0.svg" },
@@ -657,10 +663,16 @@ void load(Configuration &configuration)
   configuration.lastLayer       = settings.value(LAST_MAP_LAYER, "temperature").toString();
   configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
   configuration.language        = settings.value(LANGUAGE, "en_EN").toString();
-  configuration.graphUseRain    = settings.value(GRAPH_USE_RAIN, true).toBool();
   configuration.showAlerts      = settings.value(SHOW_ALERTS, true).toBool();
   configuration.swapTrayIcons   = settings.value(TRAY_SWAP_ICONS, false).toBool();
   configuration.trayIconSize    = settings.value(TRAY_ICON_SIZE, 100).toInt();
+  configuration.tempRepr        = static_cast<Representation>(settings.value(GRAPH_TEMP_REPR, 2).toInt());
+  configuration.rainRepr        = static_cast<Representation>(settings.value(GRAPH_RAIN_REPR, 3).toInt());
+  configuration.snowRepr        = static_cast<Representation>(settings.value(GRAPH_SNOW_REPR, 0).toInt());
+  configuration.tempReprColor   = QColor(settings.value(GRAPH_TEMP_COLOR, "#FF0000FF").toString());
+  configuration.rainReprColor   = QColor(settings.value(GRAPH_RAIN_COLOR, "#FF00FF00").toString());
+  configuration.snowReprColor   = QColor(settings.value(GRAPH_SNOW_COLOR, "#FFFF0000").toString());
+
 
   // if CUSTOM_UNITS values doesn't exists (first run) use units value.
   configuration.tempUnits        = static_cast<TemperatureUnits>(settings.value(CUSTOM_TEMP_UNITS, units).toInt());
@@ -741,10 +753,15 @@ void save(const Configuration &configuration)
   settings.setValue(CUSTOM_PRES_UNITS,       static_cast<int>(configuration.pressureUnits));
   settings.setValue(CUSTOM_PREC_UNITS,       static_cast<int>(configuration.precUnits));
   settings.setValue(CUSTOM_WIND_UNITS,       static_cast<int>(configuration.windUnits));
-  settings.setValue(GRAPH_USE_RAIN,          configuration.graphUseRain);
   settings.setValue(SHOW_ALERTS,             configuration.showAlerts);
   settings.setValue(TRAY_SWAP_ICONS,         configuration.swapTrayIcons);
   settings.setValue(TRAY_ICON_SIZE,          configuration.trayIconSize);
+  settings.setValue(GRAPH_TEMP_REPR,         static_cast<int>(configuration.tempRepr));
+  settings.setValue(GRAPH_RAIN_REPR,         static_cast<int>(configuration.rainRepr));
+  settings.setValue(GRAPH_SNOW_REPR,         static_cast<int>(configuration.snowRepr));
+  settings.setValue(GRAPH_TEMP_COLOR,        configuration.tempReprColor.name(QColor::HexArgb));
+  settings.setValue(GRAPH_RAIN_COLOR,        configuration.rainReprColor.name(QColor::HexArgb));
+  settings.setValue(GRAPH_SNOW_COLOR,        configuration.snowReprColor.name(QColor::HexArgb));
 
   QStringList fieldList;
   QList<int> fieldNums;

@@ -275,10 +275,15 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.pressureUnits   = static_cast<PressureUnits>(m_pressionCombo->currentIndex());
   configuration.precUnits       = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
   configuration.windUnits       = static_cast<WindUnits>(m_windCombo->currentIndex());
-  configuration.graphUseRain    = m_rainGraph->isChecked();
   configuration.showAlerts      = m_showAlerts->isChecked();
   configuration.swapTrayIcons   = m_swapIcons->isChecked();
   configuration.trayIconSize    = m_iconSize->value();
+  configuration.tempRepr        = static_cast<Representation>(m_tempGraph->currentIndex());
+  configuration.rainRepr        = static_cast<Representation>(m_rainGraph->currentIndex());
+  configuration.snowRepr        = static_cast<Representation>(m_snowGraph->currentIndex());
+  configuration.tempReprColor   = QColor(m_tempGraphColor->property("iconColor").toString());
+  configuration.rainReprColor   = QColor(m_rainGraphColor->property("iconColor").toString());
+  configuration.snowReprColor   = QColor(m_snowGraphColor->property("iconColor").toString());
 
   configuration.tooltipFields.clear();
   for(int row = 0; row < m_tooltipList->count(); ++row)
@@ -428,15 +433,6 @@ void ConfigurationDialog::connectSignals()
   connect(m_theme, SIGNAL(currentIndexChanged(int)),
          this,     SLOT(onThemeIndexChanged(int)));
 
-  connect(m_trayTempColor, SIGNAL(clicked()),
-          this,            SLOT(onColorButtonClicked()));
-
-  connect(m_minColor, SIGNAL(clicked()),
-          this,       SLOT(onColorButtonClicked()));
-
-  connect(m_maxColor, SIGNAL(clicked()),
-          this,       SLOT(onColorButtonClicked()));
-
   connect(m_minSpinBox, SIGNAL(valueChanged(int)),
           this,         SLOT(onTemperatureValueChanged(int)));
 
@@ -473,8 +469,11 @@ void ConfigurationDialog::connectSignals()
   connect(m_trayIconTheme, SIGNAL(currentIndexChanged(int)),
           this,            SLOT(onIconThemeIndexChanged(int)));
 
-  connect(m_iconThemeColor, SIGNAL(pressed()),
-          this,             SLOT(onColorButtonClicked()));
+  for(auto &w: {m_trayTempColor, m_minColor, m_maxColor, m_iconThemeColor,
+                m_tempGraphColor, m_rainGraphColor, m_snowGraphColor})
+  {
+    connect(w, SIGNAL(clicked()), this, SLOT(onColorButtonClicked()));
+  }
 
   for(auto &w: {m_tempCombo, m_pressionCombo, m_windCombo, m_precipitationCombo})
   {
@@ -775,11 +774,12 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_minSpinBox->setMaximum(configuration.maximumValue-1);
   m_maxSpinBox->setMinimum(configuration.minimumValue+1);
 
+  m_tempGraph->setCurrentIndex(static_cast<int>(configuration.tempRepr));
+  m_rainGraph->setCurrentIndex(static_cast<int>(configuration.rainRepr));
+  m_snowGraph->setCurrentIndex(static_cast<int>(configuration.snowRepr));
+
   m_tooltipList->clear();
   m_tooltipList->setAlternatingRowColors(true);
-
-  m_rainGraph->setChecked(configuration.graphUseRain);
-  m_snowGraph->setChecked(!configuration.graphUseRain);
 
   m_showAlerts->setChecked(configuration.showAlerts);
 
@@ -823,6 +823,18 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   icon.fill(configuration.maximumColor);
   m_maxColor->setIcon(QIcon(icon));
   m_maxColor->setProperty("iconColor", configuration.maximumColor.name(QColor::HexArgb));
+
+  icon.fill(configuration.tempReprColor);
+  m_tempGraphColor->setIcon(QIcon(icon));
+  m_tempGraphColor->setProperty("iconColor", configuration.tempReprColor.name(QColor::HexArgb));
+
+  icon.fill(configuration.rainReprColor);
+  m_rainGraphColor->setIcon(QIcon(icon));
+  m_rainGraphColor->setProperty("iconColor", configuration.rainReprColor.name(QColor::HexArgb));
+
+  icon.fill(configuration.snowReprColor);
+  m_snowGraphColor->setIcon(QIcon(icon));
+  m_snowGraphColor->setProperty("iconColor", configuration.snowReprColor.name(QColor::HexArgb));
 
   if(!configuration.isValid())
   {
@@ -908,15 +920,6 @@ void ConfigurationDialog::disconnectSignals()
   disconnect(m_theme, SIGNAL(currentIndexChanged(int)),
              this,     SLOT(onThemeIndexChanged(int)));
 
-  disconnect(m_trayTempColor, SIGNAL(clicked()),
-             this,            SLOT(onColorButtonClicked()));
-
-  disconnect(m_minColor, SIGNAL(clicked()),
-             this,       SLOT(onColorButtonClicked()));
-
-  disconnect(m_maxColor, SIGNAL(clicked()),
-             this,       SLOT(onColorButtonClicked()));
-
   disconnect(m_minSpinBox, SIGNAL(valueChanged(int)),
              this,         SLOT(onTemperatureValueChanged(int)));
 
@@ -953,8 +956,11 @@ void ConfigurationDialog::disconnectSignals()
   disconnect(m_trayIconTheme, SIGNAL(currentIndexChanged(int)),
              this,            SLOT(onIconThemeIndexChanged(int)));
 
-  disconnect(m_iconThemeColor, SIGNAL(pressed()),
-             this,             SLOT(onColorButtonClicked()));
+  for(auto &w: {m_trayTempColor, m_minColor, m_maxColor, m_iconThemeColor,
+                m_tempGraphColor, m_rainGraphColor, m_snowGraphColor})
+  {
+    disconnect(w, SIGNAL(clicked()), this, SLOT(onColorButtonClicked()));
+  }
 
   for(auto &w: {m_tempCombo, m_pressionCombo, m_windCombo, m_precipitationCombo})
   {

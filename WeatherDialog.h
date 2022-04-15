@@ -34,6 +34,7 @@
 
 namespace QtCharts
 {
+  class QChart;
   class QChartView;
   class QLineSeries;
 }
@@ -98,12 +99,24 @@ class WeatherDialog
     virtual void changeEvent(QEvent *e) override;
 
   private slots:
-    /** \brief Shows weather data when the user hovers on the temperature line.
+    /** \brief Shows weather data when the user hovers on spline series.
      * \param[in] point hover point.
      * \param[in] state true when user has hovered over the series and false when hover has moved away from the series.
      *
      */
     void onChartHover(const QPointF &point, bool state);
+
+    /** \brief Shows weather data when the user hovers on a bar series.
+     * \param[in] state true when user has hovered over the series and false when hover has moved away from the series.
+     * \param[in] index Barset value index.
+     *
+     */
+    void onChartHover(bool state, int index);
+
+    /** \brief Hides/show the series when the legend marker is clicked.
+     *
+     */
+    void onLegendMarkerClicked();
 
     /** \brief Resets the chart's zoom to the original one.
      *
@@ -174,13 +187,15 @@ class WeatherDialog
      */
     void removeMaps();
 
+    /** \brief Updates the visible series ranges.
+     * \param[in] chart QChart object to update axes ranges.
+     *
+     */
+    void updateAxesRanges(QtCharts::QChart *chart);
 
     QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.          */
     QtCharts::QChartView            *m_pollutionChart;   /** pollution forecast chart view.        */
     QtCharts::QChartView            *m_uvChart;          /** uv forecast chart view.               */
-    QtCharts::QLineSeries           *m_temperatureLine;  /** temperature series line.              */
-    QtCharts::QLineSeries           *m_pollutionLine[8]; /** pollution concentrations series line. */
-    QtCharts::QLineSeries           *m_uvLine;           /** uv index series line.                 */
     const Forecast                  *m_forecast;         /** forecast data.                        */
     const Pollution                 *m_pollution;        /** pollution data.                       */
     const UV                        *m_uv;               /** uv data.                              */

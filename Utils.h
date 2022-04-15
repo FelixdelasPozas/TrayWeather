@@ -48,6 +48,7 @@ enum class TemperatureUnits:   char { CELSIUS = 0, FAHRENHEIT };
 enum class PrecipitationUnits: char { MM = 0, INCH };
 enum class WindUnits:          char { METSEC = 0, MILHR, KMHR, FEETSEC };
 enum class Update:             char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
+enum class Representation:     char { NONE = 0, SPLINE, BARS };
 
 static const QStringList MAP_LAYERS = { "temperature", "rain", "clouds", "wind" };
 static const QStringList MAP_STREET = { "mapnik", "mapnikbw" };
@@ -189,7 +190,6 @@ struct Configuration
     QString            lastStreetLayer; /** last street layer used: mapnik, mapnikbw.                   */
     QString            language;        /** application language.                                       */
     QList<TooltipText> tooltipFields;   /** tooltip fields in order.                                    */
-    bool               graphUseRain;    /** true if the forecast graph uses rain data, false if snow.   */
     bool               showAlerts;      /** true to show weather alerts and false otherwise.            */
     TemperatureUnits   tempUnits;       /** custom temperature units.                                   */
     PressureUnits      pressureUnits;   /** custom pressure units.                                      */
@@ -197,6 +197,12 @@ struct Configuration
     WindUnits          windUnits;       /** custom wind units.                                          */
     bool               swapTrayIcons;   /** true to swap tray icons and false otherwise.                */
     int                trayIconSize;    /** size of tray icon in [50-100] %.                            */
+    Representation     tempRepr;        /** temperature representation in the forecast graph.           */
+    Representation     rainRepr;        /** rain representation in the forecast graph.                  */
+    Representation     snowRepr;        /** snow representation in the forecast graph.                  */
+    QColor             tempReprColor;   /** color of temperature representation in the forecast graph.  */
+    QColor             rainReprColor;   /** color of rain representation in the forecast graph.         */
+    QColor             snowReprColor;   /** color of snow representation in the forecast graph.         */
 
     /** \brief Configuration struct constructor.
      *
@@ -239,7 +245,6 @@ struct Configuration
     , lastStreetLayer {"mapnik"}
     , language        {"en_EN"}
     , tooltipFields   {TooltipText::LOCATION, TooltipText::WEATHER, TooltipText::TEMPERATURE}
-    , graphUseRain    {true}
     , showAlerts      {true}
     , tempUnits       {TemperatureUnits::CELSIUS}
     , pressureUnits   {PressureUnits::HPA}
@@ -247,6 +252,12 @@ struct Configuration
     , windUnits       {WindUnits::METSEC}
     , swapTrayIcons   {false}
     , trayIconSize    {100}
+    , tempRepr        {Representation::SPLINE}
+    , rainRepr        {Representation::BARS}
+    , snowRepr        {Representation::NONE}
+    , tempReprColor   {Qt::blue}
+    , rainReprColor   {Qt::green}
+    , snowReprColor   {Qt::red}
     {};
 
     bool isValid() const

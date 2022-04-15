@@ -29,12 +29,16 @@
 #include <QIcon>
 #include <charts/qchart.h>
 #include <charts/qchartview.h>
+#include <charts/qabstractseries.h>
+#include <charts/linechart/qlineseries.h>
 #include <charts/splinechart/qsplineseries.h>
 #include <charts/axis/datetimeaxis/qdatetimeaxis.h>
 #include <charts/axis/valueaxis/qvalueaxis.h>
 #include <charts/barchart/vertical/bar/qbarseries.h>
 #include <charts/areachart/qareaseries.h>
 #include <charts/barchart/qbarset.h>
+#include <charts/legend/qlegend.h>
+#include <charts/legend/qlegendmarker.h>
 #include <QEasingCurve>
 #include <QWebView>
 #include <QWebFrame>
@@ -42,13 +46,13 @@
 
 // C++
 #include <cmath>
+#include <algorithm>
 
 using namespace QtCharts;
 
 //--------------------------------------------------------------------
 WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 : QDialog           {parent, flags}
-, m_temperatureLine {nullptr}
 , m_forecast        {nullptr}
 , m_config          {nullptr}
 , m_weatherTooltip  {nullptr}
@@ -123,7 +127,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   const auto noneStr = tr("None");
   const auto unknStr = tr("Unknown");
   const auto tempStr = tr("Temperature");
-  const auto precStr = config.graphUseRain ? tr("Rain accumulation") : tr("Snow accumulation");
+  const auto precStr = tr("Accumulation");
 
   // conversions
   QString accuStr, pressStr, windUnits, tempUnits;
@@ -291,12 +295,14 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   axisX->setGridLineColor(linesColor);
 
   auto axisYTemp = new QValueAxis();
+  axisYTemp->setTickCount(6);
   axisYTemp->setLabelFormat("%i");
   axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(tempUnits));
   axisYTemp->setGridLineVisible(true);
   axisYTemp->setGridLineColor(linesColor);
 
   auto axisYPrec = new QValueAxis();
+  axisYPrec->setTickCount(6);
   axisYPrec->setLabelFormat("%.2f");
   axisYPrec->setTitleText(tr("%1 in %2").arg(precStr).arg(accuStr));
   axisYPrec->setGridLineVisible(true);
@@ -307,7 +313,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
   forecastChart->legend()->setAlignment(Qt::AlignBottom);
-  forecastChart->legend()->setAlignment(Qt::AlignBottom);
+  forecastChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
   forecastChart->setAnimationDuration(400);
   forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
   forecastChart->setAnimationOptions(QChart::AllAnimations);
@@ -321,57 +327,149 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   pen.setWidth(2);
   pen.setColor(QColor{90,90,235});
 
-  m_temperatureLine = new QSplineSeries(forecastChart);
-  m_temperatureLine->setName(tempStr);
-  m_temperatureLine->setUseOpenGL(true);
-  m_temperatureLine->setPointsVisible(true);
-  m_temperatureLine->setPen(pen);
+  auto initSerie = [&](const Representation value, const QColor &color, const QString &name)
+  {
+    QAbstractSeries *series = nullptr;
 
-  auto bars = new QBarSet(precStr);
-  bars->setColor(QColor{100,235,100});
+    switch(value)
+    {
+      case Representation::SPLINE:
+        {
+          QPen pen;
+          pen.setWidth(2);
+          pen.setColor(color);
 
-  auto precBars = new QBarSeries(forecastChart);
-  precBars->setUseOpenGL(true);
-  precBars->setBarWidth(precBars->barWidth()*2);
-  precBars->append(bars);
+          auto line = new QtCharts::QSplineSeries(forecastChart);
+          line->setPointsVisible(true);
+          line->setPen(pen);
+          line->setName(name);
+          line->setUseOpenGL(true);
 
-  double tempMin = 100, tempMax = -100;
-  double precMin = 100, precMax = -100;
+          connect(line, SIGNAL(hovered(const QPointF &, bool)),
+                  this, SLOT(onChartHover(const QPointF &, bool)));
+
+          series = line;
+        }
+        break;
+      case Representation::BARS:
+        {
+          auto barset = new QtCharts::QBarSet("");
+          barset->setColor(color);
+          barset->setLabel(name);
+
+          auto line = new QtCharts::QBarSeries(forecastChart);
+          line->setName(name);
+          line->append(barset);
+          line->setBarWidth(line->barWidth()*1.5);
+          line->setUseOpenGL(true);
+          line->setOpacity(0.8);
+
+          connect(line, SIGNAL(hovered(bool, int, QBarSet *)),
+                  this, SLOT(onChartHover(bool, int)));
+
+          series = line;
+        }
+        break;
+      default:
+      case Representation::NONE:
+        break;
+    }
+
+    return series;
+  };
+
+  QAbstractSeries *fakeLine = initSerie(Representation::SPLINE, Qt::black, "fake");
+  QAbstractSeries *tempLine = initSerie(m_config->tempRepr, m_config->tempReprColor, tempStr);
+  QAbstractSeries *rainLine = initSerie(m_config->rainRepr, m_config->rainReprColor, tr("Rain accumulation"));
+  QAbstractSeries *snowLine = initSerie(m_config->snowRepr, m_config->snowReprColor, tr("Snow accumulation"));
+
+  double rainMin = 100, rainMax = -100;
+  double snowMin = 100, snowMax = -100;
+
+  auto appendValue = [](const long long x, const double y, QAbstractSeries *ptr)
+  {
+    if(ptr)
+    {
+      switch(ptr->type())
+      {
+        case QAbstractSeries::SeriesTypeBar:
+          qobject_cast<QBarSeries*>(ptr)->barSets().first()->append(y);
+          break;
+        case QAbstractSeries::SeriesTypeSpline:
+          qobject_cast<QSplineSeries*>(ptr)->append(x, y);
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
   for(auto &entry: data)
   {
     unixTimeStampToDate(t, entry.dt);
     dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
 
-    m_temperatureLine->append(dtTime.toMSecsSinceEpoch(), tempFunc(entry.temp));
+    const auto msecs = dtTime.toMSecsSinceEpoch();
 
-    tempMin = std::min(tempMin, tempFunc(entry.temp));
-    tempMax = std::max(tempMax, tempFunc(entry.temp));
+    appendValue(msecs, 0, fakeLine);
 
-    const auto precField = config.graphUseRain ? entry.rain : entry.snow;
-    const auto precValue = precipitationFunc(precField);
-    precMin = std::min(precMin, precValue);
-    precMax = std::max(precMax, precValue);
+    auto value = tempFunc(entry.temp);
+    appendValue(msecs, value, tempLine);
 
-    bars->append(precValue);
+    value = precipitationFunc(entry.rain);
+    appendValue(msecs, value, rainLine);
+
+    rainMin = std::min(rainMin, value);
+    rainMax = std::max(rainMax, value);
+
+    value = precipitationFunc(entry.snow);
+    appendValue(msecs, value, snowLine);
+
+    snowMin = std::min(snowMin, value);
+    snowMax = std::max(snowMax, value);
   }
 
-  axisYTemp->setRange(tempMin-1, tempMax+1);
-  axisYPrec->setRange(precMin, precMax*1.25);
+  axisYTemp->setProperty("axisType", "temp");
 
-  forecastChart->addSeries(precBars);
-  forecastChart->addSeries(m_temperatureLine);
-
-  forecastChart->setAxisX(axisX, m_temperatureLine);
-  forecastChart->setAxisY(axisYTemp, m_temperatureLine);
-  forecastChart->setAxisY(axisYPrec, precBars);
-
-  connect(m_temperatureLine, SIGNAL(hovered(const QPointF &, bool)),
-          this,              SLOT(onChartHover(const QPointF &, bool)));
-
-  if(precMin == 0 && precMax == 0)
+  // Bar series need to be added first so they don't hide the line series.
+  auto addLineSeriesToChart = [&forecastChart, &axisX](QAbstractSeries *ptr)
   {
-    axisYPrec->setVisible(false);
-    precBars->clear();
+    forecastChart->addSeries(ptr);
+    forecastChart->setAxisX(axisX,ptr);
+  };
+
+  QList<QAbstractSeries*> toAddLater;
+  for(QAbstractSeries *ptr: {fakeLine, tempLine, rainLine, snowLine})
+  {
+    if(!ptr) continue;
+
+    if(qobject_cast<QSplineSeries*>(ptr))
+    {
+      toAddLater << ptr;
+    }
+    else
+    {
+      forecastChart->addSeries(ptr);
+    }
+  }
+
+  std::for_each(toAddLater.cbegin(), toAddLater.cend(), addLineSeriesToChart);
+
+  if(tempLine) forecastChart->setAxisY(axisYTemp, tempLine);
+  if(rainLine) forecastChart->setAxisY(axisYPrec, rainLine);
+  if(snowLine) forecastChart->setAxisY(axisYPrec, snowLine);
+
+  fakeLine->setVisible(false);
+  if(rainLine) rainLine->setVisible(rainMin != 0 || rainMax != 0);
+  if(snowLine) snowLine->setVisible(snowMin != 0 || snowMax != 0);
+
+  axisYPrec->setVisible((rainLine && rainLine->isVisible()) || (snowLine && snowLine->isVisible()));
+
+  updateAxesRanges(forecastChart);
+
+  for(auto marker: forecastChart->legend()->markers())
+  {
+    connect(marker, SIGNAL(clicked()), this, SLOT(onLegendMarkerClicked()));
   }
 
   const auto scale = dpiScale();
@@ -476,38 +574,32 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
     case 3: currentChart = m_uvChart; break;
     default: break;
   }
-
   if(!currentChart) return;
 
-  auto closeWidgets = [this, &currentChart]()
+  if(currentChart == m_weatherChart && m_weatherTooltip)
   {
-    if(currentChart == m_weatherChart && m_weatherTooltip)
+    m_weatherTooltip->hide();
+    m_weatherTooltip = nullptr;
+  }
+  else
+  {
+    if(currentChart == m_pollutionChart && m_pollutionTooltip)
     {
-      m_weatherTooltip->hide();
-      m_weatherTooltip = nullptr;
+      m_pollutionTooltip->hide();
+      m_pollutionTooltip = nullptr;
     }
     else
     {
-      if(currentChart == m_pollutionChart && m_pollutionTooltip)
+      if(currentChart == m_uvChart && m_uvTooltip)
       {
-        m_pollutionTooltip->hide();
-        m_pollutionTooltip = nullptr;
-      }
-      else
-      {
-        if(currentChart == m_uvChart && m_uvTooltip)
-        {
-          m_uvTooltip->hide();
-          m_uvTooltip = nullptr;
-        }
+        m_uvTooltip->hide();
+        m_uvTooltip = nullptr;
       }
     }
-  };
+  }
 
   if(state)
   {
-    closeWidgets();
-
     int closestPoint{-1};
     QPointF distance{100, 100};
     auto iPoint = currentChart->chart()->mapToPosition(point, currentLine);
@@ -527,36 +619,33 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
 
       if(distance.manhattanLength() < 30)
       {
+        QWidget* tooltipWidget = nullptr;
+
         if(currentChart == m_weatherChart)
         {
           m_weatherTooltip = std::make_shared<WeatherWidget>(m_forecast->at(closestPoint), *m_config);
-          auto pos = currentChart->mapToGlobal(currentChart->chart()->mapToPosition(currentLine->at(closestPoint), currentLine).toPoint());
-          pos = QPoint{pos.x()-m_weatherTooltip->width()/2, pos.y() - m_weatherTooltip->height() - 5};
-          m_weatherTooltip->move(pos);
-          m_weatherTooltip->show();
+          tooltipWidget = m_weatherTooltip.get();
         }
         else if(currentChart == m_pollutionChart)
         {
           m_pollutionTooltip = std::make_shared<PollutionWidget>(m_pollution->at(closestPoint));
-          auto pos = currentChart->mapToGlobal(currentChart->chart()->mapToPosition(currentLine->at(closestPoint), currentLine).toPoint());
-          pos = QPoint{pos.x()-m_pollutionTooltip->width()/2, pos.y() - m_pollutionTooltip->height() - 5};
-          m_pollutionTooltip->move(pos);
-          m_pollutionTooltip->show();
+          tooltipWidget = m_pollutionTooltip.get();
         }
         else if(currentChart == m_uvChart)
         {
           m_uvTooltip = std::make_shared<UVWidget>(m_uv->at(closestPoint));
+          tooltipWidget = m_uvTooltip.get();
+        }
+
+        if(tooltipWidget)
+        {
           auto pos = currentChart->mapToGlobal(currentChart->chart()->mapToPosition(currentLine->at(closestPoint), currentLine).toPoint());
-          pos = QPoint{pos.x()-m_uvTooltip->width()/2, pos.y() - m_uvTooltip->height() - 5};
-          m_uvTooltip->move(pos);
-          m_uvTooltip->show();
+          pos = QPoint{pos.x()-tooltipWidget->width()/2, pos.y() - tooltipWidget->height() - 5};
+          tooltipWidget->move(pos);
+          tooltipWidget->show();
         }
       }
     }
-  }
-  else
-  {
-    closeWidgets();
   }
 }
 
@@ -706,6 +795,7 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   auto forecastChart = new QChart();
   forecastChart->legend()->setVisible(true);
   forecastChart->legend()->setAlignment(Qt::AlignBottom);
+  forecastChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
   forecastChart->setAnimationDuration(400);
   forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
   forecastChart->setAnimationOptions(QChart::AllAnimations);
@@ -716,15 +806,17 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   QPen pens[8];
 
+  QSplineSeries *pollutionLine[8];
+
   for(int i = 0; i < 8; ++i)
   {
     pens[i].setWidth(2);
     pens[i].setColor(CONCENTRATION_COLORS[i]);
-    m_pollutionLine[i] = new QSplineSeries(forecastChart);
-    m_pollutionLine[i]->setName(CONCENTRATION_NAMES.at(i));
-    m_pollutionLine[i]->setUseOpenGL(true);
-    m_pollutionLine[i]->setPointsVisible(true);
-    m_pollutionLine[i]->setPen(pens[i]);
+    pollutionLine[i] = new QSplineSeries(forecastChart);
+    pollutionLine[i]->setName(CONCENTRATION_NAMES.at(i));
+    pollutionLine[i]->setUseOpenGL(true);
+    pollutionLine[i]->setPointsVisible(true);
+    pollutionLine[i]->setPen(pens[i]);
   }
 
   QLinearGradient plotAreaGradient;
@@ -732,7 +824,6 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   plotAreaGradient.setFinalStop(QPointF(1, 0));
   plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
 
-  double min = 1000, max = 0;
   struct tm t;
   for(int i = 0; i < data.size(); ++i)
   {
@@ -742,37 +833,36 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
     const auto msec = dtTime.toMSecsSinceEpoch();
 
-    QList<double> values;
-
-    m_pollutionLine[0]->append(msec, entry.co);    values << entry.co;
-    m_pollutionLine[1]->append(msec, entry.no);    values << entry.no;
-    m_pollutionLine[2]->append(msec, entry.no2);   values << entry.no2;
-    m_pollutionLine[3]->append(msec, entry.o3);    values << entry.o3;
-    m_pollutionLine[4]->append(msec, entry.so2);   values << entry.so2;
-    m_pollutionLine[5]->append(msec, entry.pm2_5); values << entry.pm2_5;
-    m_pollutionLine[6]->append(msec, entry.pm10);  values << entry.pm10;
-    m_pollutionLine[7]->append(msec, entry.nh3);   values << entry.nh3;
+    pollutionLine[0]->append(msec, entry.co);
+    pollutionLine[1]->append(msec, entry.no);
+    pollutionLine[2]->append(msec, entry.no2);
+    pollutionLine[3]->append(msec, entry.o3);
+    pollutionLine[4]->append(msec, entry.so2);
+    pollutionLine[5]->append(msec, entry.pm2_5);
+    pollutionLine[6]->append(msec, entry.pm10);
+    pollutionLine[7]->append(msec, entry.nh3);
 
     plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), pollutionColor(entry.aqi));
-
-    std::sort(values.begin(), values.end());
-    min = std::min(min, values.first());
-    max = std::max(max, values.last());
   }
 
   forecastChart->setPlotAreaBackgroundBrush(plotAreaGradient);
   forecastChart->setPlotAreaBackgroundVisible(true);
 
-  axisY->setRange(min, max*1.1);
-
   for(int i = 0; i < 8; ++i)
   {
-    forecastChart->addSeries(m_pollutionLine[i]);
-    forecastChart->setAxisX(axisX, m_pollutionLine[i]);
-    forecastChart->setAxisY(axisY, m_pollutionLine[i]);
+    forecastChart->addSeries(pollutionLine[i]);
+    forecastChart->setAxisX(axisX, pollutionLine[i]);
+    forecastChart->setAxisY(axisY, pollutionLine[i]);
 
-    connect(m_pollutionLine[i], SIGNAL(hovered(const QPointF &, bool)),
-            this,              SLOT(onChartHover(const QPointF &, bool)));
+    connect(pollutionLine[i], SIGNAL(hovered(const QPointF &, bool)),
+            this,             SLOT(onChartHover(const QPointF &, bool)));
+  }
+
+  updateAxesRanges(forecastChart);
+
+  for(auto marker: forecastChart->legend()->markers())
+  {
+    connect(marker, SIGNAL(clicked()), this, SLOT(onLegendMarkerClicked()));
   }
 
   const auto scale = dpiScale();
@@ -882,6 +972,7 @@ void WeatherDialog::setUVData(const UV &data)
   auto uvChart = new QChart();
   uvChart->legend()->setVisible(true);
   uvChart->legend()->setAlignment(Qt::AlignBottom);
+  uvChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
   uvChart->setAnimationDuration(400);
   uvChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
   uvChart->setAnimationOptions(QChart::AllAnimations);
@@ -894,18 +985,17 @@ void WeatherDialog::setUVData(const UV &data)
   pen.setWidth(2);
   pen.setColor(QColor{90,90,235});
 
-  m_uvLine = new QSplineSeries(uvChart);
-  m_uvLine->setName(tr("UV Index"));
-  m_uvLine->setUseOpenGL(true);
-  m_uvLine->setPointsVisible(true);
-  m_uvLine->setPen(pen);
+  auto uvLine = new QSplineSeries(uvChart);
+  uvLine->setName(tr("UV Index"));
+  uvLine->setUseOpenGL(true);
+  uvLine->setPointsVisible(true);
+  uvLine->setPen(pen);
 
   QLinearGradient plotAreaGradient;
   plotAreaGradient.setStart(QPointF(0, 0));
   plotAreaGradient.setFinalStop(QPointF(1, 0));
   plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
 
-  double min = 20, max = 0;
   struct tm t;
   for(int i = 0; i < data.size(); ++i)
   {
@@ -915,28 +1005,25 @@ void WeatherDialog::setUVData(const UV &data)
     auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
     const auto msec = dtTime.toMSecsSinceEpoch();
 
-    m_uvLine->append(msec, entry.idx);
+    uvLine->append(msec, entry.idx);
 
     auto color = uvColor(entry.idx);
     if(static_cast<int>(std::nearbyint(entry.idx)) == 0) color = m_config->lightTheme ? this->palette().base().color() : QColor("#232629");
     color.setAlpha(210);
     plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), color);
-
-    min = std::min(min, entry.idx);
-    max = std::max(max, entry.idx);
   }
 
   uvChart->setPlotAreaBackgroundBrush(plotAreaGradient);
   uvChart->setPlotAreaBackgroundVisible(true);
 
-  axisY->setRange(min, max*1.1);
+  uvChart->addSeries(uvLine);
+  uvChart->setAxisX(axisX, uvLine);
+  uvChart->setAxisY(axisY, uvLine);
 
-  uvChart->addSeries(m_uvLine);
-  uvChart->setAxisX(axisX, m_uvLine);
-  uvChart->setAxisY(axisY, m_uvLine);
+  connect(uvLine, SIGNAL(hovered(const QPointF &, bool)),
+          this,   SLOT(onChartHover(const QPointF &, bool)));
 
-  connect(m_uvLine, SIGNAL(hovered(const QPointF &, bool)),
-          this,     SLOT(onChartHover(const QPointF &, bool)));
+  updateAxesRanges(uvChart);
 
   const auto scale = dpiScale();
   if(scale != 1.)
@@ -1300,6 +1387,82 @@ void WeatherDialog::loadMaps()
 }
 
 //--------------------------------------------------------------------
+void WeatherDialog::onChartHover(bool state, int index)
+{
+  auto series = qobject_cast<QBarSeries*>(sender());
+  if(!series) return;
+
+  if(m_weatherChart && m_weatherTooltip)
+  {
+    m_weatherTooltip->hide();
+    m_weatherTooltip = nullptr;
+  }
+
+  if(state)
+  {
+    auto bars = series->barSets().first();
+    const auto position = m_weatherChart->chart()->mapToPosition(QPointF{static_cast<double>(index), bars->at(index)}, series);
+
+    m_weatherTooltip = std::make_shared<WeatherWidget>(m_forecast->at(index), *m_config);
+    auto pos = m_weatherChart->mapToGlobal(position.toPoint());
+    pos = QPoint{pos.x()-m_weatherTooltip->width()/2, pos.y() - m_weatherTooltip->height() - 5};
+    m_weatherTooltip->move(pos);
+    m_weatherTooltip->show();
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onLegendMarkerClicked()
+{
+  auto marker = qobject_cast<QLegendMarker *>(sender());
+  if(marker)
+  {
+    auto chart = marker->series()->chart();
+
+    if(marker->series()->isVisible())
+    {
+      auto isVisible = [](const QAbstractSeries *s){ return s->isVisible(); };
+      auto series = chart->series();
+      auto visibleCount = std::count_if(series.cbegin(), series.cend(), isVisible);
+
+      if(visibleCount == 1) return; // at least one should be visible.
+
+      marker->series()->setVisible(false);
+
+      auto brush = marker->brush();
+      auto color = brush.color();
+      color.setAlphaF(0.5);
+      brush.setColor(color);
+      marker->setBrush(brush);
+      brush = marker->labelBrush();
+      color = brush.color();
+      color.setAlphaF(0.5);
+      brush.setColor(color);
+      marker->setLabelBrush(brush);
+      marker->setVisible(true);
+    }
+    else
+    {
+      marker->series()->setVisible(true);
+
+      auto brush = marker->brush();
+      auto color = brush.color();
+      color.setAlphaF(1);
+      brush.setColor(color);
+      marker->setBrush(brush);
+      brush = marker->labelBrush();
+      color = brush.color();
+      color.setAlphaF(1);
+      brush.setColor(color);
+      marker->setLabelBrush(brush);
+      marker->setVisible(true);
+    }
+
+    updateAxesRanges(chart);
+  }
+}
+
+//--------------------------------------------------------------------
 void WeatherDialog::removeMaps()
 {
   m_mapsButton->setText(tr("Show Maps"));
@@ -1322,5 +1485,63 @@ void WeatherDialog::removeMaps()
 
     m_webpage->deleteLater();
     m_webpage = nullptr;
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::updateAxesRanges(QtCharts::QChart *chart)
+{
+  auto series = chart->series();
+  auto axes = chart->axes(Qt::Vertical);
+
+  for(auto axis: axes)
+  {
+    int timesUsed = 0;
+    double minValue = 1000;
+    double maxValue = -1000;
+
+    for(auto serie: series)
+    {
+      if(serie->isVisible() && serie->attachedAxes().contains(axis))
+      {
+        ++timesUsed;
+
+        auto lineSerie = qobject_cast<QLineSeries *>(serie);
+        if(lineSerie)
+        {
+          for(int i = 0; i < lineSerie->count(); ++i)
+          {
+            const auto value = lineSerie->points().at(i).y();
+            minValue = std::min(minValue, value);
+            maxValue = std::max(maxValue, value);
+          }
+        }
+        else
+        {
+          auto barSerie = qobject_cast<QBarSeries *>(serie);
+
+
+          for(int i = 0; i < barSerie->barSets().first()->count(); ++i)
+          {
+            const auto value = barSerie->barSets().first()->at(i);
+            minValue = std::min(minValue, value);
+            maxValue = std::max(maxValue, value);
+          }
+        }
+      }
+    }
+
+    if(timesUsed > 0)
+    {
+      maxValue *= 1.1;
+      if(axis->property("axisType").toString().compare("temp", Qt::CaseInsensitive) == 0)
+      {
+        minValue -= 1;
+      }
+
+      axis->setRange(minValue, maxValue);
+    }
+
+    axis->setVisible(timesUsed > 0);
   }
 }

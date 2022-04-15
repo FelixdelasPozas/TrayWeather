@@ -253,10 +253,15 @@ void TrayWeather::showConfiguration()
   m_configuration.autostart       = configuration.autostart;
   m_configuration.language        = configuration.language;
   m_configuration.tooltipFields   = configuration.tooltipFields;
-  m_configuration.graphUseRain    = configuration.graphUseRain;
   m_configuration.showAlerts      = configuration.showAlerts;
   m_configuration.swapTrayIcons   = configuration.swapTrayIcons;
   m_configuration.trayIconSize    = configuration.trayIconSize;
+  m_configuration.tempRepr        = configuration.tempRepr;
+  m_configuration.rainRepr        = configuration.rainRepr;
+  m_configuration.snowRepr        = configuration.snowRepr;
+  m_configuration.tempReprColor   = configuration.tempReprColor;
+  m_configuration.rainReprColor   = configuration.rainReprColor;
+  m_configuration.snowReprColor   = configuration.snowReprColor;
 
   bool requestNewData = false;
 
@@ -329,21 +334,24 @@ void TrayWeather::showConfiguration()
       requestNewData = true;
     }
 
-    if(!requestNewData)
+    if(m_weatherDialog)
     {
-      if(m_weatherDialog && validData())
+      if(!requestNewData)
       {
-        m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
-      }
+        if(validData())
+        {
+          m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
+        }
 
-      if(m_weatherDialog && !m_pData.isEmpty())
-      {
-        m_weatherDialog->setPollutionData(m_pData);
-      }
+        if(!m_pData.isEmpty())
+        {
+          m_weatherDialog->setPollutionData(m_pData);
+        }
 
-      if(m_weatherDialog && !m_vData.isEmpty())
-      {
-        m_weatherDialog->setUVData(m_vData);
+        if(!m_vData.isEmpty())
+        {
+          m_weatherDialog->setUVData(m_vData);
+        }
       }
     }
 
@@ -506,7 +514,7 @@ void TrayWeather::updateTooltip()
         {
           const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
 
-          //constructing temp object only to get path for border.
+          //constructing temporal object only to get path for border.
           QGraphicsPixmapItem tempItem(tempPixmap);
           tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
           const auto path = tempItem.shape();
