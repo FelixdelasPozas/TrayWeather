@@ -65,30 +65,30 @@ The tray and application theme configuration can be found here in the miscellane
 
 Configuration dialog in Spanish with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/160021986-871ec316-c6b3-4543-a712-a538b49a4787.png)
+![config](https://user-images.githubusercontent.com/12167134/163626756-3aafe0c3-2376-46ce-b7d1-a393142b4f59.png)
 
 Configuration dialog in English with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/160021990-2bb65e1c-5927-4c38-b9a1-8aaf3588215c.png)
+![config_dark](https://user-images.githubusercontent.com/12167134/163626752-2e9f1d0d-ec23-4ced-b0a3-1b9fda4580c4.png)
 
 Weather dialog, showing the current weather tab. 
 
 ![weather](https://user-images.githubusercontent.com/12167134/127046991-e2eb1e5c-73d7-4ece-b9c4-dfff8dd1648e.png)
 
-Weather forecast for the next days. If the user puts the mouse over a point in the temperature line a tooltip will provide the weather conditions for that day and hour. 
-The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph.
+Weather forecast for the next days. If the user puts the mouse over a point in the temperature line or a bar a tooltip will provide the weather conditions for that day and hour. 
+The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph. Data series can be hidden and shown again by clicking on its legend text.
 
 ![forecast_graph](https://user-images.githubusercontent.com/12167134/109207324-4b36e800-77a9-11eb-9891-291c907d0aef.png)
 
 Pollution forecast can be obtained in the third tab, showing the projections for the next days. The chart can be zoomed in the X axis and
 resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines and
-the background is colored according to air quality value. 
+the background is colored according to air quality value. As with the weather forecast it can be zoomed in and graph series can be hidden and shown again in the same way. 
 
 ![pollution](https://user-images.githubusercontent.com/12167134/109207327-4bcf7e80-77a9-11eb-89a0-dd704e8969ad.png)
 
 Ultraviolet radiation forecast can be obtained in the "UV" tab, showing the projection for the next 24 hours colored according to the World
 Health Organization color code. The UV chart also has a information tooltip that appears when the mouse cursor is near a point of the radiation
-index line showing the index value and recommendations.  
+index line showing the index value and recommendations. The zoom method and reset buttons works also with the UV graph. 
 
 ![radiation](https://user-images.githubusercontent.com/12167134/127046989-ad7a3d32-adb9-486f-a37b-1dddf95b935a.png)
 
@@ -116,7 +116,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 362 texts.
+and making a pull request. Currently it's just 373 texts.
 
 To do it manually just edit the 'empty translation' file and replace the untranslated messages:
 
@@ -140,7 +140,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.20.1
+**Version**: 1.21.0
 
 **Status**: finished.
 
@@ -148,8 +148,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 968         |   383            | 4756 |
-| C/C++ Header                 |  10           | 279         |   813            |  909 |
-| HTML                         |   1           |  33         |     0            |  150 |
-| CMake                        |   1           |  19         |    11            |  121 |
-| **Total**                    | **22**        | **1299**    | **1207**         | **5936** |
+| C++                          |  10           | 1003        |   387            | 4969 |
+| C/C++ Header                 |  10           |  281        |   825            |  921 |
+| HTML                         |   1           |   33        |     0            |  150 |
+| CMake                        |   1           |   19        |    11            |  121 |
+| **Total**                    | **22**        | **1336**    | **1223**         | **6161** |
