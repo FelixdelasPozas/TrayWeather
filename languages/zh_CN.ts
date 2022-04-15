@@ -407,274 +407,274 @@
         <translation>雪</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1278"/>
+        <location filename="../ConfigurationDialog.ui" line="1281"/>
         <source>Tray Icon</source>
         <translation>托盘图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1298"/>
+        <location filename="../ConfigurationDialog.ui" line="1301"/>
         <source>Selects the temperature icon text color</source>
         <translation>选择温度图标文字颜色</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1323"/>
+        <location filename="../ConfigurationDialog.ui" line="1326"/>
         <source>Icon type</source>
         <translation>图标样式</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1331"/>
+        <location filename="../ConfigurationDialog.ui" line="1334"/>
         <source>Weather icon</source>
         <translation>天气图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1336"/>
+        <location filename="../ConfigurationDialog.ui" line="1339"/>
         <source>Temperature icon</source>
         <translation>温度图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1341"/>
+        <location filename="../ConfigurationDialog.ui" line="1344"/>
         <source>Weather &amp; temperature icon</source>
         <translation>合并的天气温度图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1346"/>
+        <location filename="../ConfigurationDialog.ui" line="1349"/>
         <source>Weather icon &amp; temperature icon</source>
         <translation>分开的天气温度图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1366"/>
-        <location filename="../ConfigurationDialog.ui" line="1378"/>
+        <location filename="../ConfigurationDialog.ui" line="1369"/>
+        <location filename="../ConfigurationDialog.ui" line="1381"/>
         <source>Selects the icon theme.</source>
         <translation>选择图标主题</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1369"/>
+        <location filename="../ConfigurationDialog.ui" line="1372"/>
         <source>Icon theme</source>
         <translation>图标主题</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1394"/>
+        <location filename="../ConfigurationDialog.ui" line="1397"/>
         <source>Changes icon theme color.</source>
         <translation>更改图标主题颜色</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1410"/>
+        <location filename="../ConfigurationDialog.ui" line="1413"/>
         <source>Shows a summary of theme icons.</source>
         <translation>显示主题图标的概览</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1485"/>
+        <location filename="../ConfigurationDialog.ui" line="1488"/>
         <source>Variable</source>
         <translation>可变的</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1504"/>
+        <location filename="../ConfigurationDialog.ui" line="1507"/>
         <source>Click to change minimum value color...</source>
         <translation>点击更改最小值的颜色...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1520"/>
+        <location filename="../ConfigurationDialog.ui" line="1523"/>
         <source>Range</source>
         <translation>范围</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1545"/>
+        <location filename="../ConfigurationDialog.ui" line="1548"/>
         <source>Click to change maximum value color...</source>
         <translation>点击更改最大值的颜色...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1776"/>
-        <location filename="../ConfigurationDialog.ui" line="1791"/>
-        <location filename="../ConfigurationDialog.ui" line="1810"/>
+        <location filename="../ConfigurationDialog.ui" line="1779"/>
+        <location filename="../ConfigurationDialog.ui" line="1794"/>
+        <location filename="../ConfigurationDialog.ui" line="1813"/>
         <source>Modifies the temperature icon size.</source>
         <translation>修改温度图标大小。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1779"/>
+        <location filename="../ConfigurationDialog.ui" line="1782"/>
         <source>Temperature icon size</source>
         <translation>温度图标大小</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2214"/>
-        <location filename="../ConfigurationDialog.ui" line="2227"/>
+        <location filename="../ConfigurationDialog.ui" line="2217"/>
+        <location filename="../ConfigurationDialog.ui" line="2230"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
         <translation>切换托盘图标。 仅在已使用两种图标展示时启用。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1430"/>
+        <location filename="../ConfigurationDialog.ui" line="1433"/>
         <source>Fixed</source>
         <translation>固定的</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1452"/>
+        <location filename="../ConfigurationDialog.ui" line="1455"/>
         <source>Click to change fixed color...</source>
         <translation>点击更改固定的颜色...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1301"/>
+        <location filename="../ConfigurationDialog.ui" line="1304"/>
         <source>Temperature text color</source>
         <translation>温度文字的颜色</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1078"/>
         <source>Rain representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>预报图中的降雨显示。</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1082"/>
         <location filename="../ConfigurationDialog.ui" line="1149"/>
         <location filename="../ConfigurationDialog.ui" line="1184"/>
         <source>None</source>
-        <translation type="unfinished">无</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1087"/>
         <location filename="../ConfigurationDialog.ui" line="1154"/>
         <location filename="../ConfigurationDialog.ui" line="1189"/>
         <source>Smooth Line</source>
-        <translation type="unfinished"></translation>
+        <translation>流畅的线条</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1092"/>
         <location filename="../ConfigurationDialog.ui" line="1159"/>
         <location filename="../ConfigurationDialog.ui" line="1194"/>
         <source>Bars</source>
-        <translation type="unfinished"></translation>
+        <translation>条</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1119"/>
         <source>Rain representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>预报图中的降雨显示的颜色。</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1135"/>
         <source>Temperature representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>预测图中的温度显示的颜色。</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1145"/>
         <source>Temperature representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>预测图中的温度显示。</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1180"/>
         <source>Snow representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>预测图中的降雪显示。</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1208"/>
         <source>Snow representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>预测图中的降雪显示的颜色。</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1223"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; In the forecast graphs the information can be hidden and shown again by clicking on the legend title text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;提示：&lt;/span&gt; 在预测图表中，可以通过单击图例标题文本来隐藏或显示信息。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1565"/>
+        <location filename="../ConfigurationDialog.ui" line="1568"/>
         <source>from</source>
         <translation>从</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1584"/>
+        <location filename="../ConfigurationDialog.ui" line="1587"/>
         <source>Minimum range value</source>
         <translation>范围最小值</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1606"/>
+        <location filename="../ConfigurationDialog.ui" line="1609"/>
         <source>to</source>
         <translation>到</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1625"/>
+        <location filename="../ConfigurationDialog.ui" line="1628"/>
         <source>Maximum range value</source>
         <translation>范围最大值</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1657"/>
-        <location filename="../ConfigurationDialog.ui" line="1667"/>
+        <location filename="../ConfigurationDialog.ui" line="1660"/>
+        <location filename="../ConfigurationDialog.ui" line="1670"/>
         <source>Draw a border around temperature icon text.</source>
         <translation>在温度图标文字周围增加一个边框</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1670"/>
+        <location filename="../ConfigurationDialog.ui" line="1673"/>
         <source>Draw a border around text for better contrast.</source>
         <translation>在文字周围增加一个边框以获得更好的对比度</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1684"/>
-        <location filename="../ConfigurationDialog.ui" line="1721"/>
+        <location filename="../ConfigurationDialog.ui" line="1687"/>
+        <location filename="../ConfigurationDialog.ui" line="1724"/>
         <source>Selects the temperature icon text font</source>
         <translation>选择温度图标文字字体</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1703"/>
+        <location filename="../ConfigurationDialog.ui" line="1706"/>
         <source>Preview of the temperature icon</source>
         <translation>预览温度图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1724"/>
+        <location filename="../ConfigurationDialog.ui" line="1727"/>
         <source>Temperature text font</source>
         <translation>温度文字字体</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1755"/>
+        <location filename="../ConfigurationDialog.ui" line="1758"/>
         <source>Stretch font vertically.</source>
         <translation>垂直地拉伸字体。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1845"/>
+        <location filename="../ConfigurationDialog.ui" line="1848"/>
         <source>Configure the tray icon tooltip text. </source>
         <translation>配置托盘图标悬浮文字提示</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1861"/>
+        <location filename="../ConfigurationDialog.ui" line="1864"/>
         <source>Tray Tooltip</source>
         <translation>托盘图标悬浮文字提示</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1882"/>
+        <location filename="../ConfigurationDialog.ui" line="1885"/>
         <source>Value:</source>
         <translation>值:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1889"/>
+        <location filename="../ConfigurationDialog.ui" line="1892"/>
         <source>Value to add to the list.</source>
         <translation>选值来添加到列表。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1902"/>
+        <location filename="../ConfigurationDialog.ui" line="1905"/>
         <source>Add value to tooltip text</source>
         <translation>把所选值添加到悬浮文字提示</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1949"/>
+        <location filename="../ConfigurationDialog.ui" line="1952"/>
         <source>Move value up.</source>
         <translation>把值往上移。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1963"/>
+        <location filename="../ConfigurationDialog.ui" line="1966"/>
         <source>Move value down.</source>
         <translation>把值往下移。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1977"/>
+        <location filename="../ConfigurationDialog.ui" line="1980"/>
         <source>Remove value from tooltip text</source>
         <translation>把所选值从悬浮文字提示移除</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1997"/>
+        <location filename="../ConfigurationDialog.ui" line="2000"/>
         <source>Miscellaneous</source>
         <translation>其他</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2020"/>
+        <location filename="../ConfigurationDialog.ui" line="2023"/>
         <source>Time between update requests</source>
         <translation>更新请求的间隔时长</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2033"/>
+        <location filename="../ConfigurationDialog.ui" line="2036"/>
         <source> minutes</source>
         <translation> 分钟</translation>
     </message>
@@ -684,58 +684,58 @@
         <translation>衡量单位</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1247"/>
+        <location filename="../ConfigurationDialog.ui" line="1250"/>
         <source>Visuals</source>
         <translation>图示</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1742"/>
-        <location filename="../ConfigurationDialog.ui" line="1752"/>
+        <location filename="../ConfigurationDialog.ui" line="1745"/>
+        <location filename="../ConfigurationDialog.ui" line="1755"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
         <translation>垂直地拉伸字体以占据图标中的所有可用空间。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1867"/>
+        <location filename="../ConfigurationDialog.ui" line="1870"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>悬浮文字提示中显示的值是当前值或最接近当前本地时间的预测值。值按列表从上至下的顺序显示。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2061"/>
+        <location filename="../ConfigurationDialog.ui" line="2064"/>
         <source>Visual theme</source>
         <translation>图示主题</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2069"/>
+        <location filename="../ConfigurationDialog.ui" line="2072"/>
         <source>Light</source>
         <translation>亮</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2074"/>
+        <location filename="../ConfigurationDialog.ui" line="2077"/>
         <source>Dark</source>
         <translation>暗</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2094"/>
+        <location filename="../ConfigurationDialog.ui" line="2097"/>
         <source>Check for updates</source>
         <translation>检查更新</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2102"/>
+        <location filename="../ConfigurationDialog.ui" line="2105"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2107"/>
+        <location filename="../ConfigurationDialog.ui" line="2110"/>
         <source>Once a day</source>
         <translation>每天一次</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2112"/>
+        <location filename="../ConfigurationDialog.ui" line="2115"/>
         <source>Once a week</source>
         <translation>每周一次</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2117"/>
+        <location filename="../ConfigurationDialog.ui" line="2120"/>
         <source>Once a month</source>
         <translation>每月一次</translation>
     </message>
@@ -750,37 +750,37 @@
         <translation>英制单位 (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2137"/>
+        <location filename="../ConfigurationDialog.ui" line="2140"/>
         <source>Autostart at login</source>
         <translation>登录时自动启动</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2163"/>
+        <location filename="../ConfigurationDialog.ui" line="2166"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2185"/>
+        <location filename="../ConfigurationDialog.ui" line="2188"/>
         <source>Show weather alerts</source>
         <translation>展示天气警告</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2217"/>
+        <location filename="../ConfigurationDialog.ui" line="2220"/>
         <source>Swap tray icons</source>
         <translation>切换托盘图标</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2239"/>
+        <location filename="../ConfigurationDialog.ui" line="2242"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>如果尚未提供你的语言，你可以帮助提供一个 &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2293"/>
+        <location filename="../ConfigurationDialog.ui" line="2296"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2300"/>
+        <location filename="../ConfigurationDialog.ui" line="2303"/>
         <source>Ok</source>
         <translation>好的</translation>
     </message>
@@ -1838,7 +1838,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="130"/>
         <source>Accumulation</source>
-        <translation type="unfinished"></translation>
+        <translation>降水量</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="170"/>
@@ -1866,7 +1866,7 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="798"/>
         <location filename="../WeatherDialog.cpp" line="975"/>
         <source>Click to hide or show the forecast.</source>
-        <translation type="unfinished"></translation>
+        <translation>单击以隐藏或显示预测。</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="758"/>

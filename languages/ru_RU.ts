@@ -407,274 +407,274 @@
         <translation>Снег</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1278"/>
+        <location filename="../ConfigurationDialog.ui" line="1281"/>
         <source>Tray Icon</source>
         <translation>Значок в трее</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1298"/>
+        <location filename="../ConfigurationDialog.ui" line="1301"/>
         <source>Selects the temperature icon text color</source>
         <translation>Выбор цвета текста значка температуры</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1323"/>
+        <location filename="../ConfigurationDialog.ui" line="1326"/>
         <source>Icon type</source>
         <translation>Тип значка</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1331"/>
+        <location filename="../ConfigurationDialog.ui" line="1334"/>
         <source>Weather icon</source>
         <translation>Значок погоды</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1336"/>
+        <location filename="../ConfigurationDialog.ui" line="1339"/>
         <source>Temperature icon</source>
         <translation>Значок температуры</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1341"/>
+        <location filename="../ConfigurationDialog.ui" line="1344"/>
         <source>Weather &amp; temperature icon</source>
         <translation>Значок погоды с температурой</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1346"/>
+        <location filename="../ConfigurationDialog.ui" line="1349"/>
         <source>Weather icon &amp; temperature icon</source>
         <translation>Значки погоды и температуры</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1366"/>
-        <location filename="../ConfigurationDialog.ui" line="1378"/>
+        <location filename="../ConfigurationDialog.ui" line="1369"/>
+        <location filename="../ConfigurationDialog.ui" line="1381"/>
         <source>Selects the icon theme.</source>
         <translation>Выбор темы значков.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1369"/>
+        <location filename="../ConfigurationDialog.ui" line="1372"/>
         <source>Icon theme</source>
         <translation>Тема значков</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1394"/>
+        <location filename="../ConfigurationDialog.ui" line="1397"/>
         <source>Changes icon theme color.</source>
         <translation>Смена цвета темы значков.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1410"/>
+        <location filename="../ConfigurationDialog.ui" line="1413"/>
         <source>Shows a summary of theme icons.</source>
         <translation>Отображение сводки по теме значков.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1485"/>
+        <location filename="../ConfigurationDialog.ui" line="1488"/>
         <source>Variable</source>
         <translation>Переменный</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1504"/>
+        <location filename="../ConfigurationDialog.ui" line="1507"/>
         <source>Click to change minimum value color...</source>
         <translation>Щёлкните для смены цвета минимального значения...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1520"/>
+        <location filename="../ConfigurationDialog.ui" line="1523"/>
         <source>Range</source>
         <translation>Диапазон</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1545"/>
+        <location filename="../ConfigurationDialog.ui" line="1548"/>
         <source>Click to change maximum value color...</source>
         <translation>Щёлкните для смены цвета максимального значения...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1776"/>
-        <location filename="../ConfigurationDialog.ui" line="1791"/>
-        <location filename="../ConfigurationDialog.ui" line="1810"/>
+        <location filename="../ConfigurationDialog.ui" line="1779"/>
+        <location filename="../ConfigurationDialog.ui" line="1794"/>
+        <location filename="../ConfigurationDialog.ui" line="1813"/>
         <source>Modifies the temperature icon size.</source>
         <translation>Меняет размер значка температуры.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1779"/>
+        <location filename="../ConfigurationDialog.ui" line="1782"/>
         <source>Temperature icon size</source>
         <translation>Размер значка температуры</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2214"/>
-        <location filename="../ConfigurationDialog.ui" line="2227"/>
+        <location filename="../ConfigurationDialog.ui" line="2217"/>
+        <location filename="../ConfigurationDialog.ui" line="2230"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
         <translation>Меняет местами значки в трее. Активно, когда используется отображение в виде двух значков.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1430"/>
+        <location filename="../ConfigurationDialog.ui" line="1433"/>
         <source>Fixed</source>
         <translation>Постоянный</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1452"/>
+        <location filename="../ConfigurationDialog.ui" line="1455"/>
         <source>Click to change fixed color...</source>
         <translation>Щёлкните для смены постоянного цвета...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1301"/>
+        <location filename="../ConfigurationDialog.ui" line="1304"/>
         <source>Temperature text color</source>
         <translation>Цвет текста температуры</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1078"/>
         <source>Rain representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображение дождя на графике прогноза.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1082"/>
         <location filename="../ConfigurationDialog.ui" line="1149"/>
         <location filename="../ConfigurationDialog.ui" line="1184"/>
         <source>None</source>
-        <translation type="unfinished">Нет</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1087"/>
         <location filename="../ConfigurationDialog.ui" line="1154"/>
         <location filename="../ConfigurationDialog.ui" line="1189"/>
         <source>Smooth Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Гладкая линия</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1092"/>
         <location filename="../ConfigurationDialog.ui" line="1159"/>
         <location filename="../ConfigurationDialog.ui" line="1194"/>
         <source>Bars</source>
-        <translation type="unfinished"></translation>
+        <translation>Полосы</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1119"/>
         <source>Rain representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвет отображения дождя на графике прогноза.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1135"/>
         <source>Temperature representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвет отображения температуры на графике прогноза.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1145"/>
         <source>Temperature representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображение температуры на графике прогноза.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1180"/>
         <source>Snow representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображение снега на графике прогноза.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1208"/>
         <source>Snow representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвет отображения снега на графике прогноза.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1223"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; In the forecast graphs the information can be hidden and shown again by clicking on the legend title text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Примечание:&lt;/span&gt; Информацию на графиках прогноза можно скрыть и показать снова щелчком по тексту заголовка легенды.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1565"/>
+        <location filename="../ConfigurationDialog.ui" line="1568"/>
         <source>from</source>
         <translation>от</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1584"/>
+        <location filename="../ConfigurationDialog.ui" line="1587"/>
         <source>Minimum range value</source>
         <translation>Минимальное значение диапазона</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1606"/>
+        <location filename="../ConfigurationDialog.ui" line="1609"/>
         <source>to</source>
         <translation>до</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1625"/>
+        <location filename="../ConfigurationDialog.ui" line="1628"/>
         <source>Maximum range value</source>
         <translation>Максимальное значение диапазона</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1657"/>
-        <location filename="../ConfigurationDialog.ui" line="1667"/>
+        <location filename="../ConfigurationDialog.ui" line="1660"/>
+        <location filename="../ConfigurationDialog.ui" line="1670"/>
         <source>Draw a border around temperature icon text.</source>
         <translation>Рисовать обводку вокруг текста значка температуры.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1670"/>
+        <location filename="../ConfigurationDialog.ui" line="1673"/>
         <source>Draw a border around text for better contrast.</source>
         <translation>Рисовать обводку текста для лучшего контраста.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1684"/>
-        <location filename="../ConfigurationDialog.ui" line="1721"/>
+        <location filename="../ConfigurationDialog.ui" line="1687"/>
+        <location filename="../ConfigurationDialog.ui" line="1724"/>
         <source>Selects the temperature icon text font</source>
         <translation>Выбор шрифта текста значка температуры</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1703"/>
+        <location filename="../ConfigurationDialog.ui" line="1706"/>
         <source>Preview of the temperature icon</source>
         <translation>Предпросмотр значка температуры</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1724"/>
+        <location filename="../ConfigurationDialog.ui" line="1727"/>
         <source>Temperature text font</source>
         <translation>Шрифт текста температуры</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1755"/>
+        <location filename="../ConfigurationDialog.ui" line="1758"/>
         <source>Stretch font vertically.</source>
         <translation>Растянуть шрифт по вертикали.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1845"/>
+        <location filename="../ConfigurationDialog.ui" line="1848"/>
         <source>Configure the tray icon tooltip text. </source>
         <translation>Настройка текста всплывающей подсказки значка в трее. </translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1861"/>
+        <location filename="../ConfigurationDialog.ui" line="1864"/>
         <source>Tray Tooltip</source>
         <translation>Подсказка в трее</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1882"/>
+        <location filename="../ConfigurationDialog.ui" line="1885"/>
         <source>Value:</source>
         <translation>Величина:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1889"/>
+        <location filename="../ConfigurationDialog.ui" line="1892"/>
         <source>Value to add to the list.</source>
         <translation>Величина, которую можно добавить в список.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1902"/>
+        <location filename="../ConfigurationDialog.ui" line="1905"/>
         <source>Add value to tooltip text</source>
         <translation>Добавить величину в текст всплывающей подсказки</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1949"/>
+        <location filename="../ConfigurationDialog.ui" line="1952"/>
         <source>Move value up.</source>
         <translation>Сдвинуть величину вверх.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1963"/>
+        <location filename="../ConfigurationDialog.ui" line="1966"/>
         <source>Move value down.</source>
         <translation>Сдвинуть величину вниз.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1977"/>
+        <location filename="../ConfigurationDialog.ui" line="1980"/>
         <source>Remove value from tooltip text</source>
         <translation>Удалить величину из текста всплывающей подсказки</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1997"/>
+        <location filename="../ConfigurationDialog.ui" line="2000"/>
         <source>Miscellaneous</source>
         <translation>Прочее</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2020"/>
+        <location filename="../ConfigurationDialog.ui" line="2023"/>
         <source>Time between update requests</source>
         <translation>Интервал обновления погоды</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2033"/>
+        <location filename="../ConfigurationDialog.ui" line="2036"/>
         <source> minutes</source>
         <translation> минут</translation>
     </message>
@@ -684,58 +684,58 @@
         <translation>Единицы измерения</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1247"/>
+        <location filename="../ConfigurationDialog.ui" line="1250"/>
         <source>Visuals</source>
         <translation>Оформление</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1742"/>
-        <location filename="../ConfigurationDialog.ui" line="1752"/>
+        <location filename="../ConfigurationDialog.ui" line="1745"/>
+        <location filename="../ConfigurationDialog.ui" line="1755"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
         <translation>Растягивает шрифт по вертикали, чтобы занять всё пространство значка.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1867"/>
+        <location filename="../ConfigurationDialog.ui" line="1870"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>Величины во всплывающей подсказке являются текущими или ближайшими прогнозными к фактическому местному времени. Порядок величин в подсказке соответствует порядку из списка ниже.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2061"/>
+        <location filename="../ConfigurationDialog.ui" line="2064"/>
         <source>Visual theme</source>
         <translation>Тема оформления</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2069"/>
+        <location filename="../ConfigurationDialog.ui" line="2072"/>
         <source>Light</source>
         <translation>Светлая</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2074"/>
+        <location filename="../ConfigurationDialog.ui" line="2077"/>
         <source>Dark</source>
         <translation>Тёмная</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2094"/>
+        <location filename="../ConfigurationDialog.ui" line="2097"/>
         <source>Check for updates</source>
         <translation>Проверка обновлений</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2102"/>
+        <location filename="../ConfigurationDialog.ui" line="2105"/>
         <source>Never</source>
         <translation>Никогда</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2107"/>
+        <location filename="../ConfigurationDialog.ui" line="2110"/>
         <source>Once a day</source>
         <translation>Ежедневно</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2112"/>
+        <location filename="../ConfigurationDialog.ui" line="2115"/>
         <source>Once a week</source>
         <translation>Еженедельно</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2117"/>
+        <location filename="../ConfigurationDialog.ui" line="2120"/>
         <source>Once a month</source>
         <translation>Ежемесячно</translation>
     </message>
@@ -750,37 +750,37 @@
         <translation>Имперская система (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2137"/>
+        <location filename="../ConfigurationDialog.ui" line="2140"/>
         <source>Autostart at login</source>
         <translation>Автозапуск при входе</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2163"/>
+        <location filename="../ConfigurationDialog.ui" line="2166"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2185"/>
+        <location filename="../ConfigurationDialog.ui" line="2188"/>
         <source>Show weather alerts</source>
         <translation>Показывать оповещения о погоде</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2217"/>
+        <location filename="../ConfigurationDialog.ui" line="2220"/>
         <source>Swap tray icons</source>
         <translation>Поменять местами значки в трее</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2239"/>
+        <location filename="../ConfigurationDialog.ui" line="2242"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Если ваш язык отсутствует, вы можете помочь с &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;переводом&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2293"/>
+        <location filename="../ConfigurationDialog.ui" line="2296"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2300"/>
+        <location filename="../ConfigurationDialog.ui" line="2303"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
@@ -1766,7 +1766,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="130"/>
         <source>Accumulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="170"/>
@@ -1807,7 +1807,7 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="798"/>
         <location filename="../WeatherDialog.cpp" line="975"/>
         <source>Click to hide or show the forecast.</source>
-        <translation type="unfinished"></translation>
+        <translation>Щёлкните, чтобы скрыть или показать прогноз.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="655"/>

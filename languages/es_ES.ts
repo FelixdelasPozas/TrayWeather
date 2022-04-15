@@ -407,111 +407,111 @@
         <translation>Nieve</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1278"/>
+        <location filename="../ConfigurationDialog.ui" line="1281"/>
         <source>Tray Icon</source>
         <translation>Icono de bandeja</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1298"/>
+        <location filename="../ConfigurationDialog.ui" line="1301"/>
         <source>Selects the temperature icon text color</source>
         <translation>Selecciona el color del texto del icono de temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1323"/>
+        <location filename="../ConfigurationDialog.ui" line="1326"/>
         <source>Icon type</source>
         <translation>Tipo de icono</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1331"/>
+        <location filename="../ConfigurationDialog.ui" line="1334"/>
         <source>Weather icon</source>
         <translation>Icono meteorologico</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1336"/>
+        <location filename="../ConfigurationDialog.ui" line="1339"/>
         <source>Temperature icon</source>
         <translation>Icono de temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1341"/>
+        <location filename="../ConfigurationDialog.ui" line="1344"/>
         <source>Weather &amp; temperature icon</source>
         <translation>Icono meteorológico y temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1346"/>
+        <location filename="../ConfigurationDialog.ui" line="1349"/>
         <source>Weather icon &amp; temperature icon</source>
         <translation>Icono meteorológico e icono de temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1366"/>
-        <location filename="../ConfigurationDialog.ui" line="1378"/>
+        <location filename="../ConfigurationDialog.ui" line="1369"/>
+        <location filename="../ConfigurationDialog.ui" line="1381"/>
         <source>Selects the icon theme.</source>
         <translation>Selecciona el tema de iconos.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1369"/>
+        <location filename="../ConfigurationDialog.ui" line="1372"/>
         <source>Icon theme</source>
         <translation>Tema de icono</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1394"/>
+        <location filename="../ConfigurationDialog.ui" line="1397"/>
         <source>Changes icon theme color.</source>
         <translation>Cambia el color del tema de iconos.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1410"/>
+        <location filename="../ConfigurationDialog.ui" line="1413"/>
         <source>Shows a summary of theme icons.</source>
         <translation>Muestra un sumario de los iconos del tema.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1485"/>
+        <location filename="../ConfigurationDialog.ui" line="1488"/>
         <source>Variable</source>
         <translation>Variable</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1504"/>
+        <location filename="../ConfigurationDialog.ui" line="1507"/>
         <source>Click to change minimum value color...</source>
         <translation>Click para cambiar el valor del color mínimo...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1520"/>
+        <location filename="../ConfigurationDialog.ui" line="1523"/>
         <source>Range</source>
         <translation>Rango</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1545"/>
+        <location filename="../ConfigurationDialog.ui" line="1548"/>
         <source>Click to change maximum value color...</source>
         <translation>Click para cambiar el color del valor mínimo...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1776"/>
-        <location filename="../ConfigurationDialog.ui" line="1791"/>
-        <location filename="../ConfigurationDialog.ui" line="1810"/>
+        <location filename="../ConfigurationDialog.ui" line="1779"/>
+        <location filename="../ConfigurationDialog.ui" line="1794"/>
+        <location filename="../ConfigurationDialog.ui" line="1813"/>
         <source>Modifies the temperature icon size.</source>
         <translation>Modifica el tamaño del icono de temperatura.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1779"/>
+        <location filename="../ConfigurationDialog.ui" line="1782"/>
         <source>Temperature icon size</source>
         <translation>Tamaño del icono de temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2214"/>
-        <location filename="../ConfigurationDialog.ui" line="2227"/>
+        <location filename="../ConfigurationDialog.ui" line="2217"/>
+        <location filename="../ConfigurationDialog.ui" line="2230"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
         <translation>Intercambia los iconos de bandeja. Sólo disponible si se usa la representación de dos iconos.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1430"/>
+        <location filename="../ConfigurationDialog.ui" line="1433"/>
         <source>Fixed</source>
         <translation>Fijo</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1452"/>
+        <location filename="../ConfigurationDialog.ui" line="1455"/>
         <source>Click to change fixed color...</source>
         <translation>Click para cambiar el color fijo...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1301"/>
+        <location filename="../ConfigurationDialog.ui" line="1304"/>
         <source>Temperature text color</source>
         <translation>Color del texto</translation>
     </message>
@@ -572,109 +572,109 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Nota:&lt;/span&gt; En el gráfico de pronóstico la información puede ocultarse y volverse a mostrar pulsando sobre el texto de la leyenda.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1565"/>
+        <location filename="../ConfigurationDialog.ui" line="1568"/>
         <source>from</source>
         <translation>desde</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1584"/>
+        <location filename="../ConfigurationDialog.ui" line="1587"/>
         <source>Minimum range value</source>
         <translation>Valor mínimo del rango</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1606"/>
+        <location filename="../ConfigurationDialog.ui" line="1609"/>
         <source>to</source>
         <translation>hasta</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1625"/>
+        <location filename="../ConfigurationDialog.ui" line="1628"/>
         <source>Maximum range value</source>
         <translation>Valor máximo del rango</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1657"/>
-        <location filename="../ConfigurationDialog.ui" line="1667"/>
+        <location filename="../ConfigurationDialog.ui" line="1660"/>
+        <location filename="../ConfigurationDialog.ui" line="1670"/>
         <source>Draw a border around temperature icon text.</source>
         <translation>Dibuja un borde alrededor del texto del icono de temperatura.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1670"/>
+        <location filename="../ConfigurationDialog.ui" line="1673"/>
         <source>Draw a border around text for better contrast.</source>
         <translation>Dibuja un borde alrededor del texto para un mejor contraste.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1684"/>
-        <location filename="../ConfigurationDialog.ui" line="1721"/>
+        <location filename="../ConfigurationDialog.ui" line="1687"/>
+        <location filename="../ConfigurationDialog.ui" line="1724"/>
         <source>Selects the temperature icon text font</source>
         <translation>Selecciona la fuente del texto del icono de temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1703"/>
+        <location filename="../ConfigurationDialog.ui" line="1706"/>
         <source>Preview of the temperature icon</source>
         <translation>Previsualiza el icono de temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1724"/>
+        <location filename="../ConfigurationDialog.ui" line="1727"/>
         <source>Temperature text font</source>
         <translation>Fuente del texto</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1755"/>
+        <location filename="../ConfigurationDialog.ui" line="1758"/>
         <source>Stretch font vertically.</source>
         <translation>Alarga la fuente verticalmente.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1845"/>
+        <location filename="../ConfigurationDialog.ui" line="1848"/>
         <source>Configure the tray icon tooltip text. </source>
         <translation>Configura el texto del icono de bandeja. </translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1861"/>
+        <location filename="../ConfigurationDialog.ui" line="1864"/>
         <source>Tray Tooltip</source>
         <translation>Texto del icono de bandeja</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1882"/>
+        <location filename="../ConfigurationDialog.ui" line="1885"/>
         <source>Value:</source>
         <translation>Valor:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1889"/>
+        <location filename="../ConfigurationDialog.ui" line="1892"/>
         <source>Value to add to the list.</source>
         <translation>Valor a añadir a la lista.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1902"/>
+        <location filename="../ConfigurationDialog.ui" line="1905"/>
         <source>Add value to tooltip text</source>
         <translation>Añade el valor al texto del icono</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1949"/>
+        <location filename="../ConfigurationDialog.ui" line="1952"/>
         <source>Move value up.</source>
         <translation>Mueve el valor hacia arriba.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1963"/>
+        <location filename="../ConfigurationDialog.ui" line="1966"/>
         <source>Move value down.</source>
         <translation>Mueve el valor hacia abajo.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1977"/>
+        <location filename="../ConfigurationDialog.ui" line="1980"/>
         <source>Remove value from tooltip text</source>
         <translation>Elimina el valor del texto del icono</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1997"/>
+        <location filename="../ConfigurationDialog.ui" line="2000"/>
         <source>Miscellaneous</source>
         <translation>Miscelánea</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2020"/>
+        <location filename="../ConfigurationDialog.ui" line="2023"/>
         <source>Time between update requests</source>
         <translation>Intervalo entre peticiones</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2033"/>
+        <location filename="../ConfigurationDialog.ui" line="2036"/>
         <source> minutes</source>
         <translation> minutos</translation>
     </message>
@@ -684,58 +684,58 @@
         <translation>Unidades de medida</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1247"/>
+        <location filename="../ConfigurationDialog.ui" line="1250"/>
         <source>Visuals</source>
         <translation>Visuales</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1742"/>
-        <location filename="../ConfigurationDialog.ui" line="1752"/>
+        <location filename="../ConfigurationDialog.ui" line="1745"/>
+        <location filename="../ConfigurationDialog.ui" line="1755"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
         <translation>Estira la fuente verticalmente para ocupar todo el espacio disponible en el icono.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1867"/>
+        <location filename="../ConfigurationDialog.ui" line="1870"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>Los valores mostrados en el texto del icono de bandeja son los valores actuales o el pronóstico más próximo en el tiempo. Los valores se muestran en orden, de arriba a abajo de la lista.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2061"/>
+        <location filename="../ConfigurationDialog.ui" line="2064"/>
         <source>Visual theme</source>
         <translation>Tema visual</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2069"/>
+        <location filename="../ConfigurationDialog.ui" line="2072"/>
         <source>Light</source>
         <translation>Claro</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2074"/>
+        <location filename="../ConfigurationDialog.ui" line="2077"/>
         <source>Dark</source>
         <translation>Oscuro</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2094"/>
+        <location filename="../ConfigurationDialog.ui" line="2097"/>
         <source>Check for updates</source>
         <translation>Comprobación de actualizaciones</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2102"/>
+        <location filename="../ConfigurationDialog.ui" line="2105"/>
         <source>Never</source>
         <translation>Nunca</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2107"/>
+        <location filename="../ConfigurationDialog.ui" line="2110"/>
         <source>Once a day</source>
         <translation>Diario</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2112"/>
+        <location filename="../ConfigurationDialog.ui" line="2115"/>
         <source>Once a week</source>
         <translation>Semanal</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2117"/>
+        <location filename="../ConfigurationDialog.ui" line="2120"/>
         <source>Once a month</source>
         <translation>Mensual</translation>
     </message>
@@ -750,37 +750,37 @@
         <translation>Sistema imperial (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2137"/>
+        <location filename="../ConfigurationDialog.ui" line="2140"/>
         <source>Autostart at login</source>
         <translation>Autocargar en login</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2163"/>
+        <location filename="../ConfigurationDialog.ui" line="2166"/>
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2185"/>
+        <location filename="../ConfigurationDialog.ui" line="2188"/>
         <source>Show weather alerts</source>
         <translation>Mostrar alertas meteorológicas</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2217"/>
+        <location filename="../ConfigurationDialog.ui" line="2220"/>
         <source>Swap tray icons</source>
         <translation>Intercambia los iconos de bandeja</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2239"/>
+        <location filename="../ConfigurationDialog.ui" line="2242"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Si tu idioma no está disponible puedes ayudar con una &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;traducción&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2293"/>
+        <location filename="../ConfigurationDialog.ui" line="2296"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2300"/>
+        <location filename="../ConfigurationDialog.ui" line="2303"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
