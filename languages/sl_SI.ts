@@ -518,58 +518,58 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1078"/>
         <source>Rain representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaz dežja v grafu napovedi.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1082"/>
         <location filename="../ConfigurationDialog.ui" line="1149"/>
         <location filename="../ConfigurationDialog.ui" line="1184"/>
         <source>None</source>
-        <translation type="unfinished">Nič</translation>
+        <translation>Nič</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1087"/>
         <location filename="../ConfigurationDialog.ui" line="1154"/>
         <location filename="../ConfigurationDialog.ui" line="1189"/>
         <source>Smooth Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Gladka linija</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1092"/>
         <location filename="../ConfigurationDialog.ui" line="1159"/>
         <location filename="../ConfigurationDialog.ui" line="1194"/>
         <source>Bars</source>
-        <translation type="unfinished"></translation>
+        <translation>Palice</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1119"/>
         <source>Rain representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva prikaza dežja v grafu napovedi.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1135"/>
         <source>Temperature representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva prikaza temperature v grafu napovedi.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1145"/>
         <source>Temperature representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaz temperature v grafu napovedi.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1180"/>
         <source>Snow representation in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaz snega v grafu napovedi.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1208"/>
         <source>Snow representation color in the forecast graph.</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva prikaza snega v grafu napovedi.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1223"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; In the forecast graphs the information can be hidden and shown again by clicking on the legend title text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Opomba:&lt;/span&gt; V grafih napovedi lahko skriješ in ponovno prikažeš informacije s klikom na besedilo v legendi.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1568"/>
@@ -1839,7 +1839,7 @@ v opoldanskih urah.</translation>
     <message>
         <location filename="../WeatherDialog.cpp" line="130"/>
         <source>Accumulation</source>
-        <translation type="unfinished"></translation>
+        <translation>Akumulacija</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="170"/>
@@ -1867,7 +1867,7 @@ v opoldanskih urah.</translation>
         <location filename="../WeatherDialog.cpp" line="798"/>
         <location filename="../WeatherDialog.cpp" line="975"/>
         <source>Click to hide or show the forecast.</source>
-        <translation type="unfinished"></translation>
+        <translation>Klikni, da skriješ ali prikažeš napoved.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="758"/>
