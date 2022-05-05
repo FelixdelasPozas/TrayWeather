@@ -323,6 +323,18 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   forecastChart->setBackgroundVisible(false);
   forecastChart->setTheme(theme);
 
+  auto titleFont = axisX->titleFont();
+  titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+  titleFont.setPointSize(titleFont.pointSize() + 1);
+  titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
+  titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+  titleFont.setBold(true);
+
+  forecastChart->setFont(titleFont);
+  axisX->setTitleFont(titleFont);
+  axisYTemp->setTitleFont(titleFont);
+  axisYPrec->setTitleFont(titleFont);
+
   QPen pen;
   pen.setWidth(2);
   pen.setColor(QColor{90,90,235});
@@ -804,6 +816,17 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   forecastChart->setBackgroundVisible(false);
   forecastChart->setTheme(theme);
 
+  auto titleFont = axisX->titleFont();
+  titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+  titleFont.setPointSize(titleFont.pointSize() + 1);
+  titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
+  titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+  titleFont.setBold(true);
+
+  forecastChart->setFont(titleFont);
+  axisX->setTitleFont(titleFont);
+  axisY->setTitleFont(titleFont);
+
   QPen pens[8];
 
   QSplineSeries *pollutionLine[8];
@@ -980,6 +1003,17 @@ void WeatherDialog::setUVData(const UV &data)
   uvChart->addAxis(axisY, Qt::AlignLeft);
   uvChart->setBackgroundVisible(false);
   uvChart->setTheme(theme);
+
+  auto titleFont = axisX->titleFont();
+  titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+  titleFont.setPointSize(titleFont.pointSize() + 1);
+  titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
+  titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+  titleFont.setBold(true);
+
+  uvChart->setFont(titleFont);
+  axisX->setTitleFont(titleFont);
+  axisY->setTitleFont(titleFont);
 
   QPen pen;
   pen.setWidth(2);
