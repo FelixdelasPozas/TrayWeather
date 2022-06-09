@@ -1000,14 +1000,16 @@ void TrayWeather::showTab()
 //--------------------------------------------------------------------
 void TrayWeather::requestData()
 {
-  if(m_netManager->networkAccessible() != QNetworkAccessManager::Accessible)
+  if(m_netManager && (m_netManager->networkAccessible() != QNetworkAccessManager::Accessible))
   {
-    if(m_netManager)
-    {
-      disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
-                 this,               SLOT(replyFinished(QNetworkReply*)));
-    }
-
+    disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+               this,               SLOT(replyFinished(QNetworkReply*)));
+               
+    m_netManager = nullptr;           
+  }
+  
+  if(!m_netManager)
+  {
     m_netManager = std::make_shared<QNetworkAccessManager>(this);
 
     connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),

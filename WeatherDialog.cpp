@@ -284,29 +284,21 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
 
   // Forecast tab
-  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
-
   auto axisX = new QDateTimeAxis();
-  axisX->setTickCount(13);
+  axisX->setTickCount(12);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText(tr("Day (Hour)"));
-  axisX->setGridLineVisible(true);
-  axisX->setGridLineColor(linesColor);
 
   auto axisYTemp = new QValueAxis();
   axisYTemp->setTickCount(6);
   axisYTemp->setLabelFormat("%i");
   axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(tempUnits));
-  axisYTemp->setGridLineVisible(true);
-  axisYTemp->setGridLineColor(linesColor);
 
   auto axisYPrec = new QValueAxis();
   axisYPrec->setTickCount(6);
   axisYPrec->setLabelFormat("%.2f");
   axisYPrec->setTitleText(tr("%1 in %2").arg(precStr).arg(accuStr));
-  axisYPrec->setGridLineVisible(true);
-  axisYPrec->setGridLineColor(linesColor);
 
   const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
 
@@ -323,9 +315,23 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   forecastChart->setBackgroundVisible(false);
   forecastChart->setTheme(theme);
 
+  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
+
+  axisX->setGridLineVisible(true);
+  axisX->setGridLineColor(linesColor);
+  axisX->setMinorGridLineVisible(true);
+  axisX->setMinorGridLineColor(linesColor);
+  axisYTemp->setGridLineVisible(true);
+  axisYTemp->setGridLineColor(linesColor);
+  axisYTemp->setMinorGridLineVisible(true);
+  axisYTemp->setMinorGridLineColor(linesColor);
+  axisYPrec->setGridLineVisible(true);
+  axisYPrec->setGridLineColor(linesColor);
+  axisYPrec->setMinorGridLineVisible(true);
+  axisYPrec->setMinorGridLineColor(linesColor);
+
   auto titleFont = axisX->titleFont();
   titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  titleFont.setPointSize(titleFont.pointSize() + 1);
   titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
   titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
   titleFont.setBold(true);
@@ -495,21 +501,25 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     font.setPointSize(font.pointSize()*scale);
     axisX->setTitleFont(font);
 
-    font = axisYPrec->labelsFont();
+    font = axisX->labelsFont();
     font.setPointSize(font.pointSize()*scale);
-    axisYPrec->setLabelsFont(font);
+    axisX->setLabelsFont(font);
 
     font = axisYPrec->titleFont();
     font.setPointSize(font.pointSize()*scale);
     axisYPrec->setTitleFont(font);
 
-    font = axisYTemp->labelsFont();
+    font = axisYPrec->labelsFont();
     font.setPointSize(font.pointSize()*scale);
-    axisYTemp->setLabelsFont(font);
+    axisYPrec->setLabelsFont(font);
 
     font = axisYTemp->titleFont();
     font.setPointSize(font.pointSize()*scale);
     axisYTemp->setTitleFont(font);
+
+    font = axisYTemp->labelsFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisYTemp->setLabelsFont(font);
 
     forecastChart->adjustSize();
   }
@@ -786,21 +796,15 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   m_air_quality->setText(qualityStr);
 
-  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
-
   auto axisX = new QDateTimeAxis();
-  axisX->setTickCount(13);
+  axisX->setTickCount(12);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText(tr("Day (Hour)"));
-  axisX->setGridLineVisible(true);
-  axisX->setGridLineColor(linesColor);
 
   auto axisY = new QValueAxis();
   axisY->setLabelFormat("%i");
   axisY->setTitleText(tr("Concentration in %1").arg(CONCENTRATION_UNITS));
-  axisX->setGridLineVisible(true);
-  axisX->setGridLineColor(linesColor);
 
   const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
 
@@ -816,9 +820,19 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   forecastChart->setBackgroundVisible(false);
   forecastChart->setTheme(theme);
 
+  const auto linesColor = Qt::darkGray;
+
+  axisX->setGridLineVisible(true);
+  axisX->setGridLineColor(linesColor);
+  axisX->setMinorGridLineVisible(true);
+  axisX->setMinorGridLineColor(linesColor);
+  axisY->setGridLineVisible(true);
+  axisY->setGridLineColor(linesColor);
+  axisY->setMinorGridLineVisible(true);
+  axisY->setMinorGridLineColor(linesColor);
+
   auto titleFont = axisX->titleFont();
   titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  titleFont.setPointSize(titleFont.pointSize() + 1);
   titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
   titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
   titleFont.setBold(true);
@@ -899,13 +913,17 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     font.setPointSize(font.pointSize()*scale);
     axisX->setTitleFont(font);
 
-    font = axisY->labelsFont();
+    font = axisX->labelsFont();
     font.setPointSize(font.pointSize()*scale);
-    axisY->setLabelsFont(font);
+    axisX->setLabelsFont(font);
 
     font = axisY->titleFont();
     font.setPointSize(font.pointSize()*scale);
     axisY->setTitleFont(font);
+
+    font = axisY->labelsFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisY->setLabelsFont(font);
 
     forecastChart->adjustSize();
   }
@@ -974,21 +992,15 @@ void WeatherDialog::setUVData(const UV &data)
   }
   m_uvi->setText(indexStr);
 
-  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
-
   auto axisX = new QDateTimeAxis();
-  axisX->setTickCount(13);
+  axisX->setTickCount(12);
   axisX->setLabelsAngle(45);
   axisX->setFormat("dd (hh)");
   axisX->setTitleText(tr("Day (Hour)"));
-  axisX->setGridLineVisible(true);
-  axisX->setGridLineColor(linesColor);
 
   auto axisY = new QValueAxis();
   axisY->setLabelFormat("%i");
   axisY->setTitleText(tr("Ultraviolet radiation index"));
-  axisY->setGridLineVisible(true);
-  axisY->setGridLineColor(linesColor);
 
   const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
 
@@ -1004,9 +1016,19 @@ void WeatherDialog::setUVData(const UV &data)
   uvChart->setBackgroundVisible(false);
   uvChart->setTheme(theme);
 
+  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
+
+  axisX->setGridLineVisible(true);
+  axisX->setGridLineColor(linesColor);
+  axisX->setMinorGridLineVisible(true);
+  axisX->setMinorGridLineColor(linesColor);
+  axisY->setGridLineVisible(true);
+  axisY->setGridLineColor(linesColor);
+  axisY->setMinorGridLineVisible(true);
+  axisY->setMinorGridLineColor(linesColor);
+
   auto titleFont = axisX->titleFont();
   titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  titleFont.setPointSize(titleFont.pointSize() + 1);
   titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
   titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
   titleFont.setBold(true);
@@ -1070,13 +1092,17 @@ void WeatherDialog::setUVData(const UV &data)
     font.setPointSize(font.pointSize()*scale);
     axisX->setTitleFont(font);
 
-    font = axisY->labelsFont();
+    font = axisX->labelsFont();
     font.setPointSize(font.pointSize()*scale);
-    axisY->setLabelsFont(font);
+    axisX->setLabelsFont(font);
 
     font = axisY->titleFont();
     font.setPointSize(font.pointSize()*scale);
     axisY->setTitleFont(font);
+
+    font = axisY->labelsFont();
+    font.setPointSize(font.pointSize()*scale);
+    axisY->setLabelsFont(font);
 
     uvChart->adjustSize();
   }

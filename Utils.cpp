@@ -603,7 +603,7 @@ double dpiScale()
   auto screen = QApplication::screens().at(0);
   const auto dpi = screen->logicalDotsPerInch();
 
-  return dpi/DEFAULT_LOGICAL_DPI;
+  return dpi/static_cast<double>(DEFAULT_LOGICAL_DPI);
 }
 
 //--------------------------------------------------------------------
@@ -611,7 +611,7 @@ void scaleDialog(QDialog *window)
 {
   if(window)
   {
-    const auto scale = (window->logicalDpiX() == DEFAULT_LOGICAL_DPI) ? 1.:1.2;
+    const auto scale = (window->logicalDpiX() == DEFAULT_LOGICAL_DPI) ? 1.:1.25;
 
     window->setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
     window->setMinimumSize(0,0);
