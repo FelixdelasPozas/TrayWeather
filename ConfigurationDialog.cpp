@@ -556,7 +556,7 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
   updateRange();
 
   // ...and then return to the one tab the user is in.
-  m_tabWidget->setCurrentIndex(3);
+  m_tabWidget->setCurrentIndex(4);
 
   QApplication::restoreOverrideCursor();
 }
