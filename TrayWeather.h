@@ -146,6 +146,11 @@ class TrayWeather
      */
     void showAlert();
 
+    /** \brief Invalidates all weather data and asks for new data.
+     *
+     */
+    void forceRequestData();
+
   private:
     /** \brief Updates the tray icon tooltip.
      *
@@ -176,11 +181,6 @@ class TrayWeather
      *
      */
     bool validData() const;
-
-    /** \brief Invalidates all weather data.
-     *
-     */
-    void invalidateData();
 
     /** \brief Request geolocation information, can ask for DNS IP first if enabled on configuration.
      *

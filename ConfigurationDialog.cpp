@@ -189,11 +189,8 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
           m_country->setText(values.at(1));
           m_region->setText(values.at(4));
           m_city->setText(values.at(5));
-          m_zipCode->setText(values.at(6));
           m_latitude->setText(values.at(7));
           m_longitude->setText(values.at(8));
-          m_timezone->setText(values.at(9));
-          m_isp->setText(values.at(10));
           m_ip->setText(values.at(13));
 
           m_ipapiLabel->setStyleSheet("QLabel { color : green; }");
@@ -245,11 +242,8 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.city            = m_city->text();
   configuration.country         = m_country->text();
   configuration.ip              = m_ip->text();
-  configuration.isp             = m_isp->text();
   configuration.owm_apikey      = m_testedAPIKey ? m_apikey->text() : QString();
   configuration.region          = m_region->text();
-  configuration.timezone        = m_timezone->text();
-  configuration.zipcode         = m_zipCode->text();
   configuration.updateTime      = m_updateTime->value();
   configuration.units           = static_cast<Units>(m_unitsComboBox->currentIndex());
   configuration.useDNS          = m_useDNS->isChecked();
@@ -741,10 +735,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_city->setText(configuration.city);
   m_country->setText(configuration.country);
   m_ip->setText(configuration.ip);
-  m_isp->setText(configuration.isp);
   m_region->setText(configuration.region);
-  m_timezone->setText(configuration.timezone);
-  m_zipCode->setText(configuration.zipcode);
   m_updateTime->setValue(configuration.updateTime);
   m_useDNS->setChecked(configuration.useDNS);
   m_roamingCheck->setChecked(configuration.roamingEnabled);
@@ -1308,10 +1299,34 @@ void ConfigurationDialog::fixVisuals()
 //--------------------------------------------------------------------
 void ConfigurationDialog::onIconTypeChanged(int value)
 {
-  const auto enabled = value > 2;
+  const auto swapEnabled = value > 2;
+  m_swapIcons->setEnabled(swapEnabled);
+  m_swapIconsLabel->setEnabled(swapEnabled);
 
-  m_swapIcons->setEnabled(enabled);
-  m_swapIconsLabel->setEnabled(enabled);
+  const auto iconsOptionsEnabled = (value == 0 || value > 1);
+  m_iconThemeLabel->setEnabled(iconsOptionsEnabled);
+  for(int i = 0; i < m_iconThemeLayout->count(); ++i)
+  {
+    auto item = m_iconThemeLayout->itemAt(i);
+    if(item && item->widget()) item->widget()->setEnabled(iconsOptionsEnabled);
+  }
+
+  const auto tempOptionsEnabled = value > 0;
+  for(auto lay: {m_tempLayout_1, m_tempLayout_2, m_tempLayout_3, m_tempLayout_4,
+                 m_tempLayout_5, m_tempLayout_6, m_tempLayout_7})
+  {
+    for(int i = 0; i < lay->count(); ++i)
+    {
+      auto item = lay->itemAt(i);
+      if(item && item->widget()) item->widget()->setEnabled(tempOptionsEnabled);
+    }
+  }
+  m_textColorLabel->setEnabled(tempOptionsEnabled);
+  m_textFontLabel->setEnabled(tempOptionsEnabled);
+  m_tempIconSizeLabel->setEnabled(tempOptionsEnabled);
+
+  const auto enableColored = !ICON_THEMES.at(m_trayIconTheme->currentIndex()).colored;
+  m_iconThemeColor->setEnabled(enableColored && iconsOptionsEnabled);
 }
 
 //--------------------------------------------------------------------

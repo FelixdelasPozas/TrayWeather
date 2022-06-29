@@ -66,6 +66,8 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 
   createMenuEntries();
 
+  updateTooltip();
+
   requestData();
 }
 
@@ -296,10 +298,7 @@ void TrayWeather::showConfiguration()
       m_configuration.country        = configuration.country;
       m_configuration.region         = configuration.region;
       m_configuration.city           = configuration.city;
-      m_configuration.zipcode        = configuration.zipcode;
-      m_configuration.isp            = configuration.isp;
       m_configuration.ip             = configuration.ip;
-      m_configuration.timezone       = configuration.timezone;
       m_configuration.latitude       = configuration.latitude;
       m_configuration.longitude      = configuration.longitude;
       m_configuration.useDNS         = configuration.useDNS;
@@ -815,7 +814,7 @@ void TrayWeather::createMenuEntries()
   menu->addSeparator();
 
   auto refresh = new QAction{QIcon{":/TrayWeather/network_refresh_black.svg"}, tr("Refresh..."), menu};
-  connect(refresh, SIGNAL(triggered(bool)), this, SLOT(requestData()));
+  connect(refresh, SIGNAL(triggered(bool)), this, SLOT(forceRequestData()));
 
   menu->addAction(refresh);
 
@@ -1016,8 +1015,6 @@ void TrayWeather::requestData()
             this,               SLOT(replyFinished(QNetworkReply*)));
   }
 
-  invalidateData();
-  updateTooltip();
   m_timer.setInterval(1*60*1000);
   m_timer.start();
 
@@ -1096,12 +1093,15 @@ bool TrayWeather::validData() const
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::invalidateData()
+void TrayWeather::forceRequestData()
 {
   m_data.clear();
   m_pData.clear();
   m_vData.clear();
   m_current = ForecastData();
+
+  updateTooltip();
+  requestData();
 }
 
 //--------------------------------------------------------------------
@@ -1282,6 +1282,8 @@ void TrayWeather::processWeatherData(const QByteArray &data)
 
     if(keys.contains("cnt"))
     {
+      m_data.clear();
+
       const auto values  = jsonObj.value("list").toArray();
 
       auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_data) if(entry.dt == dt) return true; return false; };
@@ -1356,11 +1358,8 @@ void TrayWeather::processGeolocationData(const QByteArray &data, const bool isDN
       m_configuration.country   = values.at(1);
       m_configuration.region    = values.at(4);
       m_configuration.city      = values.at(5);
-      m_configuration.zipcode   = values.at(6);
       m_configuration.latitude  = values.at(7).toDouble();
       m_configuration.longitude = values.at(8).toDouble();
-      m_configuration.timezone  = values.at(9);
-      m_configuration.isp       = values.at(10);
       m_configuration.ip        = values.at(13);
 
       requestForecastData();
@@ -1390,6 +1389,8 @@ void TrayWeather::processPollutionData(const QByteArray &data)
 
   if(!jsonDocument.isNull() && jsonDocument.isObject())
   {
+    m_pData.clear();
+
     // to discard entries older than 'right now'.
     const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
     const auto jsonObj = jsonDocument.object();
@@ -1432,6 +1433,8 @@ void TrayWeather::processOneCallData(const QByteArray &data)
 
   if(!jsonDocument.isNull() && jsonDocument.isObject())
   {
+    m_vData.clear();
+
     const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
     const auto jsonObj   = jsonDocument.object();
     const auto current   = jsonObj.value("current").toObject();

@@ -158,10 +158,7 @@ struct Configuration
     QString            country;         /** location's country.                                         */
     QString            region;          /** location's region.                                          */
     QString            city;            /** location's city.                                            */
-    QString            zipcode;         /** location's zip code.                                        */
-    QString            isp;             /** internet service provider.                                  */
     QString            ip;              /** internet address.                                           */
-    QString            timezone;        /** location's timezone.                                        */
     QString            owm_apikey;      /** OpenWeatherMap API Key.                                     */
     Units              units;           /** measurement units.                                          */
     unsigned int       updateTime;      /** time between updates.                                       */
@@ -213,10 +210,7 @@ struct Configuration
     , country         {"Unknown"}
     , region          {"Unknown"}
     , city            {"Unknown"}
-    , zipcode         {"Unknown"}
-    , isp             {"Unknown"}
     , ip              {"Unknown"}
-    , timezone        {"Unknown"}
     , owm_apikey      {""}
     , units           {Units::METRIC}
     , updateTime      {15}
