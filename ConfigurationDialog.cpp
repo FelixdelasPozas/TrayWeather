@@ -637,10 +637,10 @@ void ConfigurationDialog::updateRange()
 //--------------------------------------------------------------------
 void ConfigurationDialog::showEvent(QShowEvent *e)
 {
+  this->m_tabWidget->setElideMode(Qt::ElideNone);
   this->m_tabWidget->setCurrentIndex(0);
 
   QDialog::showEvent(e);
-
   scaleDialog(this);
   fixVisuals();
 }
@@ -1294,6 +1294,11 @@ void ConfigurationDialog::fixVisuals()
   m_fixed->setFixedWidth(visualsFix);
   m_variable->setFixedWidth(visualsFix);
   m_from->setFixedWidth(visualsFix);
+
+  // give tabs a little more room
+  m_tabWidget->tabBar()->setUsesScrollButtons(false);
+  m_tabWidget->tabBar()->adjustSize();
+  setFixedWidth(std::max(width(), m_tabWidget->tabBar()->sizeHint().width() + 30));
 }
 
 //--------------------------------------------------------------------
