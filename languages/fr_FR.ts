@@ -29,32 +29,32 @@
         <translation>Propulsé par</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="357"/>
+        <location filename="../AboutDialog.ui" line="360"/>
         <source>Icons courtesy of</source>
         <translation>Icônes gracieusement fournies par</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="398"/>
+        <location filename="../AboutDialog.ui" line="401"/>
         <source>IP Geolocation provided by</source>
         <translation>Localisation d&apos;IP fournie par</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="439"/>
+        <location filename="../AboutDialog.ui" line="442"/>
         <source>Weather data provided by</source>
         <translation>Données météo fournies par</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="464"/>
+        <location filename="../AboutDialog.ui" line="467"/>
         <source>Translations</source>
         <translation>Traductions</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="515"/>
+        <location filename="../AboutDialog.ui" line="518"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Si votre langue n&apos;est pas disponible, vous pouvez apporter votre contribution avec une &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;traduction&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="529"/>
+        <location filename="../AboutDialog.ui" line="532"/>
         <source>Icon Themes</source>
         <translation>Thèmes d&apos;icônes</translation>
     </message>

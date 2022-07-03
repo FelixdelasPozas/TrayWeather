@@ -29,32 +29,32 @@
         <translation>Використане ПЗ</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="357"/>
+        <location filename="../AboutDialog.ui" line="360"/>
         <source>Icons courtesy of</source>
         <translation>Значки люб&apos;язно надані</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="398"/>
+        <location filename="../AboutDialog.ui" line="401"/>
         <source>IP Geolocation provided by</source>
         <translation>Геолокація IP забезпечена</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="439"/>
+        <location filename="../AboutDialog.ui" line="442"/>
         <source>Weather data provided by</source>
         <translation>Дані погоди забезпечені</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="464"/>
+        <location filename="../AboutDialog.ui" line="467"/>
         <source>Translations</source>
         <translation>Переклади</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="515"/>
+        <location filename="../AboutDialog.ui" line="518"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Якщо ваша мова відсутня, ви можете допомогти з &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;перекладом&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="529"/>
+        <location filename="../AboutDialog.ui" line="532"/>
         <source>Icon Themes</source>
         <translation>Теми значків</translation>
     </message>

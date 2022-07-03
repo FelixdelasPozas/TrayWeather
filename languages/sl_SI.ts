@@ -29,32 +29,32 @@
         <translation>Powered by</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="357"/>
+        <location filename="../AboutDialog.ui" line="360"/>
         <source>Icons courtesy of</source>
         <translation>Ikone z dovoljenjem</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="398"/>
+        <location filename="../AboutDialog.ui" line="401"/>
         <source>IP Geolocation provided by</source>
         <translation>IP geolokacijo posreduje</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="439"/>
+        <location filename="../AboutDialog.ui" line="442"/>
         <source>Weather data provided by</source>
         <translation>Podatke o vremenu posreduje</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="464"/>
+        <location filename="../AboutDialog.ui" line="467"/>
         <source>Translations</source>
         <translation>Prevodi</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="515"/>
+        <location filename="../AboutDialog.ui" line="518"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Če vaš jezik ni na voljo, lahko pomagate s &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;prevodom&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="529"/>
+        <location filename="../AboutDialog.ui" line="532"/>
         <source>Icon Themes</source>
         <translation>Teme Ikon</translation>
     </message>

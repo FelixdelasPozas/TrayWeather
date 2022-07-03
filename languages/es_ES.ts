@@ -29,32 +29,32 @@
         <translation>Energizado por</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="357"/>
+        <location filename="../AboutDialog.ui" line="360"/>
         <source>Icons courtesy of</source>
         <translation>Iconos cortesía de</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="398"/>
+        <location filename="../AboutDialog.ui" line="401"/>
         <source>IP Geolocation provided by</source>
         <translation>Geolocalización proporcionada por</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="439"/>
+        <location filename="../AboutDialog.ui" line="442"/>
         <source>Weather data provided by</source>
         <translation>Datos meteorológicos proporcionados por</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="464"/>
+        <location filename="../AboutDialog.ui" line="467"/>
         <source>Translations</source>
         <translation>Traducciones</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="515"/>
+        <location filename="../AboutDialog.ui" line="518"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Si tu idioma no está disponible puedes ayudar con una &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;traducción&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="529"/>
+        <location filename="../AboutDialog.ui" line="532"/>
         <source>Icon Themes</source>
         <translation>Temas de Iconos</translation>
     </message>

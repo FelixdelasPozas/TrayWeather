@@ -12,7 +12,7 @@
     <message>
         <location filename="../AboutDialog.ui" line="28"/>
         <source>Tray Weather</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tray Weather</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="111"/>
@@ -32,33 +32,33 @@
         <translation type="unfinished">제공:</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="357"/>
+        <location filename="../AboutDialog.ui" line="360"/>
         <source>Icons courtesy of</source>
         <translation type="unfinished">아이콘 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="398"/>
+        <location filename="../AboutDialog.ui" line="401"/>
         <source>IP Geolocation provided by</source>
         <translation type="unfinished">IP 위치정보 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="439"/>
+        <location filename="../AboutDialog.ui" line="442"/>
         <source>Weather data provided by</source>
         <translation type="unfinished">날씨 데이터 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="464"/>
+        <location filename="../AboutDialog.ui" line="467"/>
         <source>Translations</source>
         <translation type="unfinished">번역</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="515"/>
+        <location filename="../AboutDialog.ui" line="518"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translatorcomment>a little bit of paraphrasing...</translatorcomment>
         <translation type="unfinished">귀하의 언어가 여기 없을 경우, &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;번역&lt;/a&gt;을 도울 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="529"/>
+        <location filename="../AboutDialog.ui" line="532"/>
         <source>Icon Themes</source>
         <translation type="unfinished">아이콘 테마</translation>
     </message>
@@ -1216,22 +1216,22 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../TrayWeather.cpp" line="617"/>
         <source>inHg</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">수은주인치 (inHg)</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="621"/>
         <source>mmHg</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">수은주밀리미터 (mmHg)</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="625"/>
         <source>PSI</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">제곱인치당파운드 (PSI)</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="629"/>
         <source>hPa</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">헥토파스칼 (hPa)</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="632"/>
@@ -1755,12 +1755,12 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="150"/>
         <location filename="../WeatherDialog.cpp" line="182"/>
         <source>hPa</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">헥토파스칼 (hPa)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="144"/>
         <source>miles/hour</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">마일/시간 (mi/h)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="291"/>
@@ -1817,7 +1817,7 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="143"/>
         <location filename="../WeatherDialog.cpp" line="178"/>
         <source>PSI</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">제곱인치당파운드 (PSI)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="130"/>
@@ -1827,17 +1827,17 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="170"/>
         <source>inHg</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">수은주인치 (inHg)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="174"/>
         <source>mmHg</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">수은주밀리미터 (mmHg)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="199"/>
         <source>feet/s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ft/s</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="203"/>
@@ -1901,7 +1901,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="989"/>
         <source>Extreme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">위험</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1045"/>
@@ -1937,7 +1937,7 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="1361"/>
         <location filename="../WeatherDialog.cpp" line="1398"/>
         <source>met/sec</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">m/s</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1386"/>
@@ -1991,17 +1991,17 @@ during midday hours.</source>
         <location filename="../WeatherWidget.cpp" line="67"/>
         <location filename="../WeatherWidget.cpp" line="103"/>
         <source>hPa</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">헥토파스칼 (hPa)</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="91"/>
         <source>inHg</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">수은주인치 (inHg)</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="95"/>
         <source>mmHg</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">수은주밀리미터 (mmHg)</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="109"/>
@@ -2018,7 +2018,7 @@ during midday hours.</source>
         <location filename="../WeatherWidget.cpp" line="72"/>
         <location filename="../WeatherWidget.cpp" line="99"/>
         <source>PSI</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">제곱인치당파운드 (PSI)</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="73"/>

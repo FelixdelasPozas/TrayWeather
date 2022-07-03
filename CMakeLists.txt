@@ -96,6 +96,7 @@ set(TRANSLATIONS_TS_FILES
   languages/pt_BR.ts
   languages/uk_UA.ts
   languages/sl_SI.ts
+  languages/ko_KR.ts
 )
 
 qt5_add_translation(TRANSLATIONS_QM_FILES ${TRANSLATIONS_TS_FILES})
