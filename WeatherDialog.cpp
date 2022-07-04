@@ -336,10 +336,18 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
   titleFont.setBold(true);
 
+  auto labelsFont = axisX->labelsFont();
+  labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+  labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+  labelsFont.setBold(false);
+
   forecastChart->setFont(titleFont);
   axisX->setTitleFont(titleFont);
+  axisX->setLabelsFont(labelsFont);
   axisYTemp->setTitleFont(titleFont);
+  axisYTemp->setLabelsFont(labelsFont);
   axisYPrec->setTitleFont(titleFont);
+  axisYPrec->setLabelsFont(labelsFont);
 
   QPen pen;
   pen.setWidth(2);
@@ -501,25 +509,13 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     font.setPointSize(font.pointSize()*scale);
     axisX->setTitleFont(font);
 
-    font = axisX->labelsFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisX->setLabelsFont(font);
-
     font = axisYPrec->titleFont();
     font.setPointSize(font.pointSize()*scale);
     axisYPrec->setTitleFont(font);
 
-    font = axisYPrec->labelsFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisYPrec->setLabelsFont(font);
-
     font = axisYTemp->titleFont();
     font.setPointSize(font.pointSize()*scale);
     axisYTemp->setTitleFont(font);
-
-    font = axisYTemp->labelsFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisYTemp->setLabelsFont(font);
 
     forecastChart->adjustSize();
   }
@@ -837,9 +833,16 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
   titleFont.setBold(true);
 
+  auto labelsFont = axisX->labelsFont();
+  labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+  labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+  labelsFont.setBold(false);
+
   forecastChart->setFont(titleFont);
   axisX->setTitleFont(titleFont);
+  axisX->setLabelsFont(labelsFont);
   axisY->setTitleFont(titleFont);
+  axisY->setLabelsFont(labelsFont);
 
   QPen pens[8];
 
@@ -913,17 +916,9 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     font.setPointSize(font.pointSize()*scale);
     axisX->setTitleFont(font);
 
-    font = axisX->labelsFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisX->setLabelsFont(font);
-
     font = axisY->titleFont();
     font.setPointSize(font.pointSize()*scale);
     axisY->setTitleFont(font);
-
-    font = axisY->labelsFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisY->setLabelsFont(font);
 
     forecastChart->adjustSize();
   }
@@ -1033,9 +1028,16 @@ void WeatherDialog::setUVData(const UV &data)
   titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
   titleFont.setBold(true);
 
+  auto labelsFont = axisX->labelsFont();
+  labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+  labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+  labelsFont.setBold(false);
+
   uvChart->setFont(titleFont);
   axisX->setTitleFont(titleFont);
+  axisX->setLabelsFont(labelsFont);
   axisY->setTitleFont(titleFont);
+  axisY->setLabelsFont(labelsFont);
 
   QPen pen;
   pen.setWidth(2);
@@ -1092,17 +1094,9 @@ void WeatherDialog::setUVData(const UV &data)
     font.setPointSize(font.pointSize()*scale);
     axisX->setTitleFont(font);
 
-    font = axisX->labelsFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisX->setLabelsFont(font);
-
     font = axisY->titleFont();
     font.setPointSize(font.pointSize()*scale);
     axisY->setTitleFont(font);
-
-    font = axisY->labelsFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisY->setLabelsFont(font);
 
     uvChart->adjustSize();
   }
