@@ -459,15 +459,16 @@ void TrayWeather::updateTooltip()
     case 3:
       if(m_additionalTray)
       {
+        icon = QIcon(pixmap);
+
         if(m_configuration.swapTrayIcons)
         {
-          setIcon(QIcon(pixmap));
+          setIcon(icon);
         }
         else
         {
-          m_additionalTray->setIcon(QIcon(pixmap));
+          m_additionalTray->setIcon(icon);
         }
-        if(!m_additionalTray->isVisible()) m_additionalTray->show();
       }
       /* fall through */
     case 1:
@@ -555,13 +556,24 @@ void TrayWeather::updateTooltip()
       break;
   }
 
-  setToolTip(tooltip);
   icon = QIcon(pixmap);
+  setToolTip(tooltip);
 
-  if(m_additionalTray && m_configuration.swapTrayIcons)
+  if(m_additionalTray)
   {
-    m_additionalTray->setIcon(icon);
     m_additionalTray->setToolTip(tooltip);
+
+    // must be reverse of switch case 3 from before
+    if(m_configuration.swapTrayIcons)
+    {
+      m_additionalTray->setIcon(icon);
+    }
+    else
+    {
+      setIcon(icon);
+    }
+
+    if(!m_additionalTray->isVisible()) m_additionalTray->show();
   }
   else
   {
