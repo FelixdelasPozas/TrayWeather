@@ -893,7 +893,7 @@ Si vous disposez d&apos;un pare-feu, modifiez sa configuration pour permettre à
         <location filename="../Main.cpp" line="87"/>
         <location filename="../Main.cpp" line="110"/>
         <location filename="../TrayWeather.cpp" line="372"/>
-        <location filename="../TrayWeather.cpp" line="968"/>
+        <location filename="../TrayWeather.cpp" line="980"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
     </message>
@@ -1138,7 +1138,7 @@ The application will exit now.</source>
         <translation>TrayWeather doit être redémarré pour que la nouvelle configuration deveinne effective. L&apos;application va se terminer maintenant.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="970"/>
+        <location filename="../TrayWeather.cpp" line="982"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
         <translation>TrayWeather a requêté les données météorologiques pour votre localisation et attend toujours la réponse.</translation>
@@ -1147,36 +1147,36 @@ and it&apos;s still waiting for the response.</source>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="1244"/>
+        <location filename="../TrayWeather.cpp" line="1256"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translation>Il existe une nouvelle version de &lt;b&gt;Tray Weather&lt;/b&gt; sur la &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;page de github&lt;/a&gt;!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1245"/>
+        <location filename="../TrayWeather.cpp" line="1257"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation>&lt;center&gt;&lt;b&gt;la version %1&lt;/b&gt; a été publiée !&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1246"/>
+        <location filename="../TrayWeather.cpp" line="1258"/>
         <source>Release notes:
 %1</source>
         <translation>Notes de version :
 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1247"/>
+        <location filename="../TrayWeather.cpp" line="1259"/>
         <source>Tray Weather updated to version %1</source>
         <translation>Tray Weather mis à jour en version %1</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="111"/>
-        <location filename="../TrayWeather.cpp" line="1261"/>
+        <location filename="../TrayWeather.cpp" line="1273"/>
         <source>Error requesting Github releases data.</source>
         <translation>Erreur de requête de version de Github.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="129"/>
-        <location filename="../TrayWeather.cpp" line="1373"/>
+        <location filename="../TrayWeather.cpp" line="1385"/>
         <source>Error requesting geolocation coordinates.</source>
         <translation>Erreur de requête de coordonnées de géolocalisation.</translation>
     </message>
@@ -1193,167 +1193,167 @@ and it&apos;s still waiting for the response.</source>
         <translation>Requête en cours du serveur de données de données météo...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="604"/>
+        <location filename="../TrayWeather.cpp" line="616"/>
         <source>Cloudiness: </source>
         <translation>Nébulosité: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="607"/>
+        <location filename="../TrayWeather.cpp" line="619"/>
         <source>Humidity: </source>
         <translation>Humidité: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="617"/>
+        <location filename="../TrayWeather.cpp" line="629"/>
         <source>inHg</source>
         <translation>inHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="621"/>
+        <location filename="../TrayWeather.cpp" line="633"/>
         <source>mmHg</source>
         <translation>mmHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="625"/>
+        <location filename="../TrayWeather.cpp" line="637"/>
         <source>PSI</source>
         <translation>PSI</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="629"/>
+        <location filename="../TrayWeather.cpp" line="641"/>
         <source>hPa</source>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="632"/>
+        <location filename="../TrayWeather.cpp" line="644"/>
         <source>Pressure: </source>
         <translation>Pression: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="642"/>
+        <location filename="../TrayWeather.cpp" line="654"/>
         <source>feet/s</source>
         <translation>pieds/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="646"/>
+        <location filename="../TrayWeather.cpp" line="658"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="650"/>
+        <location filename="../TrayWeather.cpp" line="662"/>
         <source>mil/h</source>
         <translation>mil/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="655"/>
+        <location filename="../TrayWeather.cpp" line="667"/>
         <source>met/sec</source>
         <translation>mètres/sec</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="658"/>
+        <location filename="../TrayWeather.cpp" line="670"/>
         <source>Wind: </source>
         <translation>Vent: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="667"/>
+        <location filename="../TrayWeather.cpp" line="679"/>
         <source>Sunrise: </source>
         <translation>Lever du soleil: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="676"/>
+        <location filename="../TrayWeather.cpp" line="688"/>
         <source>Sunset: </source>
         <translation>Coucher de soleil: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="686"/>
+        <location filename="../TrayWeather.cpp" line="698"/>
         <source>Good</source>
         <translation>Bonne</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="689"/>
+        <location filename="../TrayWeather.cpp" line="701"/>
         <source>Fair</source>
         <translation>Correcte</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="692"/>
+        <location filename="../TrayWeather.cpp" line="704"/>
         <source>Moderate</source>
         <translation>Modérée</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="695"/>
+        <location filename="../TrayWeather.cpp" line="707"/>
         <source>Poor</source>
         <translation>Pauvre</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="698"/>
+        <location filename="../TrayWeather.cpp" line="710"/>
         <source>Very poor</source>
         <translation>Très pauvre</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="701"/>
+        <location filename="../TrayWeather.cpp" line="713"/>
         <source>Air: </source>
         <translation>Air: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="708"/>
+        <location filename="../TrayWeather.cpp" line="720"/>
         <source>UV: </source>
         <translation>UV: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="787"/>
-        <location filename="../TrayWeather.cpp" line="1193"/>
+        <location filename="../TrayWeather.cpp" line="799"/>
+        <location filename="../TrayWeather.cpp" line="1205"/>
         <source>Current weather...</source>
         <translation>Temps actuel...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="792"/>
-        <location filename="../TrayWeather.cpp" line="1194"/>
+        <location filename="../TrayWeather.cpp" line="804"/>
+        <location filename="../TrayWeather.cpp" line="1206"/>
         <source>Forecast...</source>
         <translation>Prévisions...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="797"/>
-        <location filename="../TrayWeather.cpp" line="1195"/>
+        <location filename="../TrayWeather.cpp" line="809"/>
+        <location filename="../TrayWeather.cpp" line="1207"/>
         <source>Pollution...</source>
         <translation>Pollution...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="802"/>
-        <location filename="../TrayWeather.cpp" line="1196"/>
+        <location filename="../TrayWeather.cpp" line="814"/>
+        <location filename="../TrayWeather.cpp" line="1208"/>
         <source>UV...</source>
         <translation>UV...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="807"/>
-        <location filename="../TrayWeather.cpp" line="1197"/>
+        <location filename="../TrayWeather.cpp" line="819"/>
+        <location filename="../TrayWeather.cpp" line="1209"/>
         <source>Maps...</source>
         <translation>Cartes...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="816"/>
-        <location filename="../TrayWeather.cpp" line="1198"/>
+        <location filename="../TrayWeather.cpp" line="828"/>
+        <location filename="../TrayWeather.cpp" line="1210"/>
         <source>Refresh...</source>
         <translation>Rafraîchir...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="823"/>
-        <location filename="../TrayWeather.cpp" line="1199"/>
+        <location filename="../TrayWeather.cpp" line="835"/>
+        <location filename="../TrayWeather.cpp" line="1211"/>
         <source>Last alert...</source>
         <translation>Dernière alerte...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="832"/>
-        <location filename="../TrayWeather.cpp" line="1200"/>
+        <location filename="../TrayWeather.cpp" line="844"/>
+        <location filename="../TrayWeather.cpp" line="1212"/>
         <source>Configuration...</source>
         <translation>Configuration...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="839"/>
-        <location filename="../TrayWeather.cpp" line="1201"/>
+        <location filename="../TrayWeather.cpp" line="851"/>
+        <location filename="../TrayWeather.cpp" line="1213"/>
         <source>About...</source>
         <translation>A propos de...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="844"/>
-        <location filename="../TrayWeather.cpp" line="1202"/>
+        <location filename="../TrayWeather.cpp" line="856"/>
+        <location filename="../TrayWeather.cpp" line="1214"/>
         <source>Quit</source>
         <translation>Quitter</translation>
     </message>
@@ -1415,7 +1415,7 @@ Evitez de sortir en milieu de journée.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1320"/>
+        <location filename="../WeatherDialog.cpp" line="1314"/>
         <source>Current Weather</source>
         <translation>Météo actuelle</translation>
     </message>
@@ -1505,8 +1505,8 @@ Evitez de sortir en milieu de journée.</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="199"/>
         <location filename="../WeatherDialog.cpp" line="129"/>
-        <location filename="../WeatherDialog.cpp" line="1291"/>
-        <location filename="../WeatherDialog.cpp" line="1427"/>
+        <location filename="../WeatherDialog.cpp" line="1285"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Temperature</source>
         <translation>Température</translation>
     </message>
@@ -1530,8 +1530,8 @@ Evitez de sortir en milieu de journée.</translation>
         <location filename="../WeatherDialog.ui" line="482"/>
         <location filename="../WeatherDialog.ui" line="508"/>
         <location filename="../WeatherDialog.cpp" line="128"/>
-        <location filename="../WeatherDialog.cpp" line="773"/>
-        <location filename="../WeatherDialog.cpp" line="963"/>
+        <location filename="../WeatherDialog.cpp" line="769"/>
+        <location filename="../WeatherDialog.cpp" line="958"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
@@ -1608,7 +1608,7 @@ Evitez de sortir en milieu de journée.</translation>
         <translation>Radiation UV</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1003"/>
+        <location filename="../WeatherDialog.cpp" line="998"/>
         <source>Ultraviolet radiation index</source>
         <translation>Indice de radiation UV</translation>
     </message>
@@ -1645,7 +1645,7 @@ Evitez de sortir en milieu de journée.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="651"/>
-        <location filename="../WeatherDialog.cpp" line="1528"/>
+        <location filename="../WeatherDialog.cpp" line="1522"/>
         <source>Show Maps</source>
         <translation>Montrer les cartes</translation>
     </message>
@@ -1676,7 +1676,7 @@ Evitez de sortir en milieu de journée.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="75"/>
-        <location filename="../WeatherDialog.cpp" line="1320"/>
+        <location filename="../WeatherDialog.cpp" line="1314"/>
         <source>Forecast</source>
         <translation>Prévision</translation>
     </message>
@@ -1687,7 +1687,7 @@ Evitez de sortir en milieu de journée.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="84"/>
-        <location filename="../WeatherDialog.cpp" line="1320"/>
+        <location filename="../WeatherDialog.cpp" line="1314"/>
         <source>Pollution</source>
         <translation>Pollution</translation>
     </message>
@@ -1698,7 +1698,7 @@ Evitez de sortir en milieu de journée.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="93"/>
-        <location filename="../WeatherDialog.cpp" line="1320"/>
+        <location filename="../WeatherDialog.cpp" line="1314"/>
         <source>UV</source>
         <translation>UV</translation>
     </message>
@@ -1719,12 +1719,12 @@ Evitez de sortir en milieu de journée.</translation>
         <translation>Météo actuelle</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="401"/>
+        <location filename="../WeatherDialog.cpp" line="409"/>
         <source>Rain accumulation</source>
         <translation>Cumul de pluie</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="402"/>
+        <location filename="../WeatherDialog.cpp" line="410"/>
         <source>Snow accumulation</source>
         <translation>Neige cumulée</translation>
     </message>
@@ -1756,14 +1756,14 @@ Evitez de sortir en milieu de journée.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="203"/>
-        <location filename="../WeatherDialog.cpp" line="1390"/>
+        <location filename="../WeatherDialog.cpp" line="1384"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="291"/>
-        <location filename="../WeatherDialog.cpp" line="803"/>
-        <location filename="../WeatherDialog.cpp" line="999"/>
+        <location filename="../WeatherDialog.cpp" line="799"/>
+        <location filename="../WeatherDialog.cpp" line="994"/>
         <source>Day (Hour)</source>
         <translation>Jour (Heure)</translation>
     </message>
@@ -1775,82 +1775,82 @@ Evitez de sortir en milieu de journée.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="308"/>
-        <location filename="../WeatherDialog.cpp" line="814"/>
-        <location filename="../WeatherDialog.cpp" line="1010"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
+        <location filename="../WeatherDialog.cpp" line="1005"/>
         <source>Click to hide or show the forecast.</source>
         <translation>Cliquez pour masquer ou afficher les prévisions.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="677"/>
-        <location filename="../WeatherDialog.cpp" line="730"/>
-        <location filename="../WeatherDialog.cpp" line="741"/>
-        <location filename="../WeatherDialog.cpp" line="1320"/>
+        <location filename="../WeatherDialog.cpp" line="673"/>
+        <location filename="../WeatherDialog.cpp" line="726"/>
+        <location filename="../WeatherDialog.cpp" line="737"/>
+        <location filename="../WeatherDialog.cpp" line="1314"/>
         <source>Maps</source>
         <translation>Cartes</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="684"/>
+        <location filename="../WeatherDialog.cpp" line="680"/>
         <source>TrayWeather Maps</source>
         <translation>Cartes TrayWeather</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="686"/>
+        <location filename="../WeatherDialog.cpp" line="682"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>Les cartes météo ne peuvent pas être chargées.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="972"/>
+        <location filename="../WeatherDialog.cpp" line="967"/>
         <source>Low</source>
         <translation>Faible</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="981"/>
+        <location filename="../WeatherDialog.cpp" line="976"/>
         <source>High</source>
         <translation>Fort</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="986"/>
+        <location filename="../WeatherDialog.cpp" line="981"/>
         <source>Very high</source>
         <translation>Très fort</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="989"/>
+        <location filename="../WeatherDialog.cpp" line="984"/>
         <source>Extreme</source>
         <translation>Extrême</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1045"/>
+        <location filename="../WeatherDialog.cpp" line="1047"/>
         <source>UV Index</source>
         <translation>Indice UV</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1386"/>
+        <location filename="../WeatherDialog.cpp" line="1380"/>
         <source>feet/sec</source>
         <translation>pieds/sec</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1529"/>
+        <location filename="../WeatherDialog.cpp" line="1523"/>
         <source>Show weather maps tab.</source>
         <translation>Montrer l&apos;onglet de carte météo.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1335"/>
+        <location filename="../WeatherDialog.cpp" line="1329"/>
         <source>Hide Maps</source>
         <translation>Masquer les cartes</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="149"/>
         <location filename="../WeatherDialog.cpp" line="193"/>
-        <location filename="../WeatherDialog.cpp" line="1362"/>
-        <location filename="../WeatherDialog.cpp" line="1379"/>
+        <location filename="../WeatherDialog.cpp" line="1356"/>
+        <location filename="../WeatherDialog.cpp" line="1373"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="142"/>
         <location filename="../WeatherDialog.cpp" line="188"/>
-        <location filename="../WeatherDialog.cpp" line="1352"/>
-        <location filename="../WeatherDialog.cpp" line="1374"/>
+        <location filename="../WeatherDialog.cpp" line="1346"/>
+        <location filename="../WeatherDialog.cpp" line="1368"/>
         <source>inches</source>
         <translation>pouces</translation>
     </message>
@@ -1866,79 +1866,79 @@ Evitez de sortir en milieu de journée.</translation>
         <translation>miles/heure</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1336"/>
+        <location filename="../WeatherDialog.cpp" line="1330"/>
         <source>Hide weather maps tab.</source>
         <translation>Masquer l&apos;onglet de carte météo.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="722"/>
+        <location filename="../WeatherDialog.cpp" line="718"/>
         <source>Weather Maps.</source>
         <translation>Cartes météo.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="780"/>
+        <location filename="../WeatherDialog.cpp" line="776"/>
         <source>Good</source>
         <translation>Bonne</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="783"/>
+        <location filename="../WeatherDialog.cpp" line="779"/>
         <source>Fair</source>
         <translation>Correcte</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="786"/>
-        <location filename="../WeatherDialog.cpp" line="977"/>
+        <location filename="../WeatherDialog.cpp" line="782"/>
+        <location filename="../WeatherDialog.cpp" line="972"/>
         <source>Moderate</source>
         <translation>Modérée</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="789"/>
+        <location filename="../WeatherDialog.cpp" line="785"/>
         <source>Poor</source>
         <translation>Pauvre</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="792"/>
+        <location filename="../WeatherDialog.cpp" line="788"/>
         <source>Very poor</source>
         <translation>Très pauvre</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1291"/>
-        <location filename="../WeatherDialog.cpp" line="1428"/>
+        <location filename="../WeatherDialog.cpp" line="1285"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Rain</source>
         <translation>Pluie</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1291"/>
-        <location filename="../WeatherDialog.cpp" line="1429"/>
+        <location filename="../WeatherDialog.cpp" line="1285"/>
+        <location filename="../WeatherDialog.cpp" line="1423"/>
         <source>Wind</source>
         <translation>Vent</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1291"/>
-        <location filename="../WeatherDialog.cpp" line="1430"/>
+        <location filename="../WeatherDialog.cpp" line="1285"/>
+        <location filename="../WeatherDialog.cpp" line="1424"/>
         <source>Clouds</source>
         <translation>Nuages</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="207"/>
-        <location filename="../WeatherDialog.cpp" line="1351"/>
-        <location filename="../WeatherDialog.cpp" line="1394"/>
+        <location filename="../WeatherDialog.cpp" line="1345"/>
+        <location filename="../WeatherDialog.cpp" line="1388"/>
         <source>miles/h</source>
         <translation>miles/h</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1361"/>
-        <location filename="../WeatherDialog.cpp" line="1398"/>
+        <location filename="../WeatherDialog.cpp" line="1355"/>
+        <location filename="../WeatherDialog.cpp" line="1392"/>
         <source>met/sec</source>
         <translation>mètres/sec</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1444"/>
+        <location filename="../WeatherDialog.cpp" line="1438"/>
         <source>Unable to load weather webpage</source>
         <translation>Impossible de charger la page météo</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="807"/>
+        <location filename="../WeatherDialog.cpp" line="803"/>
         <source>Concentration in %1</source>
         <translation>Concentration en %1</translation>
     </message>
