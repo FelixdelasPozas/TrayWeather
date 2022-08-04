@@ -65,6 +65,12 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
 
   m_tabWidget->setContentsMargins(0, 0, 0, 0);
 
+  auto weatherTabContents = new QWidget();
+  auto weatherTabLayout = new QVBoxLayout();
+  weatherTabLayout->setMargin(0);
+  weatherTabLayout->setSpacing(0);
+  weatherTabContents->setLayout(weatherTabLayout);
+
   m_weatherChart = new QChartView;
   m_weatherChart->setRenderHint(QPainter::Antialiasing);
   m_weatherChart->setBackgroundBrush(QBrush{Qt::white});
@@ -72,7 +78,19 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
   m_weatherChart->setToolTip(tr("Weather forecast for the next days."));
   m_weatherChart->setContentsMargins(0, 0, 0, 0);
 
-  m_tabWidget->addTab(m_weatherChart, QIcon(), tr("Forecast"));
+  m_weatherError = new ErrorWidget(tr("Error requesting weather data."));
+  m_weatherError->setVisible(false);
+
+  weatherTabLayout->addWidget(m_weatherChart);
+  weatherTabLayout->addWidget(m_weatherError);
+
+  m_tabWidget->addTab(weatherTabContents, QIcon(), tr("Forecast"));
+
+  auto pollutionTabContents = new QWidget();
+  auto pollutionTabLayout = new QVBoxLayout();
+  pollutionTabLayout->setMargin(0);
+  pollutionTabLayout->setSpacing(0);
+  pollutionTabContents->setLayout(pollutionTabLayout);
 
   m_pollutionChart = new QChartView;
   m_pollutionChart->setRenderHint(QPainter::Antialiasing);
@@ -81,7 +99,19 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
   m_pollutionChart->setToolTip(tr("Pollution forecast for the next days."));
   m_pollutionChart->setContentsMargins(0, 0, 0, 0);
 
-  m_tabWidget->addTab(m_pollutionChart, QIcon(), tr("Pollution"));
+  m_pollutionError = new ErrorWidget(tr("Error requesting air pollution data."));
+  m_pollutionError->setVisible(false);
+
+  pollutionTabLayout->addWidget(m_pollutionChart);
+  pollutionTabLayout->addWidget(m_pollutionError);
+
+  m_tabWidget->addTab(pollutionTabContents, QIcon(), tr("Pollution"));
+
+  auto uvTabContents = new QWidget();
+  auto uvTabLayout = new QVBoxLayout();
+  uvTabLayout->setMargin(0);
+  uvTabLayout->setSpacing(0);
+  uvTabContents->setLayout(uvTabLayout);
 
   m_uvChart = new QChartView;
   m_uvChart->setRenderHint(QPainter::Antialiasing);
@@ -90,7 +120,13 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
   m_uvChart->setToolTip(tr("Ultraviolet radiation forecast for the next days."));
   m_uvChart->setContentsMargins(0, 0, 0, 0);
 
-  m_tabWidget->addTab(m_uvChart, QIcon(), tr("UV"));
+  m_uvError = new ErrorWidget(tr("Error requesting ultraviolet radiation data."));
+  m_uvError->setVisible(false);
+
+  uvTabLayout->addWidget(m_uvChart);
+  uvTabLayout->addWidget(m_uvError);
+
+  m_tabWidget->addTab(uvTabContents, QIcon(), tr("UV"));
 
   connect(m_reset, SIGNAL(clicked()),
           this,    SLOT(onResetButtonPressed()));
@@ -284,265 +320,273 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
 
   // Forecast tab
-  auto axisX = new QDateTimeAxis();
-  axisX->setTickCount(12);
-  axisX->setLabelsAngle(45);
-  axisX->setFormat("dd (hh)");
-  axisX->setTitleText(tr("Day (Hour)"));
-
-  auto axisYTemp = new QValueAxis();
-  axisYTemp->setTickCount(6);
-  axisYTemp->setLabelFormat("%i");
-  axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(tempUnits));
-
-  auto axisYPrec = new QValueAxis();
-  axisYPrec->setTickCount(6);
-  axisYPrec->setLabelFormat("%.2f");
-  axisYPrec->setTitleText(tr("%1 in %2").arg(precStr).arg(accuStr));
-
-  const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
-
-  auto forecastChart = new QChart();
-  forecastChart->legend()->setVisible(true);
-  forecastChart->legend()->setAlignment(Qt::AlignBottom);
-  forecastChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
-  forecastChart->setAnimationDuration(400);
-  forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
-  forecastChart->setAnimationOptions(QChart::AllAnimations);
-  forecastChart->addAxis(axisX, Qt::AlignBottom);
-  forecastChart->addAxis(axisYTemp, Qt::AlignLeft);
-  forecastChart->addAxis(axisYPrec, Qt::AlignRight);
-  forecastChart->setBackgroundVisible(false);
-  forecastChart->setTheme(theme);
-
-  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
-
-  axisX->setGridLineVisible(true);
-  axisX->setGridLineColor(linesColor);
-  axisX->setMinorGridLineVisible(true);
-  axisX->setMinorGridLineColor(linesColor);
-  axisYTemp->setGridLineVisible(true);
-  axisYTemp->setGridLineColor(linesColor);
-  axisYTemp->setMinorGridLineVisible(true);
-  axisYTemp->setMinorGridLineColor(linesColor);
-  axisYPrec->setGridLineVisible(true);
-  axisYPrec->setGridLineColor(linesColor);
-  axisYPrec->setMinorGridLineVisible(true);
-  axisYPrec->setMinorGridLineColor(linesColor);
-
-  auto titleFont = axisX->titleFont();
-  titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
-  titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
-  titleFont.setBold(true);
-
-  auto labelsFont = axisX->labelsFont();
-  labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
-  labelsFont.setBold(false);
-
-  forecastChart->setFont(titleFont);
-  axisX->setTitleFont(titleFont);
-  axisX->setLabelsFont(labelsFont);
-  axisYTemp->setTitleFont(titleFont);
-  axisYTemp->setLabelsFont(labelsFont);
-  axisYPrec->setTitleFont(titleFont);
-  axisYPrec->setLabelsFont(labelsFont);
-
-  QPen pen;
-  pen.setWidth(2);
-  pen.setColor(QColor{90,90,235});
-
-  auto initSerie = [&](const Representation value, const QColor &color, const QString &name)
+  if(m_forecast->empty())
   {
-    QAbstractSeries *series = nullptr;
-
-    switch(value)
-    {
-      case Representation::SPLINE:
-        {
-          QPen pen;
-          pen.setWidth(2);
-          pen.setColor(color);
-
-          auto line = new QtCharts::QSplineSeries(forecastChart);
-          line->setPointsVisible(true);
-          line->setPen(pen);
-          line->setName(name);
-          line->setUseOpenGL(true);
-
-          connect(line, SIGNAL(hovered(const QPointF &, bool)),
-                  this, SLOT(onChartHover(const QPointF &, bool)));
-
-          series = line;
-        }
-        break;
-      case Representation::BARS:
-        {
-          auto barset = new QtCharts::QBarSet("");
-          barset->setColor(color);
-          barset->setLabel(name);
-
-          auto line = new QtCharts::QBarSeries(forecastChart);
-          line->setName(name);
-          line->append(barset);
-          line->setBarWidth(line->barWidth()*1.5);
-          line->setUseOpenGL(true);
-          line->setOpacity(0.8);
-
-          connect(line, SIGNAL(hovered(bool, int, QBarSet *)),
-                  this, SLOT(onChartHover(bool, int)));
-
-          series = line;
-        }
-        break;
-      default:
-      case Representation::NONE:
-        break;
-    }
-
-    return series;
-  };
-
-  QAbstractSeries *fakeLine = initSerie(Representation::SPLINE, Qt::black, "fake");
-  QAbstractSeries *tempLine = initSerie(m_config->tempRepr, m_config->tempReprColor, tempStr);
-  QAbstractSeries *rainLine = initSerie(m_config->rainRepr, m_config->rainReprColor, tr("Rain accumulation"));
-  QAbstractSeries *snowLine = initSerie(m_config->snowRepr, m_config->snowReprColor, tr("Snow accumulation"));
-
-  double rainMin = 100, rainMax = -100;
-  double snowMin = 100, snowMax = -100;
-
-  auto appendValue = [](const long long x, const double y, QAbstractSeries *ptr)
+    m_weatherChart->hide();
+    m_weatherError->show();
+  }
+  else
   {
-    if(ptr)
+    m_weatherChart->show();
+    m_weatherError->hide();
+
+    auto axisX = new QDateTimeAxis();
+    axisX->setTickCount(12);
+    axisX->setLabelsAngle(45);
+    axisX->setFormat("dd (hh)");
+    axisX->setTitleText(tr("Day (Hour)"));
+
+    auto axisYTemp = new QValueAxis();
+    axisYTemp->setTickCount(6);
+    axisYTemp->setLabelFormat("%i");
+    axisYTemp->setTitleText(tr("%1 in %2").arg(tempStr).arg(tempUnits));
+
+    auto axisYPrec = new QValueAxis();
+    axisYPrec->setTickCount(6);
+    axisYPrec->setLabelFormat("%.2f");
+    axisYPrec->setTitleText(tr("%1 in %2").arg(precStr).arg(accuStr));
+
+    const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
+
+    auto forecastChart = new QChart();
+    forecastChart->legend()->setVisible(true);
+    forecastChart->legend()->setAlignment(Qt::AlignBottom);
+    forecastChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
+    forecastChart->setAnimationDuration(400);
+    forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
+    forecastChart->setAnimationOptions(QChart::AllAnimations);
+    forecastChart->addAxis(axisX, Qt::AlignBottom);
+    forecastChart->addAxis(axisYTemp, Qt::AlignLeft);
+    forecastChart->addAxis(axisYPrec, Qt::AlignRight);
+    forecastChart->setBackgroundVisible(false);
+    forecastChart->setTheme(theme);
+
+    const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
+
+    axisX->setGridLineVisible(true);
+    axisX->setGridLineColor(linesColor);
+    axisX->setMinorGridLineVisible(true);
+    axisX->setMinorGridLineColor(linesColor);
+    axisYTemp->setGridLineVisible(true);
+    axisYTemp->setGridLineColor(linesColor);
+    axisYTemp->setMinorGridLineVisible(true);
+    axisYTemp->setMinorGridLineColor(linesColor);
+    axisYPrec->setGridLineVisible(true);
+    axisYPrec->setGridLineColor(linesColor);
+    axisYPrec->setMinorGridLineVisible(true);
+    axisYPrec->setMinorGridLineColor(linesColor);
+
+    auto titleFont = axisX->titleFont();
+    titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+    titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
+    titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+    titleFont.setBold(true);
+
+    auto labelsFont = axisX->labelsFont();
+    labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+    labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+    labelsFont.setBold(false);
+
+    forecastChart->setFont(titleFont);
+    axisX->setTitleFont(titleFont);
+    axisX->setLabelsFont(labelsFont);
+    axisYTemp->setTitleFont(titleFont);
+    axisYTemp->setLabelsFont(labelsFont);
+    axisYPrec->setTitleFont(titleFont);
+    axisYPrec->setLabelsFont(labelsFont);
+
+    QPen pen;
+    pen.setWidth(2);
+    pen.setColor(QColor{90,90,235});
+
+    auto initSerie = [&](const Representation value, const QColor &color, const QString &name)
     {
-      switch(ptr->type())
+      QAbstractSeries *series = nullptr;
+
+      switch(value)
       {
-        case QAbstractSeries::SeriesTypeBar:
-          qobject_cast<QBarSeries*>(ptr)->barSets().first()->append(y);
+        case Representation::SPLINE:
+          {
+            QPen pen;
+            pen.setWidth(2);
+            pen.setColor(color);
+
+            auto line = new QtCharts::QSplineSeries(forecastChart);
+            line->setPointsVisible(true);
+            line->setPen(pen);
+            line->setName(name);
+            line->setUseOpenGL(true);
+
+            connect(line, SIGNAL(hovered(const QPointF &, bool)),
+                    this, SLOT(onChartHover(const QPointF &, bool)));
+
+            series = line;
+          }
           break;
-        case QAbstractSeries::SeriesTypeSpline:
-          qobject_cast<QSplineSeries*>(ptr)->append(x, y);
+        case Representation::BARS:
+          {
+            auto barset = new QtCharts::QBarSet("");
+            barset->setColor(color);
+            barset->setLabel(name);
+
+            auto line = new QtCharts::QBarSeries(forecastChart);
+            line->setName(name);
+            line->append(barset);
+            line->setBarWidth(line->barWidth()*1.5);
+            line->setUseOpenGL(true);
+            line->setOpacity(0.8);
+
+            connect(line, SIGNAL(hovered(bool, int, QBarSet *)),
+                    this, SLOT(onChartHover(bool, int)));
+
+            series = line;
+          }
           break;
         default:
+        case Representation::NONE:
           break;
       }
-    }
-  };
 
-  for(auto &entry: data)
-  {
-    unixTimeStampToDate(t, entry.dt);
-    dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+      return series;
+    };
 
-    const auto msecs = dtTime.toMSecsSinceEpoch();
+    QAbstractSeries *fakeLine = initSerie(Representation::SPLINE, Qt::black, "fake");
+    QAbstractSeries *tempLine = initSerie(m_config->tempRepr, m_config->tempReprColor, tempStr);
+    QAbstractSeries *rainLine = initSerie(m_config->rainRepr, m_config->rainReprColor, tr("Rain accumulation"));
+    QAbstractSeries *snowLine = initSerie(m_config->snowRepr, m_config->snowReprColor, tr("Snow accumulation"));
 
-    appendValue(msecs, 0, fakeLine);
+    double rainMin = 100, rainMax = -100;
+    double snowMin = 100, snowMax = -100;
 
-    auto value = tempFunc(entry.temp);
-    appendValue(msecs, value, tempLine);
-
-    value = precipitationFunc(entry.rain);
-    appendValue(msecs, value, rainLine);
-
-    rainMin = std::min(rainMin, value);
-    rainMax = std::max(rainMax, value);
-
-    value = precipitationFunc(entry.snow);
-    appendValue(msecs, value, snowLine);
-
-    snowMin = std::min(snowMin, value);
-    snowMax = std::max(snowMax, value);
-  }
-
-  axisYTemp->setProperty("axisType", "temp");
-
-  // Bar series need to be added first so they don't hide the line series.
-  auto addLineSeriesToChart = [&forecastChart, &axisX](QAbstractSeries *ptr)
-  {
-    forecastChart->addSeries(ptr);
-    forecastChart->setAxisX(axisX,ptr);
-  };
-
-  QList<QAbstractSeries*> toAddLater;
-  for(QAbstractSeries *ptr: {fakeLine, tempLine, rainLine, snowLine})
-  {
-    if(!ptr) continue;
-
-    if(qobject_cast<QSplineSeries*>(ptr))
+    auto appendValue = [](const long long x, const double y, QAbstractSeries *ptr)
     {
-      toAddLater << ptr;
+      if(ptr)
+      {
+        switch(ptr->type())
+        {
+          case QAbstractSeries::SeriesTypeBar:
+            qobject_cast<QBarSeries*>(ptr)->barSets().first()->append(y);
+            break;
+          case QAbstractSeries::SeriesTypeSpline:
+            qobject_cast<QSplineSeries*>(ptr)->append(x, y);
+            break;
+          default:
+            break;
+        }
+      }
+    };
+
+    for(auto &entry: data)
+    {
+      unixTimeStampToDate(t, entry.dt);
+      dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+
+      const auto msecs = dtTime.toMSecsSinceEpoch();
+
+      appendValue(msecs, 0, fakeLine);
+
+      auto value = tempFunc(entry.temp);
+      appendValue(msecs, value, tempLine);
+
+      value = precipitationFunc(entry.rain);
+      appendValue(msecs, value, rainLine);
+
+      rainMin = std::min(rainMin, value);
+      rainMax = std::max(rainMax, value);
+
+      value = precipitationFunc(entry.snow);
+      appendValue(msecs, value, snowLine);
+
+      snowMin = std::min(snowMin, value);
+      snowMax = std::max(snowMax, value);
     }
-    else
+
+    axisYTemp->setProperty("axisType", "temp");
+
+    // Bar series need to be added first so they don't hide the line series.
+    auto addLineSeriesToChart = [&forecastChart, &axisX](QAbstractSeries *ptr)
     {
       forecastChart->addSeries(ptr);
-    }
-  }
+      forecastChart->setAxisX(axisX,ptr);
+    };
 
-  std::for_each(toAddLater.cbegin(), toAddLater.cend(), addLineSeriesToChart);
-
-  if(tempLine) forecastChart->setAxisY(axisYTemp, tempLine);
-  if(rainLine) forecastChart->setAxisY(axisYPrec, rainLine);
-  if(snowLine) forecastChart->setAxisY(axisYPrec, snowLine);
-
-  fakeLine->setVisible(false);
-  if(rainLine) rainLine->setVisible(rainMin != 0 || rainMax != 0);
-  if(snowLine) snowLine->setVisible(snowMin != 0 || snowMax != 0);
-
-  axisYPrec->setVisible((rainLine && rainLine->isVisible()) || (snowLine && snowLine->isVisible()));
-
-  updateAxesRanges(forecastChart);
-
-  for(auto marker: forecastChart->legend()->markers())
-  {
-    connect(marker, SIGNAL(clicked()), this, SLOT(onLegendMarkerClicked()));
-  }
-
-  const auto scale = dpiScale();
-  if(scale != 1.)
-  {
-    auto font = forecastChart->legend()->font();
-    font.setPointSize(font.pointSize()*scale);
-    forecastChart->legend()->setFont(font);
-
-    font = axisX->titleFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisX->setTitleFont(font);
-
-    font = axisYPrec->titleFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisYPrec->setTitleFont(font);
-
-    font = axisYTemp->titleFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisYTemp->setTitleFont(font);
-
-    forecastChart->adjustSize();
-  }
-
-  auto oldChart = m_weatherChart->chart();
-  m_weatherChart->setChart(forecastChart);
-  m_weatherChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
-  m_weatherChart->chart()->zoomReset();
-
-  m_reset->setEnabled(false);
-
-  connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-          this,  SLOT(onAreaChanged()));
-
-  if(oldChart)
-  {
-    auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
-    if(axis)
+    QList<QAbstractSeries*> toAddLater;
+    for(QAbstractSeries *ptr: {fakeLine, tempLine, rainLine, snowLine})
     {
-      disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-                 this, SLOT(onAreaChanged()));
+      if(!ptr) continue;
+
+      if(qobject_cast<QSplineSeries*>(ptr))
+      {
+        toAddLater << ptr;
+      }
+      else
+      {
+        forecastChart->addSeries(ptr);
+      }
     }
 
-    delete oldChart;
-  }
+    std::for_each(toAddLater.cbegin(), toAddLater.cend(), addLineSeriesToChart);
 
-  onResetButtonPressed();
+    if(tempLine) forecastChart->setAxisY(axisYTemp, tempLine);
+    if(rainLine) forecastChart->setAxisY(axisYPrec, rainLine);
+    if(snowLine) forecastChart->setAxisY(axisYPrec, snowLine);
+
+    fakeLine->setVisible(false);
+    if(rainLine) rainLine->setVisible(rainMin != 0 || rainMax != 0);
+    if(snowLine) snowLine->setVisible(snowMin != 0 || snowMax != 0);
+
+    axisYPrec->setVisible((rainLine && rainLine->isVisible()) || (snowLine && snowLine->isVisible()));
+
+    updateAxesRanges(forecastChart);
+
+    for(auto marker: forecastChart->legend()->markers())
+    {
+      connect(marker, SIGNAL(clicked()), this, SLOT(onLegendMarkerClicked()));
+    }
+
+    const auto scale = dpiScale();
+    if(scale != 1.)
+    {
+      auto font = forecastChart->legend()->font();
+      font.setPointSize(font.pointSize()*scale);
+      forecastChart->legend()->setFont(font);
+
+      font = axisX->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisX->setTitleFont(font);
+
+      font = axisYPrec->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisYPrec->setTitleFont(font);
+
+      font = axisYTemp->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisYTemp->setTitleFont(font);
+
+      forecastChart->adjustSize();
+    }
+
+    auto oldChart = m_weatherChart->chart();
+    m_weatherChart->setChart(forecastChart);
+    m_weatherChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
+
+    connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+            this,  SLOT(onAreaChanged()));
+
+    if(oldChart)
+    {
+      auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
+      if(axis)
+      {
+        disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                   this, SLOT(onAreaChanged()));
+      }
+
+      delete oldChart;
+    }
+
+    onResetButtonPressed();
+  }
 
   if(mapsEnabled())
   {
@@ -554,20 +598,26 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 //--------------------------------------------------------------------
 void WeatherDialog::onResetButtonPressed()
 {
+  bool applied = false;
   switch(m_tabWidget->currentIndex())
   {
     case 1:
       m_weatherChart->chart()->zoomReset();
+      applied = true;
       break;
     case 2:
       m_pollutionChart->chart()->zoomReset();
+      applied = true;
       break;
     case 3:
       m_uvChart->chart()->zoomReset();
+      applied = true;
       break;
     default:
       break;
   }
+
+  if(applied) m_reset->setEnabled(false);
 }
 
 //--------------------------------------------------------------------
@@ -747,13 +797,13 @@ void WeatherDialog::onAreaChanged()
   switch(currentIndex)
   {
     case 1:
-      m_reset->setEnabled(m_weatherChart->chart() && m_weatherChart->chart()->isZoomed());
+      m_reset->setEnabled(!m_weatherError->isVisible() && m_weatherChart->chart() && m_weatherChart->chart()->isZoomed());
       break;
     case 2:
-      m_reset->setEnabled(m_pollutionChart->chart() && m_pollutionChart->chart()->isZoomed());
+      m_reset->setEnabled(!m_pollutionError->isVisible() && m_pollutionChart->chart() && m_pollutionChart->chart()->isZoomed());
       break;
     case 3:
-      m_reset->setEnabled(m_uvChart->chart() && m_uvChart->chart()->isZoomed());
+      m_reset->setEnabled(!m_uvError->isVisible() && m_uvChart->chart() && m_uvChart->chart()->isZoomed());
       break;
     default:
       m_reset->setEnabled(false);
@@ -792,161 +842,171 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   m_air_quality->setText(qualityStr);
 
-  auto axisX = new QDateTimeAxis();
-  axisX->setTickCount(12);
-  axisX->setLabelsAngle(45);
-  axisX->setFormat("dd (hh)");
-  axisX->setTitleText(tr("Day (Hour)"));
-
-  auto axisY = new QValueAxis();
-  axisY->setLabelFormat("%i");
-  axisY->setTitleText(tr("Concentration in %1").arg(CONCENTRATION_UNITS));
-
-  const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
-
-  auto forecastChart = new QChart();
-  forecastChart->legend()->setVisible(true);
-  forecastChart->legend()->setAlignment(Qt::AlignBottom);
-  forecastChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
-  forecastChart->setAnimationDuration(400);
-  forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
-  forecastChart->setAnimationOptions(QChart::AllAnimations);
-  forecastChart->addAxis(axisX, Qt::AlignBottom);
-  forecastChart->addAxis(axisY, Qt::AlignLeft);
-  forecastChart->setBackgroundVisible(false);
-  forecastChart->setTheme(theme);
-
-  const auto linesColor = Qt::darkGray;
-
-  axisX->setGridLineVisible(true);
-  axisX->setGridLineColor(linesColor);
-  axisX->setMinorGridLineVisible(true);
-  axisX->setMinorGridLineColor(linesColor);
-  axisY->setGridLineVisible(true);
-  axisY->setGridLineColor(linesColor);
-  axisY->setMinorGridLineVisible(true);
-  axisY->setMinorGridLineColor(linesColor);
-
-  auto titleFont = axisX->titleFont();
-  titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
-  titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
-  titleFont.setBold(true);
-
-  auto labelsFont = axisX->labelsFont();
-  labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
-  labelsFont.setBold(false);
-
-  forecastChart->setFont(titleFont);
-  axisX->setTitleFont(titleFont);
-  axisX->setLabelsFont(labelsFont);
-  axisY->setTitleFont(titleFont);
-  axisY->setLabelsFont(labelsFont);
-
-  QPen pens[8];
-
-  QSplineSeries *pollutionLine[8];
-
-  for(int i = 0; i < 8; ++i)
+  if(m_pollution->isEmpty())
   {
-    pens[i].setWidth(2);
-    pens[i].setColor(CONCENTRATION_COLORS[i]);
-    pollutionLine[i] = new QSplineSeries(forecastChart);
-    pollutionLine[i]->setName(CONCENTRATION_NAMES.at(i));
-    pollutionLine[i]->setUseOpenGL(true);
-    pollutionLine[i]->setPointsVisible(true);
-    pollutionLine[i]->setPen(pens[i]);
+    m_pollutionChart->hide();
+    m_pollutionError->show();
   }
-
-  QLinearGradient plotAreaGradient;
-  plotAreaGradient.setStart(QPointF(0, 0));
-  plotAreaGradient.setFinalStop(QPointF(1, 0));
-  plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-
-  struct tm t;
-  for(int i = 0; i < data.size(); ++i)
+  else
   {
-    const auto &entry = data.at(i);
+    m_pollutionChart->show();
+    m_pollutionError->hide();
 
-    unixTimeStampToDate(t, entry.dt);
-    auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-    const auto msec = dtTime.toMSecsSinceEpoch();
+    auto axisX = new QDateTimeAxis();
+    axisX->setTickCount(12);
+    axisX->setLabelsAngle(45);
+    axisX->setFormat("dd (hh)");
+    axisX->setTitleText(tr("Day (Hour)"));
 
-    pollutionLine[0]->append(msec, entry.co);
-    pollutionLine[1]->append(msec, entry.no);
-    pollutionLine[2]->append(msec, entry.no2);
-    pollutionLine[3]->append(msec, entry.o3);
-    pollutionLine[4]->append(msec, entry.so2);
-    pollutionLine[5]->append(msec, entry.pm2_5);
-    pollutionLine[6]->append(msec, entry.pm10);
-    pollutionLine[7]->append(msec, entry.nh3);
+    auto axisY = new QValueAxis();
+    axisY->setLabelFormat("%i");
+    axisY->setTitleText(tr("Concentration in %1").arg(CONCENTRATION_UNITS));
 
-    plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), pollutionColor(entry.aqi));
-  }
+    const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
 
-  forecastChart->setPlotAreaBackgroundBrush(plotAreaGradient);
-  forecastChart->setPlotAreaBackgroundVisible(true);
+    auto forecastChart = new QChart();
+    forecastChart->legend()->setVisible(true);
+    forecastChart->legend()->setAlignment(Qt::AlignBottom);
+    forecastChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
+    forecastChart->setAnimationDuration(400);
+    forecastChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
+    forecastChart->setAnimationOptions(QChart::AllAnimations);
+    forecastChart->addAxis(axisX, Qt::AlignBottom);
+    forecastChart->addAxis(axisY, Qt::AlignLeft);
+    forecastChart->setBackgroundVisible(false);
+    forecastChart->setTheme(theme);
 
-  for(int i = 0; i < 8; ++i)
-  {
-    forecastChart->addSeries(pollutionLine[i]);
-    forecastChart->setAxisX(axisX, pollutionLine[i]);
-    forecastChart->setAxisY(axisY, pollutionLine[i]);
+    const auto linesColor = Qt::darkGray;
 
-    connect(pollutionLine[i], SIGNAL(hovered(const QPointF &, bool)),
-            this,             SLOT(onChartHover(const QPointF &, bool)));
-  }
+    axisX->setGridLineVisible(true);
+    axisX->setGridLineColor(linesColor);
+    axisX->setMinorGridLineVisible(true);
+    axisX->setMinorGridLineColor(linesColor);
+    axisY->setGridLineVisible(true);
+    axisY->setGridLineColor(linesColor);
+    axisY->setMinorGridLineVisible(true);
+    axisY->setMinorGridLineColor(linesColor);
 
-  updateAxesRanges(forecastChart);
+    auto titleFont = axisX->titleFont();
+    titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+    titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
+    titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+    titleFont.setBold(true);
 
-  for(auto marker: forecastChart->legend()->markers())
-  {
-    connect(marker, SIGNAL(clicked()), this, SLOT(onLegendMarkerClicked()));
-  }
+    auto labelsFont = axisX->labelsFont();
+    labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+    labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+    labelsFont.setBold(false);
 
-  const auto scale = dpiScale();
-  if(scale != 1.)
-  {
-    auto font = forecastChart->legend()->font();
-    font.setPointSize(font.pointSize()*scale);
-    forecastChart->legend()->setFont(font);
+    forecastChart->setFont(titleFont);
+    axisX->setTitleFont(titleFont);
+    axisX->setLabelsFont(labelsFont);
+    axisY->setTitleFont(titleFont);
+    axisY->setLabelsFont(labelsFont);
 
-    font = axisX->titleFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisX->setTitleFont(font);
+    QPen pens[8];
 
-    font = axisY->titleFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisY->setTitleFont(font);
+    QSplineSeries *pollutionLine[8];
 
-    forecastChart->adjustSize();
-  }
-
-  auto oldChart = m_pollutionChart->chart();
-  m_pollutionChart->setChart(forecastChart);
-  m_pollutionChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
-  m_pollutionChart->chart()->zoomReset();
-
-  m_reset->setEnabled(false);
-
-  connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-          this,  SLOT(onAreaChanged()));
-  connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-          this,  SLOT(onPollutionAreaChanged(QDateTime, QDateTime)));
-
-  if(oldChart)
-  {
-    auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
-    if(axis)
+    for(int i = 0; i < 8; ++i)
     {
-      disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-                 this, SLOT(onAreaChanged()));
-      disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-                 this, SLOT(onPollutionAreaChanged(QDateTime, QDateTime)));
+      pens[i].setWidth(2);
+      pens[i].setColor(CONCENTRATION_COLORS[i]);
+      pollutionLine[i] = new QSplineSeries(forecastChart);
+      pollutionLine[i]->setName(CONCENTRATION_NAMES.at(i));
+      pollutionLine[i]->setUseOpenGL(true);
+      pollutionLine[i]->setPointsVisible(true);
+      pollutionLine[i]->setPen(pens[i]);
     }
 
-    delete oldChart;
+    QLinearGradient plotAreaGradient;
+    plotAreaGradient.setStart(QPointF(0, 0));
+    plotAreaGradient.setFinalStop(QPointF(1, 0));
+    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+
+    struct tm t;
+    for(int i = 0; i < data.size(); ++i)
+    {
+      const auto &entry = data.at(i);
+
+      unixTimeStampToDate(t, entry.dt);
+      auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+      const auto msec = dtTime.toMSecsSinceEpoch();
+
+      pollutionLine[0]->append(msec, entry.co);
+      pollutionLine[1]->append(msec, entry.no);
+      pollutionLine[2]->append(msec, entry.no2);
+      pollutionLine[3]->append(msec, entry.o3);
+      pollutionLine[4]->append(msec, entry.so2);
+      pollutionLine[5]->append(msec, entry.pm2_5);
+      pollutionLine[6]->append(msec, entry.pm10);
+      pollutionLine[7]->append(msec, entry.nh3);
+
+      plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), pollutionColor(entry.aqi));
+    }
+
+    forecastChart->setPlotAreaBackgroundBrush(plotAreaGradient);
+    forecastChart->setPlotAreaBackgroundVisible(true);
+
+    for(int i = 0; i < 8; ++i)
+    {
+      forecastChart->addSeries(pollutionLine[i]);
+      forecastChart->setAxisX(axisX, pollutionLine[i]);
+      forecastChart->setAxisY(axisY, pollutionLine[i]);
+
+      connect(pollutionLine[i], SIGNAL(hovered(const QPointF &, bool)),
+              this,             SLOT(onChartHover(const QPointF &, bool)));
+    }
+
+    updateAxesRanges(forecastChart);
+
+    for(auto marker: forecastChart->legend()->markers())
+    {
+      connect(marker, SIGNAL(clicked()), this, SLOT(onLegendMarkerClicked()));
+    }
+
+    const auto scale = dpiScale();
+    if(scale != 1.)
+    {
+      auto font = forecastChart->legend()->font();
+      font.setPointSize(font.pointSize()*scale);
+      forecastChart->legend()->setFont(font);
+
+      font = axisX->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisX->setTitleFont(font);
+
+      font = axisY->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisY->setTitleFont(font);
+
+      forecastChart->adjustSize();
+    }
+
+    auto oldChart = m_pollutionChart->chart();
+    m_pollutionChart->setChart(forecastChart);
+    m_pollutionChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
+
+    connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+            this,  SLOT(onAreaChanged()));
+    connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+            this,  SLOT(onPollutionAreaChanged(QDateTime, QDateTime)));
+
+    if(oldChart)
+    {
+      auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
+      if(axis)
+      {
+        disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                   this, SLOT(onAreaChanged()));
+        disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                   this, SLOT(onPollutionAreaChanged(QDateTime, QDateTime)));
+      }
+
+      delete oldChart;
+    }
+
+    onResetButtonPressed();
   }
 }
 
@@ -987,144 +1047,154 @@ void WeatherDialog::setUVData(const UV &data)
   }
   m_uvi->setText(indexStr);
 
-  auto axisX = new QDateTimeAxis();
-  axisX->setTickCount(12);
-  axisX->setLabelsAngle(45);
-  axisX->setFormat("dd (hh)");
-  axisX->setTitleText(tr("Day (Hour)"));
-
-  auto axisY = new QValueAxis();
-  axisY->setLabelFormat("%i");
-  axisY->setTitleText(tr("Ultraviolet radiation index"));
-
-  const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
-
-  auto uvChart = new QChart();
-  uvChart->legend()->setVisible(true);
-  uvChart->legend()->setAlignment(Qt::AlignBottom);
-  uvChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
-  uvChart->setAnimationDuration(400);
-  uvChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
-  uvChart->setAnimationOptions(QChart::AllAnimations);
-  uvChart->addAxis(axisX, Qt::AlignBottom);
-  uvChart->addAxis(axisY, Qt::AlignLeft);
-  uvChart->setBackgroundVisible(false);
-  uvChart->setTheme(theme);
-
-  const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
-
-  axisX->setGridLineVisible(true);
-  axisX->setGridLineColor(linesColor);
-  axisX->setMinorGridLineVisible(true);
-  axisX->setMinorGridLineColor(linesColor);
-  axisY->setGridLineVisible(true);
-  axisY->setGridLineColor(linesColor);
-  axisY->setMinorGridLineVisible(true);
-  axisY->setMinorGridLineColor(linesColor);
-
-  auto titleFont = axisX->titleFont();
-  titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
-  titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
-  titleFont.setBold(true);
-
-  auto labelsFont = axisX->labelsFont();
-  labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
-  labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
-  labelsFont.setBold(false);
-
-  uvChart->setFont(titleFont);
-  axisX->setTitleFont(titleFont);
-  axisX->setLabelsFont(labelsFont);
-  axisY->setTitleFont(titleFont);
-  axisY->setLabelsFont(labelsFont);
-
-  QPen pen;
-  pen.setWidth(2);
-  pen.setColor(QColor{90,90,235});
-
-  auto uvLine = new QSplineSeries(uvChart);
-  uvLine->setName(tr("UV Index"));
-  uvLine->setUseOpenGL(true);
-  uvLine->setPointsVisible(true);
-  uvLine->setPen(pen);
-
-  QLinearGradient plotAreaGradient;
-  plotAreaGradient.setStart(QPointF(0, 0));
-  plotAreaGradient.setFinalStop(QPointF(1, 0));
-  plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-
-  struct tm t;
-  for(int i = 0; i < data.size(); ++i)
+  if(m_uv->isEmpty())
   {
-    const auto &entry = data.at(i);
-
-    unixTimeStampToDate(t, entry.dt);
-    auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-    const auto msec = dtTime.toMSecsSinceEpoch();
-
-    uvLine->append(msec, entry.idx);
-
-    auto color = uvColor(entry.idx);
-    if(static_cast<int>(std::nearbyint(entry.idx)) == 0) color = m_config->lightTheme ? this->palette().base().color() : QColor("#232629");
-    color.setAlpha(210);
-    plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), color);
+    m_uvChart->hide();
+    m_uvError->show();
   }
-
-  uvChart->setPlotAreaBackgroundBrush(plotAreaGradient);
-  uvChart->setPlotAreaBackgroundVisible(true);
-
-  uvChart->addSeries(uvLine);
-  uvChart->setAxisX(axisX, uvLine);
-  uvChart->setAxisY(axisY, uvLine);
-
-  connect(uvLine, SIGNAL(hovered(const QPointF &, bool)),
-          this,   SLOT(onChartHover(const QPointF &, bool)));
-
-  updateAxesRanges(uvChart);
-
-  const auto scale = dpiScale();
-  if(scale != 1.)
+  else
   {
-    auto font = uvChart->legend()->font();
-    font.setPointSize(font.pointSize()*scale);
-    uvChart->legend()->setFont(font);
+    m_uvChart->show();
+    m_uvError->hide();
 
-    font = axisX->titleFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisX->setTitleFont(font);
+    auto axisX = new QDateTimeAxis();
+    axisX->setTickCount(12);
+    axisX->setLabelsAngle(45);
+    axisX->setFormat("dd (hh)");
+    axisX->setTitleText(tr("Day (Hour)"));
 
-    font = axisY->titleFont();
-    font.setPointSize(font.pointSize()*scale);
-    axisY->setTitleFont(font);
+    auto axisY = new QValueAxis();
+    axisY->setLabelFormat("%i");
+    axisY->setTitleText(tr("Ultraviolet radiation index"));
 
-    uvChart->adjustSize();
-  }
+    const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
 
-  auto oldChart = m_uvChart->chart();
-  m_uvChart->setChart(uvChart);
-  m_uvChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
-  m_uvChart->chart()->zoomReset();
+    auto uvChart = new QChart();
+    uvChart->legend()->setVisible(true);
+    uvChart->legend()->setAlignment(Qt::AlignBottom);
+    uvChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
+    uvChart->setAnimationDuration(400);
+    uvChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
+    uvChart->setAnimationOptions(QChart::AllAnimations);
+    uvChart->addAxis(axisX, Qt::AlignBottom);
+    uvChart->addAxis(axisY, Qt::AlignLeft);
+    uvChart->setBackgroundVisible(false);
+    uvChart->setTheme(theme);
 
-  m_reset->setEnabled(false);
+    const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
 
-  connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-          this,  SLOT(onAreaChanged()));
-  connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-          this,  SLOT(onUVAreaChanged(QDateTime, QDateTime)));
+    axisX->setGridLineVisible(true);
+    axisX->setGridLineColor(linesColor);
+    axisX->setMinorGridLineVisible(true);
+    axisX->setMinorGridLineColor(linesColor);
+    axisY->setGridLineVisible(true);
+    axisY->setGridLineColor(linesColor);
+    axisY->setMinorGridLineVisible(true);
+    axisY->setMinorGridLineColor(linesColor);
 
-  if(oldChart)
-  {
-    auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
-    if(axis)
+    auto titleFont = axisX->titleFont();
+    titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+    titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
+    titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+    titleFont.setBold(true);
+
+    auto labelsFont = axisX->labelsFont();
+    labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+    labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+    labelsFont.setBold(false);
+
+    uvChart->setFont(titleFont);
+    axisX->setTitleFont(titleFont);
+    axisX->setLabelsFont(labelsFont);
+    axisY->setTitleFont(titleFont);
+    axisY->setLabelsFont(labelsFont);
+
+    QPen pen;
+    pen.setWidth(2);
+    pen.setColor(QColor{90,90,235});
+
+    auto uvLine = new QSplineSeries(uvChart);
+    uvLine->setName(tr("UV Index"));
+    uvLine->setUseOpenGL(true);
+    uvLine->setPointsVisible(true);
+    uvLine->setPen(pen);
+
+    QLinearGradient plotAreaGradient;
+    plotAreaGradient.setStart(QPointF(0, 0));
+    plotAreaGradient.setFinalStop(QPointF(1, 0));
+    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+
+    struct tm t;
+    for(int i = 0; i < data.size(); ++i)
     {
-      disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-                 this, SLOT(onAreaChanged()));
-      disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
-                 this, SLOT(onUVAreaChanged(QDateTime, QDateTime)));
+      const auto &entry = data.at(i);
+
+      unixTimeStampToDate(t, entry.dt);
+      auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+      const auto msec = dtTime.toMSecsSinceEpoch();
+
+      uvLine->append(msec, entry.idx);
+
+      auto color = uvColor(entry.idx);
+      if(static_cast<int>(std::nearbyint(entry.idx)) == 0) color = m_config->lightTheme ? this->palette().base().color() : QColor("#232629");
+      color.setAlpha(210);
+      plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), color);
     }
 
-    delete oldChart;
+    uvChart->setPlotAreaBackgroundBrush(plotAreaGradient);
+    uvChart->setPlotAreaBackgroundVisible(true);
+
+    uvChart->addSeries(uvLine);
+    uvChart->setAxisX(axisX, uvLine);
+    uvChart->setAxisY(axisY, uvLine);
+
+    connect(uvLine, SIGNAL(hovered(const QPointF &, bool)),
+            this,   SLOT(onChartHover(const QPointF &, bool)));
+
+    updateAxesRanges(uvChart);
+
+    const auto scale = dpiScale();
+    if(scale != 1.)
+    {
+      auto font = uvChart->legend()->font();
+      font.setPointSize(font.pointSize()*scale);
+      uvChart->legend()->setFont(font);
+
+      font = axisX->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisX->setTitleFont(font);
+
+      font = axisY->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisY->setTitleFont(font);
+
+      uvChart->adjustSize();
+    }
+
+    auto oldChart = m_uvChart->chart();
+    m_uvChart->setChart(uvChart);
+    m_uvChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
+
+    connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+            this,  SLOT(onAreaChanged()));
+    connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+            this,  SLOT(onUVAreaChanged(QDateTime, QDateTime)));
+
+    if(oldChart)
+    {
+      auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
+      if(axis)
+      {
+        disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                   this, SLOT(onAreaChanged()));
+        disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                   this, SLOT(onUVAreaChanged(QDateTime, QDateTime)));
+      }
+
+      delete oldChart;
+    }
+
+    onResetButtonPressed();
   }
 }
 

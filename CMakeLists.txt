@@ -120,6 +120,7 @@ qt5_wrap_ui(CORE_UI
   PollutionWidget.ui
   UVWidget.ui
   AlertDialog.ui
+  ErrorWidget.ui
 )
 	
 set (CORE_SOURCES

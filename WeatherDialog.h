@@ -25,6 +25,7 @@
 
 // Qt
 #include "ui_WeatherDialog.h"
+#include "ui_ErrorWidget.h"
 #include <QDialog>
 #include <qwebview.h>
 #include <QWidget>
@@ -43,6 +44,23 @@ class QWebView;
 class WeatherWidget;
 class PollutionWidget;
 class UVWidget;
+
+/** \class ErrorWidget
+ * \brief Widget to show an error message in a forecast tab.
+ *
+ */
+class ErrorWidget
+: public QWidget
+, private Ui::ErrorWidget
+{
+    Q_OBJECT
+  public:
+    explicit ErrorWidget(const QString &text)
+    { setupUi(this); m_text->setText(text); }
+
+    virtual ~ErrorWidget()
+    {};
+};
 
 /** \class WeatherDialog
  * \brief Implements the dialog showing the current weather and the forecast.
@@ -193,6 +211,9 @@ class WeatherDialog
      */
     void updateAxesRanges(QtCharts::QChart *chart);
 
+    ErrorWidget                     *m_weatherError;     /** Weather forecast error widget.        */
+    ErrorWidget                     *m_pollutionError;   /** Pollution forecast error widget       */
+    ErrorWidget                     *m_uvError;          /** UV forecast error widget.             */
     QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.          */
     QtCharts::QChartView            *m_pollutionChart;   /** pollution forecast chart view.        */
     QtCharts::QChartView            *m_uvChart;          /** uv forecast chart view.               */

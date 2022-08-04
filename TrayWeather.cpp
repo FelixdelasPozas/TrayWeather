@@ -85,14 +85,10 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 {
   auto setErrorTooltip = [this](const QString &text)
   {
-    const auto errorIcon = QIcon{":/TrayWeather/network_error.svg"};
-    setIcon(errorIcon);
-
     setToolTip(text);
 
     if(m_additionalTray)
     {
-      m_additionalTray->setIcon(errorIcon);
       m_additionalTray->setToolTip(text);
     }
   };
@@ -108,7 +104,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      auto githubError = tr("Error requesting Github releases data.");
+      auto githubError = tr("Network Error: Github.");
       if(!toolTip().contains(githubError, Qt::CaseSensitive))
       {
         githubError = toolTip() + "\n\n" + githubError;
@@ -126,7 +122,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      const auto tooltip = tr("Error requesting geolocation coordinates.");
+      const auto tooltip = tr("Network Error: geolocation.");
       setErrorTooltip(tooltip);
     }
   }
@@ -139,7 +135,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      const auto tooltip = tr("Error requesting weather data.");
+      const auto tooltip = tr("Network Error: Pollution data.");
       setErrorTooltip(tooltip);
     }
   }
@@ -153,7 +149,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
       }
       else
       {
-        const auto tooltip = tr("Error requesting weather data.");
+        const auto tooltip = tr("Network Error: UV data.");
         setErrorTooltip(tooltip);
       }
     }
@@ -167,7 +163,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         }
         else
         {
-          const auto tooltip = tr("Error requesting weather data.");
+          const auto tooltip = tr("Network Error: Weather data.");
           setErrorTooltip(tooltip);
         }
       }
@@ -1337,18 +1333,15 @@ void TrayWeather::processWeatherData(const QByteArray &data)
       }
     }
 
-    if(validData())
-    {
-      m_timer.setInterval(m_configuration.updateTime*60*1000);
-      m_timer.start();
-
-      if(m_weatherDialog)
-      {
-        m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
-      }
-    }
+    m_timer.setInterval(m_configuration.updateTime*60*1000);
+    m_timer.start();
 
     updateTooltip();
+  }
+
+  if(m_weatherDialog)
+  {
+    m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
   }
 }
 
@@ -1379,10 +1372,9 @@ void TrayWeather::processGeolocationData(const QByteArray &data, const bool isDN
     else
     {
       const auto errorIcon = QIcon{":/TrayWeather/network_error.svg"};
-      setIcon(errorIcon);
+      const auto tooltip = tr("Network Error: geolocation.");
 
-      QString tooltip;
-      tooltip = tr("Error requesting geolocation coordinates.");
+      setIcon(errorIcon);
       setToolTip(tooltip);
 
       if(m_additionalTray)
@@ -1398,11 +1390,10 @@ void TrayWeather::processGeolocationData(const QByteArray &data, const bool isDN
 void TrayWeather::processPollutionData(const QByteArray &data)
 {
   const auto jsonDocument = QJsonDocument::fromJson(data);
+  m_pData.clear();
 
   if(!jsonDocument.isNull() && jsonDocument.isObject())
   {
-    m_pData.clear();
-
     // to discard entries older than 'right now'.
     const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
     const auto jsonObj = jsonDocument.object();
@@ -1432,7 +1423,7 @@ void TrayWeather::processPollutionData(const QByteArray &data)
     updateTooltip();
   }
 
-  if(!m_pData.isEmpty() && m_weatherDialog)
+  if(m_weatherDialog)
   {
     m_weatherDialog->setPollutionData(m_pData);
   }
@@ -1442,11 +1433,10 @@ void TrayWeather::processPollutionData(const QByteArray &data)
 void TrayWeather::processOneCallData(const QByteArray &data)
 {
   const auto jsonDocument = QJsonDocument::fromJson(data);
+  m_vData.clear();
 
   if(!jsonDocument.isNull() && jsonDocument.isObject())
   {
-    m_vData.clear();
-
     const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
     const auto jsonObj   = jsonDocument.object();
     const auto current   = jsonObj.value("current").toObject();
@@ -1508,7 +1498,7 @@ void TrayWeather::processOneCallData(const QByteArray &data)
     }
   }
 
-  if(!m_vData.isEmpty() && m_weatherDialog)
+  if(m_weatherDialog)
   {
     m_weatherDialog->setUVData(m_vData);
   }
