@@ -85,11 +85,17 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 {
   auto setErrorTooltip = [this](const QString &text)
   {
-    setToolTip(text);
+    const auto tooltipText = toolTip();
 
-    if(m_additionalTray)
+    if(!tooltipText.contains(text, Qt::CaseSensitive) && (tooltipText.length() + text.length() <= 125))
     {
-      m_additionalTray->setToolTip(text);
+      const auto finalText = tooltipText + "\n\n" + text;
+      setToolTip(finalText);
+
+      if(m_additionalTray)
+      {
+        m_additionalTray->setToolTip(finalText);
+      }
     }
   };
 
@@ -104,8 +110,9 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
+      const auto tooltipText = toolTip();
       auto githubError = tr("Network Error: Github.");
-      if(!toolTip().contains(githubError, Qt::CaseSensitive))
+      if(!tooltipText.contains(githubError, Qt::CaseSensitive) && (tooltipText.length() + githubError.length() <= 125))
       {
         githubError = toolTip() + "\n\n" + githubError;
         setToolTip(githubError);
@@ -122,8 +129,8 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      const auto tooltip = tr("Network Error: geolocation.");
-      setErrorTooltip(tooltip);
+      const auto errorText = tr("Network Error: geolocation.");
+      setErrorTooltip(errorText);
     }
   }
 
@@ -149,8 +156,8 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
       }
       else
       {
-        const auto tooltip = tr("Network Error: UV data.");
-        setErrorTooltip(tooltip);
+        const auto errorText = tr("Network Error: UV data.");
+        setErrorTooltip(errorText);
       }
     }
     else
@@ -163,8 +170,8 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         }
         else
         {
-          const auto tooltip = tr("Network Error: Weather data.");
-          setErrorTooltip(tooltip);
+          const auto errorText = tr("Network Error: Weather data.");
+          setErrorTooltip(errorText);
         }
       }
     }
