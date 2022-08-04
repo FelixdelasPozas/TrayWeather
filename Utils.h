@@ -125,7 +125,7 @@ static QList<LanguageData> TRANSLATIONS = {
     { "Українська",             ":/TrayWeather/languages/uk.svg", "uk_UA", "Aleksandr Popov"            },
     { "Slovenščina",            ":/TrayWeather/languages/sl.svg", "sl_SI", "datenshi888"                },
     { "한국어",                 ":/TrayWeather/languages/kr.svg", "ko_KR", "isl6"                       },
-    { "polski",                 ":/TrayWeather/languages/pl.svg", "pl_PL", "Krzysztof Blachnicki"       }
+    { "Polski",                 ":/TrayWeather/languages/pl.svg", "pl_PL", "Krzysztof Blachnicki"       }
 };
 
 /** \struct IconThemeData
