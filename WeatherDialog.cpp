@@ -324,11 +324,13 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   {
     m_weatherChart->hide();
     m_weatherError->show();
+    m_tabWidget->setTabIcon(1, QIcon(":/TrayWeather/network_error.svg"));
   }
   else
   {
     m_weatherChart->show();
     m_weatherError->hide();
+    m_tabWidget->setTabIcon(1, QIcon());
 
     auto axisX = new QDateTimeAxis();
     axisX->setTickCount(12);
@@ -846,11 +848,13 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   {
     m_pollutionChart->hide();
     m_pollutionError->show();
+    m_tabWidget->setTabIcon(2, QIcon(":/TrayWeather/network_error.svg"));
   }
   else
   {
     m_pollutionChart->show();
     m_pollutionError->hide();
+    m_tabWidget->setTabIcon(2, QIcon());
 
     auto axisX = new QDateTimeAxis();
     axisX->setTickCount(12);
@@ -1051,11 +1055,13 @@ void WeatherDialog::setUVData(const UV &data)
   {
     m_uvChart->hide();
     m_uvError->show();
+    m_tabWidget->setTabIcon(3, QIcon(":/TrayWeather/network_error.svg"));
   }
   else
   {
     m_uvChart->show();
     m_uvError->hide();
+    m_tabWidget->setTabIcon(3, QIcon());
 
     auto axisX = new QDateTimeAxis();
     axisX->setTickCount(12);
