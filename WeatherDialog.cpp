@@ -99,7 +99,7 @@ WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
   m_pollutionChart->setToolTip(tr("Pollution forecast for the next days."));
   m_pollutionChart->setContentsMargins(0, 0, 0, 0);
 
-  m_pollutionError = new ErrorWidget(tr("Error requesting air pollution data."));
+  m_pollutionError = new ErrorWidget(tr("Error requesting air quality data."));
   m_pollutionError->setVisible(false);
 
   pollutionTabLayout->addWidget(m_pollutionChart);

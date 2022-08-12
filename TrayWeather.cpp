@@ -91,11 +91,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     {
       const auto finalText = tooltipText + "\n\n" + text;
       setToolTip(finalText);
-
-      if(m_additionalTray)
-      {
-        m_additionalTray->setToolTip(finalText);
-      }
+      if(m_additionalTray) m_additionalTray->setToolTip(finalText);
     }
   };
 
@@ -110,14 +106,8 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      const auto tooltipText = toolTip();
-      auto githubError = tr("Network Error: Github.");
-      if(!tooltipText.contains(githubError, Qt::CaseSensitive) && (tooltipText.length() + githubError.length() <= 125))
-      {
-        githubError = toolTip() + "\n\n" + githubError;
-        setToolTip(githubError);
-        if(m_additionalTray) m_additionalTray->setToolTip(githubError);
-      }
+      const auto errorText = tr("Error: ") + "Github.";
+      setErrorTooltip(errorText);
     }
   }
 
@@ -129,7 +119,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      const auto errorText = tr("Network Error: geolocation.");
+      const auto errorText = tr("Error: ") + tr("No geolocation.");
       setErrorTooltip(errorText);
     }
   }
@@ -142,7 +132,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      const auto tooltip = tr("Network Error: Pollution data.");
+      const auto tooltip = tr("Error: ") + tr("No pollution data.");
       setErrorTooltip(tooltip);
     }
   }
@@ -156,7 +146,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
       }
       else
       {
-        const auto errorText = tr("Network Error: UV data.");
+        const auto errorText = tr("Error: ") + tr("No UV data.");
         setErrorTooltip(errorText);
       }
     }
@@ -170,7 +160,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         }
         else
         {
-          const auto errorText = tr("Network Error: Weather data.");
+          const auto errorText = tr("Error: ") + tr("No weather data.");
           setErrorTooltip(errorText);
         }
       }
@@ -1273,11 +1263,14 @@ void TrayWeather::processGithubData(const QByteArray &data)
   }
   else
   {
-    auto githubError = tr("Error requesting Github releases data.");
-    if(!toolTip().contains(githubError, Qt::CaseSensitive))
+    auto githubError = tr("Error: ") + "Github.";
+    const auto tooltipText = toolTip();
+
+    if(!tooltipText.contains(githubError, Qt::CaseSensitive) && (tooltipText.length() + githubError.length() <= 125))
     {
-      githubError = toolTip() + "\n\n" + githubError;
-      setToolTip(githubError);
+      const auto finalText = tooltipText + "\n\n" + githubError;
+      setToolTip(finalText);
+      if(m_additionalTray) m_additionalTray->setToolTip(finalText);
     }
   }
 }
@@ -1379,7 +1372,7 @@ void TrayWeather::processGeolocationData(const QByteArray &data, const bool isDN
     else
     {
       const auto errorIcon = QIcon{":/TrayWeather/network_error.svg"};
-      const auto tooltip = tr("Network Error: geolocation.");
+      const auto tooltip = tr("Error: ") + tr("No geolocation.");
 
       setIcon(errorIcon);
       setToolTip(tooltip);

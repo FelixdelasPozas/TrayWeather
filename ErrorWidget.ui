@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">ErrorWidget</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -44,7 +44,7 @@
         </size>
        </property>
        <property name="text">
-        <string/>
+        <string notr="true"/>
        </property>
        <property name="pixmap">
         <pixmap resource="rsc/resources.qrc">:/TrayWeather/network_error.svg</pixmap>
@@ -69,7 +69,7 @@
       </font>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string notr="true"/>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
