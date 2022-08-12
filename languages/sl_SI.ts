@@ -892,8 +892,8 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
         <location filename="../Main.cpp" line="71"/>
         <location filename="../Main.cpp" line="87"/>
         <location filename="../Main.cpp" line="110"/>
-        <location filename="../TrayWeather.cpp" line="372"/>
-        <location filename="../TrayWeather.cpp" line="980"/>
+        <location filename="../TrayWeather.cpp" line="365"/>
+        <location filename="../TrayWeather.cpp" line="973"/>
         <source>Tray Weather</source>
         <translation>TrayWeather</translation>
     </message>
@@ -1133,14 +1133,14 @@ Aplikacija se bo zdaj zaprla.</translation>
         <translation>Kakovost zraka  (PM&lt;sub&gt;10&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="374"/>
+        <location filename="../TrayWeather.cpp" line="367"/>
         <source>TrayWeather needs to be restarted for the new configuration to take effect.
 The application will exit now.</source>
         <translation>Za uveljavitev novih nastavitev se mora TrayWeather znova zagnati.
 Aplikacija se bo zdaj zaprla.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="982"/>
+        <location filename="../TrayWeather.cpp" line="975"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
         <translation>TrayWeather je zahteval vremenske podatke za vašo geografsko lokacijo
@@ -1150,213 +1150,226 @@ in še vedno čaka na odgovor.</translation>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="1256"/>
+        <location filename="../TrayWeather.cpp" line="1249"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translation>Obstaja nova verzija &lt;b&gt;Tray Weather&lt;/b&gt; na &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github spletni strani&lt;/a&gt;!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1257"/>
+        <location filename="../TrayWeather.cpp" line="1250"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation>&lt;center&gt;Izšla je &lt;b&gt;verzija %1&lt;/b&gt;&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1258"/>
+        <location filename="../TrayWeather.cpp" line="1251"/>
         <source>Release notes:
 %1</source>
         <translation>Opombe ob izdaji:
 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1259"/>
+        <location filename="../TrayWeather.cpp" line="1252"/>
         <source>Tray Weather updated to version %1</source>
         <translation>TrayWeather se je posodobil na verzijo %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="111"/>
-        <location filename="../TrayWeather.cpp" line="1273"/>
-        <source>Error requesting Github releases data.</source>
-        <translation>Napaka pri zahtevi podatkov iz strani Github.</translation>
+        <location filename="../TrayWeather.cpp" line="109"/>
+        <location filename="../TrayWeather.cpp" line="122"/>
+        <location filename="../TrayWeather.cpp" line="135"/>
+        <location filename="../TrayWeather.cpp" line="149"/>
+        <location filename="../TrayWeather.cpp" line="163"/>
+        <location filename="../TrayWeather.cpp" line="1266"/>
+        <location filename="../TrayWeather.cpp" line="1375"/>
+        <source>Error: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="129"/>
-        <location filename="../TrayWeather.cpp" line="1385"/>
-        <source>Error requesting geolocation coordinates.</source>
-        <translation>Napaka pri zahtevanju geolokacijskih koordinat.</translation>
+        <location filename="../TrayWeather.cpp" line="122"/>
+        <location filename="../TrayWeather.cpp" line="1375"/>
+        <source>No geolocation.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="142"/>
-        <location filename="../TrayWeather.cpp" line="156"/>
-        <location filename="../TrayWeather.cpp" line="170"/>
-        <source>Error requesting weather data.</source>
-        <translation>Napaka pri zahtevi vremenskih podatkov.</translation>
+        <location filename="../TrayWeather.cpp" line="135"/>
+        <source>No pollution data.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="420"/>
+        <location filename="../TrayWeather.cpp" line="149"/>
+        <source>No UV data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="163"/>
+        <source>No weather data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="413"/>
         <source>Requesting weather data from the server...</source>
         <translation>Zahtevam vremenske podatke iz strežnika...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="616"/>
+        <location filename="../TrayWeather.cpp" line="609"/>
         <source>Cloudiness: </source>
         <translation>Oblačnost: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="619"/>
+        <location filename="../TrayWeather.cpp" line="612"/>
         <source>Humidity: </source>
         <translation>Vlaga: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="629"/>
+        <location filename="../TrayWeather.cpp" line="622"/>
         <source>inHg</source>
         <translation>inHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="633"/>
+        <location filename="../TrayWeather.cpp" line="626"/>
         <source>mmHg</source>
         <translation>mmHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="637"/>
+        <location filename="../TrayWeather.cpp" line="630"/>
         <source>PSI</source>
         <translation>PSI</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="641"/>
+        <location filename="../TrayWeather.cpp" line="634"/>
         <source>hPa</source>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="644"/>
+        <location filename="../TrayWeather.cpp" line="637"/>
         <source>Pressure: </source>
         <translation>Pritisk: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="654"/>
+        <location filename="../TrayWeather.cpp" line="647"/>
         <source>feet/s</source>
         <translation>feet/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="658"/>
+        <location filename="../TrayWeather.cpp" line="651"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="662"/>
+        <location filename="../TrayWeather.cpp" line="655"/>
         <source>mil/h</source>
         <translation>mil/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="667"/>
+        <location filename="../TrayWeather.cpp" line="660"/>
         <source>met/sec</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="670"/>
+        <location filename="../TrayWeather.cpp" line="663"/>
         <source>Wind: </source>
         <translation>Veter: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="679"/>
+        <location filename="../TrayWeather.cpp" line="672"/>
         <source>Sunrise: </source>
         <translation>Sončni vzhod: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="688"/>
+        <location filename="../TrayWeather.cpp" line="681"/>
         <source>Sunset: </source>
         <translation>Sončni zahod: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="698"/>
+        <location filename="../TrayWeather.cpp" line="691"/>
         <source>Good</source>
         <translation>Dobra</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="701"/>
+        <location filename="../TrayWeather.cpp" line="694"/>
         <source>Fair</source>
         <translation>V redu</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="704"/>
+        <location filename="../TrayWeather.cpp" line="697"/>
         <source>Moderate</source>
         <translation>Zmerna</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="707"/>
+        <location filename="../TrayWeather.cpp" line="700"/>
         <source>Poor</source>
         <translation>Slaba</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="710"/>
+        <location filename="../TrayWeather.cpp" line="703"/>
         <source>Very poor</source>
         <translation>Zelo slaba</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="713"/>
+        <location filename="../TrayWeather.cpp" line="706"/>
         <source>Air: </source>
         <translation>Zrak: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="720"/>
+        <location filename="../TrayWeather.cpp" line="713"/>
         <source>UV: </source>
         <translation>UV: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="799"/>
-        <location filename="../TrayWeather.cpp" line="1205"/>
+        <location filename="../TrayWeather.cpp" line="792"/>
+        <location filename="../TrayWeather.cpp" line="1198"/>
         <source>Current weather...</source>
         <translation>Trenutno vreme...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="804"/>
-        <location filename="../TrayWeather.cpp" line="1206"/>
+        <location filename="../TrayWeather.cpp" line="797"/>
+        <location filename="../TrayWeather.cpp" line="1199"/>
         <source>Forecast...</source>
         <translation>Napoved...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="809"/>
-        <location filename="../TrayWeather.cpp" line="1207"/>
+        <location filename="../TrayWeather.cpp" line="802"/>
+        <location filename="../TrayWeather.cpp" line="1200"/>
         <source>Pollution...</source>
         <translation>Onesnaženost...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="814"/>
-        <location filename="../TrayWeather.cpp" line="1208"/>
+        <location filename="../TrayWeather.cpp" line="807"/>
+        <location filename="../TrayWeather.cpp" line="1201"/>
         <source>UV...</source>
         <translation>UV...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="819"/>
-        <location filename="../TrayWeather.cpp" line="1209"/>
+        <location filename="../TrayWeather.cpp" line="812"/>
+        <location filename="../TrayWeather.cpp" line="1202"/>
         <source>Maps...</source>
         <translation>Karte...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="828"/>
-        <location filename="../TrayWeather.cpp" line="1210"/>
+        <location filename="../TrayWeather.cpp" line="821"/>
+        <location filename="../TrayWeather.cpp" line="1203"/>
         <source>Refresh...</source>
         <translation>Osveži...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="835"/>
-        <location filename="../TrayWeather.cpp" line="1211"/>
+        <location filename="../TrayWeather.cpp" line="828"/>
+        <location filename="../TrayWeather.cpp" line="1204"/>
         <source>Last alert...</source>
         <translation>Nazadnje opozorilo...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="844"/>
-        <location filename="../TrayWeather.cpp" line="1212"/>
+        <location filename="../TrayWeather.cpp" line="837"/>
+        <location filename="../TrayWeather.cpp" line="1205"/>
         <source>Configuration...</source>
         <translation>Nastavitve...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="851"/>
-        <location filename="../TrayWeather.cpp" line="1213"/>
+        <location filename="../TrayWeather.cpp" line="844"/>
+        <location filename="../TrayWeather.cpp" line="1206"/>
         <source>About...</source>
         <translation>O programu...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="856"/>
-        <location filename="../TrayWeather.cpp" line="1214"/>
+        <location filename="../TrayWeather.cpp" line="849"/>
+        <location filename="../TrayWeather.cpp" line="1207"/>
         <source>Quit</source>
         <translation>Izhod</translation>
     </message>
@@ -1419,7 +1432,7 @@ v opoldanskih urah.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1314"/>
+        <location filename="../WeatherDialog.cpp" line="1390"/>
         <source>Current Weather</source>
         <translation>Trenutno Vreme</translation>
     </message>
@@ -1508,9 +1521,9 @@ v opoldanskih urah.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="199"/>
-        <location filename="../WeatherDialog.cpp" line="129"/>
-        <location filename="../WeatherDialog.cpp" line="1285"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="165"/>
+        <location filename="../WeatherDialog.cpp" line="1361"/>
+        <location filename="../WeatherDialog.cpp" line="1497"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
@@ -1533,9 +1546,9 @@ v opoldanskih urah.</translation>
         <location filename="../WeatherDialog.ui" line="459"/>
         <location filename="../WeatherDialog.ui" line="482"/>
         <location filename="../WeatherDialog.ui" line="508"/>
-        <location filename="../WeatherDialog.cpp" line="128"/>
-        <location filename="../WeatherDialog.cpp" line="769"/>
-        <location filename="../WeatherDialog.cpp" line="958"/>
+        <location filename="../WeatherDialog.cpp" line="164"/>
+        <location filename="../WeatherDialog.cpp" line="821"/>
+        <location filename="../WeatherDialog.cpp" line="1022"/>
         <source>Unknown</source>
         <translation>Neznano</translation>
     </message>
@@ -1554,7 +1567,7 @@ v opoldanskih urah.</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="279"/>
         <location filename="../WeatherDialog.ui" line="423"/>
-        <location filename="../WeatherDialog.cpp" line="127"/>
+        <location filename="../WeatherDialog.cpp" line="163"/>
         <source>None</source>
         <translation>Nič</translation>
     </message>
@@ -1612,7 +1625,7 @@ v opoldanskih urah.</translation>
         <translation>UV indeks</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="998"/>
+        <location filename="../WeatherDialog.cpp" line="1074"/>
         <source>Ultraviolet radiation index</source>
         <translation>Indeks ultravijoličnega sevanja</translation>
     </message>
@@ -1649,7 +1662,7 @@ v opoldanskih urah.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="651"/>
-        <location filename="../WeatherDialog.cpp" line="1522"/>
+        <location filename="../WeatherDialog.cpp" line="1598"/>
         <source>Show Maps</source>
         <translation>Pokaži karte</translation>
     </message>
@@ -1674,275 +1687,290 @@ v opoldanskih urah.</translation>
         <translation>V redu</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="72"/>
+        <location filename="../WeatherDialog.cpp" line="78"/>
         <source>Weather forecast for the next days.</source>
         <translation>Vremenska napoved za naslednje dni.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="75"/>
-        <location filename="../WeatherDialog.cpp" line="1314"/>
+        <location filename="../WeatherDialog.cpp" line="87"/>
+        <location filename="../WeatherDialog.cpp" line="1390"/>
         <source>Forecast</source>
         <translation>Napoved</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="81"/>
+        <location filename="../WeatherDialog.cpp" line="99"/>
         <source>Pollution forecast for the next days.</source>
         <translation>Napoved onesnaženosti za naslednje dni.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="84"/>
-        <location filename="../WeatherDialog.cpp" line="1314"/>
+        <location filename="../WeatherDialog.cpp" line="108"/>
+        <location filename="../WeatherDialog.cpp" line="1390"/>
         <source>Pollution</source>
         <translation>Onesnaženost</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="90"/>
+        <location filename="../WeatherDialog.cpp" line="120"/>
         <source>Ultraviolet radiation forecast for the next days.</source>
         <translation>Napoved ultravijoličnega sevanja za naslednje dni.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="93"/>
-        <location filename="../WeatherDialog.cpp" line="1314"/>
+        <location filename="../WeatherDialog.cpp" line="129"/>
+        <location filename="../WeatherDialog.cpp" line="1390"/>
         <source>UV</source>
         <translation>UV</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="149"/>
-        <location filename="../WeatherDialog.cpp" line="193"/>
-        <location filename="../WeatherDialog.cpp" line="1356"/>
-        <location filename="../WeatherDialog.cpp" line="1373"/>
+        <location filename="../WeatherDialog.cpp" line="185"/>
+        <location filename="../WeatherDialog.cpp" line="229"/>
+        <location filename="../WeatherDialog.cpp" line="1432"/>
+        <location filename="../WeatherDialog.cpp" line="1449"/>
         <source>mm</source>
         <translation>mm</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="142"/>
-        <location filename="../WeatherDialog.cpp" line="188"/>
-        <location filename="../WeatherDialog.cpp" line="1346"/>
-        <location filename="../WeatherDialog.cpp" line="1368"/>
+        <location filename="../WeatherDialog.cpp" line="178"/>
+        <location filename="../WeatherDialog.cpp" line="224"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
+        <location filename="../WeatherDialog.cpp" line="1444"/>
         <source>inches</source>
         <translation>inches</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="151"/>
-        <location filename="../WeatherDialog.cpp" line="212"/>
+        <location filename="../WeatherDialog.cpp" line="187"/>
+        <location filename="../WeatherDialog.cpp" line="248"/>
         <source>meter/sec</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="125"/>
+        <location filename="../WeatherDialog.cpp" line="161"/>
         <source>Illumination</source>
         <translation>Osvetlitev</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="126"/>
+        <location filename="../WeatherDialog.cpp" line="162"/>
         <source>Current weather</source>
         <translation>Trenutno vreme</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="409"/>
+        <location filename="../WeatherDialog.cpp" line="457"/>
         <source>Rain accumulation</source>
         <translation>Akumulacija dežja</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="150"/>
-        <location filename="../WeatherDialog.cpp" line="182"/>
+        <location filename="../WeatherDialog.cpp" line="186"/>
+        <location filename="../WeatherDialog.cpp" line="218"/>
         <source>hPa</source>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="144"/>
+        <location filename="../WeatherDialog.cpp" line="180"/>
         <source>miles/hour</source>
         <translation>miles/hour</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="291"/>
-        <location filename="../WeatherDialog.cpp" line="799"/>
-        <location filename="../WeatherDialog.cpp" line="994"/>
+        <location filename="../WeatherDialog.cpp" line="339"/>
+        <location filename="../WeatherDialog.cpp" line="863"/>
+        <location filename="../WeatherDialog.cpp" line="1070"/>
         <source>Day (Hour)</source>
         <translation>Dan (Ura)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="296"/>
-        <location filename="../WeatherDialog.cpp" line="301"/>
+        <location filename="../WeatherDialog.cpp" line="344"/>
+        <location filename="../WeatherDialog.cpp" line="349"/>
         <source>%1 in %2</source>
         <translation>%1 v %2</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="673"/>
-        <location filename="../WeatherDialog.cpp" line="726"/>
-        <location filename="../WeatherDialog.cpp" line="737"/>
-        <location filename="../WeatherDialog.cpp" line="1314"/>
+        <location filename="../WeatherDialog.cpp" line="725"/>
+        <location filename="../WeatherDialog.cpp" line="778"/>
+        <location filename="../WeatherDialog.cpp" line="789"/>
+        <location filename="../WeatherDialog.cpp" line="1390"/>
         <source>Maps</source>
         <translation>Karte</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="680"/>
+        <location filename="../WeatherDialog.cpp" line="732"/>
         <source>TrayWeather Maps</source>
         <translation>TrayWeather karte</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="682"/>
+        <location filename="../WeatherDialog.cpp" line="734"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>Vremenske karte ni bilo mogoče naložiti.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1329"/>
+        <location filename="../WeatherDialog.cpp" line="1405"/>
         <source>Hide Maps</source>
         <translation>Skrij karte</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1330"/>
+        <location filename="../WeatherDialog.cpp" line="1406"/>
         <source>Hide weather maps tab.</source>
         <translation>Skrij zavihek vremenskih kart.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="718"/>
+        <location filename="../WeatherDialog.cpp" line="770"/>
         <source>Weather Maps.</source>
         <translation>Vremenske karte.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="410"/>
+        <location filename="../WeatherDialog.cpp" line="458"/>
         <source>Snow accumulation</source>
         <translation>Akumulacija snega</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="143"/>
-        <location filename="../WeatherDialog.cpp" line="178"/>
+        <location filename="../WeatherDialog.cpp" line="179"/>
+        <location filename="../WeatherDialog.cpp" line="214"/>
         <source>PSI</source>
         <translation>PSI</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="130"/>
+        <location filename="../WeatherDialog.cpp" line="81"/>
+        <source>Error requesting weather data.</source>
+        <translation type="unfinished">Napaka pri zahtevi vremenskih podatkov.</translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="102"/>
+        <source>Error requesting air quality data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="123"/>
+        <source>Error requesting ultraviolet radiation data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../WeatherDialog.cpp" line="166"/>
         <source>Accumulation</source>
         <translation>Akumulacija</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="170"/>
+        <location filename="../WeatherDialog.cpp" line="206"/>
         <source>inHg</source>
         <translation>inHg</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="174"/>
+        <location filename="../WeatherDialog.cpp" line="210"/>
         <source>mmHg</source>
         <translation>mmHg</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="199"/>
+        <location filename="../WeatherDialog.cpp" line="235"/>
         <source>feet/s</source>
         <translation>feet/s</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="203"/>
-        <location filename="../WeatherDialog.cpp" line="1384"/>
+        <location filename="../WeatherDialog.cpp" line="239"/>
+        <location filename="../WeatherDialog.cpp" line="1460"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="308"/>
-        <location filename="../WeatherDialog.cpp" line="810"/>
-        <location filename="../WeatherDialog.cpp" line="1005"/>
+        <location filename="../WeatherDialog.cpp" line="356"/>
+        <location filename="../WeatherDialog.cpp" line="874"/>
+        <location filename="../WeatherDialog.cpp" line="1081"/>
         <source>Click to hide or show the forecast.</source>
         <translation>Klikni, da skriješ ali prikažeš napoved.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="776"/>
+        <location filename="../WeatherDialog.cpp" line="828"/>
         <source>Good</source>
         <translation>Dobra</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="779"/>
+        <location filename="../WeatherDialog.cpp" line="831"/>
         <source>Fair</source>
         <translation>V redu</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="782"/>
-        <location filename="../WeatherDialog.cpp" line="972"/>
+        <location filename="../WeatherDialog.cpp" line="834"/>
+        <location filename="../WeatherDialog.cpp" line="1036"/>
         <source>Moderate</source>
         <translation>Zmerna</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="785"/>
+        <location filename="../WeatherDialog.cpp" line="837"/>
         <source>Poor</source>
         <translation>Slaba</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="788"/>
+        <location filename="../WeatherDialog.cpp" line="840"/>
         <source>Very poor</source>
         <translation>Zelo slaba</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="803"/>
+        <location filename="../WeatherDialog.cpp" line="867"/>
         <source>Concentration in %1</source>
         <translation>Koncentracija v %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="967"/>
+        <location filename="../WeatherDialog.cpp" line="1031"/>
         <source>Low</source>
         <translation>Nizka</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="976"/>
+        <location filename="../WeatherDialog.cpp" line="1040"/>
         <source>High</source>
         <translation>Visoka</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="981"/>
+        <location filename="../WeatherDialog.cpp" line="1045"/>
         <source>Very high</source>
         <translation>Zelo visoka</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="984"/>
+        <location filename="../WeatherDialog.cpp" line="1048"/>
         <source>Extreme</source>
         <translation>Ekstremna</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1047"/>
+        <location filename="../WeatherDialog.cpp" line="1123"/>
         <source>UV Index</source>
         <translation>UV indeks</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1285"/>
-        <location filename="../WeatherDialog.cpp" line="1422"/>
+        <location filename="../WeatherDialog.cpp" line="1361"/>
+        <location filename="../WeatherDialog.cpp" line="1498"/>
         <source>Rain</source>
         <translation>Dež</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1285"/>
-        <location filename="../WeatherDialog.cpp" line="1423"/>
+        <location filename="../WeatherDialog.cpp" line="1361"/>
+        <location filename="../WeatherDialog.cpp" line="1499"/>
         <source>Wind</source>
         <translation>Veter</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1285"/>
-        <location filename="../WeatherDialog.cpp" line="1424"/>
+        <location filename="../WeatherDialog.cpp" line="1361"/>
+        <location filename="../WeatherDialog.cpp" line="1500"/>
         <source>Clouds</source>
         <translation>Oblaki</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="207"/>
-        <location filename="../WeatherDialog.cpp" line="1345"/>
-        <location filename="../WeatherDialog.cpp" line="1388"/>
+        <location filename="../WeatherDialog.cpp" line="243"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1464"/>
         <source>miles/h</source>
         <translation>miles/h</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1355"/>
-        <location filename="../WeatherDialog.cpp" line="1392"/>
+        <location filename="../WeatherDialog.cpp" line="1431"/>
+        <location filename="../WeatherDialog.cpp" line="1468"/>
         <source>met/sec</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1380"/>
+        <location filename="../WeatherDialog.cpp" line="1456"/>
         <source>feet/sec</source>
         <translation>feet/sec</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1438"/>
+        <location filename="../WeatherDialog.cpp" line="1514"/>
         <source>Unable to load weather webpage</source>
         <translation>Spletne strani o vremenu ni mogoče naložiti</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1523"/>
+        <location filename="../WeatherDialog.cpp" line="1599"/>
         <source>Show weather maps tab.</source>
         <translation>Pokaži zavihek vremenskih kart.</translation>
     </message>
