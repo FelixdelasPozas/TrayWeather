@@ -1180,28 +1180,28 @@ and it&apos;s still waiting for the response.</source>
         <location filename="../TrayWeather.cpp" line="1266"/>
         <location filename="../TrayWeather.cpp" line="1375"/>
         <source>Error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="122"/>
         <location filename="../TrayWeather.cpp" line="1375"/>
         <source>No geolocation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет геолокации.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="135"/>
         <source>No pollution data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет данных загрязнения.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="149"/>
         <source>No UV data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет данных УФ-индекса.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="163"/>
         <source>No weather data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет данных погоды.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="413"/>
@@ -1754,17 +1754,17 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="81"/>
         <source>Error requesting weather data.</source>
-        <translation type="unfinished">Ошибка при получении данных о погоде.</translation>
+        <translation>Ошибка запроса данных погоды.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="102"/>
         <source>Error requesting air quality data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка запроса данных качества воздуха.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="123"/>
         <source>Error requesting ultraviolet radiation data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка запроса данных ультрафиолетового излучения.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="166"/>

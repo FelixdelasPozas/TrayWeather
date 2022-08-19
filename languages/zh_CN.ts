@@ -1179,28 +1179,28 @@ and it&apos;s still waiting for the response.</source>
         <location filename="../TrayWeather.cpp" line="1266"/>
         <location filename="../TrayWeather.cpp" line="1375"/>
         <source>Error: </source>
-        <translation type="unfinished"></translation>
+        <translation>出错： </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="122"/>
         <location filename="../TrayWeather.cpp" line="1375"/>
         <source>No geolocation.</source>
-        <translation type="unfinished"></translation>
+        <translation>无地理位置</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="135"/>
         <source>No pollution data.</source>
-        <translation type="unfinished"></translation>
+        <translation>无污染数据</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="149"/>
         <source>No UV data.</source>
-        <translation type="unfinished"></translation>
+        <translation>无紫外线数据</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="163"/>
         <source>No weather data.</source>
-        <translation type="unfinished"></translation>
+        <translation>无天气数据</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="413"/>
@@ -1826,17 +1826,17 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="81"/>
         <source>Error requesting weather data.</source>
-        <translation type="unfinished">请求天气数据时出错。</translation>
+        <translation>请求天气数据时出错。</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="102"/>
         <source>Error requesting air quality data.</source>
-        <translation type="unfinished"></translation>
+        <translation>请求空气质量数据时出错。</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="123"/>
         <source>Error requesting ultraviolet radiation data.</source>
-        <translation type="unfinished"></translation>
+        <translation>请求紫外线辐射数据时出错。</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="166"/>

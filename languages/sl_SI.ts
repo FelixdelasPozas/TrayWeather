@@ -1180,28 +1180,28 @@ in še vedno čaka na odgovor.</translation>
         <location filename="../TrayWeather.cpp" line="1266"/>
         <location filename="../TrayWeather.cpp" line="1375"/>
         <source>Error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="122"/>
         <location filename="../TrayWeather.cpp" line="1375"/>
         <source>No geolocation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni podatkov o geolokaciji.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="135"/>
         <source>No pollution data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni podatkov o onesnaženosti.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="149"/>
         <source>No UV data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni podatkov o UV.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="163"/>
         <source>No weather data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ni vremenskih podatkov.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="413"/>
@@ -1827,17 +1827,17 @@ v opoldanskih urah.</translation>
     <message>
         <location filename="../WeatherDialog.cpp" line="81"/>
         <source>Error requesting weather data.</source>
-        <translation type="unfinished">Napaka pri zahtevi vremenskih podatkov.</translation>
+        <translation>Napaka pri zahtevanju vremenskih podatkov.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="102"/>
         <source>Error requesting air quality data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka pri zahtevanju podatkov o kakovosti zraka.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="123"/>
         <source>Error requesting ultraviolet radiation data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Napaka pri zahtevanju podatkov o ultravijoličnem sevanju.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="166"/>

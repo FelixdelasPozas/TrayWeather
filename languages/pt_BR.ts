@@ -1180,28 +1180,28 @@ e ainda está esperando a resposta.</translation>
         <location filename="../TrayWeather.cpp" line="1266"/>
         <location filename="../TrayWeather.cpp" line="1375"/>
         <source>Error: </source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="122"/>
         <location filename="../TrayWeather.cpp" line="1375"/>
         <source>No geolocation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem geolocalização.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="135"/>
         <source>No pollution data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem dados de poluição.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="149"/>
         <source>No UV data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem dados de UV.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="163"/>
         <source>No weather data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sem dados meteorológicos.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="413"/>
@@ -1827,17 +1827,17 @@ durante o meio-dia.</translation>
     <message>
         <location filename="../WeatherDialog.cpp" line="81"/>
         <source>Error requesting weather data.</source>
-        <translation type="unfinished">Erro ao solicitar dados meteorológicos.</translation>
+        <translation>Erro solicitando dados meteorológicos.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="102"/>
         <source>Error requesting air quality data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro solicitando dados de qualidade de ar.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="123"/>
         <source>Error requesting ultraviolet radiation data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro solicitando dados de radiação ultravioleta.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="166"/>
