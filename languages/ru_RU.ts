@@ -133,7 +133,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="92"/>
         <source>Geographic Location Method</source>
-        <translation>Способ определения географического положения</translation>
+        <translation>Метод геолокации</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="100"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="596"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from OpenWeatherMap for your location an API Key must be obtained from the &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;. It&apos;s free.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Чтобы получать прогноз погоды для вашего местоположения с OpenWeatherMap, нужно создать ключ API на &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;сайте&lt;/span&gt;&lt;/a&gt;. Это бесплатно.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Чтобы получать прогноз погоды с OpenWeatherMap для вашего местоположения, нужно создать ключ API на &lt;a href=&quot;http://openweathermap.org/appid&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;сайте&lt;/span&gt;&lt;/a&gt;. Это бесплатно.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="623"/>
@@ -524,7 +524,7 @@
         <location filename="../ConfigurationDialog.ui" line="1041"/>
         <location filename="../ConfigurationDialog.ui" line="1076"/>
         <source>Bars</source>
-        <translation>Полосы</translation>
+        <translation>Столбцы</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1001"/>
@@ -692,7 +692,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1928"/>
         <source>Check for updates</source>
-        <translation>Проверка обновлений</translation>
+        <translation>Проверять обновления</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1936"/>
@@ -737,7 +737,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2019"/>
         <source>Show weather alerts</source>
-        <translation>Показывать оповещения о погоде</translation>
+        <translation>Предупреждать о погоде</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2051"/>
@@ -1828,7 +1828,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.cpp" line="734"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
-        <translation>Карты погоды не удалось загрузить.</translation>
+        <translation>Не удалось загрузить карты погоды.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1031"/>
