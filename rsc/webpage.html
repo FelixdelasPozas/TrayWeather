@@ -40,22 +40,22 @@
         var mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' , {maxZoom: 18, attribution: ''} );
         var mapnikbw = L.tileLayer('http://a.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' });
 
-        var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid={api_key}', {
+        var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
         });
 		
-        var rain = L.tileLayer('http://{s}.tile.openweathermap.org/map/rain/{z}/{x}/{y}.png?appid={api_key}', {
+        var rain = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
         });
 		
-        var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind/{z}/{x}/{y}.png?appid={api_key}', {
+        var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
         });
 		
-        var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp/{z}/{x}/{y}.png?appid={api_key}', {
+        var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
         });
