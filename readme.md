@@ -38,7 +38,12 @@ The following libraries are required:
 
 # Install
 
-Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/releases/) installer.
+Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/releases/) installer or zip file (portable mode).
+
+> **_NOTE:_**  The application will use a ini file in the same folder as the executable if the file exists and can be written. So
+its possible to use the application in "portable mode" even if it has been installed using the installer by just copying the installation 
+folder to another location and creating an empty *TrayWeather.ini* file in it. It is recommended to execute the application before 
+creating the empty file because then the setting will be loaded from the windows registry and saved to the ini file. 
 
 # Screenshots
 
@@ -142,7 +147,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.24.0
+**Version**: 1.25.0
 
 **Status**: finished.
 
@@ -150,8 +155,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 1032        |   389            | 5086 |
+| C++                          |  10           | 1035        |   393            | 5118 |
 | C/C++ Header                 |  10           |  283        |   829            |  932 |
 | HTML                         |   1           |   33        |     0            |  150 |
 | CMake                        |   1           |   19        |    11            |  124 |
-| **Total**                    | **22**        | **1367**    | **1229**         | **6292** |
+| **Total**                    | **22**        | **1370**    | **1233**         | **6324** |
