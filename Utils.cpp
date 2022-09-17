@@ -37,6 +37,7 @@
 #include <QRgb>
 #include <QLayout>
 #include <QObject>
+#include <QDir>
 
 // C++
 #include <functional>
@@ -45,6 +46,8 @@
 #include <cmath>
 #include <windows.h>
 #include <iostream>
+
+static const QString INI_FILENAME = QString("TrayWeather.ini");
 
 static const QString LONGITUDE               = QString("Longitude");
 static const QString LATITUDE                = QString("Latitude");
@@ -619,10 +622,8 @@ void scaleDialog(QDialog *window)
 }
 
 //--------------------------------------------------------------------
-void load(Configuration &configuration)
+void load_implementation(const QSettings &settings, Configuration &configuration)
 {
-  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
-
   configuration.longitude       = settings.value(LONGITUDE, -181.0).toDouble();
   configuration.latitude        = settings.value(LATITUDE, -91.0).toDouble();
   configuration.country         = settings.value(COUNTRY, QString()).toString();
@@ -700,10 +701,28 @@ void load(Configuration &configuration)
 }
 
 //--------------------------------------------------------------------
-void save(const Configuration &configuration)
+void load(Configuration &configuration)
 {
-  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
+  const auto currentDir = QDir::current();
+  if(currentDir.exists(INI_FILENAME))
+  {
+    const auto fInfo = QFileInfo(currentDir.absoluteFilePath(INI_FILENAME));
+    if(fInfo.isWritable())
+    {
+      QSettings settings(INI_FILENAME, QSettings::IniFormat);
+      load_implementation(settings, configuration);
+      return;
+    }
+  }
 
+  // else.
+  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
+  load_implementation(settings, configuration);
+}
+
+//--------------------------------------------------------------------
+void save_implementation(QSettings &settings, const Configuration &configuration)
+{
   if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
   if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
 
@@ -769,6 +788,26 @@ void save(const Configuration &configuration)
   settings.setValue(TOOLTIP_FIELDS, fieldList.join(","));
 
   settings.sync();
+}
+
+//--------------------------------------------------------------------
+void save(const Configuration &configuration)
+{
+  const auto currentDir = QDir::current();
+  if(currentDir.exists(INI_FILENAME))
+  {
+    auto fi = QFileInfo(currentDir.absoluteFilePath(INI_FILENAME));
+    if(fi.isWritable())
+    {
+      QSettings settings(INI_FILENAME, QSettings::IniFormat);
+      save_implementation(settings, configuration);
+      return;
+    }
+  }
+
+  // else.
+  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
+  save_implementation(settings, configuration);
 }
 
 //--------------------------------------------------------------------
