@@ -917,123 +917,123 @@ The application will exit now.</source>
 і ключа API OpenWeatherMap. Додаток зараз завершить роботу.</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="363"/>
+        <location filename="../Utils.cpp" line="366"/>
         <source>New moon</source>
         <translation>Новий місяць</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="366"/>
-        <location filename="../Utils.cpp" line="384"/>
+        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="387"/>
         <source>Waxing crescent</source>
         <translation>Молодий місяць</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="372"/>
         <source>First quarter</source>
         <translation>Перша чверть</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="372"/>
+        <location filename="../Utils.cpp" line="375"/>
         <source>Waxing gibbous</source>
         <translation>Зростаючий місяць</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="375"/>
+        <location filename="../Utils.cpp" line="378"/>
         <source>Full moon</source>
         <translation>Повний місяць</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="378"/>
+        <location filename="../Utils.cpp" line="381"/>
         <source>Waning gibbous</source>
         <translation>Спадаючий місяць</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="381"/>
+        <location filename="../Utils.cpp" line="384"/>
         <source>Last quarter</source>
         <translation>Остання чверть</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="394"/>
+        <location filename="../Utils.cpp" line="397"/>
         <source>illumination</source>
         <translation>освітленість</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="527"/>
+        <location filename="../Utils.cpp" line="530"/>
         <source>NNE</source>
         <translation>ПнПнСх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="528"/>
+        <location filename="../Utils.cpp" line="531"/>
         <source>NE</source>
         <translation>ПнСх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="529"/>
+        <location filename="../Utils.cpp" line="532"/>
         <source>ENE</source>
         <translation>СхПнСх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="530"/>
+        <location filename="../Utils.cpp" line="533"/>
         <source>E</source>
         <translation>Сх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="531"/>
+        <location filename="../Utils.cpp" line="534"/>
         <source>ESE</source>
         <translation>СхПдСх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="532"/>
+        <location filename="../Utils.cpp" line="535"/>
         <source>SE</source>
         <translation>ПдСх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="533"/>
+        <location filename="../Utils.cpp" line="536"/>
         <source>SSE</source>
         <translation>ПдПдСх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="534"/>
+        <location filename="../Utils.cpp" line="537"/>
         <source>S</source>
         <translation>Пд</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="535"/>
+        <location filename="../Utils.cpp" line="538"/>
         <source>SSW</source>
         <translation>ПдПдЗх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="536"/>
+        <location filename="../Utils.cpp" line="539"/>
         <source>SW</source>
         <translation>ПдЗх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="537"/>
+        <location filename="../Utils.cpp" line="540"/>
         <source>WSW</source>
         <translation>ЗхПдЗх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="538"/>
+        <location filename="../Utils.cpp" line="541"/>
         <source>W</source>
         <translation>Зх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="539"/>
+        <location filename="../Utils.cpp" line="542"/>
         <source>WNW</source>
         <translation>ЗхПнЗх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="540"/>
+        <location filename="../Utils.cpp" line="543"/>
         <source>NW</source>
         <translation>ПнЗх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="541"/>
+        <location filename="../Utils.cpp" line="544"/>
         <source>NNW</source>
         <translation>ПнПнЗх</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="543"/>
+        <location filename="../Utils.cpp" line="546"/>
         <source>N</source>
         <translation>Пн</translation>
     </message>

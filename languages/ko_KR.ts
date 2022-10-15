@@ -924,123 +924,123 @@ The application will exit now.</source>
 응용 프로그램이 종료됩니다.</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="363"/>
+        <location filename="../Utils.cpp" line="366"/>
         <source>New moon</source>
         <translation>신월</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="366"/>
-        <location filename="../Utils.cpp" line="384"/>
+        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="387"/>
         <source>Waxing crescent</source>
         <translation>초승달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="372"/>
         <source>First quarter</source>
         <translation>상현달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="372"/>
+        <location filename="../Utils.cpp" line="375"/>
         <source>Waxing gibbous</source>
         <translation>차가는달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="375"/>
+        <location filename="../Utils.cpp" line="378"/>
         <source>Full moon</source>
         <translation>보름달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="378"/>
+        <location filename="../Utils.cpp" line="381"/>
         <source>Waning gibbous</source>
         <translation>하현망</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="381"/>
+        <location filename="../Utils.cpp" line="384"/>
         <source>Last quarter</source>
         <translation>하현달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="394"/>
+        <location filename="../Utils.cpp" line="397"/>
         <source>illumination</source>
         <translation>조명도</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="527"/>
+        <location filename="../Utils.cpp" line="530"/>
         <source>NNE</source>
         <translation>북북동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="528"/>
+        <location filename="../Utils.cpp" line="531"/>
         <source>NE</source>
         <translation>북동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="529"/>
+        <location filename="../Utils.cpp" line="532"/>
         <source>ENE</source>
         <translation>동북동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="530"/>
+        <location filename="../Utils.cpp" line="533"/>
         <source>E</source>
         <translation>동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="531"/>
+        <location filename="../Utils.cpp" line="534"/>
         <source>ESE</source>
         <translation>동남동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="532"/>
+        <location filename="../Utils.cpp" line="535"/>
         <source>SE</source>
         <translation>남동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="533"/>
+        <location filename="../Utils.cpp" line="536"/>
         <source>SSE</source>
         <translation>남남동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="534"/>
+        <location filename="../Utils.cpp" line="537"/>
         <source>S</source>
         <translation>남</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="535"/>
+        <location filename="../Utils.cpp" line="538"/>
         <source>SSW</source>
         <translation>남남서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="536"/>
+        <location filename="../Utils.cpp" line="539"/>
         <source>SW</source>
         <translation>남서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="537"/>
+        <location filename="../Utils.cpp" line="540"/>
         <source>WSW</source>
         <translation>서남서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="538"/>
+        <location filename="../Utils.cpp" line="541"/>
         <source>W</source>
         <translation>서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="539"/>
+        <location filename="../Utils.cpp" line="542"/>
         <source>WNW</source>
         <translation>서북서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="540"/>
+        <location filename="../Utils.cpp" line="543"/>
         <source>NW</source>
         <translation>북서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="541"/>
+        <location filename="../Utils.cpp" line="544"/>
         <source>NNW</source>
         <translation>북북서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="543"/>
+        <location filename="../Utils.cpp" line="546"/>
         <source>N</source>
         <translation>북</translation>
     </message>

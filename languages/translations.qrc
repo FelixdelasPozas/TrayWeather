@@ -10,6 +10,7 @@
     <file>sl_SI.qm</file>
     <file>ko_KR.qm</file>
     <file>pl_PL.qm</file>
+    <file>tr_TR.qm</file>
     <file>translations/qt_bg.qm</file>
     <file>translations/qt_ca.qm</file>
     <file>translations/qt_cs.qm</file>
@@ -33,5 +34,6 @@
     <file>translations/qt_uk.qm</file>
     <file>translations/qt_zh_CN.qm</file>
     <file>translations/qt_sl.qm</file>
+    <file>translations/qt_tr.qm</file>
   </qresource>
 </RCC>

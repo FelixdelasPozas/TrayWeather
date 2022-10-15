@@ -916,123 +916,123 @@ The application will exit now.</source>
 程序将退出。</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="363"/>
+        <location filename="../Utils.cpp" line="366"/>
         <source>New moon</source>
         <translation>新月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="366"/>
-        <location filename="../Utils.cpp" line="384"/>
+        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="387"/>
         <source>Waxing crescent</source>
         <translation>蜡化镰刀月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="372"/>
         <source>First quarter</source>
         <translation>上弦月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="372"/>
+        <location filename="../Utils.cpp" line="375"/>
         <source>Waxing gibbous</source>
         <translation>蜡化凸月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="375"/>
+        <location filename="../Utils.cpp" line="378"/>
         <source>Full moon</source>
         <translation>圆月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="378"/>
+        <location filename="../Utils.cpp" line="381"/>
         <source>Waning gibbous</source>
         <translation>凸渐亏月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="381"/>
+        <location filename="../Utils.cpp" line="384"/>
         <source>Last quarter</source>
         <translation>下弦月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="394"/>
+        <location filename="../Utils.cpp" line="397"/>
         <source>illumination</source>
         <translation>光照强度</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="527"/>
+        <location filename="../Utils.cpp" line="530"/>
         <source>NNE</source>
         <translation>东北偏北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="528"/>
+        <location filename="../Utils.cpp" line="531"/>
         <source>NE</source>
         <translation>东北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="529"/>
+        <location filename="../Utils.cpp" line="532"/>
         <source>ENE</source>
         <translation>东北偏东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="530"/>
+        <location filename="../Utils.cpp" line="533"/>
         <source>E</source>
         <translation>东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="531"/>
+        <location filename="../Utils.cpp" line="534"/>
         <source>ESE</source>
         <translation>东南偏东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="532"/>
+        <location filename="../Utils.cpp" line="535"/>
         <source>SE</source>
         <translation>东南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="533"/>
+        <location filename="../Utils.cpp" line="536"/>
         <source>SSE</source>
         <translation>东南偏南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="534"/>
+        <location filename="../Utils.cpp" line="537"/>
         <source>S</source>
         <translation>南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="535"/>
+        <location filename="../Utils.cpp" line="538"/>
         <source>SSW</source>
         <translation>西南偏南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="536"/>
+        <location filename="../Utils.cpp" line="539"/>
         <source>SW</source>
         <translation>西南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="537"/>
+        <location filename="../Utils.cpp" line="540"/>
         <source>WSW</source>
         <translation>西南偏西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="538"/>
+        <location filename="../Utils.cpp" line="541"/>
         <source>W</source>
         <translation>西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="539"/>
+        <location filename="../Utils.cpp" line="542"/>
         <source>WNW</source>
         <translation>西北偏西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="540"/>
+        <location filename="../Utils.cpp" line="543"/>
         <source>NW</source>
         <translation>西北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="541"/>
+        <location filename="../Utils.cpp" line="544"/>
         <source>NNW</source>
         <translation>西北偏北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="543"/>
+        <location filename="../Utils.cpp" line="546"/>
         <source>N</source>
         <translation>北</translation>
     </message>

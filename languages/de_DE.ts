@@ -919,123 +919,123 @@ The application will exit now.</source>
 Die Anwendung beendet sich jetzt.</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="363"/>
+        <location filename="../Utils.cpp" line="366"/>
         <source>New moon</source>
         <translation>Neumond</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="366"/>
-        <location filename="../Utils.cpp" line="384"/>
+        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="387"/>
         <source>Waxing crescent</source>
         <translation>Zunehmende Sichel</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="372"/>
         <source>First quarter</source>
         <translation>Zunehmende Sichel</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="372"/>
+        <location filename="../Utils.cpp" line="375"/>
         <source>Waxing gibbous</source>
         <translation>Zunehmender Halbmond</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="375"/>
+        <location filename="../Utils.cpp" line="378"/>
         <source>Full moon</source>
         <translation>Vollmond</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="378"/>
+        <location filename="../Utils.cpp" line="381"/>
         <source>Waning gibbous</source>
         <translation>Abnehmender Halbmond</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="381"/>
+        <location filename="../Utils.cpp" line="384"/>
         <source>Last quarter</source>
         <translation>Abnehmende Sichel</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="394"/>
+        <location filename="../Utils.cpp" line="397"/>
         <source>illumination</source>
         <translation>Helligkeit</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="527"/>
+        <location filename="../Utils.cpp" line="530"/>
         <source>NNE</source>
         <translation>NNO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="528"/>
+        <location filename="../Utils.cpp" line="531"/>
         <source>NE</source>
         <translation>NO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="529"/>
+        <location filename="../Utils.cpp" line="532"/>
         <source>ENE</source>
         <translation>ONO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="530"/>
+        <location filename="../Utils.cpp" line="533"/>
         <source>E</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="531"/>
+        <location filename="../Utils.cpp" line="534"/>
         <source>ESE</source>
         <translation>OSO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="532"/>
+        <location filename="../Utils.cpp" line="535"/>
         <source>SE</source>
         <translation>SO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="533"/>
+        <location filename="../Utils.cpp" line="536"/>
         <source>SSE</source>
         <translation>SSE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="534"/>
+        <location filename="../Utils.cpp" line="537"/>
         <source>S</source>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="535"/>
+        <location filename="../Utils.cpp" line="538"/>
         <source>SSW</source>
         <translation>SSW</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="536"/>
+        <location filename="../Utils.cpp" line="539"/>
         <source>SW</source>
         <translation>SW</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="537"/>
+        <location filename="../Utils.cpp" line="540"/>
         <source>WSW</source>
         <translation>WSW</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="538"/>
+        <location filename="../Utils.cpp" line="541"/>
         <source>W</source>
         <translation>W</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="539"/>
+        <location filename="../Utils.cpp" line="542"/>
         <source>WNW</source>
         <translation>WNW</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="540"/>
+        <location filename="../Utils.cpp" line="543"/>
         <source>NW</source>
         <translation>NW</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="541"/>
+        <location filename="../Utils.cpp" line="544"/>
         <source>NNW</source>
         <translation>NNW</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="543"/>
+        <location filename="../Utils.cpp" line="546"/>
         <source>N</source>
         <translation>N</translation>
     </message>
