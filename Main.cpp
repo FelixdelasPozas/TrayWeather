@@ -95,7 +95,11 @@ int main(int argc, char *argv[])
   if(!configuration.isValid())
   {
     ConfigurationDialog dialog(configuration);
-    dialog.exec();
+
+    QObject::connect(&dialog, &ConfigurationDialog::languageChanged, []( const QString &lang ) { changeLanguage(lang); });
+
+    auto value = dialog.exec();
+    if(value == QDialog::Rejected) return 0;
 
     dialog.getConfiguration(configuration);
 
