@@ -52,7 +52,7 @@ using namespace QtCharts;
 
 //--------------------------------------------------------------------
 WeatherDialog::WeatherDialog(QWidget* parent, Qt::WindowFlags flags)
-: QDialog           {parent, flags}
+: QDialog           (parent, flags)
 , m_forecast        {nullptr}
 , m_config          {nullptr}
 , m_weatherTooltip  {nullptr}
@@ -478,8 +478,15 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       }
     };
 
-    for(auto &entry: data)
+    QLinearGradient plotAreaGradient;
+    plotAreaGradient.setStart(QPointF(0, 0));
+    plotAreaGradient.setFinalStop(QPointF(1, 0));
+    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+
+    for(int i = 0; i < data.size(); ++i)
     {
+      const auto &entry = data.at(i);
+
       unixTimeStampToDate(t, entry.dt);
       dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
 
@@ -501,7 +508,15 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
       snowMin = std::min(snowMin, value);
       snowMax = std::max(snowMax, value);
+
+      const auto sunTimes = computeSunriseSunset(entry, m_config->longitude, m_config->latitude);
+      const auto entryDt = static_cast<unsigned long long>(entry.dt);
+      const bool isDay = entryDt > sunTimes.first && entryDt < sunTimes.second;
+      plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), isDay ? Qt::white:Qt::lightGray);
     }
+
+    forecastChart->setPlotAreaBackgroundBrush(plotAreaGradient);
+    forecastChart->setPlotAreaBackgroundVisible(true);
 
     axisYTemp->setProperty("axisType", "temp");
 
@@ -574,6 +589,8 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
     connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
             this,  SLOT(onAreaChanged()));
+    connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+            this,  SLOT(onForecastAreaChanged(QDateTime, QDateTime)));
 
     if(oldChart)
     {
@@ -582,6 +599,9 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       {
         disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
                    this, SLOT(onAreaChanged()));
+        disconnect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                this,  SLOT(onForecastAreaChanged(QDateTime, QDateTime)));
+
       }
 
       delete oldChart;
@@ -1674,4 +1694,42 @@ void WeatherDialog::updateAxesRanges(QtCharts::QChart *chart)
 
     axis->setVisible(timesUsed > 0);
   }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onForecastAreaChanged (QDateTime begin, QDateTime end)
+{
+  QLinearGradient plotAreaGradient;
+  plotAreaGradient.setStart(QPointF(0, 0));
+  plotAreaGradient.setFinalStop(QPointF(1, 0));
+  plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+
+  auto interpolateDt = [&begin, &end](const long long int dt)
+  {
+    return static_cast<double>(dt-begin.toMSecsSinceEpoch())/(end.toMSecsSinceEpoch()-begin.toMSecsSinceEpoch());
+  };
+
+  struct tm t;
+  for(int i = 0; i < m_forecast->size(); ++i)
+  {
+    const auto &entry = m_forecast->at(i);
+    const auto sunTimes = computeSunriseSunset(entry, m_config->longitude, m_config->latitude);
+    const auto entryDt = static_cast<unsigned long long>(entry.dt);
+    const bool isDay = entryDt > sunTimes.first && entryDt < sunTimes.second;
+
+    unixTimeStampToDate(t, entry.dt);
+    const auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+    const auto msec = dtTime.toMSecsSinceEpoch();
+
+    double entryTime = interpolateDt(msec);
+    if(msec < begin.toMSecsSinceEpoch()) entryTime = 0;
+    if(msec > end.toMSecsSinceEpoch()) entryTime = 1;
+
+    plotAreaGradient.setColorAt(entryTime, isDay ? Qt::white:Qt::lightGray);
+  }
+
+  auto chart = m_weatherChart->chart();
+  chart->setPlotAreaBackgroundBrush(plotAreaGradient);
+  chart->setPlotAreaBackgroundVisible(true);
+  chart->update();
 }

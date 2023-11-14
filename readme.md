@@ -80,10 +80,10 @@ Weather dialog, showing the current weather tab.
 
 ![weather](https://user-images.githubusercontent.com/12167134/127046991-e2eb1e5c-73d7-4ece-b9c4-dfff8dd1648e.png)
 
-Weather forecast for the next days. If the user puts the mouse over a point in the temperature line or a bar a tooltip will provide the weather conditions for that day and hour. 
+Weather forecast for the next days. If the user puts the mouse over a point in the temperature line or a bar a tooltip will provide the weather conditions for that day and hour. Background is colored to day/night.
 The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph. Data series can be hidden and shown again by clicking on its legend text.
 
-![forecast_graph](https://user-images.githubusercontent.com/12167134/109207324-4b36e800-77a9-11eb-9891-291c907d0aef.png)
+![forecast_graph](https://user-images.githubusercontent.com/12167134/282960962-93cc1a0a-cd26-4dc1-a13f-267bf62361a6.png)
 
 Pollution forecast can be obtained in the third tab, showing the projections for the next days. The chart can be zoomed in the X axis and
 resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines and
@@ -148,7 +148,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.26.1
+**Version**: 1.27.0
 
 **Status**: finished.
 
@@ -156,8 +156,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 1037        |   393            | 5120 |
-| C/C++ Header                 |  10           |  283        |   829            |  933 |
+| C++                          |  10           | 1057        |   401            | 5189 |
+| C/C++ Header                 |  10           |  285        |   840            |  935 |
 | HTML                         |   1           |   33        |     0            |  150 |
 | CMake                        |   1           |   19        |    11            |  125 |
-| **Total**                    | **22**        | **1372**    | **1233**         | **6328** |
+| **Total**                    | **22**        | **1394**    | **1252**         | **6399** |

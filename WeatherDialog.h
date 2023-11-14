@@ -183,6 +183,13 @@ class WeatherDialog
      */
     void onUVAreaChanged(QDateTime begin, QDateTime end);
 
+    /** \brief Updates the background of the forecast chart on zoom.
+     * \param[in] begin Begin point in X axis.
+     * \param[in] end End point in X axis.
+     *
+     */
+    void onForecastAreaChanged(QDateTime begin, QDateTime end);
+
   private:
     /** \brief Returns the color of the given aqi value.
      * \param[in] aqiValue aqi value in [1,5].

@@ -1359,7 +1359,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   QPixmap pixmap(384,384);
   pixmap.fill(Qt::transparent);
   QPainter painter(&pixmap);
-  font.setPixelSize(200);
+  font.setPixelSize(150);
   painter.setFont(font);
 
   QColor color;

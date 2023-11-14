@@ -40,12 +40,14 @@
 #include <QDir>
 
 // C++
+#define _USE_MATH_DEFINES
 #include <functional>
 #include <exception>
 #include <memory>
 #include <cmath>
 #include <windows.h>
 #include <iostream>
+#include <ctime>
 
 static const QString INI_FILENAME = QString("TrayWeather.ini");
 
@@ -1153,4 +1155,41 @@ QRect computeDrawnRect(const QImage &image)
   const auto maxX = lastX-firstX;
   const auto maxY = lastY-firstY;
   return QRect(firstX, firstY, maxX, maxY);
+}
+
+//--------------------------------------------------------------------
+std::pair<unsigned long long, unsigned long long> computeSunriseSunset(const ForecastData &data, const double longitude, const double latitude)
+{
+  // convert to day of year
+  struct tm t;
+  unixTimeStampToDate(t, data.dt);
+
+  // From http://edwilliams.org/sunrise_sunset_algorithm.htm
+  const auto N1 = std::floor(275 * t.tm_mon / 9);
+  const auto N2 = std::floor((t.tm_mon + 9) / 12);
+  const auto N3 = (1 + std::floor((t.tm_year - 4 * std::floor(t.tm_year / 4) + 2) / 3));
+  const auto dayOfYear = N1 - (N2 * N3) + t.tm_mday - 30;
+
+  // From https://codepal.ai/code-generator/query/GDQrUujP/c-function-sunrise-sunset-time
+  // Calculate the solar declination
+  const double solarDeclination = 0.4093 * std::sin(2 * M_PI * (dayOfYear - 81) / 365);
+
+  // Calculate the hour angle
+  const double hourAngle = std::acos(-std::tan(latitude * M_PI / 180) * std::tan(solarDeclination));
+
+  // Calculate the sunrise and sunset times
+  const auto sunriseTime = 12 - (hourAngle * 180 / M_PI) / 15;
+  const auto sunsetTime = 12 + (hourAngle * 180 / M_PI) / 15;
+
+  t.tm_hour = static_cast<int>(sunriseTime);
+  t.tm_min = static_cast<int>((sunriseTime - t.tm_hour) * 60.0);
+  t.tm_sec = static_cast<int>((((sunriseTime - t.tm_hour) * 60.0) - t.tm_min) * 60.0);
+  const unsigned long long unixSunrise = std::mktime(&t);
+
+  t.tm_hour = static_cast<int>(sunsetTime);
+  t.tm_min = static_cast<int>((sunsetTime - t.tm_hour) * 60.0);
+  t.tm_sec = static_cast<int>((((sunsetTime - t.tm_hour) * 60.0) - t.tm_min) * 60.0);
+  const unsigned long long unixSunset = std::mktime(&t);
+
+  return std::make_pair(unixSunrise, unixSunset);
 }

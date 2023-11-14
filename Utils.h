@@ -108,7 +108,7 @@ struct LanguageData
      * \param[in] f Filename of the translation file without extension.
      *
      */
-    LanguageData(const QString n, const QString i, const QString f, const QString a): name{n}, icon{i}, file{f}, author{a} {};
+    LanguageData(const QString n, const QString i, const QString f, const QString a): name(n), icon(i), file(f), author(a) {};
 };
 
 /** Translations
@@ -235,7 +235,7 @@ struct Configuration
     , minimumValue    {-10}
     , maximumValue    {45}
     , update          {Update::WEEKLY}
-    , lastCheck       {QDateTime::currentDateTime()}
+    , lastCheck       (QDateTime::currentDateTime())
     , autostart       {false}
     , lastTab         {0}
     , lastLayer       {"temperature"}
@@ -585,6 +585,14 @@ QPixmap createIconsSummary(const unsigned int theme, const int size, const QColo
  *
  */
 QRect computeDrawnRect(const QImage &image);
+
+/** \brief Computes and returns the sunrise and sunset time in unix time for the given ForecastData date and coordinates.
+ * \param[in] data ForecastData struct.
+ * \param[in] longitude
+ * \param[in] latitude
+ *
+ */
+std::pair<unsigned long long, unsigned long long> computeSunriseSunset (const ForecastData &data, const double longitude, const double latitude);
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.
