@@ -1388,14 +1388,11 @@ void WeatherDialog::updateMapLayerValues()
       m_config->lastLayer = original.at(dist);
     }
 
-    // BW map provider went commercial and is not available anymore. Do not delete the code, other
-    // interesting map could be available in the future.
-    m_config->lastStreetLayer = "mapnik";
-//    value = m_webpage->page()->mainFrame()->evaluateJavaScript("customGetStreet();");
-//    if(!value.isNull())
-//    {
-//      m_config->lastStreetLayer = value.toString().compare("OpenStreetMap", Qt::CaseInsensitive) == 0 ? "mapnik":"mapnikbw";
-//    }
+    value = m_webpage->page()->mainFrame()->evaluateJavaScript("customGetStreet();");
+    if(!value.isNull())
+    {
+      m_config->lastStreetLayer = value.toString().compare("OpenStreetMap", Qt::CaseInsensitive) == 0 ? "mapnik":"mapnikbw";
+    }
   }
 }
 
@@ -1528,10 +1525,7 @@ void WeatherDialog::loadMaps()
     webpage.replace("%%lon%%", QString::number(m_config->longitude), Qt::CaseSensitive);
     webpage.replace("{api_key}", m_config->owm_apikey, Qt::CaseSensitive);
     webpage.replace("%%layermap%%", m_config->lastLayer, Qt::CaseSensitive);
-
-    // Use OpenStreetMap
-    //webpage.replace("%%streetmap%%", m_config->lastStreetLayer, Qt::CaseSensitive);
-    webpage.replace("%%streetmap%%", "mapnik");
+    webpage.replace("%%streetmap%%", m_config->lastStreetLayer, Qt::CaseSensitive);
 
     m_webpage->setHtml(webpage);
     webfile.close();

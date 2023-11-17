@@ -38,8 +38,9 @@
   
   (function () {
         var mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' , {maxZoom: 18, attribution: ''} );
- 				<!-- var mapnikbw = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_background/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' }); -->
-
+ 				var googlemap = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: '' });
+ 				var googlesat = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: '' });
+ 				
         var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
             , opacity: 0.65
@@ -159,9 +160,10 @@
 		}
 	});
 	
-	var baseMaps = {
-        "OpenStreetMap": mapnik 
-<!--		"OpenStreetMap BW": mapnikbw -->
+	  var baseMaps = {
+        "OpenStreetMap": mapnik,
+        "Google Maps": googlemap,
+        "Google Satellite": googlesat, 
     };
     
     var overlayMaps = { 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>424</width>
-    <height>487</height>
+    <height>560</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -117,6 +117,9 @@
              </item>
              <item>
               <widget class="QLabel" name="label_4">
+               <property name="toolTip">
+                <string>TrayWeather Homepage</string>
+               </property>
                <property name="text">
                 <string>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</string>
                </property>
@@ -240,6 +243,9 @@ Qt Framework</string>
               </item>
               <item>
                <widget class="QLabel" name="label_7">
+                <property name="toolTip">
+                 <string>Qt Framework</string>
+                </property>
                 <property name="text">
                  <string notr="true">&lt;a href=&quot;http://www.qt.io/&quot;&gt;http://www.qt.io/&lt;/a&gt;</string>
                 </property>
@@ -319,6 +325,9 @@ Qt Framework</string>
               </item>
               <item>
                <widget class="QLabel" name="label_12">
+                <property name="toolTip">
+                 <string>Qt Charts Module</string>
+                </property>
                 <property name="text">
                  <string notr="true">&lt;a href=&quot;https://github.com/qt/qtcharts/&quot;&gt;https://github.com/qt/qtcharts&lt;/a&gt;</string>
                 </property>
@@ -362,6 +371,9 @@ QGroupBox::title {
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
              <widget class="QLabel" name="label_8">
+              <property name="toolTip">
+               <string>FlatIcon</string>
+              </property>
               <property name="text">
                <string notr="true">&lt;a href=&quot;http://www.flaticon.com/&quot;&gt;http://www.flaticon.com/&lt;/a&gt;</string>
               </property>
@@ -403,6 +415,9 @@ QGroupBox::title {
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
              <widget class="QLabel" name="label_5">
+              <property name="toolTip">
+               <string>IP API</string>
+              </property>
               <property name="text">
                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://ip-api.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://ip-api.com/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
@@ -444,8 +459,72 @@ QGroupBox::title {
            <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
              <widget class="QLabel" name="label_6">
+              <property name="toolTip">
+               <string>OpenWeatherMap</string>
+              </property>
               <property name="text">
-               <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://OpenWeatherMap.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://OpenWeatherMap.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://openweathermap.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://openweathermap.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="openExternalLinks">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_5">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 2ex;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* position at the top center */
+    padding: 0px 5px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Maps data provided by</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <item>
+             <widget class="QLabel" name="label_13">
+              <property name="toolTip">
+               <string>OpenStreetMap</string>
+              </property>
+              <property name="text">
+               <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.openstreetmap.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.openstreetmap.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="openExternalLinks">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_14">
+              <property name="toolTip">
+               <string>Google Maps</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://maps.google.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://maps.google.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>

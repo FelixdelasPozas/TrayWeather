@@ -51,7 +51,7 @@ enum class Update:             char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
 enum class Representation:     char { NONE = 0, SPLINE, BARS };
 
 static const QStringList MAP_LAYERS = { "temperature", "rain", "clouds", "wind" };
-static const QStringList MAP_STREET = { "mapnik", "mapnikbw" };
+static const QStringList MAP_STREET = { "mapnik", "googlemap", "googlesat" };
 
 static const QStringList OWM_LANGUAGES = { "af", "al", "ar", "az", "bg", "ca", "cz", "da", "de", "el", "en",
                                            "eu", "fa", "fi", "fr", "gl", "he", "hi", "hr", "hu", "id", "it",
