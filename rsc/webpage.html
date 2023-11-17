@@ -38,7 +38,7 @@
   
   (function () {
         var mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' , {maxZoom: 18, attribution: ''} );
-        var mapnikbw = L.tileLayer('http://a.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' });
+ 				<!-- var mapnikbw = L.tileLayer('https://tiles.stadiamaps.com/tiles/stamen_toner_background/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '' }); -->
 
         var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
@@ -116,7 +116,7 @@
 	map.on('overlayadd', function(eo) { 
 		++numLayers;
 			
-        currentLayer = eo.name;
+    currentLayer = eo.name;
 			
 		if(numLayers !== 1) {
 			if (eo.name === '%%rainStr%%') {
@@ -149,7 +149,7 @@
 				setTimeout(function() { map.addLayer(wind) }, 10); 
 			}
 			if(eo.name === "%%tempStr%%") { 
-				setTimeout(function() { map.addLayer(temperature) }, 10); 
+				setTimeout(function() { map.addLayer(temperature) }, 10);
 			}
 		}
 		else
@@ -160,18 +160,18 @@
 	});
 	
 	var baseMaps = {
-        "OpenStreetMap": mapnik, 
-		"OpenStreetMap BW": mapnikbw
+        "OpenStreetMap": mapnik 
+<!--		"OpenStreetMap BW": mapnikbw -->
     };
     
     var overlayMaps = { 
         "%%tempStr%%": temperature,
-		"%%rainStr%%": rain,
+    		"%%rainStr%%": rain,
         "%%cloudStr%%": clouds,
         "%%windStr%%": wind
     };
 			
-	L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'topright', autoZIndex: true, hideSingleBase: true, sortLayers: false}).addTo(map);
+  L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'topright', autoZIndex: true, hideSingleBase: true, sortLayers: false}).addTo(map);
 	L.control.scale({ position: 'bottomleft', metric: %%metric%%, imperial: %%imperial%% }).addTo(map);
 	L.marker([%%lat%%, %%lon%%]).addTo(map);
 	
