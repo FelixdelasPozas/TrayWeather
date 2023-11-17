@@ -691,8 +691,8 @@ void load_implementation(const QSettings &settings, Configuration &configuration
     }
   }
 
-  if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
-  if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
+  if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer = MAP_LAYERS.first();
+  if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer = MAP_STREET.first();
 
   if(configuration.trayTextFont.isEmpty())
   {
@@ -725,9 +725,6 @@ void load(Configuration &configuration)
 //--------------------------------------------------------------------
 void save_implementation(QSettings &settings, const Configuration &configuration)
 {
-  if(!MAP_LAYERS.contains(configuration.lastLayer, Qt::CaseSensitive))       configuration.lastLayer == MAP_LAYERS.first();
-  if(!MAP_STREET.contains(configuration.lastStreetLayer, Qt::CaseSensitive)) configuration.lastStreetLayer == MAP_STREET.first();
-
   settings.setValue(LONGITUDE,               configuration.longitude);
   settings.setValue(LATITUDE,                configuration.latitude);
   settings.setValue(COUNTRY,                 configuration.country);

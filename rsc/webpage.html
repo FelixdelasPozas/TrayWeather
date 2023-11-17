@@ -38,27 +38,27 @@
   
   (function () {
         var mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' , {maxZoom: 18, attribution: ''} );
- 				var googlemap = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: '' });
- 				var googlesat = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: '' });
+ 				var googlemap = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: ''} );
+ 				var googlesat = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: ''} );
  				
         var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
-            , opacity: 0.65
+            , opacity: 0.75
         });
 		
         var rain = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
-            , opacity: 0.65
+            , opacity: 0.75
         });
 		
         var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
-            , opacity: 0.65
+            , opacity: 0.75
         });
 		
         var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
-            , opacity: 0.65
+            , opacity: 0.75
         });
 		
 		var legend = L.control({position: 'bottomright'});
@@ -163,7 +163,7 @@
 	  var baseMaps = {
         "OpenStreetMap": mapnik,
         "Google Maps": googlemap,
-        "Google Satellite": googlesat, 
+        "Google Satellite": googlesat
     };
     
     var overlayMaps = { 

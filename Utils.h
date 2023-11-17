@@ -187,7 +187,7 @@ struct Configuration
     bool               autostart;       /** true to autostart at login, false otherwise.                */
     int                lastTab;         /** last tab visualized.                                        */
     QString            lastLayer;       /** last maps layer used: temperature, rain, clouds, wind.      */
-    QString            lastStreetLayer; /** last street layer used: mapnik, mapnikbw.                   */
+    QString            lastStreetLayer; /** last street layer used: mapnik, googlemap, googlesat.       */
     QString            language;        /** application language.                                       */
     QList<TooltipText> tooltipFields;   /** tooltip fields in order.                                    */
     bool               showAlerts;      /** true to show weather alerts and false otherwise.            */

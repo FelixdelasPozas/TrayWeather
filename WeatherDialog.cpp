@@ -1391,7 +1391,14 @@ void WeatherDialog::updateMapLayerValues()
     value = m_webpage->page()->mainFrame()->evaluateJavaScript("customGetStreet();");
     if(!value.isNull())
     {
-      m_config->lastStreetLayer = value.toString().compare("OpenStreetMap", Qt::CaseInsensitive) == 0 ? "mapnik":"mapnikbw";
+    	QString result = "mapnik"; // default OpenStreetMaps;
+
+    	if(value.toString().compare("Google Maps", Qt::CaseInsensitive) == 0)
+    		result = "googlemap";
+    	else if(value.toString().compare("Google Satellite", Qt::CaseInsensitive) == 0)
+    		result = "googlesat";
+
+      m_config->lastStreetLayer = result;
     }
   }
 }
