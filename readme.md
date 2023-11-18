@@ -105,6 +105,11 @@ the rest of the application so the user can be disable them using the button bel
 ![maps2](https://cloud.githubusercontent.com/assets/12167134/20938097/f0623792-bbe9-11e6-8ebf-0ae4b5b679a9.jpg)
 ![maps3](https://cloud.githubusercontent.com/assets/12167134/20938100/f0851d34-bbe9-11e6-80c9-d7d952632cc4.jpg)
 
+Available maps:
+* OpenStreetMap.
+* Google Maps (roadmaps).
+* Google Hybrid (Satellite images & roadmaps).
+
 # Translations
 
 Tray Weather is available in:
@@ -148,7 +153,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.27.0
+**Version**: 1.27.1
 
 **Status**: finished.
 
@@ -156,8 +161,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 1057        |   401            | 5189 |
+| C++                          |  10           | 1058        |   401            | 5193 |
 | C/C++ Header                 |  10           |  285        |   840            |  935 |
-| HTML                         |   1           |   33        |     0            |  150 |
+| HTML                         |   1           |   33        |     0            |  152 |
 | CMake                        |   1           |   19        |    11            |  125 |
-| **Total**                    | **22**        | **1394**    | **1252**         | **6399** |
+| **Total**                    | **22**        | **1395**    | **1252**         | **6405** |
