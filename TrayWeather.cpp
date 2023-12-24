@@ -38,10 +38,13 @@
 #include <QFile>
 #include <QImage>
 #include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
 #include <QtWinExtras/QtWinExtrasDepends>
+#include <QGraphicsBlurEffect>
 
 // C++
 #include <chrono>
+#include <iostream>
 
 const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
 
@@ -525,6 +528,8 @@ void TrayWeather::updateTooltip()
         const auto rect = computeDrawnRect(tempPixmap.toImage());
         if(rect.isValid())
         {
+          tempPixmap = blurPixmap(tempPixmap, 5);
+
           const auto difference = (pixmap.rect().center() - rect.center())/2.;
           double ratioX = pixmap.width() * 1.0 / rect.width();
           double ratioY = pixmap.height() * 1.0 / rect.height();

@@ -38,6 +38,9 @@
 #include <QLayout>
 #include <QObject>
 #include <QDir>
+#include <QGraphicsScene>
+#include <QGraphicsBlurEffect>
+#include <QGraphicsItem>
 
 // C++
 #define _USE_MATH_DEFINES
@@ -1189,4 +1192,26 @@ std::pair<unsigned long long, unsigned long long> computeSunriseSunset(const For
   const unsigned long long unixSunset = std::mktime(&t);
 
   return std::make_pair(unixSunrise, unixSunset);
+}
+
+//--------------------------------------------------------------------
+QPixmap blurPixmap(const QPixmap &pixmap, const int blurValue)
+{
+  QGraphicsScene scene;
+  // effect must be a pointer as item takes ownership and deletes it on destruction.
+  auto effect = new QGraphicsBlurEffect();
+  effect->setBlurHints(QGraphicsBlurEffect::QualityHint);
+  effect->setBlurRadius(blurValue);
+  QGraphicsPixmapItem item(pixmap);
+  item.setGraphicsEffect(effect);
+
+  QPixmap otherPixmap(pixmap.size());
+  otherPixmap.fill(Qt::transparent);
+  QPainter painter(&otherPixmap);
+
+  scene.addItem(&item);
+  scene.render(&painter);
+  painter.end();
+
+  return otherPixmap;
 }

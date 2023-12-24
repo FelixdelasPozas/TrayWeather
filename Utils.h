@@ -40,6 +40,7 @@
 #include <QLabel>
 
 class QPainter;
+class QPixmap;
 class QDialog;
 
 enum class Units:              char { METRIC = 0, IMPERIAL, CUSTOM };
@@ -593,6 +594,13 @@ QRect computeDrawnRect(const QImage &image);
  *
  */
 std::pair<unsigned long long, unsigned long long> computeSunriseSunset (const ForecastData &data, const double longitude, const double latitude);
+
+/** \brief Blurs and returns a copy of the given pixmap. 
+ * \param[in] pixmap QPixmap object reference. 
+ * \param[in] blurValue Value of the gaussian blur.
+ * 
+*/
+QPixmap blurPixmap(const QPixmap &pixmap, const int blurValue);
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.
