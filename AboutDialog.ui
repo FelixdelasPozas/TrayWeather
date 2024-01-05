@@ -419,7 +419,7 @@ QGroupBox::title {
                <string>IP API</string>
               </property>
               <property name="text">
-               <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://ip-api.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://ip-api.com/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string notr="true">&lt;a href=&quot;http://ip-api.com/&quot;&gt;http://ip-api.com/&lt;/a&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -463,7 +463,7 @@ QGroupBox::title {
                <string>OpenWeatherMap</string>
               </property>
               <property name="text">
-               <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;http://openweathermap.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://openweathermap.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string notr="true">&lt;a href=&quot;http://openweathermap.org&quot;&gt;http://openweathermap.org&lt;/a&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -507,8 +507,7 @@ QGroupBox::title {
                <string>OpenStreetMap</string>
               </property>
               <property name="text">
-               <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.openstreetmap.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.openstreetmap.org&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
-</string>
+               <string notr="true">&lt;a href=&quot;https://www.openstreetmap.org&quot;&gt;https://www.openstreetmap.org&lt;/a&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -524,7 +523,7 @@ QGroupBox::title {
                <string>Google Maps</string>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://maps.google.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://maps.google.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string notr="true">&lt;a href=&quot;https://maps.google.com&quot;&gt;https://maps.google.com&lt;/a&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
