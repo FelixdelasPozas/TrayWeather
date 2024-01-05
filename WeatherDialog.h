@@ -218,6 +218,13 @@ class WeatherDialog
      */
     void updateAxesRanges(QtCharts::QChart *chart);
 
+    /** \brief Computes and returns the gradient for the given dates.
+     * \param[in] begin Begin point in X axis.
+     * \param[in] end End point in X axis.
+     * 
+     */
+    QLinearGradient sunriseSunsetGradient(QDateTime begin, QDateTime end);
+
     ErrorWidget                     *m_weatherError;     /** Weather forecast error widget.        */
     ErrorWidget                     *m_pollutionError;   /** Pollution forecast error widget       */
     ErrorWidget                     *m_uvError;          /** UV forecast error widget.             */

@@ -1160,38 +1160,34 @@ QRect computeDrawnRect(const QImage &image)
 //--------------------------------------------------------------------
 std::pair<unsigned long long, unsigned long long> computeSunriseSunset(const ForecastData &data, const double longitude, const double latitude)
 {
-  // convert to day of year
-  struct tm t;
-  unixTimeStampToDate(t, data.dt);
+  // https://github.com/nplan/Arduino-Sun
 
-  // From http://edwilliams.org/sunrise_sunset_algorithm.htm
-  const auto N1 = std::floor(275 * t.tm_mon / 9);
-  const auto N2 = std::floor((t.tm_mon + 9) / 12);
-  const auto N3 = (1 + std::floor((t.tm_year - 4 * std::floor(t.tm_year / 4) + 2) / 3));
-  const auto dayOfYear = N1 - (N2 * N3) + t.tm_mday - 30;
+  // Convert Julian day to Unix Timestamp
+  const unsigned long Jdate = static_cast<unsigned long>(data.dt) / 86400.0 + 2440587.5;
+  // Number of days since Jan 1st, 2000 12:00
+  const float n = static_cast<float>(Jdate) - 2451545.0 + 0.0008;
+  // Mean solar noon
+  const float Jstar = -longitude / 360 + n;
+  // Solar mean anomaly
+  const float M = fmod((357.5291 + 0.98560028 * Jstar), 360);
+  // Equation of the center
+  const float C = 1.9148 * sin(M / 360 * 2 * M_PI) + 0.02 * sin(2 * M / 360 * 2 * M_PI) + 0.0003 * sin(3 * M * 360 * 2 * M_PI);
+  // Ecliptic longitude
+  const float lambda = fmod((M + C + 180 + 102.9372), 360);
+  // Solar transit
+  const float Jtransit = Jstar + (0.0053 * sin(M / 360.0 * 2.0 * M_PI) - 0.0069 * sin(2.0 * (lambda / 360.0 * 2.0 * M_PI)));
+  // Declination of the Sun
+  const float delta = asin(sin(lambda / 360 * 2 * M_PI) * sin(23.44 / 360 * 2 * M_PI)) / (2 * M_PI) * 360;
+  // Hour angle
+  const float omega0 = 360 / (2 * M_PI) * acos((sin(-0.83 / 360 * 2 * M_PI) - sin(latitude / 360 * 2 * M_PI) * sin(delta / 360 * 2 * M_PI)) / (cos(latitude / 360 * 2 * M_PI) * cos(delta / 360 * 2 * M_PI)));
+  // Julian day sunrise, sunset
+  const float Jrise = Jtransit - omega0 / 360;
+  const float Jset = Jtransit + omega0 / 360;
+  // Convert to Unix Timestamp
+  const unsigned long unixRise = Jrise * 86400 + 946728000;
+  const unsigned long unixSet = Jset * 86400 + 946728000;
 
-  // From https://codepal.ai/code-generator/query/GDQrUujP/c-function-sunrise-sunset-time
-  // Calculate the solar declination
-  const double solarDeclination = 0.4093 * std::sin(2 * M_PI * (dayOfYear - 81) / 365);
-
-  // Calculate the hour angle
-  const double hourAngle = std::acos(-std::tan(latitude * M_PI / 180) * std::tan(solarDeclination));
-
-  // Calculate the sunrise and sunset times
-  const auto sunriseTime = 12 - (hourAngle * 180 / M_PI) / 15;
-  const auto sunsetTime = 12 + (hourAngle * 180 / M_PI) / 15;
-
-  t.tm_hour = static_cast<int>(sunriseTime);
-  t.tm_min = static_cast<int>((sunriseTime - t.tm_hour) * 60.0);
-  t.tm_sec = static_cast<int>((((sunriseTime - t.tm_hour) * 60.0) - t.tm_min) * 60.0);
-  const unsigned long long unixSunrise = std::mktime(&t);
-
-  t.tm_hour = static_cast<int>(sunsetTime);
-  t.tm_min = static_cast<int>((sunsetTime - t.tm_hour) * 60.0);
-  t.tm_sec = static_cast<int>((((sunsetTime - t.tm_hour) * 60.0) - t.tm_min) * 60.0);
-  const unsigned long long unixSunset = std::mktime(&t);
-
-  return std::make_pair(unixSunrise, unixSunset);
+  return std::make_pair(unixRise, unixSet);
 }
 
 //--------------------------------------------------------------------

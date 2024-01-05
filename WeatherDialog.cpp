@@ -48,6 +48,7 @@
 // C++
 #include <cmath>
 #include <algorithm>
+#include <set>
 
 using namespace QtCharts;
 
@@ -334,7 +335,6 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     m_tabWidget->setTabIcon(1, QIcon());
 
     auto axisX = new QDateTimeAxis();
-    axisX->setTickCount(12);
     axisX->setLabelsAngle(45);
     axisX->setFormat("dd (hh)");
     axisX->setTitleText(tr("Day (Hour)"));
@@ -479,11 +479,6 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       }
     };
 
-    QLinearGradient plotAreaGradient;
-    plotAreaGradient.setStart(QPointF(0, 0));
-    plotAreaGradient.setFinalStop(QPointF(1, 0));
-    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-
     for(int i = 0; i < data.size(); ++i)
     {
       const auto &entry = data.at(i);
@@ -509,13 +504,10 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
       snowMin = std::min(snowMin, value);
       snowMax = std::max(snowMax, value);
-
-      const auto sunTimes = computeSunriseSunset(entry, m_config->longitude, m_config->latitude);
-      const auto entryDt = static_cast<unsigned long long>(entry.dt);
-      const bool isDay = entryDt > sunTimes.first && entryDt < sunTimes.second;
-      plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), isDay ? Qt::white:Qt::lightGray);
     }
 
+    auto plotAreaGradient = sunriseSunsetGradient(QDateTime::fromMSecsSinceEpoch(data.first().dt * 1000), 
+                                                  QDateTime::fromMSecsSinceEpoch(data.last().dt * 1000));
     forecastChart->setPlotAreaBackgroundBrush(plotAreaGradient);
     forecastChart->setPlotAreaBackgroundVisible(true);
 
@@ -878,7 +870,6 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     m_tabWidget->setTabIcon(2, QIcon());
 
     auto axisX = new QDateTimeAxis();
-    axisX->setTickCount(12);
     axisX->setLabelsAngle(45);
     axisX->setFormat("dd (hh)");
     axisX->setTitleText(tr("Day (Hour)"));
@@ -1085,7 +1076,6 @@ void WeatherDialog::setUVData(const UV &data)
     m_tabWidget->setTabIcon(3, QIcon());
 
     auto axisX = new QDateTimeAxis();
-    axisX->setTickCount(12);
     axisX->setLabelsAngle(45);
     axisX->setFormat("dd (hh)");
     axisX->setTitleText(tr("Day (Hour)"));
@@ -1705,36 +1695,64 @@ void WeatherDialog::updateAxesRanges(QtCharts::QChart *chart)
 }
 
 //--------------------------------------------------------------------
-void WeatherDialog::onForecastAreaChanged (QDateTime begin, QDateTime end)
+QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime end)
 {
+  const auto startT = begin.toMSecsSinceEpoch();
+  const auto endT = end.toMSecsSinceEpoch();
+
   QLinearGradient plotAreaGradient;
   plotAreaGradient.setStart(QPointF(0, 0));
   plotAreaGradient.setFinalStop(QPointF(1, 0));
   plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
 
-  auto interpolateDt = [&begin, &end](const long long int dt)
+  QGradientStops stops;
+
+  auto interpolateDt = [&startT, &endT](const long long int dt)
   {
-    return static_cast<double>(dt-begin.toMSecsSinceEpoch())/(end.toMSecsSinceEpoch()-begin.toMSecsSinceEpoch());
+    return static_cast<double>(dt-startT)/(endT-startT);
   };
 
-  struct tm t;
+  auto setColorAt = [&stops, startT, endT, &interpolateDt](const long long entry, const QColor &color)
+  {
+    if(entry > endT || entry < startT) return;
+    stops << QGradientStop(interpolateDt(entry), color);
+  };
+
+  std::set<unsigned long long> sunrises, sunsets;
+  constexpr unsigned long long minuteMs = 15 * 60 * 1000;
+
   for(int i = 0; i < m_forecast->size(); ++i)
   {
     const auto &entry = m_forecast->at(i);
-    const auto sunTimes = computeSunriseSunset(entry, m_config->longitude, m_config->latitude);
-    const auto entryDt = static_cast<unsigned long long>(entry.dt);
-    const bool isDay = entryDt > sunTimes.first && entryDt < sunTimes.second;
+    const auto [sunrise, sunset] = computeSunriseSunset(entry, m_config->longitude, m_config->latitude);
 
-    unixTimeStampToDate(t, entry.dt);
-    const auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-    const auto msec = dtTime.toMSecsSinceEpoch();
-
-    double entryTime = interpolateDt(msec);
-    if(msec < begin.toMSecsSinceEpoch()) entryTime = 0;
-    if(msec > end.toMSecsSinceEpoch()) entryTime = 1;
-
-    plotAreaGradient.setColorAt(entryTime, isDay ? Qt::white:Qt::lightGray);
+    sunrises.emplace(sunrise * 1000);
+    sunsets.emplace(sunset * 1000);
   }
+
+  for(const unsigned long long sunrise: sunrises)
+  {
+    setColorAt((sunrise-minuteMs), Qt::lightGray);
+    setColorAt(sunrise, Qt::white);
+  }
+
+  for(const unsigned long long sunset: sunsets)
+  {
+    setColorAt(sunset-minuteMs, Qt::white);
+    setColorAt(sunset, Qt::lightGray);
+  }
+
+  auto sortStops = [](const QGradientStop &a, const QGradientStop &b){ return a.first < b.first; };
+  std::sort(stops.begin(), stops.end(), sortStops);
+  for(const auto &s: stops) plotAreaGradient.setColorAt(s.first, s.second);
+
+  return plotAreaGradient;
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onForecastAreaChanged(QDateTime begin, QDateTime end)
+{
+  auto plotAreaGradient = sunriseSunsetGradient(begin, end);
 
   auto chart = m_weatherChart->chart();
   chart->setPlotAreaBackgroundBrush(plotAreaGradient);
