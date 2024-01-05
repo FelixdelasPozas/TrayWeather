@@ -660,6 +660,10 @@ QString TrayWeather::tooltipText() const
               windUnits = tr("mil/h");
               windValue = convertMetersSecondToMilesHour(m_current.wind_speed);
               break;
+            case WindUnits::KNOTS:
+              windUnits = tr("kts");
+              windValue = convertMetersSecondToKnots(m_current.wind_speed);
+              break;
             default:
             case WindUnits::METSEC:
               windUnits = tr("met/sec");

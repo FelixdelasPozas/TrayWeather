@@ -245,6 +245,10 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
           windUnits = tr("miles/h");
           windValue = convertMetersSecondToMilesHour(current.wind_speed);
           break;
+        case WindUnits::KNOTS:
+          windUnits = tr("kts");
+          windValue = convertMetersSecondToKnots(current.wind_speed);
+          break;
         default:
         case WindUnits::METSEC:
           windUnits = tr("meter/sec");
@@ -1453,7 +1457,7 @@ void WeatherDialog::loadMaps()
         tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, nullF);
         break;
       case Units::CUSTOM:
-        isMetric   = (m_config->windUnits == WindUnits::METSEC  || m_config->windUnits == WindUnits::KMHR) ? "true":"false";
+        isMetric   = (m_config->windUnits == WindUnits::METSEC  || m_config->windUnits == WindUnits::KMHR || m_config->windUnits == WindUnits::KNOTS) ? "true":"false";
         isImperial = (m_config->windUnits == WindUnits::FEETSEC || m_config->windUnits == WindUnits::MILHR) ? "true":"false";
         degrees    = m_config->tempUnits == TemperatureUnits::CELSIUS ? "ºC" : "ºF";
         switch(m_config->precUnits)
@@ -1481,6 +1485,10 @@ void WeatherDialog::loadMaps()
           case WindUnits::MILHR:
             windUnit = tr("miles/h");
             windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToMilesHour);
+            break;
+          case WindUnits::KNOTS:
+            windUnit = tr("kts");
+            windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToKnots);
             break;
           case WindUnits::METSEC:
             windUnit = tr("met/sec");

@@ -153,6 +153,13 @@ const double convertMetersSecondToMilesHour(const double value)
 }
 
 //--------------------------------------------------------------------
+const double convertMetersSecondToKnots(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(value * 1.94384 * 100)/100.;
+}
+
+//--------------------------------------------------------------------
 const double convertMetersSecondToKilometersHour(const double value)
 {
   // return only 2 digits.

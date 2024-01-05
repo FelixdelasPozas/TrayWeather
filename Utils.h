@@ -47,7 +47,7 @@ enum class Units:              char { METRIC = 0, IMPERIAL, CUSTOM };
 enum class PressureUnits:      char { HPA =  0, PSI, MMGH, INHG };
 enum class TemperatureUnits:   char { CELSIUS = 0, FAHRENHEIT };
 enum class PrecipitationUnits: char { MM = 0, INCH };
-enum class WindUnits:          char { METSEC = 0, MILHR, KMHR, FEETSEC };
+enum class WindUnits:          char { METSEC = 0, MILHR, KMHR, FEETSEC, KNOTS };
 enum class Update:             char { NEVER = 0, DAILY, WEEKLY, MONTHLY };
 enum class Representation:     char { NONE = 0, SPLINE, BARS };
 
@@ -437,6 +437,12 @@ const double convertCelsiusToFahrenheit(const double value);
  *
  */
 const double convertMetersSecondToMilesHour(const double value);
+
+/** \brief Converts the given meters/second to knots.
+ * \param[in] value Meters/sec value.
+ *
+ */
+const double convertMetersSecondToKnots(const double value);
 
 /** \brief Converts the given meters/second to kilometers/hour.
  * \param[in] value Meters/sec value.
