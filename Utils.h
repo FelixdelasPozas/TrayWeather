@@ -204,6 +204,10 @@ struct Configuration
     QColor             tempReprColor;   /** color of temperature representation in the forecast graph.  */
     QColor             rainReprColor;   /** color of rain representation in the forecast graph.         */
     QColor             snowReprColor;   /** color of snow representation in the forecast graph.         */
+    float              cloudMapOpacity; /** opacity of the cloud layer in the map. Value in [0,1].      */
+    float              windMapOpacity;  /** opacity of the wind layer in the map. Value in [0,1].       */
+    float              rainMapOpacity;  /** opacity of the rain layer in the map. Value in [0,1].       */
+    float              tempMapOpacity;  /** opacity of the temp layer in the map. Value in [0,1].       */
 
     /** \brief Configuration struct constructor.
      *
@@ -256,6 +260,10 @@ struct Configuration
     , tempReprColor   {Qt::blue}
     , rainReprColor   {Qt::green}
     , snowReprColor   {Qt::red}
+    , cloudMapOpacity {0.75}
+    , windMapOpacity  {0.75}
+    , rainMapOpacity  {0.75}
+    , tempMapOpacity  {0.75}
     {};
 
     bool isValid() const

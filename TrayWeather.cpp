@@ -260,6 +260,10 @@ void TrayWeather::showConfiguration()
   m_configuration.tempReprColor   = configuration.tempReprColor;
   m_configuration.rainReprColor   = configuration.rainReprColor;
   m_configuration.snowReprColor   = configuration.snowReprColor;
+  m_configuration.tempMapOpacity  = configuration.tempMapOpacity;
+  m_configuration.cloudMapOpacity = configuration.cloudMapOpacity;
+  m_configuration.rainMapOpacity  = configuration.rainMapOpacity;
+  m_configuration.windMapOpacity  = configuration.windMapOpacity;
 
   bool requestNewData = false;
 

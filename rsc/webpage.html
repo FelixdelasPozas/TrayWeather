@@ -43,22 +43,22 @@
  				
         var clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
-            , opacity: 0.75
+            , opacity: %%cloudsOpacity%%
         });
 		
         var rain = L.tileLayer('http://{s}.tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
-            , opacity: 0.75
+            , opacity: %%rainOpacity%%
         });
 		
         var wind = L.tileLayer('http://{s}.tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
-            , opacity: 0.75
+            , opacity: %%windOpacity%%
         });
 		
         var temperature = L.tileLayer('http://{s}.tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid={api_key}', {
             attribution: ''
-            , opacity: 0.75
+            , opacity: %%tempOpacity%%
         });
 		
 		var legend = L.control({position: 'bottomright'});

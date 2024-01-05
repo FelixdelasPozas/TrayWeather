@@ -1525,6 +1525,11 @@ void WeatherDialog::loadMaps()
     webpage.replace("%%windStr%%", tr("Wind"), Qt::CaseSensitive);
     webpage.replace("%%cloudStr%%", tr("Clouds"), Qt::CaseSensitive);
 
+    webpage.replace("%%cloudsOpacity%%", QString::number(m_config->cloudMapOpacity), Qt::CaseSensitive);
+    webpage.replace("%%rainOpacity%%", QString::number(m_config->rainMapOpacity), Qt::CaseSensitive);
+    webpage.replace("%%windOpacity%%", QString::number(m_config->windMapOpacity), Qt::CaseSensitive);
+    webpage.replace("%%tempOpacity%%", QString::number(m_config->tempMapOpacity), Qt::CaseSensitive);
+
     // config
     webpage.replace("%%lat%%", QString::number(m_config->latitude), Qt::CaseSensitive);
     webpage.replace("%%lon%%", QString::number(m_config->longitude), Qt::CaseSensitive);

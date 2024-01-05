@@ -101,6 +101,10 @@ static const QString GRAPH_SNOW_REPR         = QString("Forecast graph snow repr
 static const QString GRAPH_TEMP_COLOR        = QString("Forecast graph temperature color");
 static const QString GRAPH_RAIN_COLOR        = QString("Forecast graph rain color");
 static const QString GRAPH_SNOW_COLOR        = QString("Forecast graph snow color");
+static const QString CLOUD_LAYER_OPACITY     = QString("Cloud layer opacity");
+static const QString RAIN_LAYER_OPACITY      = QString("Rain layer opacity");
+static const QString WIND_LAYER_OPACITY      = QString("Wind layer opacity");
+static const QString TEMP_LAYER_OPACITY      = QString("Temperature layer opacity");
 
 
 static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/iconThemes/%1/01d.svg" },
@@ -679,6 +683,10 @@ void load_implementation(const QSettings &settings, Configuration &configuration
   configuration.tempReprColor   = QColor(settings.value(GRAPH_TEMP_COLOR, "#FF0000FF").toString());
   configuration.rainReprColor   = QColor(settings.value(GRAPH_RAIN_COLOR, "#FF00FF00").toString());
   configuration.snowReprColor   = QColor(settings.value(GRAPH_SNOW_COLOR, "#FFFF0000").toString());
+  configuration.cloudMapOpacity = settings.value(CLOUD_LAYER_OPACITY, 0.75).toFloat();
+  configuration.rainMapOpacity  = settings.value(RAIN_LAYER_OPACITY, 0.75).toFloat();
+  configuration.windMapOpacity  = settings.value(WIND_LAYER_OPACITY, 0.75).toFloat();
+  configuration.tempMapOpacity  = settings.value(TEMP_LAYER_OPACITY, 0.75).toFloat();
 
 
   // if CUSTOM_UNITS values doesn't exists (first run) use units value.
@@ -781,6 +789,10 @@ void save_implementation(QSettings &settings, const Configuration &configuration
   settings.setValue(GRAPH_TEMP_COLOR,        configuration.tempReprColor.name(QColor::HexArgb));
   settings.setValue(GRAPH_RAIN_COLOR,        configuration.rainReprColor.name(QColor::HexArgb));
   settings.setValue(GRAPH_SNOW_COLOR,        configuration.snowReprColor.name(QColor::HexArgb));
+  settings.setValue(CLOUD_LAYER_OPACITY,     configuration.cloudMapOpacity);
+  settings.setValue(RAIN_LAYER_OPACITY,      configuration.rainMapOpacity);
+  settings.setValue(WIND_LAYER_OPACITY,      configuration.windMapOpacity);
+  settings.setValue(TEMP_LAYER_OPACITY,      configuration.tempMapOpacity);
 
   QStringList fieldList;
   QList<int> fieldNums;

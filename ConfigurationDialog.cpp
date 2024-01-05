@@ -278,6 +278,10 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.tempReprColor   = QColor(m_tempGraphColor->property("iconColor").toString());
   configuration.rainReprColor   = QColor(m_rainGraphColor->property("iconColor").toString());
   configuration.snowReprColor   = QColor(m_snowGraphColor->property("iconColor").toString());
+  configuration.tempMapOpacity  = static_cast<float>(m_tempLayerSlider->value() / 100.);
+  configuration.cloudMapOpacity = static_cast<float>(m_cloudLayerSlider->value() / 100.);
+  configuration.rainMapOpacity  = static_cast<float>(m_rainLayerSlider->value() / 100.);
+  configuration.windMapOpacity  = static_cast<float>(m_windLayerSlider->value() / 100.);
 
   configuration.tooltipFields.clear();
   for(int row = 0; row < m_tooltipList->count(); ++row)
@@ -875,6 +879,11 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_pressionCombo->setProperty(SELECTED, static_cast<int>(configuration.pressureUnits));
   m_windCombo->setProperty(SELECTED, static_cast<int>(configuration.windUnits));
   m_precipitationCombo->setProperty(SELECTED, static_cast<int>(configuration.precUnits));
+
+  m_tempLayerSlider->setValue(static_cast<int>(configuration.tempMapOpacity * 100));
+  m_cloudLayerSlider->setValue(static_cast<int>(configuration.cloudMapOpacity * 100));
+  m_rainLayerSlider->setValue(static_cast<int>(configuration.rainMapOpacity * 100));
+  m_windLayerSlider->setValue(static_cast<int>(configuration.windMapOpacity * 100));
 
   setFixedSize(size());
   updateRange();
