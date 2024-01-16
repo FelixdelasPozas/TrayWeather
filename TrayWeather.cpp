@@ -653,7 +653,7 @@ QString TrayWeather::tooltipText() const
           switch(m_configuration.windUnits)
           {
             case WindUnits::FEETSEC:
-              windUnits = tr("feet/s");
+              windUnits = tr("ft/s");
               windValue = convertMetersSecondToFeetSecond(m_current.wind_speed);
               break;
             case WindUnits::KMHR:
@@ -661,7 +661,7 @@ QString TrayWeather::tooltipText() const
               windValue = convertMetersSecondToKilometersHour(m_current.wind_speed);
               break;
             case WindUnits::MILHR:
-              windUnits = tr("mil/h");
+              windUnits = tr("mph");
               windValue = convertMetersSecondToMilesHour(m_current.wind_speed);
               break;
             case WindUnits::KNOTS:
@@ -670,7 +670,7 @@ QString TrayWeather::tooltipText() const
               break;
             default:
             case WindUnits::METSEC:
-              windUnits = tr("met/sec");
+              windUnits = tr("m/s");
               break;
           }
           fieldsText << tr("Wind: ") + QString("%1 %2").arg(windValue).arg(windUnits);

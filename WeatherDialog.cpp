@@ -49,6 +49,7 @@
 #include <cmath>
 #include <algorithm>
 #include <set>
+#include <iostream>
 
 using namespace QtCharts;
 
@@ -179,14 +180,14 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     case Units::IMPERIAL:
       accuStr = tr("inches");
       pressStr = tr("PSI");
-      windUnits = tr("miles/hour");
+      windUnits = tr("mph");
       tempUnits = "ºF";
       break;
     default:
     case Units::METRIC:
       accuStr = tr("mm");
       pressStr = tr("hPa");
-      windUnits = tr("meter/sec");
+      windUnits = tr("m/s");
       tempUnits = "ºC";
       break;
     case Units::CUSTOM:
@@ -234,7 +235,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       switch(config.windUnits)
       {
         case WindUnits::FEETSEC:
-          windUnits = tr("feet/s");
+          windUnits = tr("ft/s");
           windValue = convertMetersSecondToFeetSecond(current.wind_speed);
           break;
         case WindUnits::KMHR:
@@ -242,7 +243,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
           windValue = convertMetersSecondToKilometersHour(current.wind_speed);
           break;
         case WindUnits::MILHR:
-          windUnits = tr("miles/h");
+          windUnits = tr("mph");
           windValue = convertMetersSecondToMilesHour(current.wind_speed);
           break;
         case WindUnits::KNOTS:
@@ -251,7 +252,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
           break;
         default:
         case WindUnits::METSEC:
-          windUnits = tr("meter/sec");
+          windUnits = tr("m/s");
           break;
       }
       break;
@@ -1440,7 +1441,7 @@ void WeatherDialog::loadMaps()
         isMetric   = "false";
         isImperial = "true";
         degrees    = "ºF";
-        windUnit   = tr("miles/h");
+        windUnit   = tr("mph");
         rainUnit   = tr("inches");
         rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, convertMmToInches);
         windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToMilesHour);
@@ -1450,7 +1451,7 @@ void WeatherDialog::loadMaps()
         isMetric   = "true";
         isImperial = "false";
         degrees    = "ºC";
-        windUnit   = tr("met/sec");
+        windUnit   = tr("m/s");
         rainUnit   = tr("mm");
         rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, nullF);
         windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, nullF);
@@ -1475,7 +1476,7 @@ void WeatherDialog::loadMaps()
         switch(m_config->windUnits)
         {
           case WindUnits::FEETSEC:
-            windUnit = tr("feet/sec");
+            windUnit = tr("ft/s");
             windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToFeetSecond);
             break;
           case WindUnits::KMHR:
@@ -1483,7 +1484,7 @@ void WeatherDialog::loadMaps()
             windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToKilometersHour);
             break;
           case WindUnits::MILHR:
-            windUnit = tr("miles/h");
+            windUnit = tr("mph");
             windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToMilesHour);
             break;
           case WindUnits::KNOTS:
@@ -1491,7 +1492,7 @@ void WeatherDialog::loadMaps()
             windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToKnots);
             break;
           case WindUnits::METSEC:
-            windUnit = tr("met/sec");
+            windUnit = tr("m/s");
             windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, nullF);
             break;
         }
@@ -1525,10 +1526,10 @@ void WeatherDialog::loadMaps()
     webpage.replace("%%windStr%%", tr("Wind"), Qt::CaseSensitive);
     webpage.replace("%%cloudStr%%", tr("Clouds"), Qt::CaseSensitive);
 
-    webpage.replace("%%cloudsOpacity%%", QString::number(m_config->cloudMapOpacity), Qt::CaseSensitive);
-    webpage.replace("%%rainOpacity%%", QString::number(m_config->rainMapOpacity), Qt::CaseSensitive);
-    webpage.replace("%%windOpacity%%", QString::number(m_config->windMapOpacity), Qt::CaseSensitive);
-    webpage.replace("%%tempOpacity%%", QString::number(m_config->tempMapOpacity), Qt::CaseSensitive);
+    webpage.replace("%%cloudsOpacity%%", QString::number(m_config->cloudMapOpacity, 'f', 2), Qt::CaseSensitive);
+    webpage.replace("%%rainOpacity%%", QString::number(m_config->rainMapOpacity, 'f', 2), Qt::CaseSensitive);
+    webpage.replace("%%windOpacity%%", QString::number(m_config->windMapOpacity, 'f', 2), Qt::CaseSensitive);
+    webpage.replace("%%tempOpacity%%", QString::number(m_config->tempMapOpacity, 'f', 2), Qt::CaseSensitive);
 
     // config
     webpage.replace("%%lat%%", QString::number(m_config->latitude), Qt::CaseSensitive);
