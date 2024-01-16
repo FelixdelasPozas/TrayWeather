@@ -10,13 +10,12 @@ Tray Weather
 - [Repository information](#repository-information)
 
 # Description
-Tray Weather is a simple application to retrieve and show weather information for a given geographic location in a small dialog and in the Windows OS system tray. When executed the application sits
-in the system tray, showing the current weather icon. The tray icon tooltip shows the location, weather description and temperature. The tray menu provides access to the weather and configuration
-dialogs. If there is a network error and the information cannot be retrieved the tray icon will inform of the error and show the error icon. 
+Tray Weather is a simple application to retrieve and show weather information for a given geographic location in a small dialog and in the Windows OS system tray. When executed the application sits in the system tray, showing the current weather icon. The tray icon tooltip shows
+the location, weather description and temperature. The tray menu provides access to the weather and configuration dialogs. If there is a
+network error and the information cannot be retrieved the tray icon will inform of the error and show the error icon. 
 
-The computer location can be automatically obtained by using the services of [http://ip-api.com/](http://ip-api.com/) or entered manually by specifying latitude and longitude coordinates. The weather
-and maps information are obtained from [OpenWeatherMap](http://openweathermap.org/). To obtain weather information from OpenWeatherMap you need to register in their website and enter the given API Key
-into the Tray Weather configuration dialog. 
+The computer location can be automatically obtained by using the services of [http://ip-api.com/](http://ip-api.com/) or entered manually by specifying latitude and longitude coordinates. The weather information are obtained from [OpenWeatherMap](http://openweathermap.org/) and maps
+are from OpenWeatherMap and [Google](https://www.google.com/maps). To obtain weather information from OpenWeatherMap you need to register in their website and enter the given API Key into the Tray Weather configuration dialog (currently only the free plan is supported). 
 
 > **_NOTE:_**  Please note that after you register in OpenWeatherMap and are given an API key, that key **may not be valid right away**. If you enter the API key in TrayWeather and get an "host requires authentication" error, you must wait a little longer until it becomes valid.
 
@@ -47,7 +46,7 @@ creating the empty file because then the setting will be loaded from the windows
 
 # Screenshots
 
-> **_NOTE:_**  Some screenshots are from older versions of Tray Weather and are missing tabs present in the latest version. 
+> **_NOTE:_** Some screenshots are from older versions of Tray Weather and are missing tabs present in the latest version.
 
 Tray icon showing the current weather icon. At night and on clear sky days it shows the current moon phase as the weather icon.
 
@@ -68,22 +67,22 @@ can be enabled here. A 'roaming' mode can be enabled, where the geographical coo
 weather information is up to date even if the computer location is moving. Roaming mode can only be enabled if the geolocation services are being used.
 The tray and application theme configuration can be found here in the miscellaneous options. Also the frequency of checks for updates can be set here.
 
-Configuration dialog in Spanish with the application light theme.
+Configuration dialog in English with the application light theme.
 
-![config](https://user-images.githubusercontent.com/12167134/176561107-1acebdb6-fd94-4612-8eb3-75bed3f0940b.png)
+![config](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/fce4daa3-ebe6-4df1-99fa-99de2ba63902)
 
 Configuration dialog in English with the application dark theme.
 
-![config_dark](https://user-images.githubusercontent.com/12167134/176561109-f1b946b6-a45c-43f9-9ed6-ebc80ef30684.png)
+![config_dark](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/024f27b1-31a1-48c8-9e60-f79ffd28f549)
 
 Weather dialog, showing the current weather tab. 
 
 ![weather](https://user-images.githubusercontent.com/12167134/127046991-e2eb1e5c-73d7-4ece-b9c4-dfff8dd1648e.png)
 
-Weather forecast for the next days. If the user puts the mouse over a point in the temperature line or a bar a tooltip will provide the weather conditions for that day and hour. Background is colored to day/night.
-The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph. Data series can be hidden and shown again by clicking on its legend text.
+Weather forecast for the next days. If the user puts the mouse over a point in the temperature line or a bar a tooltip will provide the weather conditions for that day and hour. Background is colored to day/night according to sunrise/sunset values for the day.
+The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph. Data series can be hidden and shown again by clicking on its legend text below the graph.
 
-![forecast_graph](https://user-images.githubusercontent.com/12167134/282960962-93cc1a0a-cd26-4dc1-a13f-267bf62361a6.png)
+![forecast_graph](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/4fa05da5-238e-4a28-9bcb-cc021a05cc4b)
 
 Pollution forecast can be obtained in the third tab, showing the projections for the next days. The chart can be zoomed in the X axis and
 resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines and
@@ -97,8 +96,7 @@ index line showing the index value and recommendations. The zoom method and rese
 
 ![radiation](https://user-images.githubusercontent.com/12167134/127046989-ad7a3d32-adb9-486f-a37b-1dddf95b935a.png)
 
-Weather maps are interactive. While initially the map is centered in the detected location it can be moved and zoomed in and out. The maps consumes much more memory than
-the rest of the application so the user can be disable them using the button below. 
+Weather maps are interactive. While initially the map is centered in the detected location it can be moved and zoomed in and out. The maps consumes much more memory than the rest of the application so the user can be disable them using the button below. 
 
 ![maps0](https://user-images.githubusercontent.com/12167134/109207325-4bcf7e80-77a9-11eb-8744-8b928c5d2c3e.png)
 ![maps1](https://cloud.githubusercontent.com/assets/12167134/20938099/f07daa22-bbe9-11e6-9efb-07466ef36748.jpg)
@@ -129,9 +127,9 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 373 texts.
+and making a pull request. Currently it's just 385 texts.
 
-To do it manually just edit the 'empty translation' file and replace the untranslated messages:
+To do it manually just edit the 'empty translation' file in the 'languages' directory (empty.ts) and replace the untranslated messages, for example:
 
 ```
     <message>
@@ -153,7 +151,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.27.1
+**Version**: 1.28.0
 
 **Status**: finished.
 
@@ -161,8 +159,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 1058        |   401            | 5193 |
-| C/C++ Header                 |  10           |  285        |   840            |  935 |
+| C++                          |  10           | 1066        |   412            | 5268 |
+| C/C++ Header                 |  10           |  288        |   854            |  947 |
 | HTML                         |   1           |   33        |     0            |  152 |
 | CMake                        |   1           |   19        |    11            |  125 |
-| **Total**                    | **22**        | **1395**    | **1252**         | **6405** |
+| **Total**                    | **22**        | **1406**    | **1277**         | **6492** |
