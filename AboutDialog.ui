@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>424</width>
-    <height>560</height>
+    <height>572</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -420,6 +420,50 @@ QGroupBox::title {
               </property>
               <property name="text">
                <string notr="true">&lt;a href=&quot;http://ip-api.com/&quot;&gt;http://ip-api.com/&lt;/a&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="openExternalLinks">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_6">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QGroupBox {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 2ex;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* position at the top center */
+    padding: 0px 5px;
+}</string>
+           </property>
+           <property name="title">
+            <string>Public IP Address API provided by</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_14">
+            <item>
+             <widget class="QLabel" name="label_15">
+              <property name="toolTip">
+               <string>IP API</string>
+              </property>
+              <property name="text">
+               <string notr="true">&lt;a href=&quot;https://www.ipify.org/&quot;&gt;https://www.ipify.org/&lt;/a&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
