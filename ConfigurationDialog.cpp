@@ -1003,6 +1003,9 @@ void ConfigurationDialog::disconnectSignals()
 
   disconnect(m_iconSize, SIGNAL(valueChanged(int)),
              this,       SLOT(updateTemperatureIcon()));
+
+  disconnect(m_geoFind, SIGNAL(clicked()), 
+             this,      SLOT(onSearchButtonClicked()));
 }
 
 //--------------------------------------------------------------------

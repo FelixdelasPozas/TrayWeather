@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>669</width>
     <height>328</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Location coordinates</string>
+   <string>Search location coordinates</string>
   </property>
   <property name="windowIcon">
    <iconset resource="rsc/resources.qrc">
@@ -24,7 +24,7 @@
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the city name and, optionally, the state code (only for the US) and country code divided by comma. Use &lt;a href=&amp;quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&amp;quot;&gt;ISO 3166 country codes&lt;/a&gt;. For example: &amp;quot;London, GB&amp;quot;.&lt;/p&gt;
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the city name and, optionally, the state code (only for the US) and country code divided by comma. Use &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166 country codes&lt;/a&gt;. For example: &quot;London, GB&quot;;.&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
@@ -34,7 +34,7 @@
       <bool>false</bool>
      </property>
      <property name="alignment">
-      <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

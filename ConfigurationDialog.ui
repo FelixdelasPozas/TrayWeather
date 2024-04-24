@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>427</width>
-    <height>554</height>
+    <height>571</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,13 +22,13 @@
   <property name="minimumSize">
    <size>
     <width>427</width>
-    <height>554</height>
+    <height>571</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>427</width>
-    <height>583</height>
+    <height>571</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -54,7 +54,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -91,28 +91,13 @@ QGroupBox::title {
          <property name="title">
           <string>Geographic Location Method</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0">
+         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0">
           <item>
-           <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1">
-            <item row="0" column="2">
-             <widget class="QDoubleSpinBox" name="m_latitudeSpin">
-              <property name="toolTip">
-               <string>Latitude value</string>
-              </property>
-              <property name="statusTip">
-               <string>Latitude value</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="decimals">
-               <number>6</number>
-              </property>
-              <property name="minimum">
-               <double>-90.000000000000000</double>
-              </property>
-              <property name="maximum">
-               <double>90.000000000000000</double>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_39">
+              <property name="text">
+               <string/>
               </property>
              </widget>
             </item>
@@ -138,16 +123,25 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="m_latitudeLabel">
+            <item row="0" column="2">
+             <widget class="QDoubleSpinBox" name="m_latitudeSpin">
               <property name="toolTip">
                <string>Latitude value</string>
               </property>
               <property name="statusTip">
                <string>Latitude value</string>
               </property>
-              <property name="text">
-               <string>Latitude</string>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="decimals">
+               <number>6</number>
+              </property>
+              <property name="minimum">
+               <double>-90.000000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>90.000000000000000</double>
               </property>
              </widget>
             </item>
@@ -164,6 +158,19 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="m_latitudeLabel">
+              <property name="toolTip">
+               <string>Latitude value</string>
+              </property>
+              <property name="statusTip">
+               <string>Latitude value</string>
+              </property>
+              <property name="text">
+               <string>Latitude</string>
+              </property>
+             </widget>
+            </item>
             <item row="0" column="0">
              <widget class="QRadioButton" name="m_useManual">
               <property name="toolTip">
@@ -174,19 +181,6 @@ QGroupBox::title {
               </property>
               <property name="text">
                <string>Manual Coordinates</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QPushButton" name="m_geoRequest">
-              <property name="toolTip">
-               <string>Request IP geolocation</string>
-              </property>
-              <property name="statusTip">
-               <string>Request IP geolocation</string>
-              </property>
-              <property name="text">
-               <string>Request Geolocation</string>
               </property>
              </widget>
             </item>
@@ -203,36 +197,16 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="4" column="2">
-             <widget class="QCheckBox" name="m_useDNS">
+            <item row="2" column="2">
+             <widget class="QPushButton" name="m_geoRequest">
               <property name="toolTip">
-               <string>Use DNS IP for geolocation</string>
+               <string>Request IP geolocation</string>
               </property>
               <property name="statusTip">
-               <string>Use DNS IP for geolocation</string>
+               <string>Request IP geolocation</string>
               </property>
               <property name="text">
-               <string>Use DNS address</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="2">
-             <widget class="QCheckBox" name="m_roamingCheck">
-              <property name="toolTip">
-               <string>Obtain geographical coordinates before each weather data request.</string>
-              </property>
-              <property name="statusTip">
-               <string>Obtain geographical coordinates before each weather data request.</string>
-              </property>
-              <property name="text">
-               <string>Enable roaming</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_39">
-              <property name="text">
-               <string/>
+               <string>Request Geolocation</string>
               </property>
              </widget>
             </item>
@@ -249,8 +223,64 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="3" column="2">
+           </layout>
+          </item>
+          <item>
+           <widget class="Line" name="line_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="m_useDNS">
+            <property name="toolTip">
+             <string>Use DNS IP for geolocation</string>
+            </property>
+            <property name="statusTip">
+             <string>Use DNS IP for geolocation</string>
+            </property>
+            <property name="text">
+             <string>Use DNS address</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_15">
+            <item>
+             <widget class="QCheckBox" name="m_roamingCheck">
+              <property name="toolTip">
+               <string>Obtain geographical coordinates before each weather data request.</string>
+              </property>
+              <property name="statusTip">
+               <string>Obtain geographical coordinates before each weather data request.</string>
+              </property>
+              <property name="text">
+               <string>Enable roaming</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QPushButton" name="m_geoFind">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>Find location...</string>
               </property>
@@ -682,7 +712,7 @@ QGroupBox::title {
       <attribute name="title">
        <string>Units</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_9">
        <item>
         <widget class="QGroupBox" name="groupBox_5">
          <property name="font">
@@ -1108,34 +1138,269 @@ QGroupBox::title {
             </item>
            </layout>
           </item>
+          <item>
+           <widget class="QLabel" name="label_30">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; In the forecast graphs the information can be hidden and shown again by clicking on the legend title text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_30">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; In the forecast graphs the information can be hidden and shown again by clicking on the legend title text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
          </property>
-         <property name="alignment">
-          <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-top: 2ex;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* position at the top center */
+    padding: 0px 5px;
+}</string>
          </property>
-         <property name="wordWrap">
-          <bool>true</bool>
+         <property name="title">
+          <string>Map Layers Opacity</string>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_13">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QLabel" name="label_18">
+              <property name="minimumSize">
+               <size>
+                <width>75</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Temperature</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="m_tempLayerSlider">
+              <property name="minimum">
+               <number>5</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="m_tempLayerSpinbox">
+              <property name="minimumSize">
+               <size>
+                <width>55</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>5</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLabel" name="label_21">
+              <property name="minimumSize">
+               <size>
+                <width>75</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Clouds</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="m_cloudLayerSlider">
+              <property name="minimum">
+               <number>5</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="m_cloudLayerSpinbox">
+              <property name="minimumSize">
+               <size>
+                <width>55</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>5</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <widget class="QLabel" name="label_32">
+              <property name="minimumSize">
+               <size>
+                <width>75</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Rain</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="m_rainLayerSlider">
+              <property name="minimum">
+               <number>5</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="m_rainLayerSpinbox">
+              <property name="minimumSize">
+               <size>
+                <width>55</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>5</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QLabel" name="label_34">
+              <property name="minimumSize">
+               <size>
+                <width>75</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Wind</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="m_windLayerSlider">
+              <property name="minimum">
+               <number>5</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="m_windLayerSpinbox">
+              <property name="minimumSize">
+               <size>
+                <width>55</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>5</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
         </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -1842,7 +2107,7 @@ QGroupBox::title {
       <attribute name="title">
        <string>Miscellaneous</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,0,0">
        <item>
         <layout class="QGridLayout" name="gridLayout">
          <property name="verticalSpacing">
@@ -2093,261 +2358,6 @@ QGroupBox::title {
         </widget>
        </item>
        <item>
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="font">
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QGroupBox {
-    border: 1px solid gray;
-    border-radius: 5px;
-    margin-top: 2ex;
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top center; /* position at the top center */
-    padding: 0px 5px;
-}</string>
-         </property>
-         <property name="title">
-          <string>Map Layers Opacity</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_10">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QLabel" name="label_4">
-              <property name="minimumSize">
-               <size>
-                <width>75</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Temperature</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSlider" name="m_tempLayerSlider">
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="m_tempLayerSpinbox">
-              <property name="minimumSize">
-               <size>
-                <width>55</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="suffix">
-               <string>%</string>
-              </property>
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QLabel" name="label_6">
-              <property name="minimumSize">
-               <size>
-                <width>75</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Clouds</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSlider" name="m_cloudLayerSlider">
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="m_cloudLayerSpinbox">
-              <property name="minimumSize">
-               <size>
-                <width>55</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="suffix">
-               <string>%</string>
-              </property>
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_6">
-            <item>
-             <widget class="QLabel" name="label_8">
-              <property name="minimumSize">
-               <size>
-                <width>75</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Rain</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSlider" name="m_rainLayerSlider">
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="m_rainLayerSpinbox">
-              <property name="minimumSize">
-               <size>
-                <width>55</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="suffix">
-               <string>%</string>
-              </property>
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_7">
-            <item>
-             <widget class="QLabel" name="label_16">
-              <property name="minimumSize">
-               <size>
-                <width>75</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>Wind</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSlider" name="m_windLayerSlider">
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="m_windLayerSpinbox">
-              <property name="minimumSize">
-               <size>
-                <width>55</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="suffix">
-               <string>%</string>
-              </property>
-              <property name="minimum">
-               <number>5</number>
-              </property>
-              <property name="maximum">
-               <number>100</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -2436,22 +2446,6 @@ QGroupBox::title {
    </hints>
   </connection>
   <connection>
-   <sender>m_cloudLayerSpinbox</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>m_cloudLayerSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>371</x>
-     <y>323</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>227</x>
-     <y>323</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>m_iconSize</sender>
    <signal>valueChanged(int)</signal>
    <receiver>m_iconSizeSpinbox</receiver>
@@ -2480,118 +2474,6 @@ QGroupBox::title {
     <hint type="destinationlabel">
      <x>263</x>
      <y>319</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_cloudLayerSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>m_cloudLayerSpinbox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>227</x>
-     <y>323</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>371</x>
-     <y>323</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_tempLayerSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>m_tempLayerSpinbox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>222</x>
-     <y>293</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>366</x>
-     <y>293</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_tempLayerSpinbox</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>m_tempLayerSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>366</x>
-     <y>293</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>222</x>
-     <y>293</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_windLayerSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>m_windLayerSpinbox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>222</x>
-     <y>383</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>366</x>
-     <y>383</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_windLayerSpinbox</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>m_windLayerSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>366</x>
-     <y>383</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>222</x>
-     <y>383</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_rainLayerSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>m_rainLayerSpinbox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>222</x>
-     <y>353</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>366</x>
-     <y>353</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>m_rainLayerSpinbox</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>m_rainLayerSlider</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>366</x>
-     <y>353</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>222</x>
-     <y>353</y>
     </hint>
    </hints>
   </connection>
