@@ -21,7 +21,7 @@
 #include <QMap>
 #include <QString>
 
-static const QMap<QString, QString >ISO3166 = {
+static const QMap<QString, QString> ISO3166 = {
     { "Afghanistan", "AF" },
     { "Åland Islands", "AX" },
     { "Albania", "AL" },

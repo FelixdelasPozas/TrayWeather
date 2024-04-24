@@ -225,6 +225,11 @@ class ConfigurationDialog
      */
     void onIconTypeChanged(int);
 
+    /** \brief Shows the location finder dialog and gets the results. 
+     * 
+     */
+    void onSearchButtonClicked();
+
   signals:
     void languageChanged(const QString &);
 

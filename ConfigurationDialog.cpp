@@ -19,6 +19,7 @@
 
 // Project
 #include <ConfigurationDialog.h>
+#include <LocationFinderDialog.h>
 #include <Utils.h>
 
 // Qt
@@ -86,6 +87,8 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   setConfiguration(configuration);
   setCurrentTemperature(m_temp);
+
+  m_geoFind->setEnabled(false);
 }
 
 //--------------------------------------------------------------------
@@ -114,7 +117,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 
         QMessageBox msgbox(this);
         msgbox.setWindowTitle(tr("Network Error"));
-        msgbox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+        msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
         msgbox.setDetailedText(details);
         msgbox.setText(message);
         msgbox.setBaseSize(400, 400);
@@ -124,6 +127,15 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 
     reply->deleteLater();
 
+    return;
+  }
+
+  if(url.toString().contains("ipify", Qt::CaseInsensitive))
+  {
+    const auto data = reply->readAll();
+    m_ip->setText(data);
+
+    reply->deleteLater();
     return;
   }
 
@@ -151,6 +163,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
             m_testedAPIKey = true;
             m_testLabel->setStyleSheet("QLabel { color : green; }");
             m_testLabel->setText(tr("The API Key is valid!"));
+            m_geoFind->setEnabled(true);
             return;
           }
         }
@@ -227,7 +240,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 
   QMessageBox msgbox(this);
   msgbox.setWindowTitle(tr("Network Error"));
-  msgbox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+  msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
   msgbox.setDetailedText(details);
   msgbox.setText(message);
   msgbox.setBaseSize(400, 400);
@@ -498,6 +511,9 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_iconSize, SIGNAL(valueChanged(int)),
           this,       SLOT(updateTemperatureIcon()));
+
+  connect(m_geoFind, SIGNAL(clicked()), 
+          this,      SLOT(onSearchButtonClicked()));
 }
 
 //--------------------------------------------------------------------
@@ -573,7 +589,7 @@ void ConfigurationDialog::onColorButtonClicked()
 
   QColorDialog dialog;
   dialog.setCurrentColor(color);
-  dialog.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+  dialog.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
 
   if(dialog.exec() != QColorDialog::Accepted) return;
 
@@ -1165,7 +1181,7 @@ void ConfigurationDialog::onFontPreviewPressed()
 
     QMessageBox msgbox(this);
     msgbox.setWindowTitle(tr("Font Selection"));
-    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
     msgbox.setIcon(QMessageBox::Critical);
     msgbox.setText(tr("The selected font '%1' is not valid because it cannot draw the needed characters.").arg(m_fontButton->text()));
     msgbox.setBaseSize(400, 400);
@@ -1193,7 +1209,7 @@ void ConfigurationDialog::onFontSelectorPressed()
   QFontDialog dialog(font, this);
   dialog.setOption(QFontDialog::NonScalableFonts, false);
   dialog.setModal(true);
-  dialog.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+  dialog.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
   dialog.setWindowTitle(tr("Select font for temperature icon"));
   if(QDialog::Accepted != dialog.exec()) return;
 
@@ -1204,7 +1220,7 @@ void ConfigurationDialog::onFontSelectorPressed()
   {
     QMessageBox msgbox(this);
     msgbox.setWindowTitle(tr("Font Selection"));
-    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
     msgbox.setIcon(QMessageBox::Critical);
     msgbox.setText(tr("The selected font '%1' is not valid because it cannot draw the needed characters.").arg(fontName));
     msgbox.setBaseSize(400, 400);
@@ -1341,6 +1357,50 @@ void ConfigurationDialog::onIconTypeChanged(int value)
 
   const auto enableColored = !ICON_THEMES.at(m_trayIconTheme->currentIndex()).colored;
   m_iconThemeColor->setEnabled(enableColored && iconsOptionsEnabled);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onSearchButtonClicked()
+{
+  if(!m_testedAPIKey)
+  {
+    const QString message = "Location search requires a valid OpenWeatherMap key.";
+
+    QMessageBox msgbox(this);
+    msgbox.setWindowTitle(tr("Network Error"));
+    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+    msgbox.setText(message);
+    msgbox.setBaseSize(400, 400);
+    msgbox.exec();
+    return;
+  }
+
+  const auto currentLang = TRANSLATIONS.at(m_languageCombo->currentIndex());
+  const auto languaje = currentLang.file.split("_").first();
+  
+  disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
+
+  LocationFinderDialog dialog(m_apikey->text(), languaje, m_netManager.get(), this);
+  const auto result = dialog.exec();
+
+  connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
+
+  if(result == QDialog::Accepted)
+  {
+    const auto information = dialog.selected();
+    m_country->setText(information.country);
+    m_region->setText(information.region);
+    m_city->setText(information.location);
+    m_latitude->setText(QString("%1").arg(information.latitude));
+    m_longitude->setText(QString("%1").arg(information.longitude));
+
+    auto requestIP = QString("https://api.ipify.org");
+    m_netManager->get(QNetworkRequest{QUrl{requestIP}});
+
+    m_useManual->setChecked(true);
+    m_latitudeSpin->setValue(information.latitude);
+    m_longitudeSpin->setValue(information.longitude);
+  }
 }
 
 //--------------------------------------------------------------------

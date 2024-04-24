@@ -28,7 +28,7 @@
   <property name="maximumSize">
    <size>
     <width>427</width>
-    <height>554</height>
+    <height>583</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -54,7 +54,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -94,19 +94,6 @@ QGroupBox::title {
          <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0">
           <item>
            <layout class="QGridLayout" name="gridLayout_3" columnstretch="1,1,1">
-            <item row="0" column="1">
-             <widget class="QLabel" name="m_latitudeLabel">
-              <property name="toolTip">
-               <string>Latitude value</string>
-              </property>
-              <property name="statusTip">
-               <string>Latitude value</string>
-              </property>
-              <property name="text">
-               <string>Latitude</string>
-              </property>
-             </widget>
-            </item>
             <item row="0" column="2">
              <widget class="QDoubleSpinBox" name="m_latitudeSpin">
               <property name="toolTip">
@@ -126,19 +113,6 @@ QGroupBox::title {
               </property>
               <property name="maximum">
                <double>90.000000000000000</double>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="m_longitudeLabel">
-              <property name="toolTip">
-               <string>Longitude value</string>
-              </property>
-              <property name="statusTip">
-               <string>Longitude value</string>
-              </property>
-              <property name="text">
-               <string>Longitude</string>
               </property>
              </widget>
             </item>
@@ -164,29 +138,29 @@ QGroupBox::title {
               </property>
              </widget>
             </item>
-            <item row="3" column="2">
-             <widget class="QCheckBox" name="m_useDNS">
+            <item row="0" column="1">
+             <widget class="QLabel" name="m_latitudeLabel">
               <property name="toolTip">
-               <string>Use DNS IP for geolocation</string>
+               <string>Latitude value</string>
               </property>
               <property name="statusTip">
-               <string>Use DNS IP for geolocation</string>
+               <string>Latitude value</string>
               </property>
               <property name="text">
-               <string>Use DNS address</string>
+               <string>Latitude</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="2">
-             <widget class="QPushButton" name="m_geoRequest">
+            <item row="1" column="1">
+             <widget class="QLabel" name="m_longitudeLabel">
               <property name="toolTip">
-               <string>Request IP geolocation</string>
+               <string>Longitude value</string>
               </property>
               <property name="statusTip">
-               <string>Request IP geolocation</string>
+               <string>Longitude value</string>
               </property>
               <property name="text">
-               <string>Request Geolocation</string>
+               <string>Longitude</string>
               </property>
              </widget>
             </item>
@@ -200,6 +174,19 @@ QGroupBox::title {
               </property>
               <property name="text">
                <string>Manual Coordinates</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QPushButton" name="m_geoRequest">
+              <property name="toolTip">
+               <string>Request IP geolocation</string>
+              </property>
+              <property name="statusTip">
+               <string>Request IP geolocation</string>
+              </property>
+              <property name="text">
+               <string>Request Geolocation</string>
               </property>
              </widget>
             </item>
@@ -217,6 +204,19 @@ QGroupBox::title {
              </widget>
             </item>
             <item row="4" column="2">
+             <widget class="QCheckBox" name="m_useDNS">
+              <property name="toolTip">
+               <string>Use DNS IP for geolocation</string>
+              </property>
+              <property name="statusTip">
+               <string>Use DNS IP for geolocation</string>
+              </property>
+              <property name="text">
+               <string>Use DNS address</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="2">
              <widget class="QCheckBox" name="m_roamingCheck">
               <property name="toolTip">
                <string>Obtain geographical coordinates before each weather data request.</string>
@@ -246,6 +246,13 @@ QGroupBox::title {
               </property>
               <property name="text">
                <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QPushButton" name="m_geoFind">
+              <property name="text">
+               <string>Find location...</string>
               </property>
              </widget>
             </item>

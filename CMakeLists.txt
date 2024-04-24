@@ -7,7 +7,7 @@ project(TrayWeather)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
-set (TRAYWEATHER_VERSION_MINOR 28)
+set (TRAYWEATHER_VERSION_MINOR 29)
 set (TRAYWEATHER_VERSION_PATCH 0)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -122,6 +122,7 @@ qt5_wrap_ui(CORE_UI
   UVWidget.ui
   AlertDialog.ui
   ErrorWidget.ui
+  LocationFinderDialog.ui
 )
 	
 set (CORE_SOURCES
@@ -140,6 +141,7 @@ set (CORE_SOURCES
   PollutionWidget.cpp
   UVWidget.cpp
   AlertDialog.cpp
+  LocationFinderDialog.cpp
 )
 
 set(CORE_EXTERNAL_LIBS
