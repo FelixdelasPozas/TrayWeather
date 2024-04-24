@@ -39,6 +39,8 @@ The following libraries are required:
 
 Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/releases/) installer or zip file (portable mode).
 
+Neither the application or the installer are digitally signed so you need to grant usage by the system to run it. 
+
 > **_NOTE:_**  The application will use a ini file in the same folder as the executable if the file exists and can be written. So
 its possible to use the application in "portable mode" even if it has been installed using the installer by just copying the installation 
 folder to another location and creating an empty *TrayWeather.ini* file in it. It is recommended to execute the application before 
@@ -69,13 +71,19 @@ The tray and application theme configuration can be found here in the miscellane
 
 Configuration dialog in English with the application light theme.
 
-![config](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/fce4daa3-ebe6-4df1-99fa-99de2ba63902)
+![config](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/b71f53ab-030a-4a91-95d1-429f30ed43c9)
 
 Configuration dialog in English with the application dark theme.
 
-![config_dark](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/024f27b1-31a1-48c8-9e60-f79ffd28f549)
+![config_dark](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/174016ca-a5b1-4b9a-a21d-f6732b3ec7e0)
 
 Weather dialog, showing the current weather tab. 
+
+In the configuration dialog the location can be especified manually by coordinates, automatically using IP GeoLocation or can be selected by using the 'Find' dialog.
+
+![location](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/fc0f2f45-5d07-46e7-927d-696a0f78cd7d)
+
+Location coordinates search dialog. Searches by location name using OpenWeatherMap Geocoding API.
 
 ![weather](https://user-images.githubusercontent.com/12167134/127046991-e2eb1e5c-73d7-4ece-b9c4-dfff8dd1648e.png)
 
@@ -127,7 +135,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's just 385 texts.
+and making a pull request. Currently it's just 403 texts.
 
 To do it manually just edit the 'empty translation' file in the 'languages' directory (empty.ts) and replace the untranslated messages, for example:
 
@@ -151,7 +159,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.28.0
+**Version**: 1.29.0
 
 **Status**: finished.
 
@@ -159,8 +167,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  10           | 1066        |   412            | 5268 |
-| C/C++ Header                 |  10           |  288        |   854            |  947 |
+| C++                          |  11           | 1131        |   438            | 5487 |
+| C/C++ Header                 |  11           |  307        |   910            |  993 |
 | HTML                         |   1           |   33        |     0            |  152 |
-| CMake                        |   1           |   19        |    11            |  125 |
-| **Total**                    | **22**        | **1406**    | **1277**         | **6492** |
+| CMake                        |   1           |   19        |    11            |  127 |
+| **Total**                    | **24**        | **1490**    | **1359**         | **6759** |
