@@ -134,6 +134,32 @@
     <file>iconThemes/meteocons/13n.svg</file>
     <file>iconThemes/meteocons/50d.svg</file>
     <file>iconThemes/meteocons/50n.svg</file>
+
+    <file>iconThemes/climacons/01d.svg</file>
+    <file>iconThemes/climacons/01n-0.svg</file>
+    <file>iconThemes/climacons/01n-1.svg</file>
+    <file>iconThemes/climacons/01n-2.svg</file>
+    <file>iconThemes/climacons/01n-3.svg</file>
+    <file>iconThemes/climacons/01n-4.svg</file>
+    <file>iconThemes/climacons/01n-5.svg</file>
+    <file>iconThemes/climacons/01n-6.svg</file>
+    <file>iconThemes/climacons/01n-7.svg</file>
+    <file>iconThemes/climacons/02d.svg</file>
+    <file>iconThemes/climacons/02n.svg</file>
+    <file>iconThemes/climacons/03d.svg</file>
+    <file>iconThemes/climacons/03n.svg</file>
+    <file>iconThemes/climacons/04d.svg</file>
+    <file>iconThemes/climacons/04n.svg</file>
+    <file>iconThemes/climacons/09d.svg</file>
+    <file>iconThemes/climacons/09n.svg</file>
+    <file>iconThemes/climacons/10d.svg</file>
+    <file>iconThemes/climacons/10n.svg</file>
+    <file>iconThemes/climacons/11d.svg</file>
+    <file>iconThemes/climacons/11n.svg</file>
+    <file>iconThemes/climacons/13d.svg</file>
+    <file>iconThemes/climacons/13n.svg</file>
+    <file>iconThemes/climacons/50d.svg</file>
+    <file>iconThemes/climacons/50n.svg</file>
           
   </qresource>
 </RCC>

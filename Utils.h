@@ -125,7 +125,7 @@ static QList<LanguageData> TRANSLATIONS = {
     { "Português (Brasileiro)", ":/TrayWeather/languages/br.svg", "pt_BR", "Autergame"                  },
     { "Українська",             ":/TrayWeather/languages/uk.svg", "uk_UA", "Aleksandr Popov"            },
     { "Slovenščina",            ":/TrayWeather/languages/sl.svg", "sl_SI", "datenshi888"                },
-    { "한국어",                 ":/TrayWeather/languages/kr.svg", "ko_KR", "isl6"                       },
+    { "한국어",                  ":/TrayWeather/languages/kr.svg", "ko_KR", "isl6"                       },
     { "Polski",                 ":/TrayWeather/languages/pl.svg", "pl_PL", "Krzysztof Blachnicki"       },
     { "Türkçe",                 ":/TrayWeather/languages/tr.svg", "tr_TR", "cmhrky "                    }
 };
@@ -148,7 +148,8 @@ struct IconThemeData
 static const QList<IconThemeData> ICON_THEMES = { { "FlatIcon Colored", "flaticon",      true,  "https://www.flaticon.com/" },
                                                   { "FlatIcon Mono",    "flaticon_mono", false, "https://www.flaticon.com/"},
                                                   { "Tempestacons",     "tempestacons",  false, "https://github.com/zagortenay333/Tempestacons" },
-                                                  { "Meteocons",        "meteocons",     true,  "https://github.com/basmilius/weather-icons" }
+                                                  { "Meteocons",        "meteocons",     true,  "https://github.com/basmilius/weather-icons" },
+                                                  { "Climacons",        "climacons",     false, "http://adamwhitcroft.com/"}
 };
 
 /** \struct Configuration
