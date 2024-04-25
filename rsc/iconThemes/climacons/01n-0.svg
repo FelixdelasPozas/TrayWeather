@@ -6,9 +6,9 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   width="100px"
-   height="100px"
-   viewBox="0 0 100 100"
+   width="84.23497"
+   height="84.23497"
+   viewBox="0 0 167.97901 167.97901"
    enable-background="new 0 0 100 100"
    xml:space="preserve"
    sodipodi:docname="01n-0.svg"
@@ -27,8 +27,8 @@
    inkscape:pagecheckerboard="0"
    inkscape:deskcolor="#d1d1d1"
    inkscape:zoom="5.6568542"
-   inkscape:cx="51.176854"
-   inkscape:cy="51.176854"
+   inkscape:cx="43.398679"
+   inkscape:cy="43.221902"
    inkscape:window-width="1920"
    inkscape:window-height="1009"
    inkscape:window-x="-8"
@@ -37,6 +37,6 @@
    inkscape:current-layer="Layer_1" />&#10;<path
    fill-rule="evenodd"
    clip-rule="evenodd"
-   d="m 50.001,73.997 c -13.254,0 -23.998,-10.744 -23.998,-23.996 0,-13.254 10.744,-23.998 23.998,-23.998 13.252,0 23.996,10.744 23.996,23.998 0,13.252 -10.744,23.996 -23.996,23.996 z"
+   d="M 83.993,167.979 C 37.604,167.979 0,130.375 0,83.993 0,37.604 37.604,0 83.993,0 c 46.382,0 83.986,37.604 83.986,83.993 0,46.382 -37.604,83.986 -83.986,83.986 z"
    id="path1"
-   style="stroke-width:2" />&#10;</svg>
+   style="stroke-width:7" />&#10;</svg>
