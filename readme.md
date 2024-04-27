@@ -77,13 +77,13 @@ Configuration dialog in English with the application dark theme.
 
 ![config_dark](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/174016ca-a5b1-4b9a-a21d-f6732b3ec7e0)
 
-Weather dialog, showing the current weather tab. 
-
 In the configuration dialog the location can be especified manually by coordinates, automatically using IP GeoLocation or can be selected by using the 'Find' dialog.
+
+Location coordinates search dialog. Searches by location name using OpenWeatherMap Geocoding API.
 
 ![location](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/fc0f2f45-5d07-46e7-927d-696a0f78cd7d)
 
-Location coordinates search dialog. Searches by location name using OpenWeatherMap Geocoding API.
+Weather dialog, showing the current weather tab. 
 
 ![weather](https://user-images.githubusercontent.com/12167134/127046991-e2eb1e5c-73d7-4ece-b9c4-dfff8dd1648e.png)
 
