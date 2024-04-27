@@ -24,7 +24,7 @@
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the city name and, optionally, the state code (only for the US) and country code divided by comma. Use &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166 country codes&lt;/a&gt;. For example: &quot;London, GB&quot;;.&lt;/p&gt;
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the city name and, optionally, the state code (only for the US) and country code divided by comma. Use &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166 country codes&lt;/a&gt;. For example: &quot;London, GB&quot;.&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
@@ -57,6 +57,9 @@
       <widget class="QLineEdit" name="m_location">
        <property name="placeholderText">
         <string>Enter location...</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

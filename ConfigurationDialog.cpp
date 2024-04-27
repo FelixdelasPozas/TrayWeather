@@ -126,7 +126,6 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     }
 
     reply->deleteLater();
-
     return;
   }
 
@@ -135,6 +134,14 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     const auto data = reply->readAll();
     m_ip->setText(data);
 
+    reply->deleteLater();
+    return;
+  }
+
+  // NOTE: to avoid rogue replys from the LocationFinderDialog, as we reuse the network manager. 
+  if(url.toString().startsWith("http://api.openweathermap.org/geo/"))
+  {
+    m_geoFind->setToolTip(url.toString());
     reply->deleteLater();
     return;
   }
@@ -1391,6 +1398,8 @@ void ConfigurationDialog::onSearchButtonClicked()
   if(result == QDialog::Accepted)
   {
     const auto information = dialog.selected();
+    if(!information.isValid()) return;
+
     m_country->setText(information.country);
     m_region->setText(information.region);
     m_city->setText(information.location);

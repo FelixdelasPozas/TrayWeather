@@ -34,6 +34,8 @@
 #include <QJsonArray>
 #include <QObject>
 #include <QString>
+#include <QKeyEvent>
+#include <QPalette>
 #include <QTableWidgetItem>
 
 const QString REQUEST = "http://api.openweathermap.org/geo/1.0/direct?q=%1&limit=5&appid=%2";
@@ -75,11 +77,18 @@ LocationFinderDialog::LocationFinderDialog(const QString &apiKey, const QString 
   m_locationsTable->horizontalHeader()->setSectionResizeMode(5, QHeaderView::Stretch);
   m_locationsTable->setEnabled(false);
 
+  // Maintain the selected item colors when the table is out of focus to 
+  // always highlight the one than will be selected when the users clicks the Ok button.
+  auto palette = m_locationsTable->palette();
+  palette.setBrush(QPalette::Inactive, QPalette::Highlight, palette.highlight());
+  palette.setBrush(QPalette::Inactive, QPalette::HighlightedText, palette.highlightedText());
+  m_locationsTable->setPalette(palette);
+
   setMinimumWidth(600);
 
-  auto button = m_buttonBox->button(QDialogButtonBox::Ok);
-  button->setEnabled(false);
+  m_buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
+  m_location->setFocusPolicy(Qt::FocusPolicy::StrongFocus);
   m_location->setFocus();
 }
 
@@ -88,13 +97,30 @@ LocationFinderDialog::Location LocationFinderDialog::selected() const
 {
   const auto selectedRow = m_locationsTable->currentIndex();
   
-  const auto location = m_locationsTable->item(selectedRow.row(), 0)->text();
-  const auto latitude = m_locationsTable->item(selectedRow.row(), 2)->text().toFloat();
-  const auto longitude = m_locationsTable->item(selectedRow.row(), 3)->text().toFloat();
-  const auto country = m_locationsTable->item(selectedRow.row(), 4)->text();
-  const auto region = m_locationsTable->item(selectedRow.row(), 5)->text();
+  if(selectedRow.isValid())
+  {
+    const auto location = m_locationsTable->item(selectedRow.row(), 0)->text();
+    const auto latitude = m_locationsTable->item(selectedRow.row(), 2)->text().toFloat();
+    const auto longitude = m_locationsTable->item(selectedRow.row(), 3)->text().toFloat();
+    const auto country = m_locationsTable->item(selectedRow.row(), 4)->text();
+    const auto region = m_locationsTable->item(selectedRow.row(), 5)->text();
+    return Location{location, latitude, longitude, country, region};
+  }
   
-  return Location{location, latitude, longitude, country, region};
+  return Location{"",0.f,0.f, "", ""}; // Invalid
+}
+
+//----------------------------------------------------------------------------
+void LocationFinderDialog::keyPressEvent(QKeyEvent *event)
+{
+  // Don't want the enter key on the QLineEdit to close the dialog. 
+  if(event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return)
+  {
+    event->ignore();
+    return;
+  }
+
+  QDialog::keyPressEvent(event);
 }
 
 //----------------------------------------------------------------------------
@@ -214,13 +240,14 @@ void LocationFinderDialog::replyFinished(QNetworkReply *reply)
     m_locationsTable->resizeColumnsToContents();
     m_locationsTable->adjustSize();
     m_locationsTable->selectRow(0);
-    m_locationsTable->setFocus();
   }
 
   auto button = m_buttonBox->button(QDialogButtonBox::Ok);
   button->setEnabled(hasResult);
 
   m_searchButton->setEnabled(true);
+  m_location->setFocus(Qt::FocusReason::TabFocusReason);
+  m_location->grabKeyboard();
 }
 
 //----------------------------------------------------------------------------
@@ -228,6 +255,7 @@ void LocationFinderDialog::connectSignals()
 {
   connect(m_searchButton, SIGNAL(clicked()), this, SLOT(onSearchButtonPressed()));
   connect(m_location, SIGNAL(textChanged(const QString &)), this, SLOT(onLocationTextModified(const QString &)));
+  connect(m_location, SIGNAL(returnPressed()), m_searchButton, SLOT(click()));
   connect(m_netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 }
 
@@ -242,6 +270,4 @@ void LocationFinderDialog::onSearchButtonPressed()
 
   auto url = QUrl{REQUEST.arg(m_location->text()).arg(m_apiKey)};
   m_netManager->get(QNetworkRequest{url});
-
-  m_searchButton->setEnabled(false);
 }

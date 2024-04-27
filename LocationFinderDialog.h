@@ -76,12 +76,20 @@ class LocationFinderDialog
         , country{coun}
         , region{reg}
         {}
+
+        bool isValid() const
+        {
+          return !location.isEmpty();
+        }
       };
 
       /** \brief Returns the selected location information.
        * 
        */
       Location selected() const;
+
+    protected:
+      void keyPressEvent(QKeyEvent * event) override;
 
     private slots:
       /** \brief Launches the location search.
