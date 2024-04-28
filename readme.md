@@ -20,7 +20,7 @@ are from OpenWeatherMap and [Google](https://www.google.com/maps). To obtain wea
 > **_NOTE:_**  Please note that after you register in OpenWeatherMap and are given an API key, that key **may not be valid right away**. If you enter the API key in TrayWeather and get an "host requires authentication" error, you must wait a little longer until it becomes valid.
 
 ## Options
-The temperature units (celsius or fahrenheit) and the frequency of update requests are configurable options. Other visual configuration options can be seen in the configuration dialog screenshot.
+The temperature units (Celsius or Fahrenheit) and the frequency of update requests are configurable options. Other visual configuration options can be seen in the configuration dialog screenshot.
 
 # Compilation requirements
 ## To build the tool:
@@ -77,7 +77,7 @@ Configuration dialog in English with the application dark theme.
 
 ![config_dark](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/174016ca-a5b1-4b9a-a21d-f6732b3ec7e0)
 
-In the configuration dialog the location can be especified manually by coordinates, automatically using IP GeoLocation or can be selected by using the 'Find' dialog.
+In the configuration dialog the location can be specified manually by coordinates, automatically using IP GeoLocation or can be selected by using the 'Find' dialog.
 
 Location coordinates search dialog. Searches by location name using OpenWeatherMap Geocoding API.
 
@@ -88,12 +88,12 @@ Weather dialog, showing the current weather tab.
 ![weather](https://user-images.githubusercontent.com/12167134/127046991-e2eb1e5c-73d7-4ece-b9c4-dfff8dd1648e.png)
 
 Weather forecast for the next days. If the user puts the mouse over a point in the temperature line or a bar a tooltip will provide the weather conditions for that day and hour. Background is colored to day/night according to sunrise/sunset values for the day.
-The graph can be zoomed by selecting the area to zoom with the mouse and resetted to the initial state by using the reset button below the graph. Data series can be hidden and shown again by clicking on its legend text below the graph.
+The graph can be zoomed by selecting the area to zoom with the mouse and reset to the initial state by using the reset button below the graph. Data series can be hidden and shown again by clicking on its legend text below the graph.
 
 ![forecast_graph](https://github.com/FelixdelasPozas/TrayWeather/assets/12167134/4fa05da5-238e-4a28-9bcb-cc021a05cc4b)
 
 Pollution forecast can be obtained in the third tab, showing the projections for the next days. The chart can be zoomed in the X axis and
-resetted by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines and
+reset by using the reset button below. The pollution chart also has a tooltip with detailed information for each point of the lines and
 the background is colored according to air quality value. As with the weather forecast it can be zoomed in and graph series can be hidden and shown again in the same way. 
 
 ![pollution](https://user-images.githubusercontent.com/12167134/109207327-4bcf7e80-77a9-11eb-89a0-dd704e8969ad.png)
