@@ -33,6 +33,7 @@ Source: "bearer/*.*"; DestDir: "{app}/bearer/";
 Source: "iconengines/*.*"; DestDir: "{app}/iconengines/";
 Source: "imageformats/*.*"; DestDir: "{app}/imageformats/";
 Source: "platforms/*.*"; DestDir: "{app}/platforms/";
+Source: "qt.conf"; DestDir: "{app}"; 
 
 [Code]
 procedure TaskKill(fileName: String);
