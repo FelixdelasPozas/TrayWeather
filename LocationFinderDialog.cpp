@@ -48,13 +48,6 @@ const QString LONGITUDE_KEY = "lon";
 const QString COUNTRY_KEY = "country";
 const QString STATE_KEY = "state";
 
-const QStringList HEADER_LABELS = { QObject::tr("Location"), 
-                                    QObject::tr("Local name"), 
-                                    QObject::tr("Latitude"), 
-                                    QObject::tr("Longitude"), 
-                                    QObject::tr("Country"), 
-                                    QObject::tr("State/Province/Region") };
-
 //----------------------------------------------------------------------------
 LocationFinderDialog::LocationFinderDialog(const QString &apiKey, const QString &languageCode, QNetworkAccessManager* manager, QWidget *parent, Qt::WindowFlags f)
 : QDialog(parent, f)
@@ -73,6 +66,13 @@ LocationFinderDialog::LocationFinderDialog(const QString &apiKey, const QString 
   m_searchButton->setEnabled(false);
 
   m_locationsTable->setColumnCount(6);
+  const QStringList HEADER_LABELS = {QObject::tr("Location"),
+                                     QObject::tr("Local name"),
+                                     QObject::tr("Latitude"),
+                                     QObject::tr("Longitude"),
+                                     QObject::tr("Country"),
+                                     QObject::tr("State/Province/Region")};
+
   m_locationsTable->setHorizontalHeaderLabels(HEADER_LABELS);
   m_locationsTable->horizontalHeader()->setSectionResizeMode(5, QHeaderView::Stretch);
   m_locationsTable->setEnabled(false);
