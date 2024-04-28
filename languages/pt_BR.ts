@@ -961,12 +961,12 @@ Se você tiver um firewall, altere a configuração para permitir que este progr
         <translation>Insira o local...</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.ui" line="72"/>
+        <location filename="../LocationFinderDialog.ui" line="69"/>
         <source>Search</source>
         <translation>Procurar</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.ui" line="88"/>
+        <location filename="../LocationFinderDialog.ui" line="85"/>
         <source>Search results:</source>
         <translation>Procurar resultados:</translation>
     </message>
@@ -1185,33 +1185,33 @@ O aplicativo será encerrado agora.</translation>
         <translation>N</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="51"/>
+        <location filename="../LocationFinderDialog.cpp" line="69"/>
         <location filename="../Utils.h" line="78"/>
         <source>Location</source>
         <translation>Localização</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="52"/>
+        <location filename="../LocationFinderDialog.cpp" line="70"/>
         <source>Local name</source>
         <translation>Nome local</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="53"/>
+        <location filename="../LocationFinderDialog.cpp" line="71"/>
         <source>Latitude</source>
         <translation>Latitude</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="54"/>
+        <location filename="../LocationFinderDialog.cpp" line="72"/>
         <source>Longitude</source>
         <translation>Longitude</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="55"/>
+        <location filename="../LocationFinderDialog.cpp" line="73"/>
         <source>Country</source>
         <translation>País</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="56"/>
+        <location filename="../LocationFinderDialog.cpp" line="74"/>
         <source>State/Province/Region</source>
         <translation>Estado/Província/Região</translation>
     </message>

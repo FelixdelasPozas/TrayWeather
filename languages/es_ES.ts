@@ -961,12 +961,12 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
         <translation>Introduce el nombre de la localidad...</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.ui" line="72"/>
+        <location filename="../LocationFinderDialog.ui" line="69"/>
         <source>Search</source>
         <translation>Buscar</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.ui" line="88"/>
+        <location filename="../LocationFinderDialog.ui" line="85"/>
         <source>Search results:</source>
         <translation>Resultados de la búsqueda:</translation>
     </message>
@@ -1185,33 +1185,33 @@ OpenWeatherMap válida. La aplicación se cerrará ahora.</translation>
         <translation>N</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="51"/>
+        <location filename="../LocationFinderDialog.cpp" line="69"/>
         <location filename="../Utils.h" line="78"/>
         <source>Location</source>
         <translation>Localización</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="52"/>
+        <location filename="../LocationFinderDialog.cpp" line="70"/>
         <source>Local name</source>
         <translation>Nombre local</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="53"/>
+        <location filename="../LocationFinderDialog.cpp" line="71"/>
         <source>Latitude</source>
         <translation>Latitud</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="54"/>
+        <location filename="../LocationFinderDialog.cpp" line="72"/>
         <source>Longitude</source>
         <translation>Longitud</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="55"/>
+        <location filename="../LocationFinderDialog.cpp" line="73"/>
         <source>Country</source>
         <translation>Pais</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="56"/>
+        <location filename="../LocationFinderDialog.cpp" line="74"/>
         <source>State/Province/Region</source>
         <translation>Estado/Provincia/Región</translation>
     </message>

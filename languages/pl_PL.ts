@@ -961,12 +961,12 @@ Jeśli masz zaporę ogniową, zezwól programowi na dostęp do Internetu.</trans
         <translation>Podaj lokalizację...</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.ui" line="72"/>
+        <location filename="../LocationFinderDialog.ui" line="69"/>
         <source>Search</source>
         <translation>Szukaj</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.ui" line="88"/>
+        <location filename="../LocationFinderDialog.ui" line="85"/>
         <source>Search results:</source>
         <translation>Wyniki wyszukiwania:</translation>
     </message>
@@ -1185,33 +1185,33 @@ Zamykanie aplikacji.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="51"/>
+        <location filename="../LocationFinderDialog.cpp" line="69"/>
         <location filename="../Utils.h" line="78"/>
         <source>Location</source>
         <translation>Położenie</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="52"/>
+        <location filename="../LocationFinderDialog.cpp" line="70"/>
         <source>Local name</source>
         <translation>Nazwa lokalna</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="53"/>
+        <location filename="../LocationFinderDialog.cpp" line="71"/>
         <source>Latitude</source>
         <translation>Szer. geog.</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="54"/>
+        <location filename="../LocationFinderDialog.cpp" line="72"/>
         <source>Longitude</source>
         <translation>Dł. geog.</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="55"/>
+        <location filename="../LocationFinderDialog.cpp" line="73"/>
         <source>Country</source>
         <translation>Kraj</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="56"/>
+        <location filename="../LocationFinderDialog.cpp" line="74"/>
         <source>State/Province/Region</source>
         <translation>Stan/prowincja/region</translation>
     </message>

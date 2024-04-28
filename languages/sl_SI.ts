@@ -961,12 +961,12 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
         <translation>Vnesite lokacijo...</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.ui" line="72"/>
+        <location filename="../LocationFinderDialog.ui" line="69"/>
         <source>Search</source>
         <translation>Iskanje</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.ui" line="88"/>
+        <location filename="../LocationFinderDialog.ui" line="85"/>
         <source>Search results:</source>
         <translation>Rezultati iskanja:</translation>
     </message>
@@ -1185,33 +1185,33 @@ Aplikacija se bo zdaj zaprla.</translation>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="51"/>
+        <location filename="../LocationFinderDialog.cpp" line="69"/>
         <location filename="../Utils.h" line="78"/>
         <source>Location</source>
         <translation>Lokacija</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="52"/>
+        <location filename="../LocationFinderDialog.cpp" line="70"/>
         <source>Local name</source>
         <translation>Lokalno ime</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="53"/>
+        <location filename="../LocationFinderDialog.cpp" line="71"/>
         <source>Latitude</source>
         <translation>Zemljepisna širina</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="54"/>
+        <location filename="../LocationFinderDialog.cpp" line="72"/>
         <source>Longitude</source>
         <translation>Zemljepisna dolžina</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="55"/>
+        <location filename="../LocationFinderDialog.cpp" line="73"/>
         <source>Country</source>
         <translation>Država</translation>
     </message>
     <message>
-        <location filename="../LocationFinderDialog.cpp" line="56"/>
+        <location filename="../LocationFinderDialog.cpp" line="74"/>
         <source>State/Province/Region</source>
         <translation>Zvezna država/Provinca/Regija</translation>
     </message>
