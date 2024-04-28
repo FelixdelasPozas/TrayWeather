@@ -36,12 +36,12 @@
     <message>
         <location filename="../AboutDialog.ui" line="247"/>
         <source>Qt Framework</source>
-        <translation></translation>
+        <translation>Фреймворк Qt</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="329"/>
         <source>Qt Charts Module</source>
-        <translation></translation>
+        <translation>Модуль Qt Charts</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="369"/>
@@ -62,7 +62,7 @@
         <location filename="../AboutDialog.ui" line="419"/>
         <location filename="../AboutDialog.ui" line="463"/>
         <source>IP API</source>
-        <translation></translation>
+        <translation>IP API</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="457"/>
@@ -77,7 +77,7 @@
     <message>
         <location filename="../AboutDialog.ui" line="507"/>
         <source>OpenWeatherMap</source>
-        <translation></translation>
+        <translation>OpenWeatherMap</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="545"/>
@@ -87,12 +87,12 @@
     <message>
         <location filename="../AboutDialog.ui" line="551"/>
         <source>OpenStreetMap</source>
-        <translation></translation>
+        <translation>OpenStreetMap</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="567"/>
         <source>Google Maps</source>
-        <translation></translation>
+        <translation>Google Карты</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="589"/>
@@ -126,7 +126,7 @@
         <location filename="../AlertDialog.ui" line="14"/>
         <location filename="../AlertDialog.ui" line="21"/>
         <source>Weather Alert</source>
-        <translation>Оповещение о погоде</translation>
+        <translation>Предупреждение о погоде</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="67"/>
@@ -156,7 +156,7 @@
     <message>
         <location filename="../AlertDialog.ui" line="175"/>
         <source>Do not show this alert again.</source>
-        <translation>Не показывать это оповещение снова.</translation>
+        <translation>Не показывать это предупреждение снова.</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="87"/>
@@ -278,7 +278,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="285"/>
         <source>Find location...</source>
-        <translation>Найти местоположение...</translation>
+        <translation>Поиск города...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="322"/>
@@ -293,7 +293,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="395"/>
         <source>Region</source>
-        <translation>Регион</translation>
+        <translation>Область/регион</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="546"/>
@@ -839,7 +839,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2408"/>
         <source>Ok</source>
-        <translation>Ок</translation>
+        <translation>ОК</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="180"/>
@@ -1049,7 +1049,7 @@ If you have a firewall change the configuration to allow this program to access 
         <source>TrayWeather cannot execute in this computer because there isn&apos;t a tray available!.
 The application will exit now.</source>
         <translation>TrayWeather не может запуститься на этом компьютере, потому что
-трей не доступен! Приложение сейчас завершит работу.</translation>
+трей недоступен! Приложение сейчас завершит работу.</translation>
     </message>
     <message>
         <location filename="../Main.cpp" line="89"/>
@@ -1531,7 +1531,7 @@ and it&apos;s still waiting for the response.</source>
         <location filename="../TrayWeather.cpp" line="841"/>
         <location filename="../TrayWeather.cpp" line="1217"/>
         <source>Last alert...</source>
-        <translation>Последнее оповещение...</translation>
+        <translation>Последнее предупреждение...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="850"/>
@@ -1862,7 +1862,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="684"/>
         <source>Ok</source>
-        <translation>Ок</translation>
+        <translation>ОК</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="81"/>
