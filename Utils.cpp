@@ -701,7 +701,7 @@ void load_implementation(const QSettings &settings, Configuration &configuration
   for(int i = 0; i < fields.size(); ++i)
   {
     auto number = fields.at(i).toInt(&ok);
-    if(!ok) continue;
+    if(!ok || number > TooltipTextFields.size()) continue;
     const auto field = static_cast<TooltipText>(number);
     if(!configuration.tooltipFields.contains(field))
     {

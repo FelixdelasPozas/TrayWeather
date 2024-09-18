@@ -2493,5 +2493,133 @@ QGroupBox::title {
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>m_tempLayerSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_tempLayerSpinbox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>222</x>
+     <y>403</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>366</x>
+     <y>403</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_tempLayerSpinbox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_tempLayerSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>366</x>
+     <y>403</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>222</x>
+     <y>403</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_cloudLayerSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_cloudLayerSpinbox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>222</x>
+     <y>434</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>366</x>
+     <y>434</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_cloudLayerSpinbox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_cloudLayerSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>366</x>
+     <y>434</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>222</x>
+     <y>434</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_rainLayerSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_rainLayerSpinbox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>222</x>
+     <y>464</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>366</x>
+     <y>464</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_rainLayerSpinbox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_rainLayerSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>366</x>
+     <y>464</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>222</x>
+     <y>464</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_windLayerSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_windLayerSpinbox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>222</x>
+     <y>495</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>366</x>
+     <y>495</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_windLayerSpinbox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_windLayerSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>366</x>
+     <y>495</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>222</x>
+     <y>495</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
 </ui>

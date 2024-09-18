@@ -226,11 +226,11 @@ class TrayWeather
      */
     void processPollutionData(const QByteArray &data);
 
-    /** \brief Parses OWM OneCall API reply data.
-     * \param[in] data OWM OneCall reply data.
-     *
-     */
-    void processOneCallData(const QByteArray &data);
+    // /** \brief Parses OWM OneCall API reply data.
+    //  * \param[in] data OWM OneCall reply data.
+    //  *
+    //  */
+    // void processOneCallData(const QByteArray &data);
 
     Configuration                         &m_configuration;   /** application configuration.                             */
     std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                       */

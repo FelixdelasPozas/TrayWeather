@@ -141,20 +141,20 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
   }
   else
   {
-    if(originUrl.contains("onecall", Qt::CaseInsensitive))
-    {
-      if(reply->error() == QNetworkReply::NoError)
-      {
-        processOneCallData(contents);
-      }
-      else
-      {
-        const auto errorText = tr("Error: ") + tr("No UV data.");
-        setErrorTooltip(errorText);
-      }
-    }
-    else
-    {
+    // if(originUrl.contains("onecall", Qt::CaseInsensitive))
+    // {
+    //   if(reply->error() == QNetworkReply::NoError)
+    //   {
+    //     processOneCallData(contents);
+    //   }
+    //   else
+    //   {
+    //     const auto errorText = tr("Error: ") + tr("No UV data.");
+    //     setErrorTooltip(errorText);
+    //   }
+    // }
+    // else
+    // {
       if(originUrl.contains("openweathermap", Qt::CaseInsensitive))
       {
         if(reply->error() == QNetworkReply::NoError)
@@ -167,7 +167,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
           setErrorTooltip(errorText);
         }
       }
-    }
+    // }
   }
 
   reply->deleteLater();
@@ -347,10 +347,10 @@ void TrayWeather::showConfiguration()
           m_weatherDialog->setPollutionData(m_pData);
         }
 
-        if(!m_vData.isEmpty())
-        {
-          m_weatherDialog->setUVData(m_vData);
-        }
+        // if(!m_vData.isEmpty())
+        // {
+        //   m_weatherDialog->setUVData(m_vData);
+        // }
       }
     }
 
@@ -719,13 +719,13 @@ QString TrayWeather::tooltipText() const
           fieldsText << tr("Air: ") + airQuality;
         }
         break;
-      case TooltipText::UV:
-        if (!m_vData.isEmpty())
-        {
-          const auto index = static_cast<int>(std::nearbyint(m_vData.first().idx));
-          fieldsText << tr("UV: ") + QString("%1").arg(index);
-        }
-        break;
+      // case TooltipText::UV:
+      //   if (!m_vData.isEmpty())
+      //   {
+      //     const auto index = static_cast<int>(std::nearbyint(m_vData.first().idx));
+      //     fieldsText << tr("UV: ") + QString("%1").arg(index);
+      //   }
+      //   break;
       case TooltipText::AIR_CO:
         if (!m_pData.empty())
         {
@@ -997,7 +997,7 @@ void TrayWeather::showTab()
   m_weatherDialog = new WeatherDialog{};
   m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
   m_weatherDialog->setPollutionData(m_pData);
-  m_weatherDialog->setUVData(m_vData);
+  // m_weatherDialog->setUVData(m_vData);
 
   connect(m_weatherDialog, SIGNAL(mapsEnabled(bool)), this, SLOT(onMapsStateChanged(bool)));
 
@@ -1443,79 +1443,79 @@ void TrayWeather::processPollutionData(const QByteArray &data)
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::processOneCallData(const QByteArray &data)
-{
-  const auto jsonDocument = QJsonDocument::fromJson(data);
-  m_vData.clear();
+// void TrayWeather::processOneCallData(const QByteArray &data)
+// {
+//   const auto jsonDocument = QJsonDocument::fromJson(data);
+//   m_vData.clear();
 
-  if(!jsonDocument.isNull() && jsonDocument.isObject())
-  {
-    const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
-    const auto jsonObj   = jsonDocument.object();
-    const auto current   = jsonObj.value("current").toObject();
+//   if(!jsonDocument.isNull() && jsonDocument.isObject())
+//   {
+//     const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
+//     const auto jsonObj   = jsonDocument.object();
+//     const auto current   = jsonObj.value("current").toObject();
 
-    UVData data;
-    data.dt = current.value("dt").toInt(0);
-    data.idx = current.value("uvi").toDouble(0);
-    m_vData << data;
+//     UVData data;
+//     data.dt = current.value("dt").toInt(0);
+//     data.idx = current.value("uvi").toDouble(0);
+//     m_vData << data;
 
-    auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_vData) if(entry.dt == dt) return true; return false; };
+//     auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_vData) if(entry.dt == dt) return true; return false; };
 
-    if(jsonObj.keys().contains("hourly"))
-    {
-      auto uvList = jsonObj.value("hourly").toArray();
+//     if(jsonObj.keys().contains("hourly"))
+//     {
+//       auto uvList = jsonObj.value("hourly").toArray();
 
-      for(int i = 0; i < uvList.count(); ++i)
-      {
-        const auto entry = uvList.at(i).toObject();
+//       for(int i = 0; i < uvList.count(); ++i)
+//       {
+//         const auto entry = uvList.at(i).toObject();
 
-        const auto dt = entry.value("dt").toInt(0);
-        if(dt < currentDt) continue;
+//         const auto dt = entry.value("dt").toInt(0);
+//         if(dt < currentDt) continue;
 
-        UVData data;
-        data.dt = dt;
-        data.idx = entry.value("uvi").toDouble(0);
+//         UVData data;
+//         data.dt = dt;
+//         data.idx = entry.value("uvi").toDouble(0);
 
-        if(!hasEntry(data.dt)) m_vData << data;
-      }
-    }
+//         if(!hasEntry(data.dt)) m_vData << data;
+//       }
+//     }
 
-    updateTooltip();
+//     updateTooltip();
 
-    if(m_configuration.showAlerts)
-    {
-      if(jsonObj.keys().contains("alerts"))
-      {
-        const auto alert = jsonObj.value("alerts").toObject();
+//     if(m_configuration.showAlerts)
+//     {
+//       if(jsonObj.keys().contains("alerts"))
+//       {
+//         const auto alert = jsonObj.value("alerts").toObject();
 
-        const bool isSame = (alert.value("event") == m_lastAlert.value("event") &&
-                             alert.value("description") == m_lastAlert.value("description"));
-        const bool isEmpty = alert.value("event").toString("").isEmpty();
+//         const bool isSame = (alert.value("event") == m_lastAlert.value("event") &&
+//                              alert.value("description") == m_lastAlert.value("description"));
+//         const bool isEmpty = alert.value("event").toString("").isEmpty();
 
-        m_lastAlert = alert;
+//         m_lastAlert = alert;
 
-        contextMenu()->actions().at(8)->setEnabled(!isEmpty);
+//         contextMenu()->actions().at(8)->setEnabled(!isEmpty);
 
-        if((!isSame || !m_lastAlertShown) && !isEmpty)
-        {
-          showAlert();
-        }
-      }
-      else
-      {
-        contextMenu()->actions().at(8)->setEnabled(false);
-        m_lastAlert = QJsonObject();
-        m_lastAlertShown = false;
-        onAlertDialogClosed();
-      }
-    }
-  }
+//         if((!isSame || !m_lastAlertShown) && !isEmpty)
+//         {
+//           showAlert();
+//         }
+//       }
+//       else
+//       {
+//         contextMenu()->actions().at(8)->setEnabled(false);
+//         m_lastAlert = QJsonObject();
+//         m_lastAlertShown = false;
+//         onAlertDialogClosed();
+//       }
+//     }
+//   }
 
-  if(m_weatherDialog)
-  {
-    m_weatherDialog->setUVData(m_vData);
-  }
-}
+//   if(m_weatherDialog)
+//   {
+//     m_weatherDialog->setUVData(m_vData);
+//   }
+// }
 
 //--------------------------------------------------------------------
 bool NativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *message, long *result)

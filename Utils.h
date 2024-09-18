@@ -71,14 +71,17 @@ static const std::list<double> TEMP_MAP_LAYER_GRADES_CELSIUS = { -24, -20, -16, 
 static const std::list<double> WIND_MAP_LAYER_GRADES_METSEC  = { 0, 1.5, 3, 5, 8.5, 12, 15.5, 19, 22.5, 25.5, 29 };
 
 enum class TooltipText: char { LOCATION = 0, WEATHER, TEMPERATURE, CLOUDINESS, HUMIDITY,
-                               PRESSURE, WIND_SPEED, SUNRISE, SUNSET, UV, AIR_QUALITY,
+                               PRESSURE, WIND_SPEED, SUNRISE, SUNSET, 
+                               // UV, 
+                               AIR_QUALITY,
                                AIR_CO, AIR_O3, AIR_NO, AIR_NO2, AIR_SO2, AIR_NH3, AIR_PM25,
                                AIR_PM10, MAX };
 
 static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject::tr("Current Weather"), QObject::tr("Temperature"),
                                                QObject::tr("Cloudiness"), QObject::tr("Humidity"), QObject::tr("Ground Pressure"),
                                                QObject::tr("Wind Speed"), QObject::tr("Sunrise"), QObject::tr("Sunset"),
-                                               QObject::tr("UV"), QObject::tr("Air Quality"),
+                                              //  QObject::tr("UV"),
+                                               QObject::tr("Air Quality"),
                                                QObject::tr("Air Quality (CO)"),
                                                QObject::tr("Air Quality (O<sub>3</sub>)"),
                                                QObject::tr("Air Quality (NO)"),
