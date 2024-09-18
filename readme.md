@@ -1,3 +1,7 @@
+> [!IMPORTANT]  
+> OpenWeatherMap ended the OneCall 2.5 API in middle of September 2024 and because of that the UV radiation data is no longer available for those users with free accounts registered before the obligatory "upgrade" to OneCall 3.0 API. 
+> From now on the releases of TrayWeather will have the UV data tab, tooltip and current weather UV radiation value removed. TrayWeather will continue to work with the rest of the working API (for now) and bugs will be fixed.
+
 Tray Weather
 ============
 
@@ -8,10 +12,6 @@ Tray Weather
 - [Screenshots](#screenshots)
 - [Translations](#translations)
 - [Repository information](#repository-information)
-
-> [!IMPORTANT]  
-> OpenWeatherMap ended the OneCall 2.5 API in middle of September 2024 and because of that the UV radiation data is no longer available for those users with free accounts registered before the obligatory "upgrade" to OneCall 3.0 API. 
-> From now on the releases of TrayWeather will have the UV data tab, tooltip and current weather UV radiation value removed. TrayWeather will continue to work with the rest of the working API (for now) and bugs will be fixed.
 
 # Description
 Tray Weather is a simple application to retrieve and show weather information for a given geographic location in a small dialog and in the Windows OS system tray. When executed the application sits in the system tray, showing the current weather icon. The tray icon tooltip shows
