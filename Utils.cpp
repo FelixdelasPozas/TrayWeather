@@ -250,6 +250,10 @@ QDebug operator <<(QDebug d, const ForecastData& data)
 //--------------------------------------------------------------------
 void parseForecastEntry(const QJsonObject& entry, ForecastData& data)
 {
+  const auto keys = entry.keys();
+  if(!keys.contains("main"))
+    return;
+    
   const auto main    = entry.value("main").toObject();
   const auto weather = entry.value("weather").toArray().first().toObject();
   const auto wind    = entry.value("wind").toObject();

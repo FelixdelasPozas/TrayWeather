@@ -1096,12 +1096,12 @@ void TrayWeather::requestForecastData()
                                                                                                                              .arg(m_configuration.owm_apikey)};
   m_netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&lang=%3&exclude=minutely&units=%4&appid=%5").arg(m_configuration.latitude)
-                                                                                                                               .arg(m_configuration.longitude)
-                                                                                                                               .arg(lang)
-                                                                                                                               .arg(unitsToText(m_configuration.units))
-                                                                                                                               .arg(m_configuration.owm_apikey)};
-  m_netManager->get(QNetworkRequest{url});
+  // url = QUrl{QString("http://api.openweathermap.org/data/2.5/onecall?lat=%1&lon=%2&lang=%3&exclude=minutely&units=%4&appid=%5").arg(m_configuration.latitude)
+  //                                                                                                                              .arg(m_configuration.longitude)
+  //                                                                                                                              .arg(lang)
+  //                                                                                                                              .arg(unitsToText(m_configuration.units))
+  //                                                                                                                              .arg(m_configuration.owm_apikey)};
+  // m_netManager->get(QNetworkRequest{url});
 }
 
 //--------------------------------------------------------------------
