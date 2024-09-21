@@ -1,6 +1,9 @@
 > [!IMPORTANT]  
-> OpenWeatherMap ended the OneCall 2.5 API in middle of September 2024 and because of that the UV radiation data is no longer available for those users with free accounts registered before the obligatory "upgrade" to OneCall 3.0 API. 
+>
+> OpenWeatherMap ended the OneCall 2.5 API in middle of September 2024 and because of that the UV radiation data is no longer available for those users with free accounts registered before the obligatory "upgrade" to OneCall 3.0 API.
+>
 > From now on the releases of TrayWeather will have the UV data tab, tooltip and current weather UV radiation value removed. TrayWeather will continue to work with the rest of the working API (for now) and bugs will be fixed.
+
 
 Tray Weather
 ============
@@ -102,12 +105,6 @@ the background is colored according to air quality value. As with the weather fo
 
 ![pollution](https://user-images.githubusercontent.com/12167134/109207327-4bcf7e80-77a9-11eb-89a0-dd704e8969ad.png)
 
-[//]: # Ultraviolet radiation forecast can be obtained in the "UV" tab, showing the projection for the next 24 hours colored according to the World
-[//]: # Health Organization color code. The UV chart also has a information tooltip that appears when the mouse cursor is near a point of the radiation
-[//]: # index line showing the index value and recommendations. The zoom method and reset buttons works also with the UV graph. 
-
-[//]: # ![radiation](https://user-images.githubusercontent.com/12167134/127046989-ad7a3d32-adb9-486f-a37b-1dddf95b935a.png)
-
 Weather maps are interactive. While initially the map is centered in the detected location it can be moved and zoomed in and out. The maps consumes much more memory than the rest of the application so the user can be disable them using the button below. 
 
 ![maps0](https://user-images.githubusercontent.com/12167134/109207325-4bcf7e80-77a9-11eb-8744-8b928c5d2c3e.png)
@@ -171,8 +168,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  11           | 1136        |   767            | 5197 |
-| C/C++ Header                 |  11           |  309        |   920            |  992 |
+| C++                          |  10           | 1055        |   420            | 5120 |
+| C/C++ Header                 |  10           |  296        |   873            |  971 |
 | HTML                         |   1           |   33        |     0            |  152 |
-| CMake                        |   1           |   19        |    11            |  127 |
-| **Total**                    | **24**        | **1497**    | **1698**         | **6468** |
+| CMake                        |   1           |   19        |    11            |  125 |
+| **Total**                    | **22**        | **1403**    | **1304**         | **6368** |
