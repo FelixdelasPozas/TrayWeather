@@ -816,7 +816,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1179"/>
         <source>Map Layers Opacity</source>
-        <translation>Непрозрачность слоев карты</translation>
+        <translation>Непрозрачность слоёв карты</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1225"/>
@@ -824,7 +824,7 @@
         <location filename="../ConfigurationDialog.ui" line="1335"/>
         <location filename="../ConfigurationDialog.ui" line="1390"/>
         <source>%</source>
-        <translation></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1254"/>
@@ -1060,7 +1060,7 @@ The application will exit now.</source>
         <location filename="../Main.cpp" line="116"/>
         <source>TrayWeather cannot execute without a valid location and a valid OpenWeatherMap API Key.
 The application will exit now.</source>
-        <translation>TrayWeather не может запуститься без действительных местоположения
+        <translation>TrayWeather не может работать без действительных местоположения
 и ключа API OpenWeatherMap. Приложение сейчас завершит работу.</translation>
     </message>
     <message>
@@ -1316,8 +1316,8 @@ The application will exit now.</source>
         <location filename="../TrayWeather.cpp" line="988"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
-        <translation>TrayWeather запросил погодные данные для вашего географического
-местоположения и всё ещё ожидает ответа.</translation>
+        <translation>TrayWeather запросил погодные данные для вашего
+географического местоположения и всё ещё ожидает ответа.</translation>
     </message>
 </context>
 <context>
@@ -1330,7 +1330,7 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../TrayWeather.cpp" line="1263"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
-        <translation>&lt;center&gt;Вышла &lt;b&gt;версия %1&lt;/b&gt; !&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;Вышла &lt;b&gt;версия %1&lt;/b&gt;!&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="1264"/>
