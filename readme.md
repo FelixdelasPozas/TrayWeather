@@ -160,7 +160,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.30.1
+**Version**: 1.30.2
 
 **Status**: finished.
 
