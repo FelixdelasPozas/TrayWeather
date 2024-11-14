@@ -73,7 +73,7 @@ static const std::list<double> WIND_MAP_LAYER_GRADES_METSEC  = { 0, 1.5, 3, 5, 8
 enum class TooltipText: char { LOCATION = 0, WEATHER, TEMPERATURE, CLOUDINESS, HUMIDITY,
                                PRESSURE, WIND_SPEED, SUNRISE, SUNSET, AIR_QUALITY,
                                AIR_CO, AIR_O3, AIR_NO, AIR_NO2, AIR_SO2, AIR_NH3, AIR_PM25,
-                               AIR_PM10, MAX };
+                               AIR_PM10, WIND_DIR, UPDATE_TIME, MAX };
 
 static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject::tr("Current Weather"), QObject::tr("Temperature"),
                                                QObject::tr("Cloudiness"), QObject::tr("Humidity"), QObject::tr("Ground Pressure"),
@@ -85,7 +85,9 @@ static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject:
                                                QObject::tr("Air Quality (SO<sub>2</sub>)"),
                                                QObject::tr("Air Quality (NH<sub>3</sub>)"),
                                                QObject::tr("Air Quality (PM<sub>2.5</sub>)"),
-                                               QObject::tr("Air Quality (PM<sub>10</sub>)") };
+                                               QObject::tr("Air Quality (PM<sub>10</sub>)"), 
+                                               QObject::tr("Wind Direction"),
+                                               QObject::tr("Time of last update") };
 
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 

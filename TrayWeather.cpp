@@ -41,12 +41,14 @@
 #include <QGraphicsScene>
 #include <QtWinExtras/QtWinExtrasDepends>
 #include <QGraphicsBlurEffect>
+#include <QDateTime>
 
 // C++
 #include <chrono>
 #include <iostream>
 
 const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
+QDateTime timeOfLastUpdate = QDateTime::currentDateTime();
 
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
@@ -654,6 +656,20 @@ QString TrayWeather::tooltipText() const
               break;
           }
           fieldsText << tr("Wind: ") + QString("%1 %2").arg(windValue).arg(windUnits);
+        }
+        break;
+      case TooltipText::WIND_DIR:
+        fieldsText << tr("Wind direction: ") + QString("%1º (%2)").arg(static_cast<int>(m_current.wind_dir) % 360).arg(windDegreesToName(m_current.wind_dir));
+        break;
+      case TooltipText::UPDATE_TIME:
+        {
+          QString text = tr("Last updated: ");
+          if(timeOfLastUpdate == QDateTime())
+            text += "Never";
+          else
+            text += timeOfLastUpdate.toString("hh:mm:ss");
+
+          fieldsText << text;
         }
         break;
       case TooltipText::SUNRISE:
@@ -1315,6 +1331,7 @@ void TrayWeather::processWeatherData(const QByteArray &data)
     m_timer.setInterval(m_configuration.updateTime*60*1000);
     m_timer.start();
 
+    timeOfLastUpdate = QDateTime::currentDateTime();
     updateTooltip();
   }
 
@@ -1399,6 +1416,7 @@ void TrayWeather::processPollutionData(const QByteArray &data)
       qSort(m_pData.begin(), m_pData.end(), lessThan);
     }
 
+    timeOfLastUpdate = QDateTime::currentDateTime();
     updateTooltip();
   }
 
