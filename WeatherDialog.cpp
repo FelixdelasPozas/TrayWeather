@@ -560,7 +560,6 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
     auto oldChart = m_weatherChart->chart();
     m_weatherChart->setChart(forecastChart);
-    m_weatherChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
 
     connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
             this,  SLOT(onAreaChanged()));
@@ -1434,6 +1433,9 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
   const auto startT = begin.toMSecsSinceEpoch();
   const auto endT = end.toMSecsSinceEpoch();
 
+  const QColor lightColor = m_config->lightTheme ? Qt::white     : Qt::lightGray;
+  const QColor darkColor = m_config->lightTheme ?  Qt::lightGray : Qt::darkGray;
+
   QLinearGradient plotAreaGradient;
   plotAreaGradient.setStart(QPointF(0, 0));
   plotAreaGradient.setFinalStop(QPointF(1, 0));
@@ -1466,14 +1468,14 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
 
   for(const unsigned long long sunrise: sunrises)
   {
-    setColorAt((sunrise-minuteMs), Qt::lightGray);
-    setColorAt(sunrise, Qt::white);
+    setColorAt((sunrise-minuteMs), darkColor);
+    setColorAt(sunrise, lightColor);
   }
 
   for(const unsigned long long sunset: sunsets)
   {
-    setColorAt(sunset-minuteMs, Qt::white);
-    setColorAt(sunset, Qt::lightGray);
+    setColorAt(sunset-minuteMs, lightColor);
+    setColorAt(sunset, darkColor);
   }
 
   auto sortStops = [](const QGradientStop &a, const QGradientStop &b){ return a.first < b.first; };
