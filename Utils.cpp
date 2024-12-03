@@ -27,7 +27,6 @@
 #include <QScreen>
 #include <QApplication>
 #include <QDialog>
-#include <QSettings>
 #include <QColor>
 #include <QMap>
 #include <QApplication>
@@ -642,8 +641,10 @@ void scaleDialog(QDialog *window)
 }
 
 //--------------------------------------------------------------------
-void load_implementation(const QSettings &settings, Configuration &configuration)
+void load(Configuration &configuration)
 {
+  QSettings settings = applicationSettings();
+
   configuration.longitude       = settings.value(LONGITUDE, -181.0).toDouble();
   configuration.latitude        = settings.value(LATITUDE, -91.0).toDouble();
   configuration.country         = settings.value(COUNTRY, QString()).toString();
@@ -725,28 +726,10 @@ void load_implementation(const QSettings &settings, Configuration &configuration
 }
 
 //--------------------------------------------------------------------
-void load(Configuration &configuration)
+void save(const Configuration &configuration)
 {
-  const auto currentDir = QDir::current();
-  if(currentDir.exists(INI_FILENAME))
-  {
-    const auto fInfo = QFileInfo(currentDir.absoluteFilePath(INI_FILENAME));
-    if(fInfo.isWritable())
-    {
-      QSettings settings(INI_FILENAME, QSettings::IniFormat);
-      load_implementation(settings, configuration);
-      return;
-    }
-  }
+  QSettings settings = applicationSettings();
 
-  // else.
-  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
-  load_implementation(settings, configuration);
-}
-
-//--------------------------------------------------------------------
-void save_implementation(QSettings &settings, const Configuration &configuration)
-{
   settings.setValue(LONGITUDE,               configuration.longitude);
   settings.setValue(LATITUDE,                configuration.latitude);
   settings.setValue(COUNTRY,                 configuration.country);
@@ -813,26 +796,6 @@ void save_implementation(QSettings &settings, const Configuration &configuration
   settings.setValue(TOOLTIP_FIELDS, fieldList.join(","));
 
   settings.sync();
-}
-
-//--------------------------------------------------------------------
-void save(const Configuration &configuration)
-{
-  const auto currentDir = QDir::current();
-  if(currentDir.exists(INI_FILENAME))
-  {
-    auto fi = QFileInfo(currentDir.absoluteFilePath(INI_FILENAME));
-    if(fi.isWritable())
-    {
-      QSettings settings(INI_FILENAME, QSettings::IniFormat);
-      save_implementation(settings, configuration);
-      return;
-    }
-  }
-
-  // else.
-  QSettings settings("Felix de las Pozas Alvarez", "TrayWeather");
-  save_implementation(settings, configuration);
 }
 
 //--------------------------------------------------------------------
@@ -1233,4 +1196,20 @@ QPixmap blurPixmap(const QPixmap &pixmap, const int blurValue)
   painter.end();
 
   return otherPixmap;
+}
+
+//--------------------------------------------------------------------
+QSettings applicationSettings()
+{
+  const auto currentDir = QDir::current();
+  if(currentDir.exists(INI_FILENAME))
+  {
+    const auto fInfo = QFileInfo(currentDir.absoluteFilePath(INI_FILENAME));
+    if(fInfo.isWritable())
+    {
+      return QSettings(INI_FILENAME, QSettings::IniFormat);
+    }
+  }
+
+  return QSettings ("Felix de las Pozas Alvarez", "TrayWeather");
 }

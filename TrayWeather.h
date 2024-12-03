@@ -24,6 +24,7 @@
 #include <ConfigurationDialog.h>
 #include <Utils.h>
 #include <WeatherDialog.h>
+#include <Provider.h>
 
 // Qt
 #include <QSystemTrayIcon>
@@ -226,6 +227,11 @@ class TrayWeather
      */
     void processPollutionData(const QByteArray &data);
 
+    /** \brief Updates, if needed, the network manager to use by the application and providers. 
+    *
+    */
+    void updateNetworkManager();
+
     Configuration                         &m_configuration;   /** application configuration.                             */
     std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                       */
     Forecast                               m_data;            /** list of forecast data.                                 */
@@ -243,6 +249,7 @@ class TrayWeather
     AlertDialog                           *m_alertsDialog;    /** Alerts dialog.                                         */
     QJsonObject                            m_lastAlert;       /** Last shown alert.                                      */
     bool                                   m_lastAlertShown;  /** true if last alert has been shown and false otherwise. */
+    std::unique_ptr<WeatherProvider>       m_provider;        /** weather data provider */
 
     friend class NativeEventFilter;
 };

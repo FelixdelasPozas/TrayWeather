@@ -560,6 +560,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
     auto oldChart = m_weatherChart->chart();
     m_weatherChart->setChart(forecastChart);
+    m_pollutionChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));    
 
     connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
             this,  SLOT(onAreaChanged()));

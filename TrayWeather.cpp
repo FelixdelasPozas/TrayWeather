@@ -62,6 +62,7 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 , m_additionalTray{nullptr}
 , m_eventFilter   {this}
 , m_alertsDialog  {nullptr}
+, m_provider      {nullptr}
 {
   m_timer.setSingleShot(true);
 
@@ -155,6 +156,11 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
         setErrorTooltip(errorText);
       }
     }
+  }
+
+  if(m_provider)
+  {
+    m_provider->processReply(reply);
   }
 
   reply->deleteLater();
@@ -1006,21 +1012,7 @@ void TrayWeather::showTab()
 //--------------------------------------------------------------------
 void TrayWeather::requestData()
 {
-  if(m_netManager && (m_netManager->networkAccessible() != QNetworkAccessManager::Accessible))
-  {
-    disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
-               this,               SLOT(replyFinished(QNetworkReply*)));
-               
-    m_netManager = nullptr;           
-  }
-  
-  if(!m_netManager)
-  {
-    m_netManager = std::make_shared<QNetworkAccessManager>(this);
-
-    connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
-            this,               SLOT(replyFinished(QNetworkReply*)));
-  }
+  updateNetworkManager();
 
   m_timer.setInterval(1*60*1000);
   m_timer.start();
@@ -1040,19 +1032,7 @@ void TrayWeather::requestData()
 //--------------------------------------------------------------------
 void TrayWeather::requestForecastData()
 {
-  if(m_netManager->networkAccessible() != QNetworkAccessManager::Accessible)
-  {
-    if(m_netManager)
-    {
-      disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
-                 this,               SLOT(replyFinished(QNetworkReply*)));
-    }
-
-    m_netManager = std::make_shared<QNetworkAccessManager>(this);
-
-    connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
-            this,               SLOT(replyFinished(QNetworkReply*)));
-  }
+  updateNetworkManager();
 
   QString lang = "en";
   if(!m_configuration.language.isEmpty() && m_configuration.language.contains('_'))
@@ -1423,6 +1403,26 @@ void TrayWeather::processPollutionData(const QByteArray &data)
   if(m_weatherDialog)
   {
     m_weatherDialog->setPollutionData(m_pData);
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::updateNetworkManager()
+{
+  if(m_netManager && (m_netManager->networkAccessible() != QNetworkAccessManager::Accessible))
+  {
+    disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+               this,               SLOT(replyFinished(QNetworkReply*)));
+               
+    m_netManager = nullptr;           
+  }
+  
+  if(!m_netManager)
+  {
+    m_netManager = std::make_shared<QNetworkAccessManager>(this);
+
+    connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
+            this,               SLOT(replyFinished(QNetworkReply*)));
   }
 }
 

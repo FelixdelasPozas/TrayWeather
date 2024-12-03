@@ -140,6 +140,7 @@ set (CORE_SOURCES
   PollutionWidget.cpp
   AlertDialog.cpp
   LocationFinderDialog.cpp
+  Provider.cpp
 )
 
 set(CORE_EXTERNAL_LIBS

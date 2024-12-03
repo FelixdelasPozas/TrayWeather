@@ -38,6 +38,7 @@
 #include <QStyleOption>
 #include <QComboBox>
 #include <QLabel>
+#include <QSettings>
 
 class QPainter;
 class QPixmap;
@@ -617,6 +618,11 @@ std::pair<unsigned long long, unsigned long long> computeSunriseSunset (const Fo
  * 
 */
 QPixmap blurPixmap(const QPixmap &pixmap, const int blurValue);
+
+/** \brief Returns the correct QSettings object for the application (ini file or registry)
+ *
+ */
+QSettings applicationSettings();
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.
