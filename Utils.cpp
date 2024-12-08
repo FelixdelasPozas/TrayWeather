@@ -22,6 +22,7 @@
 #include <ISO 3166-1-alpha-2.h>
 
 // Qt
+#include <QCoreApplication>
 #include <QJsonArray>
 #include <QIcon>
 #include <QScreen>
@@ -1201,10 +1202,10 @@ QPixmap blurPixmap(const QPixmap &pixmap, const int blurValue)
 //--------------------------------------------------------------------
 QSettings applicationSettings()
 {
-  const auto currentDir = QDir::current();
-  if(currentDir.exists(INI_FILENAME))
+  QDir applicationDir{QCoreApplication::applicationDirPath()};
+  if(applicationDir.exists(INI_FILENAME))
   {
-    const auto fInfo = QFileInfo(currentDir.absoluteFilePath(INI_FILENAME));
+    const auto fInfo = QFileInfo(applicationDir.absoluteFilePath(INI_FILENAME));
     if(fInfo.isWritable())
     {
       return QSettings(INI_FILENAME, QSettings::IniFormat);
