@@ -39,19 +39,19 @@ WeatherProvider::WeatherProvider(const QString &name, Configuration &config)
 , m_config{config}
 , m_keyValid{false}
 {
+  loadSettings();
+}
+
+//----------------------------------------------------------------------------
+WeatherProvider::~WeatherProvider()
+{
+  saveSettings();
 }
 
 //----------------------------------------------------------------------------
 OWM25Provider::OWM25Provider(Configuration &config)
 : WeatherProvider(OWM_25_PROVIDER, config)
 {
-  loadSettings();
-}
-
-//----------------------------------------------------------------------------
-OWM25Provider::~OWM25Provider()
-{
-  saveSettings();
 }
 
 //----------------------------------------------------------------------------
@@ -61,26 +61,10 @@ ProviderCapabilities OWM25Provider::capabilities() const
 }
 
 //----------------------------------------------------------------------------
-ForecastData OWM25Provider::weather() const
-{
-  return m_current;
-}
-
-//----------------------------------------------------------------------------
-Forecast OWM25Provider::weatherForecast() const
-{
-  return m_forecast;
-}
-
-//----------------------------------------------------------------------------
-Pollution OWM25Provider::pollutionForecast() const
-{
-  return m_pollution;
-}
-
-//----------------------------------------------------------------------------
 void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManager) const
 {
+  if(!m_apiKeyValid) return;
+
   QString lang = "en";
   if(!m_config.language.isEmpty() && m_config.language.contains('_'))
   {
@@ -116,6 +100,8 @@ void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManage
 //----------------------------------------------------------------------------
 QString OWM25Provider::mapsPage() const
 {
+  if(!m_apiKeyValid) return QString();
+  
   QFile webfile(":/TrayWeather/webpage.html");
   if(webfile.open(QFile::ReadOnly))
   {
@@ -429,18 +415,12 @@ void OWM25Provider::testApiKey(std::shared_ptr<QNetworkAccessManager> netManager
 }
 
 //----------------------------------------------------------------------------
-WeatherProviderFactory::WeatherProviderFactory(Configuration &config)
-: m_config{config}
-{
-}
-
-//----------------------------------------------------------------------------
-std::unique_ptr<WeatherProvider> WeatherProviderFactory::createProvider(const QString &name)
+std::unique_ptr<WeatherProvider> WeatherProviderFactory::createProvider(const QString &name, Configuration &config)
 {
   std::unique_ptr<WeatherProvider> provider = nullptr;
 
   if(name.compare(OWM_25_PROVIDER) == 0)
-    provider = std::make_unique<OWM25Provider>(m_config);
+    provider = std::make_unique<OWM25Provider>(config);
   
   return provider;
 }

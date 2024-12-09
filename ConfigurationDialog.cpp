@@ -21,6 +21,7 @@
 #include <ConfigurationDialog.h>
 #include <LocationFinderDialog.h>
 #include <Utils.h>
+#include <Provider.h>
 
 // Qt
 #include <QNetworkRequest>
@@ -48,9 +49,10 @@
 const char SELECTED[] = "Selected";
 
 //--------------------------------------------------------------------
-ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
+ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, std::shared_ptr<WeatherProvider> provider, QWidget* parent, Qt::WindowFlags flags)
 : QDialog       {parent}
 , m_netManager  {std::make_shared<QNetworkAccessManager>(this)}
+, m_provider    {provider}
 , m_testedAPIKey{false}
 , m_temp        {28}
 , m_validFont   {true}
@@ -262,7 +264,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.city            = m_city->text();
   configuration.country         = m_country->text();
   configuration.ip              = m_ip->text();
-  configuration.owm_apikey      = m_testedAPIKey ? m_apikey->text() : QString();
+  configuration.provider        = m_testedAPIKey ? m_provider->name() : QString();
   configuration.region          = m_region->text();
   configuration.updateTime      = m_updateTime->value();
   configuration.units           = static_cast<Units>(m_unitsComboBox->currentIndex());
@@ -766,7 +768,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_updateTime->setValue(configuration.updateTime);
   m_useDNS->setChecked(configuration.useDNS);
   m_roamingCheck->setChecked(configuration.roamingEnabled);
-  m_apikey->setText(configuration.owm_apikey);
+  m_apikey->setText(m_provider ? m_provider->apikey() : QString());
   m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
   m_trayIconTheme->setCurrentIndex(static_cast<int>(configuration.iconTheme));
   m_iconSize->setValue(configuration.trayIconSize);
@@ -880,21 +882,29 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 
   if(configuration.isValid())
   {
-    requestOpenWeatherMapAPIKeyTest();
+    if(m_provider->capabilities().requiresKey)
+      m_provider->testApiKey(m_netManager);
   }
   else
   {
-    m_apiTest->setEnabled(true);
-
-    if(configuration.owm_apikey.isEmpty())
+    if(m_provider && m_provider->capabilities().requiresKey)
     {
-      m_testLabel->setStyleSheet("QLabel { color : red; }");
-      m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
+      m_apiTest->setEnabled(true);
+
+      if(m_provider->apikey().isEmpty())
+      {
+        m_testLabel->setStyleSheet("QLabel { color : red; }");
+        m_testLabel->setText(tr("Invalid API Key!"));
+      }
+      else
+      {
+        m_testLabel->setStyleSheet("QLabel { color : red; }");
+        m_testLabel->setText(tr("Untested API Key!"));
+      }
     }
     else
     {
-      m_testLabel->setStyleSheet("QLabel { color : red; }");
-      m_testLabel->setText(tr("Untested OpenWeatherMap API Key!"));
+      m_apiTest->setEnabled(false);
     }
   }
 

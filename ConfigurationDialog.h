@@ -22,17 +22,17 @@
 
 // Project
 #include <Utils.h>
+class WeatherProvider;
 
 // Qt
 #include "ui_ConfigurationDialog.h"
 #include <QDialog>
 #include <QNetworkAccessManager>
+class QNetworkReply;
+class QMouseEvent;
 
 // C++
 #include <memory>
-
-class QNetworkReply;
-class QMouseEvent;
 
 /** \class PreviewWidget
  * \brief Implements a widget to show a pixmap and close when the mouse leaves it.
@@ -73,10 +73,12 @@ class ConfigurationDialog
   public:
     /** \brief LocationConfigDialog class constructor.
      * \param[in] configuration application configuration.
+     * \param[in] provider Weather provider.
      * \param[in] parent pointer to the widget parent of this one.
      * \param[in] flags window flags.
      */
-    ConfigurationDialog(const Configuration &configuration, QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+    ConfigurationDialog(const Configuration &configuration, std::shared_ptr<WeatherProvider> provider, 
+                        QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
 
     /** \brief LocationConfigDialog class virtual destructor.
      *
@@ -283,6 +285,7 @@ class ConfigurationDialog
     QPixmap generateTemperatureIconPixmap(QFont &font);
 
     std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
+    std::shared_ptr<WeatherProvider>       m_provider;     /** Weather provider.                                                                 */
     bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */
     QString                                m_DNSIP;        /** DNS server IP.                                                                    */
     QFont                                  m_font;         /** temperature tray icon font.                                                       */

@@ -74,7 +74,7 @@ static const std::list<double> WIND_MAP_LAYER_GRADES_METSEC  = { 0, 1.5, 3, 5, 8
 enum class TooltipText: char { LOCATION = 0, WEATHER, TEMPERATURE, CLOUDINESS, HUMIDITY,
                                PRESSURE, WIND_SPEED, SUNRISE, SUNSET, AIR_QUALITY,
                                AIR_CO, AIR_O3, AIR_NO, AIR_NO2, AIR_SO2, AIR_NH3, AIR_PM25,
-                               AIR_PM10, WIND_DIR, UPDATE_TIME, MAX };
+                               AIR_PM10, WIND_DIR, UPDATE_TIME, UV, MAX };
 
 static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject::tr("Current Weather"), QObject::tr("Temperature"),
                                                QObject::tr("Cloudiness"), QObject::tr("Humidity"), QObject::tr("Ground Pressure"),
@@ -88,7 +88,8 @@ static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject:
                                                QObject::tr("Air Quality (PM<sub>2.5</sub>)"),
                                                QObject::tr("Air Quality (PM<sub>10</sub>)"), 
                                                QObject::tr("Wind Direction"),
-                                               QObject::tr("Time of last update") };
+                                               QObject::tr("Time of last update"), 
+                                               QObject::tr("UV radiation index") };
 
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
@@ -166,7 +167,7 @@ struct Configuration
     QString            region;          /** location's region.                                          */
     QString            city;            /** location's city.                                            */
     QString            ip;              /** internet address.                                           */
-    QString            owm_apikey;      /** OpenWeatherMap API Key.                                     */
+    QString            provider;        /** weather provider name                                       */
     Units              units;           /** measurement units.                                          */
     unsigned int       updateTime;      /** time between updates.                                       */
     bool               mapsEnabled;     /** true if maps tab is visible, false otherwise.               */
@@ -222,7 +223,7 @@ struct Configuration
     , region          {"Unknown"}
     , city            {"Unknown"}
     , ip              {"Unknown"}
-    , owm_apikey      {""}
+    , provider        {""}
     , units           {Units::METRIC}
     , updateTime      {15}
     , mapsEnabled     {false}
@@ -273,7 +274,7 @@ struct Configuration
     {
       return (latitude <= 90.0) &&   (latitude >= -90.0) &&
              (longitude <= 180.0) && (longitude >= -180.0) &&
-             !owm_apikey.isEmpty();
+             !provider.isEmpty();
     }
 };
 
@@ -315,6 +316,8 @@ struct ForecastData
     QString       name;        /** place name.                        */
     QString       country;     /** country.                           */
 
+    /** \brief ForecastData default constructor. 
+     */
     ForecastData(): dt{0}, temp{0}, temp_max{0}, temp_min{0}, cloudiness{0}, humidity{0}, pressure{0},
                     weather_id{0}, wind_speed{0}, wind_dir{0}, rain{0}, snow{0}, sunrise{0}, sunset{0},
                     name{"Unknown"}, country{"Unknown"} {};

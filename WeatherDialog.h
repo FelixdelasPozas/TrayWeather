@@ -22,6 +22,7 @@
 
 // Project
 #include <Utils.h>
+class WeatherProvider;
 
 // Qt
 #include "ui_WeatherDialog.h"
@@ -72,11 +73,12 @@ class WeatherDialog
     Q_OBJECT
   public:
     /** \brief WeatherDialog class constructor.
+     * \param[in] provider Weather data provider. 
      * \param[in] parent pointer of the widget parent of this one.
      * \param[in] flags window flags.
      *
      */
-    WeatherDialog(QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+    WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
 
     /** \brief WeatherDialog class virtual destructor.
      *
@@ -97,10 +99,22 @@ class WeatherDialog
      */
     void setPollutionData(const Pollution &data);
 
+    /** \brief Sets the UV forecast data.
+     * \param[in] data UV forecast data.
+     *
+     */
+    void setUVData(const UV &data);
+
     /** \brief Returns true if the maps tab is visible and false otherwise.
      *
      */
     bool mapsEnabled() const;
+
+    /** \brief Updates the weather provider object. 
+     * \param[in] provider Weather data provider. 
+     * 
+     */
+    void setWeatherProvider(std::shared_ptr<WeatherProvider> provider);
 
   signals:
     void mapsEnabled(bool);
@@ -211,16 +225,17 @@ class WeatherDialog
      */
     QLinearGradient sunriseSunsetGradient(QDateTime begin, QDateTime end);
 
-    ErrorWidget                     *m_weatherError;     /** Weather forecast error widget.        */
-    ErrorWidget                     *m_pollutionError;   /** Pollution forecast error widget       */
-    QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.          */
-    QtCharts::QChartView            *m_pollutionChart;   /** pollution forecast chart view.        */
-    const Forecast                  *m_forecast;         /** forecast data.                        */
-    const Pollution                 *m_pollution;        /** pollution data.                       */
-    Configuration                   *m_config;           /** configuration data for tooltip.       */
-    std::shared_ptr<WeatherWidget>   m_weatherTooltip;   /** weather char tooltip widget.          */
-    std::shared_ptr<PollutionWidget> m_pollutionTooltip; /** pollution chart tooltip widget.       */
-    QWebView                        *m_webpage;          /** maps webpage.                         */
+    std::shared_ptr<WeatherProvider> m_provider;         /** Weather data provider.          */
+    ErrorWidget                     *m_weatherError;     /** Weather forecast error widget.  */
+    ErrorWidget                     *m_pollutionError;   /** Pollution forecast error widget */
+    QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.    */
+    QtCharts::QChartView            *m_pollutionChart;   /** pollution forecast chart view.  */
+    const Forecast                  *m_forecast;         /** forecast data.                  */
+    const Pollution                 *m_pollution;        /** pollution data.                 */
+    Configuration                   *m_config;           /** configuration data for tooltip. */
+    std::shared_ptr<WeatherWidget>   m_weatherTooltip;   /** weather char tooltip widget.    */
+    std::shared_ptr<PollutionWidget> m_pollutionTooltip; /** pollution chart tooltip widget. */
+    QWebView                        *m_webpage;          /** maps webpage.                   */
 };
 
 #endif // WEATHERDIALOG_H_

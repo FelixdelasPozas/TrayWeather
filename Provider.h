@@ -85,8 +85,7 @@ class WeatherProvider
     /** \brief WeatherProvider class virtual destructor.
      *
      */
-    virtual ~WeatherProvider()
-    {};
+    virtual ~WeatherProvider();
 
     /** \brief Returns the weather provider capabilities.
      *
@@ -98,25 +97,25 @@ class WeatherProvider
      *    
      */
     virtual ForecastData weather() const
-    { return ForecastData(); };
+    { return m_current; };
 
     /** \brief Returns the weather forecast data. 
      *    
      */
     virtual Forecast weatherForecast() const
-    { return Forecast(); };
+    { return m_forecast; };
 
     /** \brief Returns the pollution forecast data. 
      *    
      */
     virtual Pollution pollutionForecast() const
-    { return Pollution(); };
+    { return m_pollution; };
 
     /** \brief Returns the UV forecast data. 
      *    
      */
     virtual UV uvForecast() const
-    { return UV(); };
+    { return m_uv; };
 
     /** \brief Requests weather data.
      * \param[in] netManager Application network manager. 
@@ -183,6 +182,10 @@ class WeatherProvider
     const QString m_name;    /** Weather provider name */
     Configuration &m_config; /** Application configuration */
     bool m_keyValid;         /** true when checking the api key and false otherwise. */
+    ForecastData m_current;  /** current weather data. */
+    Forecast m_forecast;     /** weather forecast data. */
+    Pollution m_pollution;   /** pollution forecast data. */
+    UV m_uv;                 /** uv forecast data. */
 };
 
 /**
@@ -203,12 +206,10 @@ class OWM25Provider
     /**
      * @brief OWM25Provider class virtual destructor.
      */
-    virtual ~OWM25Provider();
+    virtual ~OWM25Provider()
+    {};
 
     virtual ProviderCapabilities capabilities() const override;
-    virtual ForecastData weather() const override;
-    virtual Forecast weatherForecast() const override;
-    virtual Pollution pollutionForecast() const override;
     virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) const override;
     virtual QString mapsPage() const override;
     virtual QString apikey() const override;
@@ -236,10 +237,6 @@ class OWM25Provider
      */
     void processPollutionData(const QByteArray &contents);
 
-    ForecastData m_current; /** current weather data. */
-    Forecast m_forecast;    /** weather forecast data. */
-    Pollution m_pollution;  /** pollution forecast data. */
-    UV m_uv;                /** uv forecast data. */
     QString m_apiKey;       /** provider api key */
     bool m_apiKeyValid;     /** true if the api key is valid and false otherwise. */
 };
@@ -247,21 +244,13 @@ class OWM25Provider
 /** \class WeatherProviderFactory
  * \brief Factory of weather providers. 
  */
-class WeatherProviderFactory
+namespace WeatherProviderFactory
 {
-  public:
-    /** \brief WeatherProviderFactory class constructor.
-     * \param config Application configuration reference. 
-     */
-    WeatherProviderFactory(Configuration &config);
-
     /** \brief Creates and returns the given weather provider or nullptr if not present. 
      * \param name Name of the weather provider. 
+     * \param config Application configuration reference. 
      */
-    std::unique_ptr<WeatherProvider> createProvider(const QString &name);
-
-  private:
-    Configuration &m_config; /** Application configuration */
+    std::unique_ptr<WeatherProvider> createProvider(const QString &name, Configuration &config);
 };
 
 #endif

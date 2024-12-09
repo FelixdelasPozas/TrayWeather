@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 
   if(!configuration.isValid())
   {
-    ConfigurationDialog dialog(configuration);
+    ConfigurationDialog dialog(configuration, nullptr);
 
     QObject::connect(&dialog, &ConfigurationDialog::languageChanged, []( const QString &lang ) { changeLanguage(lang); });
 
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
       msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
       msgBox.setWindowTitle(QObject::tr("Tray Weather"));
       msgBox.setIcon(QMessageBox::Warning);
-      msgBox.setText(QObject::tr("TrayWeather cannot execute without a valid location and a valid OpenWeatherMap API Key.\nThe application will exit now."));
+      msgBox.setText(QObject::tr("TrayWeather cannot execute without a valid location and a valid weather data provider.\nThe application will exit now."));
       msgBox.setStandardButtons(QMessageBox::Ok);
       msgBox.exec();
       std::exit(0);

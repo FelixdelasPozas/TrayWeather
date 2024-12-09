@@ -68,6 +68,11 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 
   qApp->installNativeEventFilter(&m_eventFilter);
 
+  if(!m_configuration.provider.isEmpty())
+  {
+    m_provider = WeatherProviderFactory::createProvider(m_configuration.provider, m_configuration);
+  }
+
   connectSignals();
 
   createMenuEntries();
@@ -89,18 +94,6 @@ TrayWeather::~TrayWeather()
 //--------------------------------------------------------------------
 void TrayWeather::replyFinished(QNetworkReply* reply)
 {
-  auto setErrorTooltip = [this](const QString &text)
-  {
-    const auto tooltipText = toolTip();
-
-    if(!tooltipText.contains(text, Qt::CaseSensitive) && (tooltipText.length() + text.length() <= 125))
-    {
-      const auto finalText = tooltipText + "\n\n" + text;
-      setToolTip(finalText);
-      if(m_additionalTray) m_additionalTray->setToolTip(finalText);
-    }
-  };
-
   const auto originUrl = reply->request().url().toString();
   const auto contents  = reply->readAll();
 
@@ -130,34 +123,6 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
   }
 
-  if(originUrl.contains("pollution", Qt::CaseInsensitive))
-  {
-    if(reply->error() == QNetworkReply::NoError)
-    {
-      processPollutionData(contents);
-    }
-    else
-    {
-      const auto tooltip = tr("Error: ") + tr("No pollution data.");
-      setErrorTooltip(tooltip);
-    }
-  }
-  else
-  {
-    if (originUrl.contains("openweathermap", Qt::CaseInsensitive))
-    {
-      if (reply->error() == QNetworkReply::NoError)
-      {
-        processWeatherData(contents);
-      }
-      else
-      {
-        const auto errorText = tr("Error: ") + tr("No weather data.");
-        setErrorTooltip(errorText);
-      }
-    }
-  }
-
   if(m_provider)
   {
     m_provider->processReply(reply);
@@ -183,7 +148,7 @@ void TrayWeather::showConfiguration()
     return;
   }
 
-  m_configDialog = new ConfigurationDialog{m_configuration};
+  m_configDialog = new ConfigurationDialog{m_configuration, m_provider};
 
   connect(m_configDialog, SIGNAL(languageChanged(const QString &)), this, SLOT(onLanguageChanged(const QString &)));
 
@@ -191,6 +156,7 @@ void TrayWeather::showConfiguration()
   m_configDialog->move(scr.center() - m_configDialog->rect().center());
   m_configDialog->setModal(true);
   if(m_current.isValid()) m_configDialog->setCurrentTemperature(std::nearbyint(m_current.temp));
+  else m_configDialog->setCurrentTemperature(15);
   const auto result = m_configDialog->exec();
 
   Configuration configuration;
@@ -271,20 +237,21 @@ void TrayWeather::showConfiguration()
       QString iconLink = temperatureIconString(configuration);
       QIcon icon{iconLink};
 
-      menu->actions().first()->setIcon(icon);
+      menu->actions().at(0)->setIcon(icon);
     }
 
     const auto changedCoords      = (configuration.latitude != m_configuration.latitude) || (configuration.longitude != m_configuration.longitude);
     const auto changedMethod      = (configuration.useGeolocation != m_configuration.useGeolocation);
     const auto changedIP          = (configuration.ip != m_configuration.ip);
     const auto changedUpdateTime  = (configuration.updateTime != m_configuration.updateTime);
-    const auto changedAPIKey      = (configuration.owm_apikey != m_configuration.owm_apikey);
     const auto changedUpdateCheck = (configuration.update != m_configuration.update);
     const auto changedUnits       = (configuration.units != m_configuration.units) ||
                                     (configuration.units == Units::CUSTOM && (configuration.tempUnits != m_configuration.tempUnits ||
                                                                               configuration.precUnits != m_configuration.precUnits ||
                                                                               configuration.windUnits != m_configuration.windUnits ||
                                                                               configuration.pressureUnits != m_configuration.pressureUnits));
+                                                                              
+    const auto changedProvider      = (configuration.provider != m_configuration.provider);
 
     if(changedIP || changedMethod || changedCoords || changedRoaming)
     {
@@ -307,9 +274,20 @@ void TrayWeather::showConfiguration()
       m_timer.start();
     }
 
-    if(changedAPIKey)
+    if(changedProvider)
     {
-      m_configuration.owm_apikey = configuration.owm_apikey;
+      disconnectProviderSignals();
+      m_provider = WeatherProviderFactory::createProvider(configuration.provider, m_configuration);
+      connectProviderSignals();
+
+      const auto capabilities = m_provider->capabilities();
+      auto actions = menu->actions();
+      actions.at(1)->setEnabled(capabilities.hasWeatherForecast);
+      actions.at(2)->setEnabled(capabilities.hasPollutionForecast);
+      actions.at(3)->setEnabled(capabilities.hasUVForecast);
+      actions.at(4)->setEnabled(capabilities.hasMaps);
+
+      m_configuration.provider = configuration.provider;
       requestNewData = true;
     }
 
@@ -330,6 +308,8 @@ void TrayWeather::showConfiguration()
     {
       if(!requestNewData)
       {
+        m_weatherDialog->setWeatherProvider(m_provider);
+
         if(validData())
         {
           m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
@@ -902,6 +882,21 @@ void TrayWeather::connectSignals()
 
   connect(&m_timer, SIGNAL(timeout()),
           this,     SLOT(requestData()));
+
+  connectProviderSignals();
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::connectProviderSignals()
+{
+  if(m_provider)          
+  {
+    connect(m_provider.get(), SIGNAL(weatherDataReady()),            this, SLOT(processWeatherData));
+    connect(m_provider.get(), SIGNAL(weatherForecastDataReady()),    this, SLOT(processWeatherData));
+    connect(m_provider.get(), SIGNAL(pollutionForecastDataReady()),  this, SLOT(processPollutionData()));
+    connect(m_provider.get(), SIGNAL(uvForecastDataReady()),         this, SLOT(processUVData()));
+    connect(m_provider.get(), SIGNAL(errorMessage(const QString &)), this, SLOT(setErrorTooltip(const QString &)));
+  }  
 }
 
 //--------------------------------------------------------------------
@@ -915,6 +910,21 @@ void TrayWeather::disconnectSignals()
 
   disconnect(&m_timer, SIGNAL(timeout()),
              this,     SLOT(requestData()));
+
+  disconnectProviderSignals();             
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::disconnectProviderSignals()
+{
+  if(m_provider)          
+  {
+    disconnect(m_provider.get(), SIGNAL(weatherDataReady()),            this, SLOT(processWeatherData));
+    disconnect(m_provider.get(), SIGNAL(weatherForecastDataReady()),    this, SLOT(processWeatherData));
+    disconnect(m_provider.get(), SIGNAL(pollutionForecastDataReady()),  this, SLOT(processPollutionData()));
+    disconnect(m_provider.get(), SIGNAL(uvForecastDataReady()),         this, SLOT(processUVData()));
+    disconnect(m_provider.get(), SIGNAL(errorMessage(const QString &)), this, SLOT(setErrorTooltip(const QString &)));
+  }  
 }
 
 //--------------------------------------------------------------------
@@ -989,7 +999,7 @@ void TrayWeather::showTab()
 
   updateTooltip();
 
-  m_weatherDialog = new WeatherDialog{};
+  m_weatherDialog = new WeatherDialog{m_provider};
   m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
   m_weatherDialog->setPollutionData(m_pData);
   // m_weatherDialog->setUVData(m_vData);
@@ -1014,6 +1024,7 @@ void TrayWeather::requestData()
 {
   updateNetworkManager();
 
+  if(m_timer.isActive()) m_timer.stop();
   m_timer.setInterval(1*60*1000);
   m_timer.start();
 
@@ -1034,36 +1045,8 @@ void TrayWeather::requestForecastData()
 {
   updateNetworkManager();
 
-  QString lang = "en";
-  if(!m_configuration.language.isEmpty() && m_configuration.language.contains('_'))
-  {
-    const auto settings_lang = m_configuration.language.split('_').first();
-    if(OWM_LANGUAGES.contains(settings_lang, Qt::CaseSensitive)) lang = settings_lang;
-
-    const auto settings_compl = m_configuration.language.toLower();
-    if(OWM_LANGUAGES.contains(settings_compl, Qt::CaseInsensitive)) lang = settings_compl;
-  }
-
-  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_configuration.latitude)
-                                                                                                                   .arg(m_configuration.longitude)
-                                                                                                                   .arg(lang)
-                                                                                                                   .arg(unitsToText(m_configuration.units))
-                                                                                                                   .arg(m_configuration.owm_apikey)};
-  m_netManager->get(QNetworkRequest{url});
-
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_configuration.latitude)
-                                                                                                               .arg(m_configuration.longitude)
-                                                                                                               .arg(lang)
-                                                                                                               .arg(unitsToText(m_configuration.units))
-                                                                                                               .arg(m_configuration.owm_apikey)};
-  m_netManager->get(QNetworkRequest{url});
-
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_configuration.latitude)
-                                                                                                                             .arg(m_configuration.longitude)
-                                                                                                                             .arg(lang)
-                                                                                                                             .arg(unitsToText(m_configuration.units))
-                                                                                                                             .arg(m_configuration.owm_apikey)};
-  m_netManager->get(QNetworkRequest{url});
+  if(m_provider)
+    m_provider->requestData(m_netManager);
 }
 
 //--------------------------------------------------------------------
@@ -1087,6 +1070,7 @@ void TrayWeather::forceRequestData()
 //--------------------------------------------------------------------
 void TrayWeather::requestGeolocation()
 {
+  // No need to request weather data here. We'll do that on replyRequest() when obtaining the geolocation.
   if(m_configuration.useDNS && m_DNSIP.isEmpty())
   {
     m_DNSIP = randomString();
@@ -1146,6 +1130,7 @@ void TrayWeather::checkForUpdates()
   const auto now = QDateTime::currentDateTime();
   if(last.isValid() && last > now)
   {
+    if(m_updatesTimer.isActive()) m_updatesTimer.stop();
     auto msec = now.msecsTo(last);
     m_updatesTimer.singleShot(msec, SLOT(checkForUpdates));
   }
@@ -1251,73 +1236,27 @@ void TrayWeather::processGithubData(const QByteArray &data)
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::processWeatherData(const QByteArray &data)
+void TrayWeather::processWeatherData()
 {
-  const auto jsonDocument = QJsonDocument::fromJson(data);
-
-  if(!jsonDocument.isNull() && jsonDocument.isObject())
+  if(m_provider)
   {
-    // to discard entries older than 'right now'.
-    const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
-    const auto jsonObj = jsonDocument.object();
+    const auto current = m_provider->weather();
+    const auto forecast = m_provider->weatherForecast();
 
-    const auto keys = jsonObj.keys();
+    if(current.dt == 0) // checks if the returned value is Forecast() empty constructor.
+      m_current = current;
 
-    if(keys.contains("cnt"))
-    {
-      m_data.clear();
-
-      const auto values  = jsonObj.value("list").toArray();
-
-      auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_data) if(entry.dt == dt) return true; return false; };
-
-      for(auto i = 0; i < values.count(); ++i)
-      {
-        auto entry = values.at(i).toObject();
-
-        const auto dt = entry.value("dt").toInt(0);
-        if(dt < currentDt) continue;
-
-        ForecastData data;
-        parseForecastEntry(entry, data);
-
-        if(!hasEntry(data.dt))
-        {
-          m_data << data;
-          if(!m_configuration.useGeolocation)
-          {
-            if(data.name    != "Unknown") m_configuration.region = m_configuration.city = data.name;
-            if(data.country != "Unknown") m_configuration.country = data.country;
-          }
-        }
-      }
-
-      if(!m_data.isEmpty())
-      {
-        auto lessThan = [](const ForecastData &left, const ForecastData &right) { if(left.dt < right.dt) return true; return false; };
-        qSort(m_data.begin(), m_data.end(), lessThan);
-      }
-    }
-    else
-    {
-      parseForecastEntry(jsonObj, m_current);
-      if(!m_configuration.useGeolocation)
-      {
-        if(m_current.name    != "Unknown") m_configuration.region = m_configuration.city = m_current.name;
-        if(m_current.country != "Unknown") m_configuration.country = m_current.country;
-      }
-    }
+    if(!forecast.isEmpty())
+      m_data = forecast;
 
     m_timer.setInterval(m_configuration.updateTime*60*1000);
     m_timer.start();
 
     timeOfLastUpdate = QDateTime::currentDateTime();
     updateTooltip();
-  }
-
-  if(m_weatherDialog)
-  {
-    m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
+    
+    if(m_weatherDialog)
+      m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
   }
 }
 
@@ -1363,46 +1302,55 @@ void TrayWeather::processGeolocationData(const QByteArray &data, const bool isDN
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::processPollutionData(const QByteArray &data)
+void TrayWeather::processPollutionData()
 {
-  const auto jsonDocument = QJsonDocument::fromJson(data);
-  m_pData.clear();
-
-  if(!jsonDocument.isNull() && jsonDocument.isObject())
+  if(m_provider)
   {
-    // to discard entries older than 'right now'.
-    const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
-    const auto jsonObj = jsonDocument.object();
-    const auto values  = jsonObj.value("list").toArray();
+    const auto forecast = m_provider->pollutionForecast();
 
-    auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_pData) if(entry.dt == dt) return true; return false; };
-
-    for(auto i = 0; i < values.count(); ++i)
-    {
-      auto entry = values.at(i).toObject();
-
-      const auto dt = entry.value("dt").toInt(0);
-      if(dt < currentDt) continue;
-
-      PollutionData data;
-      parsePollutionEntry(entry, data);
-
-      if(!hasEntry(data.dt)) m_pData << data;
-    }
-
-    if(!m_pData.isEmpty())
-    {
-      auto lessThan = [](const PollutionData &left, const PollutionData &right) { if(left.dt < right.dt) return true; return false; };
-      qSort(m_pData.begin(), m_pData.end(), lessThan);
-    }
-
+    if(!forecast.isEmpty())
+      m_pData = forecast;
+  
     timeOfLastUpdate = QDateTime::currentDateTime();
     updateTooltip();
-  }
 
-  if(m_weatherDialog)
+    if(m_weatherDialog)
+      m_weatherDialog->setPollutionData(m_pData);
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::processUVData()
+{
+  if(m_provider)
   {
-    m_weatherDialog->setPollutionData(m_pData);
+    const auto forecast = m_provider->uvForecast();
+
+    if(!forecast.isEmpty())
+    {
+      m_vData = forecast;
+
+      timeOfLastUpdate = QDateTime::currentDateTime();
+      updateTooltip();
+
+      if(m_weatherDialog)
+        m_weatherDialog->setUVData(m_vData);
+    }
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::setErrorTooltip(const QString &msg)
+{
+  const auto tooltipText = toolTip();
+
+  if (!tooltipText.contains(msg, Qt::CaseSensitive) && (tooltipText.length() + msg.length() <= 125))
+  {
+    const auto finalText = tooltipText + "\n\n" + msg;
+    setToolTip(finalText);
+
+    if (m_additionalTray)
+      m_additionalTray->setToolTip(finalText);
   }
 }
 

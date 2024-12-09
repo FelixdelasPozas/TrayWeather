@@ -105,6 +105,7 @@ static const QString CLOUD_LAYER_OPACITY     = QString("Cloud layer opacity");
 static const QString RAIN_LAYER_OPACITY      = QString("Rain layer opacity");
 static const QString WIND_LAYER_OPACITY      = QString("Wind layer opacity");
 static const QString TEMP_LAYER_OPACITY      = QString("Temperature layer opacity");
+static const QString WEATHER_PROVIDER        = QString("Weather provider");
 
 
 static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/iconThemes/%1/01d.svg" },
@@ -652,7 +653,7 @@ void load(Configuration &configuration)
   configuration.region          = settings.value(REGION, QString()).toString();
   configuration.city            = settings.value(CITY, QString()).toString();
   configuration.ip              = settings.value(IP, QString()).toString();
-  configuration.owm_apikey      = settings.value(OPENWEATHERMAP_APIKEY, QString()).toString();
+  configuration.provider        = settings.value(WEATHER_PROVIDER, QString()).toString();
   const auto units = settings.value(UNITS, 0).toInt();
   configuration.units           = static_cast<Units>(units);
   configuration.updateTime      = settings.value(UPDATE_INTERVAL, 15).toUInt();
@@ -737,7 +738,7 @@ void save(const Configuration &configuration)
   settings.setValue(REGION,                  configuration.region);
   settings.setValue(CITY,                    configuration.city);
   settings.setValue(IP,                      configuration.ip);
-  settings.setValue(OPENWEATHERMAP_APIKEY,   configuration.owm_apikey);
+  settings.setValue(WEATHER_PROVIDER,        configuration.provider);
   settings.setValue(UNITS,                   static_cast<int>(configuration.units));
   settings.setValue(UPDATE_INTERVAL,         configuration.updateTime);
   settings.setValue(MAPS_TAB_ENABLED,        configuration.mapsEnabled);

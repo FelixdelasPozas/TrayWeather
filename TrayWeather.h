@@ -152,6 +152,26 @@ class TrayWeather
      */
     void forceRequestData();
 
+    /** \brief Gets weather and forecast data from the provider and updates the interface.
+     *
+     */
+    void processWeatherData();
+
+    /** \brief Gets the pollution forecast and updates the interface.
+     *
+     */
+    void processPollutionData();
+
+    /** \brief Gets the UV forecast and updates the interface.
+     *
+     */
+    void processUVData();
+
+    /** \brief Sets an error message in the tooltip text. 
+     *
+     */
+    void setErrorTooltip(const QString &msg);
+
   private:
     /** \brief Updates the tray icon tooltip.
      *
@@ -168,10 +188,20 @@ class TrayWeather
      */
     void connectSignals();
 
+    /** \brief Helper method to connect all the signals of the provider to the slots. 
+     *
+     */
+    void connectProviderSignals();
+
     /** \brief Helper method to disconnect all the signals and slots.
      *
      */
     void disconnectSignals();
+
+    /** \brief Helper method to disconnect all the signals of the provider from the slots. 
+     *
+     */
+    void disconnectProviderSignals();
 
     /** \brief Creates the tray icon menu.
      *
@@ -209,23 +239,11 @@ class TrayWeather
      */
     void processGithubData(const QByteArray &data);
 
-    /** \brief Parses OWM old API weather and forecast data.
-     * \param[in] data OWM old API data.
-     *
-     */
-    void processWeatherData(const QByteArray &data);
-
     /** \brief Parses geo-location data.
      * \param[in] data Geo-location data in CSV.
      *
      */
     void processGeolocationData(const QByteArray &data, const bool isDNS);
-
-    /** \brief Parses OWM pollution forecast data.
-     * \param[in] data OWM pollution data.
-     *
-     */
-    void processPollutionData(const QByteArray &data);
 
     /** \brief Updates, if needed, the network manager to use by the application and providers. 
     *
@@ -249,7 +267,7 @@ class TrayWeather
     AlertDialog                           *m_alertsDialog;    /** Alerts dialog.                                         */
     QJsonObject                            m_lastAlert;       /** Last shown alert.                                      */
     bool                                   m_lastAlertShown;  /** true if last alert has been shown and false otherwise. */
-    std::unique_ptr<WeatherProvider>       m_provider;        /** weather data provider */
+    std::shared_ptr<WeatherProvider>       m_provider;        /** Weather data provider */
 
     friend class NativeEventFilter;
 };
