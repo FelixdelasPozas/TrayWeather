@@ -34,7 +34,7 @@ class Configuration;
 
 // List of providers
 static const QString OWM_25_PROVIDER = "OpenWeatherMap2.5";
-static const QStringList PROVIDERS = { OWM_25_PROVIDER };
+static const QStringList WEATHER_PROVIDERS = { OWM_25_PROVIDER };
 
 /** \struct ProviderCapabilities
  * \brief Describes the capabilities of the weather provider.

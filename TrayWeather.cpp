@@ -148,7 +148,7 @@ void TrayWeather::showConfiguration()
     return;
   }
 
-  m_configDialog = new ConfigurationDialog{m_configuration, m_provider};
+  m_configDialog = new ConfigurationDialog{m_configuration};
 
   connect(m_configDialog, SIGNAL(languageChanged(const QString &)), this, SLOT(onLanguageChanged(const QString &)));
 

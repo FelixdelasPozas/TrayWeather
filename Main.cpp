@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 
   if(!configuration.isValid())
   {
-    ConfigurationDialog dialog(configuration, nullptr);
+    ConfigurationDialog dialog(configuration);
 
     QObject::connect(&dialog, &ConfigurationDialog::languageChanged, []( const QString &lang ) { changeLanguage(lang); });
 

@@ -49,10 +49,10 @@
 const char SELECTED[] = "Selected";
 
 //--------------------------------------------------------------------
-ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, std::shared_ptr<WeatherProvider> provider, QWidget* parent, Qt::WindowFlags flags)
+ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
 : QDialog       {parent}
 , m_netManager  {std::make_shared<QNetworkAccessManager>(this)}
-, m_provider    {provider}
+, m_provider    {nullptr}
 , m_testedAPIKey{false}
 , m_temp        {28}
 , m_validFont   {true}
@@ -148,51 +148,7 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     return;
   }
 
-  if(!url.toString().startsWith("http://ip-api.com/csv", Qt::CaseSensitive))
-  {
-    m_apiTest->setEnabled(true);
-
-    if(reply->error() == QNetworkReply::NetworkError::NoError)
-    {
-      const auto type = reply->header(QNetworkRequest::ContentTypeHeader);
-      if(type.toString().startsWith("application/json"))
-      {
-        const auto data = reply->readAll();
-        const auto jsonDocument = QJsonDocument::fromJson(data);
-
-        if(!jsonDocument.isNull() && jsonDocument.isObject() && jsonDocument.object().contains("cod"))
-        {
-          const auto jsonObj = jsonDocument.object();
-          const auto code    = jsonObj.value("cod").toInt(0);
-
-          if(code != 401)
-          {
-            reply->deleteLater();
-
-            m_testedAPIKey = true;
-            m_testLabel->setStyleSheet("QLabel { color : green; }");
-            m_testLabel->setText(tr("The API Key is valid!"));
-            m_geoFind->setEnabled(true);
-            return;
-          }
-        }
-      }
-
-      m_testLabel->setStyleSheet("QLabel { color : red; }");
-      m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
-
-      message = tr("Invalid OpenWeatherMap API Key.");
-    }
-    else
-    {
-      m_testLabel->setStyleSheet("QLabel { color : red; }");
-      m_testLabel->setText(tr("Invalid OpenWeatherMap API Key!"));
-
-      message = tr("Invalid reply from OpenWeatherMap server.");
-      details = reply->errorString();
-    }
-  }
-  else
+  if(url.toString().startsWith("http://ip-api.com/csv", Qt::CaseSensitive))
   {
     m_geoRequest->setEnabled(true);
 
@@ -247,13 +203,10 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     }
   }
 
-  QMessageBox msgbox(this);
-  msgbox.setWindowTitle(tr("Network Error"));
-  msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
-  msgbox.setDetailedText(details);
-  msgbox.setText(message);
-  msgbox.setBaseSize(400, 400);
-  msgbox.exec();
+  if(m_provider)
+  {
+    m_provider->processReply(reply);
+  }
 
   reply->deleteLater();
 }
@@ -386,21 +339,10 @@ void ConfigurationDialog::requestDNSIPGeolocation()
 }
 
 //--------------------------------------------------------------------
-void ConfigurationDialog::requestOpenWeatherMapAPIKeyTest() const
+void ConfigurationDialog::requestAPIKeyTest() const
 {
-  // protect from abuse
-  static auto lastRequest = std::chrono::steady_clock::now();
-  const auto now = std::chrono::steady_clock::now();
-  const std::chrono::duration<double> interval = now - lastRequest;
-  const auto duration = interval.count();
-
-  if(duration > 0.1 && duration < 2.5) return;
-  lastRequest = now;
-
-  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3").arg(m_latitude->text())
-                                                                                                  .arg(m_longitude->text())
-                                                                                                  .arg(m_apikey->text())};
-  m_netManager->get(QNetworkRequest{url});
+  if(m_provider)
+    m_provider->testApiKey(m_netManager);
 
   m_apiTest->setEnabled(false);
   m_testLabel->setStyleSheet("QLabel { color : blue; }");
@@ -523,6 +465,35 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_geoFind, SIGNAL(clicked()), 
           this,      SLOT(onSearchButtonClicked()));
+
+  connect(m_providerComboBox, SIGNAL(currentIndexChanged(int)), 
+          this,      SLOT(onProviderChanged(int)));
+
+  connectProviderSignals();
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::connectProviderSignals()
+{
+  if(m_provider)
+  {
+    connect(m_provider.get(), SIGNAL(apiKeyValid(bool)), 
+            this,             SLOT(apiKeyValid(bool)));
+    connect(m_provider.get(), SIGNAL(errorMessage(const QString &)), 
+            this,             SLOT(providerErrorMessage(const QString &)));
+  }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::disconnectProviderSignals()
+{
+  if(m_provider)
+  {
+    disconnect(m_provider.get(), SIGNAL(apiKeyValid(bool)), 
+               this,             SLOT(apiKeyValid(bool)));
+    disconnect(m_provider.get(), SIGNAL(errorMessage(const QString &)), 
+               this,             SLOT(providerErrorMessage(const QString &)));
+  }
 }
 
 //--------------------------------------------------------------------
@@ -687,6 +658,7 @@ void ConfigurationDialog::changeEvent(QEvent *e)
     fixVisuals();
 
     disconnectSignals();
+    disconnectProviderSignals();
     m_languageCombo->blockSignals(true);
     setConfiguration(backup);
     m_languageCombo->blockSignals(false);
@@ -758,6 +730,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   onIconThemeIndexChanged(static_cast<int>(configuration.iconTheme));
 
   connectSignals();
+  connectProviderSignals();
 
   m_useManual->setChecked(!configuration.useGeolocation);
   m_useGeolocation->setChecked(configuration.useGeolocation);
@@ -866,6 +839,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 
     m_updateTime->setValue(15);
     m_unitsComboBox->setCurrentIndex(0);
+
+    m_providerComboBox->setCurrentIndex(0);
   }
   else
   {
@@ -874,6 +849,9 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 
     m_latitude->setText(QString::number(configuration.latitude));
     m_longitude->setText(QString::number(configuration.longitude));
+
+    const auto position = WEATHER_PROVIDERS.indexOf(configuration.provider);
+    m_providerComboBox->setCurrentIndex(position == -1 ? 0 : position);
   }
 
   // this requests geolocation if checked.
@@ -1423,6 +1401,69 @@ void ConfigurationDialog::onSearchButtonClicked()
     m_latitudeSpin->setValue(information.latitude);
     m_longitudeSpin->setValue(information.longitude);
   }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onProviderChanged(int index)
+{
+  if(index < 0) return;
+  const auto name = WEATHER_PROVIDERS.at(index);
+
+  if(!m_provider || m_provider->name().compare(name) != 0)
+  {
+    if(m_provider) disconnectProviderSignals();
+
+    Configuration config;
+    getConfiguration(config);
+    config.provider = name;
+
+    m_provider = WeatherProviderFactory::createProvider(name, config);
+    connectProviderSignals();
+  }
+
+  const auto size = m_forecastLabel->size().height();
+  const auto yesIcon = QIcon(":/TrayWeather/yes-check.svg").pixmap(QSize(size,size));
+  const auto noIcon = QIcon(":/TrayWeather/no-cross.svg").pixmap(QSize(size, size));
+  const auto capabilities = m_provider->capabilities();
+  m_weatherCheck->setPixmap(capabilities.hasWeatherForecast ? yesIcon : noIcon );
+  m_pollutionCheck->setPixmap(capabilities.hasPollutionForecast ? yesIcon : noIcon );
+  m_uvCheck->setPixmap(capabilities.hasUVForecast ? yesIcon : noIcon );
+  m_mapsCheck->setPixmap(capabilities.hasMaps ? yesIcon : noIcon );
+
+  m_keyBox->setEnabled(capabilities.requiresKey);
+  if(capabilities.requiresKey)
+    m_apikey->setText(m_provider->apikey());
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::apiKeyValid(const bool value)
+{
+  m_apiTest->setEnabled(true);
+
+  if (value)
+  {
+    m_testedAPIKey = true;
+    m_testLabel->setStyleSheet("QLabel { color : green; }");
+    m_testLabel->setText(tr("The API Key is valid!"));
+    m_geoFind->setEnabled(true);
+  }
+  else
+  {
+    m_testLabel->setStyleSheet("QLabel { color : red; }");
+    m_testLabel->setText(tr("Invalid API Key!"));
+    m_geoFind->setEnabled(false);
+  }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::providerErrorMessage(const QString &msg)
+{
+  QMessageBox msgbox(this);
+  msgbox.setWindowTitle(tr("Weather Provider Error"));
+  msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+  msgbox.setText(msg);
+  msgbox.setBaseSize(400, 400);
+  msgbox.exec();
 }
 
 //--------------------------------------------------------------------

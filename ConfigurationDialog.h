@@ -73,12 +73,10 @@ class ConfigurationDialog
   public:
     /** \brief LocationConfigDialog class constructor.
      * \param[in] configuration application configuration.
-     * \param[in] provider Weather provider.
      * \param[in] parent pointer to the widget parent of this one.
      * \param[in] flags window flags.
      */
-    ConfigurationDialog(const Configuration &configuration, std::shared_ptr<WeatherProvider> provider, 
-                        QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+    ConfigurationDialog(const Configuration &configuration, QWidget *parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
 
     /** \brief LocationConfigDialog class virtual destructor.
      *
@@ -113,10 +111,10 @@ class ConfigurationDialog
      */
     void requestGeolocation();
 
-    /** \brief Request forecast data to test OpenWeatherMap API key validity.
+    /** \brief Request test of API key validity.
      *
      */
-    void requestOpenWeatherMapAPIKeyTest() const;
+    void requestAPIKeyTest() const;
 
     /** \brief Disables/Enables geolocation from DNS IP instead of geolocation detected ip.
      * \param[in] state DNS Checkbox state.
@@ -232,6 +230,24 @@ class ConfigurationDialog
      */
     void onSearchButtonClicked();
 
+    /** \brief Updates the UI when the user changes the weather data provider. 
+     * \param[in] index Current index in the combo box.
+     *
+     */
+    void onProviderChanged(int index);
+
+    /** \brief Updates the UI after receiving the key validity value.
+     * \param value True if the key is valid, and false otherwise. 
+     *
+     */
+    void apiKeyValid(const bool value);
+
+    /** \brief Processes the provider error messages. 
+     * \param msg Provider error message.
+     *
+     */
+    void providerErrorMessage(const QString &msg);
+
   signals:
     void languageChanged(const QString &);
 
@@ -251,6 +267,16 @@ class ConfigurationDialog
      *
      */
     void connectSignals();
+
+    /** \brief Helper method to connect provider signals to the slots.
+     *
+     */
+    void connectProviderSignals();
+
+    /** \brief Helper method to disconnect provider signals to the slots.
+     *
+     */
+    void disconnectProviderSignals();
 
     /** \brief Helper method to disconnect UI signals to the slots.
      *
@@ -284,14 +310,14 @@ class ConfigurationDialog
      */
     QPixmap generateTemperatureIconPixmap(QFont &font);
 
-    std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                                  */
-    std::shared_ptr<WeatherProvider>       m_provider;     /** Weather provider.                                                                 */
-    bool                                   m_testedAPIKey; /** true if the OpenWeatherMap API key has been tested and is valid, false otherwise. */
-    QString                                m_DNSIP;        /** DNS server IP.                                                                    */
-    QFont                                  m_font;         /** temperature tray icon font.                                                       */
-    QPixmap                                m_pixmap;       /** checkered pixmap for font preview.                                                */
-    int                                    m_temp;         /** temperature used to generate icon preview if not given.                           */
-    bool                                   m_validFont;    /** true if current selected font can render the temperature, false otherwise.        */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;   /** network manager.                                                           */
+    std::shared_ptr<WeatherProvider>       m_provider;     /** Weather provider.                                                          */
+    bool                                   m_testedAPIKey; /** true if the API key has been tested and is valid, false otherwise.         */
+    QString                                m_DNSIP;        /** DNS server IP.                                                             */
+    QFont                                  m_font;         /** temperature tray icon font.                                                */
+    QPixmap                                m_pixmap;       /** checkered pixmap for font preview.                                         */
+    int                                    m_temp;         /** temperature used to generate icon preview if not given.                    */
+    bool                                   m_validFont;    /** true if current selected font can render the temperature, false otherwise. */
 };
 
 #endif // CONFIGURATIONDIALOG_H_
