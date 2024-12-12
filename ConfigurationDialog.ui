@@ -54,7 +54,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -1210,12 +1210,12 @@ QGroupBox::title {
               <widget class="QComboBox" name="m_precipitationCombo">
                <item>
                 <property name="text">
-                 <string>millimeters</string>
+                 <string>millimeters/hour</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>inches</string>
+                 <string>inches/hour</string>
                 </property>
                </item>
               </widget>

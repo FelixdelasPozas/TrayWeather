@@ -65,12 +65,12 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
     case Units::METRIC:
       tempUnits = "ºC";
       presUnits = tr("hPa");
-      accUnits  = tr("mm");
+      accUnits  = tr("mm/h");
       break;
     case Units::IMPERIAL:
       tempUnits = "ºF";
       presUnits = tr("PSI");
-      accUnits  = tr("inch");
+      accUnits  = tr("inch/h");
       break;
     case Units::CUSTOM:
       switch(config.tempUnits)
@@ -106,13 +106,13 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
       switch(config.precUnits)
       {
         case PrecipitationUnits::INCH:
-          accUnits = tr("inches");
+          accUnits = tr("inches/h");
           rainValue = convertMmToInches(data.rain);
           snowValue = convertMmToInches(data.snow);
           break;
         default:
         case PrecipitationUnits::MM:
-          accUnits = tr("mm");
+          accUnits = tr("mm/h");
           break;
       }
       break;

@@ -158,14 +158,14 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   switch(config.units)
   {
     case Units::IMPERIAL:
-      accuStr = tr("inches");
+      accuStr = tr("inches/h");
       pressStr = tr("PSI");
       windUnits = tr("mph");
       tempUnits = "ºF";
       break;
     default:
     case Units::METRIC:
-      accuStr = tr("mm");
+      accuStr = tr("mm/h");
       pressStr = tr("hPa");
       windUnits = tr("m/s");
       tempUnits = "ºC";
@@ -204,12 +204,12 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       switch(config.precUnits)
       {
         case PrecipitationUnits::INCH:
-          accuStr = tr("inches");
+          accuStr = tr("inches/h");
           precipitationFunc = convertMmToInches;
           break;
         default:
         case PrecipitationUnits::MM:
-          accuStr = tr("mm");
+          accuStr = tr("mm/h");
           break;
       }
       switch(config.windUnits)

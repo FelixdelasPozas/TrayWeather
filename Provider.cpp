@@ -116,7 +116,7 @@ QString OWM25Provider::mapsPage() const
         isImperial = "true";
         degrees    = "ºF";
         windUnit   = tr("mph");
-        rainUnit   = tr("inches");
+        rainUnit   = tr("inches/h");
         rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, convertMmToInches);
         windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, convertMetersSecondToMilesHour);
         tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, convertCelsiusToFahrenheit);
@@ -127,7 +127,7 @@ QString OWM25Provider::mapsPage() const
         isImperial = "false";
         degrees    = "ºC";
         windUnit   = tr("m/s");
-        rainUnit   = tr("mm");
+        rainUnit   = tr("mm/h");
         rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, nullF);
         windGrades = generateMapGrades(WIND_MAP_LAYER_GRADES_METSEC, nullF);
         tempGrades = generateMapGrades(TEMP_MAP_LAYER_GRADES_CELSIUS, nullF);
@@ -139,12 +139,12 @@ QString OWM25Provider::mapsPage() const
         switch(m_config.precUnits)
         {
           case PrecipitationUnits::INCH:
-            rainUnit   = tr("inches");
+            rainUnit   = tr("inches/h");
             rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, convertMmToInches);
             break;
           default:
           case PrecipitationUnits::MM:
-            rainUnit   = tr("mm");
+            rainUnit   = tr("mm/h");
             rainGrades = generateMapGrades(RAIN_MAP_LAYER_GRADES_MM, nullF);
             break;
         }
