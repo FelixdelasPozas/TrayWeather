@@ -18,15 +18,16 @@
  */
 
 // Project
-#include "AboutDialog.h"
-#include "Utils.h"
+#include <AboutDialog.h>
+#include <Utils.h>
+#include <Provider.h>
 
 // Qt
 #include <QtGlobal>
 #include <QDateTime>
 #include <QApplication>
 
-const QString AboutDialog::VERSION{"1.30.2"};
+const QString AboutDialog::VERSION{"1.31.0"};
 const QString COPYRIGHT{"Copyright (c) 2016-%1 Félix de las Pozas Álvarez"};
 
 //-----------------------------------------------------------------
@@ -49,6 +50,7 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
 
   fillTranslationsTable();
   fillThemesTable();
+  fillProvidersTable();
 
   tabWidget->setCurrentIndex(0);
 }
@@ -122,4 +124,31 @@ void AboutDialog::fillThemesTable() const
 
   m_themes->resizeColumnToContents(0);
   m_themes->horizontalHeader()->setStretchLastSection(true);
+}
+
+//-----------------------------------------------------------------
+void AboutDialog::fillProvidersTable() const
+{
+  m_providers->clear();
+  m_providers->verticalHeader()->setVisible(false);
+  m_providers->horizontalHeader()->setVisible(false);
+  m_providers->setRowCount(WEATHER_PROVIDERS.size());
+  m_providers->setColumnCount(2);
+
+  Configuration nullConfig;
+  for(int i = 0; i < WEATHER_PROVIDERS.size(); ++i)
+  {
+    const auto &provider = WeatherProviderFactory::createProvider(WEATHER_PROVIDERS.at(i), nullConfig);
+
+    auto item = new QTableWidgetItem();
+    item->setData(Qt::DisplayRole, provider->id());
+    m_providers->setItem(i, 0, item);
+
+    auto label = new QLabel{QString("<a href=\"%1\">%1</a>").arg(provider->website())};
+    label->setOpenExternalLinks(true);
+    m_providers->setCellWidget(i, 1, label);
+  }
+
+  m_providers->resizeColumnToContents(0);
+  m_providers->horizontalHeader()->setStretchLastSection(true);
 }

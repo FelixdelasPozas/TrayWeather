@@ -65,6 +65,11 @@ class AboutDialog
      *
      */
     void fillThemesTable() const;
+
+    /** \brief Fill the weather providers table information.
+     *
+     */
+    void fillProvidersTable() const;
 };
 
 #endif // ABOUTDIALOG_H_

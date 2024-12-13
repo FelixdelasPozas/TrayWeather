@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>424</width>
-    <height>572</height>
+    <height>546</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -375,7 +375,21 @@ QGroupBox::title {
                <string>FlatIcon</string>
               </property>
               <property name="text">
-               <string notr="true">&lt;a href=&quot;http://www.flaticon.com/&quot;&gt;http://www.flaticon.com/&lt;/a&gt;</string>
+               <string notr="true">&lt;a href=&quot;http://www.flaticon.com/&quot;&gt;http://www.flaticon.com/&lt;/a&gt;
+</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="openExternalLinks">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_16">
+              <property name="text">
+               <string>&lt;a href=&quot;https://www.svgrepo.com/&quot;&gt;https://www.svgrepo.com/&lt;/a&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -477,50 +491,6 @@ QGroupBox::title {
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_4">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QGroupBox {
-    border: 1px solid gray;
-    border-radius: 5px;
-    margin-top: 2ex;
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top center; /* position at the top center */
-    padding: 0px 5px;
-}</string>
-           </property>
-           <property name="title">
-            <string>Weather data provided by</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_7">
-            <item>
-             <widget class="QLabel" name="label_6">
-              <property name="toolTip">
-               <string>OpenWeatherMap</string>
-              </property>
-              <property name="text">
-               <string notr="true">&lt;a href=&quot;http://openweathermap.org&quot;&gt;http://openweathermap.org&lt;/a&gt;</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="openExternalLinks">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
           <widget class="QGroupBox" name="groupBox_5">
            <property name="font">
             <font>
@@ -581,6 +551,58 @@ QGroupBox::title {
           </widget>
          </item>
         </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>Weather Providers</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_15">
+       <item>
+        <widget class="QTableWidget" name="m_providers">
+         <property name="sizeAdjustPolicy">
+          <enum>QAbstractScrollArea::AdjustToContents</enum>
+         </property>
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="tabKeyNavigation">
+          <bool>false</bool>
+         </property>
+         <property name="showDropIndicator" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="dragDropOverwriteMode">
+          <bool>false</bool>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="showGrid">
+          <bool>true</bool>
+         </property>
+         <property name="cornerButtonEnabled">
+          <bool>false</bool>
+         </property>
+         <property name="columnCount">
+          <number>2</number>
+         </property>
+         <attribute name="horizontalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <column/>
+         <column/>
+        </widget>
        </item>
       </layout>
      </widget>
