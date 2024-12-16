@@ -101,38 +101,6 @@
              </property>
             </widget>
            </item>
-           <item row="7" column="1">
-            <widget class="QLabel" name="m_wind_dir">
-             <property name="toolTip">
-              <string>Current wind direction</string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="text">
-              <string>Unknown</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string>Minimum temperature</string>
-             </property>
-             <property name="text">
-              <string>Minimum temperature</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_2">
              <property name="font">
@@ -146,22 +114,6 @@
              </property>
              <property name="text">
               <string>Maximum temperature</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="label_7">
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string>Current wind speed</string>
-             </property>
-             <property name="text">
-              <string>Wind speed</string>
              </property>
             </widget>
            </item>
@@ -207,6 +159,54 @@
              </property>
             </widget>
            </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Current wind speed</string>
+             </property>
+             <property name="text">
+              <string>Wind speed</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QLabel" name="m_wind_dir">
+             <property name="toolTip">
+              <string>Current wind direction</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>Unknown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Minimum temperature</string>
+             </property>
+             <property name="text">
+              <string>Minimum temperature</string>
+             </property>
+            </widget>
+           </item>
            <item row="11" column="1">
             <widget class="QLabel" name="m_sunset">
              <property name="toolTip">
@@ -217,26 +217,35 @@
              </property>
             </widget>
            </item>
-           <item row="12" column="0">
-            <widget class="QLabel" name="label_11">
+           <item row="5" column="1">
+            <widget class="QLabel" name="m_pressure">
+             <property name="toolTip">
+              <string>Current ground pressure</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>Unknown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_5">
              <property name="font">
               <font>
                <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
-             <property name="text">
-              <string>Air Quality</string>
-             </property>
-            </widget>
-           </item>
-           <item row="12" column="1">
-            <widget class="QLabel" name="m_air_quality">
              <property name="toolTip">
-              <string>Air quality</string>
+              <string>Current humidity</string>
              </property>
              <property name="text">
-              <string>Unknown</string>
+              <string>Humidity</string>
              </property>
             </widget>
            </item>
@@ -256,10 +265,26 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
-            <widget class="QLabel" name="m_temp_max">
+           <item row="9" column="1">
+            <widget class="QLabel" name="m_snow">
              <property name="toolTip">
-              <string>Maximum temperature</string>
+              <string>Snow accumulation in the last 3 hours</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>None</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="m_temp_min">
+             <property name="toolTip">
+              <string>Minimum temperature</string>
              </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
@@ -285,6 +310,48 @@
              </property>
              <property name="text">
               <string>Unknown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="1">
+            <widget class="QLabel" name="m_air_quality">
+             <property name="toolTip">
+              <string>Air quality</string>
+             </property>
+             <property name="text">
+              <string>Unknown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="m_temp">
+             <property name="toolTip">
+              <string>Current temperature</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>Unknown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Current cloudiness</string>
+             </property>
+             <property name="text">
+              <string>Cloudiness</string>
              </property>
             </widget>
            </item>
@@ -320,134 +387,6 @@
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
-            <widget class="QLabel" name="m_pressure">
-             <property name="toolTip">
-              <string>Current ground pressure</string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="text">
-              <string>Unknown</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLabel" name="m_temp_min">
-             <property name="toolTip">
-              <string>Minimum temperature</string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="text">
-              <string>Unknown</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="0">
-            <widget class="QLabel" name="label_13">
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string>Sunset time</string>
-             </property>
-             <property name="text">
-              <string>Sunset</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="m_temp">
-             <property name="toolTip">
-              <string>Current temperature</string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="text">
-              <string>Unknown</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string>Current humidity</string>
-             </property>
-             <property name="text">
-              <string>Humidity</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="1">
-            <widget class="QLabel" name="m_snow">
-             <property name="toolTip">
-              <string>Snow accumulation in the last 3 hours</string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Sunken</enum>
-             </property>
-             <property name="text">
-              <string>None</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="label_6">
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string>Current ground pressure</string>
-             </property>
-             <property name="text">
-              <string>Ground pressure</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="0">
-            <widget class="QLabel" name="label_10">
-             <property name="font">
-              <font>
-               <weight>75</weight>
-               <bold>true</bold>
-              </font>
-             </property>
-             <property name="toolTip">
-              <string>Snow accumulation in the last 3 hours</string>
-             </property>
-             <property name="text">
-              <string>Snow accumulation (last 3 hours)</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="label">
              <property name="font">
@@ -467,8 +406,8 @@
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_4">
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_6">
              <property name="font">
               <font>
                <weight>75</weight>
@@ -476,10 +415,91 @@
               </font>
              </property>
              <property name="toolTip">
-              <string>Current cloudiness</string>
+              <string>Current ground pressure</string>
              </property>
              <property name="text">
-              <string>Cloudiness</string>
+              <string>Ground pressure</string>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Air Quality</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="label_13">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Sunset time</string>
+             </property>
+             <property name="text">
+              <string>Sunset</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="m_temp_max">
+             <property name="toolTip">
+              <string>Maximum temperature</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>Unknown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="toolTip">
+              <string>Snow accumulation in the last 3 hours</string>
+             </property>
+             <property name="text">
+              <string>Snow accumulation (last 3 hours)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="0">
+            <widget class="QLabel" name="label_14">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Ultraviolet radiation</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="1">
+            <widget class="QLabel" name="m_uvi">
+             <property name="text">
+              <string>Unknown</string>
              </property>
             </widget>
            </item>

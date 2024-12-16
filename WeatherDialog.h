@@ -23,6 +23,7 @@
 // Project
 #include <Utils.h>
 class WeatherProvider;
+struct ProviderCapabilities;
 
 // Qt
 #include "ui_WeatherDialog.h"
@@ -44,6 +45,7 @@ namespace QtCharts
 class QWebView;
 class WeatherWidget;
 class PollutionWidget;
+class UVWidget;
 
 /** \class ErrorWidget
  * \brief Widget to show an error message in a forecast tab.
@@ -190,6 +192,13 @@ class WeatherDialog
      */
     void onForecastAreaChanged(QDateTime begin, QDateTime end);
 
+    /** \brief Updates the background of the uv chart on zoom.
+     * \param[in] begin Begin point in X axis.
+     * \param[in] end End point in X axis.
+     *
+     */
+    void onUVAreaChanged(QDateTime begin, QDateTime end);
+
   private:
     /** \brief Returns the color of the given aqi value.
      * \param[in] aqiValue aqi value in [1,5].
@@ -225,16 +234,26 @@ class WeatherDialog
      */
     QLinearGradient sunriseSunsetGradient(QDateTime begin, QDateTime end);
 
+    /** \brief Updates the UI depeding on the capabilities of the current weather provider.
+     * \param[in] capabilities Weather provider capabilities.
+     *
+     */
+    void updateUI(const ProviderCapabilities &capabilities);
+
     std::shared_ptr<WeatherProvider> m_provider;         /** Weather data provider.          */
     ErrorWidget                     *m_weatherError;     /** Weather forecast error widget.  */
     ErrorWidget                     *m_pollutionError;   /** Pollution forecast error widget */
+    ErrorWidget                     *m_uvError;          /** UV forecast error widget        */
     QtCharts::QChartView            *m_weatherChart;     /** weather forecast chart view.    */
     QtCharts::QChartView            *m_pollutionChart;   /** pollution forecast chart view.  */
+    QtCharts::QChartView            *m_uvChart;          /** UV forecast chart view.         */    
     const Forecast                  *m_forecast;         /** forecast data.                  */
     const Pollution                 *m_pollution;        /** pollution data.                 */
+    const UV                        *m_uv;               /** UV data.                        */
     Configuration                   *m_config;           /** configuration data for tooltip. */
     std::shared_ptr<WeatherWidget>   m_weatherTooltip;   /** weather char tooltip widget.    */
     std::shared_ptr<PollutionWidget> m_pollutionTooltip; /** pollution chart tooltip widget. */
+    std::shared_ptr<UVWidget>        m_uvTooltip;        /** UV chart tooltip widget.        */
     QWebView                        *m_webpage;          /** maps webpage.                   */
 };
 

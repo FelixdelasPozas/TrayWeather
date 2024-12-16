@@ -19,6 +19,7 @@
 
 // Project
 #include <LocationFinderDialog.h>
+#include <Provider.h>
 #include <ISO 3166-1-alpha-2.h>
 
 // C++
@@ -38,24 +39,15 @@
 #include <QPalette>
 #include <QTableWidgetItem>
 
-const QString REQUEST = "http://api.openweathermap.org/geo/1.0/direct?q=%1&limit=5&appid=%2";
-
-// OpenWeatherMap JSON keys.
-const QString NAME_KEY = "name";
-const QString LOCAL_NAMES_KEY = "local_names";
-const QString LATITUDE_KEY = "lat";
-const QString LONGITUDE_KEY = "lon";
-const QString COUNTRY_KEY = "country";
-const QString STATE_KEY = "state";
-
 //----------------------------------------------------------------------------
-LocationFinderDialog::LocationFinderDialog(const QString &apiKey, const QString &languageCode, QNetworkAccessManager* manager, QWidget *parent, Qt::WindowFlags f)
+LocationFinderDialog::LocationFinderDialog(std::shared_ptr<WeatherProvider> provider, std::shared_ptr<QNetworkAccessManager> manager,
+                                           QWidget *parent, Qt::WindowFlags f)
 : QDialog(parent, f)
+, m_provider{provider}
 , m_netManager{manager}
-, m_apiKey{apiKey}
-, m_language{languageCode}
 {
   assert(manager);
+  assert(provider);
 
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
@@ -93,21 +85,28 @@ LocationFinderDialog::LocationFinderDialog(const QString &apiKey, const QString 
 }
 
 //----------------------------------------------------------------------------
-LocationFinderDialog::Location LocationFinderDialog::selected() const
+LocationFinderDialog::~LocationFinderDialog()
+{
+  disconnect(m_provider.get(), SIGNAL(foundLocations(const Locations &)), this, SLOT(locations(const Locations &)));
+}
+
+//----------------------------------------------------------------------------
+Location LocationFinderDialog::selected() const
 {
   const auto selectedRow = m_locationsTable->currentIndex();
   
   if(selectedRow.isValid())
   {
     const auto location = m_locationsTable->item(selectedRow.row(), 0)->text();
+    const auto translated = m_locationsTable->item(selectedRow.row(), 1)->text();
     const auto latitude = m_locationsTable->item(selectedRow.row(), 2)->text().toFloat();
     const auto longitude = m_locationsTable->item(selectedRow.row(), 3)->text().toFloat();
     const auto country = m_locationsTable->item(selectedRow.row(), 4)->text();
     const auto region = m_locationsTable->item(selectedRow.row(), 5)->text();
-    return Location{location, latitude, longitude, country, region};
+    return Location{location, translated, latitude, longitude, country, region};
   }
   
-  return Location{"",0.f,0.f, "", ""}; // Invalid
+  return Location(); // Invalid
 }
 
 //----------------------------------------------------------------------------
@@ -130,112 +129,76 @@ void LocationFinderDialog::onLocationTextModified(const QString &text)
 }
 
 //----------------------------------------------------------------------------
-void LocationFinderDialog::replyFinished(QNetworkReply *reply)
+void LocationFinderDialog::locations(const Locations &locations)
 {
   QApplication::restoreOverrideCursor();
-  QString details, message;
-
   m_searchButton->setEnabled(true);
+  m_locationsTable->clearContents();
 
-  if(reply->error() != QNetworkReply::NetworkError::NoError)
+  if(locations.isEmpty())
   {
-    message = tr("Invalid reply from server.\nCouldn't get location information.\nIf you have a firewall change the configuration to allow this program to access the network.");
-    details = reply->errorString();
+    const QString message = tr("No locations found for '%1'.").arg(m_location->text());
 
     QMessageBox msgbox(this);
-    msgbox.setWindowTitle(tr("Network Error"));
+    msgbox.setWindowTitle(tr("Location finder"));
     msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
-    msgbox.setDetailedText(details);
     msgbox.setText(message);
     msgbox.setBaseSize(400, 400);
     msgbox.exec();
 
-    reply->deleteLater();
+    m_searchButton->setEnabled(true);
     return;
   }
 
-  const auto url = reply->url();
-  if(url.toString().contains("api.openweathermap.org", Qt::CaseInsensitive))
+  m_locationsTable->clearContents();
+
+  for (const auto &location: locations)
   {
-    const auto data = reply->readAll();
-    const auto jsonDocument = QJsonDocument::fromJson(data);
+    const auto row = m_locationsTable->rowCount();
+    m_locationsTable->insertRow(row);
 
-    if (!jsonDocument.isNull() && jsonDocument.isArray())
+    const auto nameItem = new QTableWidgetItem(location.location);
+    nameItem->setTextAlignment(Qt::AlignCenter);
+    m_locationsTable->setItem(row, 0, nameItem);
+
+    const auto localItem = new QTableWidgetItem(location.translated);
+    if (location.translated.isEmpty())
     {
-      const auto locationsArray = jsonDocument.array();
-
-      if(locationsArray.isEmpty())
-      {
-        const QString message = tr("No locations found for '%1'.").arg(m_location->text());
-
-        QMessageBox msgbox(this);
-        msgbox.setWindowTitle(tr("Location finder"));
-        msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
-        msgbox.setText(message);
-        msgbox.setBaseSize(400, 400);
-        msgbox.exec();
-
-        reply->deleteLater();
-        m_searchButton->setEnabled(true);
-
-        return;
-      }
-
-      m_locationsTable->clearContents();
-
-      for(auto location: locationsArray)
-      {
-        const auto locObject = location.toObject();
-
-        const auto row = m_locationsTable->rowCount();
-        m_locationsTable->insertRow(row);
-
-        const auto nameItem = new QTableWidgetItem(locObject.value(NAME_KEY).toString());
-        nameItem->setTextAlignment(Qt::AlignCenter);
-        m_locationsTable->setItem(row, 0, nameItem);
-
-        const auto locListObj = locObject.value(LOCAL_NAMES_KEY).toObject();
-        auto localName = locListObj.value(m_language).toString();
-        const auto localItem = new QTableWidgetItem(localName);
-        if(localName.isEmpty())
-        {
-          localItem->setText(tr("No translation"));
-          localItem->setTextColor(Qt::gray);
-        }
-        localItem->setTextAlignment(Qt::AlignCenter);
-        m_locationsTable->setItem(row, 1, localItem);
-
-        const auto latItem = new QTableWidgetItem(QString("%1").arg(locObject.value(LATITUDE_KEY).toDouble()));
-        latItem->setTextAlignment(Qt::AlignCenter);
-        m_locationsTable->setItem(row, 2, latItem);
-
-        const auto longItem = new QTableWidgetItem(QString("%1").arg(locObject.value(LONGITUDE_KEY).toDouble()));
-        longItem->setTextAlignment(Qt::AlignCenter);
-        m_locationsTable->setItem(row, 3, longItem);
-
-        auto country = locObject.value(COUNTRY_KEY).toString();
-        const auto countryItem = new QTableWidgetItem(country);
-        countryItem->setTextAlignment(Qt::AlignCenter);
-        if(!country.isEmpty())
-        {
-          const auto countryCode = std::find_if(ISO3166.cbegin(), ISO3166.cend(), [&country](const QString &code) { return code.compare(country, Qt::CaseInsensitive) == 0; });
-          if(countryCode != ISO3166.cend())
-            countryItem->setText(ISO3166.key(*countryCode));
-        }
-        m_locationsTable->setItem(row, 4, countryItem);
-
-        const auto stateItem = new QTableWidgetItem(locObject.value(STATE_KEY).toString());
-        stateItem->setTextAlignment(Qt::AlignCenter);
-        m_locationsTable->setItem(row, 5, stateItem);
-      }
+      localItem->setText(tr("No translation"));
+      localItem->setTextColor(Qt::gray);
     }
+    localItem->setTextAlignment(Qt::AlignCenter);
+    m_locationsTable->setItem(row, 1, localItem);
+
+    const auto latItem = new QTableWidgetItem(QString("%1").arg(location.latitude));
+    latItem->setTextAlignment(Qt::AlignCenter);
+    m_locationsTable->setItem(row, 2, latItem);
+
+    const auto longItem = new QTableWidgetItem(QString("%1").arg(location.longitude));
+    longItem->setTextAlignment(Qt::AlignCenter);
+    m_locationsTable->setItem(row, 3, longItem);
+
+    const auto countryItem = new QTableWidgetItem(location.country);
+    countryItem->setTextAlignment(Qt::AlignCenter);
+    if (!location.country.isEmpty())
+    {
+      const auto country = location.country;
+      const auto countryCode = std::find_if(ISO3166.cbegin(), ISO3166.cend(), [&country](const QString &code)
+                                            { return code.compare(country, Qt::CaseInsensitive) == 0; });
+      if (countryCode != ISO3166.cend())
+        countryItem->setText(ISO3166.key(*countryCode));
+    }
+    m_locationsTable->setItem(row, 4, countryItem);
+
+    const auto stateItem = new QTableWidgetItem(location.region);
+    stateItem->setTextAlignment(Qt::AlignCenter);
+    m_locationsTable->setItem(row, 5, stateItem);
   }
 
   const bool hasResult = m_locationsTable->rowCount() > 0;
-  reply->deleteLater();
   m_locationsTable->setEnabled(hasResult);
 
-  if(hasResult)
+  if (hasResult)
   {
     m_locationsTable->resizeColumnsToContents();
     m_locationsTable->adjustSize();
@@ -256,7 +219,7 @@ void LocationFinderDialog::connectSignals()
   connect(m_searchButton, SIGNAL(clicked()), this, SLOT(onSearchButtonPressed()));
   connect(m_location, SIGNAL(textChanged(const QString &)), this, SLOT(onLocationTextModified(const QString &)));
   connect(m_location, SIGNAL(returnPressed()), m_searchButton, SLOT(click()));
-  connect(m_netManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
+  connect(m_provider.get(), SIGNAL(foundLocations(const Locations &)), this, SLOT(locations(const Locations &)));
 }
 
 //----------------------------------------------------------------------------
@@ -264,10 +227,7 @@ void LocationFinderDialog::onSearchButtonPressed()
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  const auto location = m_location->text();
   m_locationsTable->clearContents();
   m_locationsTable->setRowCount(0);
-
-  auto url = QUrl{REQUEST.arg(m_location->text()).arg(m_apiKey)};
-  m_netManager->get(QNetworkRequest{url});
+  m_provider->searchLocations(m_location->text(), m_netManager);
 }

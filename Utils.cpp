@@ -653,7 +653,7 @@ void load(Configuration &configuration)
   configuration.region          = settings.value(REGION, QString()).toString();
   configuration.city            = settings.value(CITY, QString()).toString();
   configuration.ip              = settings.value(IP, QString()).toString();
-  configuration.provider        = settings.value(WEATHER_PROVIDER, QString()).toString();
+  configuration.providerId      = settings.value(WEATHER_PROVIDER, QString()).toString();
   const auto units = settings.value(UNITS, 0).toInt();
   configuration.units           = static_cast<Units>(units);
   configuration.updateTime      = settings.value(UPDATE_INTERVAL, 15).toUInt();
@@ -738,7 +738,7 @@ void save(const Configuration &configuration)
   settings.setValue(REGION,                  configuration.region);
   settings.setValue(CITY,                    configuration.city);
   settings.setValue(IP,                      configuration.ip);
-  settings.setValue(WEATHER_PROVIDER,        configuration.provider);
+  settings.setValue(WEATHER_PROVIDER,        configuration.providerId);
   settings.setValue(UNITS,                   static_cast<int>(configuration.units));
   settings.setValue(UPDATE_INTERVAL,         configuration.updateTime);
   settings.setValue(MAPS_TAB_ENABLED,        configuration.mapsEnabled);

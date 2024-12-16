@@ -19,6 +19,7 @@
 
 // Project
 #include <Provider.h>
+#include <ISO 3166-1-alpha-2.h>
 
 // Qt
 #include <QNetworkAccessManager>
@@ -32,6 +33,14 @@
 
 // C++
 #include <chrono>
+
+// OpenWeatherMap Geolocation JSON keys.
+const QString NAME_KEY = "name";
+const QString LOCAL_NAMES_KEY = "local_names";
+const QString LATITUDE_KEY = "lat";
+const QString LONGITUDE_KEY = "lon";
+const QString COUNTRY_KEY = "country";
+const QString STATE_KEY = "state";
 
 //----------------------------------------------------------------------------
 WeatherProvider::WeatherProvider(const QString &name, Configuration &config)
@@ -57,7 +66,7 @@ OWM25Provider::OWM25Provider(Configuration &config)
 //----------------------------------------------------------------------------
 ProviderCapabilities OWM25Provider::capabilities() const
 {
-  return ProviderCapabilities(true, true, true, false, true, true);
+  return ProviderCapabilities(true, true, true, false, true, true, true);
 }
 
 //----------------------------------------------------------------------------
@@ -258,7 +267,19 @@ void OWM25Provider::processReply(QNetworkReply *reply)
   }
   else
   {
-    if (originUrl.contains("openweathermap", Qt::CaseInsensitive))
+    if(originUrl.contains("geo", Qt::CaseInsensitive))
+    {
+      if(reply->error() == QNetworkReply::NoError)
+      {
+        processLocationsData(contents);
+      }
+      else
+      {
+        const auto msg = tr("Error: ") + tr("Couldn't get location information.") + QString("\n%1").arg(reply->errorString());
+        emit errorMessage(msg);
+      }
+    }
+    else if (originUrl.contains("openweathermap", Qt::CaseInsensitive))
     {
       if (reply->error() == QNetworkReply::NoError)
       {
@@ -271,6 +292,25 @@ void OWM25Provider::processReply(QNetworkReply *reply)
       }
     }
   }
+}
+
+//----------------------------------------------------------------------------
+QString OWM25Provider::name() const
+{
+  return "OpenWeatherMap";
+}
+
+//----------------------------------------------------------------------------
+QString OWM25Provider::website() const
+{
+  return "https://openweathermap.org/appid";
+}
+
+//----------------------------------------------------------------------------
+void OWM25Provider::searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const
+{
+  auto url = QUrl{QString("http://api.openweathermap.org/geo/1.0/direct?q=%1&limit=5&appid=%2").arg(text).arg(m_apiKey)};
+  netManager->get(QNetworkRequest{url});
 }
 
 //----------------------------------------------------------------------------
@@ -393,6 +433,56 @@ void OWM25Provider::processPollutionData(const QByteArray &contents)
     }
 
     emit pollutionForecastDataReady();
+  }
+}
+
+//----------------------------------------------------------------------------
+void OWM25Provider::processLocationsData(const QByteArray &contents)
+{
+  const auto jsonDocument = QJsonDocument::fromJson(contents);
+
+  if (!jsonDocument.isNull() && jsonDocument.isArray())
+  {
+    const auto locationsArray = jsonDocument.array();
+
+    if(locationsArray.isEmpty())
+    {
+      const QString msg = tr("No locations found for '%1'.");
+      emit errorMessage(msg);
+      return;
+    }
+
+    Locations locations;
+
+    for (auto location : locationsArray)
+    {
+      const auto locObject = location.toObject();
+      const auto language = m_config.language.split("_").first();
+      const auto locListObj = locObject.value(LOCAL_NAMES_KEY).toObject();
+
+      Location locationData;
+
+      locationData.location = locObject.value(NAME_KEY).toString();
+      locationData.translated = locListObj.value(language).toString();
+      locationData.latitude = locObject.value(LATITUDE_KEY).toDouble();
+      locationData.longitude = locObject.value(LONGITUDE_KEY).toDouble();
+      locationData.country = locObject.value(COUNTRY_KEY).toString();
+
+      auto country = locObject.value(COUNTRY_KEY).toString();
+      if (!country.isEmpty())
+      {
+        const auto countryCode = std::find_if(ISO3166.cbegin(), ISO3166.cend(), [&country](const QString &code)
+                                              { return code.compare(country, Qt::CaseInsensitive) == 0; });
+        if (countryCode != ISO3166.cend())
+          country = (ISO3166.key(*countryCode));
+      }
+      locationData.country = country;
+      locationData.region = locObject.value(STATE_KEY).toString();
+
+      locations << locationData;
+    }
+
+    emit foundLocations(locations);
   }
 }
 

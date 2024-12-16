@@ -21,6 +21,7 @@
 #include <WeatherDialog.h>
 #include <WeatherWidget.h>
 #include <PollutionWidget.h>
+#include <UVWidget.h>
 #include <Utils.h>
 #include <Provider.h>
 
@@ -111,6 +112,27 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
 
   m_tabWidget->addTab(pollutionTabContents, QIcon(), tr("Pollution"));
 
+  auto uvTabContents = new QWidget();
+  auto uvTabLayout = new QVBoxLayout();
+  uvTabLayout->setMargin(0);
+  uvTabLayout->setSpacing(0);
+  uvTabContents->setLayout(uvTabLayout);
+
+  m_uvChart = new QChartView;
+  m_uvChart->setRenderHint(QPainter::Antialiasing);
+  m_uvChart->setBackgroundBrush(QBrush{Qt::white});
+  m_uvChart->setRubberBand(QChartView::HorizontalRubberBand);
+  m_uvChart->setToolTip(tr("Ultraviolet radiation forecast for the next days."));
+  m_uvChart->setContentsMargins(0, 0, 0, 0);
+
+  m_uvError = new ErrorWidget(tr("Error requesting ultraviolet radiation data."));
+  m_uvError->setVisible(false);
+
+  uvTabLayout->addWidget(m_uvChart);
+  uvTabLayout->addWidget(m_uvError);
+
+  m_tabWidget->addTab(uvTabContents, QIcon(), tr("UV"));
+
   connect(m_reset, SIGNAL(clicked()),
           this,    SLOT(onResetButtonPressed()));
 
@@ -121,6 +143,8 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
           this,        SLOT(onTabChanged(int)));
 
   m_reset->setVisible(false);
+
+  updateUI(m_provider->capabilities());
 }
 
 //--------------------------------------------------------------------
@@ -609,6 +633,10 @@ void WeatherDialog::onResetButtonPressed()
       m_pollutionChart->chart()->zoomReset();
       applied = true;
       break;
+    case 3:
+      m_uvChart->chart()->zoomReset();
+      applied = true;
+      break;
     default:
       break;
   }
@@ -635,6 +663,7 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
   {
     case 1: currentChart = m_weatherChart; break;
     case 2: currentChart = m_pollutionChart; break;
+    case 3: currentChart = m_uvChart; break;
     default: break;
   }
   if(!currentChart) return;
@@ -650,6 +679,14 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
     {
       m_pollutionTooltip->hide();
       m_pollutionTooltip = nullptr;
+    }
+    else
+    {
+      if(currentChart == m_uvChart && m_uvTooltip)
+      {
+        m_uvTooltip->hide();
+        m_uvTooltip = nullptr;
+      }
     }
   }
 
@@ -686,6 +723,11 @@ void WeatherDialog::onChartHover(const QPointF& point, bool state)
           m_pollutionTooltip = std::make_shared<PollutionWidget>(m_pollution->at(closestPoint));
           tooltipWidget = m_pollutionTooltip.get();
         }
+        else if(currentChart == m_uvChart)
+        {
+          m_uvTooltip = std::make_shared<UVWidget>(m_uv->at(closestPoint));
+          tooltipWidget = m_uvTooltip.get();
+        }        
 
         if(tooltipWidget)
         {
@@ -719,12 +761,6 @@ void WeatherDialog::onLoadFinished(bool value)
 }
 
 //--------------------------------------------------------------------
-void WeatherDialog::setUVData(const UV &data)
-{
-  // TODO
-}
-
-//--------------------------------------------------------------------
 bool WeatherDialog::mapsEnabled() const
 {
   const auto capabilities = m_provider->capabilities();
@@ -741,8 +777,9 @@ bool WeatherDialog::mapsEnabled() const
 //--------------------------------------------------------------------
 void WeatherDialog::setWeatherProvider(std::shared_ptr<WeatherProvider> provider)
 {
-  // TODO
   m_provider = provider;
+
+  updateUI(provider->capabilities());
 }
 
 //--------------------------------------------------------------------
@@ -805,9 +842,201 @@ void WeatherDialog::onAreaChanged()
     case 2:
       m_reset->setEnabled(!m_pollutionError->isVisible() && m_pollutionChart->chart() && m_pollutionChart->chart()->isZoomed());
       break;
+    case 3:
+      m_reset->setEnabled(!m_uvError->isVisible() && m_uvChart->chart() && m_uvChart->chart()->isZoomed());
+      break;
     default:
       m_reset->setEnabled(false);
       break;
+  }
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::setUVData(const UV &data)
+{
+  m_uv = &data;
+
+  QString indexStr = tr("Unknown");
+  if(!data.isEmpty())
+  {
+    const auto index = static_cast<int>(std::nearbyint(data.first().idx));
+    switch(index)
+    {
+      case 0:
+      case 1:
+      case 2:
+        indexStr = tr("Low");
+        break;
+      case 3:
+      case 4:
+      case 5:
+        indexStr = tr("Moderate");
+        break;
+      case 6:
+      case 7:
+        indexStr = tr("High");
+        break;
+      case 8:
+      case 9:
+      case 10:
+        indexStr = tr("Very high");
+        break;
+      default:
+        indexStr = tr("Extreme");
+        break;
+    }
+  }
+  m_uvi->setText(indexStr);
+
+  if(m_uv->isEmpty())
+  {
+    m_uvChart->hide();
+    m_uvError->show();
+    m_tabWidget->setTabIcon(3, QIcon(":/TrayWeather/network_error.svg"));
+  }
+  else
+  {
+    m_uvChart->show();
+    m_uvError->hide();
+    m_tabWidget->setTabIcon(3, QIcon());
+
+    auto axisX = new QDateTimeAxis();
+    axisX->setLabelsAngle(45);
+    axisX->setFormat("dd (hh)");
+    axisX->setTitleText(tr("Day (Hour)"));
+
+    auto axisY = new QValueAxis();
+    axisY->setLabelFormat("%i");
+    axisY->setTitleText(tr("Ultraviolet radiation index"));
+
+    const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
+
+    auto uvChart = new QChart();
+    uvChart->legend()->setVisible(true);
+    uvChart->legend()->setAlignment(Qt::AlignBottom);
+    uvChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
+    uvChart->setAnimationDuration(400);
+    uvChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
+    uvChart->setAnimationOptions(QChart::AllAnimations);
+    uvChart->addAxis(axisX, Qt::AlignBottom);
+    uvChart->addAxis(axisY, Qt::AlignLeft);
+    uvChart->setBackgroundVisible(false);
+    uvChart->setTheme(theme);
+
+    const auto linesColor = m_config->lightTheme ? Qt::darkGray : Qt::lightGray;
+
+    axisX->setGridLineVisible(true);
+    axisX->setGridLineColor(linesColor);
+    axisX->setMinorGridLineVisible(true);
+    axisX->setMinorGridLineColor(linesColor);
+    axisY->setGridLineVisible(true);
+    axisY->setGridLineColor(linesColor);
+    axisY->setMinorGridLineVisible(true);
+    axisY->setMinorGridLineColor(linesColor);
+
+    auto titleFont = axisX->titleFont();
+    titleFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+    titleFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, 1);
+    titleFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+    titleFont.setBold(true);
+
+    auto labelsFont = axisX->labelsFont();
+    labelsFont.setHintingPreference(QFont::HintingPreference::PreferFullHinting);
+    labelsFont.setStyleStrategy(QFont::StyleStrategy::PreferQuality);
+    labelsFont.setBold(false);
+
+    uvChart->setFont(titleFont);
+    axisX->setTitleFont(titleFont);
+    axisX->setLabelsFont(labelsFont);
+    axisY->setTitleFont(titleFont);
+    axisY->setLabelsFont(labelsFont);
+
+    QPen pen;
+    pen.setWidth(2);
+    pen.setColor(QColor{90,90,235});
+
+    auto uvLine = new QSplineSeries(uvChart);
+    uvLine->setName(tr("UV Index"));
+    uvLine->setUseOpenGL(true);
+    uvLine->setPointsVisible(true);
+    uvLine->setPen(pen);
+
+    QLinearGradient plotAreaGradient;
+    plotAreaGradient.setStart(QPointF(0, 0));
+    plotAreaGradient.setFinalStop(QPointF(1, 0));
+    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+
+    struct tm t;
+    for(int i = 0; i < data.size(); ++i)
+    {
+      const auto &entry = data.at(i);
+
+      unixTimeStampToDate(t, entry.dt);
+      auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+      const auto msec = dtTime.toMSecsSinceEpoch();
+
+      uvLine->append(msec, entry.idx);
+
+      auto color = uvColor(entry.idx);
+      if(static_cast<int>(std::nearbyint(entry.idx)) == 0) color = m_config->lightTheme ? this->palette().base().color() : QColor("#232629");
+      color.setAlpha(210);
+      plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), color);
+    }
+
+    uvChart->setPlotAreaBackgroundBrush(plotAreaGradient);
+    uvChart->setPlotAreaBackgroundVisible(true);
+
+    uvChart->addSeries(uvLine);
+    uvChart->setAxisX(axisX, uvLine);
+    uvChart->setAxisY(axisY, uvLine);
+
+    connect(uvLine, SIGNAL(hovered(const QPointF &, bool)),
+            this,   SLOT(onChartHover(const QPointF &, bool)));
+
+    updateAxesRanges(uvChart);
+
+    const auto scale = dpiScale();
+    if(scale != 1.)
+    {
+      auto font = uvChart->legend()->font();
+      font.setPointSize(font.pointSize()*scale);
+      uvChart->legend()->setFont(font);
+
+      font = axisX->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisX->setTitleFont(font);
+
+      font = axisY->titleFont();
+      font.setPointSize(font.pointSize()*scale);
+      axisY->setTitleFont(font);
+
+      uvChart->adjustSize();
+    }
+
+    auto oldChart = m_uvChart->chart();
+    m_uvChart->setChart(uvChart);
+    m_uvChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));
+
+    connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+            this,  SLOT(onAreaChanged()));
+    connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+            this,  SLOT(onUVAreaChanged(QDateTime, QDateTime)));
+
+    if(oldChart)
+    {
+      auto axis = qobject_cast<QDateTimeAxis *>(oldChart->axisX());
+      if(axis)
+      {
+        disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                   this, SLOT(onAreaChanged()));
+        disconnect(axis, SIGNAL(rangeChanged(QDateTime, QDateTime)),
+                   this, SLOT(onUVAreaChanged(QDateTime, QDateTime)));
+      }
+
+      delete oldChart;
+    }
+
+    onResetButtonPressed();
   }
 }
 
@@ -1076,6 +1305,53 @@ void WeatherDialog::onPollutionAreaChanged(QDateTime begin, QDateTime end)
   }
 
   auto chart = m_pollutionChart->chart();
+  chart->setPlotAreaBackgroundBrush(plotAreaGradient);
+  chart->setPlotAreaBackgroundVisible(true);
+  chart->update();
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::onUVAreaChanged(QDateTime begin, QDateTime end)
+{
+  QLinearGradient plotAreaGradient;
+  plotAreaGradient.setStart(QPointF(0, 0));
+  plotAreaGradient.setFinalStop(QPointF(1, 0));
+  plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+
+  auto interpolateDt = [&begin, &end](const long long int dt)
+  {
+    return static_cast<double>(dt-begin.toMSecsSinceEpoch())/(end.toMSecsSinceEpoch()-begin.toMSecsSinceEpoch());
+  };
+
+  struct tm t;
+  for(int i = 0; i < m_uv->size(); ++i)
+  {
+    const auto &entry = m_uv->at(i);
+
+    unixTimeStampToDate(t, entry.dt);
+    const auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+    const auto msec = dtTime.toMSecsSinceEpoch();
+
+    auto color = uvColor(entry.idx);
+    if(static_cast<int>(std::nearbyint(entry.idx)) == 0) color = m_config->lightTheme ? this->palette().base().color() : QColor("#232629");
+    color.setAlpha(210);
+
+    if(msec < begin.toMSecsSinceEpoch())
+    {
+      plotAreaGradient.setColorAt(0., color);
+      continue;
+    }
+
+    if(msec > end.toMSecsSinceEpoch())
+    {
+      plotAreaGradient.setColorAt(1., color);
+      break;
+    }
+
+    plotAreaGradient.setColorAt(interpolateDt(msec), color);
+  }
+
+  auto chart = m_uvChart->chart();
   chart->setPlotAreaBackgroundBrush(plotAreaGradient);
   chart->setPlotAreaBackgroundVisible(true);
   chart->update();
@@ -1392,6 +1668,12 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
   for(const auto &s: stops) plotAreaGradient.setColorAt(s.first, s.second);
 
   return plotAreaGradient;
+}
+
+//--------------------------------------------------------------------
+void WeatherDialog::updateUI(const ProviderCapabilities &capabilities)
+{
+  // TODO
 }
 
 //--------------------------------------------------------------------

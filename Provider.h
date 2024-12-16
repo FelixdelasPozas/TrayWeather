@@ -27,13 +27,14 @@ class QNetworkReply;
 
 // Project
 #include <Utils.h>
+#include <LocationFinderDialog.h>
 class Configuration;
 
 // C++
 #include <memory>
 
 // List of providers
-static const QString OWM_25_PROVIDER = "OpenWeatherMap2.5";
+static const QString OWM_25_PROVIDER = "OpenWeatherMap 2.5 API";
 static const QStringList WEATHER_PROVIDERS = { OWM_25_PROVIDER };
 
 /** \struct ProviderCapabilities
@@ -45,7 +46,8 @@ struct ProviderCapabilities
   bool hasWeatherForecast;   /** true if provides weather forecast and false otherwise. */
   bool hasPollutionForecast; /** true if provides pollution forecast and false otherwise. */
   bool hasUVForecast;        /** true if provides UV forecast and false otherwise. */
-  bool hasMaps;              /** true if provides interactive maps. */
+  bool hasMaps;              /** true if provides interactive maps and false otherwise. */
+  bool hasGeoLocation;       /** true if provides geolocation services and false otherise. */
   bool requiresKey;          /** true if the provider requires a key to request data. */
 
   /** \brief ProviderCapabilities struct constructor. 
@@ -53,17 +55,18 @@ struct ProviderCapabilities
    * \param[in] forecast true if provides weather forecast and false otherwise.
    * \param[in] pollution true if provides pollution forecast and false otherwise.
    * \param[in] uv true if provides UV forecast and false otherwise.
-   * \param[in] maps true if provides interactive maps.
+   * \param[in] maps true if provides interactive maps and false otherwise.
+   * \param[in] location true if provices geolocation and false otherwise. 
    * \param[in] key true if the provider requires a key to request data.
    */
-  ProviderCapabilities(const bool weather, const bool forecast, const bool pollution, const bool uv, const bool maps, const bool key)
-  : hasCurrentWeather{weather}, hasWeatherForecast{forecast}, hasPollutionForecast{pollution}, hasUVForecast{uv}, hasMaps{maps}, requiresKey{key}
+  ProviderCapabilities(const bool weather, const bool forecast, const bool pollution, const bool uv, const bool maps, const bool location, const bool key)
+  : hasCurrentWeather{weather}, hasWeatherForecast{forecast}, hasPollutionForecast{pollution}, hasUVForecast{uv}, hasMaps{maps}, hasGeoLocation{location}, requiresKey{key}
   {};
 
   /** \brief ProviderCapabilities struct empty constructor.
    */
   ProviderCapabilities()
-  : ProviderCapabilities(false, false, false, false, false, false)
+  : ProviderCapabilities(false, false, false, false, false, false, false)
   {};
 };
 
@@ -152,15 +155,35 @@ class WeatherProvider
     {};
 
     /**
-     * @brief Returns the name of the provider.
+     * @brief Returns the id of the provider.
      */
-    QString name() const
+    inline QString id() const
     { return m_name; };
+
+    /** \brief Returns the name of the provider. 
+     *
+     */
+    virtual QString name() const
+    { return QString(); };
+
+    /** \brief Returns the web site of the data provider. 
+     *
+     */
+    virtual QString website() const
+    { return QString(); };
 
     /** \brief Processes the information of the network reply.
      * \param[in] reply Network reply information.
+     *
      */
     virtual void processReply(QNetworkReply *reply) = 0;
+
+    /** \brief Processes the information of the network reply.
+     * \param[in] reply Network reply information.
+     *
+     */
+     virtual void searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const
+     {};
 
   signals:
     void weatherDataReady();
@@ -169,6 +192,7 @@ class WeatherProvider
     void uvForecastDataReady();
     void apiKeyValid(bool);
     void errorMessage(const QString &);
+    void foundLocations(const Locations &locations);
 
   protected:
     /** \brief Loads provider settings from the registry.
@@ -179,7 +203,7 @@ class WeatherProvider
      */
     virtual void saveSettings(){};
 
-    const QString m_name;    /** Weather provider name */
+    const QString m_name;    /** Weather provider id */
     Configuration &m_config; /** Application configuration */
     bool m_keyValid;         /** true when checking the api key and false otherwise. */
     ForecastData m_current;  /** current weather data. */
@@ -216,6 +240,9 @@ class OWM25Provider
     virtual void setApiKey(const QString &key) override;
     virtual void testApiKey(std::shared_ptr<QNetworkAccessManager> netManager) override;
     virtual void processReply(QNetworkReply *reply) override;
+    virtual QString name() const override;
+    virtual QString website() const override;
+    virtual void searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const override;
 
   protected:
     virtual void loadSettings() override;
@@ -226,16 +253,22 @@ class OWM25Provider
     const QString INVALID_MSG = QString("Invalid API key");
 
     /** \brief Processes the weather forecast data stream.
-     * \param contents Contents of network reply.
+     * \param[in] contents Contents of the network reply.
      *
      */
     void processWeatherData(const QByteArray &contents);
 
     /** \brief Processes the pollution data stream.
-     * \param contents Contents of network reply.
+     * \param[in] contents Contents of the network reply.
      *
      */
     void processPollutionData(const QByteArray &contents);
+
+    /** \brief Processes the locations data stream.
+     * \param[in] contents Contents of the network reply.
+     *
+     */
+    void processLocationsData(const QByteArray &contents);
 
     QString m_apiKey;       /** provider api key */
     bool m_apiKeyValid;     /** true if the api key is valid and false otherwise. */

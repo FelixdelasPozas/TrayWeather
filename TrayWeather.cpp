@@ -68,9 +68,9 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 
   qApp->installNativeEventFilter(&m_eventFilter);
 
-  if(!m_configuration.provider.isEmpty())
+  if(!m_configuration.providerId.isEmpty())
   {
-    m_provider = WeatherProviderFactory::createProvider(m_configuration.provider, m_configuration);
+    m_provider = WeatherProviderFactory::createProvider(m_configuration.providerId, m_configuration);
   }
 
   connectSignals();
@@ -136,15 +136,7 @@ void TrayWeather::showConfiguration()
 {
   if(m_configDialog)
   {
-    if(m_aboutDialog)
-    {
-      m_aboutDialog->raise();
-    }
-    else
-    {
-      m_configDialog->raise();
-    }
-
+    m_configDialog->raise();
     return;
   }
 
@@ -251,7 +243,7 @@ void TrayWeather::showConfiguration()
                                                                               configuration.windUnits != m_configuration.windUnits ||
                                                                               configuration.pressureUnits != m_configuration.pressureUnits));
                                                                               
-    const auto changedProvider      = (configuration.provider != m_configuration.provider);
+    const auto changedProvider      = (configuration.providerId != m_configuration.providerId);
 
     if(changedIP || changedMethod || changedCoords || changedRoaming)
     {
@@ -277,7 +269,7 @@ void TrayWeather::showConfiguration()
     if(changedProvider)
     {
       disconnectProviderSignals();
-      m_provider = WeatherProviderFactory::createProvider(configuration.provider, m_configuration);
+      m_provider = WeatherProviderFactory::createProvider(configuration.providerId, m_configuration);
       connectProviderSignals();
 
       const auto capabilities = m_provider->capabilities();
@@ -287,7 +279,7 @@ void TrayWeather::showConfiguration()
       actions.at(3)->setEnabled(capabilities.hasUVForecast);
       actions.at(4)->setEnabled(capabilities.hasMaps);
 
-      m_configuration.provider = configuration.provider;
+      m_configuration.providerId = configuration.providerId;
       requestNewData = true;
     }
 
@@ -306,18 +298,24 @@ void TrayWeather::showConfiguration()
 
     if(m_weatherDialog)
     {
+      const auto capabilites = m_provider->capabilities();
       if(!requestNewData)
       {
         m_weatherDialog->setWeatherProvider(m_provider);
 
         if(validData())
         {
-          m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
+          m_weatherDialog->setWeatherData(m_current, capabilites.hasWeatherForecast ? m_data : Forecast(), m_configuration);
         }
 
-        if(!m_pData.isEmpty())
+        if(capabilites.hasPollutionForecast && !m_pData.isEmpty())
         {
           m_weatherDialog->setPollutionData(m_pData);
+        }
+
+        if(capabilites.hasUVForecast && !m_vData.isEmpty())
+        {
+          m_weatherDialog->setUVData(m_vData);
         }
       }
     }
@@ -757,6 +755,12 @@ QString TrayWeather::tooltipText() const
           fieldsText << QString("PM10: ") + QString("%1%2").arg(data.pm10).arg(pollutionUnits);
         }
         break;
+      case TooltipText::UV:
+        if(!m_vData.empty())
+        {
+          const auto index = static_cast<int>(std::nearbyint(m_vData.first().idx));
+          fieldsText << QString("UV: ") + QString("%1").arg(index);
+        }
       default:
         break;
     }
@@ -853,6 +857,15 @@ void TrayWeather::exitApplication()
 //--------------------------------------------------------------------
 void TrayWeather::showAboutDialog()
 {
+  if(m_configDialog)
+  {
+     m_aboutDialog->raise();
+     return;
+  }
+
+  if(m_weatherDialog)
+     m_weatherDialog->close();
+
   if(m_aboutDialog)
   {
     m_aboutDialog->raise();
@@ -939,6 +952,15 @@ void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
 //--------------------------------------------------------------------
 void TrayWeather::showTab()
 {
+  if(m_aboutDialog)
+    m_aboutDialog->close();
+
+  if(m_configDialog)
+  {
+    m_configDialog->raise();
+    return;
+  }
+
   static int lastTab = 0;
 
   const auto caller = qobject_cast<QAction *>(sender());
@@ -964,22 +986,7 @@ void TrayWeather::showTab()
 
   if(m_weatherDialog)
   {
-    if(m_aboutDialog)
-    {
-      m_aboutDialog->raise();
-    }
-    else
-    {
-      if(m_configDialog)
-      {
-        m_configDialog->raise();
-      }
-      else
-      {
-        m_weatherDialog->raise();
-      }
-    }
-
+    m_weatherDialog->raise();
     m_weatherDialog->m_tabWidget->setCurrentIndex(lastTab);
     return;
   }

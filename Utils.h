@@ -155,6 +155,45 @@ static const QList<IconThemeData> ICON_THEMES = { { "FlatIcon Colored", "flatico
                                                   { "Climacons",        "climacons",     false, "http://adamwhitcroft.com/"}
 };
 
+/** \struct Location
+ * \brief Just a struct to return the selected location information.
+ *
+ */
+struct Location
+{
+    QString location;   /** location name.            */
+    QString translated; /** location name translated. */
+    float latitude;     /** latitude coordinate       */
+    float longitude;    /** longitude coordinate      */
+    QString country;    /** country                   */
+    QString region;     /** region/state              */
+
+    /** \brief Location constructor.
+     * \param[in] loc  Location name.
+     * \param[in] lat  Latitude coordinate.
+     * \param[in] lon  Longitude coordinate.
+     * \param[in] coun  Country.
+     * \param[in] reg  Region/State.
+     */
+    explicit Location(const QString &loc, const QString &trans, const float lat, const float lon, const QString &coun, const QString &reg)
+    : location{loc}, translated{trans}, latitude{lat}, longitude{lon}, country{coun}, region{reg}
+    {
+    }
+
+    /** \brief Location empty constructor.
+     *
+     */
+    Location()
+    : location{""}, translated{""}, latitude{0.f}, longitude{0.f}, country{""}, region{""} {};
+
+    bool isValid() const
+    {
+      return !location.isEmpty();
+    }
+};
+
+using Locations = QList<Location>;
+
 /** \struct Configuration
  * \brief Contains the application configuration.
  *
@@ -167,7 +206,7 @@ struct Configuration
     QString            region;          /** location's region.                                          */
     QString            city;            /** location's city.                                            */
     QString            ip;              /** internet address.                                           */
-    QString            provider;        /** weather provider name                                       */
+    QString            providerId;      /** weather provider name                                       */
     Units              units;           /** measurement units.                                          */
     unsigned int       updateTime;      /** time between updates.                                       */
     bool               mapsEnabled;     /** true if maps tab is visible, false otherwise.               */
@@ -223,7 +262,7 @@ struct Configuration
     , region          {"Unknown"}
     , city            {"Unknown"}
     , ip              {"Unknown"}
-    , provider        {""}
+    , providerId      {""}
     , units           {Units::METRIC}
     , updateTime      {15}
     , mapsEnabled     {false}
@@ -274,7 +313,7 @@ struct Configuration
     {
       return (latitude <= 90.0) &&   (latitude >= -90.0) &&
              (longitude <= 180.0) && (longitude >= -180.0) &&
-             !provider.isEmpty();
+             !providerId.isEmpty();
     }
 };
 

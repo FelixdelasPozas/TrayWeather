@@ -48,6 +48,15 @@
 
 const char SELECTED[] = "Selected";
 
+const QString PROVIDER_KEY_TEXT = QObject::tr("<html><head/><body><p>To obtain weather forecast data from %1 for your location an " 
+                                              "API Key must be obtained from the <a href=\"%2\"><span style=\"text-decoration:" 
+                                              "underline; color:#0000ff;\">website</span></a>.</p></body></html>");
+
+const QString PROVIDER_NO_TEXT = QObject::tr("%1 doesn't require any configuration.");
+
+const QString GEOLOCATION_AVAILABLE = QObject::tr("Get the coordinates of a location.");
+const QString GEOLOCATION_UNAVAILABLE = QObject::tr("Current provider does not have Geo-Location capability.");
+
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
 : QDialog       {parent}
@@ -203,6 +212,19 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     }
   }
 
+  if(!message.isEmpty() || !details.isEmpty())
+  {
+    QMessageBox msgbox(this);
+    msgbox.setWindowTitle(tr("Network Error"));
+    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+    msgbox.setDetailedText(details);
+    msgbox.setText(message);
+    msgbox.setBaseSize(400, 400);
+    msgbox.exec();
+
+    return;
+  }
+
   if(m_provider)
   {
     m_provider->processReply(reply);
@@ -217,7 +239,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.city            = m_city->text();
   configuration.country         = m_country->text();
   configuration.ip              = m_ip->text();
-  configuration.provider        = m_testedAPIKey ? m_provider->name() : QString();
+  configuration.providerId        = m_testedAPIKey ? m_provider->id() : QString();
   configuration.region          = m_region->text();
   configuration.updateTime      = m_updateTime->value();
   configuration.units           = static_cast<Units>(m_unitsComboBox->currentIndex());
@@ -730,7 +752,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   onIconThemeIndexChanged(static_cast<int>(configuration.iconTheme));
 
   connectSignals();
-  connectProviderSignals();
+  onProviderChanged(WEATHER_PROVIDERS.indexOf(configuration.providerId));
 
   m_useManual->setChecked(!configuration.useGeolocation);
   m_useGeolocation->setChecked(configuration.useGeolocation);
@@ -850,7 +872,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
     m_latitude->setText(QString::number(configuration.latitude));
     m_longitude->setText(QString::number(configuration.longitude));
 
-    const auto position = WEATHER_PROVIDERS.indexOf(configuration.provider);
+    const auto position = WEATHER_PROVIDERS.indexOf(configuration.providerId);
     m_providerComboBox->setCurrentIndex(position == -1 ? 0 : position);
   }
 
@@ -861,7 +883,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   if(configuration.isValid())
   {
     if(m_provider->capabilities().requiresKey)
-      m_provider->testApiKey(m_netManager);
+      requestAPIKeyTest();
   }
   else
   {
@@ -1360,9 +1382,9 @@ void ConfigurationDialog::onIconTypeChanged(int value)
 //--------------------------------------------------------------------
 void ConfigurationDialog::onSearchButtonClicked()
 {
-  if(!m_testedAPIKey)
+  if(m_provider && m_provider->capabilities().requiresKey && !m_testedAPIKey)
   {
-    const QString message = "Location search requires a valid OpenWeatherMap key.";
+    const QString message = "Location search requires a valid weather provider API key.";
 
     QMessageBox msgbox(this);
     msgbox.setWindowTitle(tr("Network Error"));
@@ -1373,15 +1395,8 @@ void ConfigurationDialog::onSearchButtonClicked()
     return;
   }
 
-  const auto currentLang = TRANSLATIONS.at(m_languageCombo->currentIndex());
-  const auto languaje = currentLang.file.split("_").first();
-  
-  disconnect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
-
-  LocationFinderDialog dialog(m_apikey->text(), languaje, m_netManager.get(), this);
+  LocationFinderDialog dialog(m_provider, m_netManager, this);
   const auto result = dialog.exec();
-
-  connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
 
   if(result == QDialog::Accepted)
   {
@@ -1406,33 +1421,52 @@ void ConfigurationDialog::onSearchButtonClicked()
 //--------------------------------------------------------------------
 void ConfigurationDialog::onProviderChanged(int index)
 {
-  if(index < 0) return;
-  const auto name = WEATHER_PROVIDERS.at(index);
+  if(index < 0) index = 0;
+  const auto id = WEATHER_PROVIDERS.at(index);
 
-  if(!m_provider || m_provider->name().compare(name) != 0)
+  if(!m_provider || m_provider->id().compare(id) != 0)
   {
-    if(m_provider) disconnectProviderSignals();
+    disconnectProviderSignals();
 
     Configuration config;
     getConfiguration(config);
-    config.provider = name;
+    config.providerId = id;
 
-    m_provider = WeatherProviderFactory::createProvider(name, config);
+    m_provider = WeatherProviderFactory::createProvider(id, config);
     connectProviderSignals();
   }
 
   const auto size = m_forecastLabel->size().height();
+  for(auto &widget: {m_weatherCheck, m_pollutionCheck, m_uvCheck, m_mapsCheck, m_locationCheck })
+    widget->setMaximumSize(QSize{size, size});
+
   const auto yesIcon = QIcon(":/TrayWeather/yes-check.svg").pixmap(QSize(size,size));
   const auto noIcon = QIcon(":/TrayWeather/no-cross.svg").pixmap(QSize(size, size));
+
   const auto capabilities = m_provider->capabilities();
   m_weatherCheck->setPixmap(capabilities.hasWeatherForecast ? yesIcon : noIcon );
   m_pollutionCheck->setPixmap(capabilities.hasPollutionForecast ? yesIcon : noIcon );
   m_uvCheck->setPixmap(capabilities.hasUVForecast ? yesIcon : noIcon );
   m_mapsCheck->setPixmap(capabilities.hasMaps ? yesIcon : noIcon );
+  m_locationCheck->setPixmap(capabilities.hasGeoLocation ? yesIcon : noIcon );
+
+  m_geoFind->setEnabled(capabilities.hasGeoLocation);
+  m_geoFind->setToolTip(capabilities.hasGeoLocation ? GEOLOCATION_AVAILABLE : GEOLOCATION_UNAVAILABLE );
 
   m_keyBox->setEnabled(capabilities.requiresKey);
   if(capabilities.requiresKey)
+  {
     m_apikey->setText(m_provider->apikey());
+    m_providerConfigText->setText(PROVIDER_KEY_TEXT.arg(m_provider->name()).arg(m_provider->website()));
+
+    if(!m_provider->apikey().isEmpty())
+      requestAPIKeyTest();
+  }
+  else
+  {
+    m_apikey->setText("");
+    m_providerConfigText->setText(PROVIDER_NO_TEXT.arg(m_provider->name()));
+  }
 }
 
 //--------------------------------------------------------------------
