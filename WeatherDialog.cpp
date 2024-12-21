@@ -1673,7 +1673,27 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
 //--------------------------------------------------------------------
 void WeatherDialog::updateUI(const ProviderCapabilities &capabilities)
 {
-  // TODO
+  if(!capabilities.hasMaps)
+  {
+    if(mapsEnabled()) removeMaps();
+    m_mapsButton->setVisible(false);
+  }
+
+  if(!capabilities.hasUVForecast)
+  {
+    m_tabWidget->removeTab(3);
+    m_uvi->setVisible(false);
+    m_uvLabel->setVisible(false);
+  }
+
+  if(!capabilities.hasPollutionForecast)
+  {
+    m_tabWidget->removeTab(2);
+    m_air_quality->setVisible(false);
+    m_airLabel->setVisible(false);
+  } 
+  
+  if(!capabilities.hasWeatherForecast)   m_tabWidget->removeTab(1);
 }
 
 //--------------------------------------------------------------------

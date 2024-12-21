@@ -34,13 +34,17 @@
 // C++
 #include <chrono>
 
-// OpenWeatherMap Geolocation JSON keys.
-const QString NAME_KEY = "name";
-const QString LOCAL_NAMES_KEY = "local_names";
-const QString LATITUDE_KEY = "lat";
-const QString LONGITUDE_KEY = "lon";
-const QString COUNTRY_KEY = "country";
-const QString STATE_KEY = "state";
+//----------------------------------------------------------------------------
+std::unique_ptr<WeatherProvider> WeatherProviderFactory::createProvider(const QString &name, Configuration &config)
+{
+  if(name.compare(OWM_25_PROVIDER) == 0)
+    return std::make_unique<OWM25Provider>(config);
+
+  if(name.compare(OPENMETEO_PROVIDER) == 0)    
+    return std::make_unique<OpenMeteoProvider>(config);
+  
+  return nullptr;
+}
 
 //----------------------------------------------------------------------------
 WeatherProvider::WeatherProvider(const QString &name, Configuration &config)
@@ -57,18 +61,7 @@ WeatherProvider::~WeatherProvider()
   saveSettings();
 }
 
-//----------------------------------------------------------------------------
-OWM25Provider::OWM25Provider(Configuration &config)
-: WeatherProvider(OWM_25_PROVIDER, config)
-{
-}
-
-//----------------------------------------------------------------------------
-ProviderCapabilities OWM25Provider::capabilities() const
-{
-  return ProviderCapabilities(true, true, true, false, true, true, true);
-}
-
+// OpenWeatherMap 2.5 API ----------------------------------------------------
 //----------------------------------------------------------------------------
 void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManager) const
 {
@@ -229,19 +222,6 @@ QString OWM25Provider::mapsPage() const
 }
 
 //----------------------------------------------------------------------------
-QString OWM25Provider::apikey() const
-{
-  return m_apiKey;
-}
-
-//----------------------------------------------------------------------------
-void OWM25Provider::setApiKey(const QString &key)
-{
-  if(!key.isEmpty())
-    m_apiKey = key;
-}
-
-//----------------------------------------------------------------------------
 void OWM25Provider::processReply(QNetworkReply *reply)
 {
   const auto originUrl = reply->request().url().toString();
@@ -292,18 +272,6 @@ void OWM25Provider::processReply(QNetworkReply *reply)
       }
     }
   }
-}
-
-//----------------------------------------------------------------------------
-QString OWM25Provider::name() const
-{
-  return "OpenWeatherMap";
-}
-
-//----------------------------------------------------------------------------
-QString OWM25Provider::website() const
-{
-  return "https://openweathermap.org/appid";
 }
 
 //----------------------------------------------------------------------------
@@ -443,6 +411,14 @@ void OWM25Provider::processLocationsData(const QByteArray &contents)
 
   if (!jsonDocument.isNull() && jsonDocument.isArray())
   {
+    // OpenWeatherMap Geolocation JSON keys.
+    const QString NAME_KEY = "name";
+    const QString LOCAL_NAMES_KEY = "local_names";
+    const QString LATITUDE_KEY = "lat";
+    const QString LONGITUDE_KEY = "lon";
+    const QString COUNTRY_KEY = "country";
+    const QString STATE_KEY = "state";
+
     const auto locationsArray = jsonDocument.array();
 
     if(locationsArray.isEmpty())
@@ -504,13 +480,51 @@ void OWM25Provider::testApiKey(std::shared_ptr<QNetworkAccessManager> netManager
   netManager->get(QNetworkRequest{url});
 }
 
+// Open-Meteo API ------------------------------------------------------------
 //----------------------------------------------------------------------------
-std::unique_ptr<WeatherProvider> WeatherProviderFactory::createProvider(const QString &name, Configuration &config)
+void OpenMeteoProvider::requestData(std::shared_ptr<QNetworkAccessManager> netManager) const
 {
-  std::unique_ptr<WeatherProvider> provider = nullptr;
+  QString lang = "en";
+  if(!m_config.language.isEmpty() && m_config.language.contains('_'))
+  {
+    const auto settings_lang = m_config.language.split('_').first();
+    if(OWM_LANGUAGES.contains(settings_lang, Qt::CaseSensitive)) lang = settings_lang;
 
-  if(name.compare(OWM_25_PROVIDER) == 0)
-    provider = std::make_unique<OWM25Provider>(config);
-  
-  return provider;
+    const auto settings_compl = m_config.language.toLower();
+    if(OWM_LANGUAGES.contains(settings_compl, Qt::CaseInsensitive)) lang = settings_compl;
+  }
+
+  // TODO
+
+  // auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_config.latitude)
+  //                                                                                                                  .arg(m_config.longitude)
+  //                                                                                                                  .arg(lang)
+  //                                                                                                                  .arg(unitsToText(m_config.units))
+  //                                                                                                                  .arg("")};
+  // netManager->get(QNetworkRequest{url});
+
+}
+
+//----------------------------------------------------------------------------
+void OpenMeteoProvider::processReply(QNetworkReply *reply)
+{
+  // TODO
+}
+
+//----------------------------------------------------------------------------
+void OpenMeteoProvider::searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const
+{
+  // TODO
+}
+
+//----------------------------------------------------------------------------
+void OpenMeteoProvider::processForecastData(const QByteArray &contents)
+{
+  // TODO
+}
+
+//----------------------------------------------------------------------------
+void OpenMeteoProvider::processLocationsData(const QByteArray &contents)
+{
+  // TODO
 }

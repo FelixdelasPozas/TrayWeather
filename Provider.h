@@ -35,7 +35,8 @@ class Configuration;
 
 // List of providers
 static const QString OWM_25_PROVIDER = "OpenWeatherMap 2.5 API";
-static const QStringList WEATHER_PROVIDERS = { OWM_25_PROVIDER };
+static const QString OPENMETEO_PROVIDER = "OpenMeteo API";
+static const QStringList WEATHER_PROVIDERS = { OWM_25_PROVIDER, OPENMETEO_PROVIDER };
 
 /** \struct ProviderCapabilities
  * \brief Describes the capabilities of the weather provider.
@@ -70,9 +71,9 @@ struct ProviderCapabilities
   {};
 };
 
-/**
- * @class WeatherProvider
- * @brief Base class of weather providers.
+/** \class WeatherProvider
+ * \brief Base class of weather providers.
+ *
  */
 class WeatherProvider
 : public QObject
@@ -212,36 +213,48 @@ class WeatherProvider
     UV m_uv;                 /** uv forecast data. */
 };
 
-/**
- * @class OWM25Provider
- * @brief Weather provider that uses OpenWeatherMap 2.5 API.
+/** \class OWM25Provider
+ * \brief Weather provider that uses OpenWeatherMap 2.5 API.
+ *
  */
 class OWM25Provider
 : public WeatherProvider
 {
     Q_OBJECT
   public:
-    /**
-     * @brief OMV25Provider class constructor.
-     * @param config Application configuration information.
+    /** \brief OMV25Provider class constructor.
+     * \param[in] config Application configuration information.
+     *
      */
-    OWM25Provider(Configuration &config);
+    OWM25Provider(Configuration &config)
+    : WeatherProvider(OWM_25_PROVIDER, config)
+    {};
 
-    /**
-     * @brief OWM25Provider class virtual destructor.
+    /** \brief OWM25Provider class virtual destructor.
+     *
      */
     virtual ~OWM25Provider()
     {};
 
-    virtual ProviderCapabilities capabilities() const override;
+    virtual ProviderCapabilities capabilities() const override
+    { return ProviderCapabilities(true, true, true, false, true, true, true); }
+
+    virtual QString apikey() const override
+    { return m_apiKey; };
+
+    virtual void setApiKey(const QString &key) override
+    { if(!key.isEmpty()) m_apiKey = key; };
+
+    virtual QString name() const override
+    { return "OpenWeatherMap"; };
+
+    virtual QString website() const override
+    { return "https://openweathermap.org/appid"; };
+
     virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) const override;
     virtual QString mapsPage() const override;
-    virtual QString apikey() const override;
-    virtual void setApiKey(const QString &key) override;
     virtual void testApiKey(std::shared_ptr<QNetworkAccessManager> netManager) override;
     virtual void processReply(QNetworkReply *reply) override;
-    virtual QString name() const override;
-    virtual QString website() const override;
     virtual void searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const override;
 
   protected:
@@ -272,6 +285,56 @@ class OWM25Provider
 
     QString m_apiKey;       /** provider api key */
     bool m_apiKeyValid;     /** true if the api key is valid and false otherwise. */
+};
+
+/** \class OWM25Provider
+ * \brief Weather provider that uses OpenWeatherMap 2.5 API.
+ *
+ */
+class OpenMeteoProvider
+: public WeatherProvider
+{
+    Q_OBJECT
+  public:
+    /** \brief OpenMeteo class constructor.
+     * \param[in] config Application configuration information.
+     *
+     */
+    OpenMeteoProvider(Configuration &config)
+    : WeatherProvider(OPENMETEO_PROVIDER, config)
+    {};
+
+    /** \brief OWM25Provider class virtual destructor.
+     *
+     */
+    virtual ~OpenMeteoProvider()
+    {};
+
+    virtual ProviderCapabilities capabilities() const override
+    { return ProviderCapabilities(true, true, true, true, false, true, false); };
+
+    virtual QString name() const override
+    { return "Open-Meteo"; };
+
+    virtual QString website() const override
+    { return "https://open-meteo.com/"; };
+
+    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) const override;
+    virtual void processReply(QNetworkReply *reply) override;
+    virtual void searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const override;
+
+  private:
+    /** \brief Processes the weather forecast data stream.
+     * \param[in] contents Contents of the network reply.
+     *
+     */
+    void processForecastData(const QByteArray &contents);
+
+    /** \brief Processes the locations data stream.
+     * \param[in] contents Contents of the network reply.
+     *
+     */
+    void processLocationsData(const QByteArray &contents);
 };
 
 /** \class WeatherProviderFactory
