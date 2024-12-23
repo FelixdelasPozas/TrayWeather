@@ -249,77 +249,6 @@ QDebug operator <<(QDebug d, const ForecastData& data)
 }
 
 //--------------------------------------------------------------------
-void parseForecastEntry(const QJsonObject& entry, ForecastData& data)
-{
-  const auto keys = entry.keys();
-  if(!keys.contains("main"))
-    return;
-    
-  const auto main    = entry.value("main").toObject();
-  const auto weather = entry.value("weather").toArray().first().toObject();
-  const auto wind    = entry.value("wind").toObject();
-  const auto rain    = entry.value("rain").toObject();
-  const auto snow    = entry.value("snow").toObject();
-  const auto sys     = entry.value("sys").toObject();
-
-  data.dt          = entry.value("dt").toInt(0);
-  data.cloudiness  = entry.value("clouds").toObject().value("all").toDouble(0);
-  data.temp        = main.value("temp").toDouble(0);
-  data.temp_min    = main.value("temp_min").toDouble(0);
-  data.temp_max    = main.value("temp_max").toDouble(0);
-  data.humidity    = main.value("humidity").toDouble(0);
-  data.pressure    = main.keys().contains("grnd_level") ? main.value("grnd_level").toDouble(0) : main.value("pressure").toDouble(0);
-  data.description = weather.value("description").toString();
-  data.parameters  = weather.value("main").toString();
-  data.icon_id     = weather.value("icon").toString();
-  data.weather_id  = weather.value("id").toDouble(0);
-  data.wind_speed  = wind.value("speed").toDouble(0);
-  data.wind_dir    = wind.value("deg").toDouble(0);
-  data.snow        = snow.keys().contains("3h") ? snow.value("3h").toDouble(0) : 0;
-  data.rain        = rain.keys().contains("3h") ? rain.value("3h").toDouble(0) : 0;
-  data.sunrise     = sys.value("sunrise").toInt(0);
-  data.sunset      = sys.value("sunset").toInt(0);
-  data.name        = entry.keys().contains("name") ? entry.value("name").toString("Unknown") : "Unknown";
-
-  auto country = sys.keys().contains("country") ? sys.value("country").toString("") : "";
-  if(!country.isEmpty())
-  {
-    data.country = (ISO3166.values().contains(country)) ? ISO3166.key(country) : country;
-  }
-  else
-  {
-    data.country = "Unknown";
-  }
-}
-
-//--------------------------------------------------------------------
-void parsePollutionEntry(const QJsonObject &entry, PollutionData &data)
-{
-  const auto main       = entry.value("main").toObject();
-  const auto components = entry.value("components").toObject();
-
-  data.dt    = entry.value("dt").toInt(0);
-  data.aqi   = main.value("aqi").toInt(1);
-  data.co    = components.value("co").toDouble(0);
-  data.no    = components.value("no").toDouble(0);
-  data.no2   = components.value("no2").toDouble(0);
-  data.o3    = components.value("o3").toDouble(0);
-  data.so2   = components.value("so2").toDouble(0);
-  data.pm2_5 = components.value("pm2_5").toDouble(0);
-  data.pm10  = components.value("pm10").toDouble(0);
-  data.nh3   = components.value("nh3").toDouble(0);
-
-  switch(data.aqi)
-  {
-    case 1:  data.aqi_text = "Good"; break;
-    case 2:  data.aqi_text = "Fair"; break;
-    case 3:  data.aqi_text = "Moderate"; break;
-    case 4:  data.aqi_text = "Poor"; break;
-    default: data.aqi_text = "Very poor"; break;
-  }
-}
-
-//--------------------------------------------------------------------
 void unixTimeStampToDate(struct tm &time, const long long timestamp)
 {
   const time_t stamp{timestamp};
@@ -1214,4 +1143,143 @@ QSettings applicationSettings()
   }
 
   return QSettings ("Felix de las Pozas Alvarez", "TrayWeather");
+}
+
+//--------------------------------------------------------------------
+void fillWMOCodeInForecast(ForecastData &forecast)
+{
+  const auto owm_code = static_cast<int>(forecast.weather_id);
+  const bool isDay = (forecast.sunrise < forecast.dt) && (forecast.dt > forecast.sunset);
+  const auto iconSuffix = isDay ? QString("d") : QString("n");
+
+  switch(owm_code)
+  {
+    default:
+    case 0:
+      {
+        forecast.icon_id = "01" + iconSuffix;
+        forecast.description = "clear sky";
+        forecast.parameters = "clear";
+      };
+      break;
+    case 1:
+      {
+        forecast.icon_id = "02" + iconSuffix;
+        forecast.description = "mainly clear";
+        forecast.parameters = "clear";
+      };
+      break;
+    case 2:
+      {
+        forecast.icon_id = "03" + iconSuffix;
+        forecast.description = "partly cloudy";
+        forecast.parameters = "cloudy";
+      };
+      break;
+    case 3:
+      {
+        forecast.icon_id = "04" + iconSuffix;
+        forecast.description = "overcast";
+        forecast.parameters = "overcast";
+      };
+      break;
+    case 45:
+    case 48:
+      {
+        forecast.icon_id = "50" + iconSuffix;
+        forecast.description = "fog";
+        forecast.parameters = "fog";
+      };
+      break;
+    case 51:
+    case 53:
+    case 55:
+      {
+        const QString type = owm_code == 51 ? "light" : (owm_code == 53 ? "moderate" : "dense");
+        forecast.icon_id = "09" + iconSuffix;
+        forecast.description = type + " drizzle";
+        forecast.parameters = "drizzle";
+      };
+      break;
+    case 56:
+    case 57:
+      {
+        const QString type = owm_code == 56 ? "light" : "dense";
+        forecast.icon_id = "09" + iconSuffix;
+        forecast.description = type + " drizzle";
+        forecast.parameters = "freezing drizzle";
+      };
+      break;
+    case 61:
+    case 63:
+    case 65:
+      {
+        const QString type = owm_code == 61 ? "slight" : (owm_code == 63 ? "moderate" : "heavy");
+        forecast.icon_id = "10" + iconSuffix;
+        forecast.description = type + " rain";
+        forecast.parameters = "rain";
+      };
+      break;
+    case 66:
+    case 67:
+      {
+        const QString type = owm_code == 66 ? "light" : "heavy";
+        forecast.icon_id = "13" + iconSuffix;
+        forecast.description = type + " freezing rain";
+        forecast.parameters = "freezing rain";
+      };
+      break;
+    case 71:
+    case 73:
+    case 75:
+      {
+        const QString type = owm_code == 71 ? "slight" : (owm_code == 73 ? "moderate" : "heavy");
+        forecast.icon_id = "13" + iconSuffix;
+        forecast.description = type + " snow";
+        forecast.parameters = "snow";
+      };
+      break;
+    case 77:
+      {
+        forecast.icon_id = "13" + iconSuffix;
+        forecast.description = "snow grains";
+        forecast.parameters = "snow grains";
+      };
+      break;
+    case 80:
+    case 81:
+    case 82:
+      {
+        const QString type = owm_code == 80 ? "slight" : (owm_code == 81 ? "moderate" : "violent");
+        forecast.icon_id = "09" + iconSuffix;
+        forecast.description = type + " rain showers";
+        forecast.parameters = "rain showers";
+      };
+      break;
+    case 85:
+    case 86:
+      {
+        const QString type = owm_code == 85 ? "light" : "heavy";
+        forecast.icon_id = "13" + iconSuffix;
+        forecast.description = type + " snow showers";
+        forecast.parameters = "snow showers";
+      };
+      break;
+    case 95:
+      {
+        forecast.icon_id = "11" + iconSuffix;
+        forecast.description = "thunderstorm";
+        forecast.parameters = "thunderstorm";
+      };
+      break;
+    case 96:
+    case 99:
+      {
+        const QString type = owm_code == 96 ? "slight" : "heavy";
+        forecast.icon_id = "11" + iconSuffix;
+        forecast.description = "thunderstorm with " + type + " hail";
+        forecast.parameters = "thuderstorm with hail";
+      };
+      break;
+  }
 }

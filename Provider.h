@@ -283,6 +283,20 @@ class OWM25Provider
      */
     void processLocationsData(const QByteArray &contents);
 
+    /** \brief Parses the information in the entry to the weather data object.
+    * \param[in] entry JSON object.
+    * \param[out] data ForecastData struct.
+    *
+    */
+    void parseForecastEntry(const QJsonObject &entry, ForecastData &data);
+
+    /** \brief Parses the information in the entry to the pollution data object.
+    * \param[in] entry JSON object.
+    * \param[in] data PollutionData struct.
+    *
+    */
+    void parsePollutionEntry(const QJsonObject &entry, PollutionData &data);
+
     QString m_apiKey;       /** provider api key */
     bool m_apiKeyValid;     /** true if the api key is valid and false otherwise. */
 };
@@ -324,11 +338,19 @@ class OpenMeteoProvider
     virtual void searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const override;
 
   private:
+    const QString INVALID_MSG = QString("\"error\": true,");
+
     /** \brief Processes the weather forecast data stream.
      * \param[in] contents Contents of the network reply.
      *
      */
-    void processForecastData(const QByteArray &contents);
+    void processWeatherData(const QByteArray &contents);
+
+    /** \brief Processes the pollution data stream.
+     * \param[in] contents Contents of the network reply.
+     *
+     */
+    void processPollutionData(const QByteArray &contents);
 
     /** \brief Processes the locations data stream.
      * \param[in] contents Contents of the network reply.

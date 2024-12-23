@@ -55,6 +55,8 @@
 
 using namespace QtCharts;
 
+const QString HIDE_DISABLED_TAB_STYLESHEET{"QTabBar::tab::disabled {width: 0; height: 0; margin: 0; padding: 0; border: none;} "};
+
 //--------------------------------------------------------------------
 WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget* parent, Qt::WindowFlags flags)
 : QDialog           (parent, flags)
@@ -143,6 +145,8 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
           this,        SLOT(onTabChanged(int)));
 
   m_reset->setVisible(false);
+
+  m_tabWidget->setStyleSheet(m_tabWidget->styleSheet() + HIDE_DISABLED_TAB_STYLESHEET);
 
   updateUI(m_provider->capabilities());
 }
@@ -1048,26 +1052,7 @@ void WeatherDialog::setPollutionData(const Pollution &data)
   QString qualityStr = tr("Unknown");
 
   if(!m_pollution->empty())
-  {
-    switch(m_pollution->first().aqi)
-    {
-      case 1:
-        qualityStr = tr("Good");
-        break;
-      case 2:
-        qualityStr = tr("Fair");
-        break;
-      case 3:
-        qualityStr = tr("Moderate");
-        break;
-      case 4:
-        qualityStr = tr("Poor");
-        break;
-      default:
-        qualityStr = tr("Very poor");
-        break;
-    }
-  }
+	qualityStr = m_pollution->first().aqi_text;
 
   m_air_quality->setText(qualityStr);
 
@@ -1681,19 +1666,20 @@ void WeatherDialog::updateUI(const ProviderCapabilities &capabilities)
 
   if(!capabilities.hasUVForecast)
   {
-    m_tabWidget->removeTab(3);
+    m_tabWidget->setTabEnabled(3, false);
     m_uvi->setVisible(false);
     m_uvLabel->setVisible(false);
   }
 
   if(!capabilities.hasPollutionForecast)
   {
-    m_tabWidget->removeTab(2);
+    m_tabWidget->setTabEnabled(2, false);
     m_air_quality->setVisible(false);
     m_airLabel->setVisible(false);
   } 
   
-  if(!capabilities.hasWeatherForecast)   m_tabWidget->removeTab(1);
+  if(!capabilities.hasWeatherForecast) 
+    m_tabWidget->setTabEnabled(1, false);
 }
 
 //--------------------------------------------------------------------

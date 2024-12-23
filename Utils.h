@@ -186,6 +186,9 @@ struct Location
     Location()
     : location{""}, translated{""}, latitude{0.f}, longitude{0.f}, country{""}, region{""} {};
 
+    /** \brief Returns true if the struct contains valid data and false otherwise. 
+     *
+     */
     bool isValid() const
     {
       return !location.isEmpty();
@@ -309,6 +312,9 @@ struct Configuration
     , tempMapOpacity  {0.75}
     {};
 
+    /** \brief Returns true if the struct contains valid data and false otherwise. 
+     *
+     */
     bool isValid() const
     {
       return (latitude <= 90.0) &&   (latitude >= -90.0) &&
@@ -361,6 +367,9 @@ struct ForecastData
                     weather_id{0}, wind_speed{0}, wind_dir{0}, rain{0}, snow{0}, sunrise{0}, sunset{0},
                     name{"Unknown"}, country{"Unknown"} {};
 
+    /** \brief Returns true if the struct contains valid data and false otherwise. 
+     *
+     */
     bool isValid() const { return dt != 0 && !icon_id.isEmpty(); };
 };
 
@@ -386,8 +395,14 @@ struct PollutionData
     double        pm10;     /** concentration of coarse particles martter. */
     double        nh3;      /** concentration of ammonia.                  */
 
+    /** \brief PollutionData struct class constructor.
+     *
+     */
     PollutionData(): dt{0}, aqi{1}, co{0}, no{0}, no2{0}, o3{0}, so2{0}, pm2_5{0}, pm10{0}, nh3{0} {};
 
+    /** \brief Returns true if the struct contains valid data and false otherwise. 
+     *
+     */
     bool isValid() const { return dt != 0; }
 };
 
@@ -401,6 +416,24 @@ struct UVData
 {
     long long int dt;  /** date and time of the data. */
     double        idx; /** uv index for that date.    */
+
+    /** \brief UVData struct default constructor.
+     *
+     */
+    UVData(): dt{0}, idx{0}{};
+
+    /** \brief UVData struct constructor.
+     * \param[in] dtime unix timestamp.
+     * \param[in] index UV index.
+     *
+     */
+    UVData(long long int dtime, double index)
+    : dt{dtime}, idx{index}{};
+
+    /** \brief Returns true if the struct contains valid data and false otherwise. 
+     *
+     */
+    bool isValid() const { return dt != 0; }
 };
 
 using UV = QList<UVData>;
@@ -442,21 +475,6 @@ const QPixmap moonPixmap(const ForecastData& data, const unsigned int theme, con
  *
  */
 void paintPixmap(QImage &img, const QColor &color = Qt::black);
-
-/** \brief Parses the information in the entry to the weather data object.
- * \param[in] entry JSON object.
- * \param[out] data ForecastData struct.
- * \param[in] unit temperature units.
- *
- */
-void parseForecastEntry(const QJsonObject &entry, ForecastData &data);
-
-/** \brief Parses the information in the entry to the pollution data object.
- * \param[in] entry JSON object.
- * \param[in] data PollutionData struct.
- *
- */
-void parsePollutionEntry(const QJsonObject &entry, PollutionData &data);
 
 /** \brief Prints the contents of the data to the QDebug stream.
  * \param[in] debug QDebug stream.
@@ -665,6 +683,12 @@ QPixmap blurPixmap(const QPixmap &pixmap, const int blurValue);
  *
  */
 QSettings applicationSettings();
+
+/** \brief Helper method to convert the wmo code inside to fill a ForecastData object fields. 
+ * \param[in] forecast ForecastData object reference, contains wmo code.
+ *
+ */
+void fillWMOCodeInForecast(ForecastData &forecast);
 
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.

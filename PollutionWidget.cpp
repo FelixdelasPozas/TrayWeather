@@ -62,25 +62,21 @@ PollutionWidget::PollutionWidget(const PollutionData& data)
   {
     case 1:
       colorStr = "green";
-      qualityStr = tr("Good");
       break;
     case 2:
       colorStr = "cyan";
-      qualityStr = tr("Fair");
       break;
     case 3:
       colorStr = "blue";
-      qualityStr = tr("Moderate");
       break;
     case 4:
       colorStr = "purple";
-      qualityStr = tr("Poor");
       break;
     default:
       colorStr = "red";
-      qualityStr = tr("Very poor");
       break;
   }
+  qualityStr = data.aqi_text;
 
   m_description->setText(QString("<b>%1: <font color=%2>%3</font></b>").arg(airStr).arg(colorStr).arg(qualityStr));
 

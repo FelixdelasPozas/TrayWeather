@@ -677,26 +677,7 @@ QString TrayWeather::tooltipText() const
       case TooltipText::AIR_QUALITY:
         if(!m_pData.empty())
         {
-          QString airQuality;
-          switch(m_pData.first().aqi)
-          {
-            case 1:
-              airQuality = tr("Good");
-              break;
-            case 2:
-              airQuality = tr("Fair");
-              break;
-            case 3:
-              airQuality = tr("Moderate");
-              break;
-            case 4:
-              airQuality = tr("Poor");
-              break;
-            default:
-              airQuality = tr("Very poor");
-              break;
-          }
-          fieldsText << tr("Air: ") + airQuality;
+          fieldsText << tr("Air: ") + m_pData.first().aqi_text;
         }
         break;
       case TooltipText::AIR_CO:
