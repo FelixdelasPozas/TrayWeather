@@ -24,6 +24,9 @@
 // Qt
 #include <QJsonObject>
 
+// C++
+#include <cassert>
+
 //--------------------------------------------------------------------
 AlertDialog::AlertDialog(QWidget *p, Qt::WindowFlags f)
 : QDialog(p, f)
@@ -32,24 +35,26 @@ AlertDialog::AlertDialog(QWidget *p, Qt::WindowFlags f)
 }
 
 //--------------------------------------------------------------------
-void AlertDialog::setAlertData(const QJsonObject &data)
+void AlertDialog::setAlertData(const Alerts &alerts)
 {
-  const QString UNKNOWN = tr("Unknown");
+  assert(!alerts.empty());
 
-  if(data.count() > 0)
+  const QString UNKNOWN = tr("Unknown");
+  
+
+  if(alerts.count() > 0)
   {
-    m_sender->setText(data.value("sender_name").toString(UNKNOWN));
-    m_event->setText(data.value("event").toString(UNKNOWN));
-    m_description->setText(data.value("description").toString(UNKNOWN));
+    const auto data = alerts.first();
+    m_sender->setText(data.sender);
+    m_event->setText(data.event);
+    m_description->setText(data.description);
 
     struct tm t;
-    const auto start = data.value("start").toInt(0);
-    unixTimeStampToDate(t, start);
+    unixTimeStampToDate(t, data.startTime);
     QDateTime startTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
     m_start->setText(startTime.toString());
 
-    const auto end = data.value("end").toInt(0);
-    unixTimeStampToDate(t, end);
+    unixTimeStampToDate(t, data.endTime);
     QDateTime endTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
     m_end->setText(endTime.toString());
   }

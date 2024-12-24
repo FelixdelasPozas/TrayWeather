@@ -167,6 +167,12 @@ class TrayWeather
      */
     void processUVData();
 
+    /** \brief Fills the alert list with the latest alert.
+     * \param[in] alerts Weather alerts list. 
+     *
+     */
+    void processAlerts(const Alerts &alerts);
+
     /** \brief Sets an error message in the tooltip text. 
      *
      */
@@ -250,24 +256,28 @@ class TrayWeather
     */
     void updateNetworkManager();
 
-    Configuration                         &m_configuration;   /** application configuration.                             */
-    std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                       */
-    Forecast                               m_data;            /** list of forecast data.                                 */
-    ForecastData                           m_current;         /** weather conditions now.                                */
-    Pollution                              m_pData;           /** list pollution data.                                   */
-    UV                                     m_vData;           /** list of uv data.                                       */
-    QTimer                                 m_timer;           /** timer for updates and retries.                         */
-    WeatherDialog                         *m_weatherDialog;   /** dialog to show weather and forecast data.              */
-    AboutDialog                           *m_aboutDialog;     /** pointer to current (if any) about dialog.              */
-    ConfigurationDialog                   *m_configDialog;    /** pointer to current (if any) configuration dialog.      */
-    QString                                m_DNSIP;           /** DNS IP used for geolocation.                           */
-    QTimer                                 m_updatesTimer;    /** timer to check for application updates.                */
-    QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.                */
-    NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                               */
-    AlertDialog                           *m_alertsDialog;    /** Alerts dialog.                                         */
-    QJsonObject                            m_lastAlert;       /** Last shown alert.                                      */
-    bool                                   m_lastAlertShown;  /** true if last alert has been shown and false otherwise. */
-    std::shared_ptr<WeatherProvider>       m_provider;        /** Weather data provider */
+    /** \brief Modifies the Ui based on the capabilities of the current weather provider.
+     *
+     */
+    void updateUi();
+
+    Configuration                         &m_configuration;   /** application configuration.                        */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                  */
+    Forecast                               m_data;            /** list of forecast data.                            */
+    ForecastData                           m_current;         /** weather conditions now.                           */
+    Pollution                              m_pData;           /** list pollution data.                              */
+    UV                                     m_vData;           /** list of uv data.                                  */
+    QTimer                                 m_timer;           /** timer for updates and retries.                    */
+    WeatherDialog                         *m_weatherDialog;   /** dialog to show weather and forecast data.         */
+    AboutDialog                           *m_aboutDialog;     /** pointer to current (if any) about dialog.         */
+    ConfigurationDialog                   *m_configDialog;    /** pointer to current (if any) configuration dialog. */
+    QString                                m_DNSIP;           /** DNS IP used for geolocation.                      */
+    QTimer                                 m_updatesTimer;    /** timer to check for application updates.           */
+    QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.           */
+    NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                          */
+    AlertDialog                           *m_alertsDialog;    /** Alerts dialog.                                    */
+    Alerts                                 m_lastAlert;       /** Last shown alert.                                 */
+    std::shared_ptr<WeatherProvider>       m_provider;        /** Weather data provider                             */
 
     friend class NativeEventFilter;
 };

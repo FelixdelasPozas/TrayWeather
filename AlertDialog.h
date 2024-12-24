@@ -20,7 +20,9 @@
 #ifndef ALERTDIALOG_H_
 #define ALERTDIALOG_H_
 
+// Project
 #include "ui_AlertDialog.h"
+#include <Utils.h>
 
 // Qt
 #include <QDialog>
@@ -49,10 +51,10 @@ class AlertDialog
     {};
 
     /** \brief Sets the alert data.
-     * \param[in] obj Alert Json object.
+     * \param[in] data Alerts list.
      *
      */
-    void setAlertData(const QJsonObject &data);
+    void setAlertData(const Alerts &data);
 
     /** \brief Returns the value of the checkbox to show again the alert in the future.
      *

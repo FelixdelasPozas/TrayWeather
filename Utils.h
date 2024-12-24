@@ -197,6 +197,36 @@ struct Location
 
 using Locations = QList<Location>;
 
+/** \struct Alert
+ * \brief Contains weather alert information.
+ *
+ */
+struct Alert
+{
+  QString sender;
+  QString event;
+  unsigned long long startTime;
+  unsigned long long endTime;
+  QString description;
+
+  /** \brief Alert struct constructor.
+   */
+  Alert(): sender{}, event{}, startTime{0}, endTime{0}, description{} {};
+
+  /** \brief Equal comparison operator. Returns true if equals.
+   * \param other Other alert object. 
+   *
+   */
+  bool operator==(const Alert &other)
+  {
+    return sender.compare(other.sender, Qt::CaseInsensitive) == 0 && event.compare(other.event, Qt::CaseInsensitive) == 0 && 
+          startTime == other.startTime && endTime == other.endTime && description.compare(other.description, Qt::CaseInsensitive) == 0;
+  }
+};
+
+using Alerts = QList<Alert>;
+
+
 /** \struct Configuration
  * \brief Contains the application configuration.
  *

@@ -49,6 +49,7 @@ struct ProviderCapabilities
   bool hasUVForecast;        /** true if provides UV forecast and false otherwise. */
   bool hasMaps;              /** true if provides interactive maps and false otherwise. */
   bool hasGeoLocation;       /** true if provides geolocation services and false otherise. */
+  bool hasAlerts;            /** true if provides weather alerts and false otherwise. */
   bool requiresKey;          /** true if the provider requires a key to request data. */
 
   /** \brief ProviderCapabilities struct constructor. 
@@ -58,16 +59,17 @@ struct ProviderCapabilities
    * \param[in] uv true if provides UV forecast and false otherwise.
    * \param[in] maps true if provides interactive maps and false otherwise.
    * \param[in] location true if provices geolocation and false otherwise. 
+   * \param[in] alerts true if provides weather alerts and false otherwise. 
    * \param[in] key true if the provider requires a key to request data.
    */
-  ProviderCapabilities(const bool weather, const bool forecast, const bool pollution, const bool uv, const bool maps, const bool location, const bool key)
-  : hasCurrentWeather{weather}, hasWeatherForecast{forecast}, hasPollutionForecast{pollution}, hasUVForecast{uv}, hasMaps{maps}, hasGeoLocation{location}, requiresKey{key}
+  ProviderCapabilities(const bool weather, const bool forecast, const bool pollution, const bool uv, const bool maps, const bool location, const bool alerts, const bool key)
+  : hasCurrentWeather{weather}, hasWeatherForecast{forecast}, hasPollutionForecast{pollution}, hasUVForecast{uv}, hasMaps{maps}, hasGeoLocation{location}, hasAlerts{alerts}, requiresKey{key}
   {};
 
   /** \brief ProviderCapabilities struct empty constructor.
    */
   ProviderCapabilities()
-  : ProviderCapabilities(false, false, false, false, false, false, false)
+  : ProviderCapabilities(false, false, false, false, false, false, false, false)
   {};
 };
 
@@ -194,6 +196,7 @@ class WeatherProvider
     void apiKeyValid(bool);
     void errorMessage(const QString &);
     void foundLocations(const Locations &locations);
+    void weatherAlert(const Alerts &alert);
 
   protected:
     /** \brief Loads provider settings from the registry.
@@ -237,7 +240,7 @@ class OWM25Provider
     {};
 
     virtual ProviderCapabilities capabilities() const override
-    { return ProviderCapabilities(true, true, true, false, true, true, true); }
+    { return ProviderCapabilities(true, true, true, false, true, true, true, true); }
 
     virtual QString apikey() const override
     { return m_apiKey; };
@@ -325,7 +328,7 @@ class OpenMeteoProvider
     {};
 
     virtual ProviderCapabilities capabilities() const override
-    { return ProviderCapabilities(true, true, true, true, false, true, false); };
+    { return ProviderCapabilities(true, true, true, true, false, true, false, false); };
 
     virtual QString name() const override
     { return "Open-Meteo"; };

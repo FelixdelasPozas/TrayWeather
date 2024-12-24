@@ -1437,7 +1437,7 @@ void ConfigurationDialog::onProviderChanged(int index)
   }
 
   const auto size = m_forecastLabel->size().height();
-  for(auto &widget: {m_weatherCheck, m_pollutionCheck, m_uvCheck, m_mapsCheck, m_locationCheck })
+  for(auto &widget: {m_weatherCheck, m_pollutionCheck, m_uvCheck, m_mapsCheck, m_locationCheck, m_alertsCheck })
     widget->setMaximumSize(QSize{size, size});
 
   const auto yesIcon = QIcon(":/TrayWeather/yes-check.svg").pixmap(QSize(size,size));
@@ -1449,6 +1449,7 @@ void ConfigurationDialog::onProviderChanged(int index)
   m_uvCheck->setPixmap(capabilities.hasUVForecast ? yesIcon : noIcon );
   m_mapsCheck->setPixmap(capabilities.hasMaps ? yesIcon : noIcon );
   m_locationCheck->setPixmap(capabilities.hasGeoLocation ? yesIcon : noIcon );
+  m_alertsCheck->setPixmap(capabilities.hasAlerts ? yesIcon : noIcon );
 
   m_geoFind->setEnabled(capabilities.hasGeoLocation);
   m_geoFind->setToolTip(capabilities.hasGeoLocation ? GEOLOCATION_AVAILABLE : GEOLOCATION_UNAVAILABLE );

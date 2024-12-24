@@ -79,6 +79,8 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 
   updateTooltip();
 
+  updateUi();
+
   requestData();
 }
 
@@ -271,13 +273,7 @@ void TrayWeather::showConfiguration()
       disconnectProviderSignals();
       m_provider = WeatherProviderFactory::createProvider(configuration.providerId, m_configuration);
       connectProviderSignals();
-
-      const auto capabilities = m_provider->capabilities();
-      auto actions = menu->actions();
-      actions.at(1)->setEnabled(capabilities.hasWeatherForecast);
-      actions.at(2)->setEnabled(capabilities.hasPollutionForecast);
-      actions.at(3)->setEnabled(capabilities.hasUVForecast);
-      actions.at(4)->setEnabled(capabilities.hasMaps);
+      updateUi();
 
       m_configuration.providerId = configuration.providerId;
       requestNewData = true;
@@ -526,6 +522,15 @@ void TrayWeather::updateTooltip()
 
   icon = QIcon(pixmap);
   setToolTip(tooltip);
+
+  if(m_configuration.showAlerts && m_lastAlert != Alerts())
+  {
+    const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
+    const QString msg = tr("There is a weather alert for your location!");
+
+    icon = alertIcon;
+    tooltip = msg;
+  }
 
   if(m_additionalTray)
   {
@@ -890,6 +895,7 @@ void TrayWeather::connectProviderSignals()
     connect(m_provider.get(), SIGNAL(pollutionForecastDataReady()),  this, SLOT(processPollutionData()));
     connect(m_provider.get(), SIGNAL(uvForecastDataReady()),         this, SLOT(processUVData()));
     connect(m_provider.get(), SIGNAL(errorMessage(const QString &)), this, SLOT(setErrorTooltip(const QString &)));
+    connect(m_provider.get(), SIGNAL(weatherAlerts(const Alerts &)), this, SLOT(processAlerts(const Alerts &)));
   }  
 }
 
@@ -918,6 +924,7 @@ void TrayWeather::disconnectProviderSignals()
     disconnect(m_provider.get(), SIGNAL(pollutionForecastDataReady()),  this, SLOT(processPollutionData()));
     disconnect(m_provider.get(), SIGNAL(uvForecastDataReady()),         this, SLOT(processUVData()));
     disconnect(m_provider.get(), SIGNAL(errorMessage(const QString &)), this, SLOT(setErrorTooltip(const QString &)));
+    disconnect(m_provider.get(), SIGNAL(weatherAlerts(const Alerts &)), this, SLOT(processAlerts(const Alerts &)));
   }  
 }
 
@@ -1078,13 +1085,6 @@ void TrayWeather::requestGeolocation()
 //--------------------------------------------------------------------
 void TrayWeather::onMapsStateChanged(bool value)
 {
-  auto menu = this->contextMenu();
-  if(menu && menu->actions().size() >= 5)
-  {
-    auto entries = menu->actions();
-    entries.at(4)->setEnabled(value);
-  }
-
   m_configuration.mapsEnabled = value;
 }
 
@@ -1328,6 +1328,28 @@ void TrayWeather::processUVData()
 }
 
 //--------------------------------------------------------------------
+void TrayWeather::processAlerts(const Alerts &alerts)
+{
+  if(m_configuration.showAlerts)
+  {
+    m_lastAlert = alerts;
+    const auto actions = contextMenu()->actions();
+    actions.at(8)->setEnabled(true);
+
+    const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
+    const QString msg = tr("There is a weather alert for your location!");
+    setIcon(alertIcon);
+    setToolTip(msg);
+
+    if(m_additionalTray)
+    {
+      m_additionalTray->setIcon(alertIcon);
+      m_additionalTray->setToolTip(msg);
+    }
+  }
+}
+
+//--------------------------------------------------------------------
 void TrayWeather::setErrorTooltip(const QString &msg)
 {
   const auto tooltipText = toolTip();
@@ -1363,6 +1385,22 @@ void TrayWeather::updateNetworkManager()
 }
 
 //--------------------------------------------------------------------
+void TrayWeather::updateUi()
+{
+  if(m_provider)
+  {
+    const auto capabilities = m_provider->capabilities();
+    const auto actions = contextMenu()->actions();
+    actions.at(1)->setVisible(capabilities.hasWeatherForecast); // Forecast...
+    actions.at(2)->setVisible(capabilities.hasPollutionForecast); // Pollution...
+    actions.at(3)->setVisible(capabilities.hasUVForecast); // UV...
+    actions.at(4)->setVisible(capabilities.hasMaps); // Maps...
+    actions.at(7)->setVisible(capabilities.hasAlerts); // Separator
+    actions.at(8)->setVisible(capabilities.hasAlerts); // Last alert...
+  }
+}
+
+//--------------------------------------------------------------------
 bool NativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *message, long *result)
 {
   const auto msg = reinterpret_cast<MSG*>(message);
@@ -1380,7 +1418,7 @@ void TrayWeather::onAlertDialogClosed()
 {
   if(m_alertsDialog)
   {
-    m_lastAlertShown = m_alertsDialog->showAgain();
+    const auto dontShowAgain = m_alertsDialog->showAgain();
 
     if(m_alertsDialog->isVisible())
     {
@@ -1390,12 +1428,22 @@ void TrayWeather::onAlertDialogClosed()
 
     delete m_alertsDialog;
     m_alertsDialog = nullptr;
+
+    if(dontShowAgain)
+    {
+      m_lastAlert = Alerts();
+      this->contextMenu()->actions().at(8)->setEnabled(false);
+    }
+
+    updateTooltip(); 
   }
 }
 
 //--------------------------------------------------------------------
 void TrayWeather::showAlert()
 {
+  if(m_lastAlert == Alerts()) return;
+
   if(!m_alertsDialog)
   {
     m_alertsDialog = new AlertDialog();

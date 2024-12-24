@@ -365,6 +365,22 @@ void OWM25Provider::processWeatherData(const QByteArray &contents)
 
       emit weatherDataReady();
     }
+
+    if(keys.contains("alerts"))
+    {
+      const auto alertObj = jsonObj.value("alerts").toObject();
+
+      Alert alert;
+      alert.sender = alertObj.value("sender_name").toString();
+      alert.event = alertObj.value("event").toString();
+      alert.startTime = alertObj.value("start").toVariant().toULongLong();
+      alert.endTime = alertObj.value("end").toVariant().toULongLong();
+      alert.description = alertObj.value("description").toString();
+
+      Alerts alertList;
+      alertList << alert;
+      emit weatherAlert(alertList);
+    }
   }
 }
 
