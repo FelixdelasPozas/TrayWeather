@@ -389,7 +389,7 @@ QGroupBox::title {
             <item>
              <widget class="QLabel" name="label_16">
               <property name="text">
-               <string>&lt;a href=&quot;https://www.svgrepo.com/&quot;&gt;https://www.svgrepo.com/&lt;/a&gt;</string>
+               <string notr="true">&lt;a href=&quot;https://www.svgrepo.com/&quot;&gt;https://www.svgrepo.com/&lt;/a&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
