@@ -39,10 +39,13 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QSettings>
+#include <QNetworkAccessManager>
 
 class QPainter;
 class QPixmap;
 class QDialog;
+class QNetworkRequest;
+class QIODevice;
 
 enum class Units:              char { METRIC = 0, IMPERIAL, CUSTOM };
 enum class PressureUnits:      char { HPA =  0, PSI, MMGH, INHG };
@@ -94,6 +97,8 @@ static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject:
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
 constexpr int ICON_TEXT_BORDER = 26;
+
+static QString REQUESTS_BUFFER; /** buffer to log network requests. */
 
 /** \struct LanguageData
  * \brief Contains a translation data.
@@ -516,6 +521,13 @@ QDebug operator<< (QDebug d, const ForecastData &data);
 
 /** \brief Prints the contents of the data to the QDebug stream.
  * \param[in] debug QDebug stream.
+ * \param[in] data PollutionData struct.
+ *
+ */
+QDebug operator<< (QDebug d, const PollutionData &data);
+
+/** \brief Prints the contents of the data to the QDebug stream.
+ * \param[in] debug QDebug stream.
  * \param[in] data UVData struct.
  *
  */
@@ -701,7 +713,7 @@ QRect computeDrawnRect(const QImage &image);
  * \param[in] latitude
  *
  */
-std::pair<unsigned long long, unsigned long long> computeSunriseSunset (const ForecastData &data, const double longitude, const double latitude);
+std::pair<long long, long long> computeSunriseSunset (const ForecastData &data, const double longitude, const double latitude);
 
 /** \brief Blurs and returns a copy of the given pixmap. 
  * \param[in] pixmap QPixmap object reference. 
@@ -820,6 +832,38 @@ class ClickableLabel
       emit clicked();
       QLabel::mousePressEvent(e);
     }
+};
+
+class NetworkAccessManager
+: public QNetworkAccessManager
+{
+    Q_OBJECT
+  public:
+    /** \brief NetworkAccessManager class constructor.
+     * \param[in] parent Raw pointer of the QObject parent of this one.
+     *
+     */
+    explicit NetworkAccessManager(QObject *parent = nullptr)
+    : QNetworkAccessManager(parent)
+    {};
+
+    /** \brief NetworkAccessManager class virtual destructor.
+     *
+     */
+    virtual ~NetworkAccessManager()
+    {};
+
+    QNetworkReply* createRequest(Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0) override;
+
+    /** \brief Sets the logging flag.
+     * \param[in] logging True to print and log requests and false otherwise.
+     *
+     */
+    void setLogging(const bool logging) 
+    { m_logging = logging; };
+
+  private:
+    bool m_logging{true}; /** true to print and log requests. */
 };
 
 #endif // UTILS_H_

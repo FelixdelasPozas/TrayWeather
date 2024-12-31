@@ -767,15 +767,7 @@ void WeatherDialog::onLoadFinished(bool value)
 //--------------------------------------------------------------------
 bool WeatherDialog::mapsEnabled() const
 {
-  const auto capabilities = m_provider->capabilities();
-  int count = 0;
-  if(capabilities.hasCurrentWeather)    ++count;
-  if(capabilities.hasWeatherForecast)   ++count;
-  if(capabilities.hasPollutionForecast) ++count;
-  if(capabilities.hasUVForecast)        ++count;
-  if(capabilities.hasMaps)              ++count;
-
-  return m_tabWidget->count() == count;
+  return m_tabWidget->count() == 5;
 }
 
 //--------------------------------------------------------------------
@@ -910,7 +902,7 @@ void WeatherDialog::setUVData(const UV &data)
     axisX->setTitleText(tr("Day (Hour)"));
 
     auto axisY = new QValueAxis();
-    axisY->setLabelFormat("%i");
+    axisY->setLabelFormat("%.1f");
     axisY->setTitleText(tr("Ultraviolet radiation index"));
 
     const auto theme = m_config->lightTheme ? QtCharts::QChart::ChartTheme::ChartThemeQt : QtCharts::QChart::ChartTheme::ChartThemeDark;
@@ -918,7 +910,6 @@ void WeatherDialog::setUVData(const UV &data)
     auto uvChart = new QChart();
     uvChart->legend()->setVisible(true);
     uvChart->legend()->setAlignment(Qt::AlignBottom);
-    uvChart->legend()->setToolTip(tr("Click to hide or show the forecast."));
     uvChart->setAnimationDuration(400);
     uvChart->setAnimationEasingCurve(QEasingCurve(QEasingCurve::InOutQuad));
     uvChart->setAnimationOptions(QChart::AllAnimations);
@@ -1122,6 +1113,7 @@ void WeatherDialog::setPollutionData(const Pollution &data)
     QPen pens[8];
 
     QSplineSeries *pollutionLine[8];
+    double lineSum[8];
 
     for(int i = 0; i < 8; ++i)
     {
@@ -1132,6 +1124,7 @@ void WeatherDialog::setPollutionData(const Pollution &data)
       pollutionLine[i]->setUseOpenGL(true);
       pollutionLine[i]->setPointsVisible(true);
       pollutionLine[i]->setPen(pens[i]);
+      lineSum[i] = 0;
     }
 
     QLinearGradient plotAreaGradient;
@@ -1148,14 +1141,14 @@ void WeatherDialog::setPollutionData(const Pollution &data)
       auto dtTime = QDateTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
       const auto msec = dtTime.toMSecsSinceEpoch();
 
-      pollutionLine[0]->append(msec, entry.co);
-      pollutionLine[1]->append(msec, entry.no);
-      pollutionLine[2]->append(msec, entry.no2);
-      pollutionLine[3]->append(msec, entry.o3);
-      pollutionLine[4]->append(msec, entry.so2);
-      pollutionLine[5]->append(msec, entry.pm2_5);
-      pollutionLine[6]->append(msec, entry.pm10);
-      pollutionLine[7]->append(msec, entry.nh3);
+      pollutionLine[0]->append(msec, entry.co);    lineSum[0] += entry.co;
+      pollutionLine[1]->append(msec, entry.no);    lineSum[1] += entry.no;
+      pollutionLine[2]->append(msec, entry.no2);   lineSum[2] += entry.no2;
+      pollutionLine[3]->append(msec, entry.o3);    lineSum[3] += entry.o3;
+      pollutionLine[4]->append(msec, entry.so2);   lineSum[4] += entry.so2;
+      pollutionLine[5]->append(msec, entry.pm2_5); lineSum[5] += entry.pm2_5;
+      pollutionLine[6]->append(msec, entry.pm10);  lineSum[6] += entry.pm10;
+      pollutionLine[7]->append(msec, entry.nh3);   lineSum[7] += entry.nh3;
 
       plotAreaGradient.setColorAt(static_cast<double>(i)/(data.size()-1), pollutionColor(entry.aqi));
     }
@@ -1165,6 +1158,8 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
     for(int i = 0; i < 8; ++i)
     {
+      if(lineSum[i] == 0) continue;
+
       forecastChart->addSeries(pollutionLine[i]);
       forecastChart->setAxisX(axisX, pollutionLine[i]);
       forecastChart->setAxisY(axisY, pollutionLine[i]);
@@ -1520,6 +1515,10 @@ void WeatherDialog::removeMaps()
   m_mapsButton->setToolTip(tr("Show weather maps tab."));
 
   m_tabWidget->removeTab(4);
+  while(!m_tabWidget->isTabEnabled(m_tabWidget->currentIndex()))
+  {
+    m_tabWidget->setCurrentIndex(m_tabWidget->currentIndex()-1);
+  }
 
   if(m_webpage)
   {

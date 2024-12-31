@@ -23,6 +23,8 @@
 
 // Qt
 #include <QCoreApplication>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QJsonArray>
 #include <QIcon>
 #include <QScreen>
@@ -41,6 +43,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsBlurEffect>
 #include <QGraphicsItem>
+#include <QDebug>
 
 // C++
 #define _USE_MATH_DEFINES
@@ -245,6 +248,33 @@ QDebug operator <<(QDebug d, const ForecastData& data)
                                                                  .arg(t.tm_min, 2, 10, fillChar)
                                                                  .arg(t.tm_sec, 2, 10, fillChar) << "\n";
 
+  return d;
+}
+
+//--------------------------------------------------------------------
+QDebug operator<<(QDebug d, const PollutionData &data)
+{
+  QChar fillChar('0');
+  struct tm t;
+  localtime_s(&t, &data.dt);
+
+  d << "-- Pollution " << QString("%1/%2/%3 - %4:%5:%6 --").arg(t.tm_mday, 2, 10, fillChar)
+                                                            .arg(t.tm_mon + 1, 2, 10, fillChar)
+                                                            .arg(t.tm_year + 1900, 4, 10, fillChar)
+                                                            .arg(t.tm_hour, 2, 10, fillChar)
+                                                            .arg(t.tm_min, 2, 10, fillChar)
+                                                            .arg(t.tm_sec, 2, 10, fillChar) << "\n";
+  d << "CO    : " << data.co << "\n";
+  d << "NO    : " << data.no << "\n";
+  d << "NO2   : " << data.no2 << "\n";
+  d << "O3    : " << data.o3 << "\n";
+  d << "SO2   : " << data.so2 << "\n";
+  d << "PM2.5 : " << data.pm2_5 << "\n";
+  d << "PM10  : " << data.pm10 << "\n";
+  d << "NH3   : " << data.nh3 << "\n";
+  d << "AQI   : " << data.aqi << "\n";
+  d << "AQI Text : " << data.aqi_text << "\n";
+  
   return d;
 }
 
@@ -1075,7 +1105,7 @@ QRect computeDrawnRect(const QImage &image)
 }
 
 //--------------------------------------------------------------------
-std::pair<unsigned long long, unsigned long long> computeSunriseSunset(const ForecastData &data, const double longitude, const double latitude)
+std::pair<long long, long long> computeSunriseSunset(const ForecastData &data, const double longitude, const double latitude)
 {
   // https://github.com/nplan/Arduino-Sun
 
@@ -1101,8 +1131,8 @@ std::pair<unsigned long long, unsigned long long> computeSunriseSunset(const For
   const float Jrise = Jtransit - omega0 / 360;
   const float Jset = Jtransit + omega0 / 360;
   // Convert to Unix Timestamp
-  const unsigned long unixRise = Jrise * 86400 + 946728000;
-  const unsigned long unixSet = Jset * 86400 + 946728000;
+  const long long unixRise = Jrise * 86400 + 946728000;
+  const long long unixSet = Jset * 86400 + 946728000;
 
   return std::make_pair(unixRise, unixSet);
 }
@@ -1149,7 +1179,7 @@ QSettings applicationSettings()
 void fillWMOCodeInForecast(ForecastData &forecast)
 {
   const auto owm_code = static_cast<int>(forecast.weather_id);
-  const bool isDay = (forecast.sunrise < forecast.dt) && (forecast.dt > forecast.sunset);
+  const bool isDay = (forecast.sunrise < forecast.dt) && (forecast.dt < forecast.sunset);
   const auto iconSuffix = isDay ? QString("d") : QString("n");
 
   switch(owm_code)
@@ -1282,4 +1312,31 @@ void fillWMOCodeInForecast(ForecastData &forecast)
       };
       break;
   }
+}
+
+//--------------------------------------------------------------------
+QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest &request, QIODevice *outgoingData)
+{
+  QString operation{"Unknown"};
+
+  if(m_logging)
+  {
+    switch(op)
+    {
+      case HeadOperation:   operation = "Head   "; break;
+      case GetOperation:    operation = "Get    "; break;
+      case PutOperation:    operation = "Put    "; break;
+      case PostOperation:   operation = "Post   "; break;
+      case DeleteOperation: operation = "Delete "; break;
+      case CustomOperation: operation = "Custom "; break;
+      default:
+      case UnknownOperation: break;
+    }
+
+    const auto text = QString("%1-%2-%3").arg(operation).arg(QDateTime::currentDateTime().toString("hh:mm:ss")).arg(request.url().toString());
+    qDebug() << text;
+    REQUESTS_BUFFER.append(text);
+  }
+
+  return QNetworkAccessManager::createRequest(op, request, outgoingData);
 }

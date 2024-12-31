@@ -48,26 +48,16 @@ std::unique_ptr<WeatherProvider> WeatherProviderFactory::createProvider(const QS
   return nullptr;
 }
 
-//----------------------------------------------------------------------------
-WeatherProvider::WeatherProvider(const QString &name, Configuration &config)
-: m_name{name}
-, m_config{config}
-, m_keyValid{false}
-{
-  loadSettings();
-}
-
-//----------------------------------------------------------------------------
-WeatherProvider::~WeatherProvider()
-{
-  saveSettings();
-}
-
 // OpenWeatherMap 2.5 API ----------------------------------------------------
 //----------------------------------------------------------------------------
-void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManager) const
+void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManager)
 {
-  if(!m_apiKeyValid) return;
+  if(m_apiKey.isEmpty())
+  { 
+    const QString msg = tr("OpenWeatherMap API Key is missing.");
+    emit errorMessage(msg);
+    return; 
+  }
 
   QString lang = "en";
   if(!m_config.language.isEmpty() && m_config.language.contains('_'))
@@ -104,8 +94,9 @@ void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManage
 //----------------------------------------------------------------------------
 QString OWM25Provider::mapsPage() const
 {
-  if(!m_apiKeyValid) return QString();
-  
+  if(m_apiKey.isEmpty())
+    return QString();
+
   QFile webfile(":/TrayWeather/webpage.html");
   if(webfile.open(QFile::ReadOnly))
   {
@@ -379,7 +370,7 @@ void OWM25Provider::processWeatherData(const QByteArray &contents)
 
       Alerts alertList;
       alertList << alert;
-      emit weatherAlert(alertList);
+      emit weatherAlerts(alertList);
     }
   }
 }
@@ -571,7 +562,7 @@ void OWM25Provider::testApiKey(std::shared_ptr<QNetworkAccessManager> netManager
 
 // Open-Meteo API ------------------------------------------------------------
 //----------------------------------------------------------------------------
-void OpenMeteoProvider::requestData(std::shared_ptr<QNetworkAccessManager> netManager) const
+void OpenMeteoProvider::requestData(std::shared_ptr<QNetworkAccessManager> netManager)
 {
   // Weather & UV forecast.
   auto url = QUrl{QString("https://api.open-meteo.com/v1/forecast?latitude=%1&longitude=%2"
@@ -630,6 +621,18 @@ void OpenMeteoProvider::processReply(QNetworkReply *reply)
         emit errorMessage(msg);
       }
     }
+    else if(originUrl.contains("search", Qt::CaseInsensitive))
+    {
+      if(reply->error() == QNetworkReply::NoError)
+      {
+        processLocationsData(contents);
+      }
+      else
+      {
+        const auto msg = tr("Error: ") + tr("Couldn't get location information.") + QString("\n%1").arg(reply->errorString());
+        emit errorMessage(msg);
+      }
+    }
   }
 }
 
@@ -648,7 +651,12 @@ void OpenMeteoProvider::searchLocations(const QString &text, std::shared_ptr<QNe
     if(OWM_LANGUAGES.contains(settings_compl, Qt::CaseInsensitive)) lang = settings_compl;
   }
 
-  auto url = QUrl{QString("https://geocoding-api.open-meteo.com/v1/search?name=%1&count=10&language=%2&format=json").arg(text).arg(lang)};
+  auto cleanText = text.trimmed();
+  cleanText = cleanText.remove(',');
+  const auto words = cleanText.split(' ');
+  const auto request_text = words.join('+');
+
+  auto url = QUrl{QString("https://geocoding-api.open-meteo.com/v1/search?name=%1&count=10&language=%2&format=json").arg(request_text).arg(lang)};
   netManager->get(QNetworkRequest{url});
 }
 
@@ -660,7 +668,7 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
   if(!jsonDocument.isNull() && jsonDocument.isObject())
   {
     // to discard entries older than 'right now'.
-    const auto currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
+    const long long currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
     const auto jsonObj = jsonDocument.object();
 
     const auto keys = jsonObj.keys();
@@ -668,8 +676,9 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
     if(keys.contains("current"))
     {
       const auto current = jsonObj.value("current").toObject();
+      const auto currentTime = current.value("time").toVariant().toLongLong(0);
 
-      m_current.dt         = current.value("time").toInt(0);
+      m_current.dt         = std::max(currentTime, currentDt);
       auto dayInterval     = computeSunriseSunset(m_current, m_config.longitude, m_config.latitude);
       m_current.sunrise    = dayInterval.first;
       m_current.sunset     = dayInterval.second;
@@ -703,30 +712,29 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
 
       const auto hourly = jsonObj.value("hourly").toObject();        
 
-      const auto times        = hourly.value("time").toObject();
-      const auto temperatures = hourly.value("temperature_2m").toObject();
-      const auto humidities   = hourly.value("relative_humidity_2m").toObject();
-      const auto rain         = hourly.value("rain").toObject();
-      const auto snow         = hourly.value("snowfall").toObject();
-      const auto owmCodes     = hourly.value("weather_code").toObject();
-      const auto pressures    = hourly.value("surface_pressure").toObject();
-      const auto clouds       = hourly.value("cloud_cover").toObject();
-      const auto windSpeeds   = hourly.value("wind_speed_10m").toObject();
-      const auto windDirs     = hourly.value("wind_direction_10m").toObject();
-      const auto uvIndexes    = hourly.value("uv_index").toObject();
+      const auto times        = hourly.value("time").toArray();
+      const auto temperatures = hourly.value("temperature_2m").toArray();
+      const auto humidities   = hourly.value("relative_humidity_2m").toArray();
+      const auto rain         = hourly.value("rain").toArray();
+      const auto snow         = hourly.value("snowfall").toArray();
+      const auto owmCodes     = hourly.value("weather_code").toArray();
+      const auto pressures    = hourly.value("surface_pressure").toArray();
+      const auto clouds       = hourly.value("cloud_cover").toArray();
+      const auto windSpeeds   = hourly.value("wind_speed_10m").toArray();
+      const auto windDirs     = hourly.value("wind_direction_10m").toArray();
+      const auto uvIndexes    = hourly.value("uv_index").toArray();
 
       auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_forecast) if(entry.dt == dt) return true; return false; };
       auto hasUVEntry = [this](unsigned long dt) { for(auto entry: this->m_uv) if(entry.dt == dt) return true; return false; };
 
       for(auto i = 0; i < times.count(); ++i)
       {
-        const auto key = QString("%1").arg(i);
-        const auto dt = times.value(key).toInt(0);
+        const auto dt = times.at(i).toInt(0);
         if(dt < currentDt) continue;
 
         UVData uvData;
         uvData.dt = dt;
-        uvData.idx = uvIndexes.value(key).toDouble(0);
+        uvData.idx = uvIndexes.at(i).toDouble(0);
 
         if(!hasUVEntry(uvData.dt))
           m_uv << uvData;
@@ -737,17 +745,17 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
         data.sunrise     = dayInterval.first;
         data.sunset      = dayInterval.second;
 
-        data.cloudiness  = clouds.value(key).toDouble(0);
-        data.temp        = temperatures.value(key).toDouble(0);
+        data.cloudiness  = clouds.at(i).toDouble(0);
+        data.temp        = temperatures.at(i).toDouble(0);
         data.temp_min    = data.temp;
         data.temp_max    = data.temp;
-        data.humidity    = humidities.value(key).toDouble(0);
-        data.pressure    = pressures.value(key).toDouble(0);
-        data.weather_id  = owmCodes.value(key).toInt(0);
-        data.wind_speed  = windSpeeds.value(key).toDouble(0);
-        data.wind_dir    = windDirs.value(key).toDouble(0);
-        data.snow        = snow.value(key).toDouble(0) * 10; // units are cm not mm
-        data.rain        = rain.value(key).toDouble(0);
+        data.humidity    = humidities.at(i).toDouble(0);
+        data.pressure    = pressures.at(i).toDouble(0);
+        data.weather_id  = owmCodes.at(i).toInt(0);
+        data.wind_speed  = windSpeeds.at(i).toDouble(0);
+        data.wind_dir    = windDirs.at(i).toDouble(0);
+        data.snow        = snow.at(i).toDouble(0) * 10; // units are cm not mm
+        data.rain        = rain.at(i).toDouble(0);
         data.name        = "Unknown";
         data.country     = "Unknown";      
 
@@ -810,7 +818,7 @@ void OpenMeteoProvider::processPollutionData(const QByteArray &contents)
       const auto current = jsonObj.value("current").toObject();   
 
       PollutionData data;
-      data.dt    = current.value("time").toInt(0);
+      data.dt    = current.value("time").toVariant().toLongLong(0);
       data.aqi   = current.value("european_aqi").toDouble(20);
       data.co    = current.value("carbon_monoxide").toDouble(0);
       data.no    = 0;
@@ -830,33 +838,32 @@ void OpenMeteoProvider::processPollutionData(const QByteArray &contents)
     {
       const auto hourly = jsonObj.value("hourly").toObject();   
 
-      const auto times = hourly.value("time").toObject();
-      const auto pm10s = hourly.value("pm10").toObject();
-      const auto pm25s = hourly.value("pm2_5").toObject();
-      const auto COs   = hourly.value("carbon_monoxide").toObject();
-      const auto NO2s  = hourly.value("nitrogen_dioxide").toObject();
-      const auto SO2s  = hourly.value("sulphur_dioxide").toObject();
-      const auto O3s   = hourly.value("ozone").toObject();
-      const auto NH3s  = hourly.value("ammonia").toObject();
-      const auto AQIs  = hourly.value("european_aqi").toObject();
+      const auto times = hourly.value("time").toArray();
+      const auto pm10s = hourly.value("pm10").toArray();
+      const auto pm25s = hourly.value("pm2_5").toArray();
+      const auto COs   = hourly.value("carbon_monoxide").toArray();
+      const auto NO2s  = hourly.value("nitrogen_dioxide").toArray();
+      const auto SO2s  = hourly.value("sulphur_dioxide").toArray();
+      const auto O3s   = hourly.value("ozone").toArray();
+      const auto NH3s  = hourly.value("ammonia").toArray();
+      const auto AQIs  = hourly.value("european_aqi").toArray();
 
       for(auto i = 0; i < times.count(); ++i)
       {
-        const auto key = QString("%1").arg(i);
-        const auto dt = times.value(key).toInt(0);
+        const auto dt = times.at(i).toInt(0);
         if(dt < currentDt) continue;
 
         PollutionData data;
-        data.dt    = times.value(key).toInt(0);
-        data.aqi   = AQIs.value(key).toDouble(20);
-        data.co    = COs.value(key).toDouble(0);
+        data.dt    = times.at(i).toInt(0);
+        data.aqi   = AQIs.at(i).toDouble(20);
+        data.co    = COs.at(i).toDouble(0);
         data.no    = 0;
-        data.no2   = NO2s.value(key).toDouble(0);
-        data.o3    = O3s.value(key).toDouble(0);
-        data.so2   = SO2s.value(key).toDouble(0);
-        data.pm2_5 = pm25s.value(key).toDouble(0);
-        data.pm10  = pm10s.value(key).toDouble(0);
-        data.nh3   = NH3s.value(key).toDouble(0);
+        data.no2   = NO2s.at(i).toDouble(0);
+        data.o3    = O3s.at(i).toDouble(0);
+        data.so2   = SO2s.at(i).toDouble(0);
+        data.pm2_5 = pm25s.at(i).toDouble(0);
+        data.pm10  = pm10s.at(i).toDouble(0);
+        data.nh3   = NH3s.at(i).toDouble(0);
         processAQIvalue(data);
 
         if(!hasEntry(data.dt))
@@ -864,7 +871,7 @@ void OpenMeteoProvider::processPollutionData(const QByteArray &contents)
       }
     }
 
-    if (!m_forecast.isEmpty())
+    if (!m_pollution.isEmpty())
     {
       auto lessThan = [](const PollutionData &left, const PollutionData &right){ if(left.dt < right.dt) return true; return false; };
       qSort(m_pollution.begin(), m_pollution.end(), lessThan);
@@ -885,8 +892,7 @@ void OpenMeteoProvider::processLocationsData(const QByteArray &contents)
 
     if(!results.keys().contains("results") || locationsArray.isEmpty())
     {
-      const QString msg = tr("No locations found for '%1'.");
-      emit errorMessage(msg);
+      emit foundLocations(Locations());
       return;
     }
 
@@ -901,6 +907,8 @@ void OpenMeteoProvider::processLocationsData(const QByteArray &contents)
       location.longitude = foundLocation.value("longitude").toDouble(0);
       location.country = foundLocation.value("country").toString();
       QStringList extra{ foundLocation.value("admin1").toString(), foundLocation.value("admin2").toString() };
+      extra.removeAll("");
+      extra.removeDuplicates();
       location.region = extra.join('/');
 
       locations << location;

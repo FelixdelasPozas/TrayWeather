@@ -65,6 +65,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 , m_testedAPIKey{false}
 , m_temp        {28}
 , m_validFont   {true}
+, m_config      {configuration}
 {
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
@@ -95,6 +96,8 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
     }
   }
   painter.end();
+
+  m_providerComboBox->addItems(WEATHER_PROVIDERS);
 
   setConfiguration(configuration);
   setCurrentTemperature(m_temp);
@@ -145,14 +148,6 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
     const auto data = reply->readAll();
     m_ip->setText(data);
 
-    reply->deleteLater();
-    return;
-  }
-
-  // NOTE: to avoid rogue replys from the LocationFinderDialog, as we reuse the network manager. 
-  if(url.toString().startsWith("http://api.openweathermap.org/geo/"))
-  {
-    m_geoFind->setToolTip(url.toString());
     reply->deleteLater();
     return;
   }
@@ -394,7 +389,7 @@ void ConfigurationDialog::connectSignals()
           this,               SLOT(replyFinished(QNetworkReply*)));
 
   connect(m_apiTest, SIGNAL(pressed()),
-          this,      SLOT(requestOpenWeatherMapAPIKeyTest()));
+          this,      SLOT(requestAPIKeyTest()));
 
   connect(m_geoRequest, SIGNAL(pressed()),
           this,         SLOT(requestGeolocation()));
@@ -552,8 +547,8 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
 {
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  // First tab is the larger one, so we need Qt to resize the dialog
-  // according to its contents...
+  // We need Qt to resize the dialog according to its contents...
+  const auto currentIndex = m_tabWidget->currentIndex();
   m_tabWidget->setCurrentIndex(0);
 
   setMaximumSize(QWIDGETSIZE_MAX,QWIDGETSIZE_MAX);
@@ -578,7 +573,7 @@ void ConfigurationDialog::onThemeIndexChanged(int index)
   updateRange();
 
   // ...and then return to the one tab the user is in.
-  m_tabWidget->setCurrentIndex(4);
+  m_tabWidget->setCurrentIndex(currentIndex);
 
   QApplication::restoreOverrideCursor();
 }
@@ -851,27 +846,20 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_snowGraphColor->setIcon(QIcon(icon));
   m_snowGraphColor->setProperty("iconColor", configuration.snowReprColor.name(QColor::HexArgb));
 
+  m_longitudeSpin->setValue(configuration.longitude);
+  m_latitudeSpin->setValue(configuration.latitude);
+
+  m_latitude->setText(QString::number(configuration.latitude));
+  m_longitude->setText(QString::number(configuration.longitude));
+
   if(!configuration.isValid())
   {
-    m_longitudeSpin->setValue(0.);
-    m_latitudeSpin->setValue(0.);
-
-    m_latitude->setText("0");
-    m_longitude->setText("0");
-
     m_updateTime->setValue(15);
     m_unitsComboBox->setCurrentIndex(0);
-
     m_providerComboBox->setCurrentIndex(0);
   }
   else
   {
-    m_longitudeSpin->setValue(configuration.longitude);
-    m_latitudeSpin->setValue(configuration.latitude);
-
-    m_latitude->setText(QString::number(configuration.latitude));
-    m_longitude->setText(QString::number(configuration.longitude));
-
     const auto position = WEATHER_PROVIDERS.indexOf(configuration.providerId);
     m_providerComboBox->setCurrentIndex(position == -1 ? 0 : position);
   }
@@ -904,6 +892,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
     }
     else
     {
+      m_testLabel->clear();
+      m_testLabel->setEnabled(false);
       m_apiTest->setEnabled(false);
     }
   }
@@ -930,7 +920,7 @@ void ConfigurationDialog::disconnectSignals()
              this,               SLOT(replyFinished(QNetworkReply*)));
 
   disconnect(m_apiTest, SIGNAL(pressed()),
-             this,      SLOT(requestOpenWeatherMapAPIKeyTest()));
+             this,      SLOT(requestAPIKeyTest()));
 
   disconnect(m_geoRequest, SIGNAL(pressed()),
              this,         SLOT(requestGeolocation()));
@@ -1384,7 +1374,7 @@ void ConfigurationDialog::onSearchButtonClicked()
 {
   if(m_provider && m_provider->capabilities().requiresKey && !m_testedAPIKey)
   {
-    const QString message = "Location search requires a valid weather provider API key.";
+    const QString message = tr("Location search requires a valid weather provider API key.");
 
     QMessageBox msgbox(this);
     msgbox.setWindowTitle(tr("Network Error"));
@@ -1428,15 +1418,13 @@ void ConfigurationDialog::onProviderChanged(int index)
   {
     disconnectProviderSignals();
 
-    Configuration config;
-    getConfiguration(config);
-    config.providerId = id;
+    m_config.providerId = id;
 
-    m_provider = WeatherProviderFactory::createProvider(id, config);
+    m_provider = WeatherProviderFactory::createProvider(id, m_config);
     connectProviderSignals();
   }
 
-  const auto size = m_forecastLabel->size().height();
+  const auto size = 20; // m_forecastLabel->size().height();
   for(auto &widget: {m_weatherCheck, m_pollutionCheck, m_uvCheck, m_mapsCheck, m_locationCheck, m_alertsCheck })
     widget->setMaximumSize(QSize{size, size});
 
@@ -1458,6 +1446,8 @@ void ConfigurationDialog::onProviderChanged(int index)
   if(capabilities.requiresKey)
   {
     m_apikey->setText(m_provider->apikey());
+    m_ipapiLabel->setEnabled(true);
+    m_testLabel->setEnabled(true);
     m_providerConfigText->setText(PROVIDER_KEY_TEXT.arg(m_provider->name()).arg(m_provider->website()));
 
     if(!m_provider->apikey().isEmpty())
@@ -1465,7 +1455,11 @@ void ConfigurationDialog::onProviderChanged(int index)
   }
   else
   {
-    m_apikey->setText("");
+    m_apikey->clear();
+    m_testLabel->clear();
+    m_testLabel->setEnabled(false);
+    m_ipapiLabel->setEnabled(false);
+    m_ipapiLabel->clear();
     m_providerConfigText->setText(PROVIDER_NO_TEXT.arg(m_provider->name()));
   }
 }
@@ -1493,6 +1487,8 @@ void ConfigurationDialog::apiKeyValid(const bool value)
 //--------------------------------------------------------------------
 void ConfigurationDialog::providerErrorMessage(const QString &msg)
 {
+  QApplication::restoreOverrideCursor();
+
   QMessageBox msgbox(this);
   msgbox.setWindowTitle(tr("Weather Provider Error"));
   msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));

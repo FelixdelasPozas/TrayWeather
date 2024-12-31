@@ -97,12 +97,12 @@ TrayWeather::~TrayWeather()
 void TrayWeather::replyFinished(QNetworkReply* reply)
 {
   const auto originUrl = reply->request().url().toString();
-  const auto contents  = reply->readAll();
 
   if(originUrl.contains("github", Qt::CaseInsensitive))
   {
     if(reply->error() == QNetworkReply::NoError)
     {
+      const auto contents  = reply->readAll();
       processGithubData(contents);
     }
     else
@@ -116,6 +116,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
   {
     if(reply->error() == QNetworkReply::NoError)
     {
+      const auto contents  = reply->readAll();
       processGeolocationData(contents, originUrl.contains("edns", Qt::CaseInsensitive));
     }
     else
@@ -136,6 +137,12 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
 //--------------------------------------------------------------------
 void TrayWeather::showConfiguration()
 {
+  if(m_aboutDialog)
+    m_aboutDialog->close(); 
+
+  if(m_weatherDialog)
+    m_weatherDialog->close();
+
   if(m_configDialog)
   {
     m_configDialog->raise();
@@ -264,8 +271,7 @@ void TrayWeather::showConfiguration()
     if(changedUpdateTime)
     {
       m_configuration.updateTime = configuration.updateTime;
-      m_timer.setInterval(m_configuration.updateTime);
-      m_timer.start();
+      requestNewData = true;
     }
 
     if(changedProvider)
@@ -276,6 +282,7 @@ void TrayWeather::showConfiguration()
       updateUi();
 
       m_configuration.providerId = configuration.providerId;
+      m_configuration.lastTab = 0; // Different providers have different tabs.
       requestNewData = true;
     }
 
@@ -845,7 +852,7 @@ void TrayWeather::showAboutDialog()
 {
   if(m_configDialog)
   {
-     m_aboutDialog->raise();
+     m_configDialog->raise();
      return;
   }
 
@@ -890,8 +897,8 @@ void TrayWeather::connectProviderSignals()
 {
   if(m_provider)          
   {
-    connect(m_provider.get(), SIGNAL(weatherDataReady()),            this, SLOT(processWeatherData));
-    connect(m_provider.get(), SIGNAL(weatherForecastDataReady()),    this, SLOT(processWeatherData));
+    connect(m_provider.get(), SIGNAL(weatherDataReady()),            this, SLOT(processWeatherData()));
+    connect(m_provider.get(), SIGNAL(weatherForecastDataReady()),    this, SLOT(processWeatherData()));
     connect(m_provider.get(), SIGNAL(pollutionForecastDataReady()),  this, SLOT(processPollutionData()));
     connect(m_provider.get(), SIGNAL(uvForecastDataReady()),         this, SLOT(processUVData()));
     connect(m_provider.get(), SIGNAL(errorMessage(const QString &)), this, SLOT(setErrorTooltip(const QString &)));
@@ -919,8 +926,8 @@ void TrayWeather::disconnectProviderSignals()
 {
   if(m_provider)          
   {
-    disconnect(m_provider.get(), SIGNAL(weatherDataReady()),            this, SLOT(processWeatherData));
-    disconnect(m_provider.get(), SIGNAL(weatherForecastDataReady()),    this, SLOT(processWeatherData));
+    disconnect(m_provider.get(), SIGNAL(weatherDataReady()),            this, SLOT(processWeatherData()));
+    disconnect(m_provider.get(), SIGNAL(weatherForecastDataReady()),    this, SLOT(processWeatherData()));
     disconnect(m_provider.get(), SIGNAL(pollutionForecastDataReady()),  this, SLOT(processPollutionData()));
     disconnect(m_provider.get(), SIGNAL(uvForecastDataReady()),         this, SLOT(processUVData()));
     disconnect(m_provider.get(), SIGNAL(errorMessage(const QString &)), this, SLOT(setErrorTooltip(const QString &)));
@@ -997,7 +1004,7 @@ void TrayWeather::showTab()
   m_weatherDialog = new WeatherDialog{m_provider};
   m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
   m_weatherDialog->setPollutionData(m_pData);
-  // m_weatherDialog->setUVData(m_vData);
+  m_weatherDialog->setUVData(m_vData);
 
   connect(m_weatherDialog, SIGNAL(mapsEnabled(bool)), this, SLOT(onMapsStateChanged(bool)));
 
@@ -1020,7 +1027,7 @@ void TrayWeather::requestData()
   updateNetworkManager();
 
   if(m_timer.isActive()) m_timer.stop();
-  m_timer.setInterval(1*60*1000);
+  m_timer.setInterval(m_configuration.updateTime*60*1000);
   m_timer.start();
 
   if(m_configuration.useGeolocation && m_configuration.roamingEnabled)
@@ -1231,14 +1238,11 @@ void TrayWeather::processWeatherData()
     const auto current = m_provider->weather();
     const auto forecast = m_provider->weatherForecast();
 
-    if(current.dt == 0) // checks if the returned value is Forecast() empty constructor.
+    if(current.dt != 0) // checks if the returned value is Forecast() empty constructor.
       m_current = current;
 
     if(!forecast.isEmpty())
       m_data = forecast;
-
-    m_timer.setInterval(m_configuration.updateTime*60*1000);
-    m_timer.start();
 
     timeOfLastUpdate = QDateTime::currentDateTime();
     updateTooltip();

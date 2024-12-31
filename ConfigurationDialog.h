@@ -318,6 +318,7 @@ class ConfigurationDialog
     QPixmap                                m_pixmap;       /** checkered pixmap for font preview.                                         */
     int                                    m_temp;         /** temperature used to generate icon preview if not given.                    */
     bool                                   m_validFont;    /** true if current selected font can render the temperature, false otherwise. */
+    Configuration                          m_config;       /** application configuration, only used for temporal network requests.        */
 };
 
 #endif // CONFIGURATIONDIALOG_H_

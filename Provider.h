@@ -86,12 +86,17 @@ class WeatherProvider
      * \param name Provider name.
      * \param config Application configuration reference. 
      */
-    WeatherProvider(const QString &name, Configuration &config);
+    WeatherProvider(const QString &name, Configuration &config)
+    : m_name{name}
+    , m_config{config}
+    , m_apiKeyValid{false}
+    {};
 
     /** \brief WeatherProvider class virtual destructor.
      *
      */
-    virtual ~WeatherProvider();
+    virtual ~WeatherProvider()
+    {};
 
     /** \brief Returns the weather provider capabilities.
      *
@@ -127,7 +132,7 @@ class WeatherProvider
      * \param[in] netManager Application network manager. 
      *
      */
-    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) const
+    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager)
     {};
 
     /** \brief Processes the webpage doing the necessary substitutions.
@@ -196,7 +201,7 @@ class WeatherProvider
     void apiKeyValid(bool);
     void errorMessage(const QString &);
     void foundLocations(const Locations &locations);
-    void weatherAlert(const Alerts &alert);
+    void weatherAlerts(const Alerts &alert);
 
   protected:
     /** \brief Loads provider settings from the registry.
@@ -209,11 +214,11 @@ class WeatherProvider
 
     const QString m_name;    /** Weather provider id */
     Configuration &m_config; /** Application configuration */
-    bool m_keyValid;         /** true when checking the api key and false otherwise. */
     ForecastData m_current;  /** current weather data. */
     Forecast m_forecast;     /** weather forecast data. */
     Pollution m_pollution;   /** pollution forecast data. */
     UV m_uv;                 /** uv forecast data. */
+    bool m_apiKeyValid;      /** true if the api key is valid and false otherwise. */
 };
 
 /** \class OWM25Provider
@@ -231,13 +236,17 @@ class OWM25Provider
      */
     OWM25Provider(Configuration &config)
     : WeatherProvider(OWM_25_PROVIDER, config)
-    {};
+    {
+      loadSettings();
+    };
 
     /** \brief OWM25Provider class virtual destructor.
      *
      */
     virtual ~OWM25Provider()
-    {};
+    {
+      saveSettings();
+    };
 
     virtual ProviderCapabilities capabilities() const override
     { return ProviderCapabilities(true, true, true, false, true, true, true, true); }
@@ -254,7 +263,7 @@ class OWM25Provider
     virtual QString website() const override
     { return "https://openweathermap.org/appid"; };
 
-    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) const override;
+    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) override;
     virtual QString mapsPage() const override;
     virtual void testApiKey(std::shared_ptr<QNetworkAccessManager> netManager) override;
     virtual void processReply(QNetworkReply *reply) override;
@@ -300,8 +309,7 @@ class OWM25Provider
     */
     void parsePollutionEntry(const QJsonObject &entry, PollutionData &data);
 
-    QString m_apiKey;       /** provider api key */
-    bool m_apiKeyValid;     /** true if the api key is valid and false otherwise. */
+    QString m_apiKey;          /** provider api key */
 };
 
 /** \class OWM25Provider
@@ -336,7 +344,7 @@ class OpenMeteoProvider
     virtual QString website() const override
     { return "https://open-meteo.com/"; };
 
-    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) const override;
+    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) override;
     virtual void processReply(QNetworkReply *reply) override;
     virtual void searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const override;
 
