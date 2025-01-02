@@ -97,12 +97,11 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   }
   painter.end();
 
-  m_providerComboBox->addItems(WEATHER_PROVIDERS);
+  for(int i = 0; i < WEATHER_PROVIDERS.size(); ++i)
+    m_providerComboBox->addItem(QIcon(WEATHER_PROVIDERS.at(i).icon), WEATHER_PROVIDERS.at(i).id);
 
   setConfiguration(configuration);
   setCurrentTemperature(m_temp);
-
-  m_geoFind->setEnabled(false);
 }
 
 //--------------------------------------------------------------------
@@ -747,7 +746,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   onIconThemeIndexChanged(static_cast<int>(configuration.iconTheme));
 
   connectSignals();
-  onProviderChanged(WEATHER_PROVIDERS.indexOf(configuration.providerId));
+  const auto providerIndex = configuration.providerId.isEmpty() ? 0 : WeatherProviderFactory::indexOf(configuration.providerId);
+  onProviderChanged(providerIndex);
 
   m_useManual->setChecked(!configuration.useGeolocation);
   m_useGeolocation->setChecked(configuration.useGeolocation);
@@ -860,7 +860,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   }
   else
   {
-    const auto position = WEATHER_PROVIDERS.indexOf(configuration.providerId);
+    const auto position = WeatherProviderFactory::indexOf(configuration.providerId);
     m_providerComboBox->setCurrentIndex(position == -1 ? 0 : position);
   }
 
@@ -1412,7 +1412,7 @@ void ConfigurationDialog::onSearchButtonClicked()
 void ConfigurationDialog::onProviderChanged(int index)
 {
   if(index < 0) index = 0;
-  const auto id = WEATHER_PROVIDERS.at(index);
+  const auto id = WEATHER_PROVIDERS.at(index).id;
 
   if(!m_provider || m_provider->id().compare(id) != 0)
   {

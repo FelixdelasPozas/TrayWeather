@@ -286,6 +286,14 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   m_wind_dir->setText(QString("%1º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
   m_pressure->setText(QString("%1 %2").arg(pressureValue).arg(pressStr));
 
+  if(current.temp_max == current.temp_min && current.temp_max == current.temp)
+  {
+    m_temp_max_label->setVisible(false);
+    m_temp_max->setVisible(false);
+    m_temp_min_label->setVisible(false);
+    m_temp_min->setVisible(false);
+  }
+
   double illuminationPercent = 0;
   const auto moonPhase = moonPhaseText(current.dt, illuminationPercent);
   m_moon_phase->setText(moonPhase);

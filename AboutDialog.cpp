@@ -138,7 +138,7 @@ void AboutDialog::fillProvidersTable() const
   Configuration nullConfig;
   for(int i = 0; i < WEATHER_PROVIDERS.size(); ++i)
   {
-    const auto &provider = WeatherProviderFactory::createProvider(WEATHER_PROVIDERS.at(i), nullConfig);
+    const auto &provider = WeatherProviderFactory::createProvider(WEATHER_PROVIDERS.at(i).id, nullConfig);
 
     auto item = new QTableWidgetItem();
     item->setData(Qt::DisplayRole, provider->id());

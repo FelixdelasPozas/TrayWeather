@@ -33,10 +33,32 @@ class Configuration;
 // C++
 #include <memory>
 
-// List of providers
+// List of provider ids
 static const QString OWM_25_PROVIDER = "OpenWeatherMap 2.5 API";
 static const QString OPENMETEO_PROVIDER = "OpenMeteo API";
-static const QStringList WEATHER_PROVIDERS = { OWM_25_PROVIDER, OPENMETEO_PROVIDER };
+
+/** \struct ProviderData
+ * \brief Contains provider data.
+ *
+ */
+struct ProviderData
+{
+  QString id;   /** provider identificator. */
+  QString icon; /** world icon if valid for the whole world or country icon if only valid for a region. */
+
+  /** \brief ProviderData struct constructor.
+   * \param[in] i Provider identificator.
+   * \param[in] ic Provider icon.
+   */
+  ProviderData(const QString &i, const QString &ic)
+  : id{i}, icon{ic}
+  {};
+};
+
+/** Providers list
+ */
+static const QList<ProviderData> WEATHER_PROVIDERS = { { OWM_25_PROVIDER,    ":/TrayWeather/application.svg" }, 
+                                                       { OPENMETEO_PROVIDER, ":/TrayWeather/application.svg" } };
 
 /** \struct ProviderCapabilities
  * \brief Describes the capabilities of the weather provider.
@@ -380,6 +402,12 @@ namespace WeatherProviderFactory
      * \param config Application configuration reference. 
      */
     std::unique_ptr<WeatherProvider> createProvider(const QString &name, Configuration &config);
+
+    /** \brief Returns the index of the given provider name.
+     * \param[in] name Provider name.
+     *
+     */
+    int indexOf(const QString &name);
 };
 
 #endif

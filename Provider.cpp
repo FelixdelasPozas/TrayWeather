@@ -48,6 +48,17 @@ std::unique_ptr<WeatherProvider> WeatherProviderFactory::createProvider(const QS
   return nullptr;
 }
 
+//----------------------------------------------------------------------------
+int WeatherProviderFactory::indexOf(const QString &name)
+{
+  for (int i = 0; i < WEATHER_PROVIDERS.size(); ++i)
+  {
+    if (WEATHER_PROVIDERS.at(i).id.compare(name, Qt::CaseInsensitive) == 0)
+      return i;
+  }
+  return -1;
+}
+
 // OpenWeatherMap 2.5 API ----------------------------------------------------
 //----------------------------------------------------------------------------
 void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManager)

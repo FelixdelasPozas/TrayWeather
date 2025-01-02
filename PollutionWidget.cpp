@@ -29,6 +29,22 @@
 
 // C++
 #include <time.h>
+#include <numeric>
+
+const QStringList STRINGS = {"<font color=%1><b>CO:</b></font> %2 %3",
+                             "<font color=%1><b>NO:</b></font> %2 %3",
+                             "<font color=%1><b>NO<sub>2</sub>:</b></font> %2 %3",
+                             "<font color=%1><b>O<sub>3</sub>:</b></font> %2 %3",
+                             "<font color=%1><b>SO<sub>2</sub>:</b></font> %2 %3",
+                             "<font color=%1><b>PM<sub>2.5</sub>:</b></font> %2 %3",
+                             "<font color=%1><b>PM<sub>10</sub>:</b></font> %2 %3",
+                             "<font color=%1><b>NH<sub>3</sub>:</b></font> %2 %3"};
+
+//--------------------------------------------------------------------
+bool isNearZero (const double value)
+{
+  return std::abs(value) < std::numeric_limits<double>::epsilon();
+}
 
 //--------------------------------------------------------------------
 PollutionWidget::PollutionWidget(const PollutionData& data)
@@ -46,14 +62,18 @@ PollutionWidget::PollutionWidget(const PollutionData& data)
 
   m_dateTime->setText(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm")));
   m_description->setText(data.aqi_text);
-  m_co->setText(QString("<font color=%1><b>CO:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(0).name()).arg(data.co).arg(POLLUTION_UNITS));
-  m_no->setText(QString("<font color=%1><b>NO:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(1).name()).arg(data.no).arg(POLLUTION_UNITS));
-  m_no2->setText(QString("<font color=%1><b>NO<sub>2</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(2).name()).arg(data.no2).arg(POLLUTION_UNITS));
-  m_o3->setText(QString("<font color=%1><b>O<sub>3</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(3).name()).arg(data.o3).arg(POLLUTION_UNITS));
-  m_so2->setText(QString("<font color=%1><b>SO<sub>2</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(4).name()).arg(data.so2).arg(POLLUTION_UNITS));
-  m_pm25->setText(QString("<font color=%1><b>PM<sub>2.5</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(5).name()).arg(data.pm2_5).arg(POLLUTION_UNITS));
-  m_pm10->setText(QString("<font color=%1><b>PM<sub>10</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(6).name()).arg(data.pm10).arg(POLLUTION_UNITS));
-  m_nh3->setText(QString("<font color=%1><b>NH<sub>3</sub>:</b></font> %2 %3").arg(CONCENTRATION_COLORS.at(7).name()).arg(data.nh3).arg(POLLUTION_UNITS));
+
+  const double values[8] = {data.co, data.no, data.no2, data.o3, data.so2, data.pm2_5, data.pm10, data.nh3};
+  int count = 0;
+  for(int i = 0; i < 8; ++i)
+  {
+    if(isNearZero(values[i])) continue;
+    const auto color = CONCENTRATION_COLORS.at(i);
+    const auto str = STRINGS.at(i).arg(color.name()).arg(values[i]).arg(POLLUTION_UNITS);
+    auto label = new QLabel(str, this);
+    gridLayout->addWidget(label, count / 2, count % 2);
+    ++count;
+  }
 
   const auto airStr = tr("Air Quality");
 
