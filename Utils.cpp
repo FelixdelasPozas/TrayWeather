@@ -1178,38 +1178,66 @@ QSettings applicationSettings()
 //--------------------------------------------------------------------
 void fillWMOCodeInForecast(ForecastData &forecast)
 {
-  const auto owm_code = static_cast<int>(forecast.weather_id);
+  const QString CLEAR_SKY                = QObject::tr("Clear sky");
+  const QString MAINLY_CLEAR             = QObject::tr("Mainly clear");
+  const QString PARTLY_CLOUDY            = QObject::tr("Partly cloudy");
+  const QString OVERCAST                 = QObject::tr("Overcast");
+  const QString FOG                      = QObject::tr("Fog");
+  const QString LIGHT_DRIZZLE            = QObject::tr("Light drizzle");
+  const QString MODERATE_DRIZZLE         = QObject::tr("Moderate drizzle");
+  const QString DENSE_DRIZZLE            = QObject::tr("Dense drizzle");
+  const QString LIGHT_FREEZING_DRIZZLE   = QObject::tr("Light freezing drizzle");
+  const QString DENSE_FREEZING_DRIZZLE   = QObject::tr("Dense freezing drizzle");
+  const QString SLIGHT_RAIN              = QObject::tr("Slight rain");
+  const QString MODERATE_RAIN            = QObject::tr("Moderate rain");
+  const QString HEAVY_RAIN               = QObject::tr("Heavy rain");
+  const QString LIGHT_FREEZING_RAIN      = QObject::tr("Light freezing rain");
+  const QString HEAVY_FREEZING_RAIN      = QObject::tr("Heavy freezing rain");
+  const QString SLIGHT_SNOW              = QObject::tr("Slight snow");
+  const QString MODERATE_SNOW            = QObject::tr("Moderate snow");
+  const QString HEAVY_SNOW               = QObject::tr("Heavy snow");
+  const QString SNOW_GRAINS              = QObject::tr("Snow grains");
+  const QString SLIGHT_RAIN_SHOWERS      = QObject::tr("Slight rain showers");
+  const QString MODERATE_RAIN_SHOWERS    = QObject::tr("Moderate rain showers");
+  const QString VIOLENT_RAIN_SHOWERS     = QObject::tr("Violent rain showers");
+  const QString LIGHT_SNOW_SHOWERS       = QObject::tr("Light snow showers");
+  const QString HEAVY_SNOW_SHOWERS       = QObject::tr("Heavy snow showers");
+  const QString THUNDERSTORM             = QObject::tr("Thunderstorm");
+  const QString SLIGHT_THUNDERSTORM_HAIL = QObject::tr("Slight thunderstorm with hail");
+  const QString HEAVY_THUNDERSTORM_HAIL  = QObject::tr("Heavy thunderstorm with hail");
+
+  const auto wmo_code = static_cast<int>(forecast.weather_id);
   const bool isDay = (forecast.sunrise < forecast.dt) && (forecast.dt < forecast.sunset);
   const auto iconSuffix = isDay ? QString("d") : QString("n");
 
-  switch(owm_code)
+  switch(wmo_code)
   {
     default:
     case 0:
       {
         forecast.icon_id = "01" + iconSuffix;
-        forecast.description = "clear sky";
+        forecast.description = CLEAR_SKY;
         forecast.parameters = "clear";
       };
       break;
     case 1:
       {
         forecast.icon_id = "02" + iconSuffix;
-        forecast.description = "mainly clear";
+        forecast.description = MAINLY_CLEAR;
         forecast.parameters = "clear";
       };
       break;
     case 2:
       {
         forecast.icon_id = "03" + iconSuffix;
-        forecast.description = "partly cloudy";
+        forecast.description = PARTLY_CLOUDY;
         forecast.parameters = "cloudy";
       };
       break;
     case 3:
       {
         forecast.icon_id = "04" + iconSuffix;
-        forecast.description = "overcast";
+        forecast.description = OVERCAST;
         forecast.parameters = "overcast";
       };
       break;
@@ -1217,7 +1245,7 @@ void fillWMOCodeInForecast(ForecastData &forecast)
     case 48:
       {
         forecast.icon_id = "50" + iconSuffix;
-        forecast.description = "fog";
+        forecast.description = FOG;
         forecast.parameters = "fog";
       };
       break;
@@ -1225,18 +1253,18 @@ void fillWMOCodeInForecast(ForecastData &forecast)
     case 53:
     case 55:
       {
-        const QString type = owm_code == 51 ? "light" : (owm_code == 53 ? "moderate" : "dense");
+        const QString type = wmo_code == 51 ? LIGHT_DRIZZLE : (wmo_code == 53 ? MODERATE_DRIZZLE : DENSE_DRIZZLE);
         forecast.icon_id = "09" + iconSuffix;
-        forecast.description = type + " drizzle";
+        forecast.description = type;
         forecast.parameters = "drizzle";
       };
       break;
     case 56:
     case 57:
       {
-        const QString type = owm_code == 56 ? "light" : "dense";
+        const QString type = wmo_code == 56 ? LIGHT_FREEZING_DRIZZLE : DENSE_FREEZING_DRIZZLE;
         forecast.icon_id = "09" + iconSuffix;
-        forecast.description = type + " drizzle";
+        forecast.description = type;
         forecast.parameters = "freezing drizzle";
       };
       break;
@@ -1244,18 +1272,18 @@ void fillWMOCodeInForecast(ForecastData &forecast)
     case 63:
     case 65:
       {
-        const QString type = owm_code == 61 ? "slight" : (owm_code == 63 ? "moderate" : "heavy");
+        const QString type = wmo_code == 61 ? SLIGHT_RAIN : (wmo_code == 63 ? MODERATE_RAIN : HEAVY_RAIN);
         forecast.icon_id = "10" + iconSuffix;
-        forecast.description = type + " rain";
+        forecast.description = type;
         forecast.parameters = "rain";
       };
       break;
     case 66:
     case 67:
       {
-        const QString type = owm_code == 66 ? "light" : "heavy";
+        const QString type = wmo_code == 66 ? LIGHT_FREEZING_RAIN : HEAVY_FREEZING_RAIN;
         forecast.icon_id = "13" + iconSuffix;
-        forecast.description = type + " freezing rain";
+        forecast.description = type;
         forecast.parameters = "freezing rain";
       };
       break;
@@ -1263,16 +1291,16 @@ void fillWMOCodeInForecast(ForecastData &forecast)
     case 73:
     case 75:
       {
-        const QString type = owm_code == 71 ? "slight" : (owm_code == 73 ? "moderate" : "heavy");
+        const QString type = wmo_code == 71 ? SLIGHT_SNOW : (wmo_code == 73 ? MODERATE_SNOW : HEAVY_SNOW);
         forecast.icon_id = "13" + iconSuffix;
-        forecast.description = type + " snow";
+        forecast.description = type;
         forecast.parameters = "snow";
       };
       break;
     case 77:
       {
         forecast.icon_id = "13" + iconSuffix;
-        forecast.description = "snow grains";
+        forecast.description = SNOW_GRAINS;
         forecast.parameters = "snow grains";
       };
       break;
@@ -1280,34 +1308,34 @@ void fillWMOCodeInForecast(ForecastData &forecast)
     case 81:
     case 82:
       {
-        const QString type = owm_code == 80 ? "slight" : (owm_code == 81 ? "moderate" : "violent");
+        const QString type = wmo_code == 80 ? SLIGHT_RAIN_SHOWERS : (wmo_code == 81 ? MODERATE_RAIN_SHOWERS : VIOLENT_RAIN_SHOWERS);
         forecast.icon_id = "09" + iconSuffix;
-        forecast.description = type + " rain showers";
+        forecast.description = type;
         forecast.parameters = "rain showers";
       };
       break;
     case 85:
     case 86:
       {
-        const QString type = owm_code == 85 ? "light" : "heavy";
+        const QString type = wmo_code == 85 ? LIGHT_SNOW_SHOWERS : HEAVY_SNOW_SHOWERS;
         forecast.icon_id = "13" + iconSuffix;
-        forecast.description = type + " snow showers";
+        forecast.description = type;
         forecast.parameters = "snow showers";
       };
       break;
     case 95:
       {
         forecast.icon_id = "11" + iconSuffix;
-        forecast.description = "thunderstorm";
+        forecast.description = THUNDERSTORM;
         forecast.parameters = "thunderstorm";
       };
       break;
     case 96:
     case 99:
       {
-        const QString type = owm_code == 96 ? "slight" : "heavy";
+        const QString type = wmo_code == 96 ? SLIGHT_THUNDERSTORM_HAIL : HEAVY_THUNDERSTORM_HAIL;
         forecast.icon_id = "11" + iconSuffix;
-        forecast.description = "thunderstorm with " + type + " hail";
+        forecast.description = type;
         forecast.parameters = "thuderstorm with hail";
       };
       break;

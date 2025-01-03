@@ -599,7 +599,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
     auto oldChart = m_weatherChart->chart();
     m_weatherChart->setChart(forecastChart);
-    m_pollutionChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));    
+    m_weatherChart->setBackgroundBrush(m_config->lightTheme ? this->palette().base() : QColor("#232629"));    
 
     connect(axisX, SIGNAL(rangeChanged(QDateTime, QDateTime)),
             this,  SLOT(onAreaChanged()));
@@ -1610,8 +1610,8 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
   const auto startT = begin.toMSecsSinceEpoch();
   const auto endT = end.toMSecsSinceEpoch();
 
-  const QColor lightColor = m_config->lightTheme ? Qt::white     : Qt::lightGray;
-  const QColor darkColor = m_config->lightTheme ?  Qt::lightGray : Qt::darkGray;
+  const QColor lightColor = m_config->lightTheme ? Qt::white     : QColor(110,110,110);
+  const QColor darkColor = m_config->lightTheme ?  Qt::lightGray : QColor(55,55,55);
 
   QLinearGradient plotAreaGradient;
   plotAreaGradient.setStart(QPointF(0, 0));

@@ -27,8 +27,7 @@ set(CMAKE_AUTOMOC ON)
 find_package(Qt5 COMPONENTS Widgets Network WebkitWidgets Charts LinguistTools)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated -mwindows -m64")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated -mconsole -m64")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated -mwindows -m64")
 
 if (CMAKE_BUILD_TYPE MATCHES Debug)
   set(CORE_EXTERNAL_LIBS ${CORE_EXTERNAL_LIBS} ${QT_QTTEST_LIBRARY})
