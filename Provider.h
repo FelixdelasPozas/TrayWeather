@@ -61,7 +61,7 @@ static const QList<ProviderData> WEATHER_PROVIDERS = { { OWM_25_PROVIDER,    ":/
                                                        { OPENMETEO_PROVIDER, ":/TrayWeather/application.svg" } };
 
 /** \struct ProviderCapabilities
- * \brief Describes the capabilities of the weather provider.
+ * \brief Describes the capabilities of the weather provider. Yeah, we could use bitset...
  */
 struct ProviderCapabilities
 {

@@ -248,6 +248,10 @@ class ConfigurationDialog
      */
     void providerErrorMessage(const QString &msg);
 
+    /** \brief Updates the network log tab with the current requests.
+     */
+    void refreshNetworkLog();
+
   signals:
     void languageChanged(const QString &);
 

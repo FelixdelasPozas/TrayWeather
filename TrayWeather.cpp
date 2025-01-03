@@ -54,7 +54,7 @@ QDateTime timeOfLastUpdate = QDateTime::currentDateTime();
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 : QSystemTrayIcon {parent}
 , m_configuration {configuration}
-, m_netManager    {std::make_shared<QNetworkAccessManager>(this)}
+, m_netManager    {std::make_shared<NetworkAccessManager>(this)}
 , m_timer         {this}
 , m_weatherDialog {nullptr}
 , m_aboutDialog   {nullptr}
@@ -1381,7 +1381,7 @@ void TrayWeather::updateNetworkManager()
   
   if(!m_netManager)
   {
-    m_netManager = std::make_shared<QNetworkAccessManager>(this);
+    m_netManager = std::make_shared<NetworkAccessManager>(this);
 
     connect(m_netManager.get(), SIGNAL(finished(QNetworkReply*)),
             this,               SLOT(replyFinished(QNetworkReply*)));

@@ -34,6 +34,8 @@
 // C++
 #include <iostream>
 
+QString REQUESTS_BUFFER;
+
 //-----------------------------------------------------------------
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -55,6 +57,10 @@ int main(int argc, char *argv[])
   // WARNING: This could break wifi detection
   const QByteArray ROAMING_POLL_VALUE = getRoamingRegistryValue() ? QByteArray::number(30000) : QByteArray::number(-1);
   qputenv("QT_BEARER_POLL_TIMEOUT", ROAMING_POLL_VALUE);
+
+  // For debugging purposes.
+  if(argc > 1 && strcmp(argv[1], "--log") == 0)
+    NetworkAccessManager::LOG_REQUESTS = true;
 
   QApplication app(argc, argv);
   app.setQuitOnLastWindowClosed(false);

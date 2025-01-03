@@ -55,6 +55,8 @@
 #include <iostream>
 #include <ctime>
 
+bool NetworkAccessManager::LOG_REQUESTS = false;
+
 static const QString INI_FILENAME = QString("TrayWeather.ini");
 
 static const QString LONGITUDE               = QString("Longitude");
@@ -1347,7 +1349,7 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
 {
   QString operation{"Unknown"};
 
-  if(m_logging)
+  if(LOG_REQUESTS)
   {
     switch(op)
     {
@@ -1361,9 +1363,8 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
       case UnknownOperation: break;
     }
 
-    const auto text = QString("%1-%2-%3").arg(operation).arg(QDateTime::currentDateTime().toString("hh:mm:ss")).arg(request.url().toString());
-    qDebug() << text;
-    REQUESTS_BUFFER.append(text);
+    const auto text = QString("%1 - %2 - %3").arg(QDateTime::currentDateTime().toString("hh:mm:ss")).arg(operation).arg(request.url().toString());
+    REQUESTS_BUFFER.append(text + "\n");
   }
 
   return QNetworkAccessManager::createRequest(op, request, outgoingData);

@@ -98,7 +98,7 @@ static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
 constexpr int ICON_TEXT_BORDER = 26;
 
-static QString REQUESTS_BUFFER; /** buffer to log network requests. */
+extern QString REQUESTS_BUFFER; /** buffer to log network requests. */
 
 /** \struct LanguageData
  * \brief Contains a translation data.
@@ -840,6 +840,8 @@ class NetworkAccessManager
 {
     Q_OBJECT
   public:
+    static bool LOG_REQUESTS; /** true to log network requests, false otherwise. */
+
     /** \brief NetworkAccessManager class constructor.
      * \param[in] parent Raw pointer of the QObject parent of this one.
      *
@@ -855,16 +857,6 @@ class NetworkAccessManager
     {};
 
     QNetworkReply* createRequest(Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0) override;
-
-    /** \brief Sets the logging flag.
-     * \param[in] logging True to print and log requests and false otherwise.
-     *
-     */
-    void setLogging(const bool logging) 
-    { m_logging = logging; };
-
-  private:
-    bool m_logging{true}; /** true to print and log requests. */
 };
 
 #endif // UTILS_H_

@@ -41,6 +41,7 @@
 #include <QFontDialog>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
+#include <QPlainTextEdit>
 
 // C++
 #include <chrono>
@@ -60,7 +61,7 @@ const QString GEOLOCATION_UNAVAILABLE = QObject::tr("Current provider does not h
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
 : QDialog       {parent}
-, m_netManager  {std::make_shared<QNetworkAccessManager>(this)}
+, m_netManager  {std::make_shared<NetworkAccessManager>(this)}
 , m_provider    {nullptr}
 , m_testedAPIKey{false}
 , m_temp        {28}
@@ -102,6 +103,27 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   setConfiguration(configuration);
   setCurrentTemperature(m_temp);
+
+  // Just for debugging purposes
+  if(NetworkAccessManager::LOG_REQUESTS)
+  {
+    auto tabWidget = new QWidget(this);
+    auto layout = new QVBoxLayout();
+
+    auto textWidget = new QPlainTextEdit(tabWidget);
+    textWidget->setLineWrapMode(QPlainTextEdit::LineWrapMode::NoWrap);
+    textWidget->setReadOnly(true);
+    layout->addWidget(textWidget);
+
+    auto button = new QPushButton("Update Log", tabWidget);
+    layout->addWidget(button);
+
+    tabWidget->setLayout(layout);
+    m_tabWidget->addTab(tabWidget, "Network Log");
+
+    connect(m_tabWidget, SIGNAL(currentChanged(int)), this, SLOT(refreshNetworkLog()));
+    connect(button, SIGNAL(pressed()), this, SLOT(refreshNetworkLog()));
+  }
 }
 
 //--------------------------------------------------------------------
@@ -230,10 +252,28 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 //--------------------------------------------------------------------
 void ConfigurationDialog::getConfiguration(Configuration &configuration) const
 {
+  auto currentProviderId = [&]()
+  {
+    if(m_provider)
+    {
+      if(m_provider->capabilities().requiresKey)
+      {
+        if(m_testedAPIKey)
+          return m_provider->id();
+        else
+          return QString();
+      }
+
+      return m_provider->id();
+    }
+    
+    return QString();
+  };
+
   configuration.city            = m_city->text();
   configuration.country         = m_country->text();
   configuration.ip              = m_ip->text();
-  configuration.providerId        = m_testedAPIKey ? m_provider->id() : QString();
+  configuration.providerId      = currentProviderId();
   configuration.region          = m_region->text();
   configuration.updateTime      = m_updateTime->value();
   configuration.units           = static_cast<Units>(m_unitsComboBox->currentIndex());
@@ -1584,4 +1624,19 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   painter.end();
 
   return background.scaled(160, 160, Qt::AspectRatioMode::KeepAspectRatio, Qt::TransformationMode::SmoothTransformation);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::refreshNetworkLog()
+{
+  if(m_tabWidget->currentIndex() == m_tabWidget->count() - 1)
+  {
+    auto widget = m_tabWidget->widget(m_tabWidget->count() - 1);
+    auto textWidget = qobject_cast<QPlainTextEdit *>(widget->layout()->itemAt(0)->widget());
+    if(textWidget)
+    {
+      textWidget->clear();
+      textWidget->setPlainText(REQUESTS_BUFFER);
+    }
+  }
 }
