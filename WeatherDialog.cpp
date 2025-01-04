@@ -1238,9 +1238,9 @@ void WeatherDialog::showEvent(QShowEvent *e)
   const auto wSize = size();
   if(wSize.width() < 717 || wSize.height() < 515) setFixedSize(717, 515);
 
-  if(m_config->mapsEnabled)
+  if (m_config->mapsEnabled && m_provider && m_provider->capabilities().hasMaps)
   {
-    if(!mapsEnabled())
+    if (!mapsEnabled())
     {
       onMapsButtonPressed();
     }
@@ -1251,7 +1251,8 @@ void WeatherDialog::showEvent(QShowEvent *e)
   }
   else
   {
-    if(mapsEnabled()) onMapsButtonPressed();
+    if (mapsEnabled())
+      onMapsButtonPressed();
   }
 }
 

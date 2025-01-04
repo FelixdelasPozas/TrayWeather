@@ -198,6 +198,10 @@ void ConfigurationDialog::replyFinished(QNetworkReply* reply)
 
           m_ipapiLabel->setStyleSheet("QLabel { color : green; }");
           m_ipapiLabel->setText(tr("Success"));
+
+          m_latitudeSpin->setValue(values.at(7).toDouble());
+          m_longitudeSpin->setValue(values.at(8).toDouble()); 
+
           reply->deleteLater();
 
           return;
@@ -395,10 +399,39 @@ void ConfigurationDialog::requestDNSIPGeolocation()
 }
 
 //--------------------------------------------------------------------
-void ConfigurationDialog::requestAPIKeyTest() const
+void ConfigurationDialog::requestAPIKeyTest() 
 {
-  if(m_provider)
+  const double latitude = m_latitudeSpin->value();
+  const double longitude = m_longitudeSpin->value(); 
+
+  if(m_apikey->text().isEmpty())
+  {
+    QMessageBox msgbox(this);
+    msgbox.setWindowTitle(tr("API Key Error"));
+    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+    msgbox.setText(tr("API key missing!"));
+    msgbox.exec();
+    return;
+  }
+
+  if((latitude > 90.0) || (latitude < -90.0) || (longitude > 180.0) || (longitude < -180.0))
+  {
+    QMessageBox msgbox(this);
+    msgbox.setWindowTitle(tr("Location Error"));
+    msgbox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+    msgbox.setText(tr("You must set a valid location before testing the API key."));
+    msgbox.exec();
+    return;
+  }
+
+  m_config.latitude = latitude;
+  m_config.longitude = longitude;
+
+  if(m_provider && m_provider->capabilities().requiresKey)
+  {
+    m_provider->setApiKey(m_apikey->text());
     m_provider->testApiKey(m_netManager);
+  }
 
   m_apiTest->setEnabled(false);
   m_testLabel->setStyleSheet("QLabel { color : blue; }");
@@ -437,10 +470,10 @@ void ConfigurationDialog::connectSignals()
           this,     SLOT(onDNSRequestStateChanged(int)));
 
   connect(m_useGeolocation, SIGNAL(toggled(bool)),
-          this,             SLOT(onRadioChanged()));
+          this,             SLOT(onLocationRadioChanged()));
 
   connect(m_useManual, SIGNAL(toggled(bool)),
-          this,        SLOT(onRadioChanged()));
+          this,        SLOT(onLocationRadioChanged()));
 
   connect(m_longitudeSpin, SIGNAL(editingFinished()),
           this,            SLOT(onCoordinatesChanged()));
@@ -553,7 +586,7 @@ void ConfigurationDialog::disconnectProviderSignals()
 }
 
 //--------------------------------------------------------------------
-void ConfigurationDialog::onRadioChanged()
+void ConfigurationDialog::onLocationRadioChanged()
 {
   auto manualEnabled = m_useManual->isChecked();
 
@@ -905,7 +938,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   }
 
   // this requests geolocation if checked.
-  onRadioChanged();
+  onLocationRadioChanged();
   onCoordinatesChanged();
 
   if(configuration.isValid())
@@ -969,10 +1002,10 @@ void ConfigurationDialog::disconnectSignals()
              this,     SLOT(onDNSRequestStateChanged(int)));
 
   disconnect(m_useGeolocation, SIGNAL(toggled(bool)),
-             this,             SLOT(onRadioChanged()));
+             this,             SLOT(onLocationRadioChanged()));
 
   disconnect(m_useManual, SIGNAL(toggled(bool)),
-             this,        SLOT(onRadioChanged()));
+             this,        SLOT(onLocationRadioChanged()));
 
   disconnect(m_longitudeSpin, SIGNAL(editingFinished()),
              this,            SLOT(onCoordinatesChanged()));

@@ -307,7 +307,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="444"/>
-        <location filename="../ConfigurationDialog.cpp" line="365"/>
+        <location filename="../ConfigurationDialog.cpp" line="438"/>
         <source>Testing API Key...</source>
         <translation>Probando llave API...</translation>
     </message>
@@ -909,8 +909,8 @@
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="128"/>
-        <location filename="../ConfigurationDialog.cpp" line="160"/>
+        <location filename="../ConfigurationDialog.cpp" line="150"/>
+        <location filename="../ConfigurationDialog.cpp" line="182"/>
         <source>Invalid reply from Geo-Locator server.
 Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
@@ -919,85 +919,105 @@ Imposible obtener información de localización.
 Si tiene un firewall cambie la configuración para permitir a este programa acceder a la red.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="132"/>
-        <location filename="../ConfigurationDialog.cpp" line="212"/>
-        <location filename="../ConfigurationDialog.cpp" line="1380"/>
+        <location filename="../ConfigurationDialog.cpp" line="154"/>
+        <location filename="../ConfigurationDialog.cpp" line="238"/>
+        <location filename="../ConfigurationDialog.cpp" line="1453"/>
         <source>Network Error</source>
         <translation>Error de red</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1476"/>
+        <location filename="../ConfigurationDialog.cpp" line="1549"/>
         <source>The API Key is valid!</source>
         <translation>La llave API es válida!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="178"/>
+        <location filename="../ConfigurationDialog.cpp" line="200"/>
         <source>Success</source>
         <translation>Éxito</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="186"/>
-        <location filename="../ConfigurationDialog.cpp" line="194"/>
-        <location filename="../ConfigurationDialog.cpp" line="202"/>
+        <location filename="../ConfigurationDialog.cpp" line="212"/>
+        <location filename="../ConfigurationDialog.cpp" line="220"/>
+        <location filename="../ConfigurationDialog.cpp" line="228"/>
         <source>Failure</source>
         <translation>Fallo</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="188"/>
+        <location filename="../ConfigurationDialog.cpp" line="214"/>
         <source>Error parsing location data. Failure or invalid number of fields.</source>
         <translation>Error al procesar la respuesta o número de campos erróneo.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="196"/>
+        <location filename="../ConfigurationDialog.cpp" line="222"/>
         <source>Data request failure. Invalid data format.</source>
         <translation>Error en la respuesta de datos o formato de datos inválido.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="204"/>
+        <location filename="../ConfigurationDialog.cpp" line="230"/>
         <source>Invalid reply from Geo-Locator server.</source>
         <translation>Respuesta inválida del servidor de Geo-localización.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="330"/>
-        <location filename="../ConfigurationDialog.cpp" line="354"/>
+        <location filename="../ConfigurationDialog.cpp" line="374"/>
+        <location filename="../ConfigurationDialog.cpp" line="398"/>
         <source>Requesting...</source>
         <translation>Solicitando...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="885"/>
-        <location filename="../ConfigurationDialog.cpp" line="1482"/>
+        <location filename="../ConfigurationDialog.cpp" line="410"/>
+        <source>API Key Error</source>
+        <translation>Error llave API</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="412"/>
+        <source>API key missing!</source>
+        <translation>Falta la llave API!</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="420"/>
+        <source>Location Error</source>
+        <translation>Error de localización</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="422"/>
+        <source>You must set a valid location before testing the API key.</source>
+        <translation>Debes introducir una localización válida antes de comprobar la llave API.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="958"/>
+        <location filename="../ConfigurationDialog.cpp" line="1555"/>
         <source>Invalid API Key!</source>
         <translation>Llave API inválida!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="890"/>
+        <location filename="../ConfigurationDialog.cpp" line="963"/>
         <source>Untested API Key!</source>
         <translation>Llave API no probada!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1193"/>
-        <location filename="../ConfigurationDialog.cpp" line="1232"/>
+        <location filename="../ConfigurationDialog.cpp" line="1266"/>
+        <location filename="../ConfigurationDialog.cpp" line="1305"/>
         <source>Font Selection</source>
         <translation>Selección de fuente</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1196"/>
-        <location filename="../ConfigurationDialog.cpp" line="1235"/>
+        <location filename="../ConfigurationDialog.cpp" line="1269"/>
+        <location filename="../ConfigurationDialog.cpp" line="1308"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
         <translation>La fuente seleccionada &apos;%1&apos; no es válida porque no puede representar los caracteres necesarios.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1223"/>
+        <location filename="../ConfigurationDialog.cpp" line="1296"/>
         <source>Select font for temperature icon</source>
         <translation>Selecciona la fuente del icono de temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1377"/>
+        <location filename="../ConfigurationDialog.cpp" line="1450"/>
         <source>Location search requires a valid weather provider API key.</source>
         <translation>La búsqueda de localización requiere un proveedor con una llave API válida.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1493"/>
+        <location filename="../ConfigurationDialog.cpp" line="1566"/>
         <source>Weather Provider Error</source>
         <translation>Error del proveedor de datos meteorológicos</translation>
     </message>
@@ -1207,27 +1227,27 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
         <translation>No se pudo obtener información de la localidad.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="819"/>
+        <location filename="../Provider.cpp" line="823"/>
         <source>Good</source>
         <translation>Buena</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="820"/>
+        <location filename="../Provider.cpp" line="824"/>
         <source>Fair</source>
         <translation>Regular</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="821"/>
+        <location filename="../Provider.cpp" line="825"/>
         <source>Moderate</source>
         <translation>Moderada</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="822"/>
+        <location filename="../Provider.cpp" line="826"/>
         <source>Poor</source>
         <translation>Pobre</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="823"/>
+        <location filename="../Provider.cpp" line="827"/>
         <source>Very poor</source>
         <translation>Muy pobre</translation>
     </message>
@@ -1243,286 +1263,286 @@ Si tiene un firewall cambie la configuración para permitir a este programa acce
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Main.cpp" line="71"/>
-        <location filename="../Main.cpp" line="87"/>
-        <location filename="../Main.cpp" line="114"/>
+        <location filename="../Main.cpp" line="77"/>
+        <location filename="../Main.cpp" line="93"/>
+        <location filename="../Main.cpp" line="120"/>
         <location filename="../TrayWeather.cpp" line="341"/>
         <location filename="../TrayWeather.cpp" line="993"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="73"/>
+        <location filename="../Main.cpp" line="79"/>
         <source>TrayWeather cannot execute in this computer because there isn&apos;t a tray available!.
 The application will exit now.</source>
         <translation>TrayWeather no puede ejecutarse en esta computadora porque
 no existe la bandeja de iconos. La aplicación se cerrará ahora.</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="89"/>
+        <location filename="../Main.cpp" line="95"/>
         <source>TrayWeather is already running!</source>
         <translation>TrayWeather ya se está ejecutando!</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="116"/>
+        <location filename="../Main.cpp" line="122"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
         <translation>TrayWeather no se puede ejecutar sin una localización y un proveedor de datos meteorológicos válidos.
 La aplicación te cerrará ahora.</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="346"/>
+        <location filename="../Utils.cpp" line="348"/>
         <source>New moon</source>
         <translation>Luna nueva</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="349"/>
-        <location filename="../Utils.cpp" line="367"/>
+        <location filename="../Utils.cpp" line="351"/>
+        <location filename="../Utils.cpp" line="369"/>
         <source>Waxing crescent</source>
         <translation>Luna creciente</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="352"/>
+        <location filename="../Utils.cpp" line="354"/>
         <source>First quarter</source>
         <translation>Primer cuarto</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="355"/>
+        <location filename="../Utils.cpp" line="357"/>
         <source>Waxing gibbous</source>
         <translation>Luna menguante</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="358"/>
+        <location filename="../Utils.cpp" line="360"/>
         <source>Full moon</source>
         <translation>Luna llena</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="361"/>
+        <location filename="../Utils.cpp" line="363"/>
         <source>Waning gibbous</source>
         <translation>Luna menguante</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="364"/>
+        <location filename="../Utils.cpp" line="366"/>
         <source>Last quarter</source>
         <translation>Último cuarto</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="377"/>
+        <location filename="../Utils.cpp" line="379"/>
         <source>illumination</source>
         <translation>iluminación</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="510"/>
+        <location filename="../Utils.cpp" line="512"/>
         <source>NNE</source>
         <translation>NNE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="511"/>
+        <location filename="../Utils.cpp" line="513"/>
         <source>NE</source>
         <translation>NE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="512"/>
+        <location filename="../Utils.cpp" line="514"/>
         <source>ENE</source>
         <translation>ENE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="513"/>
+        <location filename="../Utils.cpp" line="515"/>
         <source>E</source>
         <translation>E</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="514"/>
+        <location filename="../Utils.cpp" line="516"/>
         <source>ESE</source>
         <translation>ESE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="515"/>
+        <location filename="../Utils.cpp" line="517"/>
         <source>SE</source>
         <translation>SE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="516"/>
+        <location filename="../Utils.cpp" line="518"/>
         <source>SSE</source>
         <translation>SSE</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="517"/>
+        <location filename="../Utils.cpp" line="519"/>
         <source>S</source>
         <translation>S</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="518"/>
+        <location filename="../Utils.cpp" line="520"/>
         <source>SSW</source>
         <translation>SSO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="519"/>
+        <location filename="../Utils.cpp" line="521"/>
         <source>SW</source>
         <translation>SO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="520"/>
+        <location filename="../Utils.cpp" line="522"/>
         <source>WSW</source>
         <translation>OSO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="521"/>
+        <location filename="../Utils.cpp" line="523"/>
         <source>W</source>
         <translation>O</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="522"/>
+        <location filename="../Utils.cpp" line="524"/>
         <source>WNW</source>
         <translation>ONO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="523"/>
+        <location filename="../Utils.cpp" line="525"/>
         <source>NW</source>
         <translation>NO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="524"/>
+        <location filename="../Utils.cpp" line="526"/>
         <source>NNW</source>
         <translation>NNO</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="526"/>
+        <location filename="../Utils.cpp" line="528"/>
         <source>N</source>
         <translation>N</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1181"/>
+        <location filename="../Utils.cpp" line="1183"/>
         <source>Clear sky</source>
         <translation>Cielo despejado</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1182"/>
+        <location filename="../Utils.cpp" line="1184"/>
         <source>Mainly clear</source>
         <translation>Mayormente despejado</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1183"/>
+        <location filename="../Utils.cpp" line="1185"/>
         <source>Partly cloudy</source>
         <translation>Parcialmente nublado</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1184"/>
+        <location filename="../Utils.cpp" line="1186"/>
         <source>Overcast</source>
         <translation>Nublado</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1185"/>
+        <location filename="../Utils.cpp" line="1187"/>
         <source>Fog</source>
         <translation>Niebla</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1186"/>
+        <location filename="../Utils.cpp" line="1188"/>
         <source>Light drizzle</source>
         <translation>Llovizna ligera</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1187"/>
+        <location filename="../Utils.cpp" line="1189"/>
         <source>Moderate drizzle</source>
         <translation>Llovizna moderada</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1188"/>
+        <location filename="../Utils.cpp" line="1190"/>
         <source>Dense drizzle</source>
         <translation>Llovizna densa</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1189"/>
+        <location filename="../Utils.cpp" line="1191"/>
         <source>Light freezing drizzle</source>
         <translation>Llovizna helada ligera</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1190"/>
+        <location filename="../Utils.cpp" line="1192"/>
         <source>Dense freezing drizzle</source>
         <translation>Llovizna helada densa</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1191"/>
+        <location filename="../Utils.cpp" line="1193"/>
         <source>Slight rain</source>
         <translation>Lluvia ligera</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1192"/>
+        <location filename="../Utils.cpp" line="1194"/>
         <source>Moderate rain</source>
         <translation>Lluvia moderada</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1193"/>
+        <location filename="../Utils.cpp" line="1195"/>
         <source>Heavy rain</source>
         <translation>Lluvia intensa</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1194"/>
+        <location filename="../Utils.cpp" line="1196"/>
         <source>Light freezing rain</source>
         <translation>Lluvia helada ligera</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1195"/>
+        <location filename="../Utils.cpp" line="1197"/>
         <source>Heavy freezing rain</source>
         <translation>Lluvia helada intensa</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1196"/>
+        <location filename="../Utils.cpp" line="1198"/>
         <source>Slight snow</source>
         <translation>Nevada ligera</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1197"/>
+        <location filename="../Utils.cpp" line="1199"/>
         <source>Moderate snow</source>
         <translation>Nevada moderada</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1198"/>
+        <location filename="../Utils.cpp" line="1200"/>
         <source>Heavy snow</source>
         <translation>Nevada intensa</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1199"/>
+        <location filename="../Utils.cpp" line="1201"/>
         <source>Snow grains</source>
         <translation>Granizo</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1200"/>
+        <location filename="../Utils.cpp" line="1202"/>
         <source>Slight rain showers</source>
         <translation>Lluvias ligeras</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1201"/>
+        <location filename="../Utils.cpp" line="1203"/>
         <source>Moderate rain showers</source>
         <translation>Lluvias moderadas</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1202"/>
+        <location filename="../Utils.cpp" line="1204"/>
         <source>Violent rain showers</source>
         <translation>Lluvias fuertes</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1203"/>
+        <location filename="../Utils.cpp" line="1205"/>
         <source>Light snow showers</source>
         <translation>Nevadas ligeras</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1204"/>
+        <location filename="../Utils.cpp" line="1206"/>
         <source>Heavy snow showers</source>
         <translation>Nevadas intensas</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1205"/>
+        <location filename="../Utils.cpp" line="1207"/>
         <source>Thunderstorm</source>
         <translation>Tormenta</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1206"/>
+        <location filename="../Utils.cpp" line="1208"/>
         <source>Slight thunderstorm with hail</source>
         <translation>Tormenta ligera con granizo</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1207"/>
+        <location filename="../Utils.cpp" line="1209"/>
         <source>Heavy thunderstorm with hail</source>
         <translation>Tormenta intensa con granizo</translation>
     </message>
@@ -1672,22 +1692,22 @@ and it&apos;s still waiting for the response.</source>
 localización geográfica y todavía está esperando la respuesta.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="51"/>
+        <location filename="../ConfigurationDialog.cpp" line="52"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Para obtener datos de predicciones meteorolóficas de %1 para tu localización debes obtener una llave API de la página web &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="55"/>
+        <location filename="../ConfigurationDialog.cpp" line="56"/>
         <source>%1 doesn&apos;t require any configuration.</source>
         <translation>%1 no requiere configuración.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="57"/>
+        <location filename="../ConfigurationDialog.cpp" line="58"/>
         <source>Get the coordinates of a location.</source>
         <translation>Obtiene las coordenadas de una localización.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="58"/>
+        <location filename="../ConfigurationDialog.cpp" line="59"/>
         <source>Current provider does not have Geo-Location capability.</source>
         <translation>El proveedor actual no tiene la capacidad de Geolocalización.</translation>
     </message>
@@ -1950,7 +1970,7 @@ las horas centrales del día.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Current Weather</source>
         <translation>Clima Actual</translation>
     </message>
@@ -2040,7 +2060,7 @@ las horas centrales del día.</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="176"/>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1386"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
@@ -2164,7 +2184,7 @@ las horas centrales del día.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1522"/>
+        <location filename="../WeatherDialog.cpp" line="1523"/>
         <source>Show Maps</source>
         <translation>Mostrar Mapas</translation>
     </message>
@@ -2195,7 +2215,7 @@ las horas centrales del día.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="94"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Forecast</source>
         <translation>Pronóstico</translation>
     </message>
@@ -2206,13 +2226,13 @@ las horas centrales del día.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="115"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Pollution</source>
         <translation>Polución</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="136"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>UV</source>
         <translation>UV</translation>
     </message>
@@ -2327,7 +2347,7 @@ las horas centrales del día.</translation>
         <location filename="../WeatherDialog.cpp" line="759"/>
         <location filename="../WeatherDialog.cpp" line="820"/>
         <location filename="../WeatherDialog.cpp" line="831"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Maps</source>
         <translation>Mapas</translation>
     </message>
@@ -2372,12 +2392,12 @@ las horas centrales del día.</translation>
         <translation>Índice UV</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1523"/>
+        <location filename="../WeatherDialog.cpp" line="1524"/>
         <source>Show weather maps tab.</source>
         <translation>Mostrar pestaña de mapas del clima.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1436"/>
+        <location filename="../WeatherDialog.cpp" line="1437"/>
         <source>Hide Maps</source>
         <translation>Ocultar Mapas</translation>
     </message>
@@ -2388,7 +2408,7 @@ las horas centrales del día.</translation>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1437"/>
+        <location filename="../WeatherDialog.cpp" line="1438"/>
         <source>Hide weather maps tab.</source>
         <translation>Oculatar pestaña de mapas del clima.</translation>
     </message>
@@ -2403,17 +2423,17 @@ las horas centrales del día.</translation>
         <translation>Moderada</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1386"/>
         <source>Rain</source>
         <translation>Lluvia</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1386"/>
         <source>Wind</source>
         <translation>Viento</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1386"/>
         <source>Clouds</source>
         <translation>Nubes</translation>
     </message>

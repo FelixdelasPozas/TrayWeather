@@ -114,7 +114,7 @@ class ConfigurationDialog
     /** \brief Request test of API key validity.
      *
      */
-    void requestAPIKeyTest() const;
+    void requestAPIKeyTest();
 
     /** \brief Disables/Enables geolocation from DNS IP instead of geolocation detected ip.
      * \param[in] state DNS Checkbox state.
@@ -125,7 +125,7 @@ class ConfigurationDialog
     /** \brief Helper method that enables/disables part of the UI depending on the state of the UI radio buttons.
      *
      */
-    void onRadioChanged();
+    void onLocationRadioChanged();
 
     /** \brief Helper method that updates the coordinates labels when one changes.
      *

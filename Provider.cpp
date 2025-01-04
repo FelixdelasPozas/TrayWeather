@@ -709,6 +709,7 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
       m_current.country    = "Unknown";      
 
       fillWMOCodeInForecast(m_current);
+      changeWeatherUnits(m_config, m_current);
 
       emit weatherDataReady();
     }
@@ -773,7 +774,10 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
         fillWMOCodeInForecast(data);
 
         if(!hasEntry(data.dt))
+        {
+          changeWeatherUnits(m_config, data);
           m_forecast << data;
+        }
       }
 
       if(!m_forecast.isEmpty())

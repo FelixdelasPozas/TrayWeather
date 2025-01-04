@@ -307,7 +307,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="444"/>
-        <location filename="../ConfigurationDialog.cpp" line="365"/>
+        <location filename="../ConfigurationDialog.cpp" line="438"/>
         <source>Testing API Key...</source>
         <translation>API Anahtarı test ediliyor...</translation>
     </message>
@@ -909,8 +909,8 @@
         <translation>Tamam</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="128"/>
-        <location filename="../ConfigurationDialog.cpp" line="160"/>
+        <location filename="../ConfigurationDialog.cpp" line="150"/>
+        <location filename="../ConfigurationDialog.cpp" line="182"/>
         <source>Invalid reply from Geo-Locator server.
 Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
@@ -919,85 +919,105 @@ Konum bilgisi alınamadı.
 Güvenlik duvarınız varsa, bu programın ağa erişmesine izin vermek için ayarlarını değiştirin.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="132"/>
-        <location filename="../ConfigurationDialog.cpp" line="212"/>
-        <location filename="../ConfigurationDialog.cpp" line="1380"/>
+        <location filename="../ConfigurationDialog.cpp" line="154"/>
+        <location filename="../ConfigurationDialog.cpp" line="238"/>
+        <location filename="../ConfigurationDialog.cpp" line="1453"/>
         <source>Network Error</source>
         <translation>Ağ Hatası</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="885"/>
-        <location filename="../ConfigurationDialog.cpp" line="1482"/>
+        <location filename="../ConfigurationDialog.cpp" line="958"/>
+        <location filename="../ConfigurationDialog.cpp" line="1555"/>
         <source>Invalid API Key!</source>
         <translation>Geçersiz API Anahtarı!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="890"/>
+        <location filename="../ConfigurationDialog.cpp" line="963"/>
         <source>Untested API Key!</source>
         <translation>Test edilmemiş API Anahtarı!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1476"/>
+        <location filename="../ConfigurationDialog.cpp" line="1549"/>
         <source>The API Key is valid!</source>
         <translation>API Anahtarı geçerli!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="178"/>
+        <location filename="../ConfigurationDialog.cpp" line="200"/>
         <source>Success</source>
         <translation>Başarılı</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="186"/>
-        <location filename="../ConfigurationDialog.cpp" line="194"/>
-        <location filename="../ConfigurationDialog.cpp" line="202"/>
+        <location filename="../ConfigurationDialog.cpp" line="212"/>
+        <location filename="../ConfigurationDialog.cpp" line="220"/>
+        <location filename="../ConfigurationDialog.cpp" line="228"/>
         <source>Failure</source>
         <translation>Hatalı</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="188"/>
+        <location filename="../ConfigurationDialog.cpp" line="214"/>
         <source>Error parsing location data. Failure or invalid number of fields.</source>
         <translation>Konum verileri ayrıştırılırken hata oluştu. Hatalı ya da geçersiz alan sayısı.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="196"/>
+        <location filename="../ConfigurationDialog.cpp" line="222"/>
         <source>Data request failure. Invalid data format.</source>
         <translation>Veri isteği hatası. Geçersiz veri biçimi.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="204"/>
+        <location filename="../ConfigurationDialog.cpp" line="230"/>
         <source>Invalid reply from Geo-Locator server.</source>
         <translation>Geo-Locator sunucusundan geçersiz yanıt.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="330"/>
-        <location filename="../ConfigurationDialog.cpp" line="354"/>
+        <location filename="../ConfigurationDialog.cpp" line="374"/>
+        <location filename="../ConfigurationDialog.cpp" line="398"/>
         <source>Requesting...</source>
         <translation>İsteniyor...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1377"/>
+        <location filename="../ConfigurationDialog.cpp" line="410"/>
+        <source>API Key Error</source>
+        <translation>API Anahtarı Hatası</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="412"/>
+        <source>API key missing!</source>
+        <translation>API anahtarı eksik!</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="420"/>
+        <source>Location Error</source>
+        <translation>Konum Hatası</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="422"/>
+        <source>You must set a valid location before testing the API key.</source>
+        <translation>API anahtarını test etmeden önce geçerli bir konum ayarlamanız gerekir.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="1450"/>
         <source>Location search requires a valid weather provider API key.</source>
         <translation>Konum araması geçerli bir hava durumu sağlayıcısı API anahtarı gerektirir.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1493"/>
+        <location filename="../ConfigurationDialog.cpp" line="1566"/>
         <source>Weather Provider Error</source>
         <translation>Hava Durumu Sağlayıcı Hatası</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1193"/>
-        <location filename="../ConfigurationDialog.cpp" line="1232"/>
+        <location filename="../ConfigurationDialog.cpp" line="1266"/>
+        <location filename="../ConfigurationDialog.cpp" line="1305"/>
         <source>Font Selection</source>
         <translation>Yazı Tipi Seçimi</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1196"/>
-        <location filename="../ConfigurationDialog.cpp" line="1235"/>
+        <location filename="../ConfigurationDialog.cpp" line="1269"/>
+        <location filename="../ConfigurationDialog.cpp" line="1308"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
         <translation>Seçilen yazı tipi &apos;%1&apos; gerekli karakterleri çizemediğinden geçerli değil.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1223"/>
+        <location filename="../ConfigurationDialog.cpp" line="1296"/>
         <source>Select font for temperature icon</source>
         <translation>Sıcaklık simgesi için yazı tipi seç</translation>
     </message>
@@ -1207,27 +1227,27 @@ Güvenlik duvarınız varsa, bu programın ağa erişmesine izin vermek için ay
         <translation>Konum bilgisi alınamadı.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="819"/>
+        <location filename="../Provider.cpp" line="823"/>
         <source>Good</source>
         <translation>İyi</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="820"/>
+        <location filename="../Provider.cpp" line="824"/>
         <source>Fair</source>
         <translation>Orta</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="821"/>
+        <location filename="../Provider.cpp" line="825"/>
         <source>Moderate</source>
         <translation>Hassas</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="822"/>
+        <location filename="../Provider.cpp" line="826"/>
         <source>Poor</source>
         <translation>Kötü</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="823"/>
+        <location filename="../Provider.cpp" line="827"/>
         <source>Very poor</source>
         <translation>Çok kötü</translation>
     </message>
@@ -1243,286 +1263,286 @@ Güvenlik duvarınız varsa, bu programın ağa erişmesine izin vermek için ay
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../Main.cpp" line="71"/>
-        <location filename="../Main.cpp" line="87"/>
-        <location filename="../Main.cpp" line="114"/>
+        <location filename="../Main.cpp" line="77"/>
+        <location filename="../Main.cpp" line="93"/>
+        <location filename="../Main.cpp" line="120"/>
         <location filename="../TrayWeather.cpp" line="341"/>
         <location filename="../TrayWeather.cpp" line="993"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="73"/>
+        <location filename="../Main.cpp" line="79"/>
         <source>TrayWeather cannot execute in this computer because there isn&apos;t a tray available!.
 The application will exit now.</source>
         <translation>Kullanılabilir bir bildirim alanı olmadığı için TrayWeather bu bilgisayarda çalıştırılamıyor!.
 Uygulamadan çıkış yapılacaktır.</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="89"/>
+        <location filename="../Main.cpp" line="95"/>
         <source>TrayWeather is already running!</source>
         <translation>TrayWeather zaten çalışıyor!</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="116"/>
+        <location filename="../Main.cpp" line="122"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
         <translation>TrayWeather geçerli bir konum ve geçerli bir hava durumu veri sağlayıcısı olmadan çalıştırılamaz.
 Uygulamadan çıkış yapılacaktır.</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="346"/>
+        <location filename="../Utils.cpp" line="348"/>
         <source>New moon</source>
         <translation>Yeni ay</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="349"/>
-        <location filename="../Utils.cpp" line="367"/>
+        <location filename="../Utils.cpp" line="351"/>
+        <location filename="../Utils.cpp" line="369"/>
         <source>Waxing crescent</source>
         <translation>Hilal</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="352"/>
+        <location filename="../Utils.cpp" line="354"/>
         <source>First quarter</source>
         <translation>İlk dördün</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="355"/>
+        <location filename="../Utils.cpp" line="357"/>
         <source>Waxing gibbous</source>
         <translation>Şişkin ay</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="358"/>
+        <location filename="../Utils.cpp" line="360"/>
         <source>Full moon</source>
         <translation>Dolunay</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="361"/>
+        <location filename="../Utils.cpp" line="363"/>
         <source>Waning gibbous</source>
         <translation>Şişkin ay</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="364"/>
+        <location filename="../Utils.cpp" line="366"/>
         <source>Last quarter</source>
         <translation>Son dördün</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="377"/>
+        <location filename="../Utils.cpp" line="379"/>
         <source>illumination</source>
         <translation>aydınlatma</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="510"/>
+        <location filename="../Utils.cpp" line="512"/>
         <source>NNE</source>
         <translation>KKD</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="511"/>
+        <location filename="../Utils.cpp" line="513"/>
         <source>NE</source>
         <translation>KD</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="512"/>
+        <location filename="../Utils.cpp" line="514"/>
         <source>ENE</source>
         <translation>DKD</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="513"/>
+        <location filename="../Utils.cpp" line="515"/>
         <source>E</source>
         <translation>D</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="514"/>
+        <location filename="../Utils.cpp" line="516"/>
         <source>ESE</source>
         <translation>DGD</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="515"/>
+        <location filename="../Utils.cpp" line="517"/>
         <source>SE</source>
         <translation>GD</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="516"/>
+        <location filename="../Utils.cpp" line="518"/>
         <source>SSE</source>
         <translation>GGD</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="517"/>
+        <location filename="../Utils.cpp" line="519"/>
         <source>S</source>
         <translation>G</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="518"/>
+        <location filename="../Utils.cpp" line="520"/>
         <source>SSW</source>
         <translation>GGB</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="519"/>
+        <location filename="../Utils.cpp" line="521"/>
         <source>SW</source>
         <translation>GB</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="520"/>
+        <location filename="../Utils.cpp" line="522"/>
         <source>WSW</source>
         <translation>BGB</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="521"/>
+        <location filename="../Utils.cpp" line="523"/>
         <source>W</source>
         <translation>B</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="522"/>
+        <location filename="../Utils.cpp" line="524"/>
         <source>WNW</source>
         <translation>BKB</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="523"/>
+        <location filename="../Utils.cpp" line="525"/>
         <source>NW</source>
         <translation>KB</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="524"/>
+        <location filename="../Utils.cpp" line="526"/>
         <source>NNW</source>
         <translation>KKB</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="526"/>
+        <location filename="../Utils.cpp" line="528"/>
         <source>N</source>
         <translation>K</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1181"/>
+        <location filename="../Utils.cpp" line="1183"/>
         <source>Clear sky</source>
         <translation>Açık gökyüzü</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1182"/>
+        <location filename="../Utils.cpp" line="1184"/>
         <source>Mainly clear</source>
         <translation>Genellikle açık gökyüzü</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1183"/>
+        <location filename="../Utils.cpp" line="1185"/>
         <source>Partly cloudy</source>
         <translation>Kısmen bulutlu</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1184"/>
+        <location filename="../Utils.cpp" line="1186"/>
         <source>Overcast</source>
         <translation>Kapalı</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1185"/>
+        <location filename="../Utils.cpp" line="1187"/>
         <source>Fog</source>
         <translation>Sis</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1186"/>
+        <location filename="../Utils.cpp" line="1188"/>
         <source>Light drizzle</source>
         <translation>Hafif çiseleme</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1187"/>
+        <location filename="../Utils.cpp" line="1189"/>
         <source>Moderate drizzle</source>
         <translation>Orta çiseleme</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1188"/>
+        <location filename="../Utils.cpp" line="1190"/>
         <source>Dense drizzle</source>
         <translation>Yoğun çiseleme</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1189"/>
+        <location filename="../Utils.cpp" line="1191"/>
         <source>Light freezing drizzle</source>
         <translation>Hafif donan çiseleme</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1190"/>
+        <location filename="../Utils.cpp" line="1192"/>
         <source>Dense freezing drizzle</source>
         <translation>Yoğun donan çiseleme</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1191"/>
+        <location filename="../Utils.cpp" line="1193"/>
         <source>Slight rain</source>
         <translation>Hafif yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1192"/>
+        <location filename="../Utils.cpp" line="1194"/>
         <source>Moderate rain</source>
         <translation>Orta yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1193"/>
+        <location filename="../Utils.cpp" line="1195"/>
         <source>Heavy rain</source>
         <translation>Şiddetli yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1194"/>
+        <location filename="../Utils.cpp" line="1196"/>
         <source>Light freezing rain</source>
         <translation>Hafif donan yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1195"/>
+        <location filename="../Utils.cpp" line="1197"/>
         <source>Heavy freezing rain</source>
         <translation>Yoğun donan yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1196"/>
+        <location filename="../Utils.cpp" line="1198"/>
         <source>Slight snow</source>
         <translation>Hafif kar</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1197"/>
+        <location filename="../Utils.cpp" line="1199"/>
         <source>Moderate snow</source>
         <translation>Orta kar</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1198"/>
+        <location filename="../Utils.cpp" line="1200"/>
         <source>Heavy snow</source>
         <translation>Şiddetli kar</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1199"/>
+        <location filename="../Utils.cpp" line="1201"/>
         <source>Snow grains</source>
         <translation>Kar taneleri</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1200"/>
+        <location filename="../Utils.cpp" line="1202"/>
         <source>Slight rain showers</source>
         <translation>Hafif sağanak yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1201"/>
+        <location filename="../Utils.cpp" line="1203"/>
         <source>Moderate rain showers</source>
         <translation>Orta sağanak yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1202"/>
+        <location filename="../Utils.cpp" line="1204"/>
         <source>Violent rain showers</source>
         <translation>Şiddetli sağanak yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1203"/>
+        <location filename="../Utils.cpp" line="1205"/>
         <source>Light snow showers</source>
         <translation>Hafif kar sağanakları</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1204"/>
+        <location filename="../Utils.cpp" line="1206"/>
         <source>Heavy snow showers</source>
         <translation>Şiddetli kar sağanakları</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1205"/>
+        <location filename="../Utils.cpp" line="1207"/>
         <source>Thunderstorm</source>
         <translation>Fırtına</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1206"/>
+        <location filename="../Utils.cpp" line="1208"/>
         <source>Slight thunderstorm with hail</source>
         <translation>Dolulu hafif sağanak yağmur</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1207"/>
+        <location filename="../Utils.cpp" line="1209"/>
         <source>Heavy thunderstorm with hail</source>
         <translation>Dolulu şiddetli sağanak yağmur</translation>
     </message>
@@ -1672,22 +1692,22 @@ and it&apos;s still waiting for the response.</source>
 ve hâlâ yanıt bekliyor.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="51"/>
+        <location filename="../ConfigurationDialog.cpp" line="52"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Konumunuz için %1&apos;den hava durumu tahmin verilerini almak için &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;web sitesinden&lt;/span&gt;&lt;/a&gt; bir API Anahtarı alınmalıdır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="55"/>
+        <location filename="../ConfigurationDialog.cpp" line="56"/>
         <source>%1 doesn&apos;t require any configuration.</source>
         <translation>%1 herhangi bir yapılandırma gerektirmez.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="57"/>
+        <location filename="../ConfigurationDialog.cpp" line="58"/>
         <source>Get the coordinates of a location.</source>
         <translation>Bir konumun koordinatlarını alın.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="58"/>
+        <location filename="../ConfigurationDialog.cpp" line="59"/>
         <source>Current provider does not have Geo-Location capability.</source>
         <translation>Mevcut sağlayıcıda Coğrafi Konum yeteneği yok.</translation>
     </message>
@@ -1950,7 +1970,7 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Current Weather</source>
         <translation>Güncel Hava Hurumu</translation>
     </message>
@@ -2040,7 +2060,7 @@ dışarıda olmaktan kaçının.</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="176"/>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1386"/>
         <source>Temperature</source>
         <translation>Sıcaklık</translation>
     </message>
@@ -2164,7 +2184,7 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1522"/>
+        <location filename="../WeatherDialog.cpp" line="1523"/>
         <source>Show Maps</source>
         <translation>Haritaları Göster</translation>
     </message>
@@ -2195,7 +2215,7 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="94"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Forecast</source>
         <translation>Tahmin</translation>
     </message>
@@ -2206,13 +2226,13 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="115"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Pollution</source>
         <translation>Kirlilik</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="136"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>UV</source>
         <translation>UV</translation>
     </message>
@@ -2254,7 +2274,7 @@ dışarıda olmaktan kaçının.</translation>
         <location filename="../WeatherDialog.cpp" line="759"/>
         <location filename="../WeatherDialog.cpp" line="820"/>
         <location filename="../WeatherDialog.cpp" line="831"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Maps</source>
         <translation>Haritalar</translation>
     </message>
@@ -2299,12 +2319,12 @@ dışarıda olmaktan kaçının.</translation>
         <translation>UV İndeksi</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1436"/>
+        <location filename="../WeatherDialog.cpp" line="1437"/>
         <source>Hide Maps</source>
         <translation>Haritaları Gizle</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1437"/>
+        <location filename="../WeatherDialog.cpp" line="1438"/>
         <source>Hide weather maps tab.</source>
         <translation>Hava durumu haritaları sekmesini gizle.</translation>
     </message>
@@ -2403,17 +2423,17 @@ dışarıda olmaktan kaçının.</translation>
         <translation>Konsantrasyon (%1)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1386"/>
         <source>Rain</source>
         <translation>Yağmur</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1386"/>
         <source>Wind</source>
         <translation>Rüzgâr</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1386"/>
         <source>Clouds</source>
         <translation>Bulutlar</translation>
     </message>
@@ -2430,7 +2450,7 @@ dışarıda olmaktan kaçının.</translation>
         <translation>mt/sn</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1523"/>
+        <location filename="../WeatherDialog.cpp" line="1524"/>
         <source>Show weather maps tab.</source>
         <translation>Hava durumu haritaları sekmesini göster.</translation>
     </message>

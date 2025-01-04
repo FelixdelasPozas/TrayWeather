@@ -645,8 +645,8 @@ void load(Configuration &configuration)
   configuration.showAlerts      = settings.value(SHOW_ALERTS, true).toBool();
   configuration.swapTrayIcons   = settings.value(TRAY_SWAP_ICONS, false).toBool();
   configuration.trayIconSize    = settings.value(TRAY_ICON_SIZE, 100).toInt();
-  configuration.tempRepr        = static_cast<Representation>(settings.value(GRAPH_TEMP_REPR, 2).toInt());
-  configuration.rainRepr        = static_cast<Representation>(settings.value(GRAPH_RAIN_REPR, 3).toInt());
+  configuration.tempRepr        = static_cast<Representation>(settings.value(GRAPH_TEMP_REPR, 1).toInt());
+  configuration.rainRepr        = static_cast<Representation>(settings.value(GRAPH_RAIN_REPR, 2).toInt());
   configuration.snowRepr        = static_cast<Representation>(settings.value(GRAPH_SNOW_REPR, 0).toInt());
   configuration.tempReprColor   = QColor(settings.value(GRAPH_TEMP_COLOR, "#FF0000FF").toString());
   configuration.rainReprColor   = QColor(settings.value(GRAPH_RAIN_COLOR, "#FF00FF00").toString());
@@ -1341,6 +1341,79 @@ void fillWMOCodeInForecast(ForecastData &forecast)
         forecast.parameters = "thuderstorm with hail";
       };
       break;
+  }
+}
+
+//--------------------------------------------------------------------
+void changeWeatherUnits(const Configuration &config, ForecastData &forecast)
+{
+  switch (config.units)
+  {
+    default:
+    case Units::METRIC:
+      return;
+      break;
+    case Units::IMPERIAL:
+      forecast.rain = convertMmToInches(forecast.rain);
+      forecast.snow = convertMmToInches(forecast.snow);
+      forecast.pressure = converthPaToinHg(forecast.pressure);
+      forecast.temp = convertCelsiusToFahrenheit(forecast.temp);
+      forecast.temp_max = convertCelsiusToFahrenheit(forecast.temp_max);
+      forecast.temp_min = convertCelsiusToFahrenheit(forecast.temp_min);
+      forecast.wind_speed = convertMetersSecondToMilesHour(forecast.wind_speed);
+      break;
+    case Units::CUSTOM:
+    {
+      switch (config.precUnits)
+      {
+        case PrecipitationUnits::INCH:
+          forecast.rain = convertMmToInches(forecast.rain);
+          forecast.snow = convertMmToInches(forecast.snow);
+          break;
+        default:
+        case PrecipitationUnits::MM:
+          break;
+      }
+      switch (config.windUnits)
+      {
+        case WindUnits::FEETSEC:
+          forecast.wind_speed = convertMetersSecondToFeetSecond(forecast.wind_speed);
+          break;
+        case WindUnits::KMHR:
+          forecast.wind_speed = convertMetersSecondToKilometersHour(forecast.wind_speed);
+          break;
+        case WindUnits::MILHR:
+          forecast.wind_speed = convertMetersSecondToMilesHour(forecast.wind_speed);
+          break;
+        case WindUnits::KNOTS:
+          forecast.wind_speed = convertMetersSecondToKnots(forecast.wind_speed);
+          break;
+        default:
+        case WindUnits::METSEC:
+          break;
+      }
+      switch (config.tempUnits)
+      {
+        case TemperatureUnits::FAHRENHEIT:
+          forecast.temp = convertCelsiusToFahrenheit(forecast.temp);
+          forecast.temp_min = convertCelsiusToFahrenheit(forecast.temp_min);
+          forecast.temp_max = convertCelsiusToFahrenheit(forecast.temp_max);
+          break;
+        default:
+        case TemperatureUnits::CELSIUS:
+          break;
+      }
+      switch(config.pressureUnits)
+      {
+        case PressureUnits::INHG:
+          forecast.pressure = converthPaToinHg(forecast.pressure);
+          break;
+        default:
+        case PressureUnits::HPA:
+          break;
+      }
+      break;
+    }
   }
 }
 

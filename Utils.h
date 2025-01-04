@@ -734,6 +734,13 @@ QSettings applicationSettings();
  */
 void fillWMOCodeInForecast(ForecastData &forecast);
 
+/** \brief Changes the weather units of the forecast data according to the given configuration.
+ * \param[in] config Configuration struct reference.
+ * \param[in] forecast ForecastData object reference.
+ *
+ */
+void changeWeatherUnits(const Configuration &config, ForecastData &forecast);
+
 /** \class CustomComboBox
  * \brief ComboBox that uses rich text for selected item.
  *
