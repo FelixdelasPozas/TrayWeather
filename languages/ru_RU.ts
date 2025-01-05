@@ -550,23 +550,23 @@
         <location filename="../ConfigurationDialog.ui" line="88"/>
         <location filename="../ConfigurationDialog.ui" line="91"/>
         <source>Selected weather data provider.</source>
-        <translation>Выбранный поставщик данных о погоде.</translation>
+        <translation>Выбранный поставщик данных погоды.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="81"/>
         <source>Weather Data Provider</source>
-        <translation>Поставщик данных о погоде</translation>
+        <translation>Поставщик данных погоды</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="365"/>
         <location filename="../ConfigurationDialog.ui" line="368"/>
         <source>Configuration needed for the current weather provider.</source>
-        <translation>Необходима конфигурация для текущего поставщика погоды.</translation>
+        <translation>Необходима настройка для текущего поставщика погоды.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="384"/>
         <source>Provider Configuration</source>
-        <translation>Конфигурация поставщика</translation>
+        <translation>Настростройка поставщика</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="424"/>
@@ -578,13 +578,13 @@
         <location filename="../ConfigurationDialog.ui" line="463"/>
         <location filename="../ConfigurationDialog.ui" line="466"/>
         <source>Tests the API key.</source>
-        <translation>Тестирует ключ API.</translation>
+        <translation>Проверяется ключ API.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="106"/>
         <location filename="../ConfigurationDialog.ui" line="109"/>
         <source>Capabilities of the current weather data provider.</source>
-        <translation>Возможности текущего поставщика данных о погоде.</translation>
+        <translation>Возможности текущего поставщика данных погоды.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="125"/>
@@ -916,7 +916,7 @@ Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
         <translation>Неверный ответ от сервера геолокации.
 Не удалось получить данные местоположения.
-Если у вас есть брандмауэр, измените его настройки, чтобы разрешить этой программе доступ к сети.</translation>
+Если у вас есть брандмауэр, разрешите в нём доступ этой программы к сети.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="154"/>
@@ -1287,7 +1287,7 @@ The application will exit now.</source>
         <location filename="../Main.cpp" line="122"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
-        <translation>TrayWeather не может запуститься без действительного местоположения и действительного поставщика данных о погоде.
+        <translation>TrayWeather не может запуститься без действительного местоположения и рабочего поставщика данных погоды.
 Приложение сейчас завершит работу.</translation>
     </message>
     <message>
@@ -1699,7 +1699,7 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="56"/>
         <source>%1 doesn&apos;t require any configuration.</source>
-        <translation>%1 не требует конфигурации.</translation>
+        <translation>%1 не требует настройки.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="58"/>
@@ -1709,7 +1709,7 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="59"/>
         <source>Current provider does not have Geo-Location capability.</source>
-        <translation>Текущий поставщик не имеет возможности геолокации.</translation>
+        <translation>У текущего поставщика нет возможности геолокации.</translation>
     </message>
 </context>
 <context>
@@ -2291,13 +2291,13 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="189"/>
         <location filename="../WeatherDialog.cpp" line="235"/>
         <source>inches/h</source>
-        <translation>дюймы/час</translation>
+        <translation>дюймы/ч</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="196"/>
         <location filename="../WeatherDialog.cpp" line="240"/>
         <source>mm/h</source>
-        <translation>мм/час</translation>
+        <translation>мм/ч</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="217"/>
@@ -2497,12 +2497,12 @@ during midday hours.</source>
         <location filename="../WeatherWidget.cpp" line="68"/>
         <location filename="../WeatherWidget.cpp" line="115"/>
         <source>mm/h</source>
-        <translation>мм/час</translation>
+        <translation>мм/ч</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="73"/>
         <source>inch/h</source>
-        <translation>дюймы/час</translation>
+        <translation>дюйм/ч</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="91"/>
@@ -2517,7 +2517,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherWidget.cpp" line="109"/>
         <source>inches/h</source>
-        <translation>дюймы/час</translation>
+        <translation>дюйм/ч</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="72"/>
