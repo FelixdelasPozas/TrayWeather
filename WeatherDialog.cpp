@@ -71,6 +71,7 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
   setupUi(this);
 
   m_tabWidget->setContentsMargins(0, 0, 0, 0);
+  m_tabWidget->setStyleSheet(m_tabWidget->styleSheet() + HIDE_DISABLED_TAB_STYLESHEET);
 
   auto weatherTabContents = new QWidget();
   auto weatherTabLayout = new QVBoxLayout();
@@ -145,8 +146,6 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
           this,        SLOT(onTabChanged(int)));
 
   m_reset->setVisible(false);
-
-  m_tabWidget->setStyleSheet(m_tabWidget->styleSheet() + HIDE_DISABLED_TAB_STYLESHEET);
 
   updateUI(m_provider->capabilities());
 }

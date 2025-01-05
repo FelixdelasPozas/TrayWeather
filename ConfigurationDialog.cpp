@@ -49,15 +49,6 @@
 
 const char SELECTED[] = "Selected";
 
-const QString PROVIDER_KEY_TEXT = QObject::tr("<html><head/><body><p>To obtain weather forecast data from %1 for your location an " 
-                                              "API Key must be obtained from the <a href=\"%2\"><span style=\"text-decoration:" 
-                                              "underline; color:#0000ff;\">website</span></a>.</p></body></html>");
-
-const QString PROVIDER_NO_TEXT = QObject::tr("%1 doesn't require any configuration.");
-
-const QString GEOLOCATION_AVAILABLE = QObject::tr("Get the coordinates of a location.");
-const QString GEOLOCATION_UNAVAILABLE = QObject::tr("Current provider does not have Geo-Location capability.");
-
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
 : QDialog       {parent}
@@ -1407,6 +1398,9 @@ void ConfigurationDialog::fixVisuals()
   m_tabWidget->tabBar()->setUsesScrollButtons(false);
   m_tabWidget->tabBar()->adjustSize();
   setFixedWidth(std::max(width(), m_tabWidget->tabBar()->sizeHint().width() + 30));
+
+  // Re-translates dynamic strings.
+  onProviderChanged(m_providerComboBox->currentIndex());
 }
 
 //--------------------------------------------------------------------
@@ -1484,6 +1478,14 @@ void ConfigurationDialog::onSearchButtonClicked()
 //--------------------------------------------------------------------
 void ConfigurationDialog::onProviderChanged(int index)
 {
+  const QString GEOLOCATION_AVAILABLE = tr("Get the coordinates of a location.");
+  const QString GEOLOCATION_UNAVAILABLE = tr("Current provider does not have Geo-Location capability.");
+  const QString PROVIDER_KEY_TEXT = tr("<html><head/><body><p>To obtain weather forecast data from %1 for your location an " 
+                                       "API Key must be obtained from the <a href=\"%2\"><span style=\"text-decoration:" 
+                                       "underline; color:#0000ff;\">website</span></a>.</p></body></html>");
+  const QString PROVIDER_NO_TEXT = tr("%1 doesn't require any configuration.");
+
+
   if(index < 0) index = 0;
   const auto id = WEATHER_PROVIDERS.at(index).id;
 
@@ -1521,7 +1523,9 @@ void ConfigurationDialog::onProviderChanged(int index)
     m_apikey->setText(m_provider->apikey());
     m_ipapiLabel->setEnabled(true);
     m_testLabel->setEnabled(true);
+    m_providerConfigText->setTextFormat(Qt::RichText);
     m_providerConfigText->setText(PROVIDER_KEY_TEXT.arg(m_provider->name()).arg(m_provider->website()));
+    m_providerConfigText->setOpenExternalLinks(true);
 
     if(!m_provider->apikey().isEmpty())
       requestAPIKeyTest();

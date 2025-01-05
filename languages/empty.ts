@@ -307,7 +307,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="444"/>
-        <location filename="../ConfigurationDialog.cpp" line="438"/>
+        <location filename="../ConfigurationDialog.cpp" line="429"/>
         <source>Testing API Key...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -909,114 +909,134 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="150"/>
-        <location filename="../ConfigurationDialog.cpp" line="182"/>
+        <location filename="../ConfigurationDialog.cpp" line="141"/>
+        <location filename="../ConfigurationDialog.cpp" line="173"/>
         <source>Invalid reply from Geo-Locator server.
 Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="154"/>
-        <location filename="../ConfigurationDialog.cpp" line="238"/>
-        <location filename="../ConfigurationDialog.cpp" line="1453"/>
+        <location filename="../ConfigurationDialog.cpp" line="145"/>
+        <location filename="../ConfigurationDialog.cpp" line="229"/>
+        <location filename="../ConfigurationDialog.cpp" line="1447"/>
         <source>Network Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="958"/>
-        <location filename="../ConfigurationDialog.cpp" line="1555"/>
+        <location filename="../ConfigurationDialog.cpp" line="949"/>
+        <location filename="../ConfigurationDialog.cpp" line="1559"/>
         <source>Invalid API Key!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="963"/>
+        <location filename="../ConfigurationDialog.cpp" line="954"/>
         <source>Untested API Key!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1549"/>
+        <location filename="../ConfigurationDialog.cpp" line="1553"/>
         <source>The API Key is valid!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="200"/>
+        <location filename="../ConfigurationDialog.cpp" line="191"/>
         <source>Success</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="212"/>
-        <location filename="../ConfigurationDialog.cpp" line="220"/>
-        <location filename="../ConfigurationDialog.cpp" line="228"/>
+        <location filename="../ConfigurationDialog.cpp" line="203"/>
+        <location filename="../ConfigurationDialog.cpp" line="211"/>
+        <location filename="../ConfigurationDialog.cpp" line="219"/>
         <source>Failure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="214"/>
+        <location filename="../ConfigurationDialog.cpp" line="205"/>
         <source>Error parsing location data. Failure or invalid number of fields.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="222"/>
+        <location filename="../ConfigurationDialog.cpp" line="213"/>
         <source>Data request failure. Invalid data format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="230"/>
+        <location filename="../ConfigurationDialog.cpp" line="221"/>
         <source>Invalid reply from Geo-Locator server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="374"/>
-        <location filename="../ConfigurationDialog.cpp" line="398"/>
+        <location filename="../ConfigurationDialog.cpp" line="365"/>
+        <location filename="../ConfigurationDialog.cpp" line="389"/>
         <source>Requesting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="410"/>
+        <location filename="../ConfigurationDialog.cpp" line="401"/>
         <source>API Key Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="412"/>
+        <location filename="../ConfigurationDialog.cpp" line="403"/>
         <source>API key missing!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="420"/>
+        <location filename="../ConfigurationDialog.cpp" line="411"/>
         <source>Location Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="422"/>
+        <location filename="../ConfigurationDialog.cpp" line="413"/>
         <source>You must set a valid location before testing the API key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1450"/>
+        <location filename="../ConfigurationDialog.cpp" line="1444"/>
         <source>Location search requires a valid weather provider API key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1566"/>
+        <location filename="../ConfigurationDialog.cpp" line="1570"/>
         <source>Weather Provider Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1266"/>
-        <location filename="../ConfigurationDialog.cpp" line="1305"/>
+        <location filename="../ConfigurationDialog.cpp" line="1257"/>
+        <location filename="../ConfigurationDialog.cpp" line="1296"/>
         <source>Font Selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1269"/>
-        <location filename="../ConfigurationDialog.cpp" line="1308"/>
+        <location filename="../ConfigurationDialog.cpp" line="1260"/>
+        <location filename="../ConfigurationDialog.cpp" line="1299"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1296"/>
+        <location filename="../ConfigurationDialog.cpp" line="1287"/>
         <source>Select font for temperature icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="1483"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="1486"/>
+        <source>%1 doesn&apos;t require any configuration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="1481"/>
+        <source>Get the coordinates of a location.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.cpp" line="1482"/>
+        <source>Current provider does not have Geo-Location capability.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1684,26 +1704,6 @@ The application will exit now.</source>
 and it&apos;s still waiting for the response.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../ConfigurationDialog.cpp" line="52"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConfigurationDialog.cpp" line="56"/>
-        <source>%1 doesn&apos;t require any configuration.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConfigurationDialog.cpp" line="58"/>
-        <source>Get the coordinates of a location.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ConfigurationDialog.cpp" line="59"/>
-        <source>Current provider does not have Geo-Location capability.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>TrayWeather</name>
@@ -1960,7 +1960,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1422"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Current Weather</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2049,8 +2049,8 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
-        <location filename="../WeatherDialog.cpp" line="176"/>
-        <location filename="../WeatherDialog.cpp" line="1386"/>
+        <location filename="../WeatherDialog.cpp" line="175"/>
+        <location filename="../WeatherDialog.cpp" line="1385"/>
         <source>Temperature</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2073,9 +2073,9 @@ during midday hours.</source>
         <location filename="../WeatherDialog.ui" line="370"/>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
-        <location filename="../WeatherDialog.cpp" line="175"/>
-        <location filename="../WeatherDialog.cpp" line="863"/>
-        <location filename="../WeatherDialog.cpp" line="1051"/>
+        <location filename="../WeatherDialog.cpp" line="174"/>
+        <location filename="../WeatherDialog.cpp" line="862"/>
+        <location filename="../WeatherDialog.cpp" line="1050"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2094,7 +2094,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="148"/>
         <location filename="../WeatherDialog.ui" line="280"/>
-        <location filename="../WeatherDialog.cpp" line="174"/>
+        <location filename="../WeatherDialog.cpp" line="173"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2174,7 +2174,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1523"/>
+        <location filename="../WeatherDialog.cpp" line="1522"/>
         <source>Show Maps</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2199,248 +2199,248 @@ during midday hours.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="85"/>
+        <location filename="../WeatherDialog.cpp" line="86"/>
         <source>Weather forecast for the next days.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="94"/>
-        <location filename="../WeatherDialog.cpp" line="1422"/>
+        <location filename="../WeatherDialog.cpp" line="95"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Forecast</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="106"/>
+        <location filename="../WeatherDialog.cpp" line="107"/>
         <source>Pollution forecast for the next days.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="115"/>
-        <location filename="../WeatherDialog.cpp" line="1422"/>
+        <location filename="../WeatherDialog.cpp" line="116"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Pollution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="136"/>
-        <location filename="../WeatherDialog.cpp" line="1422"/>
+        <location filename="../WeatherDialog.cpp" line="137"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>UV</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="172"/>
+        <location filename="../WeatherDialog.cpp" line="171"/>
         <source>Illumination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="173"/>
+        <location filename="../WeatherDialog.cpp" line="172"/>
         <source>Current weather</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="479"/>
+        <location filename="../WeatherDialog.cpp" line="478"/>
         <source>Rain accumulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="197"/>
-        <location filename="../WeatherDialog.cpp" line="229"/>
+        <location filename="../WeatherDialog.cpp" line="196"/>
+        <location filename="../WeatherDialog.cpp" line="228"/>
         <source>hPa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="361"/>
-        <location filename="../WeatherDialog.cpp" line="910"/>
-        <location filename="../WeatherDialog.cpp" line="1073"/>
+        <location filename="../WeatherDialog.cpp" line="360"/>
+        <location filename="../WeatherDialog.cpp" line="909"/>
+        <location filename="../WeatherDialog.cpp" line="1072"/>
         <source>Day (Hour)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="366"/>
-        <location filename="../WeatherDialog.cpp" line="371"/>
+        <location filename="../WeatherDialog.cpp" line="365"/>
+        <location filename="../WeatherDialog.cpp" line="370"/>
         <source>%1 in %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="759"/>
-        <location filename="../WeatherDialog.cpp" line="820"/>
-        <location filename="../WeatherDialog.cpp" line="831"/>
-        <location filename="../WeatherDialog.cpp" line="1422"/>
+        <location filename="../WeatherDialog.cpp" line="758"/>
+        <location filename="../WeatherDialog.cpp" line="819"/>
+        <location filename="../WeatherDialog.cpp" line="830"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Maps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="766"/>
+        <location filename="../WeatherDialog.cpp" line="765"/>
         <source>TrayWeather Maps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="768"/>
+        <location filename="../WeatherDialog.cpp" line="767"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="872"/>
+        <location filename="../WeatherDialog.cpp" line="871"/>
         <source>Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="881"/>
+        <location filename="../WeatherDialog.cpp" line="880"/>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="886"/>
+        <location filename="../WeatherDialog.cpp" line="885"/>
         <source>Very high</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="889"/>
+        <location filename="../WeatherDialog.cpp" line="888"/>
         <source>Extreme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="914"/>
+        <location filename="../WeatherDialog.cpp" line="913"/>
         <source>Ultraviolet radiation index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="962"/>
+        <location filename="../WeatherDialog.cpp" line="961"/>
         <source>UV Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1437"/>
+        <location filename="../WeatherDialog.cpp" line="1436"/>
         <source>Hide Maps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1438"/>
+        <location filename="../WeatherDialog.cpp" line="1437"/>
         <source>Hide weather maps tab.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="812"/>
+        <location filename="../WeatherDialog.cpp" line="811"/>
         <source>Weather Maps.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="480"/>
+        <location filename="../WeatherDialog.cpp" line="479"/>
         <source>Snow accumulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="190"/>
-        <location filename="../WeatherDialog.cpp" line="225"/>
+        <location filename="../WeatherDialog.cpp" line="189"/>
+        <location filename="../WeatherDialog.cpp" line="224"/>
         <source>PSI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="88"/>
+        <location filename="../WeatherDialog.cpp" line="89"/>
         <source>Error requesting weather data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="109"/>
+        <location filename="../WeatherDialog.cpp" line="110"/>
         <source>Error requesting air quality data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="127"/>
+        <location filename="../WeatherDialog.cpp" line="128"/>
         <source>Ultraviolet radiation forecast for the next days.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="130"/>
+        <location filename="../WeatherDialog.cpp" line="131"/>
         <source>Error requesting ultraviolet radiation data.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="177"/>
+        <location filename="../WeatherDialog.cpp" line="176"/>
         <source>Accumulation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="189"/>
-        <location filename="../WeatherDialog.cpp" line="235"/>
+        <location filename="../WeatherDialog.cpp" line="188"/>
+        <location filename="../WeatherDialog.cpp" line="234"/>
         <source>inches/h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="196"/>
-        <location filename="../WeatherDialog.cpp" line="240"/>
+        <location filename="../WeatherDialog.cpp" line="195"/>
+        <location filename="../WeatherDialog.cpp" line="239"/>
         <source>mm/h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="217"/>
+        <location filename="../WeatherDialog.cpp" line="216"/>
         <source>inHg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="221"/>
+        <location filename="../WeatherDialog.cpp" line="220"/>
         <source>mmHg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="246"/>
+        <location filename="../WeatherDialog.cpp" line="245"/>
         <source>ft/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="250"/>
+        <location filename="../WeatherDialog.cpp" line="249"/>
         <source>km/h</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="258"/>
+        <location filename="../WeatherDialog.cpp" line="257"/>
         <source>kts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="378"/>
-        <location filename="../WeatherDialog.cpp" line="1084"/>
+        <location filename="../WeatherDialog.cpp" line="377"/>
+        <location filename="../WeatherDialog.cpp" line="1083"/>
         <source>Click to hide or show the forecast.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="877"/>
+        <location filename="../WeatherDialog.cpp" line="876"/>
         <source>Moderate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1077"/>
+        <location filename="../WeatherDialog.cpp" line="1076"/>
         <source>Concentration in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1386"/>
+        <location filename="../WeatherDialog.cpp" line="1385"/>
         <source>Rain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1386"/>
+        <location filename="../WeatherDialog.cpp" line="1385"/>
         <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1386"/>
+        <location filename="../WeatherDialog.cpp" line="1385"/>
         <source>Clouds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="191"/>
-        <location filename="../WeatherDialog.cpp" line="254"/>
+        <location filename="../WeatherDialog.cpp" line="190"/>
+        <location filename="../WeatherDialog.cpp" line="253"/>
         <source>mph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="198"/>
-        <location filename="../WeatherDialog.cpp" line="263"/>
+        <location filename="../WeatherDialog.cpp" line="197"/>
+        <location filename="../WeatherDialog.cpp" line="262"/>
         <source>m/s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1524"/>
+        <location filename="../WeatherDialog.cpp" line="1523"/>
         <source>Show weather maps tab.</source>
         <translation type="unfinished"></translation>
     </message>
