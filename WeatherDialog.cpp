@@ -344,9 +344,12 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   // Forecast tab
   if(m_forecast->empty())
   {
-    m_weatherChart->hide();
-    m_weatherError->show();
-    m_tabWidget->setTabIcon(1, QIcon(":/TrayWeather/network_error.svg"));
+    if(m_provider->capabilities().hasWeatherForecast)
+    {
+      m_weatherChart->hide();
+      m_weatherError->show();
+      m_tabWidget->setTabIcon(1, QIcon(":/TrayWeather/network_error.svg"));
+    }
   }
   else
   {
@@ -893,9 +896,12 @@ void WeatherDialog::setUVData(const UV &data)
 
   if(m_uv->isEmpty())
   {
-    m_uvChart->hide();
-    m_uvError->show();
-    m_tabWidget->setTabIcon(3, QIcon(":/TrayWeather/network_error.svg"));
+    if(m_provider->capabilities().hasUVForecast)
+    {
+      m_uvChart->hide();
+      m_uvError->show();
+      m_tabWidget->setTabIcon(3, QIcon(":/TrayWeather/network_error.svg"));
+    }
   }
   else
   {
@@ -1056,9 +1062,12 @@ void WeatherDialog::setPollutionData(const Pollution &data)
 
   if(m_pollution->isEmpty())
   {
-    m_pollutionChart->hide();
-    m_pollutionError->show();
-    m_tabWidget->setTabIcon(2, QIcon(":/TrayWeather/network_error.svg"));
+    if(m_provider->capabilities().hasPollutionForecast)
+    {
+      m_pollutionChart->hide();
+      m_pollutionError->show();
+      m_tabWidget->setTabIcon(2, QIcon(":/TrayWeather/network_error.svg"));
+    }
   }
   else
   {
