@@ -566,7 +566,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="384"/>
         <source>Provider Configuration</source>
-        <translation>Настростройка поставщика</translation>
+        <translation>Настройка поставщика</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="424"/>
