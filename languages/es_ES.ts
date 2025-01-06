@@ -1970,7 +1970,7 @@ las horas centrales del día.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Current Weather</source>
         <translation>Clima Actual</translation>
     </message>
@@ -2060,7 +2060,7 @@ las horas centrales del día.</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="175"/>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
@@ -2084,8 +2084,8 @@ las horas centrales del día.</translation>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
         <location filename="../WeatherDialog.cpp" line="174"/>
-        <location filename="../WeatherDialog.cpp" line="862"/>
-        <location filename="../WeatherDialog.cpp" line="1050"/>
+        <location filename="../WeatherDialog.cpp" line="865"/>
+        <location filename="../WeatherDialog.cpp" line="1056"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -2184,7 +2184,7 @@ las horas centrales del día.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1522"/>
+        <location filename="../WeatherDialog.cpp" line="1531"/>
         <source>Show Maps</source>
         <translation>Mostrar Mapas</translation>
     </message>
@@ -2215,7 +2215,7 @@ las horas centrales del día.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="95"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Forecast</source>
         <translation>Pronóstico</translation>
     </message>
@@ -2226,13 +2226,13 @@ las horas centrales del día.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="116"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Pollution</source>
         <translation>Polución</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="137"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>UV</source>
         <translation>UV</translation>
     </message>
@@ -2247,12 +2247,12 @@ las horas centrales del día.</translation>
         <translation>Clima actual</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="478"/>
+        <location filename="../WeatherDialog.cpp" line="481"/>
         <source>Rain accumulation</source>
         <translation>Acumulación de lluvia</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="479"/>
+        <location filename="../WeatherDialog.cpp" line="482"/>
         <source>Snow accumulation</source>
         <translation>Acumulación de nieve</translation>
     </message>
@@ -2325,79 +2325,79 @@ las horas centrales del día.</translation>
         <translation>nudos</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="360"/>
-        <location filename="../WeatherDialog.cpp" line="909"/>
-        <location filename="../WeatherDialog.cpp" line="1072"/>
+        <location filename="../WeatherDialog.cpp" line="363"/>
+        <location filename="../WeatherDialog.cpp" line="915"/>
+        <location filename="../WeatherDialog.cpp" line="1081"/>
         <source>Day (Hour)</source>
         <translation>Dia (Hora)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="365"/>
-        <location filename="../WeatherDialog.cpp" line="370"/>
+        <location filename="../WeatherDialog.cpp" line="368"/>
+        <location filename="../WeatherDialog.cpp" line="373"/>
         <source>%1 in %2</source>
         <translation>%1 en %2</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="377"/>
-        <location filename="../WeatherDialog.cpp" line="1083"/>
+        <location filename="../WeatherDialog.cpp" line="380"/>
+        <location filename="../WeatherDialog.cpp" line="1092"/>
         <source>Click to hide or show the forecast.</source>
         <translation>Pulsa para ocultar o mostrar el pronóstico.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="758"/>
-        <location filename="../WeatherDialog.cpp" line="819"/>
-        <location filename="../WeatherDialog.cpp" line="830"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="761"/>
+        <location filename="../WeatherDialog.cpp" line="822"/>
+        <location filename="../WeatherDialog.cpp" line="833"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Maps</source>
         <translation>Mapas</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="765"/>
+        <location filename="../WeatherDialog.cpp" line="768"/>
         <source>TrayWeather Maps</source>
         <translation>TrayWeather Mapas</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="767"/>
+        <location filename="../WeatherDialog.cpp" line="770"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>No se han podido cargar los Mapas de TrayWeather.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="871"/>
+        <location filename="../WeatherDialog.cpp" line="874"/>
         <source>Low</source>
         <translation>Baja</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="880"/>
+        <location filename="../WeatherDialog.cpp" line="883"/>
         <source>High</source>
         <translation>Alta</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="885"/>
+        <location filename="../WeatherDialog.cpp" line="888"/>
         <source>Very high</source>
         <translation>Muy alta</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="888"/>
+        <location filename="../WeatherDialog.cpp" line="891"/>
         <source>Extreme</source>
         <translation>Extrema</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="913"/>
+        <location filename="../WeatherDialog.cpp" line="919"/>
         <source>Ultraviolet radiation index</source>
         <translation>Índice de radiación ultravioleta</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="961"/>
+        <location filename="../WeatherDialog.cpp" line="967"/>
         <source>UV Index</source>
         <translation>Índice UV</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1523"/>
+        <location filename="../WeatherDialog.cpp" line="1532"/>
         <source>Show weather maps tab.</source>
         <translation>Mostrar pestaña de mapas del clima.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1436"/>
+        <location filename="../WeatherDialog.cpp" line="1445"/>
         <source>Hide Maps</source>
         <translation>Ocultar Mapas</translation>
     </message>
@@ -2408,32 +2408,32 @@ las horas centrales del día.</translation>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1437"/>
+        <location filename="../WeatherDialog.cpp" line="1446"/>
         <source>Hide weather maps tab.</source>
         <translation>Oculatar pestaña de mapas del clima.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="811"/>
+        <location filename="../WeatherDialog.cpp" line="814"/>
         <source>Weather Maps.</source>
         <translation>Mapas del clima.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="876"/>
+        <location filename="../WeatherDialog.cpp" line="879"/>
         <source>Moderate</source>
         <translation>Moderada</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Rain</source>
         <translation>Lluvia</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Wind</source>
         <translation>Viento</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Clouds</source>
         <translation>Nubes</translation>
     </message>
@@ -2450,7 +2450,7 @@ las horas centrales del día.</translation>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1076"/>
+        <location filename="../WeatherDialog.cpp" line="1085"/>
         <source>Concentration in %1</source>
         <translation>Concentración en %1</translation>
     </message>

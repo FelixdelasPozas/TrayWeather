@@ -1970,7 +1970,7 @@ v času opoldanskih ur.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Current Weather</source>
         <translation>Trenutno Vreme</translation>
     </message>
@@ -2060,7 +2060,7 @@ v času opoldanskih ur.</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="175"/>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
@@ -2084,8 +2084,8 @@ v času opoldanskih ur.</translation>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
         <location filename="../WeatherDialog.cpp" line="174"/>
-        <location filename="../WeatherDialog.cpp" line="862"/>
-        <location filename="../WeatherDialog.cpp" line="1050"/>
+        <location filename="../WeatherDialog.cpp" line="865"/>
+        <location filename="../WeatherDialog.cpp" line="1056"/>
         <source>Unknown</source>
         <translation>Neznano</translation>
     </message>
@@ -2184,7 +2184,7 @@ v času opoldanskih ur.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1522"/>
+        <location filename="../WeatherDialog.cpp" line="1531"/>
         <source>Show Maps</source>
         <translation>Pokaži karte</translation>
     </message>
@@ -2215,7 +2215,7 @@ v času opoldanskih ur.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="95"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Forecast</source>
         <translation>Napoved</translation>
     </message>
@@ -2226,13 +2226,13 @@ v času opoldanskih ur.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="116"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Pollution</source>
         <translation>Onesnaženost</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="137"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>UV</source>
         <translation>UV</translation>
     </message>
@@ -2247,7 +2247,7 @@ v času opoldanskih ur.</translation>
         <translation>Trenutno vreme</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="478"/>
+        <location filename="../WeatherDialog.cpp" line="481"/>
         <source>Rain accumulation</source>
         <translation>Akumulacija dežja</translation>
     </message>
@@ -2258,83 +2258,83 @@ v času opoldanskih ur.</translation>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="360"/>
-        <location filename="../WeatherDialog.cpp" line="909"/>
-        <location filename="../WeatherDialog.cpp" line="1072"/>
+        <location filename="../WeatherDialog.cpp" line="363"/>
+        <location filename="../WeatherDialog.cpp" line="915"/>
+        <location filename="../WeatherDialog.cpp" line="1081"/>
         <source>Day (Hour)</source>
         <translation>Dan (Ura)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="365"/>
-        <location filename="../WeatherDialog.cpp" line="370"/>
+        <location filename="../WeatherDialog.cpp" line="368"/>
+        <location filename="../WeatherDialog.cpp" line="373"/>
         <source>%1 in %2</source>
         <translation>%1 v %2</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="758"/>
-        <location filename="../WeatherDialog.cpp" line="819"/>
-        <location filename="../WeatherDialog.cpp" line="830"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="761"/>
+        <location filename="../WeatherDialog.cpp" line="822"/>
+        <location filename="../WeatherDialog.cpp" line="833"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Maps</source>
         <translation>Karte</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="765"/>
+        <location filename="../WeatherDialog.cpp" line="768"/>
         <source>TrayWeather Maps</source>
         <translation>TrayWeather karte</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="767"/>
+        <location filename="../WeatherDialog.cpp" line="770"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>Vremenske karte ni bilo mogoče naložiti.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="871"/>
+        <location filename="../WeatherDialog.cpp" line="874"/>
         <source>Low</source>
         <translation>Nizka</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="880"/>
+        <location filename="../WeatherDialog.cpp" line="883"/>
         <source>High</source>
         <translation>Visoka</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="885"/>
+        <location filename="../WeatherDialog.cpp" line="888"/>
         <source>Very high</source>
         <translation>Zelo visoka</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="888"/>
+        <location filename="../WeatherDialog.cpp" line="891"/>
         <source>Extreme</source>
         <translation>Ekstremna</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="913"/>
+        <location filename="../WeatherDialog.cpp" line="919"/>
         <source>Ultraviolet radiation index</source>
         <translation>Indeks ultravijoličnega sevanja</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="961"/>
+        <location filename="../WeatherDialog.cpp" line="967"/>
         <source>UV Index</source>
         <translation>UV indeks</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1436"/>
+        <location filename="../WeatherDialog.cpp" line="1445"/>
         <source>Hide Maps</source>
         <translation>Skrij karte</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1437"/>
+        <location filename="../WeatherDialog.cpp" line="1446"/>
         <source>Hide weather maps tab.</source>
         <translation>Skrij zavihek vremenskih kart.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="811"/>
+        <location filename="../WeatherDialog.cpp" line="814"/>
         <source>Weather Maps.</source>
         <translation>Vremenske karte.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="479"/>
+        <location filename="../WeatherDialog.cpp" line="482"/>
         <source>Snow accumulation</source>
         <translation>Akumulacija snega</translation>
     </message>
@@ -2407,33 +2407,33 @@ v času opoldanskih ur.</translation>
         <translation>kn</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="377"/>
-        <location filename="../WeatherDialog.cpp" line="1083"/>
+        <location filename="../WeatherDialog.cpp" line="380"/>
+        <location filename="../WeatherDialog.cpp" line="1092"/>
         <source>Click to hide or show the forecast.</source>
         <translation>Klikni, da skriješ ali prikažeš napoved.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="876"/>
+        <location filename="../WeatherDialog.cpp" line="879"/>
         <source>Moderate</source>
         <translation>Zmerna</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1076"/>
+        <location filename="../WeatherDialog.cpp" line="1085"/>
         <source>Concentration in %1</source>
         <translation>Koncentracija v %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Rain</source>
         <translation>Dež</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Wind</source>
         <translation>Veter</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Clouds</source>
         <translation>Oblaki</translation>
     </message>
@@ -2450,7 +2450,7 @@ v času opoldanskih ur.</translation>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1523"/>
+        <location filename="../WeatherDialog.cpp" line="1532"/>
         <source>Show weather maps tab.</source>
         <translation>Pokaži zavihek vremenskih kart.</translation>
     </message>

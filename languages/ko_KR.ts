@@ -1978,7 +1978,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Current Weather</source>
         <translation>현재 날씨</translation>
     </message>
@@ -2068,7 +2068,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="175"/>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Temperature</source>
         <translation>기온</translation>
     </message>
@@ -2092,8 +2092,8 @@ during midday hours.</source>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
         <location filename="../WeatherDialog.cpp" line="174"/>
-        <location filename="../WeatherDialog.cpp" line="862"/>
-        <location filename="../WeatherDialog.cpp" line="1050"/>
+        <location filename="../WeatherDialog.cpp" line="865"/>
+        <location filename="../WeatherDialog.cpp" line="1056"/>
         <source>Unknown</source>
         <translation>알 수 없음</translation>
     </message>
@@ -2192,7 +2192,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1522"/>
+        <location filename="../WeatherDialog.cpp" line="1531"/>
         <source>Show Maps</source>
         <translation>지도 표시</translation>
     </message>
@@ -2223,7 +2223,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="95"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Forecast</source>
         <translation>일기예보</translation>
     </message>
@@ -2234,13 +2234,13 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="116"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Pollution</source>
         <translation>대기오염</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="137"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>UV</source>
         <translation>자외선</translation>
     </message>
@@ -2255,7 +2255,7 @@ during midday hours.</source>
         <translation>현재 날씨</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="478"/>
+        <location filename="../WeatherDialog.cpp" line="481"/>
         <source>Rain accumulation</source>
         <translation>강우량</translation>
     </message>
@@ -2266,83 +2266,83 @@ during midday hours.</source>
         <translation>헥토파스칼 (hPa)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="360"/>
-        <location filename="../WeatherDialog.cpp" line="909"/>
-        <location filename="../WeatherDialog.cpp" line="1072"/>
+        <location filename="../WeatherDialog.cpp" line="363"/>
+        <location filename="../WeatherDialog.cpp" line="915"/>
+        <location filename="../WeatherDialog.cpp" line="1081"/>
         <source>Day (Hour)</source>
         <translation>일 (시간)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="365"/>
-        <location filename="../WeatherDialog.cpp" line="370"/>
+        <location filename="../WeatherDialog.cpp" line="368"/>
+        <location filename="../WeatherDialog.cpp" line="373"/>
         <source>%1 in %2</source>
         <translation>%2에서 %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="758"/>
-        <location filename="../WeatherDialog.cpp" line="819"/>
-        <location filename="../WeatherDialog.cpp" line="830"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="761"/>
+        <location filename="../WeatherDialog.cpp" line="822"/>
+        <location filename="../WeatherDialog.cpp" line="833"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Maps</source>
         <translation>지도</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="765"/>
+        <location filename="../WeatherDialog.cpp" line="768"/>
         <source>TrayWeather Maps</source>
         <translation>TrayWeather 지도</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="767"/>
+        <location filename="../WeatherDialog.cpp" line="770"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>날씨 지도를 읽어들일 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="871"/>
+        <location filename="../WeatherDialog.cpp" line="874"/>
         <source>Low</source>
         <translation>낮음</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="880"/>
+        <location filename="../WeatherDialog.cpp" line="883"/>
         <source>High</source>
         <translation>높음</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="885"/>
+        <location filename="../WeatherDialog.cpp" line="888"/>
         <source>Very high</source>
         <translation>매우 높음</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="888"/>
+        <location filename="../WeatherDialog.cpp" line="891"/>
         <source>Extreme</source>
         <translation>극단적</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="913"/>
+        <location filename="../WeatherDialog.cpp" line="919"/>
         <source>Ultraviolet radiation index</source>
         <translation>자외선 지수</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="961"/>
+        <location filename="../WeatherDialog.cpp" line="967"/>
         <source>UV Index</source>
         <translation>자외선 지수</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1436"/>
+        <location filename="../WeatherDialog.cpp" line="1445"/>
         <source>Hide Maps</source>
         <translation>지도 숨기기</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1437"/>
+        <location filename="../WeatherDialog.cpp" line="1446"/>
         <source>Hide weather maps tab.</source>
         <translation>날씨 지도 탭 숨기기</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="811"/>
+        <location filename="../WeatherDialog.cpp" line="814"/>
         <source>Weather Maps.</source>
         <translation>날씨 지도.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="479"/>
+        <location filename="../WeatherDialog.cpp" line="482"/>
         <source>Snow accumulation</source>
         <translation>강설량</translation>
     </message>
@@ -2415,33 +2415,33 @@ during midday hours.</source>
         <translation>매듭</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="377"/>
-        <location filename="../WeatherDialog.cpp" line="1083"/>
+        <location filename="../WeatherDialog.cpp" line="380"/>
+        <location filename="../WeatherDialog.cpp" line="1092"/>
         <source>Click to hide or show the forecast.</source>
         <translation>일기예보를 표시하거나 숨기려면 클릭합니다.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="876"/>
+        <location filename="../WeatherDialog.cpp" line="879"/>
         <source>Moderate</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1076"/>
+        <location filename="../WeatherDialog.cpp" line="1085"/>
         <source>Concentration in %1</source>
         <translation>농도 %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Rain</source>
         <translation>비</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Wind</source>
         <translation>바람</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Clouds</source>
         <translation>구름</translation>
     </message>
@@ -2458,7 +2458,7 @@ during midday hours.</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1523"/>
+        <location filename="../WeatherDialog.cpp" line="1532"/>
         <source>Show weather maps tab.</source>
         <translation>날씨 지도 탭을 표시합니다.</translation>
     </message>

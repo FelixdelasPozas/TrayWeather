@@ -550,23 +550,23 @@
         <location filename="../ConfigurationDialog.ui" line="88"/>
         <location filename="../ConfigurationDialog.ui" line="91"/>
         <source>Selected weather data provider.</source>
-        <translation>Выбранный поставщик данных о погоде.</translation>
+        <translation>Выбранный поставщик данных погоды.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="81"/>
         <source>Weather Data Provider</source>
-        <translation>Поставщик данных о погоде</translation>
+        <translation>Поставщик данных погоды</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="365"/>
         <location filename="../ConfigurationDialog.ui" line="368"/>
         <source>Configuration needed for the current weather provider.</source>
-        <translation>Необходима конфигурация для текущего поставщика погоды.</translation>
+        <translation>Необходима настройка для текущего поставщика погоды.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="384"/>
         <source>Provider Configuration</source>
-        <translation>Конфигурация поставщика</translation>
+        <translation>Настройка поставщика</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="424"/>
@@ -578,13 +578,13 @@
         <location filename="../ConfigurationDialog.ui" line="463"/>
         <location filename="../ConfigurationDialog.ui" line="466"/>
         <source>Tests the API key.</source>
-        <translation>Тестирует ключ API.</translation>
+        <translation>Проверяется ключ API.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="106"/>
         <location filename="../ConfigurationDialog.ui" line="109"/>
         <source>Capabilities of the current weather data provider.</source>
-        <translation>Возможности текущего поставщика данных о погоде.</translation>
+        <translation>Возможности текущего поставщика данных погоды.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="125"/>
@@ -916,7 +916,7 @@ Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
         <translation>Неверный ответ от сервера геолокации.
 Не удалось получить данные местоположения.
-Если у вас есть брандмауэр, измените его настройки, чтобы разрешить этой программе доступ к сети.</translation>
+Если у вас есть брандмауэр, разрешите в нём доступ этой программы к сети.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="145"/>
@@ -1029,7 +1029,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1486"/>
         <source>%1 doesn&apos;t require any configuration.</source>
-        <translation>%1 не требует конфигурации.</translation>
+        <translation>%1 не требует настройки.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1481"/>
@@ -1039,7 +1039,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1482"/>
         <source>Current provider does not have Geo-Location capability.</source>
-        <translation>Текущий поставщик не имеет возможности геолокации.</translation>
+        <translation>У текущего поставщика нет возможности геолокации.</translation>
     </message>
 </context>
 <context>
@@ -1307,7 +1307,7 @@ The application will exit now.</source>
         <location filename="../Main.cpp" line="122"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
-        <translation>TrayWeather не может запуститься без действительного местоположения и действительного поставщика данных о погоде.
+        <translation>TrayWeather не может запуститься без действительного местоположения и рабочего поставщика данных погоды.
 Приложение сейчас завершит работу.</translation>
     </message>
     <message>
@@ -1970,7 +1970,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Current Weather</source>
         <translation>Текущая погода</translation>
     </message>
@@ -2060,7 +2060,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="175"/>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Temperature</source>
         <translation>Температура</translation>
     </message>
@@ -2084,8 +2084,8 @@ during midday hours.</source>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
         <location filename="../WeatherDialog.cpp" line="174"/>
-        <location filename="../WeatherDialog.cpp" line="862"/>
-        <location filename="../WeatherDialog.cpp" line="1050"/>
+        <location filename="../WeatherDialog.cpp" line="865"/>
+        <location filename="../WeatherDialog.cpp" line="1056"/>
         <source>Unknown</source>
         <translation>Неизвестно</translation>
     </message>
@@ -2184,7 +2184,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1522"/>
+        <location filename="../WeatherDialog.cpp" line="1531"/>
         <source>Show Maps</source>
         <translation>Показать карты</translation>
     </message>
@@ -2215,7 +2215,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="95"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Forecast</source>
         <translation>Прогноз</translation>
     </message>
@@ -2226,13 +2226,13 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="116"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Pollution</source>
         <translation>Загрязнение</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="137"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>UV</source>
         <translation>УФ-индекс</translation>
     </message>
@@ -2247,12 +2247,12 @@ during midday hours.</source>
         <translation>Текущая погода</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="478"/>
+        <location filename="../WeatherDialog.cpp" line="481"/>
         <source>Rain accumulation</source>
         <translation>Количество дождя</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="479"/>
+        <location filename="../WeatherDialog.cpp" line="482"/>
         <source>Snow accumulation</source>
         <translation>Количество снега</translation>
     </message>
@@ -2291,13 +2291,13 @@ during midday hours.</source>
         <location filename="../WeatherDialog.cpp" line="188"/>
         <location filename="../WeatherDialog.cpp" line="234"/>
         <source>inches/h</source>
-        <translation>дюймы/час</translation>
+        <translation>дюймы/ч</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="195"/>
         <location filename="../WeatherDialog.cpp" line="239"/>
         <source>mm/h</source>
-        <translation>мм/час</translation>
+        <translation>мм/ч</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="216"/>
@@ -2325,79 +2325,79 @@ during midday hours.</source>
         <translation>уз</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="360"/>
-        <location filename="../WeatherDialog.cpp" line="909"/>
-        <location filename="../WeatherDialog.cpp" line="1072"/>
+        <location filename="../WeatherDialog.cpp" line="363"/>
+        <location filename="../WeatherDialog.cpp" line="915"/>
+        <location filename="../WeatherDialog.cpp" line="1081"/>
         <source>Day (Hour)</source>
         <translation>День (час)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="365"/>
-        <location filename="../WeatherDialog.cpp" line="370"/>
+        <location filename="../WeatherDialog.cpp" line="368"/>
+        <location filename="../WeatherDialog.cpp" line="373"/>
         <source>%1 in %2</source>
         <translation>%1 в %2</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="377"/>
-        <location filename="../WeatherDialog.cpp" line="1083"/>
+        <location filename="../WeatherDialog.cpp" line="380"/>
+        <location filename="../WeatherDialog.cpp" line="1092"/>
         <source>Click to hide or show the forecast.</source>
         <translation>Щёлкните, чтобы скрыть или показать прогноз.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="758"/>
-        <location filename="../WeatherDialog.cpp" line="819"/>
-        <location filename="../WeatherDialog.cpp" line="830"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="761"/>
+        <location filename="../WeatherDialog.cpp" line="822"/>
+        <location filename="../WeatherDialog.cpp" line="833"/>
+        <location filename="../WeatherDialog.cpp" line="1430"/>
         <source>Maps</source>
         <translation>Карты</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="765"/>
+        <location filename="../WeatherDialog.cpp" line="768"/>
         <source>TrayWeather Maps</source>
         <translation>Карты TrayWeather</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="767"/>
+        <location filename="../WeatherDialog.cpp" line="770"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>Не удалось загрузить карты погоды.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="871"/>
+        <location filename="../WeatherDialog.cpp" line="874"/>
         <source>Low</source>
         <translation>Низкий</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="880"/>
+        <location filename="../WeatherDialog.cpp" line="883"/>
         <source>High</source>
         <translation>Высокий</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="885"/>
+        <location filename="../WeatherDialog.cpp" line="888"/>
         <source>Very high</source>
         <translation>Очень высокий</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="888"/>
+        <location filename="../WeatherDialog.cpp" line="891"/>
         <source>Extreme</source>
         <translation>Экстремальный</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="913"/>
+        <location filename="../WeatherDialog.cpp" line="919"/>
         <source>Ultraviolet radiation index</source>
         <translation>Индекс ультрафиолетового излучения</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="961"/>
+        <location filename="../WeatherDialog.cpp" line="967"/>
         <source>UV Index</source>
         <translation>Индекс УФ-излучения</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1523"/>
+        <location filename="../WeatherDialog.cpp" line="1532"/>
         <source>Show weather maps tab.</source>
         <translation>Показать вкладку карт погоды.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1436"/>
+        <location filename="../WeatherDialog.cpp" line="1445"/>
         <source>Hide Maps</source>
         <translation>Скрыть карты</translation>
     </message>
@@ -2408,37 +2408,37 @@ during midday hours.</source>
         <translation>гПа</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1437"/>
+        <location filename="../WeatherDialog.cpp" line="1446"/>
         <source>Hide weather maps tab.</source>
         <translation>Скрыть вкладку карт погоды.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="811"/>
+        <location filename="../WeatherDialog.cpp" line="814"/>
         <source>Weather Maps.</source>
         <translation>Карты погоды.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="876"/>
+        <location filename="../WeatherDialog.cpp" line="879"/>
         <source>Moderate</source>
         <translation>Среднее</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1076"/>
+        <location filename="../WeatherDialog.cpp" line="1085"/>
         <source>Concentration in %1</source>
         <translation>Концентрация в %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Rain</source>
         <translation>Дождь</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Wind</source>
         <translation>Ветер</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1385"/>
+        <location filename="../WeatherDialog.cpp" line="1394"/>
         <source>Clouds</source>
         <translation>Облака</translation>
     </message>
@@ -2497,12 +2497,12 @@ during midday hours.</source>
         <location filename="../WeatherWidget.cpp" line="68"/>
         <location filename="../WeatherWidget.cpp" line="115"/>
         <source>mm/h</source>
-        <translation>мм/час</translation>
+        <translation>мм/ч</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="73"/>
         <source>inch/h</source>
-        <translation>дюймы/час</translation>
+        <translation>дюймы/ч</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="91"/>
@@ -2517,7 +2517,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherWidget.cpp" line="109"/>
         <source>inches/h</source>
-        <translation>дюймы/час</translation>
+        <translation>дюймы/ч</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="72"/>
