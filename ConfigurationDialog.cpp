@@ -92,6 +92,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   for(int i = 0; i < WEATHER_PROVIDERS.size(); ++i)
     m_providerComboBox->addItem(QIcon(WEATHER_PROVIDERS.at(i).icon), WEATHER_PROVIDERS.at(i).id);
 
+  onTemperatureUnitsChanged(); // Sets the initial temperature units as celsius in the method.
   setConfiguration(configuration);
   setCurrentTemperature(m_temp);
 
@@ -792,8 +793,6 @@ void ConfigurationDialog::onAutostartValueChanged(int value)
 //--------------------------------------------------------------------
 void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 {
-  m_minSpinBox->setValue(configuration.minimumValue);
-  m_maxSpinBox->setValue(configuration.maximumValue);
   m_autostart->setChecked(configuration.autostart);
 
   m_trayIconTheme->clear();
@@ -836,6 +835,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 
   m_unitsComboBox->setCurrentIndex(static_cast<int>(configuration.units));
   m_tempCombo->setCurrentIndex(static_cast<int>(configuration.tempUnits));
+  m_minSpinBox->setValue(configuration.minimumValue);
+  m_maxSpinBox->setValue(configuration.maximumValue);
   m_pressionCombo->setCurrentIndex(static_cast<int>(configuration.pressureUnits));
   m_precipitationCombo->setCurrentIndex(static_cast<int>(configuration.precUnits));
   m_windCombo->setCurrentIndex(static_cast<int>(configuration.windUnits));
@@ -1200,6 +1201,8 @@ void ConfigurationDialog::onUnitsValueChanged(int index)
       }
       break;
   }
+
+  onTemperatureUnitsChanged();
 }
 
 //--------------------------------------------------------------------
@@ -1209,6 +1212,9 @@ void ConfigurationDialog::onUnitComboChanged(int index)
   if(w)
   {
     w->setProperty(SELECTED, index);
+
+    if(w == m_tempCombo)
+      onTemperatureUnitsChanged();
   }
 }
 
@@ -1661,6 +1667,36 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   painter.end();
 
   return background.scaled(160, 160, Qt::AspectRatioMode::KeepAspectRatio, Qt::TransformationMode::SmoothTransformation);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onTemperatureUnitsChanged()
+{
+  static TemperatureUnits lastUnit = TemperatureUnits::CELSIUS;
+  auto current = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
+
+  if (lastUnit == current) return;
+  lastUnit = current;
+
+  switch(current)
+  {
+    case TemperatureUnits::CELSIUS:
+      m_minSpinBox->setMinimum(convertFahrenheitToCelsius(m_minSpinBox->minimum()));
+      m_minSpinBox->setMaximum(convertFahrenheitToCelsius(m_minSpinBox->maximum()));
+      m_maxSpinBox->setMinimum(convertFahrenheitToCelsius(m_maxSpinBox->minimum()));
+      m_maxSpinBox->setMaximum(convertFahrenheitToCelsius(m_maxSpinBox->maximum()));
+      m_maxSpinBox->setValue(convertFahrenheitToCelsius(m_maxSpinBox->value()));
+      m_minSpinBox->setValue(convertFahrenheitToCelsius(m_minSpinBox->value()));
+      break;
+    case TemperatureUnits::FAHRENHEIT:
+      m_minSpinBox->setMinimum(convertCelsiusToFahrenheit(m_minSpinBox->minimum()));
+      m_minSpinBox->setMaximum(convertCelsiusToFahrenheit(m_minSpinBox->maximum()));
+      m_maxSpinBox->setMinimum(convertCelsiusToFahrenheit(m_maxSpinBox->minimum()));
+      m_maxSpinBox->setMaximum(convertCelsiusToFahrenheit(m_maxSpinBox->maximum()));
+      m_maxSpinBox->setValue(convertCelsiusToFahrenheit(m_maxSpinBox->value()));
+      m_minSpinBox->setValue(convertCelsiusToFahrenheit(m_minSpinBox->value()));        
+      break;
+  }
 }
 
 //--------------------------------------------------------------------

@@ -2055,10 +2055,10 @@ QGroupBox::title {
               <set>Qt::AlignCenter</set>
              </property>
              <property name="minimum">
-              <number>-100</number>
+              <number>-200</number>
              </property>
              <property name="maximum">
-              <number>100</number>
+              <number>200</number>
              </property>
             </widget>
            </item>
@@ -2096,10 +2096,10 @@ QGroupBox::title {
               <set>Qt::AlignCenter</set>
              </property>
              <property name="minimum">
-              <number>-100</number>
+              <number>-200</number>
              </property>
              <property name="maximum">
-              <number>100</number>
+              <number>200</number>
              </property>
             </widget>
            </item>

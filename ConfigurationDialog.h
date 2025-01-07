@@ -252,6 +252,11 @@ class ConfigurationDialog
      */
     void refreshNetworkLog();
 
+    /** \brief Updates the values in the dialog when the user changes units.
+     *
+     */
+    void onTemperatureUnitsChanged();
+
   signals:
     void languageChanged(const QString &);
 
