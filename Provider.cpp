@@ -581,7 +581,7 @@ void OpenMeteoProvider::requestData(std::shared_ptr<QNetworkAccessManager> netMa
                           "cloud_cover,surface_pressure,wind_speed_10m,wind_direction_10m"
                           "&hourly=temperature_2m,relative_humidity_2m,rain,snowfall,weather_code,"
                           "surface_pressure,cloud_cover,wind_speed_10m,wind_direction_10m,uv_index"
-                          "&timeformat=unixtime").arg(m_config.latitude).arg(m_config.longitude)};
+                          "&timeformat=unixtime&timezone=auto").arg(m_config.latitude).arg(m_config.longitude)};
 
   netManager->get(QNetworkRequest{url});
 
@@ -690,10 +690,6 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
       const auto currentTime = current.value("time").toVariant().toLongLong(0);
 
       m_current.dt         = std::max(currentTime, currentDt);
-      auto dayInterval     = computeSunriseSunset(m_current, m_config.longitude, m_config.latitude);
-      m_current.sunrise    = dayInterval.first;
-      m_current.sunset     = dayInterval.second;
-
       m_current.cloudiness = current.value("cloud_cover").toDouble(0);
       m_current.temp       = current.value("temperature_2m").toDouble(0);
       m_current.temp_min   = m_current.temp;
@@ -708,7 +704,12 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
       m_current.name       = "Unknown";
       m_current.country    = "Unknown";      
 
+      const auto [sunrise, sunset] = computeSunriseSunset(m_current, m_config.longitude, m_config.latitude);
+      m_current.sunrise    = sunrise;
+      m_current.sunset     = sunset;
+
       fillWMOCodeInForecast(m_current);
+
       changeWeatherUnits(m_config, m_current);
 
       emit weatherDataReady();
@@ -753,10 +754,6 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
 
         ForecastData data;
         data.dt          = dt;
-        auto dayInterval = computeSunriseSunset(data, m_config.longitude, m_config.latitude);
-        data.sunrise     = dayInterval.first;
-        data.sunset      = dayInterval.second;
-
         data.cloudiness  = clouds.at(i).toDouble(0);
         data.temp        = temperatures.at(i).toDouble(0);
         data.temp_min    = data.temp;
@@ -770,6 +767,10 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
         data.rain        = rain.at(i).toDouble(0);
         data.name        = "Unknown";
         data.country     = "Unknown";      
+
+        const auto [sunrise, sunset] = computeSunriseSunset(data, m_config.longitude, m_config.latitude);
+        data.sunrise     = sunrise;
+        data.sunset      = sunset;
 
         fillWMOCodeInForecast(data);
 

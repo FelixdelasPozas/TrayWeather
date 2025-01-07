@@ -1452,6 +1452,7 @@ void WeatherDialog::loadMaps()
 //--------------------------------------------------------------------
 void WeatherDialog::onChartHover(bool state, int index)
 {
+  // NOTE: The chart isn't identified because this can only happen in the weather chart.
   auto series = qobject_cast<QBarSeries*>(sender());
   if(!series) return;
 
@@ -1460,6 +1461,7 @@ void WeatherDialog::onChartHover(bool state, int index)
     m_weatherTooltip->hide();
     m_weatherTooltip = nullptr;
   }
+  if(!m_weatherChart) return;
 
   if(state)
   {

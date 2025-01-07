@@ -156,6 +156,13 @@ const double convertCelsiusToFahrenheit(const double value)
 }
 
 //--------------------------------------------------------------------
+const double convertFahrenheitToCelsius(const double value)
+{
+  // return only 2 digits.
+  return static_cast<int>(((value - 32.)*5./9.)*100)/100.;
+}
+
+//--------------------------------------------------------------------
 const double convertMetersSecondToMilesHour(const double value)
 {
   // return only 2 digits.
@@ -1111,8 +1118,12 @@ std::pair<long long, long long> computeSunriseSunset(const ForecastData &data, c
 {
   // https://github.com/nplan/Arduino-Sun
 
+  // There seems to be a bug in the original code, the returned values are not correct. Need to add 12 hours to data.dt to
+  // match sunrise/sunset day. The hours and minutes are correct, but not for the input date.
+  constexpr long long INC = 12 * 60 * 60;
+
   // Convert Julian day to Unix Timestamp
-  const unsigned long Jdate = static_cast<unsigned long>(data.dt) / 86400.0 + 2440587.5;
+  const unsigned long Jdate = static_cast<unsigned long>(data.dt + INC) / 86400.0 + 2440587.5;
   // Number of days since Jan 1st, 2000 12:00
   const float n = static_cast<float>(Jdate) - 2451545.0 + 0.0008;
   // Mean solar noon
@@ -1209,7 +1220,7 @@ void fillWMOCodeInForecast(ForecastData &forecast)
   const QString HEAVY_THUNDERSTORM_HAIL  = QObject::tr("Heavy thunderstorm with hail");
 
   const auto wmo_code = static_cast<int>(forecast.weather_id);
-  const bool isDay = (forecast.sunrise < forecast.dt) && (forecast.dt < forecast.sunset);
+  const bool isDay = (forecast.sunrise <= forecast.dt) && (forecast.dt <= forecast.sunset);
   const auto iconSuffix = isDay ? QString("d") : QString("n");
 
   switch(wmo_code)

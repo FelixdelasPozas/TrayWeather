@@ -546,6 +546,12 @@ const double convertMmToInches(const double value);
  */
 const double convertCelsiusToFahrenheit(const double value);
 
+/* \brief Converts the given fahrenheit to celsius.
+ * \param[in] value Fahrenheit degrees value.
+ *
+ */
+const double convertFahrenheitToCelsius(const double value);
+
 /** \brief Converts the given meters/second to miles/hour.
  * \param[in] value Meters/sec value.
  *
