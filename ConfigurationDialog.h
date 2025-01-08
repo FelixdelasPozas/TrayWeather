@@ -257,6 +257,11 @@ class ConfigurationDialog
      */
     void onTemperatureUnitsChanged();
 
+    /** \brief Updates the Ui when the user changes the use of border in the icon text. 
+     *
+     */
+    void onBorderStateChanged();
+
   signals:
     void languageChanged(const QString &);
 

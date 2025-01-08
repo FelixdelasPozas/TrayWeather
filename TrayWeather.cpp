@@ -202,6 +202,8 @@ void TrayWeather::showConfiguration()
   m_configuration.trayTextColor   = configuration.trayTextColor;
   m_configuration.trayTextMode    = configuration.trayTextMode;
   m_configuration.trayTextBorder  = configuration.trayTextBorder;
+  m_configuration.trayBorderWidth = configuration.trayBorderWidth;
+  m_configuration.trayTextDegree  = configuration.trayTextDegree;
   m_configuration.trayTextFont    = configuration.trayTextFont;
   m_configuration.stretchTempIcon = configuration.stretchTempIcon;
   m_configuration.minimumColor    = configuration.minimumColor;
@@ -457,7 +459,7 @@ void TrayWeather::updateTooltip()
         QPainter painter(&tempPixmap);
 
         const auto roundedTemp = static_cast<int>(std::nearbyint(temperatureValue));
-        const auto roundedString = QString::number(roundedTemp);
+        const auto roundedString = QString::number(roundedTemp) + (m_configuration.trayTextDegree ? QString("º") : QString());
 
         QFont font;
         font.fromString(m_configuration.trayTextFont);
@@ -488,7 +490,7 @@ void TrayWeather::updateTooltip()
           tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
           const auto path = tempItem.shape();
 
-          QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+          QPen pen(invertedColor, m_configuration.trayBorderWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
           painter.setPen(pen);
           painter.drawPath(path);
 

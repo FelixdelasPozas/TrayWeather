@@ -79,6 +79,8 @@ static const QString TRAY_ICON_THEME_COLOR   = QString("Tray icon theme color");
 static const QString TRAY_TEXT_COLOR         = QString("Tray text color");
 static const QString TRAY_TEXT_COLOR_MODE    = QString("Tray text color mode");
 static const QString TRAY_TEXT_BORDER        = QString("Tray text border");
+static const QString TRAY_TEXT_BORDER_WIDTH  = QString("Tray text border width");
+static const QString TRAY_TEXT_DRAW_DEGREE   = QString("Tray text draw degree symbol");
 static const QString TRAY_TEXT_FONT          = QString("Tray text font");
 static const QString TRAY_ICON_SIZE          = QString("Tray text icon size");
 static const QString TRAY_DYNAMIC_MIN_COLOR  = QString("Tray text color dynamic minimum");
@@ -636,6 +638,8 @@ void load(Configuration &configuration)
   configuration.trayTextColor   = QColor(settings.value(TRAY_TEXT_COLOR, "#FFFFFFFF").toString());
   configuration.trayTextMode    = settings.value(TRAY_TEXT_COLOR_MODE, true).toBool();
   configuration.trayTextBorder  = settings.value(TRAY_TEXT_BORDER, true).toBool();
+  configuration.trayBorderWidth = settings.value(TRAY_TEXT_BORDER_WIDTH, 32).toInt();
+  configuration.trayTextDegree  = settings.value(TRAY_TEXT_DRAW_DEGREE, false).toBool();
   configuration.trayTextFont    = settings.value(TRAY_TEXT_FONT, QString()).toString();
   configuration.stretchTempIcon = settings.value(STRETCH_TEMP_ICON, false).toBool();
   configuration.minimumColor    = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
@@ -720,6 +724,8 @@ void save(const Configuration &configuration)
   settings.setValue(TRAY_TEXT_COLOR,         configuration.trayTextColor.name(QColor::HexArgb));
   settings.setValue(TRAY_TEXT_COLOR_MODE,    configuration.trayTextMode);
   settings.setValue(TRAY_TEXT_BORDER,        configuration.trayTextBorder);
+  settings.setValue(TRAY_TEXT_BORDER_WIDTH,  configuration.trayBorderWidth);
+  settings.setValue(TRAY_TEXT_DRAW_DEGREE,   configuration.trayTextDegree);
   settings.setValue(TRAY_TEXT_FONT,          configuration.trayTextFont);
   settings.setValue(STRETCH_TEMP_ICON,       configuration.stretchTempIcon);
   settings.setValue(TRAY_DYNAMIC_MIN_COLOR,  configuration.minimumColor.name(QColor::HexArgb));

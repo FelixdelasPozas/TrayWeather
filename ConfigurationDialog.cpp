@@ -48,6 +48,7 @@
 #include <cmath>
 
 const char SELECTED[] = "Selected";
+TemperatureUnits lastTemperatureUnits = TemperatureUnits::CELSIUS; // Last temperature unit selected.
 
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
@@ -68,6 +69,9 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
 
   QObject::connect(m_stretchLabel, &ClickableLabel::clicked,
                    [this](){ m_stretch->setChecked(!m_stretch->isChecked()); });
+
+  QObject::connect(m_drawDegreeLabel, &ClickableLabel::clicked,
+                   [this](){ m_drawDegree->setChecked(!m_drawDegree->isChecked()); });
 
   m_tooltipList->setItemDelegate(new RichTextItemDelegate());
   m_tooltipValueCombo->setItemDelegate(new RichTextItemDelegate());
@@ -92,7 +96,6 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   for(int i = 0; i < WEATHER_PROVIDERS.size(); ++i)
     m_providerComboBox->addItem(QIcon(WEATHER_PROVIDERS.at(i).icon), WEATHER_PROVIDERS.at(i).id);
 
-  onTemperatureUnitsChanged(); // Sets the initial temperature units as celsius in the method.
   setConfiguration(configuration);
   setCurrentTemperature(m_temp);
 
@@ -283,6 +286,8 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.trayTextColor   = QColor(m_trayTempColor->property("iconColor").toString());
   configuration.trayTextMode    = m_fixed->isChecked();
   configuration.trayTextBorder  = m_border->isChecked();
+  configuration.trayBorderWidth = m_borderWidth->value();
+  configuration.trayTextDegree  = m_drawDegree->isChecked();
   configuration.trayTextFont    = m_validFont ? m_font.toString() : m_fontButton->property("initial_font").toString();
   configuration.stretchTempIcon = m_stretch->isChecked();
   configuration.minimumColor    = QColor(m_minColor->property("iconColor").toString());
@@ -531,6 +536,15 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_border, SIGNAL(stateChanged(int)),
           this,     SLOT(updateTemperatureIcon()));
+
+  connect(m_border, SIGNAL(stateChanged(int)),
+          this,     SLOT(onBorderStateChanged()));
+
+  connect(m_drawDegree, SIGNAL(stateChanged(int)),
+          this,         SLOT(updateTemperatureIcon()));
+
+  connect(m_borderWidth, SIGNAL(valueChanged(int)),
+          this,          SLOT(updateTemperatureIcon()));
 
   connect(m_fixed, SIGNAL(toggled(bool)),
           this,    SLOT(updateTemperatureIcon()));
@@ -794,6 +808,7 @@ void ConfigurationDialog::onAutostartValueChanged(int value)
 void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 {
   m_autostart->setChecked(configuration.autostart);
+  lastTemperatureUnits = configuration.tempUnits;
 
   m_trayIconTheme->clear();
   for(int i = 0; i < ICON_THEMES.size(); ++i)
@@ -844,7 +859,9 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_fixed->setChecked(configuration.trayTextMode);
   m_variable->setChecked(!configuration.trayTextMode);
   m_border->setChecked(configuration.trayTextBorder);
+  m_borderWidth->setValue(configuration.trayBorderWidth);
   m_stretch->setChecked(configuration.stretchTempIcon);
+  m_drawDegree->setChecked(configuration.trayTextDegree);
 
   m_minSpinBox->setMaximum(configuration.maximumValue-1);
   m_maxSpinBox->setMinimum(configuration.minimumValue+1);
@@ -1063,6 +1080,16 @@ void ConfigurationDialog::disconnectSignals()
 
   disconnect(m_border, SIGNAL(stateChanged(int)),
              this,     SLOT(updateTemperatureIcon()));
+
+  disconnect(m_border, SIGNAL(stateChanged(int)),
+             this,     SLOT(onBorderStateChanged()));
+
+  disconnect(m_drawDegree, SIGNAL(stateChanged(int)),
+             this,         SLOT(updateTemperatureIcon()));
+
+  disconnect(m_borderWidth, SIGNAL(valueChanged(int)),
+             this,          SLOT(updateTemperatureIcon()));
+
 
   disconnect(m_fixed, SIGNAL(toggled(bool)),
              this,    SLOT(updateTemperatureIcon()));
@@ -1426,7 +1453,7 @@ void ConfigurationDialog::onIconTypeChanged(int value)
 
   const auto tempOptionsEnabled = value > 0;
   for(auto lay: {m_tempLayout_1, m_tempLayout_2, m_tempLayout_3, m_tempLayout_4,
-                 m_tempLayout_5, m_tempLayout_6, m_tempLayout_7})
+                 m_tempLayout_5, m_tempLayout_6, m_tempLayout_7, m_tempLayout_8 })
   {
     for(int i = 0; i < lay->count(); ++i)
     {
@@ -1440,6 +1467,7 @@ void ConfigurationDialog::onIconTypeChanged(int value)
 
   const auto enableColored = !ICON_THEMES.at(m_trayIconTheme->currentIndex()).colored;
   m_iconThemeColor->setEnabled(enableColored && iconsOptionsEnabled);
+  onBorderStateChanged();
 }
 
 //--------------------------------------------------------------------
@@ -1600,7 +1628,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
   };
 
-  const auto roundedString = QString::number(m_temp);
+  const auto roundedString = QString::number(m_temp) + (m_drawDegree->isChecked() ? QString("º") : QString());
 
   QPixmap pixmap(384,384);
   pixmap.fill(Qt::transparent);
@@ -1632,7 +1660,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
     const auto path = tempItem.shape();
 
-    QPen pen(invertedColor, 32, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen(invertedColor, m_borderWidth->value(), Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     painter.setPen(pen);
     painter.drawPath(path);
 
@@ -1672,11 +1700,10 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
 //--------------------------------------------------------------------
 void ConfigurationDialog::onTemperatureUnitsChanged()
 {
-  static TemperatureUnits lastUnit = TemperatureUnits::CELSIUS;
   auto current = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
 
-  if (lastUnit == current) return;
-  lastUnit = current;
+  if (lastTemperatureUnits == current) return;
+  lastTemperatureUnits = current;
 
   switch(current)
   {
@@ -1697,6 +1724,14 @@ void ConfigurationDialog::onTemperatureUnitsChanged()
       m_minSpinBox->setValue(convertCelsiusToFahrenheit(m_minSpinBox->value()));        
       break;
   }
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onBorderStateChanged()
+{
+  const auto enable = m_border->isEnabled() && m_border->isChecked();
+  m_borderWidthLabel->setEnabled(enable);
+  m_borderWidth->setEnabled(enable);
 }
 
 //--------------------------------------------------------------------
