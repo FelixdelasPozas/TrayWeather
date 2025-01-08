@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>424</width>
-    <height>546</height>
+    <width>374</width>
+    <height>593</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
       <attribute name="title">
        <string>Tray Weather</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_9">
+      <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,0,0">
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
@@ -552,6 +552,74 @@ QGroupBox::title {
          </item>
         </layout>
        </item>
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</string>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="openExternalLinks">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="ClickableHoverLabel" name="m_banner">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>60</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>You can support me on Ko-fi!</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tab_4">
@@ -717,6 +785,13 @@ QGroupBox::title {
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableHoverLabel</class>
+   <extends>QLabel</extends>
+   <header>Utils.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="rsc/resources.qrc"/>
  </resources>

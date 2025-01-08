@@ -88,33 +88,43 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="559"/>
+        <location filename="../AboutDialog.ui" line="558"/>
+        <source>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</source>
+        <translation>이 프로젝트를 지원하고 싶으시다면 &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;에서 지원하실 수 있습니다.</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.ui" line="598"/>
+        <source>You can support me on Ko-fi!</source>
+        <translation>Ko-fi에서 저를 지원하실 수 있습니다!</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.ui" line="627"/>
         <source>Weather Providers</source>
         <translation>날씨 제공자</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="611"/>
+        <location filename="../AboutDialog.ui" line="679"/>
         <source>Translations</source>
         <translation>번역</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="662"/>
+        <location filename="../AboutDialog.ui" line="730"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translatorcomment>a little bit of paraphrasing...</translatorcomment>
         <translation>귀하의 언어가 여기 없을 경우, &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;번역&lt;/a&gt;을 도울 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="676"/>
+        <location filename="../AboutDialog.ui" line="744"/>
         <source>Icon Themes</source>
         <translation>아이콘 테마</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="43"/>
+        <location filename="../AboutDialog.cpp" line="45"/>
         <source>version</source>
         <translation>버전</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="45"/>
+        <location filename="../AboutDialog.cpp" line="47"/>
         <source>Compiled on </source>
         <translatorcomment>Unless the sentence structure is placed in reverse (i.e., the date must come forward in this case), it is awkward to erase the colon.</translatorcomment>
         <translation>컴파일된 날짜: </translation>

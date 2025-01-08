@@ -854,6 +854,54 @@ class ClickableLabel
     }
 };
 
+/** \class ClickableHoverLabel
+ * \brief ClickableLabel subclass that changes the mouse cursor when hovered.
+ *
+ */
+class ClickableHoverLabel
+: public ClickableLabel
+{
+    Q_OBJECT
+  public:
+    /** \brief ClickableHoverLabel class constructor.
+     * \param[in] parent Raw pointer of the widget parent of this one.
+     * \f Widget flags.
+     *
+     */
+    explicit ClickableHoverLabel(QWidget *parent=0, Qt::WindowFlags f=0)
+    : ClickableLabel(parent, f)
+    {};
+
+    /** \brief ClickableHoverLabel class constructor.
+     * \param[in] text Label text.
+     * \param[in] parent Raw pointer of the widget parent of this one.
+     * \f Widget flags.
+     *
+     */
+    explicit ClickableHoverLabel(const QString &text, QWidget *parent=0, Qt::WindowFlags f=0)
+    : ClickableLabel(text, parent, f)
+    {};
+    
+    /** \brief ClickableHoverLabel class virtual destructor.
+     *
+     */
+    virtual ~ClickableHoverLabel()
+    {};
+
+  protected:
+    virtual void enterEvent(QEvent *event) override
+    {
+      setCursor(Qt::PointingHandCursor);
+      ClickableLabel::enterEvent(event);
+    }
+
+    virtual void leaveEvent(QEvent *event) override
+    {
+      setCursor(Qt::ArrowCursor);
+      ClickableLabel::leaveEvent(event);
+    }
+};
+
 class NetworkAccessManager
 : public QNetworkAccessManager
 {

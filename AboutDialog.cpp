@@ -26,8 +26,10 @@
 #include <QtGlobal>
 #include <QDateTime>
 #include <QApplication>
+#include <QDesktopServices>
+#include <QUrl>
 
-const QString AboutDialog::VERSION{"1.31.3"};
+const QString AboutDialog::VERSION{"1.31.4"};
 const QString COPYRIGHT{"Copyright (c) 2016-%1 Félix de las Pozas Álvarez"};
 
 //-----------------------------------------------------------------
@@ -53,6 +55,18 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
   fillProvidersTable();
 
   tabWidget->setCurrentIndex(0);
+
+  QPixmap kofiPixmap(QSize{297,60});
+  if(this->styleSheet().isEmpty())
+    kofiPixmap = QPixmap(":/TrayWeather/support_me_on_kofi_beige.png");
+  else
+    kofiPixmap = QPixmap(":/TrayWeather/support_me_on_kofi_dark.png");
+
+  m_banner->setScaledContents(true);
+  m_banner->setPixmap(kofiPixmap);
+
+  QObject::connect(m_banner, &ClickableLabel::clicked,
+                  [this](){ QDesktopServices::openUrl(QUrl{"https://ko-fi.com/felixdelaspozas"}); });
 }
 
 //-----------------------------------------------------------------

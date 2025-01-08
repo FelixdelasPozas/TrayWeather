@@ -85,32 +85,42 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="559"/>
+        <location filename="../AboutDialog.ui" line="558"/>
+        <source>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</source>
+        <translation>Se você quiser apoiar este projeto, pode fazê-lo em &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.ui" line="598"/>
+        <source>You can support me on Ko-fi!</source>
+        <translation>Você pode me apoiar em Ko-fi!</translation>
+    </message>
+    <message>
+        <location filename="../AboutDialog.ui" line="627"/>
         <source>Weather Providers</source>
         <translation>Provedores de Clima</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="611"/>
+        <location filename="../AboutDialog.ui" line="679"/>
         <source>Translations</source>
         <translation>Traduções</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="662"/>
+        <location filename="../AboutDialog.ui" line="730"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Se o seu idioma não estiver disponível, você pode ajudar com a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;tradução&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="676"/>
+        <location filename="../AboutDialog.ui" line="744"/>
         <source>Icon Themes</source>
         <translation>Temas de ícones</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="43"/>
+        <location filename="../AboutDialog.cpp" line="45"/>
         <source>version</source>
         <translation>versão</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="45"/>
+        <location filename="../AboutDialog.cpp" line="47"/>
         <source>Compiled on </source>
         <translation>Compilado em </translation>
     </message>
