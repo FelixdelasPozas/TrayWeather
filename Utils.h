@@ -262,6 +262,7 @@ struct Configuration
     int                trayBorderWidth; /** width of the tray text border.                              */
     bool               trayTextDegree;  /** true to display the degree symbol in the tray text.         */
     QString            trayTextFont;    /** font used for temperature icon.                             */
+    int                trayFontSpacing; /** spacing between font characters (-15 to 15).                */
     bool               stretchTempIcon; /** true to strech the temp icon vertically, false otherwise.   */
     QColor             minimumColor;    /** minimum value dynamic color.                                */
     QColor             maximumColor;    /** maximum value dynamic color.                                */
@@ -320,6 +321,7 @@ struct Configuration
     , trayBorderWidth {32}
     , trayTextDegree  {true}
     , trayTextFont    {""}
+    , trayFontSpacing {0}
     , stretchTempIcon {false}
     , minimumColor    {Qt::blue}
     , maximumColor    {Qt::red}

@@ -205,6 +205,7 @@ void TrayWeather::showConfiguration()
   m_configuration.trayBorderWidth = configuration.trayBorderWidth;
   m_configuration.trayTextDegree  = configuration.trayTextDegree;
   m_configuration.trayTextFont    = configuration.trayTextFont;
+  m_configuration.trayFontSpacing = configuration.trayFontSpacing;
   m_configuration.stretchTempIcon = configuration.stretchTempIcon;
   m_configuration.minimumColor    = configuration.minimumColor;
   m_configuration.maximumColor    = configuration.maximumColor;
@@ -464,6 +465,7 @@ void TrayWeather::updateTooltip()
         QFont font;
         font.fromString(m_configuration.trayTextFont);
         font.setPixelSize(200);
+        font.setLetterSpacing(QFont::AbsoluteSpacing, m_configuration.trayFontSpacing);
         painter.setFont(font);
 
         QColor color;

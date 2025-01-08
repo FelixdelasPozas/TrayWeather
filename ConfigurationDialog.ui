@@ -54,7 +54,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab_6">
       <attribute name="title">
@@ -1748,6 +1748,130 @@ QGroupBox::title {
       <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0">
        <item>
         <layout class="QGridLayout" name="gridLayout_6" columnstretch="0,1">
+         <item row="3" column="1">
+          <layout class="QHBoxLayout" name="m_tempLayout_2" stretch="0,0,1,0">
+           <item>
+            <widget class="QRadioButton" name="m_variable">
+             <property name="minimumSize">
+              <size>
+               <width>61</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Variable</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="m_minColor">
+             <property name="minimumSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Click to change minimum value color...</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="m_range">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Range</string>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="m_maxColor">
+             <property name="minimumSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Click to change maximum value color...</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="m_textColorLabel">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>Selects the temperature icon text color</string>
+           </property>
+           <property name="text">
+            <string>Temperature text color</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Icon type</string>
+           </property>
+          </widget>
+         </item>
          <item row="2" column="1">
           <layout class="QHBoxLayout" name="m_tempLayout_1" stretch="0,0,1">
            <item>
@@ -1849,258 +1973,18 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="m_textColorLabel">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>22</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="toolTip">
-            <string>Selects the temperature icon text color</string>
-           </property>
-           <property name="text">
-            <string>Temperature text color</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_15">
-           <property name="minimumSize">
-            <size>
-             <width>100</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Icon type</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <layout class="QHBoxLayout" name="m_tempLayout_2" stretch="0,0,1,0">
+         <item row="9" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
            <item>
-            <widget class="QRadioButton" name="m_variable">
-             <property name="minimumSize">
-              <size>
-               <width>61</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Variable</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="m_minColor">
-             <property name="minimumSize">
-              <size>
-               <width>24</width>
-               <height>24</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>24</width>
-               <height>24</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>Click to change minimum value color...</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="m_range">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Range</string>
-             </property>
-             <property name="scaledContents">
-              <bool>true</bool>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="m_maxColor">
-             <property name="minimumSize">
-              <size>
-               <width>24</width>
-               <height>24</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>24</width>
-               <height>24</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>Click to change maximum value color...</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="1" column="1">
-          <layout class="QHBoxLayout" name="m_iconThemeLayout" stretch="1,0,0">
-           <item>
-            <widget class="QComboBox" name="m_trayIconTheme">
-             <property name="toolTip">
-              <string>Selects the icon theme.</string>
-             </property>
-             <property name="currentText">
-              <string notr="true"/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="m_iconThemeColor">
-             <property name="minimumSize">
-              <size>
-               <width>24</width>
-               <height>24</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>Changes icon theme color.</string>
-             </property>
-             <property name="text">
-              <string notr="true">...</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="m_iconSummary">
-             <property name="minimumSize">
-              <size>
-               <width>24</width>
-               <height>24</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>Shows a summary of theme icons.</string>
-             </property>
-             <property name="text">
-              <string notr="true">...</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="10" column="1">
-          <layout class="QHBoxLayout" name="m_tempLayout_7">
-           <item>
-            <widget class="QSlider" name="m_iconSize">
-             <property name="toolTip">
-              <string>Modifies the temperature icon size.</string>
-             </property>
-             <property name="minimum">
-              <number>50</number>
-             </property>
-             <property name="maximum">
-              <number>100</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="tickPosition">
-              <enum>QSlider::TicksAbove</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="m_iconSizeSpinbox">
-             <property name="toolTip">
-              <string>Modifies the temperature icon size.</string>
-             </property>
-             <property name="suffix">
-              <string notr="true">%</string>
-             </property>
-             <property name="minimum">
-              <number>50</number>
-             </property>
-             <property name="maximum">
-              <number>100</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="10" column="0">
-          <widget class="QLabel" name="m_tempIconSizeLabel">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>24</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="toolTip">
-            <string>Modifies the temperature icon size.</string>
-           </property>
-           <property name="text">
-            <string>Temperature icon size</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <layout class="QHBoxLayout" name="m_tempLayout_4" stretch="0,1">
-           <item>
-            <widget class="QCheckBox" name="m_border">
+            <widget class="QCheckBox" name="m_drawDegree">
              <property name="minimumSize">
               <size>
                <width>0</width>
                <height>24</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>24</height>
-              </size>
-             </property>
              <property name="toolTip">
-              <string>Draw a border around temperature icon text.</string>
+              <string>Draw the degree symbol in the temperature icon.</string>
              </property>
              <property name="text">
               <string/>
@@ -2108,15 +1992,12 @@ QGroupBox::title {
             </widget>
            </item>
            <item>
-            <widget class="ClickableLabel" name="m_borderLabel">
+            <widget class="ClickableLabel" name="m_drawDegreeLabel">
              <property name="toolTip">
-              <string>Draw a border around temperature icon text.</string>
+              <string>Draw the degree symbol in the temperature icon.</string>
              </property>
              <property name="text">
-              <string>Draw a border around text for better contrast.</string>
-             </property>
-             <property name="wordWrap">
-              <bool>true</bool>
+              <string>Draw degree symbol</string>
              </property>
             </widget>
            </item>
@@ -2208,6 +2089,207 @@ QGroupBox::title {
            </item>
           </layout>
          </item>
+         <item row="11" column="1">
+          <layout class="QHBoxLayout" name="m_tempLayout_7">
+           <item>
+            <widget class="QSlider" name="m_iconSize">
+             <property name="toolTip">
+              <string>Modifies the temperature icon size.</string>
+             </property>
+             <property name="minimum">
+              <number>50</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksAbove</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="m_iconSizeSpinbox">
+             <property name="toolTip">
+              <string>Modifies the temperature icon size.</string>
+             </property>
+             <property name="suffix">
+              <string notr="true">%</string>
+             </property>
+             <property name="minimum">
+              <number>50</number>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="5" column="1">
+          <layout class="QHBoxLayout" name="m_tempLayout_4" stretch="0,1">
+           <item>
+            <widget class="QCheckBox" name="m_border">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Draw a border around temperature icon text.</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="ClickableLabel" name="m_borderLabel">
+             <property name="toolTip">
+              <string>Draw a border around temperature icon text.</string>
+             </property>
+             <property name="text">
+              <string>Draw a border around text for better contrast.</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="11" column="0">
+          <widget class="QLabel" name="m_tempIconSizeLabel">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>Modifies the temperature icon size.</string>
+           </property>
+           <property name="text">
+            <string>Temperature icon size</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <layout class="QHBoxLayout" name="m_tempLayout_8">
+           <item>
+            <widget class="QLabel" name="m_borderWidthLabel">
+             <property name="toolTip">
+              <string>Width of the border around the text.</string>
+             </property>
+             <property name="text">
+              <string>Border width</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="m_borderWidth">
+             <property name="toolTip">
+              <string>Width of the border around the text.</string>
+             </property>
+             <property name="minimum">
+              <number>8</number>
+             </property>
+             <property name="maximum">
+              <number>32</number>
+             </property>
+             <property name="value">
+              <number>32</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="m_textFontLabel">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>Selects the temperature icon text font</string>
+           </property>
+           <property name="text">
+            <string>Temperature text font</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <layout class="QHBoxLayout" name="m_iconThemeLayout" stretch="1,0,0">
+           <item>
+            <widget class="QComboBox" name="m_trayIconTheme">
+             <property name="toolTip">
+              <string>Selects the icon theme.</string>
+             </property>
+             <property name="currentText">
+              <string notr="true"/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="m_iconThemeColor">
+             <property name="minimumSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Changes icon theme color.</string>
+             </property>
+             <property name="text">
+              <string notr="true">...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="m_iconSummary">
+             <property name="minimumSize">
+              <size>
+               <width>24</width>
+               <height>24</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Shows a summary of theme icons.</string>
+             </property>
+             <property name="text">
+              <string notr="true">...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
          <item row="7" column="1">
           <layout class="QHBoxLayout" name="m_tempLayout_5">
            <item>
@@ -2241,25 +2323,6 @@ QGroupBox::title {
            </item>
           </layout>
          </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="m_textFontLabel">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="toolTip">
-            <string>Selects the temperature icon text font</string>
-           </property>
-           <property name="text">
-            <string>Temperature text font</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
          <item row="8" column="1">
           <layout class="QHBoxLayout" name="m_tempLayout_6" stretch="0,1">
            <item>
@@ -2290,64 +2353,47 @@ QGroupBox::title {
            </item>
           </layout>
          </item>
-         <item row="9" column="1">
-          <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
+         <item row="10" column="1">
+          <layout class="QHBoxLayout" name="m_tempLayout_9" stretch="0,1,0">
            <item>
-            <widget class="QCheckBox" name="m_drawDegree">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>24</height>
-              </size>
-             </property>
+            <widget class="QLabel" name="label_8">
              <property name="toolTip">
-              <string>Draw the degree symbol in the temperature icon.</string>
+              <string>Modifies the space between characters in the temperatura icon.</string>
              </property>
              <property name="text">
-              <string/>
+              <string>Letter spacing</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="ClickableLabel" name="m_drawDegreeLabel">
+            <widget class="QSlider" name="m_spacingSlider">
              <property name="toolTip">
-              <string>Draw the degree symbol in the temperature icon.</string>
-             </property>
-             <property name="text">
-              <string>Draw degree symbol</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="6" column="1">
-          <layout class="QHBoxLayout" name="m_tempLayout_8">
-           <item>
-            <widget class="QLabel" name="m_borderWidthLabel">
-             <property name="toolTip">
-              <string>Width of the border around the text.</string>
-             </property>
-             <property name="text">
-              <string>Border width</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="m_borderWidth">
-             <property name="toolTip">
-              <string>Width of the border around the text.</string>
+              <string>Modifies the space between characters in the temperatura icon.</string>
              </property>
              <property name="minimum">
-              <number>8</number>
+              <number>-15</number>
              </property>
              <property name="maximum">
-              <number>32</number>
-             </property>
-             <property name="value">
-              <number>32</number>
+              <number>15</number>
              </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksAbove</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="m_spacingSpinBox">
+             <property name="toolTip">
+              <string>Modifies the space between characters in the temperatura icon.</string>
+             </property>
+             <property name="minimum">
+              <number>-15</number>
+             </property>
+             <property name="maximum">
+              <number>15</number>
              </property>
             </widget>
            </item>
@@ -3018,6 +3064,38 @@ QGroupBox::title {
     <hint type="destinationlabel">
      <x>222</x>
      <y>495</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_spacingSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_spacingSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>364</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>384</x>
+     <y>364</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_spacingSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_spacingSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>384</x>
+     <y>364</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>364</y>
     </hint>
    </hints>
   </connection>

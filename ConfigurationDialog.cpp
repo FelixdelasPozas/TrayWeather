@@ -289,6 +289,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.trayBorderWidth = m_borderWidth->value();
   configuration.trayTextDegree  = m_drawDegree->isChecked();
   configuration.trayTextFont    = m_validFont ? m_font.toString() : m_fontButton->property("initial_font").toString();
+  configuration.trayFontSpacing = m_spacingSpinBox->value();
   configuration.stretchTempIcon = m_stretch->isChecked();
   configuration.minimumColor    = QColor(m_minColor->property("iconColor").toString());
   configuration.maximumColor    = QColor(m_maxColor->property("iconColor").toString());
@@ -564,6 +565,9 @@ void ConfigurationDialog::connectSignals()
   connect(m_providerComboBox, SIGNAL(currentIndexChanged(int)), 
           this,      SLOT(onProviderChanged(int)));
 
+  connect(m_spacingSpinBox, SIGNAL(valueChanged(int)),
+          this,            SLOT(updateTemperatureIcon()));
+
   connectProviderSignals();
 }
 
@@ -753,7 +757,6 @@ void ConfigurationDialog::changeEvent(QEvent *e)
     fixVisuals();
 
     disconnectSignals();
-    disconnectProviderSignals();
     m_languageCombo->blockSignals(true);
     setConfiguration(backup);
     m_languageCombo->blockSignals(false);
@@ -842,6 +845,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_iconSize->setValue(configuration.trayIconSize);
 
   m_font.fromString(configuration.trayTextFont);
+  m_spacingSlider->setValue(configuration.trayFontSpacing);
+  m_spacingSpinBox->setValue(configuration.trayFontSpacing);
   m_fontButton->setText(m_font.toString().split(",").first());
   if(m_validFont) m_fontButton->setProperty("initial_font", m_font.toString());
 
@@ -1090,21 +1095,25 @@ void ConfigurationDialog::disconnectSignals()
   disconnect(m_borderWidth, SIGNAL(valueChanged(int)),
              this,          SLOT(updateTemperatureIcon()));
 
-
   disconnect(m_fixed, SIGNAL(toggled(bool)),
              this,    SLOT(updateTemperatureIcon()));
 
   disconnect(m_stretch, SIGNAL(stateChanged(int)),
              this,      SLOT(updateTemperatureIcon()));
 
-  connect(m_trayIconType, SIGNAL(currentIndexChanged(int)),
-          this,           SLOT(onIconTypeChanged(int)));
+  disconnect(m_trayIconType, SIGNAL(currentIndexChanged(int)),
+             this,           SLOT(onIconTypeChanged(int)));
 
   disconnect(m_iconSize, SIGNAL(valueChanged(int)),
              this,       SLOT(updateTemperatureIcon()));
 
   disconnect(m_geoFind, SIGNAL(clicked()), 
              this,      SLOT(onSearchButtonClicked()));
+
+  disconnect(m_spacingSpinBox, SIGNAL(valueChanged(int)),
+             this,            SLOT(updateTemperatureIcon()));
+
+  disconnectProviderSignals();             
 }
 
 //--------------------------------------------------------------------
@@ -1634,6 +1643,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   pixmap.fill(Qt::transparent);
   QPainter painter(&pixmap);
   font.setPixelSize(150);
+  font.setLetterSpacing(QFont::AbsoluteSpacing, m_spacingSlider->value());
   painter.setFont(font);
 
   QColor color;
