@@ -80,25 +80,22 @@ void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManage
     if(OWM_LANGUAGES.contains(settings_compl, Qt::CaseInsensitive)) lang = settings_compl;
   }
 
-  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_config.latitude)
+  auto url = QUrl{QString("http://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&lang=%3&units=metric&appid=%4").arg(m_config.latitude)
+                                                                                                                       .arg(m_config.longitude)
+                                                                                                                       .arg(lang)
+                                                                                                                       .arg(m_apiKey)};
+  netManager->get(QNetworkRequest{url});
+
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&lang=%3&units=metric&appid=%4").arg(m_config.latitude)
                                                                                                                    .arg(m_config.longitude)
                                                                                                                    .arg(lang)
-                                                                                                                   .arg(unitsToText(m_config.units))
                                                                                                                    .arg(m_apiKey)};
   netManager->get(QNetworkRequest{url});
 
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/forecast?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_config.latitude)
-                                                                                                               .arg(m_config.longitude)
-                                                                                                               .arg(lang)
-                                                                                                               .arg(unitsToText(m_config.units))
-                                                                                                               .arg(m_apiKey)};
-  netManager->get(QNetworkRequest{url});
-
-  url = QUrl{QString("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&lang=%3&units=%4&appid=%5").arg(m_config.latitude)
-                                                                                                                             .arg(m_config.longitude)
-                                                                                                                             .arg(lang)
-                                                                                                                             .arg(unitsToText(m_config.units))
-                                                                                                                             .arg(m_apiKey)};
+  url = QUrl{QString("http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=%1&lon=%2&lang=%3&units=metric&appid=%4").arg(m_config.latitude)
+                                                                                                                                 .arg(m_config.longitude)
+                                                                                                                                 .arg(lang)
+                                                                                                                                 .arg(m_apiKey)};
   netManager->get(QNetworkRequest{url});
 }
 
@@ -332,6 +329,7 @@ void OWM25Provider::processWeatherData(const QByteArray &contents)
 
         ForecastData data;
         parseForecastEntry(entry, data);
+        changeWeatherUnits(m_config, data);
 
         if(!hasEntry(data.dt))
         {
@@ -357,6 +355,8 @@ void OWM25Provider::processWeatherData(const QByteArray &contents)
     else
     {
       parseForecastEntry(jsonObj, m_current);
+      changeWeatherUnits(m_config, m_current);
+      
       if(!m_config.useGeolocation)
       {
         if(m_current.name    != "Unknown") m_config.region = m_config.city = m_current.name;

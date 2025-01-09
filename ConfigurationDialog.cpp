@@ -48,7 +48,7 @@
 #include <cmath>
 
 const char SELECTED[] = "Selected";
-TemperatureUnits lastTemperatureUnits = TemperatureUnits::CELSIUS; // Last temperature unit selected.
+TemperatureUnits lastTemperatureUnits; // Last temperature unit selected.
 
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
@@ -96,6 +96,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   for(int i = 0; i < WEATHER_PROVIDERS.size(); ++i)
     m_providerComboBox->addItem(QIcon(WEATHER_PROVIDERS.at(i).icon), WEATHER_PROVIDERS.at(i).id);
 
+  lastTemperatureUnits = configuration.units == Units::METRIC ? TemperatureUnits::CELSIUS : (configuration.units == Units::IMPERIAL ? TemperatureUnits::FAHRENHEIT : configuration.tempUnits);
   setConfiguration(configuration);
   setCurrentTemperature(m_temp);
 
@@ -811,7 +812,6 @@ void ConfigurationDialog::onAutostartValueChanged(int value)
 void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 {
   m_autostart->setChecked(configuration.autostart);
-  lastTemperatureUnits = configuration.tempUnits;
 
   m_trayIconTheme->clear();
   for(int i = 0; i < ICON_THEMES.size(); ++i)
@@ -1710,30 +1710,40 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
 //--------------------------------------------------------------------
 void ConfigurationDialog::onTemperatureUnitsChanged()
 {
-  auto current = static_cast<TemperatureUnits>(m_tempCombo->currentIndex());
+  const auto current = m_unitsComboBox->currentIndex() == 0 ? TemperatureUnits::CELSIUS : (m_unitsComboBox->currentIndex() == 1 ? TemperatureUnits::FAHRENHEIT : static_cast<TemperatureUnits>(m_tempCombo->currentIndex()));
 
-  if (lastTemperatureUnits == current) return;
+  if (current == lastTemperatureUnits) return;
   lastTemperatureUnits = current;
+
+  // have to reset the limits or it will mess the conversion.
+  m_minSpinBox->setMinimum(-200);
+  m_minSpinBox->setMaximum(200);
+  m_maxSpinBox->setMinimum(-200);
+  m_maxSpinBox->setMaximum(200);
 
   switch(current)
   {
     case TemperatureUnits::CELSIUS:
+      m_maxSpinBox->setValue(convertFahrenheitToCelsius(m_maxSpinBox->value()));
+      m_minSpinBox->setValue(convertFahrenheitToCelsius(m_minSpinBox->value()));
+      m_temp = convertFahrenheitToCelsius(m_temp);
       m_minSpinBox->setMinimum(convertFahrenheitToCelsius(m_minSpinBox->minimum()));
       m_minSpinBox->setMaximum(convertFahrenheitToCelsius(m_minSpinBox->maximum()));
       m_maxSpinBox->setMinimum(convertFahrenheitToCelsius(m_maxSpinBox->minimum()));
       m_maxSpinBox->setMaximum(convertFahrenheitToCelsius(m_maxSpinBox->maximum()));
-      m_maxSpinBox->setValue(convertFahrenheitToCelsius(m_maxSpinBox->value()));
-      m_minSpinBox->setValue(convertFahrenheitToCelsius(m_minSpinBox->value()));
       break;
     case TemperatureUnits::FAHRENHEIT:
+      m_maxSpinBox->setValue(convertCelsiusToFahrenheit(m_maxSpinBox->value()));
+      m_minSpinBox->setValue(convertCelsiusToFahrenheit(m_minSpinBox->value()));        
+      m_temp = convertCelsiusToFahrenheit(m_temp);
       m_minSpinBox->setMinimum(convertCelsiusToFahrenheit(m_minSpinBox->minimum()));
       m_minSpinBox->setMaximum(convertCelsiusToFahrenheit(m_minSpinBox->maximum()));
       m_maxSpinBox->setMinimum(convertCelsiusToFahrenheit(m_maxSpinBox->minimum()));
       m_maxSpinBox->setMaximum(convertCelsiusToFahrenheit(m_maxSpinBox->maximum()));
-      m_maxSpinBox->setValue(convertCelsiusToFahrenheit(m_maxSpinBox->value()));
-      m_minSpinBox->setValue(convertCelsiusToFahrenheit(m_minSpinBox->value()));        
       break;
   }
+
+  updateTemperatureIcon();
 }
 
 //--------------------------------------------------------------------

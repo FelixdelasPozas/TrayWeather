@@ -923,14 +923,6 @@ void changeLanguage(const QString &lang)
 }
 
 //--------------------------------------------------------------------
-const QString unitsToText(const Units &u)
-{
-  const QStringList UNITS_TEXT{"metric", "imperial", "metric"};
-
-  return UNITS_TEXT.at(static_cast<int>(u));
-}
-
-//--------------------------------------------------------------------
 const QString generateMapGrades(const std::list<double> &grades, std::function<double(double)> f)
 {
   QStringList result;

@@ -291,14 +291,11 @@ void TrayWeather::showConfiguration()
 
     if(changedUnits)
     {
-      m_configuration.units = configuration.units;
-      if(m_configuration.units == Units::CUSTOM)
-      {
-        m_configuration.tempUnits     = configuration.tempUnits;
-        m_configuration.pressureUnits = configuration.pressureUnits;
-        m_configuration.windUnits     = configuration.windUnits;
-        m_configuration.precUnits     = configuration.precUnits;
-      }
+      m_configuration.units         = configuration.units;
+      m_configuration.tempUnits     = configuration.tempUnits;
+      m_configuration.pressureUnits = configuration.pressureUnits;
+      m_configuration.windUnits     = configuration.windUnits;
+      m_configuration.precUnits     = configuration.precUnits;
       requestNewData = true;
     }
 
@@ -449,17 +446,11 @@ void TrayWeather::updateTooltip()
     default:
     case 2:
       {
-        double temperatureValue = m_current.temp;
-        if(m_configuration.units == Units::CUSTOM && m_configuration.tempUnits == TemperatureUnits::FAHRENHEIT)
-        {
-          temperatureValue = convertCelsiusToFahrenheit(m_current.temp);
-        }
-
         QPixmap tempPixmap{384,384};
         tempPixmap.fill(Qt::transparent);
         QPainter painter(&tempPixmap);
 
-        const auto roundedTemp = static_cast<int>(std::nearbyint(temperatureValue));
+        const auto roundedTemp = static_cast<int>(std::nearbyint(m_current.temp));
         const auto roundedString = QString::number(roundedTemp) + (m_configuration.trayTextDegree ? QString("º") : QString());
 
         QFont font;
@@ -588,12 +579,7 @@ QString TrayWeather::tooltipText() const
         break;
       case TooltipText::TEMPERATURE:
         {
-          double temperatureValue = m_current.temp;
-          if(m_configuration.units == Units::CUSTOM && m_configuration.tempUnits == TemperatureUnits::FAHRENHEIT)
-          {
-            temperatureValue = convertCelsiusToFahrenheit(m_current.temp);
-          }
-          fieldsText << QString::number(temperatureValue, 'f', 1) + temperatureIconText(m_configuration);
+          fieldsText << QString::number(m_current.temp, 'f', 1) + temperatureIconText(m_configuration);
         }
         break;
       case TooltipText::CLOUDINESS:

@@ -633,12 +633,6 @@ const QString moonTooltip(const time_t timestamp);
  */
 const QString toTitleCase(const QString &string);
 
-/** \brief Returns the text name of the given units.
- * \param[in] u Units enum value.
- *
- */
-const QString unitsToText(const Units &u);
-
 /** \brief Returns the wind direction string of the given degrees.
  * \param[in] degrees Wind direction in degrees.
  *

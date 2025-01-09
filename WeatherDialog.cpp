@@ -177,10 +177,6 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
   // conversions
   QString accuStr, pressStr, windUnits, tempUnits;
-  std::function<double(double)> tempFunc = [](double d){ return d; };
-  std::function<double(double)> precipitationFunc = [](double d){ return d; };
-  double pressureValue = current.pressure;
-  double windValue = current.wind_speed;
 
   switch(config.units)
   {
@@ -201,7 +197,6 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       switch(config.tempUnits)
       {
         case TemperatureUnits::FAHRENHEIT:
-          tempFunc = convertCelsiusToFahrenheit;
           tempUnits = "ºF";
           break;
         default:
@@ -212,15 +207,12 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       switch(config.pressureUnits)
       {
         case PressureUnits::INHG:
-          pressureValue = converthPaToinHg(current.pressure);
           pressStr = tr("inHg");
           break;
         case PressureUnits::MMGH:
-          pressureValue = converthPaTommHg(current.pressure);
           pressStr = tr("mmHg");
           break;
         case PressureUnits::PSI:
-          pressureValue = converthPaToPSI(current.pressure);
           pressStr = tr("PSI");
           break;
         default:
@@ -232,7 +224,6 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       {
         case PrecipitationUnits::INCH:
           accuStr = tr("inches/h");
-          precipitationFunc = convertMmToInches;
           break;
         default:
         case PrecipitationUnits::MM:
@@ -243,19 +234,15 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       {
         case WindUnits::FEETSEC:
           windUnits = tr("ft/s");
-          windValue = convertMetersSecondToFeetSecond(current.wind_speed);
           break;
         case WindUnits::KMHR:
           windUnits = tr("km/h");
-          windValue = convertMetersSecondToKilometersHour(current.wind_speed);
           break;
         case WindUnits::MILHR:
           windUnits = tr("mph");
-          windValue = convertMetersSecondToMilesHour(current.wind_speed);
           break;
         case WindUnits::KNOTS:
           windUnits = tr("kts");
-          windValue = convertMetersSecondToKnots(current.wind_speed);
           break;
         default:
         case WindUnits::METSEC:
@@ -276,14 +263,14 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   m_moon->setPixmap(moonPixmap(current, config.iconTheme, config.iconThemeColor).scaled(QSize{64,64}, Qt::KeepAspectRatio, Qt::SmoothTransformation));
   m_description->setText(toTitleCase(current.description));
   m_icon->setPixmap(weatherPixmap(current, config.iconTheme, config.iconThemeColor).scaled(QSize{236,236}, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-  m_temp->setText(QString("%1 %2").arg(tempFunc(current.temp)).arg(tempUnits));
-  m_temp_max->setText(QString("%1 %2").arg(tempFunc(current.temp_max)).arg(tempUnits));
-  m_temp_min->setText(QString("%1 %2").arg(tempFunc(current.temp_min)).arg(tempUnits));
+  m_temp->setText(QString("%1 %2").arg(current.temp).arg(tempUnits));
+  m_temp_max->setText(QString("%1 %2").arg(current.temp_max).arg(tempUnits));
+  m_temp_min->setText(QString("%1 %2").arg(current.temp_min).arg(tempUnits));
   m_cloudiness->setText(QString("%1%").arg(current.cloudiness));
   m_humidity->setText(QString("%1%").arg(current.humidity));
-  m_wind_speed->setText(QString("%1 %2").arg(windValue).arg(windUnits));
+  m_wind_speed->setText(QString("%1 %2").arg(current.wind_speed).arg(windUnits));
   m_wind_dir->setText(QString("%1º (%2)").arg(static_cast<int>(current.wind_dir) % 360).arg(windDegreesToName(current.wind_dir)));
-  m_pressure->setText(QString("%1 %2").arg(pressureValue).arg(pressStr));
+  m_pressure->setText(QString("%1 %2").arg(current.pressure).arg(pressStr));
 
   if(current.temp_max == current.temp_min && current.temp_max == current.temp)
   {
@@ -307,7 +294,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
   else
   {
-    m_rain->setText(QString("%1 %2").arg(precipitationFunc(current.rain)).arg(accuStr));
+    m_rain->setText(QString("%1 %2").arg(current.rain).arg(accuStr));
   }
 
   if(current.snow == 0)
@@ -316,7 +303,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
   }
   else
   {
-    m_snow->setText(QString("%1 %2").arg(precipitationFunc(current.snow)).arg(accuStr));
+    m_snow->setText(QString("%1 %2").arg(current.snow).arg(accuStr));
   }
 
   if(current.sunrise != 0)
@@ -513,20 +500,16 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
 
       appendValue(msecs, 0, fakeLine);
 
-      auto value = tempFunc(entry.temp);
-      appendValue(msecs, value, tempLine);
+      appendValue(msecs, entry.temp, tempLine);
+      
+      appendValue(msecs, entry.rain, rainLine);
+      rainMin = std::min(rainMin, entry.rain);
+      rainMax = std::max(rainMax, entry.rain);
 
-      value = precipitationFunc(entry.rain);
-      appendValue(msecs, value, rainLine);
+      appendValue(msecs, entry.snow, snowLine);
 
-      rainMin = std::min(rainMin, value);
-      rainMax = std::max(rainMax, value);
-
-      value = precipitationFunc(entry.snow);
-      appendValue(msecs, value, snowLine);
-
-      snowMin = std::min(snowMin, value);
-      snowMax = std::max(snowMax, value);
+      snowMin = std::min(snowMin, entry.snow);
+      snowMax = std::max(snowMax, entry.snow);
     }
 
     auto plotAreaGradient = sunriseSunsetGradient(QDateTime::fromMSecsSinceEpoch(data.first().dt * 1000), 

@@ -55,10 +55,6 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   const auto snowStr = tr("Snow acc");
 
   QString tempUnits, presUnits, accUnits;
-  double tempValue = data.temp;
-  double presValue = data.pressure;
-  double rainValue = data.rain;
-  double snowValue = data.snow;
 
   switch(config.units)
   {
@@ -76,7 +72,6 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
       switch(config.tempUnits)
       {
         case TemperatureUnits::FAHRENHEIT:
-          tempValue = convertCelsiusToFahrenheit(data.temp);
           tempUnits = "ºF";
           break;
         default:
@@ -87,15 +82,12 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
       switch(config.pressureUnits)
       {
         case PressureUnits::INHG:
-          presValue = converthPaToinHg(data.pressure);
           presUnits = tr("inHg");
           break;
         case PressureUnits::MMGH:
-          presValue = converthPaTommHg(data.pressure);
           presUnits = tr("mmHg");
           break;
         case PressureUnits::PSI:
-          presValue = converthPaToPSI(data.pressure);
           presUnits = tr("PSI");
           break;
         default:
@@ -107,8 +99,6 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
       {
         case PrecipitationUnits::INCH:
           accUnits = tr("inches/h");
-          rainValue = convertMmToInches(data.rain);
-          snowValue = convertMmToInches(data.snow);
           break;
         default:
         case PrecipitationUnits::MM:
@@ -123,27 +113,27 @@ WeatherWidget::WeatherWidget(const ForecastData& data, const Configuration &conf
   m_dateTime->setText(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm")));
   m_description->setText(toTitleCase(data.description));
 
-  m_temperature->setText(QString("%1: %2 %3").arg(tempStr).arg(tempValue).arg(tempUnits));
+  m_temperature->setText(QString("%1: %2 %3").arg(tempStr).arg(data.temp).arg(tempUnits));
   m_cloudiness->setText(QString("%1: %2%").arg(clouStr).arg(data.cloudiness));
   m_humidity->setText(QString("%1: %2%").arg(humiStr).arg(data.humidity));
-  m_pressure->setText(QString("%1: %2 %3").arg(presStr).arg(presValue).arg(presUnits));
+  m_pressure->setText(QString("%1: %2 %3").arg(presStr).arg(data.pressure).arg(presUnits));
 
-  if(rainValue == 0)
+  if(data.rain == 0)
   {
     m_rain->hide();
   }
   else
   {
-    m_rain->setText(QString("%1: %2 %3").arg(rainStr).arg(rainValue).arg(accUnits));
+    m_rain->setText(QString("%1: %2 %3").arg(rainStr).arg(data.rain).arg(accUnits));
   }
 
-  if(snowValue == 0)
+  if(data.snow == 0)
   {
     m_snow->hide();
   }
   else
   {
-    m_snow->setText(QString("%1: %2 %3").arg(snowStr).arg(snowValue).arg(accUnits));
+    m_snow->setText(QString("%1: %2 %3").arg(snowStr).arg(data.snow).arg(accUnits));
   }
 
   adjustSize();

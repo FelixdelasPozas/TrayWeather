@@ -56,11 +56,11 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
 
   tabWidget->setCurrentIndex(0);
 
-  QPixmap kofiPixmap(QSize{297,60});
-  if(this->styleSheet().isEmpty())
-    kofiPixmap = QPixmap(":/TrayWeather/support_me_on_kofi_beige.png");
-  else
-    kofiPixmap = QPixmap(":/TrayWeather/support_me_on_kofi_dark.png");
+  QPixmap kofiPixmap(":/TrayWeather/kofi_logo.png");
+  // if(this->styleSheet().isEmpty())
+  //   kofiPixmap = QPixmap(":/TrayWeather/support_me_on_kofi_beige.png");
+  // else
+  //   kofiPixmap = QPixmap(":/TrayWeather/support_me_on_kofi_dark.png");
 
   m_banner->setScaledContents(true);
   m_banner->setPixmap(kofiPixmap);
