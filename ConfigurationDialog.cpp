@@ -1637,7 +1637,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
   };
 
-  const auto roundedString = QString::number(m_temp) + (m_drawDegree->isChecked() ? QString("º") : QString());
+  const auto roundedString = QString::number(m_temp) + (m_drawDegree->isChecked() ? QString::fromUtf8("\u00B0") : QString());
 
   QPixmap pixmap(384,384);
   pixmap.fill(Qt::transparent);
@@ -1752,6 +1752,7 @@ void ConfigurationDialog::onBorderStateChanged()
   const auto enable = m_border->isEnabled() && m_border->isChecked();
   m_borderWidthLabel->setEnabled(enable);
   m_borderWidth->setEnabled(enable);
+  m_borderSpinBox->setEnabled(enable);
 }
 
 //--------------------------------------------------------------------

@@ -55,7 +55,7 @@ The following libraries are required:
 
 Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/releases/) installer or zip file (portable mode).
 
-Neither the application or the installer are digitally signed so the system will ask for approval before running it the first time.
+Supported versions are from Windows 7 onwards. Neither the application or the installer are digitally signed so the system will ask for approval before running it the first time.
 
 > **_NOTE:_**  The application will use a ini file in the same folder as the executable if the file exists and can be written. So
 its possible to use the application in "portable mode" even if it has been installed using the installer by just copying the installation 
@@ -178,8 +178,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  12           | 1320        |   514            | 6548 |
-| C/C++ Header                 |  12           |  413        |  1226            | 1272 |
+| C++                          |  12           | 1319        |   518            | 6507 |
+| C/C++ Header                 |  12           |  412        |  1222            | 1271 |
 | HTML                         |   1           |   33        |     0            |  152 |
 | CMake                        |   1           |   19        |    12            |  129 |
-| **Total**                    | **26**        | **1785**    | **1752**         | **8065** |
+| **Total**                    | **26**        | **1783**    | **1752**         | **8059** |

@@ -54,7 +54,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_6">
       <attribute name="title">
@@ -2038,6 +2038,9 @@ QGroupBox::title {
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
+             <property name="suffix">
+              <string>º</string>
+             </property>
              <property name="minimum">
               <number>-200</number>
              </property>
@@ -2078,6 +2081,9 @@ QGroupBox::title {
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
+             </property>
+             <property name="suffix">
+              <string>º</string>
              </property>
              <property name="minimum">
               <number>-200</number>
@@ -2210,7 +2216,7 @@ QGroupBox::title {
               <string>Width of the border around the text.</string>
              </property>
              <property name="minimum">
-              <number>8</number>
+              <number>4</number>
              </property>
              <property name="maximum">
               <number>32</number>
@@ -2220,6 +2226,28 @@ QGroupBox::title {
              </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="tickPosition">
+              <enum>QSlider::TicksAbove</enum>
+             </property>
+             <property name="tickInterval">
+              <number>2</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="m_borderSpinBox">
+             <property name="toolTip">
+              <string>Width of the border around the text.</string>
+             </property>
+             <property name="suffix">
+              <string> px</string>
+             </property>
+             <property name="minimum">
+              <number>4</number>
+             </property>
+             <property name="maximum">
+              <number>32</number>
              </property>
             </widget>
            </item>
@@ -2371,16 +2399,19 @@ QGroupBox::title {
               <string>Modifies the space between characters in the temperatura icon.</string>
              </property>
              <property name="minimum">
-              <number>-15</number>
+              <number>-25</number>
              </property>
              <property name="maximum">
-              <number>15</number>
+              <number>25</number>
              </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
              <property name="tickPosition">
               <enum>QSlider::TicksAbove</enum>
+             </property>
+             <property name="tickInterval">
+              <number>5</number>
              </property>
             </widget>
            </item>
@@ -2389,11 +2420,14 @@ QGroupBox::title {
              <property name="toolTip">
               <string>Modifies the space between characters in the temperatura icon.</string>
              </property>
+             <property name="suffix">
+              <string> px</string>
+             </property>
              <property name="minimum">
-              <number>-15</number>
+              <number>-25</number>
              </property>
              <property name="maximum">
-              <number>15</number>
+              <number>25</number>
              </property>
             </widget>
            </item>
@@ -3096,6 +3130,38 @@ QGroupBox::title {
     <hint type="destinationlabel">
      <x>281</x>
      <y>364</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_borderSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_borderWidth</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>376</x>
+     <y>240</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>269</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_borderWidth</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>m_borderSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>269</x>
+     <y>241</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>376</x>
+     <y>240</y>
     </hint>
    </hints>
   </connection>

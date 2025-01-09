@@ -451,7 +451,7 @@ void TrayWeather::updateTooltip()
         QPainter painter(&tempPixmap);
 
         const auto roundedTemp = static_cast<int>(std::nearbyint(m_current.temp));
-        const auto roundedString = QString::number(roundedTemp) + (m_configuration.trayTextDegree ? QString("º") : QString());
+        const auto roundedString = QString::number(roundedTemp) + (m_configuration.trayTextDegree ? QString::fromUtf8("\u00B0") : QString());
 
         QFont font;
         font.fromString(m_configuration.trayTextFont);
