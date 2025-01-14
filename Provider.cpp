@@ -681,6 +681,11 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
     // to discard entries older than 'right now'.
     const long long currentDt = std::chrono::duration_cast<std::chrono::seconds >(std::chrono::system_clock::now().time_since_epoch()).count();
     const auto jsonObj = jsonDocument.object();
+    const auto city    = m_config.city.isEmpty() ? tr("Unknown") : m_config.city;
+    const auto region  = m_config.region.isEmpty() ? tr("Unknown") : m_config.region;
+    auto country = m_config.country.isEmpty() ? tr("Unknown") : m_config.country;      
+    if(city.compare(region, Qt::CaseInsensitive) != 0) country = region;
+
 
     const auto keys = jsonObj.keys();
 
@@ -701,8 +706,8 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
       m_current.wind_dir   = current.value("wind_direction_10m").toDouble(0);
       m_current.snow       = current.value("snowfall").toDouble(0) * 10; // units are cm not mm
       m_current.rain       = current.value("rain").toDouble(0);
-      m_current.name       = "Unknown";
-      m_current.country    = "Unknown";      
+      m_current.name       = city;
+      m_current.country    = country;
 
       const auto [sunrise, sunset] = computeSunriseSunset(m_current, m_config.longitude, m_config.latitude);
       m_current.sunrise    = sunrise;
@@ -765,8 +770,8 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
         data.wind_dir    = windDirs.at(i).toDouble(0);
         data.snow        = snow.at(i).toDouble(0) * 10; // units are cm not mm
         data.rain        = rain.at(i).toDouble(0);
-        data.name        = "Unknown";
-        data.country     = "Unknown";      
+        data.name        = city;
+        data.country     = country;      
 
         const auto [sunrise, sunset] = computeSunriseSunset(data, m_config.longitude, m_config.latitude);
         data.sunrise     = sunrise;
