@@ -27,37 +27,33 @@
 // C++
 #include <cassert>
 
+int currentAlert = 0; /** index of current alert being shown. */
+
 //--------------------------------------------------------------------
 AlertDialog::AlertDialog(QWidget *p, Qt::WindowFlags f)
 : QDialog(p, f)
 {
   setupUi(this);
+
+  connectSignals();
 }
 
 //--------------------------------------------------------------------
 void AlertDialog::setAlertData(const Alerts &alerts)
 {
   assert(!alerts.empty());
+  m_alerts = alerts;
 
-  const QString UNKNOWN = tr("Unknown");
-  
+  const auto numAlerts = m_alerts.count();
+  const bool isEnabled = numAlerts > 1;
 
-  if(alerts.count() > 0)
-  {
-    const auto data = alerts.first();
-    m_sender->setText(data.sender);
-    m_event->setText(data.event);
-    m_description->setText(data.description);
+  m_alertsNum->setVisible(isEnabled);
+  m_alertsNum->setText(QString("%1/%2").arg(currentAlert + 1).arg(numAlerts));
+  m_next->setVisible(isEnabled);
+  m_previous->setEnabled(isEnabled);
+  m_nextLayout->setEnabled(isEnabled);
 
-    struct tm t;
-    unixTimeStampToDate(t, data.startTime);
-    QDateTime startTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-    m_start->setText(startTime.toString());
-
-    unixTimeStampToDate(t, data.endTime);
-    QDateTime endTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-    m_end->setText(endTime.toString());
-  }
+  showAlert(currentAlert);
 }
 
 //--------------------------------------------------------------------
@@ -83,4 +79,50 @@ void AlertDialog::changeEvent(QEvent *e)
   }
 
   QDialog::changeEvent(e);
+}
+
+//--------------------------------------------------------------------
+void AlertDialog::onNextButtonClicked()
+{
+  if(currentAlert == m_alerts.count() - 1) return;
+  showAlert(++currentAlert);
+}
+
+//--------------------------------------------------------------------
+void AlertDialog::onPreviousButtonClicked()
+{
+  if(currentAlert == 0) return;
+  showAlert(--currentAlert);
+}
+
+//--------------------------------------------------------------------
+void AlertDialog::connectSignals()
+{
+  connect(m_next, SIGNAL(clicked()), this, SLOT(onNextButtonClicked()));
+  connect(m_previous, SIGNAL(clicked()), this, SLOT(onPreviousButtonClicked()));
+}
+
+//--------------------------------------------------------------------
+void AlertDialog::showAlert(const int index)
+{
+  const auto data = m_alerts.at(index);
+  m_sender->setText(data.sender);
+  m_event->setText(data.event);
+  m_description->setText(data.description);
+
+  struct tm t;
+  unixTimeStampToDate(t, data.startTime);
+  QDateTime startTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+  m_start->setText(startTime.toString());
+
+  unixTimeStampToDate(t, data.endTime);
+  QDateTime endTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+  m_end->setText(endTime.toString());
+
+  if(m_alerts.count() != 1)
+  {
+    m_alertsNum->setText(QString("%1/%2").arg(index + 1).arg(m_alerts.count()));
+    m_previous->setEnabled(index > 0);
+    m_next->setEnabled(index < m_alerts.count() - 1);
+  }
 }

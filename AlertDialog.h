@@ -64,6 +64,31 @@ class AlertDialog
   protected:
     virtual void showEvent(QShowEvent *e) override;
     virtual void changeEvent(QEvent *e) override;
+
+  private slots:
+    /** \brief Updates the dialog with the next alert, if it exists. 
+     *
+     */
+    void onNextButtonClicked();
+
+    /** \brief Updates the dialog with the previous alert.
+     *
+     */
+    void onPreviousButtonClicked();
+
+  private:
+    /** \brief Helper method to connect the signals with the slots.
+     *
+     */
+    void connectSignals();
+
+    /** \brief Updates the dialog with the information on the alert of given index.
+     * \param index Alert index.
+     *
+     */
+    void showAlert(const int index);
+
+    Alerts m_alerts; /** Alerts list. */
 };
 
 #endif // ALERTDIALOG_H_
