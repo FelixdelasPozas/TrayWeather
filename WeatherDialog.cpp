@@ -445,7 +445,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
             auto line = new QtCharts::QBarSeries(forecastChart);
             line->setName(name);
             line->append(barset);
-            line->setBarWidth(line->barWidth()*1.5);
+            line->setBarWidth(2);
             line->setUseOpenGL(true);
             line->setOpacity(0.8);
 
