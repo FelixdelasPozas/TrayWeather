@@ -55,6 +55,10 @@
 #include <iostream>
 #include <ctime>
 
+// See QFileInfo for the meaning of this: https://doc.qt.io/qt-5/qfileinfo.html#ntfs-permissions
+extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
+
+// True to log requests into the LOG buffer.
 bool NetworkAccessManager::LOG_REQUESTS = false;
 
 static const QString INI_FILENAME = QString("TrayWeather.ini");
@@ -1180,7 +1184,11 @@ QSettings applicationSettings()
   if(applicationDir.exists(INI_FILENAME))
   {
     const auto fInfo = QFileInfo(applicationDir.absoluteFilePath(INI_FILENAME));
-    if(fInfo.isWritable())
+    ++qt_ntfs_permission_lookup;
+    const auto isWritable = fInfo.isWritable();
+    --qt_ntfs_permission_lookup;
+
+    if(isWritable)
     {
       return QSettings(INI_FILENAME, QSettings::IniFormat);
     }
