@@ -262,6 +262,18 @@ class ConfigurationDialog
      */
     void onBorderStateChanged();
 
+    /** \brief Updates the value on the associated spinbox.
+     * \param value slider value in [5,20]
+     *
+     */
+    void onBarWidthSliderChanged(int value);
+
+    /** \brief Updates the value on the associated slider.
+     * \param value spinbox value in [0.5-2.0].
+     *
+     */
+    void onBarWidthSpinboxChanged(double value);
+
   signals:
     void languageChanged(const QString &);
 

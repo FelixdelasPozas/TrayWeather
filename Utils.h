@@ -293,6 +293,7 @@ struct Configuration
     float              windMapOpacity;  /** opacity of the wind layer in the map. Value in [0,1].       */
     float              rainMapOpacity;  /** opacity of the rain layer in the map. Value in [0,1].       */
     float              tempMapOpacity;  /** opacity of the temp layer in the map. Value in [0,1].       */
+    double             barWidth;        /** Bar representation width in [0.5-2.0].                      */
 
     /** \brief Configuration struct constructor.
      *
@@ -352,6 +353,7 @@ struct Configuration
     , windMapOpacity  {0.75}
     , rainMapOpacity  {0.75}
     , tempMapOpacity  {0.75}
+    , barWidth        {1.0}
     {};
 
     /** \brief Returns true if the struct contains valid data and false otherwise. 

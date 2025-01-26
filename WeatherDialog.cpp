@@ -438,16 +438,21 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
           break;
         case Representation::BARS:
           {
+            QPen barpen;
+            barpen.setWidth(1);
+            barpen.setColor(color.darker());
+
             auto barset = new QtCharts::QBarSet("");
             barset->setColor(color);
             barset->setLabel(name);
+            barset->setPen(barpen);
 
             auto line = new QtCharts::QBarSeries(forecastChart);
             line->setName(name);
             line->append(barset);
-            line->setBarWidth(2);
             line->setUseOpenGL(true);
             line->setOpacity(0.8);
+            line->setBarWidth(m_config->barWidth);
 
             connect(line, SIGNAL(hovered(bool, int, QBarSet *)),
                     this, SLOT(onChartHover(bool, int)));
@@ -523,7 +528,7 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
     auto addLineSeriesToChart = [&forecastChart, &axisX](QAbstractSeries *ptr)
     {
       forecastChart->addSeries(ptr);
-      forecastChart->setAxisX(axisX,ptr);
+      forecastChart->setAxisX(axisX, ptr);
     };
 
     QList<QAbstractSeries*> toAddLater;
@@ -1571,7 +1576,6 @@ void WeatherDialog::updateAxesRanges(QtCharts::QChart *chart)
         else
         {
           auto barSerie = qobject_cast<QBarSeries *>(serie);
-
 
           for(int i = 0; i < barSerie->barSets().first()->count(); ++i)
           {

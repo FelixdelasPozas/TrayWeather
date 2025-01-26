@@ -316,6 +316,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.cloudMapOpacity = static_cast<float>(m_cloudLayerSlider->value() / 100.);
   configuration.rainMapOpacity  = static_cast<float>(m_rainLayerSlider->value() / 100.);
   configuration.windMapOpacity  = static_cast<float>(m_windLayerSlider->value() / 100.);
+  configuration.barWidth        = m_barWidthSpinbox->value();
 
   configuration.tooltipFields.clear();
   for(int row = 0; row < m_tooltipList->count(); ++row)
@@ -568,6 +569,12 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_spacingSpinBox, SIGNAL(valueChanged(int)),
           this,            SLOT(updateTemperatureIcon()));
+
+  connect(m_barWidthSlider, SIGNAL(valueChanged(int)), 
+          this, SLOT(onBarWidthSliderChanged(int)));
+
+  connect(m_barWidthSpinbox, SIGNAL(valueChanged(double)), 
+          this, SLOT(onBarWidthSpinboxChanged(double)));
 
   connectProviderSignals();
 }
@@ -843,6 +850,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_theme->setCurrentIndex(configuration.lightTheme ? 0 : 1);
   m_trayIconTheme->setCurrentIndex(static_cast<int>(configuration.iconTheme));
   m_iconSize->setValue(configuration.trayIconSize);
+  m_barWidthSlider->setValue(configuration.barWidth);
+  m_barWidthSpinbox->setValue(configuration.barWidth);
 
   m_font.fromString(configuration.trayTextFont);
   m_spacingSlider->setValue(configuration.trayFontSpacing);
@@ -1112,6 +1121,12 @@ void ConfigurationDialog::disconnectSignals()
 
   disconnect(m_spacingSpinBox, SIGNAL(valueChanged(int)),
              this,            SLOT(updateTemperatureIcon()));
+
+  disconnect(m_barWidthSlider, SIGNAL(valueChanged(int)), 
+             this, SLOT(onBarWidthSliderChanged(int)));
+
+  disconnect(m_barWidthSpinbox, SIGNAL(valueChanged(double)), 
+             this, SLOT(onBarWidthSpinboxChanged(double)));
 
   disconnectProviderSignals();             
 }
@@ -1753,6 +1768,22 @@ void ConfigurationDialog::onBorderStateChanged()
   m_borderWidthLabel->setEnabled(enable);
   m_borderWidth->setEnabled(enable);
   m_borderSpinBox->setEnabled(enable);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onBarWidthSliderChanged(int value)
+{
+  m_barWidthSpinbox->setUpdatesEnabled(false);
+  m_barWidthSpinbox->setValue(value/10.);
+  m_barWidthSpinbox->setUpdatesEnabled(true);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::onBarWidthSpinboxChanged(double value)
+{
+  m_barWidthSlider->setUpdatesEnabled(false);
+  m_barWidthSlider->setValue(value*10);
+  m_barWidthSlider->setUpdatesEnabled(true);
 }
 
 //--------------------------------------------------------------------

@@ -227,6 +227,7 @@ void TrayWeather::showConfiguration()
   m_configuration.cloudMapOpacity = configuration.cloudMapOpacity;
   m_configuration.rainMapOpacity  = configuration.rainMapOpacity;
   m_configuration.windMapOpacity  = configuration.windMapOpacity;
+  m_configuration.barWidth        = configuration.barWidth;
 
   bool requestNewData = false;
 

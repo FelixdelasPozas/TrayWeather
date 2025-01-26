@@ -727,7 +727,7 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
 
       if(m_current.isValid())
         m_forecast << m_current;
-
+        
       const auto hourly = jsonObj.value("hourly").toObject();        
 
       const auto times        = hourly.value("time").toArray();
