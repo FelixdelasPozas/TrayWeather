@@ -1632,6 +1632,7 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
   std::set<unsigned long long> sunrises, sunsets;
   constexpr unsigned long long minuteMs = 15 * 60 * 1000;
 
+  QColor startColor = darkColor;
   for(int i = 0; i < m_forecast->size(); ++i)
   {
     const auto &entry = m_forecast->at(i);
@@ -1639,6 +1640,7 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
 
     sunrises.emplace(sunrise * 1000);
     sunsets.emplace(sunset * 1000);
+    if(startT >= sunrise*1000 && endT <= sunset*1000) startColor = lightColor;
   }
 
   for(const unsigned long long sunrise: sunrises)
@@ -1656,6 +1658,13 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
   auto sortStops = [](const QGradientStop &a, const QGradientStop &b){ return a.first < b.first; };
   std::sort(stops.begin(), stops.end(), sortStops);
   for(const auto &s: stops) plotAreaGradient.setColorAt(s.first, s.second);
+
+  // in case of very small intervals where stops are empty.
+  if(stops.isEmpty())
+  {
+    plotAreaGradient.setColorAt(0, startColor);
+    plotAreaGradient.setColorAt(1, startColor);
+  }
 
   return plotAreaGradient;
 }

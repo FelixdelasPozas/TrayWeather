@@ -170,7 +170,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.31.4
+**Version**: 1.32.0
 
 **Status**: finished.
 
@@ -178,8 +178,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  12           | 1332        |   526            | 6573 |
+| C++                          |  12           | 1335        |   527            | 6584 |
 | C/C++ Header                 |  12           |  419        |  1243            | 1282 |
 | HTML                         |   1           |   33        |     0            |  152 |
 | CMake                        |   1           |   19        |    12            |  129 |
-| **Total**                    | **26**        | **1803**    | **1781**         | **8136** |
+| **Total**                    | **26**        | **1806**    | **1782**         | **8147** |
