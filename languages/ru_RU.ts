@@ -806,24 +806,24 @@
         <location filename="../ConfigurationDialog.ui" line="2057"/>
         <location filename="../ConfigurationDialog.ui" line="2067"/>
         <source>Draw the degree symbol in the temperature icon.</source>
-        <translation>Рисует символ градуса на значке температуры.</translation>
+        <translation>Рисовать символ градуса в значке температуры.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2070"/>
         <source>Draw degree symbol</source>
-        <translation>Рисует символ градуса</translation>
+        <translation>Рисовать символ градуса</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2276"/>
         <location filename="../ConfigurationDialog.ui" line="2286"/>
         <location filename="../ConfigurationDialog.ui" line="2311"/>
         <source>Width of the border around the text.</source>
-        <translation>Ширина границы вокруг текста.</translation>
+        <translation>Ширина обводки вокруг текста.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2279"/>
         <source>Border width</source>
-        <translation>Ширина границы</translation>
+        <translation>Ширина обводки</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2459"/>
@@ -835,7 +835,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2462"/>
         <source>Letter spacing</source>
-        <translation>Интервал между буквами</translation>
+        <translation>Межбуквенный интервал</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2546"/>
