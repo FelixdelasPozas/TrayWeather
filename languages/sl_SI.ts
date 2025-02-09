@@ -115,12 +115,12 @@
         <translation>Teme Ikon</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="45"/>
+        <location filename="../AboutDialog.cpp" line="47"/>
         <source>version</source>
         <translation>verzija</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.cpp" line="47"/>
+        <location filename="../AboutDialog.cpp" line="49"/>
         <source>Compiled on </source>
         <translation>Sestavljeno </translation>
     </message>
@@ -341,7 +341,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="444"/>
-        <location filename="../ConfigurationDialog.cpp" line="438"/>
+        <location filename="../ConfigurationDialog.cpp" line="440"/>
         <source>Testing API Key...</source>
         <translation>Preverjanje API ključa...</translation>
     </message>
@@ -373,7 +373,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1163"/>
         <location filename="../ConfigurationDialog.ui" line="1332"/>
-        <location filename="../ConfigurationDialog.ui" line="1606"/>
+        <location filename="../ConfigurationDialog.ui" line="1609"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
@@ -414,7 +414,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1227"/>
-        <location filename="../ConfigurationDialog.ui" line="1771"/>
+        <location filename="../ConfigurationDialog.ui" line="1774"/>
         <source>Wind</source>
         <translation>Veter</translation>
     </message>
@@ -455,7 +455,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1367"/>
-        <location filename="../ConfigurationDialog.ui" line="1716"/>
+        <location filename="../ConfigurationDialog.ui" line="1719"/>
         <source>Rain</source>
         <translation>Dež</translation>
     </message>
@@ -467,7 +467,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1495"/>
         <location filename="../ConfigurationDialog.ui" line="1505"/>
-        <location filename="../ConfigurationDialog.ui" line="1527"/>
+        <location filename="../ConfigurationDialog.ui" line="1530"/>
         <source>Adjusts the bar width of bar representations.</source>
         <translation>Prilagodi širino vrstice predstavitev vrstice.</translation>
     </message>
@@ -477,123 +477,123 @@
         <translation>Širina palice</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1916"/>
+        <location filename="../ConfigurationDialog.ui" line="1919"/>
         <source>Selects the temperature icon text color</source>
         <translation>Izbira barve za tekst vremenske ikone</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1941"/>
+        <location filename="../ConfigurationDialog.ui" line="1944"/>
         <source>Icon type</source>
         <translation>Vrsta ikone</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2004"/>
+        <location filename="../ConfigurationDialog.ui" line="2007"/>
         <source>Weather icon</source>
         <translation>Samo vreme</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2009"/>
+        <location filename="../ConfigurationDialog.ui" line="2012"/>
         <source>Temperature icon</source>
         <translation>Samo temperatura</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2014"/>
+        <location filename="../ConfigurationDialog.ui" line="2017"/>
         <source>Weather &amp; temperature icon</source>
         <translation>Vreme in temperatura v enem</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2019"/>
+        <location filename="../ConfigurationDialog.ui" line="2022"/>
         <source>Weather icon &amp; temperature icon</source>
         <translation>Vreme in temperatura posamezno</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2039"/>
-        <location filename="../ConfigurationDialog.ui" line="2350"/>
+        <location filename="../ConfigurationDialog.ui" line="2042"/>
+        <location filename="../ConfigurationDialog.ui" line="2353"/>
         <source>Selects the icon theme.</source>
         <translation>Izberi temo ikon.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2042"/>
+        <location filename="../ConfigurationDialog.ui" line="2045"/>
         <source>Icon theme</source>
         <translation>Tema ikon</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2112"/>
-        <location filename="../ConfigurationDialog.ui" line="2156"/>
+        <location filename="../ConfigurationDialog.ui" line="2115"/>
+        <location filename="../ConfigurationDialog.ui" line="2159"/>
         <source>º</source>
         <translation>º</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2314"/>
-        <location filename="../ConfigurationDialog.ui" line="2494"/>
+        <location filename="../ConfigurationDialog.ui" line="2317"/>
+        <location filename="../ConfigurationDialog.ui" line="2497"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2366"/>
+        <location filename="../ConfigurationDialog.ui" line="2369"/>
         <source>Changes icon theme color.</source>
         <translation>Spremeni barvo teme ikon.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2382"/>
+        <location filename="../ConfigurationDialog.ui" line="2385"/>
         <source>Shows a summary of theme icons.</source>
         <translation>Predogled ikon teme.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1832"/>
+        <location filename="../ConfigurationDialog.ui" line="1835"/>
         <source>Variable</source>
         <translation>Spremenljiva</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1851"/>
+        <location filename="../ConfigurationDialog.ui" line="1854"/>
         <source>Click to change minimum value color...</source>
         <translation>Spremeni barvo najnižje termperature...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1867"/>
+        <location filename="../ConfigurationDialog.ui" line="1870"/>
         <source>Range</source>
         <translation>Razpon</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1892"/>
+        <location filename="../ConfigurationDialog.ui" line="1895"/>
         <source>Click to change maximum value color...</source>
         <translation>Spremeni barvo najnižje temperature...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2173"/>
-        <location filename="../ConfigurationDialog.ui" line="2192"/>
-        <location filename="../ConfigurationDialog.ui" line="2261"/>
+        <location filename="../ConfigurationDialog.ui" line="2176"/>
+        <location filename="../ConfigurationDialog.ui" line="2195"/>
+        <location filename="../ConfigurationDialog.ui" line="2264"/>
         <source>Modifies the temperature icon size.</source>
         <translation>Spremeni velikost ikone temperature.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2264"/>
+        <location filename="../ConfigurationDialog.ui" line="2267"/>
         <source>Temperature icon size</source>
         <translation>Velikost ikone temperature</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2525"/>
+        <location filename="../ConfigurationDialog.ui" line="2528"/>
         <source>Icon Tooltip</source>
         <translation>Namig ikone</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2875"/>
-        <location filename="../ConfigurationDialog.ui" line="2888"/>
+        <location filename="../ConfigurationDialog.ui" line="2878"/>
+        <location filename="../ConfigurationDialog.ui" line="2891"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
         <translation>Zamenjaj vrstni red ikon v sistemski vrstici. Omogočeno samo, če se uporablja predstavitev dveh ikon.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1956"/>
+        <location filename="../ConfigurationDialog.ui" line="1959"/>
         <source>Fixed</source>
         <translation>Določena</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1978"/>
+        <location filename="../ConfigurationDialog.ui" line="1981"/>
         <source>Click to change fixed color...</source>
         <translation>Spremeni določeno barvo...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1919"/>
+        <location filename="../ConfigurationDialog.ui" line="1922"/>
         <source>Temperature text color</source>
         <translation>Barva temperature</translation>
     </message>
@@ -741,144 +741,144 @@
         <translation>Barva prikaza snega v grafu napovedi.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1551"/>
+        <location filename="../ConfigurationDialog.ui" line="1554"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; In the forecast graphs the information can be hidden and shown again by clicking on the legend title text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Opomba:&lt;/span&gt; V grafih napovedi lahko skriješ in ponovno prikažeš informacije s klikom na besedilo v legendi.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1816"/>
+        <location filename="../ConfigurationDialog.ui" line="1819"/>
         <source>Icon</source>
         <translation>Ikona</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2087"/>
+        <location filename="../ConfigurationDialog.ui" line="2090"/>
         <source>from</source>
         <translation>od</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2106"/>
+        <location filename="../ConfigurationDialog.ui" line="2109"/>
         <source>Minimum range value</source>
         <translation>Najnižja vrednost</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2131"/>
+        <location filename="../ConfigurationDialog.ui" line="2134"/>
         <source>to</source>
         <translation>do</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2150"/>
+        <location filename="../ConfigurationDialog.ui" line="2153"/>
         <source>Maximum range value</source>
         <translation>Najvišja vrednost</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2224"/>
-        <location filename="../ConfigurationDialog.ui" line="2234"/>
+        <location filename="../ConfigurationDialog.ui" line="2227"/>
+        <location filename="../ConfigurationDialog.ui" line="2237"/>
         <source>Draw a border around temperature icon text.</source>
         <translation>Nariši obrobo okoli ikone za temperaturo za boljši kontrast.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2237"/>
+        <location filename="../ConfigurationDialog.ui" line="2240"/>
         <source>Draw a border around text for better contrast.</source>
         <translation>Obroba okoli ikone za temperaturo.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2335"/>
-        <location filename="../ConfigurationDialog.ui" line="2396"/>
+        <location filename="../ConfigurationDialog.ui" line="2338"/>
+        <location filename="../ConfigurationDialog.ui" line="2399"/>
         <source>Selects the temperature icon text font</source>
         <translation>Izberi vrsto pisavo za temperaturo</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2415"/>
+        <location filename="../ConfigurationDialog.ui" line="2418"/>
         <source>Preview of the temperature icon</source>
         <translation>Predogled ikone za temperaturo</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2338"/>
+        <location filename="../ConfigurationDialog.ui" line="2341"/>
         <source>Temperature text font</source>
         <translation>Vrsta pisave</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2448"/>
+        <location filename="../ConfigurationDialog.ui" line="2451"/>
         <source>Stretch font vertically.</source>
         <translation>Raztegni pisavo navpišno.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2057"/>
-        <location filename="../ConfigurationDialog.ui" line="2067"/>
+        <location filename="../ConfigurationDialog.ui" line="2060"/>
+        <location filename="../ConfigurationDialog.ui" line="2070"/>
         <source>Draw the degree symbol in the temperature icon.</source>
         <translation>Nariše simbol stopinje v ikoni temperature.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2070"/>
+        <location filename="../ConfigurationDialog.ui" line="2073"/>
         <source>Draw degree symbol</source>
         <translation>Narišite simbol stopnje</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2276"/>
-        <location filename="../ConfigurationDialog.ui" line="2286"/>
-        <location filename="../ConfigurationDialog.ui" line="2311"/>
+        <location filename="../ConfigurationDialog.ui" line="2279"/>
+        <location filename="../ConfigurationDialog.ui" line="2289"/>
+        <location filename="../ConfigurationDialog.ui" line="2314"/>
         <source>Width of the border around the text.</source>
         <translation>Širina obrobe okoli besedila.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2279"/>
+        <location filename="../ConfigurationDialog.ui" line="2282"/>
         <source>Border width</source>
         <translation>Širina obrobe</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2459"/>
-        <location filename="../ConfigurationDialog.ui" line="2469"/>
-        <location filename="../ConfigurationDialog.ui" line="2491"/>
+        <location filename="../ConfigurationDialog.ui" line="2462"/>
+        <location filename="../ConfigurationDialog.ui" line="2472"/>
+        <location filename="../ConfigurationDialog.ui" line="2494"/>
         <source>Modifies the space between characters in the temperatura icon.</source>
         <translation>Spremeni presledek med znaki v ikoni temperature.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2462"/>
+        <location filename="../ConfigurationDialog.ui" line="2465"/>
         <source>Letter spacing</source>
         <translation>Razmik med črkami</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2546"/>
+        <location filename="../ConfigurationDialog.ui" line="2549"/>
         <source>Value:</source>
         <translation>Podatki:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2553"/>
+        <location filename="../ConfigurationDialog.ui" line="2556"/>
         <source>Value to add to the list.</source>
         <translation>Dodaj podatek na seznam.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2566"/>
+        <location filename="../ConfigurationDialog.ui" line="2569"/>
         <source>Add value to tooltip text</source>
         <translation>Dodaj podatek na orodni namig</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2613"/>
+        <location filename="../ConfigurationDialog.ui" line="2616"/>
         <source>Move value up.</source>
         <translation>Premakni podatek višje.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2627"/>
+        <location filename="../ConfigurationDialog.ui" line="2630"/>
         <source>Move value down.</source>
         <translation>Premakni podatek nižje.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2641"/>
+        <location filename="../ConfigurationDialog.ui" line="2644"/>
         <source>Remove value from tooltip text</source>
         <translation>Odstrani podatek iz orodnega namiga</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2658"/>
+        <location filename="../ConfigurationDialog.ui" line="2661"/>
         <source>Miscellaneous</source>
         <translation>Razno</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2681"/>
+        <location filename="../ConfigurationDialog.ui" line="2684"/>
         <source>Time between update requests</source>
         <translation>Čas med zahtevami za posodobitev</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2694"/>
+        <location filename="../ConfigurationDialog.ui" line="2697"/>
         <source> minutes</source>
         <translation> min</translation>
     </message>
@@ -888,53 +888,53 @@
         <translation>Merske enote</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2435"/>
-        <location filename="../ConfigurationDialog.ui" line="2445"/>
+        <location filename="../ConfigurationDialog.ui" line="2438"/>
+        <location filename="../ConfigurationDialog.ui" line="2448"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
         <translation>Raztegni pisavo navpično, da zasede ves razpoložljivi prostor v ikoni.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2531"/>
+        <location filename="../ConfigurationDialog.ui" line="2534"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>Vrednosti prikazane v orodnemu namigu so trenutne vrednosti ali najbližja napovedna vrednost v trenutnem lokalnem času. Vrednosti so prikazane po vrstnem redu, od vrha do dna seznama.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2722"/>
+        <location filename="../ConfigurationDialog.ui" line="2725"/>
         <source>Visual theme</source>
         <translation>Tema izgleda</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2730"/>
+        <location filename="../ConfigurationDialog.ui" line="2733"/>
         <source>Light</source>
         <translation>Svetla</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2735"/>
+        <location filename="../ConfigurationDialog.ui" line="2738"/>
         <source>Dark</source>
         <translation>Temna</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2755"/>
+        <location filename="../ConfigurationDialog.ui" line="2758"/>
         <source>Check for updates</source>
         <translation>Preveri za posodobitve</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2763"/>
+        <location filename="../ConfigurationDialog.ui" line="2766"/>
         <source>Never</source>
         <translation>Nikoli</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2768"/>
+        <location filename="../ConfigurationDialog.ui" line="2771"/>
         <source>Once a day</source>
         <translation>Enkrat na dan</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2773"/>
+        <location filename="../ConfigurationDialog.ui" line="2776"/>
         <source>Once a week</source>
         <translation>Enkrat na teden</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2778"/>
+        <location filename="../ConfigurationDialog.ui" line="2781"/>
         <source>Once a month</source>
         <translation>Enkrat na mesec</translation>
     </message>
@@ -949,61 +949,61 @@
         <translation>Imperijalni sistem (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2798"/>
+        <location filename="../ConfigurationDialog.ui" line="2801"/>
         <source>Autostart at login</source>
         <translation>Samodejni zagon ob prijavi</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2824"/>
+        <location filename="../ConfigurationDialog.ui" line="2827"/>
         <source>Language</source>
         <translation>Jezik</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2846"/>
+        <location filename="../ConfigurationDialog.ui" line="2849"/>
         <source>Show weather alerts</source>
         <translation>Pokaži vremenska obvestila</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2878"/>
+        <location filename="../ConfigurationDialog.ui" line="2881"/>
         <source>Swap tray icons</source>
         <translation>Zamenjaj vrstni red ikon v sistemski vrstici</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2900"/>
+        <location filename="../ConfigurationDialog.ui" line="2903"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>Če vaš jezik ni na voljo, lahko pomagate s &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;prevodom&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1586"/>
+        <location filename="../ConfigurationDialog.ui" line="1589"/>
         <source>Map Layers Opacity</source>
         <translation>Neprosojnost plasti zemljevida</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1632"/>
-        <location filename="../ConfigurationDialog.ui" line="1687"/>
-        <location filename="../ConfigurationDialog.ui" line="1742"/>
-        <location filename="../ConfigurationDialog.ui" line="1797"/>
+        <location filename="../ConfigurationDialog.ui" line="1635"/>
+        <location filename="../ConfigurationDialog.ui" line="1690"/>
+        <location filename="../ConfigurationDialog.ui" line="1745"/>
+        <location filename="../ConfigurationDialog.ui" line="1800"/>
         <source>%</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1661"/>
+        <location filename="../ConfigurationDialog.ui" line="1664"/>
         <source>Clouds</source>
         <translation>Oblaki</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2951"/>
+        <location filename="../ConfigurationDialog.ui" line="2954"/>
         <source>Cancel</source>
         <translation>Prekliči</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2958"/>
+        <location filename="../ConfigurationDialog.ui" line="2961"/>
         <source>Ok</source>
         <translation>V redu</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="146"/>
-        <location filename="../ConfigurationDialog.cpp" line="178"/>
+        <location filename="../ConfigurationDialog.cpp" line="148"/>
+        <location filename="../ConfigurationDialog.cpp" line="180"/>
         <source>Invalid reply from Geo-Locator server.
 Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
@@ -1012,125 +1012,125 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
 Če imate požarni zid, spremenite konfiguracijo, da temu programu omogočite dostop do omrežja.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="150"/>
-        <location filename="../ConfigurationDialog.cpp" line="234"/>
-        <location filename="../ConfigurationDialog.cpp" line="1499"/>
+        <location filename="../ConfigurationDialog.cpp" line="152"/>
+        <location filename="../ConfigurationDialog.cpp" line="236"/>
+        <location filename="../ConfigurationDialog.cpp" line="1507"/>
         <source>Network Error</source>
         <translation>Omrežna napaka</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="981"/>
-        <location filename="../ConfigurationDialog.cpp" line="1611"/>
+        <location filename="../ConfigurationDialog.cpp" line="983"/>
+        <location filename="../ConfigurationDialog.cpp" line="1620"/>
         <source>Invalid API Key!</source>
         <translation>Neveljaven API ključ!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="986"/>
+        <location filename="../ConfigurationDialog.cpp" line="988"/>
         <source>Untested API Key!</source>
         <translation>Neprizkušen API ključ!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1605"/>
+        <location filename="../ConfigurationDialog.cpp" line="1614"/>
         <source>The API Key is valid!</source>
         <translation>API ključ je veljaven!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="196"/>
+        <location filename="../ConfigurationDialog.cpp" line="198"/>
         <source>Success</source>
         <translation>V redu</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="208"/>
-        <location filename="../ConfigurationDialog.cpp" line="216"/>
-        <location filename="../ConfigurationDialog.cpp" line="224"/>
+        <location filename="../ConfigurationDialog.cpp" line="210"/>
+        <location filename="../ConfigurationDialog.cpp" line="218"/>
+        <location filename="../ConfigurationDialog.cpp" line="226"/>
         <source>Failure</source>
         <translation>Napaka</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="210"/>
+        <location filename="../ConfigurationDialog.cpp" line="212"/>
         <source>Error parsing location data. Failure or invalid number of fields.</source>
         <translation>Napaka pri razčlenjevanju podatkov o lokaciji. Napačno ali neveljavno število polj.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="218"/>
+        <location filename="../ConfigurationDialog.cpp" line="220"/>
         <source>Data request failure. Invalid data format.</source>
         <translation>Neuspešna zahteva podatkov. Neveljavna oblika zapisa podatkov.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="226"/>
+        <location filename="../ConfigurationDialog.cpp" line="228"/>
         <source>Invalid reply from Geo-Locator server.</source>
         <translation>Neveljaven odgovor Geo-Locator strežnika.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="374"/>
-        <location filename="../ConfigurationDialog.cpp" line="398"/>
+        <location filename="../ConfigurationDialog.cpp" line="376"/>
+        <location filename="../ConfigurationDialog.cpp" line="400"/>
         <source>Requesting...</source>
         <translation>Zahtevam...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="410"/>
+        <location filename="../ConfigurationDialog.cpp" line="412"/>
         <source>API Key Error</source>
         <translation>Napaka ključa API</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="412"/>
+        <location filename="../ConfigurationDialog.cpp" line="414"/>
         <source>API key missing!</source>
         <translation>Manjka ključ API!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="420"/>
+        <location filename="../ConfigurationDialog.cpp" line="422"/>
         <source>Location Error</source>
         <translation>Napaka pri lokaciji</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="422"/>
+        <location filename="../ConfigurationDialog.cpp" line="424"/>
         <source>You must set a valid location before testing the API key.</source>
         <translation>Preden preizkusite ključ API, morate nastaviti veljavno lokacijo.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1496"/>
+        <location filename="../ConfigurationDialog.cpp" line="1504"/>
         <source>Location search requires a valid weather provider API key.</source>
         <translation>Iskanje lokacije zahteva veljaven API ključ ponudnika vremena.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1622"/>
+        <location filename="../ConfigurationDialog.cpp" line="1631"/>
         <source>Weather Provider Error</source>
         <translation>Napaka ponudnika vremena</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1308"/>
-        <location filename="../ConfigurationDialog.cpp" line="1347"/>
+        <location filename="../ConfigurationDialog.cpp" line="1316"/>
+        <location filename="../ConfigurationDialog.cpp" line="1355"/>
         <source>Font Selection</source>
         <translation>Izbira vrste pisave</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1311"/>
-        <location filename="../ConfigurationDialog.cpp" line="1350"/>
+        <location filename="../ConfigurationDialog.cpp" line="1319"/>
+        <location filename="../ConfigurationDialog.cpp" line="1358"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
         <translation>Izbrana pisava &apos;%1&apos; ni veljavna, ker ne more napisati potrebnih znakov.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1338"/>
+        <location filename="../ConfigurationDialog.cpp" line="1346"/>
         <source>Select font for temperature icon</source>
         <translation>Izberi vrsto pisave za ikono temperature</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1535"/>
+        <location filename="../ConfigurationDialog.cpp" line="1543"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Če želite pridobiti podatke o vremenski napovedi od %1 za vašo lokacijo, morate na &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;spletnem&lt;/span&gt;&lt;/a&gt; spletnem mestu pridobiti ključ API.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1538"/>
+        <location filename="../ConfigurationDialog.cpp" line="1546"/>
         <source>%1 doesn&apos;t require any configuration.</source>
         <translation>%1 ne zahteva nobene konfiguracije.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1533"/>
+        <location filename="../ConfigurationDialog.cpp" line="1541"/>
         <source>Get the coordinates of a location.</source>
         <translation>Pridobite koordinate lokacije.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1534"/>
+        <location filename="../ConfigurationDialog.cpp" line="1542"/>
         <source>Current provider does not have Geo-Location capability.</source>
         <translation>Trenutni ponudnik nima možnosti geografske lokacije.</translation>
     </message>
@@ -1188,123 +1188,247 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
 <context>
     <name>OWM25Provider</name>
     <message>
-        <location filename="../Provider.cpp" line="68"/>
+        <location filename="../Providers/OWM25.cpp" line="45"/>
         <source>OpenWeatherMap API Key is missing.</source>
         <translation>Manjka API ključ za OpenWeatherMap.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="121"/>
-        <location filename="../Provider.cpp" line="165"/>
+        <location filename="../Providers/OWM25.cpp" line="98"/>
+        <location filename="../Providers/OWM25.cpp" line="142"/>
         <source>mph</source>
         <translation>mil/h</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="122"/>
-        <location filename="../Provider.cpp" line="145"/>
+        <location filename="../Providers/OWM25.cpp" line="99"/>
+        <location filename="../Providers/OWM25.cpp" line="122"/>
         <source>inches/h</source>
         <translation>inči/uro</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="132"/>
-        <location filename="../Provider.cpp" line="173"/>
+        <location filename="../Providers/OWM25.cpp" line="109"/>
+        <location filename="../Providers/OWM25.cpp" line="150"/>
         <source>m/s</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="133"/>
-        <location filename="../Provider.cpp" line="150"/>
+        <location filename="../Providers/OWM25.cpp" line="110"/>
+        <location filename="../Providers/OWM25.cpp" line="127"/>
         <source>mm/h</source>
         <translation>mm/uro</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="157"/>
+        <location filename="../Providers/OWM25.cpp" line="134"/>
         <source>ft/s</source>
         <translation>ft/s</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="161"/>
+        <location filename="../Providers/OWM25.cpp" line="138"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="169"/>
+        <location filename="../Providers/OWM25.cpp" line="146"/>
         <source>kts</source>
         <translation>vozli</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="199"/>
+        <location filename="../Providers/OWM25.cpp" line="176"/>
         <source>Temperature</source>
         <translation>Temperatura</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="200"/>
+        <location filename="../Providers/OWM25.cpp" line="177"/>
         <source>Rain</source>
         <translation>Dež</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="201"/>
+        <location filename="../Providers/OWM25.cpp" line="178"/>
         <source>Wind</source>
         <translation>Veter</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="202"/>
+        <location filename="../Providers/OWM25.cpp" line="179"/>
         <source>Clouds</source>
         <translation>Oblaki</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="221"/>
+        <location filename="../Providers/OWM25.cpp" line="198"/>
         <source>Unable to load weather webpage</source>
         <translation>Ni mogoče naložiti vremenske spletne strani</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="245"/>
-        <location filename="../Provider.cpp" line="259"/>
-        <location filename="../Provider.cpp" line="271"/>
+        <location filename="../Providers/OWM25.cpp" line="222"/>
+        <location filename="../Providers/OWM25.cpp" line="236"/>
+        <location filename="../Providers/OWM25.cpp" line="248"/>
         <source>Error: </source>
         <translation>Napaka: </translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="245"/>
+        <location filename="../Providers/OWM25.cpp" line="222"/>
         <source>No pollution data.</source>
         <translation>Ni podatkov o onesnaženosti.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="259"/>
+        <location filename="../Providers/OWM25.cpp" line="236"/>
         <source>Couldn&apos;t get location information.</source>
         <translation>Ni mogoče pridobiti podatkov o lokaciji.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="271"/>
+        <location filename="../Providers/OWM25.cpp" line="248"/>
         <source>No weather data.</source>
         <translation>Ni vremenskih podatkov.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="446"/>
+        <location filename="../Providers/OWM25.cpp" line="423"/>
         <source>No locations found for &apos;%1&apos;.</source>
         <translation>Ni najdenih lokacij za &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="548"/>
+        <location filename="../Providers/OWM25.cpp" line="525"/>
         <source>Good</source>
         <translation>Dobra</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="549"/>
+        <location filename="../Providers/OWM25.cpp" line="526"/>
         <source>Fair</source>
         <translation>V redu</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="550"/>
+        <location filename="../Providers/OWM25.cpp" line="527"/>
         <source>Moderate</source>
         <translation>Zmerna</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="551"/>
+        <location filename="../Providers/OWM25.cpp" line="528"/>
         <source>Poor</source>
         <translation>Slaba</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="552"/>
+        <location filename="../Providers/OWM25.cpp" line="529"/>
+        <source>Very poor</source>
+        <translation>Zelo slaba</translation>
+    </message>
+</context>
+<context>
+    <name>OWM30Provider</name>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="45"/>
+        <source>OpenWeatherMap 3.0 API Key is missing.</source>
+        <translation>Manjka API ključ za OpenWeatherMap 3.0.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="92"/>
+        <location filename="../Providers/OWM30.cpp" line="136"/>
+        <source>mph</source>
+        <translation>mil/h</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="93"/>
+        <location filename="../Providers/OWM30.cpp" line="116"/>
+        <source>inches/h</source>
+        <translation>inči/uro</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="103"/>
+        <location filename="../Providers/OWM30.cpp" line="144"/>
+        <source>m/s</source>
+        <translation>m/s</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="104"/>
+        <location filename="../Providers/OWM30.cpp" line="121"/>
+        <source>mm/h</source>
+        <translation>mm/uro</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="128"/>
+        <source>ft/s</source>
+        <translation>ft/s</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="132"/>
+        <source>km/h</source>
+        <translation>km/h</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="140"/>
+        <source>kts</source>
+        <translation>vozli</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="170"/>
+        <source>Temperature</source>
+        <translation>Temperatura</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="171"/>
+        <source>Rain</source>
+        <translation>Dež</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="172"/>
+        <source>Wind</source>
+        <translation>Veter</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="173"/>
+        <source>Clouds</source>
+        <translation>Oblaki</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="192"/>
+        <source>Unable to load weather webpage</source>
+        <translation>Ni mogoče naložiti vremenske spletne strani</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="216"/>
+        <location filename="../Providers/OWM30.cpp" line="230"/>
+        <location filename="../Providers/OWM30.cpp" line="242"/>
+        <source>Error: </source>
+        <translation>Napaka: </translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="216"/>
+        <source>No pollution data.</source>
+        <translation>Ni podatkov o onesnaženosti.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="230"/>
+        <source>Couldn&apos;t get location information.</source>
+        <translation>Ni mogoče pridobiti podatkov o lokaciji.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="242"/>
+        <source>No weather data.</source>
+        <translation>Ni vremenskih podatkov.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="436"/>
+        <source>No locations found for &apos;%1&apos;.</source>
+        <translation>Ni najdenih lokacij za &apos;%1&apos;.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="526"/>
+        <source>Good</source>
+        <translation>Dobra</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="527"/>
+        <source>Fair</source>
+        <translation>V redu</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="528"/>
+        <source>Moderate</source>
+        <translation>Zmerna</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="529"/>
+        <source>Poor</source>
+        <translation>Slaba</translation>
+    </message>
+    <message>
+        <location filename="../Providers/OWM30.cpp" line="530"/>
         <source>Very poor</source>
         <translation>Zelo slaba</translation>
     </message>
@@ -1312,62 +1436,62 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
 <context>
     <name>OpenMeteoProvider</name>
     <message>
-        <location filename="../Provider.cpp" line="605"/>
-        <location filename="../Provider.cpp" line="617"/>
-        <location filename="../Provider.cpp" line="631"/>
-        <location filename="../Provider.cpp" line="643"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="69"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="81"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="95"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="107"/>
         <source>Error: </source>
         <translation>Napaka: </translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="605"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="69"/>
         <source>Unable to get weather data.</source>
         <translation>Ni mogoče pridobiti vremenskih podatkov.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="617"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="81"/>
         <source>No weather data.</source>
         <translation>Ni vremenskih podatkov.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="631"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="95"/>
         <source>No pollution data.</source>
         <translation>Ni podatkov o onesnaženosti.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="643"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="107"/>
         <source>Couldn&apos;t get location information.</source>
         <translation>Ni mogoče pridobiti podatkov o lokaciji.</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="684"/>
-        <location filename="../Provider.cpp" line="685"/>
-        <location filename="../Provider.cpp" line="686"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="148"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="149"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="150"/>
         <source>Unknown</source>
         <translation>Neznano</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="829"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="293"/>
         <source>Good</source>
         <translation>Dobra</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="830"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="294"/>
         <source>Fair</source>
         <translation>V redu</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="831"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="295"/>
         <source>Moderate</source>
         <translation>Zmerna</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="832"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="296"/>
         <source>Poor</source>
         <translation>Slaba</translation>
     </message>
     <message>
-        <location filename="../Provider.cpp" line="833"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="297"/>
         <source>Very poor</source>
         <translation>Zelo slaba</translation>
     </message>
@@ -1387,7 +1511,7 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
         <location filename="../Main.cpp" line="93"/>
         <location filename="../Main.cpp" line="120"/>
         <location filename="../TrayWeather.cpp" line="342"/>
-        <location filename="../TrayWeather.cpp" line="984"/>
+        <location filename="../TrayWeather.cpp" line="977"/>
         <source>Tray Weather</source>
         <translation>TrayWeather</translation>
     </message>
@@ -1805,7 +1929,7 @@ The application will exit now.</source>
 Aplikacija se bo zdaj zaprla.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="986"/>
+        <location filename="../TrayWeather.cpp" line="979"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
         <translation>TrayWeather je zahteval vremenske podatke za vašo geografsko lokacijo
@@ -1815,38 +1939,38 @@ in še vedno čaka na odgovor.</translation>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="1195"/>
+        <location filename="../TrayWeather.cpp" line="1188"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translation>Obstaja nova verzija &lt;b&gt;Tray Weather&lt;/b&gt; na &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github spletni strani&lt;/a&gt;!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1196"/>
+        <location filename="../TrayWeather.cpp" line="1189"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation>&lt;center&gt;Izšla je &lt;b&gt;verzija %1&lt;/b&gt;&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1197"/>
+        <location filename="../TrayWeather.cpp" line="1190"/>
         <source>Release notes:
 %1</source>
         <translation>Opombe ob izdaji:
 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1198"/>
+        <location filename="../TrayWeather.cpp" line="1191"/>
         <source>Tray Weather updated to version %1</source>
         <translation>TrayWeather se je posodobil na verzijo %1</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="110"/>
         <location filename="../TrayWeather.cpp" line="124"/>
-        <location filename="../TrayWeather.cpp" line="1212"/>
-        <location filename="../TrayWeather.cpp" line="1273"/>
+        <location filename="../TrayWeather.cpp" line="1205"/>
+        <location filename="../TrayWeather.cpp" line="1266"/>
         <source>Error: </source>
         <translation>Napaka: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="124"/>
-        <location filename="../TrayWeather.cpp" line="1273"/>
+        <location filename="../TrayWeather.cpp" line="1266"/>
         <source>No geolocation.</source>
         <translation>Ni podatkov o geolokaciji.</translation>
     </message>
@@ -1857,7 +1981,7 @@ in še vedno čaka na odgovor.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="532"/>
-        <location filename="../TrayWeather.cpp" line="1335"/>
+        <location filename="../TrayWeather.cpp" line="1328"/>
         <source>There is a weather alert for your location!</source>
         <translation>Za vašo lokacijo obstaja vremensko opozorilo!</translation>
     </message>
@@ -1872,142 +1996,142 @@ in še vedno čaka na odgovor.</translation>
         <translation>Vlaga: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="600"/>
+        <location filename="../TrayWeather.cpp" line="599"/>
         <source>inHg</source>
         <translation>inHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="604"/>
+        <location filename="../TrayWeather.cpp" line="602"/>
         <source>mmHg</source>
         <translation>mmHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="608"/>
+        <location filename="../TrayWeather.cpp" line="605"/>
         <source>PSI</source>
         <translation>PSI</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="612"/>
+        <location filename="../TrayWeather.cpp" line="609"/>
         <source>hPa</source>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="615"/>
+        <location filename="../TrayWeather.cpp" line="612"/>
         <source>Pressure: </source>
         <translation>Pritisk: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="625"/>
+        <location filename="../TrayWeather.cpp" line="622"/>
         <source>ft/s</source>
         <translation>ft/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="629"/>
+        <location filename="../TrayWeather.cpp" line="625"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="633"/>
+        <location filename="../TrayWeather.cpp" line="628"/>
         <source>mph</source>
         <translation>mil/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="637"/>
+        <location filename="../TrayWeather.cpp" line="631"/>
         <source>kts</source>
         <translation>kn</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="642"/>
+        <location filename="../TrayWeather.cpp" line="635"/>
         <source>m/s</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="645"/>
+        <location filename="../TrayWeather.cpp" line="638"/>
         <source>Wind: </source>
         <translation>Veter: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="649"/>
+        <location filename="../TrayWeather.cpp" line="642"/>
         <source>Wind direction: </source>
         <translation>Smer vetra: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="653"/>
+        <location filename="../TrayWeather.cpp" line="646"/>
         <source>Last updated: </source>
         <translation>Zadnja posodobitev: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="668"/>
+        <location filename="../TrayWeather.cpp" line="661"/>
         <source>Sunrise: </source>
         <translation>Sončni vzhod: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="677"/>
+        <location filename="../TrayWeather.cpp" line="670"/>
         <source>Sunset: </source>
         <translation>Sončni zahod: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="683"/>
+        <location filename="../TrayWeather.cpp" line="676"/>
         <source>Air: </source>
         <translation>Zrak: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="768"/>
-        <location filename="../TrayWeather.cpp" line="1144"/>
+        <location filename="../TrayWeather.cpp" line="761"/>
+        <location filename="../TrayWeather.cpp" line="1137"/>
         <source>Current weather...</source>
         <translation>Trenutno vreme...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="773"/>
-        <location filename="../TrayWeather.cpp" line="1145"/>
+        <location filename="../TrayWeather.cpp" line="766"/>
+        <location filename="../TrayWeather.cpp" line="1138"/>
         <source>Forecast...</source>
         <translation>Napoved...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="778"/>
-        <location filename="../TrayWeather.cpp" line="1146"/>
+        <location filename="../TrayWeather.cpp" line="771"/>
+        <location filename="../TrayWeather.cpp" line="1139"/>
         <source>Pollution...</source>
         <translation>Onesnaženost...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="783"/>
-        <location filename="../TrayWeather.cpp" line="1147"/>
+        <location filename="../TrayWeather.cpp" line="776"/>
+        <location filename="../TrayWeather.cpp" line="1140"/>
         <source>UV...</source>
         <translation>UV...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="788"/>
-        <location filename="../TrayWeather.cpp" line="1148"/>
+        <location filename="../TrayWeather.cpp" line="781"/>
+        <location filename="../TrayWeather.cpp" line="1141"/>
         <source>Maps...</source>
         <translation>Karte...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="797"/>
-        <location filename="../TrayWeather.cpp" line="1149"/>
+        <location filename="../TrayWeather.cpp" line="790"/>
+        <location filename="../TrayWeather.cpp" line="1142"/>
         <source>Refresh...</source>
         <translation>Osveži...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="804"/>
-        <location filename="../TrayWeather.cpp" line="1150"/>
+        <location filename="../TrayWeather.cpp" line="797"/>
+        <location filename="../TrayWeather.cpp" line="1143"/>
         <source>Last alert...</source>
         <translation>Nazadnje opozorilo...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="813"/>
-        <location filename="../TrayWeather.cpp" line="1151"/>
+        <location filename="../TrayWeather.cpp" line="806"/>
+        <location filename="../TrayWeather.cpp" line="1144"/>
         <source>Configuration...</source>
         <translation>Nastavitve...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="820"/>
-        <location filename="../TrayWeather.cpp" line="1152"/>
+        <location filename="../TrayWeather.cpp" line="813"/>
+        <location filename="../TrayWeather.cpp" line="1145"/>
         <source>About...</source>
         <translation>O programu...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="825"/>
-        <location filename="../TrayWeather.cpp" line="1153"/>
+        <location filename="../TrayWeather.cpp" line="818"/>
+        <location filename="../TrayWeather.cpp" line="1146"/>
         <source>Quit</source>
         <translation>Izhod</translation>
     </message>
@@ -2129,11 +2253,6 @@ v času opoldanskih ur.</translation>
         <translation>Akumulacija snega v zadnjih 3 urah</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.ui" line="482"/>
-        <source>Snow accumulation (last 3 hours)</source>
-        <translation>Akumulacija snega (zadnje 3 ure)</translation>
-    </message>
-    <message>
         <location filename="../WeatherDialog.ui" line="203"/>
         <location filename="../WeatherDialog.ui" line="206"/>
         <location filename="../WeatherDialog.ui" line="287"/>
@@ -2145,11 +2264,6 @@ v času opoldanskih ur.</translation>
         <location filename="../WeatherDialog.ui" line="383"/>
         <source>Rain accumulation in the last 3 hours</source>
         <translation>Akumulacija dežja v zadnjih 3 urah</translation>
-    </message>
-    <message>
-        <location filename="../WeatherDialog.ui" line="386"/>
-        <source>Rain accumulation (last 3 hours)</source>
-        <translation>Akumulacija dežja (zadnje 3 ure)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="329"/>
@@ -2347,6 +2461,7 @@ v času opoldanskih ur.</translation>
         <translation>Trenutno vreme</translation>
     </message>
     <message>
+        <location filename="../WeatherDialog.ui" line="386"/>
         <location filename="../WeatherDialog.cpp" line="473"/>
         <source>Rain accumulation</source>
         <translation>Akumulacija dežja</translation>
@@ -2434,6 +2549,7 @@ v času opoldanskih ur.</translation>
         <translation>Vremenske karte.</translation>
     </message>
     <message>
+        <location filename="../WeatherDialog.ui" line="482"/>
         <location filename="../WeatherDialog.cpp" line="474"/>
         <source>Snow accumulation</source>
         <translation>Akumulacija snega</translation>

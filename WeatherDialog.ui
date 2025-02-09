@@ -383,7 +383,7 @@
               <string>Rain accumulation in the last 3 hours</string>
              </property>
              <property name="text">
-              <string>Rain accumulation (last 3 hours)</string>
+              <string>Rain accumulation</string>
              </property>
             </widget>
            </item>
@@ -479,7 +479,7 @@
               <string>Snow accumulation in the last 3 hours</string>
              </property>
              <property name="text">
-              <string>Snow accumulation (last 3 hours)</string>
+              <string>Snow accumulation</string>
              </property>
             </widget>
            </item>

@@ -24,17 +24,21 @@ You can select one the following data providers in the condifuration dialog:
 
 Not all them provide the same data:
 
-| Name            | Weather forecast   | Pollution forecast | UV index forecast  | Weather alerts     | Geolocation        | Maps               | Requires API key   |
-|:----------------|-------------------:|-------------------:|-------------------:|-------------------:|-------------------:|-------------------:|-------------------:|
-| OpenWeatherMap  | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| Open-Meteo      | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | :x:                |
+| Name               | Weather forecast   | Pollution forecast | UV index forecast  | Weather alerts     | Geolocation        | Maps               | Requires API key   |
+|:-------------------|-------------------:|-------------------:|-------------------:|-------------------:|-------------------:|-------------------:|-------------------:|
+| OpenWeatherMap 2.5 | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| OpenWeatherMap 3.0 | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| Open-Meteo         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | :x:                |
 
+> [!WARNING]
+> Currently the OpenWeatherMap 3.0 is untested. Please report any bug or inconsistencies by creating an [issue](https://github.com/FelixdelasPozas/TrayWeather/issues) to help.
 
 To obtain weather information from providers that require a registration, like OpenWeatherMap, you need to register in their website and enter the given API Key into the Tray Weather configuration dialog (currently only the free plan is supported). 
 
 If you want a provider to be added you can ask for it in the [Discussions page](https://github.com/FelixdelasPozas/TrayWeather/discussions). The only requirements are to be free and to provide a REST API.
 
-> **_NOTE:_**  Please note that after you register in OpenWeatherMap and are given an API key, that key **may not be valid right away**. If you enter the API key in TrayWeather and get an "host requires authentication" error, you must wait a little longer until it becomes valid.
+> [!NOTE] 
+> Please note that after you register in OpenWeatherMap and are given an API key, that key **may not be valid right away**. If you enter the API key in TrayWeather and get an "host requires authentication" error, you must wait a little longer until it becomes valid.
 
 ## Options
 The temperature units (Celsius or Fahrenheit) and the frequency of update requests are some of the configurable options. Other visual configuration options can be seen in the configuration dialog screenshot.
@@ -64,7 +68,8 @@ creating the empty file because then the setting will be loaded from the windows
 
 # Screenshots
 
-> **_NOTE:_** Some screenshots are from older versions of Tray Weather. The tabs the appear in the main dialog depend on the data that the selected weather provider can supply.
+> [!NOTE]
+> Some screenshots are from older versions of Tray Weather. The tabs the appear in the main dialog depend on the data that the selected weather provider can supply.
 
 Tray icon showing the current weather icon. At night and on clear sky days it shows the current moon phase as the weather icon.
 
@@ -146,7 +151,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's 483 texts.
+and making a pull request. Currently it's 504 texts.
 
 To do it manually just edit the 'empty translation' file in the 'languages' directory (empty.ts) and replace the untranslated messages, for example:
 
@@ -170,7 +175,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.32.0
+**Version**: 1.33.0
 
 **Status**: finished.
 
@@ -178,8 +183,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  12           | 1335        |   527            | 6584 |
-| C/C++ Header                 |  12           |  419        |  1243            | 1282 |
-| HTML                         |   1           |   33        |     0            |  152 |
-| CMake                        |   1           |   19        |    12            |  129 |
-| **Total**                    | **26**        | **1806**    | **1782**         | **8147** |
+| C++                          |  15           | 1431        |   598            | 7054 |
+| C/C++ Header                 |  15           |  463        |  1327            | 1347 |
+| HTML                         |   2           |   66        |     0            |  304 |
+| CMake                        |   1           |   19        |    12            |  132 |
+| **Total**                    | **33**        | **1979**    | **1937**         | **8837** |
