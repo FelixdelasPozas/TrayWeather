@@ -29,8 +29,10 @@
 #include <QDesktopServices>
 #include <QUrl>
 
-const QString AboutDialog::VERSION{"1.32.0"};
+const QString AboutDialog::VERSION{"1.33.0"};
 const QString COPYRIGHT{"Copyright (c) 2016-%1 Félix de las Pozas Álvarez"};
+
+extern QList<ProviderData> WEATHER_PROVIDERS;
 
 //-----------------------------------------------------------------
 AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)

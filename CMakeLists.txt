@@ -7,7 +7,7 @@ project(TrayWeather)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
-set (TRAYWEATHER_VERSION_MINOR 32)
+set (TRAYWEATHER_VERSION_MINOR 33)
 set (TRAYWEATHER_VERSION_PATCH 0)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -145,6 +145,9 @@ set (CORE_SOURCES
   AlertDialog.cpp
   LocationFinderDialog.cpp
   Provider.cpp
+  Providers/OWM25.cpp
+  Providers/OWM30.cpp
+  Providers/OpenMeteo.cpp
 )
 
 set(CORE_EXTERNAL_LIBS

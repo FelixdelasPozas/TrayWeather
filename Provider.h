@@ -33,10 +33,6 @@ class Configuration;
 // C++
 #include <memory>
 
-// List of provider ids
-static const QString OWM_25_PROVIDER = "OpenWeatherMap 2.5 API";
-static const QString OPENMETEO_PROVIDER = "OpenMeteo API";
-
 /** \struct ProviderData
  * \brief Contains provider data.
  *
@@ -54,11 +50,6 @@ struct ProviderData
   : id{i}, icon{ic}
   {};
 };
-
-/** Providers list
- */
-static const QList<ProviderData> WEATHER_PROVIDERS = { { OWM_25_PROVIDER,    ":/TrayWeather/application.svg" }, 
-                                                       { OPENMETEO_PROVIDER, ":/TrayWeather/application.svg" } };
 
 /** \struct ProviderCapabilities
  * \brief Describes the capabilities of the weather provider. Yeah, we could use bitset...
@@ -241,155 +232,6 @@ class WeatherProvider
     Pollution m_pollution;   /** pollution forecast data. */
     UV m_uv;                 /** uv forecast data. */
     bool m_apiKeyValid;      /** true if the api key is valid and false otherwise. */
-};
-
-/** \class OWM25Provider
- * \brief Weather provider that uses OpenWeatherMap 2.5 API.
- *
- */
-class OWM25Provider
-: public WeatherProvider
-{
-    Q_OBJECT
-  public:
-    /** \brief OMV25Provider class constructor.
-     * \param[in] config Application configuration information.
-     *
-     */
-    OWM25Provider(Configuration &config)
-    : WeatherProvider(OWM_25_PROVIDER, config)
-    {
-      loadSettings();
-    };
-
-    /** \brief OWM25Provider class virtual destructor.
-     *
-     */
-    virtual ~OWM25Provider()
-    {
-      saveSettings();
-    };
-
-    virtual ProviderCapabilities capabilities() const override
-    { return ProviderCapabilities(true, true, true, false, true, true, true, true); }
-
-    virtual QString apikey() const override
-    { return m_apiKey; };
-
-    virtual void setApiKey(const QString &key) override
-    { if(!key.isEmpty()) m_apiKey = key; };
-
-    virtual QString name() const override
-    { return "OpenWeatherMap"; };
-
-    virtual QString website() const override
-    { return "https://openweathermap.org/appid"; };
-
-    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) override;
-    virtual QString mapsPage() const override;
-    virtual void testApiKey(std::shared_ptr<QNetworkAccessManager> netManager) override;
-    virtual void processReply(QNetworkReply *reply) override;
-    virtual void searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const override;
-
-  protected:
-    virtual void loadSettings() override;
-    virtual void saveSettings() override;
-
-  private:
-    const QString OPENWEATHERMAP_APIKEY = QString("OpenWeatherMap API Key");
-    const QString INVALID_MSG = QString("Invalid API key");
-
-    /** \brief Processes the weather forecast data stream.
-     * \param[in] contents Contents of the network reply.
-     *
-     */
-    void processWeatherData(const QByteArray &contents);
-
-    /** \brief Processes the pollution data stream.
-     * \param[in] contents Contents of the network reply.
-     *
-     */
-    void processPollutionData(const QByteArray &contents);
-
-    /** \brief Processes the locations data stream.
-     * \param[in] contents Contents of the network reply.
-     *
-     */
-    void processLocationsData(const QByteArray &contents);
-
-    /** \brief Parses the information in the entry to the weather data object.
-    * \param[in] entry JSON object.
-    * \param[out] data ForecastData struct.
-    *
-    */
-    void parseForecastEntry(const QJsonObject &entry, ForecastData &data);
-
-    /** \brief Parses the information in the entry to the pollution data object.
-    * \param[in] entry JSON object.
-    * \param[in] data PollutionData struct.
-    *
-    */
-    void parsePollutionEntry(const QJsonObject &entry, PollutionData &data);
-
-    QString m_apiKey;          /** provider api key */
-};
-
-/** \class OWM25Provider
- * \brief Weather provider that uses OpenWeatherMap 2.5 API.
- *
- */
-class OpenMeteoProvider
-: public WeatherProvider
-{
-    Q_OBJECT
-  public:
-    /** \brief OpenMeteo class constructor.
-     * \param[in] config Application configuration information.
-     *
-     */
-    OpenMeteoProvider(Configuration &config)
-    : WeatherProvider(OPENMETEO_PROVIDER, config)
-    {};
-
-    /** \brief OWM25Provider class virtual destructor.
-     *
-     */
-    virtual ~OpenMeteoProvider()
-    {};
-
-    virtual ProviderCapabilities capabilities() const override
-    { return ProviderCapabilities(true, true, true, true, false, true, false, false); };
-
-    virtual QString name() const override
-    { return "Open-Meteo"; };
-
-    virtual QString website() const override
-    { return "https://open-meteo.com/"; };
-
-    virtual void requestData(std::shared_ptr<QNetworkAccessManager> netManager) override;
-    virtual void processReply(QNetworkReply *reply) override;
-    virtual void searchLocations(const QString &text, std::shared_ptr<QNetworkAccessManager> netManager) const override;
-
-  private:
-    const QString INVALID_MSG = QString("\"error\": true,");
-
-    /** \brief Processes the weather forecast data stream.
-     * \param[in] contents Contents of the network reply.
-     *
-     */
-    void processWeatherData(const QByteArray &contents);
-
-    /** \brief Processes the pollution data stream.
-     * \param[in] contents Contents of the network reply.
-     *
-     */
-    void processPollutionData(const QByteArray &contents);
-
-    /** \brief Processes the locations data stream.
-     * \param[in] contents Contents of the network reply.
-     *
-     */
-    void processLocationsData(const QByteArray &contents);
 };
 
 /** \class WeatherProviderFactory

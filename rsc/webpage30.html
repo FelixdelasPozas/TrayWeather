@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tray Weather Maps tab webapge</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+  <style type="text/css">
+    #map {
+      position:absolute;
+      top:0px;
+      bottom:0px;
+      left:0px;
+      right:0px;
+    }
+	
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }</style>
+  
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet-src.js"></script>
+<script src="leaflet-layercontrol.js"></script>
+<script>
+
+  var currentLayer;
+  var currentStreet;
+  
+  function customGetLayer() {
+  	return currentLayer;
+  }
+  
+  function customGetStreet() {
+  	return currentStreet;
+  }
+  
+  (function () {
+        var mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' , {maxZoom: 18, attribution: ''} );
+ 				var googlemap = L.tileLayer('https://mt1.google.com/vt/lyrs=r&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: ''} );
+ 				var googlesat = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 18, attribution: ''} );
+ 				
+        var clouds = L.tileLayer('http://maps.openweathermap.org/maps/2.0/weather/CL/{z}/{x}/{y}?appid={api_key}', {
+            attribution: ''
+            , opacity: %%cloudsOpacity%%
+        });
+		
+        var rain = L.tileLayer('http://maps.openweathermap.org/maps/2.0/weather/PR0/{z}/{x}/{y}?appid={api_key}', {
+            attribution: ''
+            , opacity: %%rainOpacity%%
+        });
+		
+        var wind = L.tileLayer('http://maps.openweathermap.org/maps/2.0/weather/WS10/{z}/{x}/{y}?appid={api_key}', {
+            attribution: ''
+            , opacity: %%windOpacity%%
+        });
+		
+        var temperature = L.tileLayer('http://maps.openweathermap.org/maps/2.0/weather/TS0/{z}/{x}/{y}?appid={api_key}', {
+            attribution: ''
+            , opacity: %%tempOpacity%%
+        });
+		
+		var legend = L.control({position: 'bottomright'});
+
+		legend.onAdd = function (map) {
+			var div = L.DomUtil.create('div', 'info legend'),
+				grades = [],
+				colors = [],
+				labels = [],
+				from, to;
+				
+			if (map.hasLayer(rain)) {
+				labels.push('%%rainStr%% (%%rainUnit%%)');
+			    grades = [%%rainGrades%%];
+				colors = ['#E6E6E6', '#BCBCBC', '#646464', '#0072FE', '#1464D2', '#50A5F5', '#96D2FA', '#1EB41E', '#C8FFBE', '#FFA000', '#A50000', '#8C645A', '#E1BEB4', '#C83C3C'];
+			}
+			if (map.hasLayer(clouds)) {
+				labels.push('%%cloudStr%% (%)');
+				grades = [11, 16, 21, 27, 33, 41, 51, 61, 72, 82, 93, 100];
+				colors = ['#FFFFFF', '#F5F5F5', '#E0E0E0', '#C0C0C0', '#A0A0A0', '#808080', '#606060', '#404040', '#202020', '#0E0E0E', '#0A0A0A', '#040404'];
+			} 
+			if (map.hasLayer(wind)) {
+				labels.push('%%windStr%% (%%windUnit%%)');
+				grades = [%%windGrades%%];
+				colors = ['#000099', '#0000B4', '#0000DF', '#0018FE', '#00ADFE', '#2BFED3', '#9BFE63', '#FEF300', '#FE7900', '#FE1700', '#AD0000'];
+			} 
+			if (map.hasLayer(temperature)) {
+				labels.push('%%tempStr%% (%%degrees%%)');
+				grades = [%%tempGrades%%];
+				colors = ['#0018FE', '#0072FE', '#00ADFE', '#2BFED3', '#67FE97', '#9BFE63', '#D3FE2B', '#FEF300', '#FE7900', '#FE4B00', '#FE1700', '#DC0000', '#FF0000'];
+			} 
+
+			for (var i = 0; i < grades.length; i++) {
+				from = grades[i];
+				to = grades[i + 1];
+
+				labels.push('<i style="background:' + colors[i] + '"></i> ' + from + (i < (grades.length - 1) ? '' : '+'));
+			}
+
+			div.innerHTML = labels.join('<br>');
+			return div;
+		};
+		
+    var map = L.map('map', {
+        center: new L.LatLng(%%lat%%, %%lon%%), attributionControl: false, zoom: 11, layers: [%%streetmap%%, %%layermap%%]
+    });
+		
+	var numLayers = 1;
+		
+	legend.addTo(map);
+		
+    map.on('baselayerchange', function(eo) {
+      currentStreet = eo.name;
+    });		
+		
+	map.on('overlayadd', function(eo) { 
+		++numLayers;
+			
+    currentLayer = eo.name;
+			
+		if(numLayers !== 1) {
+			if (eo.name === '%%rainStr%%') {
+				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
+			}
+			if (eo.name === '%%cloudStr%%') {
+				setTimeout(function() {	if(map.hasLayer(rain)) {map.removeLayer(rain) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
+			} 
+			if (eo.name === '%%windStr%%') {
+				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(rain)) { map.removeLayer(rain) } else if (map.hasLayer(temperature)) { map.removeLayer(temperature) } }, 10);
+			} 
+			if (eo.name === '%%tempStr%%') {
+				setTimeout(function() {	if(map.hasLayer(clouds)) {map.removeLayer(clouds) } else if (map.hasLayer(wind)) { map.removeLayer(wind) } else if (map.hasLayer(rain)) { map.removeLayer(rain) } }, 10);
+			} 
+		}
+	});
+		
+	map.on('overlayremove', function(eo) {
+		--numLayers;
+
+		if(numLayers === 0)
+		{
+			if(eo.name === "%%rainStr%%") { 
+				setTimeout(function() { map.addLayer(rain) }, 10); 
+			}
+			if(eo.name === "%%cloudStr%%") { 
+				setTimeout(function() { map.addLayer(clouds) }, 10); 
+			}
+			if(eo.name === "%%windStr%%") {
+				setTimeout(function() { map.addLayer(wind) }, 10); 
+			}
+			if(eo.name === "%%tempStr%%") { 
+				setTimeout(function() { map.addLayer(temperature) }, 10);
+			}
+		}
+		else
+		{
+			legend.removeFrom(this);
+			legend.addTo(this);
+		}
+	});
+	
+	  var baseMaps = {
+        "OpenStreetMap": mapnik,
+        "Google Maps": googlemap,
+        "Google Satellite": googlesat
+    };
+    
+    var overlayMaps = { 
+        "%%tempStr%%": temperature,
+    		"%%rainStr%%": rain,
+        "%%cloudStr%%": clouds,
+        "%%windStr%%": wind
+    };
+			
+  L.control.layers(baseMaps, overlayMaps, {collapsed: true, position: 'topright', autoZIndex: true, hideSingleBase: true, sortLayers: false}).addTo(map);
+	L.control.scale({ position: 'bottomleft', metric: %%metric%%, imperial: %%imperial%% }).addTo(map);
+	L.marker([%%lat%%, %%lon%%]).addTo(map);
+	
+	})();
+		
+</script>
+
+</body>
+</html>

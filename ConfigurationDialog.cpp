@@ -50,6 +50,8 @@
 const char SELECTED[] = "Selected";
 TemperatureUnits lastTemperatureUnits; // Last temperature unit selected.
 
+extern QList<ProviderData> WEATHER_PROVIDERS;
+
 //--------------------------------------------------------------------
 ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWidget* parent, Qt::WindowFlags flags)
 : QDialog       {parent}
@@ -1543,6 +1545,7 @@ void ConfigurationDialog::onProviderChanged(int index)
                                        "underline; color:#0000ff;\">website</span></a>.</p></body></html>");
   const QString PROVIDER_NO_TEXT = tr("%1 doesn't require any configuration.");
 
+  m_testLabel->clear();
 
   if(index < 0) index = 0;
   const auto id = WEATHER_PROVIDERS.at(index).id;
