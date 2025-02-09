@@ -1430,6 +1430,12 @@ void changeWeatherUnits(const Configuration &config, ForecastData &forecast)
         case PressureUnits::INHG:
           forecast.pressure = converthPaToinHg(forecast.pressure);
           break;
+        case PressureUnits::MMGH:
+          forecast.pressure = converthPaTommHg(forecast.pressure);
+          break;
+        case PressureUnits::PSI:
+          forecast.pressure = converthPaToPSI(forecast.pressure);
+          break;
         default:
         case PressureUnits::HPA:
           break;

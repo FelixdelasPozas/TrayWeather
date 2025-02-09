@@ -596,15 +596,12 @@ QString TrayWeather::tooltipText() const
           switch(m_configuration.pressureUnits)
           {
             case PressureUnits::INHG:
-              pressureValue = converthPaToinHg(m_current.pressure);
               pressUnits = tr("inHg");
               break;
             case PressureUnits::MMGH:
-              pressureValue = converthPaTommHg(m_current.pressure);
               pressUnits = tr("mmHg");
               break;
             case PressureUnits::PSI:
-              pressureValue = converthPaToPSI(m_current.pressure);
               pressUnits = tr("PSI");
               break;
             default:
@@ -623,19 +620,15 @@ QString TrayWeather::tooltipText() const
           {
             case WindUnits::FEETSEC:
               windUnits = tr("ft/s");
-              windValue = convertMetersSecondToFeetSecond(m_current.wind_speed);
               break;
             case WindUnits::KMHR:
               windUnits = tr("km/h");
-              windValue = convertMetersSecondToKilometersHour(m_current.wind_speed);
               break;
             case WindUnits::MILHR:
               windUnits = tr("mph");
-              windValue = convertMetersSecondToMilesHour(m_current.wind_speed);
               break;
             case WindUnits::KNOTS:
               windUnits = tr("kts");
-              windValue = convertMetersSecondToKnots(m_current.wind_speed);
               break;
             default:
             case WindUnits::METSEC:

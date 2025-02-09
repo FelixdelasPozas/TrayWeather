@@ -345,7 +345,7 @@ void OWM25Provider::processWeatherData(const QByteArray &contents)
       if(!m_forecast.isEmpty())
       {
         auto lessThan = [](const ForecastData &left, const ForecastData &right) { if(left.dt < right.dt) return true; return false; };
-        qSort(m_forecast.begin(), m_forecast.end(), lessThan);
+        std::sort(m_forecast.begin(), m_forecast.end(), lessThan);
       }
 
       if(!m_apiKeyValid) emit apiKeyValid(true);
@@ -417,7 +417,7 @@ void OWM25Provider::processPollutionData(const QByteArray &contents)
     if(!m_pollution.isEmpty())
     {
       auto lessThan = [](const PollutionData &left, const PollutionData &right) { if(left.dt < right.dt) return true; return false; };
-      qSort(m_pollution.begin(), m_pollution.end(), lessThan);
+      std::sort(m_pollution.begin(), m_pollution.end(), lessThan);
     }
 
     emit pollutionForecastDataReady();
@@ -789,14 +789,14 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
       if(!m_forecast.isEmpty())
       {
         auto lessThan = [](const ForecastData &left, const ForecastData &right) { if(left.dt < right.dt) return true; return false; };
-        qSort(m_forecast.begin(), m_forecast.end(), lessThan);
+        std::sort(m_forecast.begin(), m_forecast.end(), lessThan);
         emit weatherForecastDataReady();
       }
 
       if(!m_uv.isEmpty())
       {
         auto lessThan = [](const UVData &left, const UVData &right) { if(left.dt < right.dt) return true; return false; };
-        qSort(m_uv.begin(), m_uv.end(), lessThan);
+        std::sort(m_uv.begin(), m_uv.end(), lessThan);
         emit uvForecastDataReady();
       }
     }
@@ -895,7 +895,7 @@ void OpenMeteoProvider::processPollutionData(const QByteArray &contents)
     if (!m_pollution.isEmpty())
     {
       auto lessThan = [](const PollutionData &left, const PollutionData &right){ if(left.dt < right.dt) return true; return false; };
-      qSort(m_pollution.begin(), m_pollution.end(), lessThan);
+      std::sort(m_pollution.begin(), m_pollution.end(), lessThan);
       emit pollutionForecastDataReady();
     }
   }  
