@@ -79,9 +79,8 @@ void OWM25Provider::requestData(std::shared_ptr<QNetworkAccessManager> netManage
 //----------------------------------------------------------------------------
 QString OWM25Provider::mapsPage() const
 {
-  if(m_apiKey.isEmpty())
-    return QString();
-
+  if(m_apiKey.isEmpty()) return QString();
+  
   QFile webfile(":/TrayWeather/webpage25.html");
   if(webfile.open(QFile::ReadOnly))
   {

@@ -1,14 +1,11 @@
-#
-# TrayWeather CMake configuration.
-#
-cmake_minimum_required (VERSION 3.5)
+cmake_minimum_required (VERSION 3.10)
 
 project(TrayWeather)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
 set (TRAYWEATHER_VERSION_MINOR 33)
-set (TRAYWEATHER_VERSION_PATCH 0)
+set (TRAYWEATHER_VERSION_PATCH 1)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
