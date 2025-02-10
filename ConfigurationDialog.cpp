@@ -1638,7 +1638,7 @@ void ConfigurationDialog::providerErrorMessage(const QString &msg)
 //--------------------------------------------------------------------
 QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
 {
-  auto interpolate = [this](int temp)
+  auto interpolate = [this](const int temp)
   {
     const auto minVal = m_minSpinBox->value();
     const auto maxVal = m_maxSpinBox->value();
@@ -1650,9 +1650,8 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     const double rInc = (maxColor.red()   - minColor.red())   * inc;
     const double gInc = (maxColor.green() - minColor.green()) * inc;
     const double bInc = (maxColor.blue()  - minColor.blue())  * inc;
-    const double aInc = (maxColor.alpha() - minColor.alpha()) * inc;
 
-    return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
+    return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, 255);
   };
 
   const auto roundedString = QString::number(m_temp) + (m_drawDegree->isChecked() ? QString::fromUtf8("\u00B0") : QString());

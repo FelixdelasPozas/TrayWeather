@@ -407,7 +407,7 @@ void TrayWeather::updateTooltip()
 
   QPixmap pixmap = weatherPixmap(m_current, m_configuration.iconTheme, m_configuration.iconThemeColor).scaled(384,384,Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-  auto interpolate = [this](int temp)
+  auto interpolate = [this](const int temp)
   {
     const auto minColor = m_configuration.minimumColor;
     const auto maxColor = m_configuration.maximumColor;
@@ -417,9 +417,8 @@ void TrayWeather::updateTooltip()
     const double rInc = (maxColor.red()   - minColor.red())   * inc;
     const double gInc = (maxColor.green() - minColor.green()) * inc;
     const double bInc = (maxColor.blue()  - minColor.blue())  * inc;
-    const double aInc = (maxColor.alpha() - minColor.alpha()) * inc;
 
-    return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, minColor.alpha() + aInc);
+    return QColor::fromRgb(minColor.red() + rInc, minColor.green() + gInc, minColor.blue() + bInc, 255);
   };
 
   switch(m_configuration.iconType)
