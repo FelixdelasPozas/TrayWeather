@@ -404,7 +404,7 @@ void TrayWeather::updateTooltip()
     return;
   }
 
-  if(m_configuration.showAlerts && !m_alerts.isEmpty())
+  if(m_configuration.showAlerts && !m_alerts.isEmpty() && m_provider && m_provider->capabilities().hasAlerts)
   {
     auto it = std::find_if(m_alerts.cbegin(), m_alerts.cend(), [](const Alert &a) { return !a.seen; });
     if(it != m_alerts.cend())
