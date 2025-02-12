@@ -214,10 +214,11 @@ struct Alert
   unsigned long long startTime;
   unsigned long long endTime;
   QString description;
+  bool seen;
 
   /** \brief Alert struct constructor.
    */
-  Alert(): sender{}, event{}, startTime{0}, endTime{0}, description{} {};
+  Alert(): sender{}, event{}, startTime{0}, endTime{0}, description{}, seen{false} {};
 
   /** \brief Equal comparison operator. Returns true if equals.
    * \param other Other alert object. 

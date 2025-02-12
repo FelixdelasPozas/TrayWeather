@@ -28,11 +28,13 @@
 #include <cassert>
 
 int currentAlert = 0; /** index of current alert being shown. */
+constexpr int DEFAULT_LOGICAL_DPI = 96;
 
 //--------------------------------------------------------------------
 AlertDialog::AlertDialog(QWidget *p, Qt::WindowFlags f)
 : QDialog(p, f)
 {
+  setWindowFlags(windowFlags() & ~(Qt::WindowContextHelpButtonHint) & ~(Qt::WindowMaximizeButtonHint) & ~(Qt::WindowMinimizeButtonHint));
   setupUi(this);
 
   connectSignals();
@@ -48,8 +50,10 @@ void AlertDialog::setAlertData(const Alerts &alerts)
   const bool isEnabled = numAlerts > 1;
 
   m_alertsNum->setVisible(isEnabled);
+  m_alertsNumLabel->setVisible(isEnabled);
   m_alertsNum->setText(QString("%1/%2").arg(currentAlert + 1).arg(numAlerts));
   m_next->setVisible(isEnabled);
+  m_previous->setVisible(isEnabled);
   m_previous->setEnabled(isEnabled);
   m_nextLayout->setEnabled(isEnabled);
 
@@ -61,13 +65,7 @@ void AlertDialog::showEvent(QShowEvent *e)
 {
   QDialog::showEvent(e);
 
-  scaleDialog(this);
-}
-
-//--------------------------------------------------------------------
-bool AlertDialog::showAgain() const
-{
-  return m_showAgain->isChecked();
+  scaleAlertDialog();
 }
 
 //--------------------------------------------------------------------
@@ -86,6 +84,7 @@ void AlertDialog::onNextButtonClicked()
 {
   if(currentAlert == m_alerts.count() - 1) return;
   showAlert(++currentAlert);
+  scaleAlertDialog();
 }
 
 //--------------------------------------------------------------------
@@ -93,6 +92,7 @@ void AlertDialog::onPreviousButtonClicked()
 {
   if(currentAlert == 0) return;
   showAlert(--currentAlert);
+  scaleAlertDialog();
 }
 
 //--------------------------------------------------------------------
@@ -125,4 +125,16 @@ void AlertDialog::showAlert(const int index)
     m_previous->setEnabled(index > 0);
     m_next->setEnabled(index < m_alerts.count() - 1);
   }
+}
+
+//--------------------------------------------------------------------
+void AlertDialog::scaleAlertDialog()
+{
+  const auto scale = (this->logicalDpiX() == DEFAULT_LOGICAL_DPI) ? 1. : 1.25;
+
+  setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+  setMinimumSize(400, 0);
+
+  adjustSize();
+  setFixedSize(size() * scale);
 }

@@ -56,11 +56,6 @@ class AlertDialog
      */
     void setAlertData(const Alerts &data);
 
-    /** \brief Returns the value of the checkbox to show again the alert in the future.
-     *
-     */
-    bool showAgain() const;
-
   protected:
     virtual void showEvent(QShowEvent *e) override;
     virtual void changeEvent(QEvent *e) override;
@@ -87,6 +82,11 @@ class AlertDialog
      *
      */
     void showAlert(const int index);
+
+    /** \brief Resizes the dialog to show the contents of the alert. 
+     *
+     */
+    void scaleAlertDialog();
 
     Alerts m_alerts; /** Alerts list. */
 };

@@ -276,7 +276,7 @@ class TrayWeather
     QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.           */
     NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                          */
     AlertDialog                           *m_alertsDialog;    /** Alerts dialog.                                    */
-    Alerts                                 m_lastAlert;       /** Last shown alert.                                 */
+    Alerts                                 m_alerts;          /** Last shown alert.                                 */
     std::shared_ptr<WeatherProvider>       m_provider;        /** Weather data provider                             */
 
     friend class NativeEventFilter;

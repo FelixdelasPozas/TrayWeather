@@ -338,7 +338,7 @@ void TrayWeather::showConfiguration()
   if(changedRoaming)
   {
     QMessageBox msgBox;
-    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
     msgBox.setWindowTitle(QObject::tr("Tray Weather"));
     msgBox.setIcon(QMessageBox::Warning);
     msgBox.setText(QObject::tr("TrayWeather needs to be restarted for the new configuration to take effect.\nThe application will exit now."));
@@ -366,6 +366,8 @@ void TrayWeather::updateTooltip()
     {
       m_additionalTray = new QSystemTrayIcon{this};
       m_additionalTray->setContextMenu(this->contextMenu());
+      m_additionalTray->setIcon(QIcon{":/TrayWeather/network_refresh.svg"});
+      m_additionalTray->setVisible(true);
 
       connect(m_additionalTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
               this,             SLOT(onActivation(QSystemTrayIcon::ActivationReason)));
@@ -397,10 +399,32 @@ void TrayWeather::updateTooltip()
     {
       m_additionalTray->setToolTip(tooltip);
       m_additionalTray->setIcon(icon);
-      if(!m_additionalTray->isVisible()) m_additionalTray->show();
     }
 
     return;
+  }
+
+  if(m_configuration.showAlerts && !m_alerts.isEmpty())
+  {
+    auto it = std::find_if(m_alerts.cbegin(), m_alerts.cend(), [](const Alert &a) { return !a.seen; });
+    if(it != m_alerts.cend())
+    {
+      const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
+      const QString msg = tr("There is a weather alert for your location!");
+
+      icon = alertIcon;
+      tooltip = msg;
+
+      setIcon(alertIcon);
+      setToolTip(msg);
+      if(m_additionalTray)
+      {
+        m_additionalTray->setToolTip(tooltip);
+        m_additionalTray->setIcon(icon);
+      }
+
+      return;
+    }
   }
 
   tooltip = tooltipText();
@@ -431,13 +455,9 @@ void TrayWeather::updateTooltip()
         icon = QIcon(pixmap);
 
         if(m_configuration.swapTrayIcons)
-        {
           setIcon(icon);
-        }
         else
-        {
           m_additionalTray->setIcon(icon);
-        }
       }
       /* fall through */
     case 1:
@@ -461,13 +481,9 @@ void TrayWeather::updateTooltip()
 
         QColor color;
         if(m_configuration.trayTextMode)
-        {
           color = m_configuration.trayTextColor;
-        }
         else
-        {
           color = interpolate(roundedTemp);
-        }
 
         painter.setPen(color);
         painter.setRenderHint(QPainter::RenderHint::TextAntialiasing, true);
@@ -524,36 +540,12 @@ void TrayWeather::updateTooltip()
 
   icon = QIcon(pixmap);
   setToolTip(tooltip);
+  if(m_additionalTray) m_additionalTray->setToolTip(tooltip);
 
-  if(m_configuration.showAlerts && m_lastAlert != Alerts())
-  {
-    const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
-    const QString msg = tr("There is a weather alert for your location!");
-
-    icon = alertIcon;
-    tooltip = msg;
-  }
-
-  if(m_additionalTray)
-  {
-    m_additionalTray->setToolTip(tooltip);
-
-    // must be reverse of switch case 3 from before
-    if(m_configuration.swapTrayIcons)
-    {
-      m_additionalTray->setIcon(icon);
-    }
-    else
-    {
-      setIcon(icon);
-    }
-
-    if(!m_additionalTray->isVisible()) m_additionalTray->show();
-  }
+  if (m_configuration.swapTrayIcons)
+    m_additionalTray->setIcon(icon);
   else
-  {
     setIcon(icon);
-  }
 }
 
 //--------------------------------------------------------------------
@@ -972,7 +964,7 @@ void TrayWeather::showTab()
   if(!validData())
   {
     QMessageBox msgBox;
-    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
     msgBox.setWindowTitle(QObject::tr("Tray Weather"));
     msgBox.setIcon(QMessageBox::Warning);
     msgBox.setText(QObject::tr("TrayWeather has requested the weather data for your geographic location\nand it's still waiting for the response."));
@@ -1208,7 +1200,8 @@ void TrayWeather::processGithubData(const QByteArray &data)
     {
       const auto finalText = tooltipText + "\n\n" + githubError;
       setToolTip(finalText);
-      if(m_additionalTray) m_additionalTray->setToolTip(finalText);
+      if(m_additionalTray)
+        m_additionalTray->setToolTip(finalText);
     }
   }
 }
@@ -1319,19 +1312,35 @@ void TrayWeather::processAlerts(const Alerts &alerts)
 {
   if(m_configuration.showAlerts)
   {
-    m_lastAlert = alerts;
-    const auto actions = contextMenu()->actions();
-    actions.at(8)->setEnabled(true);
-
-    const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
-    const QString msg = tr("There is a weather alert for your location!");
-    setIcon(alertIcon);
-    setToolTip(msg);
-
-    if(m_additionalTray)
+    auto filterAlerts = [&](const Alert &alert)
     {
-      m_additionalTray->setIcon(alertIcon);
-      m_additionalTray->setToolTip(msg);
+      if(!m_alerts.contains(alert))
+        m_alerts << alert;
+    };
+    std::for_each(alerts.cbegin(), alerts.cend(), filterAlerts);
+
+    Alerts notShown;
+    auto filterNotShown = [&](const Alert &alert)
+    {
+      if(!alert.seen) notShown << alert;
+    };
+    std::for_each(m_alerts.cbegin(), m_alerts.cend(), filterNotShown);
+
+    if(!notShown.isEmpty())
+    {
+      const auto actions = contextMenu()->actions();
+      actions.at(8)->setEnabled(!notShown.isEmpty());
+      actions.at(8)->setText(tr("Last alert...") + QString(" (%1)").arg(notShown.count()));
+
+      const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
+      const QString msg = tr("There is a weather alert for your location!");
+      setIcon(alertIcon);
+      setToolTip(msg);
+      if(m_additionalTray)
+      {
+        m_additionalTray->setIcon(alertIcon);
+        m_additionalTray->setToolTip(msg);
+      }
     }
   }
 }
@@ -1405,22 +1414,13 @@ void TrayWeather::onAlertDialogClosed()
 {
   if(m_alertsDialog)
   {
-    const auto dontShowAgain = m_alertsDialog->showAgain();
-
-    if(m_alertsDialog->isVisible())
-    {
-      m_alertsDialog->blockSignals(true);
-      m_alertsDialog->close();
-    }
-
-    delete m_alertsDialog;
     m_alertsDialog = nullptr;
 
-    if(dontShowAgain)
-    {
-      m_lastAlert = Alerts();
-      this->contextMenu()->actions().at(8)->setEnabled(false);
-    }
+    auto markAsSeen = [&](Alert &al){ al.seen = true; };
+    std::for_each(m_alerts.begin(), m_alerts.end(), markAsSeen);
+    auto actions = this->contextMenu()->actions();
+    actions.at(8)->setEnabled(false);
+    actions.at(8)->setText(tr("Last alert..."));
 
     updateTooltip(); 
   }
@@ -1429,14 +1429,23 @@ void TrayWeather::onAlertDialogClosed()
 //--------------------------------------------------------------------
 void TrayWeather::showAlert()
 {
-  if(m_lastAlert == Alerts()) return;
-
-  if(!m_alertsDialog)
+  Alerts notShown;
+  auto filterNotShown = [&](const Alert &alert)
   {
-    m_alertsDialog = new AlertDialog();
-    connect(m_alertsDialog, SIGNAL(finished(int)), this, SLOT(onAlertDialogClosed()));
-  }
+    if (!alert.seen) notShown << alert;
+  };
+  std::for_each(m_alerts.cbegin(), m_alerts.cend(), filterNotShown);
 
-  m_alertsDialog->setAlertData(m_lastAlert);
-  m_alertsDialog->show();
+  if(!notShown.isEmpty())
+  {
+    if(!m_alertsDialog)
+    {
+      m_alertsDialog = new AlertDialog();
+      connect(m_alertsDialog, SIGNAL(finished(int)), this, SLOT(onAlertDialogClosed()));
+      connect(m_alertsDialog, SIGNAL(finished(int)), m_alertsDialog, SLOT(deleteLater()));
+    }
+
+    m_alertsDialog->setAlertData(notShown);
+    m_alertsDialog->show();
+  }
 }

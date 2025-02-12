@@ -29,7 +29,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 
-const QString AboutDialog::VERSION{"1.33.1"};
+const QString AboutDialog::VERSION{"1.33.2"};
 const QString COPYRIGHT{"Copyright (c) 2016-%1 Félix de las Pozas Álvarez"};
 
 extern QList<ProviderData> WEATHER_PROVIDERS;
@@ -57,15 +57,6 @@ AboutDialog::AboutDialog(QWidget *parent, Qt::WindowFlags flags)
   fillProvidersTable();
 
   tabWidget->setCurrentIndex(0);
-
-  QPixmap kofiPixmap(":/TrayWeather/kofi_logo.png");
-  // if(this->styleSheet().isEmpty())
-  //   kofiPixmap = QPixmap(":/TrayWeather/support_me_on_kofi_beige.png");
-  // else
-  //   kofiPixmap = QPixmap(":/TrayWeather/support_me_on_kofi_dark.png");
-
-  m_banner->setScaledContents(true);
-  m_banner->setPixmap(kofiPixmap);
 
   QObject::connect(m_banner, &ClickableLabel::clicked,
                   [this](){ QDesktopServices::openUrl(QUrl{"https://ko-fi.com/felixdelaspozas"}); });
