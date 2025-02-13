@@ -412,15 +412,13 @@ void TrayWeather::updateTooltip()
       const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
       const QString msg = tr("There is a weather alert for your location!");
 
-      icon = alertIcon;
-      tooltip = msg;
-
       setIcon(alertIcon);
       setToolTip(msg);
-      if(m_additionalTray)
+
+      if (m_additionalTray)
       {
-        m_additionalTray->setToolTip(tooltip);
-        m_additionalTray->setIcon(icon);
+        m_additionalTray->setIcon(alertIcon);
+        m_additionalTray->setToolTip(msg);
       }
 
       return;
@@ -540,9 +538,11 @@ void TrayWeather::updateTooltip()
 
   icon = QIcon(pixmap);
   setToolTip(tooltip);
-  if(m_additionalTray) m_additionalTray->setToolTip(tooltip);
+  
+  if(m_additionalTray)
+    m_additionalTray->setToolTip(tooltip);
 
-  if (m_configuration.swapTrayIcons)
+  if (m_configuration.swapTrayIcons && m_additionalTray)
     m_additionalTray->setIcon(icon);
   else
     setIcon(icon);
@@ -1412,18 +1412,16 @@ bool NativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *mes
 //--------------------------------------------------------------------
 void TrayWeather::onAlertDialogClosed()
 {
-  if(m_alertsDialog)
-  {
-    m_alertsDialog = nullptr;
+  if(m_alertsDialog) m_alertsDialog->deleteLater();
+  m_alertsDialog = nullptr;
 
-    auto markAsSeen = [&](Alert &al){ al.seen = true; };
-    std::for_each(m_alerts.begin(), m_alerts.end(), markAsSeen);
-    auto actions = this->contextMenu()->actions();
-    actions.at(8)->setEnabled(false);
-    actions.at(8)->setText(tr("Last alert..."));
-
-    updateTooltip(); 
-  }
+  std::for_each(m_alerts.begin(), m_alerts.end(), [](Alert &a){ a.seen = true; });
+	
+  auto actions = this->contextMenu()->actions();
+  actions.at(8)->setEnabled(false);
+  actions.at(8)->setText(tr("Last alert..."));
+  
+  updateTooltip(); 
 }
 
 //--------------------------------------------------------------------
@@ -1442,7 +1440,6 @@ void TrayWeather::showAlert()
     {
       m_alertsDialog = new AlertDialog();
       connect(m_alertsDialog, SIGNAL(finished(int)), this, SLOT(onAlertDialogClosed()));
-      connect(m_alertsDialog, SIGNAL(finished(int)), m_alertsDialog, SLOT(deleteLater()));
     }
 
     m_alertsDialog->setAlertData(notShown);

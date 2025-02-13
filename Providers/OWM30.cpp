@@ -283,12 +283,12 @@ void OWM30Provider::processWeatherData(const QByteArray &contents)
 
     const auto keys = jsonObj.keys();
 
-    if(keys.contains("daily"))
+    if(keys.contains("hourly"))
     {
       m_forecast.clear();
       m_uv.clear();
 
-      const auto values  = jsonObj.value("daily").toArray();
+      const auto values  = jsonObj.value("hourly").toArray();
 
       auto hasEntry = [this](unsigned long dt) { for(auto entry: this->m_forecast) if(entry.dt == dt) return true; return false; };
       auto hasUVEntry = [this](unsigned long dt) { for(auto entry: this->m_uv) if(entry.dt == dt) return true; return false; };
@@ -315,7 +315,7 @@ void OWM30Provider::processWeatherData(const QByteArray &contents)
 
         UVData uvData;
         uvData.dt = dt;
-        uvData.idx = entry.value("uv").toInt(0);
+        uvData.idx = entry.value("uvi").toInt(0);
 
         if(!hasUVEntry(uvData.dt))
           m_uv << uvData;
@@ -360,18 +360,25 @@ void OWM30Provider::processWeatherData(const QByteArray &contents)
 
     if(keys.contains("alerts"))
     {
-      const auto alertObj = jsonObj.value("alerts").toObject();
-
-      Alert alert;
-      alert.sender = alertObj.value("sender_name").toString();
-      alert.event = alertObj.value("event").toString();
-      alert.startTime = alertObj.value("start").toVariant().toULongLong();
-      alert.endTime = alertObj.value("end").toVariant().toULongLong();
-      alert.description = alertObj.value("description").toString();
-
+      const auto alertsArray = jsonObj.value("alerts").toArray();
       Alerts alertList;
-      alertList << alert;
-      emit weatherAlerts(alertList);
+
+      for (auto i = 0; i < alertsArray.count(); ++i)
+      {
+        auto alertObj = alertsArray.at(i).toObject();
+
+        Alert alert;
+        alert.sender = alertObj.value("sender_name").toString();
+        alert.event = alertObj.value("event").toString();
+        alert.startTime = alertObj.value("start").toVariant().toULongLong();
+        alert.endTime = alertObj.value("end").toVariant().toULongLong();
+        alert.description = alertObj.value("description").toString();
+
+        alertList << alert;
+      }
+
+      if (!alertList.isEmpty())
+        emit weatherAlerts(alertList);
     }
   }
 }

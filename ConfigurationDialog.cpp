@@ -1587,6 +1587,7 @@ void ConfigurationDialog::onProviderChanged(int index)
     m_providerConfigText->setTextFormat(Qt::RichText);
     m_providerConfigText->setText(PROVIDER_KEY_TEXT.arg(m_provider->name()).arg(m_provider->website()));
     m_providerConfigText->setOpenExternalLinks(true);
+    m_apiTest->setEnabled(true);
 
     if(!m_provider->apikey().isEmpty())
       requestAPIKeyTest();
@@ -1597,6 +1598,7 @@ void ConfigurationDialog::onProviderChanged(int index)
     m_testLabel->clear();
     m_testLabel->setEnabled(false);
     m_ipapiLabel->setEnabled(false);
+    m_apiTest->setEnabled(false);
     m_ipapiLabel->clear();
     m_providerConfigText->setText(PROVIDER_NO_TEXT.arg(m_provider->name()));
   }
