@@ -274,6 +274,11 @@ class ConfigurationDialog
      */
     void onBarWidthSpinboxChanged(double value);
 
+    /** \brief Updates the icons background color when a custom color is activated or deactivated.
+     *
+     */
+    void updateIconBackgroundColor();
+
   signals:
     void languageChanged(const QString &);
 
@@ -288,6 +293,11 @@ class ConfigurationDialog
      *
      */
     void requestDNSIPGeolocation();
+
+    /** \brief Helper method to connect UI signals to the slots, but this is only needed once.
+     *
+     */
+    void connectStaticSignals();
 
     /** \brief Helper method to connect UI signals to the slots.
      *

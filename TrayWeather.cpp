@@ -206,6 +206,10 @@ void TrayWeather::showConfiguration()
   m_configuration.trayTextDegree  = configuration.trayTextDegree;
   m_configuration.trayTextFont    = configuration.trayTextFont;
   m_configuration.trayFontSpacing = configuration.trayFontSpacing;
+  m_configuration.trayBackAuto    = configuration.trayBackAuto;
+  m_configuration.trayBackColor   = configuration.trayBackColor;
+  m_configuration.trayBorderAuto  = configuration.trayBorderAuto;
+  m_configuration.trayBorderColor = configuration.trayBorderColor;
   m_configuration.stretchTempIcon = configuration.stretchTempIcon;
   m_configuration.minimumColor    = configuration.minimumColor;
   m_configuration.maximumColor    = configuration.maximumColor;
@@ -450,6 +454,9 @@ void TrayWeather::updateTooltip()
     case 3:
       if(m_additionalTray)
       {
+        if (!m_configuration.trayBackAuto)
+          pixmap = setIconBackground(m_configuration.trayBackColor, pixmap);
+
         icon = QIcon(pixmap);
 
         if(m_configuration.swapTrayIcons)
@@ -491,13 +498,14 @@ void TrayWeather::updateTooltip()
         if(m_configuration.trayTextBorder)
         {
           const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
+          const auto customColor = QColor(m_configuration.trayTextColor);
 
           //constructing temporal object only to get path for border.
           QGraphicsPixmapItem tempItem(tempPixmap);
           tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
           const auto path = tempItem.shape();
 
-          QPen pen(invertedColor, m_configuration.trayBorderWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+          QPen pen(m_configuration.trayBorderAuto ? invertedColor : customColor, m_configuration.trayBorderWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
           painter.setPen(pen);
           painter.drawPath(path);
 
@@ -535,6 +543,9 @@ void TrayWeather::updateTooltip()
       }
       break;
   }
+
+  if(!m_configuration.trayBackAuto)
+    pixmap = setIconBackground(m_configuration.trayBackColor, pixmap);
 
   icon = QIcon(pixmap);
   setToolTip(tooltip);

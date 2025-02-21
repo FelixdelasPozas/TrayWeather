@@ -22,6 +22,7 @@
 #include <LocationFinderDialog.h>
 #include <Utils.h>
 #include <Provider.h>
+#include <Providers/OpenMeteo.h>
 
 // Qt
 #include <QNetworkRequest>
@@ -65,15 +66,7 @@ ConfigurationDialog::ConfigurationDialog(const Configuration &configuration, QWi
   setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
 
   setupUi(this);
-
-  QObject::connect(m_borderLabel, &ClickableLabel::clicked,
-                   [this](){ m_border->setChecked(!m_border->isChecked()); });
-
-  QObject::connect(m_stretchLabel, &ClickableLabel::clicked,
-                   [this](){ m_stretch->setChecked(!m_stretch->isChecked()); });
-
-  QObject::connect(m_drawDegreeLabel, &ClickableLabel::clicked,
-                   [this](){ m_drawDegree->setChecked(!m_drawDegree->isChecked()); });
+  connectStaticSignals();
 
   m_tooltipList->setItemDelegate(new RichTextItemDelegate());
   m_tooltipValueCombo->setItemDelegate(new RichTextItemDelegate());
@@ -293,6 +286,10 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.trayTextDegree  = m_drawDegree->isChecked();
   configuration.trayTextFont    = m_validFont ? m_font.toString() : m_fontButton->property("initial_font").toString();
   configuration.trayFontSpacing = m_spacingSpinBox->value();
+  configuration.trayBorderAuto  = m_borderColor->isChecked();
+  configuration.trayBorderColor = m_borderColorButton->property("iconColor").toString();
+  configuration.trayBackAuto    = m_backgroundColor->isChecked();
+  configuration.trayBackColor   = m_backgroundColorButton->property("iconColor").toString();
   configuration.stretchTempIcon = m_stretch->isChecked();
   configuration.minimumColor    = QColor(m_minColor->property("iconColor").toString());
   configuration.maximumColor    = QColor(m_maxColor->property("iconColor").toString());
@@ -398,6 +395,21 @@ void ConfigurationDialog::requestDNSIPGeolocation()
   m_geoRequest->setEnabled(false);
   m_ipapiLabel->setStyleSheet("QLabel { color : blue; }");
   m_ipapiLabel->setText(tr("Requesting..."));
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::connectStaticSignals()
+{
+  // Clickable labels clicked to checkbox setChecked.
+  m_borderLabel->connectToCheckBox(m_border);
+  m_stretchLabel->connectToCheckBox(m_stretch);
+  m_drawDegreeLabel->connectToCheckBox(m_drawDegree);
+  m_backgroundColorLabel->connectToCheckBox(m_backgroundColor);
+  m_borderColorLabel->connectToCheckBox(m_borderColor);
+
+  // Checkbox values to buttons setEnable
+  QObject::connect(m_backgroundColor, &QCheckBox::toggled, [this](bool value){ m_backgroundColorButton->setEnabled(!value); });
+  QObject::connect(m_borderColor, &QCheckBox::toggled, [this](bool value){ m_borderColorButton->setEnabled(!value); });
 }
 
 //--------------------------------------------------------------------
@@ -523,7 +535,8 @@ void ConfigurationDialog::connectSignals()
           this,            SLOT(onIconThemeIndexChanged(int)));
 
   for(auto &w: {m_trayTempColor, m_minColor, m_maxColor, m_iconThemeColor,
-                m_tempGraphColor, m_rainGraphColor, m_snowGraphColor})
+                m_tempGraphColor, m_rainGraphColor, m_snowGraphColor, 
+                m_backgroundColorButton, m_borderColorButton })
   {
     connect(w, SIGNAL(clicked()), this, SLOT(onColorButtonClicked()));
   }
@@ -541,6 +554,12 @@ void ConfigurationDialog::connectSignals()
 
   connect(m_border, SIGNAL(stateChanged(int)),
           this,     SLOT(updateTemperatureIcon()));
+
+  connect(m_borderColor, SIGNAL(stateChanged(int)),
+          this,          SLOT(updateTemperatureIcon()));
+
+  connect(m_backgroundColor, SIGNAL(stateChanged(int)),
+          this,              SLOT(updateIconBackgroundColor()));
 
   connect(m_border, SIGNAL(stateChanged(int)),
           this,     SLOT(onBorderStateChanged()));
@@ -678,27 +697,37 @@ void ConfigurationDialog::onColorButtonClicked()
 
   QColorDialog dialog;
   dialog.setCurrentColor(color);
+  dialog.setOption(QColorDialog::ColorDialogOption::ShowAlphaChannel, true);
   dialog.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
 
   if(dialog.exec() != QColorDialog::Accepted) return;
 
+  color = dialog.selectedColor();
+
   QPixmap icon(QSize(64,64));
-  icon.fill(dialog.selectedColor());
+  icon.fill(color);
   button->setIcon(QIcon(icon));
-  button->setProperty("iconColor", dialog.selectedColor().name(QColor::HexArgb));
+  button->setProperty("iconColor", color.name(QColor::HexArgb));
 
   if(button == m_minColor || button == m_maxColor)
   {
     updateRange();
     updateTemperatureIcon();
+    return;
   }
-  else
+
+  if(button == m_iconThemeColor)
   {
-    if(button == m_iconThemeColor)
-    {
-      onIconThemeIndexChanged(m_trayIconTheme->currentIndex());
-    }
+    onIconThemeIndexChanged(m_trayIconTheme->currentIndex());
+    return;
   }
+
+  if(button == m_backgroundColorButton)
+  {
+    onIconThemeIndexChanged(m_trayIconTheme->currentIndex());
+  }
+
+  updateTemperatureIcon();
 }
 
 //--------------------------------------------------------------------
@@ -812,9 +841,7 @@ void ConfigurationDialog::onAutostartValueChanged(int value)
   }
 
   if(updated)
-  {
     settings.sync();
-  }
 }
 
 //--------------------------------------------------------------------
@@ -836,7 +863,8 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   onIconThemeIndexChanged(static_cast<int>(configuration.iconTheme));
 
   connectSignals();
-  const auto providerIndex = configuration.providerId.isEmpty() ? 0 : WeatherProviderFactory::indexOf(configuration.providerId);
+
+  const auto providerIndex = configuration.providerId.isEmpty() ? WeatherProviderFactory::indexOf(OPENMETEO_PROVIDER) : WeatherProviderFactory::indexOf(configuration.providerId);
   onProviderChanged(providerIndex);
 
   m_useManual->setChecked(!configuration.useGeolocation);
@@ -875,9 +903,14 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_fixed->setChecked(configuration.trayTextMode);
   m_variable->setChecked(!configuration.trayTextMode);
   m_border->setChecked(configuration.trayTextBorder);
+  m_borderColor->setChecked(configuration.trayBorderAuto);
   m_borderWidth->setValue(configuration.trayBorderWidth);
   m_stretch->setChecked(configuration.stretchTempIcon);
   m_drawDegree->setChecked(configuration.trayTextDegree);
+  m_backgroundColor->setChecked(configuration.trayBackAuto);
+
+  m_backgroundColorButton->setEnabled(!configuration.trayBackAuto);
+  m_borderColorButton->setEnabled(!configuration.trayBorderAuto && m_borderColor->isEnabled());
 
   m_minSpinBox->setMaximum(configuration.maximumValue-1);
   m_maxSpinBox->setMinimum(configuration.minimumValue+1);
@@ -944,6 +977,14 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_snowGraphColor->setIcon(QIcon(icon));
   m_snowGraphColor->setProperty("iconColor", configuration.snowReprColor.name(QColor::HexArgb));
 
+  icon.fill(configuration.trayBorderColor);
+  m_borderColorButton->setIcon(QIcon(icon));
+  m_borderColorButton->setProperty("iconColor", configuration.trayBorderColor.name(QColor::HexArgb));
+
+  icon.fill(configuration.trayBackColor);
+  m_backgroundColorButton->setIcon(QIcon(icon));
+  m_backgroundColorButton->setProperty("iconColor", configuration.trayBackColor.name(QColor::HexArgb));
+
   m_longitudeSpin->setValue(configuration.longitude);
   m_latitudeSpin->setValue(configuration.latitude);
 
@@ -954,7 +995,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   {
     m_updateTime->setValue(15);
     m_unitsComboBox->setCurrentIndex(0);
-    m_providerComboBox->setCurrentIndex(0);
+    m_providerComboBox->setCurrentIndex(providerIndex);
   }
   else
   {
@@ -1196,9 +1237,12 @@ void ConfigurationDialog::updateLanguageCombo(const QString &current)
   m_languageCombo->clear();
 
   int selected = 0;
-  for(int i = 0; i < TRANSLATIONS.size(); ++i)
+  auto translations = TRANSLATIONS;
+  std::sort(translations.begin(), translations.end());
+
+  for(int i = 0; i < translations.size(); ++i)
   {
-    const auto &lang = TRANSLATIONS.at(i);
+    const auto &lang = translations.at(i);
     m_languageCombo->addItem(QIcon(lang.icon), lang.name, lang.file);
     if(lang.file.compare(current) == 0) selected = i;
   }
@@ -1210,9 +1254,12 @@ void ConfigurationDialog::updateLanguageCombo(const QString &current)
 //--------------------------------------------------------------------
 void ConfigurationDialog::onLanguageChanged(int index)
 {
+  auto translations = TRANSLATIONS;
+  std::sort(translations.begin(), translations.end());
+
   auto idx = std::max(std::min(index, TRANSLATIONS.size() - 1), 0);
 
-  emit languageChanged(TRANSLATIONS.at(idx).file);
+  emit languageChanged(translations.at(idx).file);
 }
 
 //--------------------------------------------------------------------
@@ -1293,7 +1340,14 @@ void ConfigurationDialog::updateTooltipFieldsButtons()
 void ConfigurationDialog::onIconPreviewPressed()
 {
   const auto color = QColor(m_iconThemeColor->property("iconColor").toString());
-  const auto image = createIconsSummary(m_trayIconTheme->currentIndex(), 32, color);
+  const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
+  const auto iconTheme = m_trayIconTheme->currentIndex();
+  QColor backgroundColor = ICON_THEMES.at(iconTheme).colored ? Qt::darkGray : invertedColor;
+
+  if(!m_backgroundColor->isChecked()) 
+    backgroundColor = QColor(m_backgroundColorButton->property("iconColor").toString());
+
+  const auto image = createIconsSummary(iconTheme, 32, color, backgroundColor);
   auto previewWidget = new PreviewWidget(image, this);
 
   const QPoint pos = m_iconSummary->mapToGlobal(QPoint{0,0});
@@ -1386,7 +1440,15 @@ void ConfigurationDialog::onFontSelectorPressed()
 void ConfigurationDialog::onIconThemeIndexChanged(int idx)
 {
   const auto iconColor = QColor(m_iconThemeColor->property("iconColor").toString());
-  m_iconSummary->setIcon(QIcon(weatherPixmap("01d", idx, iconColor)));
+  auto weatherPix = weatherPixmap("01d", idx, iconColor);
+
+  if(!m_backgroundColor->isChecked())
+  {
+    const auto backgroundColor = QColor(m_backgroundColorButton->property("iconColor").toString());
+    weatherPix = setIconBackground(backgroundColor, weatherPix);
+  }
+
+  m_iconSummary->setIcon(QIcon(weatherPix));
   m_iconThemeColor->setEnabled(!ICON_THEMES.at(idx).colored);
 }
 
@@ -1465,6 +1527,16 @@ void ConfigurationDialog::fixVisuals()
 //--------------------------------------------------------------------
 void ConfigurationDialog::onIconTypeChanged(int value)
 {
+  auto enableLayout = [](QLayout *lay, const bool enable)
+  {
+    for (int i = 0; i < lay->count(); ++i)
+    {
+      auto item = lay->itemAt(i);
+      if (item && item->widget())
+        item->widget()->setEnabled(enable);
+    }
+  };
+
   const auto swapEnabled = value > 2;
   m_swapIcons->setEnabled(swapEnabled);
   m_swapIconsLabel->setEnabled(swapEnabled);
@@ -1479,21 +1551,24 @@ void ConfigurationDialog::onIconTypeChanged(int value)
 
   const auto tempOptionsEnabled = value > 0;
   for(auto lay: {m_tempLayout_1, m_tempLayout_2, m_tempLayout_3, m_tempLayout_4,
-                 m_tempLayout_5, m_tempLayout_6, m_tempLayout_7, m_tempLayout_8 })
+                 m_tempLayout_5, m_tempLayout_6, m_tempLayout_7, m_tempLayout_8, 
+                 m_tempLayout_9, m_tempLayout10 })
   {
-    for(int i = 0; i < lay->count(); ++i)
-    {
-      auto item = lay->itemAt(i);
-      if(item && item->widget()) item->widget()->setEnabled(tempOptionsEnabled);
-    }
+    enableLayout(lay, tempOptionsEnabled);
   }
+
+  enableLayout(m_tempLayout11, tempOptionsEnabled && m_border->isChecked());
+  m_borderColorButton->setEnabled(m_borderColor->isEnabled() && !m_borderColor->isChecked());
+
   m_textColorLabel->setEnabled(tempOptionsEnabled);
   m_textFontLabel->setEnabled(tempOptionsEnabled);
   m_tempIconSizeLabel->setEnabled(tempOptionsEnabled);
+  m_borderColorButton->setEnabled(tempOptionsEnabled && !m_borderColor->isChecked() && m_borderColor->isEnabled());
 
   const auto enableColored = !ICON_THEMES.at(m_trayIconTheme->currentIndex()).colored;
   m_iconThemeColor->setEnabled(enableColored && iconsOptionsEnabled);
   onBorderStateChanged();
+  onIconThemeIndexChanged(m_trayIconTheme->currentIndex());
 }
 
 //--------------------------------------------------------------------
@@ -1683,13 +1758,14 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   if(m_border->isChecked())
   {
     const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
+    const auto selectedColor = QColor(m_borderColorButton->property("iconColor").toString());
 
     //constructing temporal object only to get path for border.
     QGraphicsPixmapItem tempItem(pixmap);
     tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
     const auto path = tempItem.shape();
 
-    QPen pen(invertedColor, m_borderWidth->value(), Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen(m_borderColor->isChecked() ? invertedColor : selectedColor, m_borderWidth->value(), Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     painter.setPen(pen);
     painter.drawPath(path);
 
@@ -1716,6 +1792,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   }
 
   QPixmap background(m_pixmap);
+  if(!m_backgroundColor->isChecked()) background.fill(m_backgroundColorButton->property("iconColor").toString());
   painter.begin(&background);
   painter.translate(rect.center());
   painter.scale(ratioX, ratioY);
@@ -1772,6 +1849,9 @@ void ConfigurationDialog::onBorderStateChanged()
   m_borderWidthLabel->setEnabled(enable);
   m_borderWidth->setEnabled(enable);
   m_borderSpinBox->setEnabled(enable);
+  m_borderColor->setEnabled(enable);
+  m_borderColorLabel->setEnabled(enable);
+  m_borderColorButton->setEnabled(enable && !m_borderColor->isChecked());
 }
 
 //--------------------------------------------------------------------
@@ -1788,6 +1868,13 @@ void ConfigurationDialog::onBarWidthSpinboxChanged(double value)
   m_barWidthSlider->setUpdatesEnabled(false);
   m_barWidthSlider->setValue(value*10);
   m_barWidthSlider->setUpdatesEnabled(true);
+}
+
+//--------------------------------------------------------------------
+void ConfigurationDialog::updateIconBackgroundColor()
+{
+  updateTemperatureIcon();
+  onIconThemeIndexChanged(m_trayIconTheme->currentIndex());
 }
 
 //--------------------------------------------------------------------

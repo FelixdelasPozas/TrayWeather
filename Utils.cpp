@@ -43,6 +43,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsBlurEffect>
 #include <QGraphicsItem>
+#include <QCheckBox>
 #include <QDebug>
 
 // C++
@@ -93,6 +94,10 @@ static const QString TRAY_DYNAMIC_MAX_COLOR   = QString("Tray text color dynamic
 static const QString TRAY_DYNAMIC_MIN_VALUE   = QString("Tray text color dynamic minimum value");
 static const QString TRAY_DYNAMIC_MAX_VALUE   = QString("Tray text color dynamic maximum value");
 static const QString TRAY_SWAP_ICONS          = QString{"Swap tray icons"};
+static const QString TRAY_TEXT_BORDER_AUTO    = QString{"Tray text border automatic color"};
+static const QString TRAY_TEXT_BORDER_COLOR   = QString{"Tray text border color"};
+static const QString TRAY_BACKGROUND_AUTO     = QString{"Tray background automatic"};
+static const QString TRAY_BACKGROUND_COLOR    = QString{"Tray background color"};
 static const QString UPDATE_CHECKS_FREQUENCY  = QString("Update checks frequency");
 static const QString UPDATE_LAST_CHECK        = QString("Update last check");
 static const QString AUTOSTART                = QString("Autostart");
@@ -647,6 +652,10 @@ void load(Configuration &configuration)
   configuration.trayTextDegree  = settings.value(TRAY_TEXT_DRAW_DEGREE, false).toBool();
   configuration.trayTextFont    = settings.value(TRAY_TEXT_FONT, QString()).toString();
   configuration.trayFontSpacing = settings.value(TRAY_TEXT_FONT_SPACING, 0).toInt();
+  configuration.trayBorderAuto  = settings.value(TRAY_TEXT_BORDER_AUTO, true).toBool();
+  configuration.trayBorderColor = settings.value(TRAY_TEXT_BORDER_COLOR, "#FFFFFFFF").toString();
+  configuration.trayBackAuto    = settings.value(TRAY_BACKGROUND_AUTO, true).toBool();
+  configuration.trayBackColor   = settings.value(TRAY_BACKGROUND_COLOR, "#FF000000").toString();
   configuration.stretchTempIcon = settings.value(STRETCH_TEMP_ICON, false).toBool();
   configuration.minimumColor    = QColor(settings.value(TRAY_DYNAMIC_MIN_COLOR, "#FF0000FF").toString());
   configuration.maximumColor    = QColor(settings.value(TRAY_DYNAMIC_MAX_COLOR, "#FFFF0000").toString());
@@ -735,6 +744,10 @@ void save(const Configuration &configuration)
   settings.setValue(TRAY_TEXT_DRAW_DEGREE,    configuration.trayTextDegree);
   settings.setValue(TRAY_TEXT_FONT,           configuration.trayTextFont);
   settings.setValue(TRAY_TEXT_FONT_SPACING,   configuration.trayFontSpacing);
+  settings.setValue(TRAY_TEXT_BORDER_AUTO,    configuration.trayBorderAuto);
+  settings.setValue(TRAY_TEXT_BORDER_COLOR,   configuration.trayTextColor);
+  settings.setValue(TRAY_BACKGROUND_AUTO,     configuration.trayBackAuto);
+  settings.setValue(TRAY_BACKGROUND_COLOR,    configuration.trayBackColor);
   settings.setValue(STRETCH_TEMP_ICON,        configuration.stretchTempIcon);
   settings.setValue(TRAY_DYNAMIC_MIN_COLOR,   configuration.minimumColor.name(QColor::HexArgb));
   settings.setValue(TRAY_DYNAMIC_MAX_COLOR,   configuration.maximumColor.name(QColor::HexArgb));
@@ -1065,11 +1078,10 @@ void CustomComboBox::paintEvent(QPaintEvent *e)
 }
 
 //--------------------------------------------------------------------
-QPixmap createIconsSummary(const unsigned int theme, const int size, const QColor &color)
+QPixmap createIconsSummary(const unsigned int theme, const int size, const QColor &color, const QColor &backColor)
 {
   QImage poster(QSize{size*5,size*5}, QImage::Format_ARGB32);
-  const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
-  poster.fill(ICON_THEMES.at(theme).colored ? Qt::darkGray : invertedColor);
+  poster.fill(backColor);
   QPainter painter(&poster);
 
   int x = 0, y = 0;
@@ -1087,6 +1099,19 @@ QPixmap createIconsSummary(const unsigned int theme, const int size, const QColo
   painter.end();
 
   return QPixmap::fromImage(poster);
+}
+
+//--------------------------------------------------------------------
+QPixmap setIconBackground(const QColor &color, const QPixmap &pix)
+{
+  QPixmap backgroundPixmap{pix.size()};
+  backgroundPixmap.fill(color);
+
+  QPainter painter(&backgroundPixmap);
+  painter.drawImage(QPoint{0, 0}, pix.toImage());
+  painter.end();
+
+  return backgroundPixmap;
 }
 
 //--------------------------------------------------------------------
@@ -1469,4 +1494,10 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
   }
 
   return QNetworkAccessManager::createRequest(op, request, outgoingData);
+}
+
+//--------------------------------------------------------------------
+void ClickableLabel::connectToCheckBox(QCheckBox *cb)
+{
+  connect(this, &ClickableLabel::clicked, [cb](){ cb->setChecked(!cb->isChecked()); });
 }

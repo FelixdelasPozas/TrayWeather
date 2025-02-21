@@ -46,6 +46,7 @@ class QPixmap;
 class QDialog;
 class QNetworkRequest;
 class QIODevice;
+class QCheckBox;
 
 enum class Units:              char { METRIC = 0, IMPERIAL, CUSTOM };
 enum class PressureUnits:      char { HPA =  0, PSI, MMGH, INHG };
@@ -118,6 +119,12 @@ struct LanguageData
      *
      */
     LanguageData(const QString n, const QString i, const QString f, const QString a): name(n), icon(i), file(f), author(a) {};
+
+    bool operator==(const LanguageData &other)
+    { return name == other.name; }
+
+    bool operator<(const LanguageData &other)
+    { return name < other.name; }
 };
 
 /** Translations
@@ -133,10 +140,11 @@ static QList<LanguageData> TRANSLATIONS = {
     { "Português (Brasileiro)", ":/TrayWeather/languages/br.svg", "pt_BR", "Autergame"                  },
     { "Українська",             ":/TrayWeather/languages/uk.svg", "uk_UA", "Aleksandr Popov"            },
     { "Slovenščina",            ":/TrayWeather/languages/sl.svg", "sl_SI", "datenshi888"                },
-    { "한국어",                  ":/TrayWeather/languages/kr.svg", "ko_KR", "isl6"                       },
+    { "한국어",                  ":/TrayWeather/languages/kr.svg", "ko_KR", "isl6"                        },
     { "Polski",                 ":/TrayWeather/languages/pl.svg", "pl_PL", "Krzysztof Blachnicki"       },
     { "Türkçe",                 ":/TrayWeather/languages/tr.svg", "tr_TR", "cmhrky"                     },
-    { "Italiano",               ":/TrayWeather/languages/it.svg", "it_IT", "Hanamichi27"                }
+    { "Italiano",               ":/TrayWeather/languages/it.svg", "it_IT", "Hanamichi27"                },
+	  { "Magyar",                 ":/TrayWeather/languages/hu.svg", "hu_HU", "Bukodi Gábor"               }
 };
 
 /** \struct IconThemeData
@@ -240,61 +248,65 @@ using Alerts = QList<Alert>;
  */
 struct Configuration
 {
-    double             latitude;        /** location latitude in degrees.                               */
-    double             longitude;       /** location longitude in degrees.                              */
-    QString            country;         /** location's country.                                         */
-    QString            region;          /** location's region.                                          */
-    QString            city;            /** location's city.                                            */
-    QString            ip;              /** internet address.                                           */
-    QString            providerId;      /** weather provider name                                       */
-    Units              units;           /** measurement units.                                          */
-    unsigned int       updateTime;      /** time between updates.                                       */
-    bool               mapsEnabled;     /** true if maps tab is visible, false otherwise.               */
-    bool               useDNS;          /** true to use DNS address for geo location instead of own IP. */
-    bool               useGeolocation;  /** true to use the ip-api.com services, false to use manual.   */
-    bool               roamingEnabled;  /** true if georaphical coordinates are asked on each forecast. */
-    bool               lightTheme;      /** true if light theme is being used, false if dark theme.     */
-    unsigned int       iconType;        /** 0 if just icon, 1 if just temperature, 2 and 3 if both.     */
-    unsigned int       iconTheme;       /** icon theme. See ICON_THEMES var.                            */
-    QColor             iconThemeColor;  /** icon theme color for monocolor themes.                      */
-    QColor             trayTextColor;   /** Color of tray temperature text.                             */
-    bool               trayTextMode;    /** true for fixed color, false for dynamic color.              */
-    bool               trayTextBorder;  /** true to draw a border around icon text, false otherwise.    */
-    int                trayBorderWidth; /** width of the tray text border.                              */
-    bool               trayTextDegree;  /** true to display the degree symbol in the tray text.         */
-    QString            trayTextFont;    /** font used for temperature icon.                             */
-    int                trayFontSpacing; /** spacing between font characters (-25 to 25).                */
-    bool               stretchTempIcon; /** true to strech the temp icon vertically, false otherwise.   */
-    QColor             minimumColor;    /** minimum value dynamic color.                                */
-    QColor             maximumColor;    /** maximum value dynamic color.                                */
-    int                minimumValue;    /** dynamic color minimum value.                                */
-    int                maximumValue;    /** dynamic color maximum value.                                */
-    Update             update;          /** frequency of check for update.                              */
-    QDateTime          lastCheck;       /** time of last update check.                                  */
-    bool               autostart;       /** true to autostart at login, false otherwise.                */
-    int                lastTab;         /** last tab visualized.                                        */
-    QString            lastLayer;       /** last maps layer used: temperature, rain, clouds, wind.      */
-    QString            lastStreetLayer; /** last street layer used: mapnik, googlemap, googlesat.       */
-    QString            language;        /** application language.                                       */
-    QList<TooltipText> tooltipFields;   /** tooltip fields in order.                                    */
-    bool               showAlerts;      /** true to show weather alerts and false otherwise.            */
-    TemperatureUnits   tempUnits;       /** custom temperature units.                                   */
-    PressureUnits      pressureUnits;   /** custom pressure units.                                      */
-    PrecipitationUnits precUnits;       /** custom precipitation units.                                 */
-    WindUnits          windUnits;       /** custom wind units.                                          */
-    bool               swapTrayIcons;   /** true to swap tray icons and false otherwise.                */
-    int                trayIconSize;    /** size of tray icon in [50-100] %.                            */
-    Representation     tempRepr;        /** temperature representation in the forecast graph.           */
-    Representation     rainRepr;        /** rain representation in the forecast graph.                  */
-    Representation     snowRepr;        /** snow representation in the forecast graph.                  */
-    QColor             tempReprColor;   /** color of temperature representation in the forecast graph.  */
-    QColor             rainReprColor;   /** color of rain representation in the forecast graph.         */
-    QColor             snowReprColor;   /** color of snow representation in the forecast graph.         */
-    float              cloudMapOpacity; /** opacity of the cloud layer in the map. Value in [0,1].      */
-    float              windMapOpacity;  /** opacity of the wind layer in the map. Value in [0,1].       */
-    float              rainMapOpacity;  /** opacity of the rain layer in the map. Value in [0,1].       */
-    float              tempMapOpacity;  /** opacity of the temp layer in the map. Value in [0,1].       */
-    double             barWidth;        /** Bar representation width in [0.5-2.0].                      */
+    double             latitude;        /** location latitude in degrees.                                  */
+    double             longitude;       /** location longitude in degrees.                                 */
+    QString            country;         /** location's country.                                            */
+    QString            region;          /** location's region.                                             */
+    QString            city;            /** location's city.                                               */
+    QString            ip;              /** internet address.                                              */
+    QString            providerId;      /** weather provider name                                          */
+    Units              units;           /** measurement units.                                             */
+    unsigned int       updateTime;      /** time between updates.                                          */
+    bool               mapsEnabled;     /** true if maps tab is visible, false otherwise.                  */
+    bool               useDNS;          /** true to use DNS address for geo location instead of own IP.    */
+    bool               useGeolocation;  /** true to use the ip-api.com services, false to use manual.      */
+    bool               roamingEnabled;  /** true if georaphical coordinates are asked on each forecast.    */
+    bool               lightTheme;      /** true if light theme is being used, false if dark theme.        */
+    unsigned int       iconType;        /** 0 if just icon, 1 if just temperature, 2 and 3 if both.        */
+    unsigned int       iconTheme;       /** icon theme. See ICON_THEMES var.                               */
+    QColor             iconThemeColor;  /** icon theme color for monocolor themes.                         */
+    QColor             trayTextColor;   /** Color of tray temperature text.                                */
+    bool               trayTextMode;    /** true for fixed color, false for dynamic color.                 */
+    bool               trayTextBorder;  /** true to draw a border around icon text, false otherwise.       */
+    int                trayBorderWidth; /** width of the tray text border.                                 */
+    bool               trayTextDegree;  /** true to display the degree symbol in the tray text.            */
+    QString            trayTextFont;    /** font used for temperature icon.                                */
+    int                trayFontSpacing; /** spacing between font characters (-25 to 25).                   */
+    bool               trayBorderAuto;  /** true to use a automatic color for the temperature icon border. */
+    QColor             trayBorderColor; /** color to use in the temperature icon border.                   */
+    bool               trayBackAuto;    /** true to use transparent color for the icons background.        */
+    QColor             trayBackColor;   /** color to use as background color in the icons.                 */
+    bool               stretchTempIcon; /** true to strech the temp icon vertically, false otherwise.      */
+    QColor             minimumColor;    /** minimum value dynamic color.                                   */
+    QColor             maximumColor;    /** maximum value dynamic color.                                   */
+    int                minimumValue;    /** dynamic color minimum value.                                   */
+    int                maximumValue;    /** dynamic color maximum value.                                   */
+    Update             update;          /** frequency of check for update.                                 */
+    QDateTime          lastCheck;       /** time of last update check.                                     */
+    bool               autostart;       /** true to autostart at login, false otherwise.                   */
+    int                lastTab;         /** last tab visualized.                                           */
+    QString            lastLayer;       /** last maps layer used: temperature, rain, clouds, wind.         */
+    QString            lastStreetLayer; /** last street layer used: mapnik, googlemap, googlesat.          */
+    QString            language;        /** application language.                                          */
+    QList<TooltipText> tooltipFields;   /** tooltip fields in order.                                       */
+    bool               showAlerts;      /** true to show weather alerts and false otherwise.               */
+    TemperatureUnits   tempUnits;       /** custom temperature units.                                      */
+    PressureUnits      pressureUnits;   /** custom pressure units.                                         */
+    PrecipitationUnits precUnits;       /** custom precipitation units.                                    */
+    WindUnits          windUnits;       /** custom wind units.                                             */
+    bool               swapTrayIcons;   /** true to swap tray icons and false otherwise.                   */
+    int                trayIconSize;    /** size of tray icon in [50-100] %.                               */
+    Representation     tempRepr;        /** temperature representation in the forecast graph.              */
+    Representation     rainRepr;        /** rain representation in the forecast graph.                     */
+    Representation     snowRepr;        /** snow representation in the forecast graph.                     */
+    QColor             tempReprColor;   /** color of temperature representation in the forecast graph.     */
+    QColor             rainReprColor;   /** color of rain representation in the forecast graph.            */
+    QColor             snowReprColor;   /** color of snow representation in the forecast graph.            */
+    float              cloudMapOpacity; /** opacity of the cloud layer in the map. Value in [0,1].         */
+    float              windMapOpacity;  /** opacity of the wind layer in the map. Value in [0,1].          */
+    float              rainMapOpacity;  /** opacity of the rain layer in the map. Value in [0,1].          */
+    float              tempMapOpacity;  /** opacity of the temp layer in the map. Value in [0,1].          */
+    double             barWidth;        /** Bar representation width in [0.5-2.0].                         */
 
     /** \brief Configuration struct constructor.
      *
@@ -324,6 +336,10 @@ struct Configuration
     , trayTextDegree  {true}
     , trayTextFont    {""}
     , trayFontSpacing {0}
+    , trayBorderAuto  {true}
+    , trayBorderColor {Qt::black}
+    , trayBackAuto    {true}
+    , trayBackColor   {Qt::white}
     , stretchTempIcon {false}
     , minimumColor    {Qt::blue}
     , maximumColor    {Qt::red}
@@ -706,9 +722,17 @@ QString temperatureIconText(const Configuration &c);
  * \param[in] theme Icon theme index.
  * \param[in] size Icon size in pixels.
  * \param[in] color Icon theme color for monocolor themes.
+ * \param[in] backColor background color for the icons.
  *
  */
-QPixmap createIconsSummary(const unsigned int theme, const int size, const QColor &color);
+QPixmap createIconsSummary(const unsigned int theme, const int size, const QColor &color, const QColor &backColor);
+
+/** \brief Sets the background color of the given pixmap to the given color. The pixmap must have transparent background.
+ * \param[in] color New background color.
+ * \param[in] pix Pixmap to change color.
+ *
+ */
+QPixmap setIconBackground(const QColor &color, const QPixmap &pix);
 
 /** \brief Computes the Qt::Rect of drawn pixels in the given image.
  * \param[in] image QImage object reference.
@@ -839,6 +863,12 @@ class ClickableLabel
      */
     virtual ~ClickableLabel()
     {};
+
+    /** \brief  Helper method to connect to a QCheckbox object. 
+     * \param cb QCheckBox raw pointer. 
+     *
+     */
+    void connectToCheckBox(QCheckBox *cb);
 
   signals:
     void clicked();
