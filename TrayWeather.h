@@ -36,7 +36,6 @@ class QNetworkReply;
 class QNetworkAccessManager;
 class AboutDialog;
 class TrayWeather;
-class AlertDialog;
 
 /** \class NativeEventFilter
  * \brief Filters the events from windows to catch the one for 'wake up' signal.
@@ -137,11 +136,6 @@ class TrayWeather
      */
     void onLanguageChanged(const QString &lang);
 
-    /** \brief Updates the alert data when the user closes an AlertDialog
-     *
-     */
-    void onAlertDialogClosed();
-
     /** \brief Creates or raises the alert dialog.
      *
      */
@@ -177,6 +171,11 @@ class TrayWeather
      *
      */
     void setErrorTooltip(const QString &msg);
+
+    /** \brief Modifies the menu entry as seen.
+     *
+     */
+    void onAlertsSeen();
 
   private:
     /** \brief Updates the tray icon tooltip.
@@ -256,10 +255,14 @@ class TrayWeather
     */
     void updateNetworkManager();
 
-    /** \brief Modifies the Ui based on the capabilities of the current weather provider.
+    /** \brief Modifies the context menu actions based on the capabilities of the current weather provider.
      *
      */
-    void updateUi();
+    void updateMenuActions();
+
+    /** \brief Removes the expired alerts from the Alerts list. 
+     */
+    void removeExpiredAlerts();
 
     Configuration                         &m_configuration;   /** application configuration.                        */
     std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                  */
@@ -275,7 +278,6 @@ class TrayWeather
     QTimer                                 m_updatesTimer;    /** timer to check for application updates.           */
     QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.           */
     NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                          */
-    AlertDialog                           *m_alertsDialog;    /** Alerts dialog.                                    */
     Alerts                                 m_alerts;          /** Last shown alert.                                 */
     std::shared_ptr<WeatherProvider>       m_provider;        /** Weather data provider                             */
 

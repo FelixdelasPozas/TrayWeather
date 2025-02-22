@@ -120,7 +120,7 @@ qt5_wrap_ui(CORE_UI
   WeatherWidget.ui
   PollutionWidget.ui
   UVWidget.ui
-  AlertDialog.ui
+  AlertsWidget.ui
   ErrorWidget.ui
   LocationFinderDialog.ui
 )
@@ -140,7 +140,7 @@ set (CORE_SOURCES
   WeatherWidget.cpp
   PollutionWidget.cpp
   UVWidget.cpp
-  AlertDialog.cpp
+  AlertsWidget.cpp
   LocationFinderDialog.cpp
   Provider.cpp
   Providers/OWM25.cpp

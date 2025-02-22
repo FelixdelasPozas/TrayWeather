@@ -22,7 +22,6 @@
 #include <AboutDialog.h>
 #include <ConfigurationDialog.h>
 #include <Utils.h>
-#include <AlertDialog.h>
 
 // Qt
 #include <QMessageBox>
@@ -44,7 +43,6 @@
 #include <QDateTime>
 
 // C++
-#include <chrono>
 #include <iostream>
 
 const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
@@ -61,7 +59,6 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 , m_configDialog  {nullptr}
 , m_additionalTray{nullptr}
 , m_eventFilter   {this}
-, m_alertsDialog  {nullptr}
 , m_provider      {nullptr}
 {
   m_timer.setSingleShot(true);
@@ -79,7 +76,7 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 
   updateTooltip();
 
-  updateUi();
+  updateMenuActions();
 
   requestData();
 }
@@ -287,7 +284,7 @@ void TrayWeather::showConfiguration()
       disconnectProviderSignals();
       m_provider = WeatherProviderFactory::createProvider(configuration.providerId, m_configuration);
       connectProviderSignals();
-      updateUi();
+      updateMenuActions();
 
       m_configuration.providerId = configuration.providerId;
       m_configuration.lastTab = 0; // Different providers have different tabs.
@@ -324,6 +321,13 @@ void TrayWeather::showConfiguration()
         if(capabilites.hasUVForecast && !m_vData.isEmpty())
         {
           m_weatherDialog->setUVData(m_vData);
+        }
+
+        if(capabilites.hasAlerts && !m_alerts.isEmpty())
+        {
+          removeExpiredAlerts();
+          if(m_alerts.isEmpty())
+            m_weatherDialog->setAlerts(m_alerts);
         }
       }
     }
@@ -410,6 +414,8 @@ void TrayWeather::updateTooltip()
 
   if(m_configuration.showAlerts && !m_alerts.isEmpty() && m_provider && m_provider->capabilities().hasAlerts)
   {
+    removeExpiredAlerts();
+
     auto it = std::find_if(m_alerts.cbegin(), m_alerts.cend(), [](const Alert &a) { return !a.seen; });
     if(it != m_alerts.cend())
     {
@@ -949,7 +955,7 @@ void TrayWeather::showTab()
   {
     auto actions = contextMenu()->actions();
 
-    for(const auto i: {0,1,2,3,4})
+    for(const auto i: {0,1,2,3,4,8})
     {
       if(caller == actions.at(i))
       {
@@ -961,6 +967,13 @@ void TrayWeather::showTab()
   else
   {
     lastTab = m_configuration.lastTab;
+  }
+
+  if(lastTab == 8)
+  {
+    removeExpiredAlerts();
+    if(m_alerts.isEmpty())
+      lastTab = 0;
   }
 
   m_configuration.lastTab = lastTab;
@@ -993,6 +1006,7 @@ void TrayWeather::showTab()
   m_weatherDialog->setUVData(m_vData);
 
   connect(m_weatherDialog, SIGNAL(mapsEnabled(bool)), this, SLOT(onMapsStateChanged(bool)));
+  connect(m_weatherDialog, SIGNAL(alertsSeen()), this, SLOT(onAlertsSeen()));
 
   m_weatherDialog->show();
   m_weatherDialog->m_tabWidget->setCurrentIndex(lastTab);
@@ -1392,7 +1406,7 @@ void TrayWeather::updateNetworkManager()
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::updateUi()
+void TrayWeather::updateMenuActions()
 {
   if(m_provider)
   {
@@ -1405,6 +1419,33 @@ void TrayWeather::updateUi()
     actions.at(7)->setVisible(capabilities.hasAlerts); // Separator
     actions.at(8)->setVisible(capabilities.hasAlerts); // Last alert...
   }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::removeExpiredAlerts()
+{
+  const long long unsigned int currentDt = QDateTime::currentDateTimeUtc().currentMSecsSinceEpoch();
+  
+  auto isExpired = [currentDt](const Alert &a)
+  { return currentDt > a.endTime; };
+
+  // remove expired Alerts.
+  QMutableListIterator<Alert> i(m_alerts);
+  while (i.hasNext())
+  {
+    if (isExpired(i.next()))
+      i.remove();
+  }
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::onAlertsSeen()
+{
+  auto actions = this->contextMenu()->actions();
+  actions.at(8)->setEnabled(false);
+  actions.at(8)->setText(tr("Last alert..."));
+  
+  updateTooltip(); 
 }
 
 //--------------------------------------------------------------------
@@ -1421,39 +1462,15 @@ bool NativeEventFilter::nativeEventFilter(const QByteArray &eventType, void *mes
 }
 
 //--------------------------------------------------------------------
-void TrayWeather::onAlertDialogClosed()
-{
-  if(m_alertsDialog) m_alertsDialog->deleteLater();
-  m_alertsDialog = nullptr;
-
-  std::for_each(m_alerts.begin(), m_alerts.end(), [](Alert &a){ a.seen = true; });
-	
-  auto actions = this->contextMenu()->actions();
-  actions.at(8)->setEnabled(false);
-  actions.at(8)->setText(tr("Last alert..."));
-  
-  updateTooltip(); 
-}
-
-//--------------------------------------------------------------------
 void TrayWeather::showAlert()
 {
-  Alerts notShown;
-  auto filterNotShown = [&](const Alert &alert)
-  {
-    if (!alert.seen) notShown << alert;
-  };
-  std::for_each(m_alerts.cbegin(), m_alerts.cend(), filterNotShown);
+  removeExpiredAlerts();
 
-  if(!notShown.isEmpty())
+  if(!m_alerts.isEmpty())
   {
-    if(!m_alertsDialog)
-    {
-      m_alertsDialog = new AlertDialog();
-      connect(m_alertsDialog, SIGNAL(finished(int)), this, SLOT(onAlertDialogClosed()));
-    }
-
-    m_alertsDialog->setAlertData(notShown);
-    m_alertsDialog->show();
+    m_configuration.lastTab = 5;
+    showTab();
   }
+
+  onAlertsSeen();
 }

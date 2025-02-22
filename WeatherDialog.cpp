@@ -21,6 +21,7 @@
 #include <WeatherDialog.h>
 #include <WeatherWidget.h>
 #include <PollutionWidget.h>
+#include <AlertsWidget.h>
 #include <UVWidget.h>
 #include <Utils.h>
 #include <Provider.h>
@@ -73,6 +74,7 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
   m_tabWidget->setContentsMargins(0, 0, 0, 0);
   m_tabWidget->setStyleSheet(m_tabWidget->styleSheet() + HIDE_DISABLED_TAB_STYLESHEET);
 
+  // Weather forecast tab
   auto weatherTabContents = new QWidget();
   auto weatherTabLayout = new QVBoxLayout();
   weatherTabLayout->setMargin(0);
@@ -94,6 +96,7 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
 
   m_tabWidget->addTab(weatherTabContents, QIcon(), tr("Forecast"));
 
+  // Pollution forecast tab
   auto pollutionTabContents = new QWidget();
   auto pollutionTabLayout = new QVBoxLayout();
   pollutionTabLayout->setMargin(0);
@@ -115,6 +118,7 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
 
   m_tabWidget->addTab(pollutionTabContents, QIcon(), tr("Pollution"));
 
+  // UV forecast tab
   auto uvTabContents = new QWidget();
   auto uvTabLayout = new QVBoxLayout();
   uvTabLayout->setMargin(0);
@@ -135,6 +139,36 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
   uvTabLayout->addWidget(m_uvError);
 
   m_tabWidget->addTab(uvTabContents, QIcon(), tr("UV"));
+
+  // Maps tab
+  m_webpage = new QWebView;
+  m_webpage->setProperty("finished", false);
+  m_webpage->setRenderHint(QPainter::HighQualityAntialiasing, true);
+  m_webpage->setContextMenuPolicy(Qt::NoContextMenu);
+  m_webpage->setAcceptDrops(false);
+  m_webpage->settings()->setAttribute(QWebSettings::Accelerated2dCanvasEnabled, true);
+  m_webpage->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
+  m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, false);
+  m_webpage->settings()->setAttribute(QWebSettings::AcceleratedCompositingEnabled, true);
+  m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanCloseWindows, false);
+  m_webpage->setToolTip(tr("Weather Maps."));
+
+  m_tabWidget->addTab(m_webpage, QIcon(), tr("Maps"));
+
+  // Alerts tab
+  m_alertsWidget = new AlertsWidget();
+  m_tabWidget->addTab(m_alertsWidget, QIcon(), tr("Alerts"));
+  m_tabWidget->setTabEnabled(5, false);
+
+  // Signals to slots.
+  connect(m_alertsWidget, SIGNAL(alertsSeen()), 
+          this,           SIGNAL(alertsSeen()));
+          
+  connect(m_webpage, SIGNAL(loadFinished(bool)),
+          this, SLOT(onLoadFinished(bool)));
+
+  connect(m_webpage, SIGNAL(loadProgress(int)),
+          this, SLOT(onLoadProgress(int)));
 
   connect(m_reset, SIGNAL(clicked()),
           this,    SLOT(onResetButtonPressed()));
@@ -754,7 +788,7 @@ void WeatherDialog::onLoadFinished(bool value)
   {
     QMessageBox msg{ this };
     msg.setWindowTitle(tr("TrayWeather Maps"));
-    msg.setWindowIcon(QIcon{":/TrayWeather/application.ico"});
+    msg.setWindowIcon(QIcon{":/TrayWeather/application.svg"});
     msg.setText(tr("The weather maps couldn't be loaded."));
     msg.exec();
 
@@ -763,9 +797,17 @@ void WeatherDialog::onLoadFinished(bool value)
 }
 
 //--------------------------------------------------------------------
+void WeatherDialog::setAlerts(const Alerts &alerts)
+{
+  m_tabWidget->setTabEnabled(5, true);
+  m_tabWidget->setTabIcon(5, QIcon{":/TrayWeather/alert.svg"});
+  m_alertsWidget->setAlertData(alerts);
+}
+
+//--------------------------------------------------------------------
 bool WeatherDialog::mapsEnabled() const
 {
-  return m_tabWidget->count() == 5;
+  return m_tabWidget->isTabEnabled(4);
 }
 
 //--------------------------------------------------------------------
@@ -789,26 +831,7 @@ void WeatherDialog::onMapsButtonPressed()
   }
   else
   {
-    m_webpage = new QWebView;
-    m_webpage->setProperty("finished", false);
-    m_webpage->setRenderHint(QPainter::HighQualityAntialiasing, true);
-    m_webpage->setContextMenuPolicy(Qt::NoContextMenu);
-    m_webpage->setAcceptDrops(false);
-    m_webpage->settings()->setAttribute(QWebSettings::Accelerated2dCanvasEnabled, true);
-    m_webpage->settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
-    m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, false);
-    m_webpage->settings()->setAttribute(QWebSettings::AcceleratedCompositingEnabled, true);
-    m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanCloseWindows, false);
-    m_webpage->setToolTip(tr("Weather Maps."));
-
-    connect(m_webpage, SIGNAL(loadFinished(bool)),
-            this,      SLOT(onLoadFinished(bool)));
-
-    connect(m_webpage, SIGNAL(loadProgress(int)),
-            this,      SLOT(onLoadProgress(int)));
-
-    m_tabWidget->addTab(m_webpage, QIcon(), tr("Maps"));
-
+    m_tabWidget->setTabEnabled(4, true);
     loadMaps();
   }
 }
@@ -1521,28 +1544,13 @@ void WeatherDialog::removeMaps()
   m_mapsButton->setText(tr("Show Maps"));
   m_mapsButton->setToolTip(tr("Show weather maps tab."));
 
-  m_tabWidget->removeTab(4);
+  m_tabWidget->setTabEnabled(4, false);
+
   while(!m_tabWidget->isTabEnabled(m_tabWidget->currentIndex()))
-  {
     m_tabWidget->setCurrentIndex(m_tabWidget->currentIndex()-1);
-  }
 
-  if(m_webpage)
-  {
-    if(m_webpage->property("finished").toBool())
-    {
-      updateMapLayerValues();
-    }
-
-    disconnect(m_webpage, SIGNAL(loadFinished(bool)),
-               this,      SLOT(onLoadFinished(bool)));
-
-    disconnect(m_webpage, SIGNAL(loadProgress(int)),
-               this,      SLOT(onLoadProgress(int)));
-
-    m_webpage->deleteLater();
-    m_webpage = nullptr;
-  }
+  if(m_webpage && m_webpage->property("finished").toBool()) 
+    updateMapLayerValues();
 }
 
 //--------------------------------------------------------------------
@@ -1672,6 +1680,11 @@ QLinearGradient WeatherDialog::sunriseSunsetGradient(QDateTime begin, QDateTime 
 //--------------------------------------------------------------------
 void WeatherDialog::updateUI(const ProviderCapabilities &capabilities)
 {
+  if(!capabilities.hasAlerts)
+  {
+    m_tabWidget->setTabEnabled(5, false);
+  }
+
   if(!capabilities.hasMaps)
   {
     if(mapsEnabled()) removeMaps();

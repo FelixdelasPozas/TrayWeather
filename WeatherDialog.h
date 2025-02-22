@@ -46,6 +46,7 @@ class QWebView;
 class WeatherWidget;
 class PollutionWidget;
 class UVWidget;
+class AlertsWidget;
 
 /** \class ErrorWidget
  * \brief Widget to show an error message in a forecast tab.
@@ -107,6 +108,12 @@ class WeatherDialog
      */
     void setUVData(const UV &data);
 
+    /** \brief Sets the Alerts data. 
+     * \params[in] alerts alerts list.
+     *
+     */
+    void setAlerts(const Alerts &alerts);
+
     /** \brief Returns true if the maps tab is visible and false otherwise.
      *
      */
@@ -120,6 +127,7 @@ class WeatherDialog
 
   signals:
     void mapsEnabled(bool);
+    void alertsSeen();
 
   protected:
     virtual void showEvent(QShowEvent *e) override;
@@ -255,6 +263,7 @@ class WeatherDialog
     std::shared_ptr<PollutionWidget> m_pollutionTooltip; /** pollution chart tooltip widget. */
     std::shared_ptr<UVWidget>        m_uvTooltip;        /** UV chart tooltip widget.        */
     QWebView                        *m_webpage;          /** maps webpage.                   */
+    AlertsWidget                    *m_alertsWidget;     /** Alerts widget.                  */
 };
 
 #endif // WEATHERDIALOG_H_

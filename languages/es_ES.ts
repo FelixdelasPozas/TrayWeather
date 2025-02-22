@@ -1531,8 +1531,8 @@ no existe la bandeja de iconos. La aplicación se cerrará ahora.</translation>
         <location filename="../Main.cpp" line="122"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
-        <translation>TrayWeather no se puede ejecutar sin una localización y un proveedor de datos meteorológicos válidos.
-La aplicación te cerrará ahora.</translation>
+        <translation type="unfinished">TrayWeather no se puede ejecutar sin una localización y un proveedor de datos meteorológicos válidos.
+La aplicación se cerrará ahora.</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="362"/>

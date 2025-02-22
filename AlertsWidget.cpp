@@ -1,5 +1,5 @@
 /*
- File: AlertDialog.cpp
+ File: AlertsWidget.cpp
  Created on: 12/12/2021
  Author: Felix de las Pozas Alvarez
 
@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <AlertDialog.h>
+#include <AlertsWidget.h>
 #include <Utils.h>
 
 // Qt
@@ -28,20 +28,18 @@
 #include <cassert>
 
 int currentAlert = 0; /** index of current alert being shown. */
-constexpr int DEFAULT_LOGICAL_DPI = 96;
 
 //--------------------------------------------------------------------
-AlertDialog::AlertDialog(QWidget *p, Qt::WindowFlags f)
-: QDialog(p, f)
+AlertsWidget::AlertsWidget(QWidget *p, Qt::WindowFlags f)
+: QWidget(p, f)
 {
-  setWindowFlags(windowFlags() & ~(Qt::WindowContextHelpButtonHint) & ~(Qt::WindowMaximizeButtonHint) & ~(Qt::WindowMinimizeButtonHint));
   setupUi(this);
 
   connectSignals();
 }
 
 //--------------------------------------------------------------------
-void AlertDialog::setAlertData(const Alerts &alerts)
+void AlertsWidget::setAlertData(const Alerts &alerts)
 {
   assert(!alerts.empty());
   m_alerts = alerts;
@@ -61,49 +59,45 @@ void AlertDialog::setAlertData(const Alerts &alerts)
 }
 
 //--------------------------------------------------------------------
-void AlertDialog::showEvent(QShowEvent *e)
-{
-  QDialog::showEvent(e);
-
-  scaleAlertDialog();
-}
-
-//--------------------------------------------------------------------
-void AlertDialog::changeEvent(QEvent *e)
+void AlertsWidget::changeEvent(QEvent *e)
 {
   if(e && e->type() == QEvent::LanguageChange)
-  {
     retranslateUi(this);
-  }
 
-  QDialog::changeEvent(e);
+  QWidget::changeEvent(e);
 }
 
 //--------------------------------------------------------------------
-void AlertDialog::onNextButtonClicked()
+void AlertsWidget::showEvent(QShowEvent *e)
+{
+  emit alertsSeen();
+
+  QWidget::showEvent(e);
+}
+
+//--------------------------------------------------------------------
+void AlertsWidget::onNextButtonClicked()
 {
   if(currentAlert == m_alerts.count() - 1) return;
   showAlert(++currentAlert);
-  scaleAlertDialog();
 }
 
 //--------------------------------------------------------------------
-void AlertDialog::onPreviousButtonClicked()
+void AlertsWidget::onPreviousButtonClicked()
 {
   if(currentAlert == 0) return;
   showAlert(--currentAlert);
-  scaleAlertDialog();
 }
 
 //--------------------------------------------------------------------
-void AlertDialog::connectSignals()
+void AlertsWidget::connectSignals()
 {
   connect(m_next, SIGNAL(clicked()), this, SLOT(onNextButtonClicked()));
   connect(m_previous, SIGNAL(clicked()), this, SLOT(onPreviousButtonClicked()));
 }
 
 //--------------------------------------------------------------------
-void AlertDialog::showAlert(const int index)
+void AlertsWidget::showAlert(const int index)
 {
   const auto data = m_alerts.at(index);
   m_sender->setText(data.sender);
@@ -125,16 +119,4 @@ void AlertDialog::showAlert(const int index)
     m_previous->setEnabled(index > 0);
     m_next->setEnabled(index < m_alerts.count() - 1);
   }
-}
-
-//--------------------------------------------------------------------
-void AlertDialog::scaleAlertDialog()
-{
-  const auto scale = (this->logicalDpiX() == DEFAULT_LOGICAL_DPI) ? 1. : 1.25;
-
-  setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
-  setMinimumSize(400, 0);
-
-  adjustSize();
-  setFixedSize(size() * scale);
 }

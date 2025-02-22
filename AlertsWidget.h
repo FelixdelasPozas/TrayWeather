@@ -1,5 +1,5 @@
 /*
- File: AlertDialog.h
+ File: AlertsWidget.h
  Created on: 12/12/2021
  Author: Felix de las Pozas Alvarez
 
@@ -17,37 +17,37 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ALERTDIALOG_H_
-#define ALERTDIALOG_H_
+#ifndef ALERTSWIDGET_H_
+#define ALERTSWIDGET_H_
 
 // Project
-#include "ui_AlertDialog.h"
+#include "ui_AlertsWidget.h"
 #include <Utils.h>
 
 // Qt
-#include <QDialog>
+#include <QWidget>
 
-/** \class AlertDialog
- * \brief Implements the dialog to show alerts.
+/** \class AlertsWidget
+ * \brief Implements a widget to show alerts.
  *
  */
-class AlertDialog
-: public QDialog
-, private Ui::AlertDialog
+class AlertsWidget
+: public QWidget
+, private Ui::AlertWidget
 {
     Q_OBJECT
   public:
-    /** \brief AlertDialog class constructor.
+    /** \brief AlertsWidget class constructor.
      * \param[in] parent Raw pointer of the widget parent of this one.
      * \param[in] f Dialog flags.
      *
      */
-    explicit AlertDialog(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
+    explicit AlertsWidget(QWidget *parent = nullptr, Qt::WindowFlags f = Qt::WindowFlags());
 
-    /** \brief AlertDialog class virtual destructor.
+    /** \brief AlertsWidget class virtual destructor.
      *
      */
-    virtual ~AlertDialog()
+    virtual ~AlertsWidget()
     {};
 
     /** \brief Sets the alert data.
@@ -56,9 +56,12 @@ class AlertDialog
      */
     void setAlertData(const Alerts &data);
 
+  signals:
+    void alertsSeen();
+
   protected:
-    virtual void showEvent(QShowEvent *e) override;
     virtual void changeEvent(QEvent *e) override;
+    virtual void showEvent(QShowEvent *) override;
 
   private slots:
     /** \brief Updates the dialog with the next alert, if it exists. 
@@ -83,12 +86,7 @@ class AlertDialog
      */
     void showAlert(const int index);
 
-    /** \brief Resizes the dialog to show the contents of the alert. 
-     *
-     */
-    void scaleAlertDialog();
-
     Alerts m_alerts; /** Alerts list. */
 };
 
-#endif // ALERTDIALOG_H_
+#endif // ALERTSWIDGET_H_

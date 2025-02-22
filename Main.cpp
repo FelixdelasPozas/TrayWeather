@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
   if(!QSystemTrayIcon::isSystemTrayAvailable())
   {
     QMessageBox msgBox;
-    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
     msgBox.setWindowTitle(QObject::tr("Tray Weather"));
     msgBox.setIcon(QMessageBox::Warning);
     msgBox.setText(QObject::tr("TrayWeather cannot execute in this computer because there isn't a tray available!.\nThe application will exit now."));
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
   if (!guard.create(1))
   {
     QMessageBox msgBox;
-    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
     msgBox.setWindowTitle(QObject::tr("Tray Weather"));
     msgBox.setIcon(QMessageBox::Warning);
     msgBox.setText(QObject::tr("TrayWeather is already running!"));
@@ -104,19 +104,17 @@ int main(int argc, char *argv[])
 
     QObject::connect(&dialog, &ConfigurationDialog::languageChanged, []( const QString &lang ) { changeLanguage(lang); });
 
-    auto value = dialog.exec();
-    if(value == QDialog::Rejected) return 0;
+    const auto value = dialog.exec();
 
-    dialog.getConfiguration(configuration);
-
-    if(configuration.isValid())
+    if(configuration.isValid() && value == QDialog::Accepted)
     {
+      dialog.getConfiguration(configuration);
       save(configuration);
     }
     else
     {
       QMessageBox msgBox;
-      msgBox.setWindowIcon(QIcon(":/TrayWeather/application.ico"));
+      msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
       msgBox.setWindowTitle(QObject::tr("Tray Weather"));
       msgBox.setIcon(QMessageBox::Warning);
       msgBox.setText(QObject::tr("TrayWeather cannot execute without a valid location and a valid weather data provider.\nThe application will exit now."));

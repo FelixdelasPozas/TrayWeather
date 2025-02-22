@@ -1340,15 +1340,21 @@ void ConfigurationDialog::updateTooltipFieldsButtons()
 void ConfigurationDialog::onIconPreviewPressed()
 {
   const auto color = QColor(m_iconThemeColor->property("iconColor").toString());
-  const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF};
+  const auto invertedColor = QColor{color.red() ^ 0xFF, color.green() ^ 0xFF, color.blue() ^ 0xFF, 100};
   const auto iconTheme = m_trayIconTheme->currentIndex();
-  QColor backgroundColor = ICON_THEMES.at(iconTheme).colored ? Qt::darkGray : invertedColor;
+  QColor backgroundColor = ICON_THEMES.at(iconTheme).colored ? Qt::transparent : invertedColor;
 
   if(!m_backgroundColor->isChecked()) 
     backgroundColor = QColor(m_backgroundColorButton->property("iconColor").toString());
 
-  const auto image = createIconsSummary(iconTheme, 32, color, backgroundColor);
-  auto previewWidget = new PreviewWidget(image, this);
+  const auto image = createIconsSummary(iconTheme, 32, color, backgroundColor).toImage();
+
+  QPixmap background(m_pixmap.scaled(image.size()));
+  QPainter painter(&background);
+  painter.drawImage(QPoint{0,0}, image);
+  painter.end();
+
+  auto previewWidget = new PreviewWidget(background, this);
 
   const QPoint pos = m_iconSummary->mapToGlobal(QPoint{0,0});
   previewWidget->move(pos);
@@ -1796,18 +1802,13 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     ratioX *= ratio;
     ratioY *= ratio;
   }
-
-  QPixmap background(m_pixmap.size());
-  if(!m_backgroundColor->isChecked()) background.fill(m_backgroundColorButton->property("iconColor").toString());
+  
+  QPixmap background(m_pixmap);
   painter.begin(&background);
+  if(!m_backgroundColor->isChecked()) painter.fillRect(background.rect(), QColor(m_backgroundColorButton->property("iconColor").toString()));  
   painter.translate(rect.center());
   painter.scale(ratioX, ratioY);
   painter.translate(-rect.center()+difference);
-  painter.end();
-
-  subtractPixmap(background, pixmap);
-
-  painter.begin(&background);
   painter.drawImage(QPoint{0,0}, pixmap.toImage());
   painter.end();
 
