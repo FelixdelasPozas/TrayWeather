@@ -1,128 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sl_SI">
+<TS version="2.1" language="hu_HU" sourcelanguage="en">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../AboutDialog.ui" line="14"/>
         <source>About...</source>
-        <translation>O programu...</translation>
+        <translation>Névjegy...</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="28"/>
         <source>Tray Weather</source>
-        <translation>TrayWeather</translation>
+        <translatorcomment>Tray Weather</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="111"/>
         <source>Compiled on</source>
-        <translation>Sestavljen</translation>
+        <translatorcomment>Létrehozva</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="121"/>
         <source>TrayWeather Homepage</source>
-        <translation>Domača stran TrayWeather</translation>
+        <translatorcomment>A TrayWeather honlapja</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="124"/>
         <source>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</source>
-        <translation>Domača stran na &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
+        <translatorcomment>A honlap tulajdonosa &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="180"/>
         <source>Powered by</source>
-        <translation>Powered by</translation>
+        <translation>Erőforrások</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="247"/>
         <source>Qt Framework</source>
+        <translatorcomment>Qt keretrendszer</translatorcomment>
         <translation></translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="329"/>
         <source>Qt Charts Module</source>
+        <translatorcomment>Qt diagramm modul</translatorcomment>
         <translation></translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="369"/>
         <source>Icons courtesy of</source>
-        <translation>Ikone z dovoljenjem</translation>
+        <translation>Az ikonokért köszönet</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="375"/>
         <source>FlatIcon</source>
-        <translation></translation>
+        <translation>FlatIcon</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="427"/>
         <source>IP Geolocation provided by</source>
-        <translation>IP geolokacijo posreduje</translation>
+        <translation>Földrajzi helyzet szolgáltató</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="433"/>
         <location filename="../AboutDialog.ui" line="477"/>
         <source>IP API</source>
-        <translation></translation>
+        <translation>IP API</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="471"/>
         <source>Public IP Address API provided by</source>
-        <translation>API za javni IP naslov zagotavlja</translation>
+        <translation>Publikus IP-cím API-t szolgáltató</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="515"/>
         <source>Maps data provided by</source>
-        <translation>Zemljevide posreduje</translation>
+        <translation>Térképadat szolgáltató</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="521"/>
         <source>OpenStreetMap</source>
-        <translation></translation>
+        <translation>OpenStreetMap</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="537"/>
         <source>Google Maps</source>
-        <translation></translation>
+        <translation>Google Map</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="558"/>
         <source>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</source>
-        <translation>Če želite podpreti ta projekt, lahko to storite na &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</translation>
+        <translation>Ha támogatni kívánja a projektet az itt megteheti: &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="598"/>
         <source>You can support me on Ko-fi!</source>
-        <translation>Lahko me podprete na Ko-fi!</translation>
+        <translation>Támogathat a &quot;Ko-fi&quot;-n!</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="630"/>
         <source>Weather Providers</source>
-        <translation>Ponudniki vremena</translation>
+        <translation>Időjárás szolgáltatók</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="682"/>
         <source>Translations</source>
-        <translation>Prevodi</translation>
+        <translation>Fordítások</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="733"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
-        <translation>Če vaš jezik ni na voljo, lahko pomagate s &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;prevodom&lt;/a&gt;.</translation>
+        <translation>Ha az Ön nyelve hiányzik itt segíthet nekünk: &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="747"/>
         <source>Icon Themes</source>
-        <translation>Teme Ikon</translation>
+        <translation>Ikon témák</translation>
     </message>
     <message>
         <location filename="../AboutDialog.cpp" line="47"/>
         <source>version</source>
-        <translation>verzija</translation>
+        <translatorcomment>verzió</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../AboutDialog.cpp" line="49"/>
         <source>Compiled on </source>
-        <translation>Sestavljeno </translation>
+        <translation>Létrehozva </translation>
     </message>
 </context>
 <context>
@@ -131,52 +138,52 @@
         <location filename="../AlertDialog.ui" line="14"/>
         <location filename="../AlertDialog.ui" line="21"/>
         <source>Weather Alert</source>
-        <translation>Vremensko opozorilo</translation>
+        <translation>Időjárás figyelmeztetés</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="140"/>
         <source>Sender:</source>
-        <translation>Pošiljatelj:</translation>
+        <translation>Küldő:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="159"/>
         <source>Start:</source>
-        <translation>Začetek:</translation>
+        <translation>Indítás:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="194"/>
         <source>Event:</source>
-        <translation>Dogodek:</translation>
+        <translation>Esemény:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="73"/>
         <source>End:</source>
-        <translation>Konec:</translation>
+        <translation>Vége:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="105"/>
         <source>Description:</source>
-        <translation>Opis:</translation>
+        <translation>Leírás:</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="261"/>
         <source>Show previous alert.</source>
-        <translation>Pokaži prejšnje opozorilo.</translation>
+        <translation>Előző figyelmeztetés.</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="264"/>
         <source>Previous</source>
-        <translation>Prejšnja</translation>
+        <translation>Előző</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="271"/>
         <source>Show next alert.</source>
-        <translation>Pokaži naslednje opozorilo.</translation>
+        <translation>Következő figyelmeztetés.</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="274"/>
         <source>Next</source>
-        <translation>Naprej</translation>
+        <translation>Következő</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="289"/>
@@ -186,7 +193,7 @@
     <message>
         <location filename="../AlertDialog.ui" line="235"/>
         <source>Current alert number.</source>
-        <translation>Trenutna opozorilna številka.</translation>
+        <translation>Jelenlegi figyelmeztetések száma.</translation>
     </message>
     <message>
         <location filename="../AlertDialog.ui" line="86"/>
@@ -195,7 +202,7 @@
         <location filename="../AlertDialog.ui" line="207"/>
         <location filename="../AlertDialog.ui" line="217"/>
         <source>Unknown</source>
-        <translation>Neznan</translation>
+        <translation>Ismeretlen</translation>
     </message>
 </context>
 <context>
@@ -203,17 +210,17 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="35"/>
         <source>Configuration</source>
-        <translation>Nastavitve</translation>
+        <translation>Beállítások</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="495"/>
         <source>Location</source>
-        <translation>Lokacija</translation>
+        <translation>Földrajzi hely</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="526"/>
         <source>Geographic Location Method</source>
-        <translation>Način geografskega položaja</translation>
+        <translation>Földrajzi helymeghatározás metódusa</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="563"/>
@@ -221,13 +228,13 @@
         <location filename="../ConfigurationDialog.ui" line="598"/>
         <location filename="../ConfigurationDialog.ui" line="601"/>
         <source>Latitude value</source>
-        <translation>Koordinata zemljepisne širine</translation>
+        <translation>Földrajzi szélesség értéke</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="604"/>
         <location filename="../ConfigurationDialog.ui" line="873"/>
         <source>Latitude</source>
-        <translation>Zemljepisna širina</translation>
+        <translation>Földrajzi szélesség</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="541"/>
@@ -235,152 +242,152 @@
         <location filename="../ConfigurationDialog.ui" line="585"/>
         <location filename="../ConfigurationDialog.ui" line="588"/>
         <source>Longitude value</source>
-        <translation>Koordinata zemljepisne dolžine</translation>
+        <translation>Földrajzi hosszúság értéke</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="591"/>
         <location filename="../ConfigurationDialog.ui" line="898"/>
         <source>Longitude</source>
-        <translation>Zemljepisna dolžina</translation>
+        <translation>Földrajzi hosszúság</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="672"/>
         <location filename="../ConfigurationDialog.ui" line="675"/>
         <source>Use DNS IP for geolocation</source>
-        <translation>Uporabi DNS IP za geolokacijo</translation>
+        <translation>DNS IP-cím használata a helyzetmeghatározáshoz</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="678"/>
         <source>Use DNS address</source>
-        <translation>Uporabi DNS naslov</translation>
+        <translation>DNS-címek használata</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="637"/>
         <location filename="../ConfigurationDialog.ui" line="640"/>
         <source>Request IP geolocation</source>
-        <translation>Zahtevaj geolokacijo preko IP</translation>
+        <translation>IP-helyzetmeghatározás kérés</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="643"/>
         <source>Request Geolocation</source>
-        <translation>Zahtevaj geolokacijo</translation>
+        <translation>Földrajzi helyzetmeghatározás kérése</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="611"/>
         <location filename="../ConfigurationDialog.ui" line="614"/>
         <source>Specify geographic coordinates</source>
-        <translation>Navedi gografske koordinate</translation>
+        <translation>Földrajzi helyzet megadása</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="617"/>
         <source>Manual Coordinates</source>
-        <translation>Ročna nastavitev koordinat</translation>
+        <translation>Koordináták megadása</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="650"/>
         <location filename="../ConfigurationDialog.ui" line="653"/>
         <source>Geolocation service status</source>
-        <translation>Status storitve za geolokacijo</translation>
+        <translation>Helymeghatározás szolgáltatás állapota</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="624"/>
         <location filename="../ConfigurationDialog.ui" line="627"/>
         <source>Use IP geolocation service</source>
-        <translation>Uporabi storitve za geolokacijo preko IP</translation>
+        <translation>IP helyzetmeghatározás szolgáltatás használata</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="630"/>
         <source>IP Geolocation</source>
-        <translation>IP geolokacija</translation>
+        <translation>IP földrajzi helyzet</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="687"/>
         <location filename="../ConfigurationDialog.ui" line="690"/>
         <source>Obtain geographical coordinates before each weather data request.</source>
-        <translation>Pridobi geografske koordinate pred vsako zahtevo vremenskih podatkov.</translation>
+        <translation>Az időjárási adatok lekérése előtt szerezzük meg a földrajzi koordinátákat.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="693"/>
         <source>Enable roaming</source>
-        <translation>Nestalna lokacija</translation>
+        <translation>Roaming engedélyezése</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="719"/>
         <source>Find location...</source>
-        <translation>Poiščite lokacijo...</translation>
+        <translation>Földrajzi hely keresése...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="756"/>
         <source>Geographic Coordinates</source>
-        <translation>Geografske koordinate</translation>
+        <translation>Földrajzi koordináták</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="785"/>
         <source>Country</source>
-        <translation>Država</translation>
+        <translation>Ország</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="829"/>
         <source>Region</source>
-        <translation>Regija</translation>
+        <translation>Régió</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="980"/>
         <source>IP Address</source>
-        <translation>IP naslov</translation>
+        <translation>IP-cím</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1024"/>
         <source>City</source>
-        <translation>Mesto</translation>
+        <translation>Város</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="417"/>
         <source>API Key:</source>
-        <translation>API ključ:</translation>
+        <translation>API-kulcs:</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="444"/>
         <location filename="../ConfigurationDialog.cpp" line="440"/>
         <source>Testing API Key...</source>
-        <translation>Preverjanje API ključa...</translation>
+        <translation>API-kulcs ellenőrzése folyamatban...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="469"/>
         <source>Test API Key</source>
-        <translation>Preveri API ključ</translation>
+        <translation>API-kulcs ellenőrzése</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1050"/>
         <source>Units</source>
-        <translation>Enote</translation>
+        <translation>Mértékegységek</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1075"/>
         <source>Measurement Units</source>
-        <translation>Merske enote</translation>
+        <translation>Mértékegységek</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1113"/>
         <source>Custom</source>
-        <translation>Po meri</translation>
+        <translation>Egyéni</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1145"/>
         <source>Custom Measurement Units</source>
-        <translation>Merke enote po meri</translation>
+        <translation>Egyéni mértékegység</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1163"/>
         <location filename="../ConfigurationDialog.ui" line="1332"/>
         <location filename="../ConfigurationDialog.ui" line="1609"/>
         <source>Temperature</source>
-        <translation>Temperatura</translation>
+        <translation>Hőmérséklet</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1171"/>
         <source>Celsius</source>
-        <translation>Celzij</translation>
+        <translation>Celsius</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1176"/>
@@ -390,7 +397,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1190"/>
         <source>Pressure</source>
-        <translation>Pritisk</translation>
+        <translation>Légnyomás</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1198"/>
@@ -416,106 +423,106 @@
         <location filename="../ConfigurationDialog.ui" line="1227"/>
         <location filename="../ConfigurationDialog.ui" line="1774"/>
         <source>Wind</source>
-        <translation>Veter</translation>
+        <translation>Szél</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1235"/>
         <source>meters/second</source>
-        <translation>m/s</translation>
+        <translation>méter/másodperc</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1240"/>
         <source>miles/hour</source>
-        <translation>miles/h</translation>
+        <translation>mérföld/óra</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1245"/>
         <source>kilometers/hour</source>
-        <translation>km/h</translation>
+        <translation>kilométer/óra</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1250"/>
         <source>feet/second</source>
-        <translation>ft/s</translation>
+        <translation>láb/másodperc</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1255"/>
         <source>knots</source>
-        <translation>vozli</translation>
+        <translation>csomó</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1269"/>
         <source>Precipitation</source>
-        <translation>Padavine</translation>
+        <translation>Csapadék</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1315"/>
         <source>Forecast Graph</source>
-        <translation>Graf napovedi</translation>
+        <translation>Előrejelzés grafikon</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1367"/>
         <location filename="../ConfigurationDialog.ui" line="1719"/>
         <source>Rain</source>
-        <translation>Dež</translation>
+        <translation>Eső</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1434"/>
         <source>Snow</source>
-        <translation>Sneg</translation>
+        <translation>Hó</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1495"/>
         <location filename="../ConfigurationDialog.ui" line="1505"/>
         <location filename="../ConfigurationDialog.ui" line="1530"/>
         <source>Adjusts the bar width of bar representations.</source>
-        <translation>Prilagodi širino vrstice predstavitev vrstice.</translation>
+        <translation>Sáv igazítása az ábra szélességéhez.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1498"/>
         <source>Bar width</source>
-        <translation>Širina palice</translation>
+        <translation>Sáv szélessége</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1919"/>
         <source>Selects the temperature icon text color</source>
-        <translation>Izbira barve za tekst vremenske ikone</translation>
+        <translation>Válassza ki a hőmérséklet-ikon szövegének színét</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1944"/>
         <source>Icon type</source>
-        <translation>Vrsta ikone</translation>
+        <translation>Ikon típusa</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2007"/>
         <source>Weather icon</source>
-        <translation>Samo vreme</translation>
+        <translation>Időjárás ikon</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2012"/>
         <source>Temperature icon</source>
-        <translation>Samo temperatura</translation>
+        <translation>Hőmérséklet ikon</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2017"/>
         <source>Weather &amp; temperature icon</source>
-        <translation>Vreme in temperatura v enem</translation>
+        <translation>Időjárás és hőmérséklet ikon</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2022"/>
         <source>Weather icon &amp; temperature icon</source>
-        <translation>Vreme in temperatura posamezno</translation>
+        <translation>Időjárás ikon és hőmérséklet ikon</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2042"/>
         <location filename="../ConfigurationDialog.ui" line="2353"/>
         <source>Selects the icon theme.</source>
-        <translation>Izberi temo ikon.</translation>
+        <translation>Válassza ki az ikontémát.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2045"/>
         <source>Icon theme</source>
-        <translation>Tema ikon</translation>
+        <translation>Ikontéma</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2115"/>
@@ -532,75 +539,75 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2369"/>
         <source>Changes icon theme color.</source>
-        <translation>Spremeni barvo teme ikon.</translation>
+        <translation>Ikontéma módosítása.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2385"/>
         <source>Shows a summary of theme icons.</source>
-        <translation>Predogled ikon teme.</translation>
+        <translation>Ikontéma ikonjainak bemutatása.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1835"/>
         <source>Variable</source>
-        <translation>Spremenljiva</translation>
+        <translation>Változó</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1854"/>
         <source>Click to change minimum value color...</source>
-        <translation>Spremeni barvo najnižje termperature...</translation>
+        <translation>Kattintson a minimális érték színének módosításához...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1870"/>
         <source>Range</source>
-        <translation>Razpon</translation>
+        <translation>Tartomány</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1895"/>
         <source>Click to change maximum value color...</source>
-        <translation>Spremeni barvo najnižje temperature...</translation>
+        <translation>Kattinston a maximális érték színének módosításához...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2176"/>
         <location filename="../ConfigurationDialog.ui" line="2195"/>
         <location filename="../ConfigurationDialog.ui" line="2264"/>
         <source>Modifies the temperature icon size.</source>
-        <translation>Spremeni velikost ikone temperature.</translation>
+        <translation>Hőmérséklet ikon szélességének módosítása.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2267"/>
         <source>Temperature icon size</source>
-        <translation>Velikost ikone temperature</translation>
+        <translation>Hőmérséklet ikon mérete</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2528"/>
         <source>Icon Tooltip</source>
-        <translation>Namig ikone</translation>
+        <translation>Ikon eszköztipp</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2878"/>
         <location filename="../ConfigurationDialog.ui" line="2891"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
-        <translation>Zamenjaj vrstni red ikon v sistemski vrstici. Omogočeno samo, če se uporablja predstavitev dveh ikon.</translation>
+        <translation>Tálcaikonok felcserélése. (Csak két ikon használatakor lehetséges.)</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1959"/>
         <source>Fixed</source>
-        <translation>Določena</translation>
+        <translation>Állandó</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1981"/>
         <source>Click to change fixed color...</source>
-        <translation>Spremeni določeno barvo...</translation>
+        <translation>Kattinson az állandó színhez módosításához...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1922"/>
         <source>Temperature text color</source>
-        <translation>Barva temperature</translation>
+        <translation>Hömérséklet szövegének színe</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="61"/>
         <source>Provider</source>
-        <translation>Ponudnik</translation>
+        <translation>Szolgáltató</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="75"/>
@@ -608,375 +615,375 @@
         <location filename="../ConfigurationDialog.ui" line="88"/>
         <location filename="../ConfigurationDialog.ui" line="91"/>
         <source>Selected weather data provider.</source>
-        <translation>Izbran ponudnik vremenskih podatkov.</translation>
+        <translation>Kiválasztott időjárás stolgáltató.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="81"/>
         <source>Weather Data Provider</source>
-        <translation>Ponudnik vremenskih podatkov</translation>
+        <translation>Időjárási adatok szolgáltatója</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="365"/>
         <location filename="../ConfigurationDialog.ui" line="368"/>
         <source>Configuration needed for the current weather provider.</source>
-        <translation>Potrebna konfiguracija za trenutnega ponudnika vremena.</translation>
+        <translation>A jelenlegi szolgáltatóhoz beállítások szükségesek.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="384"/>
         <source>Provider Configuration</source>
-        <translation>Konfiguracija ponudnika</translation>
+        <translation>Szolgáltató beállításai</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="424"/>
         <location filename="../ConfigurationDialog.ui" line="427"/>
         <source>Provider API key.</source>
-        <translation>API ključ ponudnika.</translation>
+        <translation>Szolgáltató API-kulcsa.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="463"/>
         <location filename="../ConfigurationDialog.ui" line="466"/>
         <source>Tests the API key.</source>
-        <translation>Preizkusi API ključ.</translation>
+        <translation>API-kulcs tesztelése.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="106"/>
         <location filename="../ConfigurationDialog.ui" line="109"/>
         <source>Capabilities of the current weather data provider.</source>
-        <translation>Zmožnosti trenutnega ponudnika vremenskih podatkov.</translation>
+        <translation>Szolgáltató képességei.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="125"/>
         <source>Provider Capabilites</source>
-        <translation>Zmožnosti ponudnika</translation>
+        <translation>Szolgáltató képességei</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="165"/>
         <source>Weather forecast</source>
-        <translation>Vremenska napoved</translation>
+        <translation>Időjárás előrejelzés</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="253"/>
         <source>Air pollution forecast</source>
-        <translation>Napoved onesnaženosti zraka</translation>
+        <translation>Légszennyezettség előrejelzés</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="266"/>
         <source>Ultraviolet radiation forecast</source>
-        <translation>Napoved ultravijoličnega sevanja</translation>
+        <translation>Ultraibolya sugárzás előrejelzés</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="279"/>
         <source>Weather maps</source>
-        <translation>Vremenske karte</translation>
+        <translation>Időjárás térkép</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="292"/>
         <source>Geo-Location</source>
-        <translation>Geolokacija</translation>
+        <translation>Földrajzi helymeghatározás</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="343"/>
         <source>Weather alerts</source>
-        <translation>Vremenska opozorila</translation>
+        <translation>Időjárás figyelmeztetések</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1277"/>
         <source>millimeters/hour</source>
-        <translation>milimetri/uro</translation>
+        <translation>milliméter/óra</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1282"/>
         <source>inches/hour</source>
-        <translation>inči/uro</translation>
+        <translation>hüvelyk/óra</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1339"/>
         <source>Rain representation in the forecast graph.</source>
-        <translation>Prikaz dežja v grafu napovedi.</translation>
+        <translation>Eső színjelölése az időjárási grafikonon.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1343"/>
         <location filename="../ConfigurationDialog.ui" line="1410"/>
         <location filename="../ConfigurationDialog.ui" line="1445"/>
         <source>None</source>
-        <translation>Nič</translation>
+        <translation>Nincs</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1348"/>
         <location filename="../ConfigurationDialog.ui" line="1415"/>
         <location filename="../ConfigurationDialog.ui" line="1450"/>
         <source>Smooth Line</source>
-        <translation>Gladka linija</translation>
+        <translation>Sima vonal</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1353"/>
         <location filename="../ConfigurationDialog.ui" line="1420"/>
         <location filename="../ConfigurationDialog.ui" line="1455"/>
         <source>Bars</source>
-        <translation>Palice</translation>
+        <translation>Sávok</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1380"/>
         <source>Rain representation color in the forecast graph.</source>
-        <translation>Barva prikaza dežja v grafu napovedi.</translation>
+        <translation>Eső színjelölése az időjárási grafikonon.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1396"/>
         <source>Temperature representation color in the forecast graph.</source>
-        <translation>Barva prikaza temperature v grafu napovedi.</translation>
+        <translation>Hőmérséklet színjelölése az időjárási grafikonon.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1406"/>
         <source>Temperature representation in the forecast graph.</source>
-        <translation>Prikaz temperature v grafu napovedi.</translation>
+        <translation>Hőmérséklet színjelölése az időjárási grafikonon.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1441"/>
         <source>Snow representation in the forecast graph.</source>
-        <translation>Prikaz snega v grafu napovedi.</translation>
+        <translation>Havazás színjelölése az időjárási grafikonon.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1469"/>
         <source>Snow representation color in the forecast graph.</source>
-        <translation>Barva prikaza snega v grafu napovedi.</translation>
+        <translation>Havazás színjelölése az időjárási grafikonon.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1554"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; In the forecast graphs the information can be hidden and shown again by clicking on the legend title text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Opomba:&lt;/span&gt; V grafih napovedi lahko skriješ in ponovno prikažeš informacije s klikom na besedilo v legendi.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; Az időjárásgrafikon információk a jelmagyarázat címszövegére való kattintással ki-be kapcsolhatók .&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1819"/>
         <source>Icon</source>
-        <translation>Ikona</translation>
+        <translation>Ikon</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2090"/>
         <source>from</source>
-        <translation>od</translation>
+        <translation>innen</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2109"/>
         <source>Minimum range value</source>
-        <translation>Najnižja vrednost</translation>
+        <translation>Minimális határérték</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2134"/>
         <source>to</source>
-        <translation>do</translation>
+        <translation>-&gt;</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2153"/>
         <source>Maximum range value</source>
-        <translation>Najvišja vrednost</translation>
+        <translation>Maximális határérték</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2227"/>
         <location filename="../ConfigurationDialog.ui" line="2237"/>
         <source>Draw a border around temperature icon text.</source>
-        <translation>Nariši obrobo okoli ikone za temperaturo za boljši kontrast.</translation>
+        <translation>Hőmérséklet ikon szövege kerettel.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2240"/>
         <source>Draw a border around text for better contrast.</source>
-        <translation>Obroba okoli ikone za temperaturo.</translation>
+        <translation>Szöveg keretezése jobb kontraszt eléréséhez.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2338"/>
         <location filename="../ConfigurationDialog.ui" line="2399"/>
         <source>Selects the temperature icon text font</source>
-        <translation>Izberi vrsto pisavo za temperaturo</translation>
+        <translation>Válassza ki a hőmérséklet-ikon szöveg betűtípusát</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2418"/>
         <source>Preview of the temperature icon</source>
-        <translation>Predogled ikone za temperaturo</translation>
+        <translation>Hőmérséklet-ikon előnézete</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2341"/>
         <source>Temperature text font</source>
-        <translation>Vrsta pisave</translation>
+        <translation>Hőmérséklet betűtípusa</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2451"/>
         <source>Stretch font vertically.</source>
-        <translation>Raztegni pisavo navpišno.</translation>
+        <translation>Betű függőleges nyújtása.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2060"/>
         <location filename="../ConfigurationDialog.ui" line="2070"/>
         <source>Draw the degree symbol in the temperature icon.</source>
-        <translation>Nariše simbol stopinje v ikoni temperature.</translation>
+        <translation>Fok szimbólum megjelenítése a hőmérséklet ikonon vagy mellett.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2073"/>
         <source>Draw degree symbol</source>
-        <translation>Narišite simbol stopnje</translation>
+        <translation>Fok szimbólum megjelenítése</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2279"/>
         <location filename="../ConfigurationDialog.ui" line="2289"/>
         <location filename="../ConfigurationDialog.ui" line="2314"/>
         <source>Width of the border around the text.</source>
-        <translation>Širina obrobe okoli besedila.</translation>
+        <translation>Szöveg keretének szélessége.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2282"/>
         <source>Border width</source>
-        <translation>Širina obrobe</translation>
+        <translation>Keret szélessége</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2462"/>
         <location filename="../ConfigurationDialog.ui" line="2472"/>
         <location filename="../ConfigurationDialog.ui" line="2494"/>
         <source>Modifies the space between characters in the temperatura icon.</source>
-        <translation>Spremeni presledek med znaki v ikoni temperature.</translation>
+        <translation>Betűtávolság módosítása a hőmérséklet ikonnál.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2465"/>
         <source>Letter spacing</source>
-        <translation>Razmik med črkami</translation>
+        <translation>Betűtávolság</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2549"/>
         <source>Value:</source>
-        <translation>Podatki:</translation>
+        <translation>Érték:</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2556"/>
         <source>Value to add to the list.</source>
-        <translation>Dodaj podatek na seznam.</translation>
+        <translation>Érték hozzáadása a listához.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2569"/>
         <source>Add value to tooltip text</source>
-        <translation>Dodaj podatek na orodni namig</translation>
+        <translation>Adatok hozzáadása a felbukkanó ablakhoz</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2616"/>
         <source>Move value up.</source>
-        <translation>Premakni podatek višje.</translation>
+        <translation>Érték növelése.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2630"/>
         <source>Move value down.</source>
-        <translation>Premakni podatek nižje.</translation>
+        <translation>Érték csökkentése.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2644"/>
         <source>Remove value from tooltip text</source>
-        <translation>Odstrani podatek iz orodnega namiga</translation>
+        <translation>Érték levétele az eszköztippről</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2661"/>
         <source>Miscellaneous</source>
-        <translation>Razno</translation>
+        <translation>Egyebek</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2684"/>
         <source>Time between update requests</source>
-        <translation>Čas med zahtevami za posodobitev</translation>
+        <translation>A frissítési kérelmek közötti idő</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2697"/>
         <source> minutes</source>
-        <translation> min</translation>
+        <translation> perc</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1095"/>
         <source>Measurement units</source>
-        <translation>Merske enote</translation>
+        <translation>Mértékegységek</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2438"/>
         <location filename="../ConfigurationDialog.ui" line="2448"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
-        <translation>Raztegni pisavo navpično, da zasede ves razpoložljivi prostor v ikoni.</translation>
+        <translation>Betű függőleges nyújtása a elfoglalva a lehetséges helyet az ikonnál.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2534"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
-        <translation>Vrednosti prikazane v orodnemu namigu so trenutne vrednosti ali najbližja napovedna vrednost v trenutnem lokalnem času. Vrednosti so prikazane po vrstnem redu, od vrha do dna seznama.</translation>
+        <translation>Az eszköztippen a kiválasztott elemek, aktuális helyi idő szerinti értékei láthatók az alábbi listán látható (megváltoztatható) sorrendben.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2725"/>
         <source>Visual theme</source>
-        <translation>Tema izgleda</translation>
+        <translation>Megjelenés témája</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2733"/>
         <source>Light</source>
-        <translation>Svetla</translation>
+        <translation>Világos</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2738"/>
         <source>Dark</source>
-        <translation>Temna</translation>
+        <translation>Sötét</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2758"/>
         <source>Check for updates</source>
-        <translation>Preveri za posodobitve</translation>
+        <translation>Frissítések ellenőrzése</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2766"/>
         <source>Never</source>
-        <translation>Nikoli</translation>
+        <translation>Soha</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2771"/>
         <source>Once a day</source>
-        <translation>Enkrat na dan</translation>
+        <translation>Naponta</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2776"/>
         <source>Once a week</source>
-        <translation>Enkrat na teden</translation>
+        <translation>Hetente</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2781"/>
         <source>Once a month</source>
-        <translation>Enkrat na mesec</translation>
+        <translation>Havonta</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1103"/>
         <source>Metric system (ºC)</source>
-        <translation>Metrični sistem (ºC)</translation>
+        <translation>Metrikus rendszer (ºC)</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1108"/>
         <source>Imperial system (ºF)</source>
-        <translation>Imperijalni sistem (ºF)</translation>
+        <translation>Imperiál rendszer (ºF)</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2801"/>
         <source>Autostart at login</source>
-        <translation>Samodejni zagon ob prijavi</translation>
+        <translation>Bejelentkezéskor automatikus indítás</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2827"/>
         <source>Language</source>
-        <translation>Jezik</translation>
+        <translation>Nyelv</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2849"/>
         <source>Show weather alerts</source>
-        <translation>Pokaži vremenska obvestila</translation>
+        <translation>Időjárási figyelmeztetések megjelenítése</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2881"/>
         <source>Swap tray icons</source>
-        <translation>Zamenjaj vrstni red ikon v sistemski vrstici</translation>
+        <translation>Tálcaikonok felcserélése</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2903"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
-        <translation>Če vaš jezik ni na voljo, lahko pomagate s &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;prevodom&lt;/a&gt;.</translation>
+        <translation>Ha az Ön nyelve hiányzik itt segíthet nekünk: &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1589"/>
         <source>Map Layers Opacity</source>
-        <translation>Neprosojnost plasti zemljevida</translation>
+        <translation>Térképrétegek átlátszósága</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1635"/>
@@ -984,22 +991,22 @@
         <location filename="../ConfigurationDialog.ui" line="1745"/>
         <location filename="../ConfigurationDialog.ui" line="1800"/>
         <source>%</source>
-        <translation></translation>
+        <translation>%</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1664"/>
         <source>Clouds</source>
-        <translation>Oblaki</translation>
+        <translation>Felhők</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2954"/>
         <source>Cancel</source>
-        <translation>Prekliči</translation>
+        <translation>Mégsem</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2961"/>
         <source>Ok</source>
-        <translation>V redu</translation>
+        <translation>Rendben</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="148"/>
@@ -1007,132 +1014,132 @@
         <source>Invalid reply from Geo-Locator server.
 Couldn&apos;t get location information.
 If you have a firewall change the configuration to allow this program to access the network.</source>
-        <translation>Neveljaven odgovor strežnika Geo-Locator.
-Podatkov o lokaciji ni bilo mogoče dobiti.
-Če imate požarni zid, spremenite konfiguracijo, da temu programu omogočite dostop do omrežja.</translation>
+        <translation>Valótlan válasz a helymeghatározási szerverről.
+Nincsenek földrajzi helyzet információk.
+Ha tűzfalat használ, módosítsa a beállítást úgy, hogy a programnak biztosítson hálózati hozzáférést!</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="152"/>
         <location filename="../ConfigurationDialog.cpp" line="236"/>
         <location filename="../ConfigurationDialog.cpp" line="1507"/>
         <source>Network Error</source>
-        <translation>Omrežna napaka</translation>
+        <translation>Hálózati hiba</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="983"/>
         <location filename="../ConfigurationDialog.cpp" line="1622"/>
         <source>Invalid API Key!</source>
-        <translation>Neveljaven API ključ!</translation>
+        <translation>Helytelen API-kulcs!</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="988"/>
         <source>Untested API Key!</source>
-        <translation>Neprizkušen API ključ!</translation>
+        <translation>Teszteletlen API-kulcs!</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1616"/>
         <source>The API Key is valid!</source>
-        <translation>API ključ je veljaven!</translation>
+        <translation>Az API-kulcs érvényes!</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="198"/>
         <source>Success</source>
-        <translation>V redu</translation>
+        <translation>Sikeres</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="210"/>
         <location filename="../ConfigurationDialog.cpp" line="218"/>
         <location filename="../ConfigurationDialog.cpp" line="226"/>
         <source>Failure</source>
-        <translation>Napaka</translation>
+        <translation>Hiba</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="212"/>
         <source>Error parsing location data. Failure or invalid number of fields.</source>
-        <translation>Napaka pri razčlenjevanju podatkov o lokaciji. Napačno ali neveljavno število polj.</translation>
+        <translation>Földrajzi helyzet elemzési hiba. Hiba vagy érvénytelen mezőszám.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="220"/>
         <source>Data request failure. Invalid data format.</source>
-        <translation>Neuspešna zahteva podatkov. Neveljavna oblika zapisa podatkov.</translation>
+        <translation>Adatkérési hiba. Helytelen adatformátum.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="228"/>
         <source>Invalid reply from Geo-Locator server.</source>
-        <translation>Neveljaven odgovor Geo-Locator strežnika.</translation>
+        <translation>Valótlan válasz a helymeghatározási szerverről.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="376"/>
         <location filename="../ConfigurationDialog.cpp" line="400"/>
         <source>Requesting...</source>
-        <translation>Zahtevam...</translation>
+        <translation>Lekérés...</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="412"/>
         <source>API Key Error</source>
-        <translation>Napaka ključa API</translation>
+        <translation>API-kulcs hiba</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="414"/>
         <source>API key missing!</source>
-        <translation>Manjka ključ API!</translation>
+        <translation>API-kulcs hiányzik!</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="422"/>
         <source>Location Error</source>
-        <translation>Napaka pri lokaciji</translation>
+        <translation>Helyzet hiba</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="424"/>
         <source>You must set a valid location before testing the API key.</source>
-        <translation>Preden preizkusite ključ API, morate nastaviti veljavno lokacijo.</translation>
+        <translation>Az API-kulcs ellenőrzése előtt érvényes helyet megadása szükséges.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1504"/>
         <source>Location search requires a valid weather provider API key.</source>
-        <translation>Iskanje lokacije zahteva veljaven API ključ ponudnika vremena.</translation>
+        <translation>A helyzetmeghatározáshoz érvényes időjárás-szolgáltató API-kulcs szükséges.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1633"/>
         <source>Weather Provider Error</source>
-        <translation>Napaka ponudnika vremena</translation>
+        <translation>Időjárás szolgáltatói hiba</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1316"/>
         <location filename="../ConfigurationDialog.cpp" line="1355"/>
         <source>Font Selection</source>
-        <translation>Izbira vrste pisave</translation>
+        <translation>Betűtípus választás</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1319"/>
         <location filename="../ConfigurationDialog.cpp" line="1358"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
-        <translation>Izbrana pisava &apos;%1&apos; ni veljavna, ker ne more napisati potrebnih znakov.</translation>
+        <translation>A kiválasztott  &apos;%1&apos; betűtípus nem használható mert nem tartalmazza a szükséges karaktereket.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1346"/>
         <source>Select font for temperature icon</source>
-        <translation>Izberi vrsto pisave za ikono temperature</translation>
+        <translation>Válassza ki a hőmérséklet-ikon betűtípusát</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1543"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Če želite pridobiti podatke o vremenski napovedi od %1 za vašo lokacijo, morate na &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;spletnem&lt;/span&gt;&lt;/a&gt; spletnem mestu pridobiti ključ API.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Földrajzi helyzetének %1 időjárási adataihoz való hozzáféréshez API-kulcsr avan szükség ami innen igényelhető &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;honlap&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1546"/>
         <source>%1 doesn&apos;t require any configuration.</source>
-        <translation>%1 ne zahteva nobene konfiguracije.</translation>
+        <translation>%1 nem igényel beálítást.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1541"/>
         <source>Get the coordinates of a location.</source>
-        <translation>Pridobite koordinate lokacije.</translation>
+        <translation>Koordináták kinyerése földrajzi helyzetből.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1542"/>
         <source>Current provider does not have Geo-Location capability.</source>
-        <translation>Trenutni ponudnik nima možnosti geografske lokacije.</translation>
+        <translation>A jelenlegi szolgáltató nem rendelkezik földrajzi helyzet meghatározás funkcióval.</translation>
     </message>
 </context>
 <context>
@@ -1140,49 +1147,48 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
     <message>
         <location filename="../LocationFinderDialog.ui" line="14"/>
         <source>Search location coordinates</source>
-        <translation>Poiščite koordinate lokacije</translation>
+        <translation>Helyzet koordinátáinak keresése</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.ui" line="27"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the city name and, optionally, the state code (only for the US) and country code divided by comma. Use &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166 country codes&lt;/a&gt;. For example: &quot;London, GB&quot;.&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vnesite ime mesta in po želji kodo zvezne države (samo za ZDA) in kodo države, ločeno z vejico. Uporabite standard &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot;&gt;ISO 3166&lt;/a&gt; za kodo države. Na primer: &quot;Ljubljana, SI&quot;&lt;/p&gt;
-&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.ui" line="52"/>
         <source>Location:</source>
-        <translation>Lokacija:</translation>
+        <translation>Hely:</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.ui" line="59"/>
         <source>Enter location...</source>
-        <translation>Vnesite lokacijo...</translation>
+        <translation>Hely megadása...</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.ui" line="69"/>
         <source>Search</source>
-        <translation>Iskanje</translation>
+        <translation>Keresés</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.ui" line="85"/>
         <source>Search results:</source>
-        <translation>Rezultati iskanja:</translation>
+        <translation>Eredmények keresése:</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="140"/>
         <source>No locations found for &apos;%1&apos;.</source>
-        <translation>Ni najdenih lokacij za &apos;%1&apos;.</translation>
+        <translation>Nem található helyzet ehhez &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="143"/>
         <source>Location finder</source>
-        <translation>Iskalnik lokacije</translation>
+        <translation>Helyzet keresése</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="167"/>
         <source>No translation</source>
-        <translation>Brez prevoda</translation>
+        <translation>Nincs fordítás</translation>
     </message>
 </context>
 <context>
@@ -1190,19 +1196,19 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
     <message>
         <location filename="../Providers/OWM25.cpp" line="45"/>
         <source>OpenWeatherMap API Key is missing.</source>
-        <translation>Manjka API ključ za OpenWeatherMap.</translation>
+        <translation>Hiányzik az OpenWeatherMap API-kulcs.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="97"/>
         <location filename="../Providers/OWM25.cpp" line="141"/>
         <source>mph</source>
-        <translation>mil/h</translation>
+        <translation>mph</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="98"/>
         <location filename="../Providers/OWM25.cpp" line="121"/>
         <source>inches/h</source>
-        <translation>inči/uro</translation>
+        <translation>hüvelyk/óra</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="108"/>
@@ -1214,7 +1220,7 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
         <location filename="../Providers/OWM25.cpp" line="109"/>
         <location filename="../Providers/OWM25.cpp" line="126"/>
         <source>mm/h</source>
-        <translation>mm/uro</translation>
+        <translation>mm/óra</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="133"/>
@@ -1229,84 +1235,84 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
     <message>
         <location filename="../Providers/OWM25.cpp" line="145"/>
         <source>kts</source>
-        <translation>vozli</translation>
+        <translation>kts</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="175"/>
         <source>Temperature</source>
-        <translation>Temperatura</translation>
+        <translation>Hőmérséklet</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="176"/>
         <source>Rain</source>
-        <translation>Dež</translation>
+        <translation>Eső</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="177"/>
         <source>Wind</source>
-        <translation>Veter</translation>
+        <translation>Szél</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="178"/>
         <source>Clouds</source>
-        <translation>Oblaki</translation>
+        <translation>Felhők</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="197"/>
         <source>Unable to load weather webpage</source>
-        <translation>Ni mogoče naložiti vremenske spletne strani</translation>
+        <translation>Az időjárási honlapot nem lehet betölteni</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="221"/>
         <location filename="../Providers/OWM25.cpp" line="235"/>
         <location filename="../Providers/OWM25.cpp" line="247"/>
         <source>Error: </source>
-        <translation>Napaka: </translation>
+        <translation>Hiba: </translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="221"/>
         <source>No pollution data.</source>
-        <translation>Ni podatkov o onesnaženosti.</translation>
+        <translation>Nincsenek környezetszennyeződési adatok.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="235"/>
         <source>Couldn&apos;t get location information.</source>
-        <translation>Ni mogoče pridobiti podatkov o lokaciji.</translation>
+        <translation>Nincsenek tartózkodási hely információk.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="247"/>
         <source>No weather data.</source>
-        <translation>Ni vremenskih podatkov.</translation>
+        <translation>Nincsenek időjárás adatok.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="422"/>
         <source>No locations found for &apos;%1&apos;.</source>
-        <translation>Ni najdenih lokacij za &apos;%1&apos;.</translation>
+        <translation>Nem található helyzet ehhez &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="524"/>
         <source>Good</source>
-        <translation>Dobra</translation>
+        <translation>Jó</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="525"/>
         <source>Fair</source>
-        <translation>V redu</translation>
+        <translation>Szép</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="526"/>
         <source>Moderate</source>
-        <translation>Zmerna</translation>
+        <translation>Mérsékelt</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="527"/>
         <source>Poor</source>
-        <translation>Slaba</translation>
+        <translation>Rossz</translation>
     </message>
     <message>
         <location filename="../Providers/OWM25.cpp" line="528"/>
         <source>Very poor</source>
-        <translation>Zelo slaba</translation>
+        <translation>Nagyon rossz</translation>
     </message>
 </context>
 <context>
@@ -1314,19 +1320,19 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
     <message>
         <location filename="../Providers/OWM30.cpp" line="45"/>
         <source>OpenWeatherMap 3.0 API Key is missing.</source>
-        <translation>Manjka API ključ za OpenWeatherMap 3.0.</translation>
+        <translation>Hiányzik az OpenWeatherMap 3.0-ás API-kulcs.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="92"/>
         <location filename="../Providers/OWM30.cpp" line="136"/>
         <source>mph</source>
-        <translation>mil/h</translation>
+        <translation>mph</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="93"/>
         <location filename="../Providers/OWM30.cpp" line="116"/>
         <source>inches/h</source>
-        <translation>inči/uro</translation>
+        <translation>hüvelyk/óra</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="103"/>
@@ -1338,7 +1344,7 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
         <location filename="../Providers/OWM30.cpp" line="104"/>
         <location filename="../Providers/OWM30.cpp" line="121"/>
         <source>mm/h</source>
-        <translation>mm/uro</translation>
+        <translation>mm/óra</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="128"/>
@@ -1353,84 +1359,84 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
     <message>
         <location filename="../Providers/OWM30.cpp" line="140"/>
         <source>kts</source>
-        <translation>vozli</translation>
+        <translation>kts</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="170"/>
         <source>Temperature</source>
-        <translation>Temperatura</translation>
+        <translation>Hőmérséklet</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="171"/>
         <source>Rain</source>
-        <translation>Dež</translation>
+        <translation>Eső</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="172"/>
         <source>Wind</source>
-        <translation>Veter</translation>
+        <translation>Szél</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="173"/>
         <source>Clouds</source>
-        <translation>Oblaki</translation>
+        <translation>Felhők</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="192"/>
         <source>Unable to load weather webpage</source>
-        <translation>Ni mogoče naložiti vremenske spletne strani</translation>
+        <translation>Az időjárási honlapot nem lehet betölteni</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="216"/>
         <location filename="../Providers/OWM30.cpp" line="230"/>
         <location filename="../Providers/OWM30.cpp" line="242"/>
         <source>Error: </source>
-        <translation>Napaka: </translation>
+        <translation>Hiba: </translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="216"/>
         <source>No pollution data.</source>
-        <translation>Ni podatkov o onesnaženosti.</translation>
+        <translation>Nincsenek környezetszennyeződési adatok.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="230"/>
         <source>Couldn&apos;t get location information.</source>
-        <translation>Ni mogoče pridobiti podatkov o lokaciji.</translation>
+        <translation>Nincsenek tartózkodási hely információk.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="242"/>
         <source>No weather data.</source>
-        <translation>Ni vremenskih podatkov.</translation>
+        <translation>Nincsenek időjárás adatok.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="443"/>
         <source>No locations found for &apos;%1&apos;.</source>
-        <translation>Ni najdenih lokacij za &apos;%1&apos;.</translation>
+        <translation>Nem található helyzet ehhez &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="533"/>
         <source>Good</source>
-        <translation>Dobra</translation>
+        <translation>Jó</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="534"/>
         <source>Fair</source>
-        <translation>V redu</translation>
+        <translation>Szép</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="535"/>
         <source>Moderate</source>
-        <translation>Zmerna</translation>
+        <translation>Mérsékelt</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="536"/>
         <source>Poor</source>
-        <translation>Slaba</translation>
+        <translation>Rossz</translation>
     </message>
     <message>
         <location filename="../Providers/OWM30.cpp" line="537"/>
         <source>Very poor</source>
-        <translation>Zelo slaba</translation>
+        <translation>Nagyon rossz</translation>
     </message>
 </context>
 <context>
@@ -1441,59 +1447,59 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
         <location filename="../Providers/OpenMeteo.cpp" line="95"/>
         <location filename="../Providers/OpenMeteo.cpp" line="107"/>
         <source>Error: </source>
-        <translation>Napaka: </translation>
+        <translation>Hiba: </translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="69"/>
         <source>Unable to get weather data.</source>
-        <translation>Ni mogoče pridobiti vremenskih podatkov.</translation>
+        <translation>Időjárás adatok nem hozzáférhetők.</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="81"/>
         <source>No weather data.</source>
-        <translation>Ni vremenskih podatkov.</translation>
+        <translation>Nincsenek időjárás adatok.</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="95"/>
         <source>No pollution data.</source>
-        <translation>Ni podatkov o onesnaženosti.</translation>
+        <translation>Nincsenek környezetszennyeződési adatok.</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="107"/>
         <source>Couldn&apos;t get location information.</source>
-        <translation>Ni mogoče pridobiti podatkov o lokaciji.</translation>
+        <translation>Nincsenek helymeghatározási infomációk.</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="148"/>
         <location filename="../Providers/OpenMeteo.cpp" line="149"/>
         <location filename="../Providers/OpenMeteo.cpp" line="150"/>
         <source>Unknown</source>
-        <translation>Neznano</translation>
+        <translation>Ismeretlen</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="293"/>
         <source>Good</source>
-        <translation>Dobra</translation>
+        <translation>Jó</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="294"/>
         <source>Fair</source>
-        <translation>V redu</translation>
+        <translation>Szép</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="295"/>
         <source>Moderate</source>
-        <translation>Zmerna</translation>
+        <translation>Mérsékelt</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="296"/>
         <source>Poor</source>
-        <translation>Slaba</translation>
+        <translation>Rossz</translation>
     </message>
     <message>
         <location filename="../Providers/OpenMeteo.cpp" line="297"/>
         <source>Very poor</source>
-        <translation>Zelo slaba</translation>
+        <translation>Nagyon rossz</translation>
     </message>
 </context>
 <context>
@@ -1501,7 +1507,7 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
     <message>
         <location filename="../PollutionWidget.cpp" line="78"/>
         <source>Air Quality</source>
-        <translation>Kakovost zraka</translation>
+        <translation>Légminőség</translation>
     </message>
 </context>
 <context>
@@ -1513,427 +1519,427 @@ Podatkov o lokaciji ni bilo mogoče dobiti.
         <location filename="../TrayWeather.cpp" line="342"/>
         <location filename="../TrayWeather.cpp" line="968"/>
         <source>Tray Weather</source>
-        <translation>TrayWeather</translation>
+        <translation>Tray Weather</translation>
     </message>
     <message>
         <location filename="../Main.cpp" line="79"/>
         <source>TrayWeather cannot execute in this computer because there isn&apos;t a tray available!.
 The application will exit now.</source>
-        <translation>TrayWeather se ne more izvesti v tem računalniku, ker sistemska vrstica ni na voljo!.
-Aplikacija se bo zdaj zaprla.</translation>
+        <translation>A TrayWeather nem fut ezen a számítógépen mert nem található tálca!
+Az alkalmazás most befejeződik.</translation>
     </message>
     <message>
         <location filename="../Main.cpp" line="95"/>
         <source>TrayWeather is already running!</source>
-        <translation>TrayWeather se že izvaja!</translation>
+        <translation>A TrayWeather már fut!</translation>
     </message>
     <message>
         <location filename="../Main.cpp" line="122"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
-        <translation>TrayWeather se ne more izvesti brez veljavne lokacije in veljavnega ponudnika vremenskih podatkov.
-Aplikacija se bo zdaj zaprla.</translation>
+        <translation>A TrayWeather nem képes érvényes földrajzi helyzet és időjárás-szolgáltató nélkül működni.
+Az alkalmazás most befejeződik.</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="362"/>
         <source>New moon</source>
-        <translation>Prazna luna</translation>
+        <translation>Újhold</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="365"/>
         <location filename="../Utils.cpp" line="383"/>
         <source>Waxing crescent</source>
-        <translation>Rastoči srp</translation>
+        <translation>Növekvő félhold</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="368"/>
         <source>First quarter</source>
-        <translation>Prvi krajec</translation>
+        <translation>Első negyed</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="371"/>
         <source>Waxing gibbous</source>
-        <translation>Naraščajoča luna</translation>
+        <translation>Növekvő hold</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="374"/>
         <source>Full moon</source>
-        <translation>Polna luna</translation>
+        <translation>Telihold</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="377"/>
         <source>Waning gibbous</source>
-        <translation>Padajoča luna</translation>
+        <translation>Fogyó félhold</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="380"/>
         <source>Last quarter</source>
-        <translation>Zadnji krajec</translation>
+        <translation>Utolsó negyed</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="393"/>
         <source>illumination</source>
-        <translation>osvetlitev</translation>
+        <translation>megvilágítás</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="526"/>
         <source>NNE</source>
-        <translation>SSV</translation>
+        <translation>É-ÉK</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="527"/>
         <source>NE</source>
-        <translation>SV</translation>
+        <translation>ÉK</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="528"/>
         <source>ENE</source>
-        <translation>VSV</translation>
+        <translation>K-ÉK</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="529"/>
         <source>E</source>
-        <translation>V</translation>
+        <translation>K</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="530"/>
         <source>ESE</source>
-        <translation>VJV</translation>
+        <translation>K-DK</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="531"/>
         <source>SE</source>
-        <translation>JV</translation>
+        <translation>DK</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="532"/>
         <source>SSE</source>
-        <translation>JJV</translation>
+        <translation>D-DK</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="533"/>
         <source>S</source>
-        <translation>J</translation>
+        <translation>D</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="534"/>
         <source>SSW</source>
-        <translation>JJZ</translation>
+        <translation>D-DNY</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="535"/>
         <source>SW</source>
-        <translation>JZ</translation>
+        <translation>DNY</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="536"/>
         <source>WSW</source>
-        <translation>ZJZ</translation>
+        <translation>NY-DNY</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="537"/>
         <source>W</source>
-        <translation>Z</translation>
+        <translation>NY</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="538"/>
         <source>WNW</source>
-        <translation>ZSZ</translation>
+        <translation>NY-ÉNY</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="539"/>
         <source>NW</source>
-        <translation>SZ</translation>
+        <translation>NW</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="540"/>
         <source>NNW</source>
-        <translation>SSZ</translation>
+        <translation>É-ÉNY</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="542"/>
         <source>N</source>
-        <translation>S</translation>
+        <translation>É</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1205"/>
         <source>Clear sky</source>
-        <translation>Jasno nebo</translation>
+        <translation>Tiszta égbolt</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1206"/>
         <source>Mainly clear</source>
-        <translation>V glavnem jasno nebo</translation>
+        <translation>Többnyire tiszta</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1207"/>
         <source>Partly cloudy</source>
-        <translation>Delno oblačno</translation>
+        <translation>Részben felhős</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1208"/>
         <source>Overcast</source>
-        <translation>Oblačno</translation>
+        <translation>Borult</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1209"/>
         <source>Fog</source>
-        <translation>Megla</translation>
+        <translation>Köd</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1210"/>
         <source>Light drizzle</source>
-        <translation>Rahlo rosilo</translation>
+        <translation>Szitáló eső</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1211"/>
         <source>Moderate drizzle</source>
-        <translation>Zmerno rosilo</translation>
+        <translation>Mérsékelt zápor</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1212"/>
         <source>Dense drizzle</source>
-        <translation>Gosto pršenje</translation>
+        <translation>Sűrű zápor</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1213"/>
         <source>Light freezing drizzle</source>
-        <translation>Rahlo ledeno pršenje</translation>
+        <translation>Enyhe fagyos szitálás</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1214"/>
         <source>Dense freezing drizzle</source>
-        <translation>Gosta ledena kapljica</translation>
+        <translation>Sűrű fagyos zápor</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1215"/>
         <source>Slight rain</source>
-        <translation>Rahel dež</translation>
+        <translation>Gyenge eső</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1216"/>
         <source>Moderate rain</source>
-        <translation>Zmeren dež</translation>
+        <translation>Mérsékelt eső</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1217"/>
         <source>Heavy rain</source>
-        <translation>Močan dež</translation>
+        <translation>Heves esőzés</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1218"/>
         <source>Light freezing rain</source>
-        <translation>Rahel leden dež</translation>
+        <translation>Enyhe jeges eső</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1219"/>
         <source>Heavy freezing rain</source>
-        <translation>Gost ledeni dež</translation>
+        <translation>Heves fagyos esőzés</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1220"/>
         <source>Slight snow</source>
-        <translation>Rahlo sneženje</translation>
+        <translation>Enyhe havazás</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1221"/>
         <source>Moderate snow</source>
-        <translation>Zmerno sneženje</translation>
+        <translation>Mérsékelt havazás</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1222"/>
         <source>Heavy snow</source>
-        <translation>Močan sneg</translation>
+        <translation>Heves havazás</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1223"/>
         <source>Snow grains</source>
-        <translation>Snežna zrna</translation>
+        <translation>Hószállingózás</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1224"/>
         <source>Slight rain showers</source>
-        <translation>Rahle plohe</translation>
+        <translation>Gyenge záporok</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1225"/>
         <source>Moderate rain showers</source>
-        <translation>Zmerne plohe</translation>
+        <translation>Mérsékelt záporok</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1226"/>
         <source>Violent rain showers</source>
-        <translation>Močan dež</translation>
+        <translation>Heves felhőszakadások</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1227"/>
         <source>Light snow showers</source>
-        <translation>Rahle snežne plohe</translation>
+        <translation>Kisebb hózáporok</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1228"/>
         <source>Heavy snow showers</source>
-        <translation>Močne snežne plohe</translation>
+        <translation>Heves hózáporok</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1229"/>
         <source>Thunderstorm</source>
-        <translation>Nevihta</translation>
+        <translation>Vihar</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1230"/>
         <source>Slight thunderstorm with hail</source>
-        <translation>Rahla nevihta s točo</translation>
+        <translation>Enyhe zivatar jégesővel</translation>
     </message>
     <message>
         <location filename="../Utils.cpp" line="1231"/>
         <source>Heavy thunderstorm with hail</source>
-        <translation>Močna nevihta s točo</translation>
+        <translatorcomment>Erős zivatar jégesővel</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="61"/>
         <location filename="../Utils.h" line="82"/>
         <source>Location</source>
-        <translation>Lokacija</translation>
+        <translation>Földrajzi hely</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="62"/>
         <source>Local name</source>
-        <translation>Lokalno ime</translation>
+        <translation>Helyi megnevezés</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="63"/>
         <source>Latitude</source>
-        <translation>Zemljepisna širina</translation>
+        <translation>Földrajzi szélesség</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="64"/>
         <source>Longitude</source>
-        <translation>Zemljepisna dolžina</translation>
+        <translation>Földrajzi hosszúság</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="65"/>
         <source>Country</source>
-        <translation>Država</translation>
+        <translation>Ország</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="66"/>
         <source>State/Province/Region</source>
-        <translation>Zvezna država/Provinca/Regija</translation>
+        <translation>Állam/Tartomány/Régió</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="82"/>
         <source>Current Weather</source>
-        <translation>Trenutno vreme</translation>
+        <translation>Jelenlegi időjárás</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="82"/>
         <source>Temperature</source>
-        <translation>Temperatura</translation>
+        <translation>Hőmérséklet</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="83"/>
         <source>Cloudiness</source>
-        <translation>Oblačnost</translation>
+        <translation>Felhősödés</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="83"/>
         <source>Humidity</source>
-        <translation>Vlaga</translation>
+        <translation>Páratartalom</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="83"/>
         <source>Ground Pressure</source>
-        <translation>Pritisk na tla</translation>
+        <translation>Talajtérfogati nyomás</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="84"/>
         <source>Wind Speed</source>
-        <translation>Hitrost vetra</translation>
+        <translation>Szélsebesség</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="84"/>
         <source>Sunrise</source>
-        <translation>Sončni vzhod</translation>
+        <translation>Napkelte</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="84"/>
         <source>Sunset</source>
-        <translation>Sončni zahod</translation>
+        <translation>Napnyugta</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="85"/>
         <source>Air Quality</source>
-        <translation>Kakovost zraka</translation>
+        <translation>Légminőség</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="85"/>
         <source>Air Quality (CO)</source>
-        <translation>Kakovost zraka (CO)</translation>
+        <translation>Légminőség (CO)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="86"/>
         <source>Air Quality (O&lt;sub&gt;3&lt;/sub&gt;)</source>
-        <translation>Kakovost zraka (O&lt;sub&gt;3&lt;/sub&gt;)</translation>
+        <translation>Légminőség (O&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="87"/>
         <source>Air Quality (NO)</source>
-        <translation>Kakovost zraka (NO)</translation>
+        <translation>Légminőség (NO)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="88"/>
         <source>Air Quality (NO&lt;sub&gt;2&lt;/sub&gt;)</source>
-        <translation>Kakovost zraka  (NO&lt;sub&gt;2&lt;/sub&gt;)</translation>
+        <translation>Légminőség (NO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="89"/>
         <source>Air Quality (SO&lt;sub&gt;2&lt;/sub&gt;)</source>
-        <translation>Kakovost zraka  (SO&lt;sub&gt;2&lt;/sub&gt;)</translation>
+        <translation>Légminőség (SO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="90"/>
         <source>Air Quality (NH&lt;sub&gt;3&lt;/sub&gt;)</source>
-        <translation>Kakovost zraka  (NH&lt;sub&gt;3&lt;/sub&gt;)</translation>
+        <translation>Légminőség (NH&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="91"/>
         <source>Air Quality (PM&lt;sub&gt;2.5&lt;/sub&gt;)</source>
-        <translation>Kakovost zraka  (PM&lt;sub&gt;2.5&lt;/sub&gt;)</translation>
+        <translation>Légminőség (PM&lt;sub&gt;2.5&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="92"/>
         <source>Air Quality (PM&lt;sub&gt;10&lt;/sub&gt;)</source>
-        <translation>Kakovost zraka  (PM&lt;sub&gt;10&lt;/sub&gt;)</translation>
+        <translation>Légminőség (PM&lt;sub&gt;10&lt;/sub&gt;)</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="93"/>
         <source>Wind Direction</source>
-        <translation>Smer vetra</translation>
+        <translation>Szélirány</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="94"/>
         <source>Time of last update</source>
-        <translation>Čas zadnje posodobitve</translation>
+        <translation>Utolsó frissítés ideje</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="95"/>
         <source>UV radiation index</source>
-        <translation>Indeks UV sevanja</translation>
+        <translation>UV-sugárzási mutató</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="344"/>
         <source>TrayWeather needs to be restarted for the new configuration to take effect.
 The application will exit now.</source>
-        <translation>Za uveljavitev novih nastavitev se mora TrayWeather znova zagnati.
-Aplikacija se bo zdaj zaprla.</translation>
+        <translation>Az új beállítások érvényesítéséhez a TrayWeather-t újra kell indítani.
+Az alkalmazás most bezárul.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="970"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
-        <translation>TrayWeather je zahteval vremenske podatke za vašo geografsko lokacijo
-in še vedno čaka na odgovor.</translation>
+        <translation>A TrayWeather lekérte tartózkodási helyének adatait és a válaszra vár.</translation>
     </message>
 </context>
 <context>
@@ -1941,24 +1947,24 @@ in še vedno čaka na odgovor.</translation>
     <message>
         <location filename="../TrayWeather.cpp" line="1179"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
-        <translation>Obstaja nova verzija &lt;b&gt;Tray Weather&lt;/b&gt; na &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github spletni strani&lt;/a&gt;!</translation>
+        <translation>A &lt;b&gt;Tray Weather&lt;/b&gt; új verziója került kiadásra a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github honlapján&lt;/a&gt;!</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="1180"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
-        <translation>&lt;center&gt;Izšla je &lt;b&gt;verzija %1&lt;/b&gt;&lt;/center&gt;</translation>
+        <translation>&lt;center&gt;&lt;b&gt;A %1 verzió&lt;/b&gt; megjelent!&lt;/center&gt;</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="1181"/>
         <source>Release notes:
 %1</source>
-        <translation>Opombe ob izdaji:
+        <translation>Kiadási jegyzék:
 %1</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="1182"/>
         <source>Tray Weather updated to version %1</source>
-        <translation>TrayWeather se je posodobil na verzijo %1</translation>
+        <translation>A Tray Weather frissült a %1 verzióra</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="110"/>
@@ -1966,34 +1972,34 @@ in še vedno čaka na odgovor.</translation>
         <location filename="../TrayWeather.cpp" line="1196"/>
         <location filename="../TrayWeather.cpp" line="1258"/>
         <source>Error: </source>
-        <translation>Napaka: </translation>
+        <translation>Hiba: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="124"/>
         <location filename="../TrayWeather.cpp" line="1258"/>
         <source>No geolocation.</source>
-        <translation>Ni podatkov o geolokaciji.</translation>
+        <translation>Nincs geolokáció.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="392"/>
         <source>Requesting weather data from the server...</source>
-        <translation>Zahtevam vremenske podatke iz strežnika...</translation>
+        <translation>Időjárásadatok kérése a szerverről...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="413"/>
         <location filename="../TrayWeather.cpp" line="1336"/>
         <source>There is a weather alert for your location!</source>
-        <translation>Za vašo lokacijo obstaja vremensko opozorilo!</translation>
+        <translation>Az tartózkodási helyén időjárási figyelmeztetés van érvényben!</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="578"/>
         <source>Cloudiness: </source>
-        <translation>Oblačnost: </translation>
+        <translation>Felhőzet: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="581"/>
         <source>Humidity: </source>
-        <translation>Vlaga: </translation>
+        <translation>Páratartalom: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="590"/>
@@ -2018,7 +2024,7 @@ in še vedno čaka na odgovor.</translation>
     <message>
         <location filename="../TrayWeather.cpp" line="603"/>
         <source>Pressure: </source>
-        <translation>Pritisk: </translation>
+        <translation>Légnyomás: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="613"/>
@@ -2033,12 +2039,12 @@ in še vedno čaka na odgovor.</translation>
     <message>
         <location filename="../TrayWeather.cpp" line="619"/>
         <source>mph</source>
-        <translation>mil/h</translation>
+        <translation>mph</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="622"/>
         <source>kts</source>
-        <translation>kn</translation>
+        <translation>kts</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="626"/>
@@ -2048,50 +2054,50 @@ in še vedno čaka na odgovor.</translation>
     <message>
         <location filename="../TrayWeather.cpp" line="629"/>
         <source>Wind: </source>
-        <translation>Veter: </translation>
+        <translation>Szél: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="633"/>
         <source>Wind direction: </source>
-        <translation>Smer vetra: </translation>
+        <translation>Szélirány: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="637"/>
         <source>Last updated: </source>
-        <translation>Zadnja posodobitev: </translation>
+        <translation>Utoljára frissítve: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="652"/>
         <source>Sunrise: </source>
-        <translation>Sončni vzhod: </translation>
+        <translation>Napkelte: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="661"/>
         <source>Sunset: </source>
-        <translation>Sončni zahod: </translation>
+        <translation>Napnyugta: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="667"/>
         <source>Air: </source>
-        <translation>Zrak: </translation>
+        <translation>Levegő: </translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="752"/>
         <location filename="../TrayWeather.cpp" line="1128"/>
         <source>Current weather...</source>
-        <translation>Trenutno vreme...</translation>
+        <translation>Jelenlegi időjárás...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="757"/>
         <location filename="../TrayWeather.cpp" line="1129"/>
         <source>Forecast...</source>
-        <translation>Napoved...</translation>
+        <translation>Előrejelzés...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="762"/>
         <location filename="../TrayWeather.cpp" line="1130"/>
         <source>Pollution...</source>
-        <translation>Onesnaženost...</translation>
+        <translation>Légszennyezés...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="767"/>
@@ -2103,13 +2109,13 @@ in še vedno čaka na odgovor.</translation>
         <location filename="../TrayWeather.cpp" line="772"/>
         <location filename="../TrayWeather.cpp" line="1132"/>
         <source>Maps...</source>
-        <translation>Karte...</translation>
+        <translation>Térképek...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="781"/>
         <location filename="../TrayWeather.cpp" line="1133"/>
         <source>Refresh...</source>
-        <translation>Osveži...</translation>
+        <translation>Frissítés...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="788"/>
@@ -2117,25 +2123,25 @@ in še vedno čaka na odgovor.</translation>
         <location filename="../TrayWeather.cpp" line="1333"/>
         <location filename="../TrayWeather.cpp" line="1422"/>
         <source>Last alert...</source>
-        <translation>Nazadnje opozorilo...</translation>
+        <translation>Utolsó jelzés...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="797"/>
         <location filename="../TrayWeather.cpp" line="1135"/>
         <source>Configuration...</source>
-        <translation>Nastavitve...</translation>
+        <translation>Beállítások...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="804"/>
         <location filename="../TrayWeather.cpp" line="1136"/>
         <source>About...</source>
-        <translation>O programu...</translation>
+        <translation>Névjegy...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="809"/>
         <location filename="../TrayWeather.cpp" line="1137"/>
         <source>Quit</source>
-        <translation>Izhod</translation>
+        <translation>Kilépés</translation>
     </message>
 </context>
 <context>
@@ -2143,33 +2149,33 @@ in še vedno čaka na odgovor.</translation>
     <message>
         <location filename="../UVWidget.cpp" line="57"/>
         <source>Low</source>
-        <translation>Nizka</translation>
+        <translation>Alacsony</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="58"/>
         <source>No protection required.</source>
-        <translation>Zaščita ni potrebna.</translation>
+        <translation>Nem szükséges védelem.</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="63"/>
         <source>Moderate</source>
-        <translation>Zmerna</translation>
+        <translation>Mérsékelt</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="64"/>
         <location filename="../UVWidget.cpp" line="69"/>
         <source>Protection required.</source>
-        <translation>Potrebna zaščita.</translation>
+        <translation>Védelem szükséges.</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="68"/>
         <source>High</source>
-        <translation>Visoka</translation>
+        <translation>Magas</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="74"/>
         <source>Very high</source>
-        <translation>Zelo visoka</translation>
+        <translation>Nagyon magas</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="75"/>
@@ -2177,14 +2183,14 @@ in še vedno čaka na odgovor.</translation>
         <source>Extra protection.
 Avoid being outside
 during midday hours.</source>
-        <translation>Dodatna zaščita.
-Izogibajte se zunanjim aktivnostim
-v času opoldanskih ur.</translation>
+        <translation>Kiemelt védelem.
+A déli órákban kerülje
+a kint tartózkodást!</translation>
     </message>
     <message>
         <location filename="../UVWidget.cpp" line="78"/>
         <source>Extreme</source>
-        <translation>Ekstremna</translation>
+        <translation>Szélsőséges</translation>
     </message>
 </context>
 <context>
@@ -2192,99 +2198,99 @@ v času opoldanskih ur.</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="26"/>
         <source>Tray Weather</source>
-        <translation>TrayWeather</translation>
+        <translation>Tray Weather</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
         <location filename="../WeatherDialog.cpp" line="1418"/>
         <source>Current Weather</source>
-        <translation>Trenutno Vreme</translation>
+        <translation>Jelenlegi időjárás</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="55"/>
         <source>Current weather information</source>
-        <translation>Podatki o trenutnem vremenu</translation>
+        <translation>Aktuális időjárás információi</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="68"/>
         <source>Location and date</source>
-        <translation>Lokacija in datum</translation>
+        <translation>Hely és dátum</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="71"/>
         <source>location</source>
-        <translation>Lokacija</translation>
+        <translation>Földrajzi hely</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="155"/>
         <location filename="../WeatherDialog.ui" line="261"/>
         <source>Sunrise time</source>
-        <translation>Čas sončnega vzhoda</translation>
+        <translation>Napkelte ideje</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="264"/>
         <source>Sunrise</source>
-        <translation>Sončni vzhod</translation>
+        <translation>Napkelte</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="245"/>
         <location filename="../WeatherDialog.ui" line="303"/>
         <source>Current humidity</source>
-        <translation>Trenutna vlaga</translation>
+        <translation>Jelenlegi páratartalom</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="248"/>
         <source>Humidity</source>
-        <translation>Vlaga</translation>
+        <translation>Páratartalom</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="123"/>
         <location filename="../WeatherDialog.ui" line="351"/>
         <source>Current cloudiness</source>
-        <translation>Trenutna oblačnost</translation>
+        <translation>Jelenlegi felhőzet</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="354"/>
         <source>Cloudiness</source>
-        <translation>Oblačnost</translation>
+        <translation>Felhősödés</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="271"/>
         <location filename="../WeatherDialog.ui" line="479"/>
         <source>Snow accumulation in the last 3 hours</source>
-        <translation>Akumulacija snega v zadnjih 3 urah</translation>
+        <translation>Hómennyiség az elmúlt 3 órában</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="203"/>
         <location filename="../WeatherDialog.ui" line="206"/>
         <location filename="../WeatherDialog.ui" line="287"/>
         <source>Minimum temperature</source>
-        <translation>Najnižja temperatura</translation>
+        <translation>Minimális hőmérséklet</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="139"/>
         <location filename="../WeatherDialog.ui" line="383"/>
         <source>Rain accumulation in the last 3 hours</source>
-        <translation>Akumulacija dežja v zadnjih 3 urah</translation>
+        <translation>Esőmennyiség az elmúlt 3 órában</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="329"/>
         <location filename="../WeatherDialog.ui" line="399"/>
         <source>Current temperature</source>
-        <translation>Trenutna temperatura</translation>
+        <translation>Jelenlegi hőmérséklet</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="175"/>
         <location filename="../WeatherDialog.cpp" line="1382"/>
         <source>Temperature</source>
-        <translation>Temperatura</translation>
+        <translation>Hőmérséklet</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="223"/>
         <location filename="../WeatherDialog.ui" line="418"/>
         <source>Current ground pressure</source>
-        <translation>Trenuten pritisk na tla</translation>
+        <translation>Jelenlegi talajmenti nyomás</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="132"/>
@@ -2303,148 +2309,148 @@ v času opoldanskih ur.</translation>
         <location filename="../WeatherDialog.cpp" line="853"/>
         <location filename="../WeatherDialog.cpp" line="1044"/>
         <source>Unknown</source>
-        <translation>Neznano</translation>
+        <translation>Ismeretlen</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="113"/>
         <location filename="../WeatherDialog.ui" line="116"/>
         <location filename="../WeatherDialog.ui" line="457"/>
         <source>Maximum temperature</source>
-        <translation>Najvišja temperatura</translation>
+        <translation>Maximális hőmérséklet</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="421"/>
         <source>Ground pressure</source>
-        <translation>Pritisk na tla</translation>
+        <translation>Talajtérfogati nyomás</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="148"/>
         <location filename="../WeatherDialog.ui" line="280"/>
         <location filename="../WeatherDialog.cpp" line="173"/>
         <source>None</source>
-        <translation>Nič</translation>
+        <translation>Nincs</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="97"/>
         <location filename="../WeatherDialog.ui" line="181"/>
         <source>Current wind direction</source>
-        <translation>Trenutna smer vetra</translation>
+        <translation>Aktuális szélirány</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="100"/>
         <source>Wind direction</source>
-        <translation>Smer vetra</translation>
+        <translation>Szélirány</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="171"/>
         <location filename="../WeatherDialog.ui" line="361"/>
         <source>Current wind speed</source>
-        <translation>Trenutna hitrost vetra</translation>
+        <translation>Jelenlegi szélsebesség</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="174"/>
         <source>Wind speed</source>
-        <translation>Hitrost vetra</translation>
+        <translation>Szélsebesség</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="213"/>
         <location filename="../WeatherDialog.ui" line="447"/>
         <source>Sunset time</source>
-        <translation>Čas sončnega zahoda</translation>
+        <translation>Napnyugta ideje</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="450"/>
         <source>Sunset</source>
-        <translation>Sončni zahod</translation>
+        <translation>Napnyugta</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="434"/>
         <source>Air Quality</source>
-        <translation>Kakovost zraka</translation>
+        <translation>Légminőség</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="319"/>
         <source>Air quality</source>
-        <translation>Kakovost zraka</translation>
+        <translation>Légminőség</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="495"/>
         <source>Ultraviolet radiation</source>
-        <translation>Ultravijolično sevanje</translation>
+        <translation>Ultraibolya sugárzás</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="513"/>
         <source>Current weather icon</source>
-        <translation>Ikona trenutnega vremena</translation>
+        <translation>Aktuális időjárási ikon</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="536"/>
         <source>Current weather description</source>
-        <translation>Opis trenutnega vremena</translation>
+        <translation>Jelenlegi időjárás meghatározása</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="569"/>
         <location filename="../WeatherDialog.ui" line="610"/>
         <source>Current moon phase</source>
-        <translation>Trenutna lunina mena</translation>
+        <translation>Jelenlegi holdfázis</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="572"/>
         <source>Moon phase</source>
-        <translation>Lunina mena</translation>
+        <translation>Holdfázis</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="642"/>
         <source>Show weather maps.</source>
-        <translation>Pokaži vremenske karte.</translation>
+        <translation>Időjárás térkép megjelenítése.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
         <location filename="../WeatherDialog.cpp" line="1521"/>
         <source>Show Maps</source>
-        <translation>Pokaži karte</translation>
+        <translation>Térkép mutatása</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="652"/>
         <source>Reset graph zoom</source>
-        <translation>Ponastavi povečavo grafa</translation>
+        <translation>Grafikon nagyítás visszaállítása</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="655"/>
         <source>Reset Zoom</source>
-        <translation>Ponastavi povečavo</translation>
+        <translation>Nagyítás visszaállítása</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="675"/>
         <source>Close dialog</source>
-        <translation>Zapri pogovorno okno</translation>
+        <translation>Ablak bezárása</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="678"/>
         <source>Ok</source>
-        <translation>V redu</translation>
+        <translation>Rendben</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="86"/>
         <source>Weather forecast for the next days.</source>
-        <translation>Vremenska napoved za naslednje dni.</translation>
+        <translation>Időjárás előrejelzés a következő napokra.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="95"/>
         <location filename="../WeatherDialog.cpp" line="1418"/>
         <source>Forecast</source>
-        <translation>Napoved</translation>
+        <translation>Előrejelzés</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="107"/>
         <source>Pollution forecast for the next days.</source>
-        <translation>Napoved onesnaženosti za naslednje dni.</translation>
+        <translation>Légszennyezés előrejelzés a következő napokra.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="116"/>
         <location filename="../WeatherDialog.cpp" line="1418"/>
         <source>Pollution</source>
-        <translation>Onesnaženost</translation>
+        <translation>Légszennyezettség</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="137"/>
@@ -2455,18 +2461,18 @@ v času opoldanskih ur.</translation>
     <message>
         <location filename="../WeatherDialog.cpp" line="171"/>
         <source>Illumination</source>
-        <translation>Osvetlitev</translation>
+        <translation>Megvilágítás</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="172"/>
         <source>Current weather</source>
-        <translation>Trenutno vreme</translation>
+        <translation>Jelenlegi időjárás</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="386"/>
         <location filename="../WeatherDialog.cpp" line="473"/>
         <source>Rain accumulation</source>
-        <translation>Akumulacija dežja</translation>
+        <translation>Csadapadékmennyiség</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="192"/>
@@ -2479,13 +2485,13 @@ v času opoldanskih ur.</translation>
         <location filename="../WeatherDialog.cpp" line="903"/>
         <location filename="../WeatherDialog.cpp" line="1069"/>
         <source>Day (Hour)</source>
-        <translation>Dan (Ura)</translation>
+        <translation>Nap (óra)</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="355"/>
         <location filename="../WeatherDialog.cpp" line="360"/>
         <source>%1 in %2</source>
-        <translation>%1 v %2</translation>
+        <translation>%1 ebből %2</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="749"/>
@@ -2493,68 +2499,68 @@ v času opoldanskih ur.</translation>
         <location filename="../WeatherDialog.cpp" line="821"/>
         <location filename="../WeatherDialog.cpp" line="1418"/>
         <source>Maps</source>
-        <translation>Karte</translation>
+        <translation>Térképek</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="756"/>
         <source>TrayWeather Maps</source>
-        <translation>TrayWeather karte</translation>
+        <translation>TrayWeather térképek</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="758"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
-        <translation>Vremenske karte ni bilo mogoče naložiti.</translation>
+        <translation>Az időjárás térképet nem lehet betölteni.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="862"/>
         <source>Low</source>
-        <translation>Nizka</translation>
+        <translation>Alacsony</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="871"/>
         <source>High</source>
-        <translation>Visoka</translation>
+        <translation>Magas</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="876"/>
         <source>Very high</source>
-        <translation>Zelo visoka</translation>
+        <translation>Nagyon magas</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="879"/>
         <source>Extreme</source>
-        <translation>Ekstremna</translation>
+        <translation>Szélsőséges</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="907"/>
         <source>Ultraviolet radiation index</source>
-        <translation>Indeks ultravijoličnega sevanja</translation>
+        <translation>Ultraibolya sugárzási index</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="955"/>
         <source>UV Index</source>
-        <translation>UV indeks</translation>
+        <translation>UV index</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1433"/>
         <source>Hide Maps</source>
-        <translation>Skrij karte</translation>
+        <translation>Térkép elrejtése</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1434"/>
         <source>Hide weather maps tab.</source>
-        <translation>Skrij zavihek vremenskih kart.</translation>
+        <translation>Időjárás térkép fül elrejtése.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="802"/>
         <source>Weather Maps.</source>
-        <translation>Vremenske karte.</translation>
+        <translation>Időjárás térképek.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="482"/>
         <location filename="../WeatherDialog.cpp" line="474"/>
         <source>Snow accumulation</source>
-        <translation>Akumulacija snega</translation>
+        <translation>Hómennyiség</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="185"/>
@@ -2565,39 +2571,39 @@ v času opoldanskih ur.</translation>
     <message>
         <location filename="../WeatherDialog.cpp" line="89"/>
         <source>Error requesting weather data.</source>
-        <translation>Napaka pri zahtevanju vremenskih podatkov.</translation>
+        <translation>Hiba az időjárásadatok lekérésekor.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="110"/>
         <source>Error requesting air quality data.</source>
-        <translation>Napaka pri zahtevanju podatkov o kakovosti zraka.</translation>
+        <translation>Hiba a levegőminőség adatok lekérésekor.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="128"/>
         <source>Ultraviolet radiation forecast for the next days.</source>
-        <translation>Napoved ultravijoličnega sevanja za naslednje dni.</translation>
+        <translation>Ultraibolya sugárzás előrejelzés a következő napokra.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="131"/>
         <source>Error requesting ultraviolet radiation data.</source>
-        <translation>Napaka pri zahtevanju podatkov o ultravijoličnem sevanju.</translation>
+        <translation>Hiba az ultraibolya sugárzási adatok lekérésekor.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="176"/>
         <source>Accumulation</source>
-        <translation>Akumulacija</translation>
+        <translation>Felhamozódás</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="184"/>
         <location filename="../WeatherDialog.cpp" line="226"/>
         <source>inches/h</source>
-        <translation>inči/uro</translation>
+        <translation>hüvelyk/óra</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="191"/>
         <location filename="../WeatherDialog.cpp" line="230"/>
         <source>mm/h</source>
-        <translation>mm/uro</translation>
+        <translation>mm/óra</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="210"/>
@@ -2622,44 +2628,44 @@ v času opoldanskih ur.</translation>
     <message>
         <location filename="../WeatherDialog.cpp" line="245"/>
         <source>kts</source>
-        <translation>kn</translation>
+        <translation>kts</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="367"/>
         <location filename="../WeatherDialog.cpp" line="1080"/>
         <source>Click to hide or show the forecast.</source>
-        <translation>Klikni, da skriješ ali prikažeš napoved.</translation>
+        <translation>Kattintson az előrejelzés megjelenítéséhez/erejtéséhez.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="867"/>
         <source>Moderate</source>
-        <translation>Zmerna</translation>
+        <translation>Mérsékelt</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1073"/>
         <source>Concentration in %1</source>
-        <translation>Koncentracija v %1</translation>
+        <translation>Koncentráció %1 -ban</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1382"/>
         <source>Rain</source>
-        <translation>Dež</translation>
+        <translation>Eső</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1382"/>
         <source>Wind</source>
-        <translation>Veter</translation>
+        <translation>Szél</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="1382"/>
         <source>Clouds</source>
-        <translation>Oblaki</translation>
+        <translation>Felhők</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="186"/>
         <location filename="../WeatherDialog.cpp" line="242"/>
         <source>mph</source>
-        <translation>miles/h</translation>
+        <translation>mph</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="193"/>
@@ -2670,7 +2676,7 @@ v času opoldanskih ur.</translation>
     <message>
         <location filename="../WeatherDialog.cpp" line="1522"/>
         <source>Show weather maps tab.</source>
-        <translation>Pokaži zavihek vremenskih kart.</translation>
+        <translation>Időjárás térkép fül megjelenítése.</translation>
     </message>
 </context>
 <context>
@@ -2678,32 +2684,32 @@ v času opoldanskih ur.</translation>
     <message>
         <location filename="../WeatherWidget.cpp" line="50"/>
         <source>Temperature</source>
-        <translation>Temperatura</translation>
+        <translation>Hőmérséklet</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="51"/>
         <source>Cloudiness</source>
-        <translation>Oblačnost</translation>
+        <translation>Felhőzet</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="52"/>
         <source>Humidity</source>
-        <translation>Vlaga</translation>
+        <translation>Páratartalom</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="53"/>
         <source>Pressure</source>
-        <translation>Pritisk</translation>
+        <translation>Nyomás</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="54"/>
         <source>Rain acc</source>
-        <translation>Akumulacija dežja</translation>
+        <translation>Eső</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="55"/>
         <source>Snow acc</source>
-        <translation>Akumulacija snega</translation>
+        <translation>Havazás</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="63"/>
@@ -2715,12 +2721,12 @@ v času opoldanskih ur.</translation>
         <location filename="../WeatherWidget.cpp" line="64"/>
         <location filename="../WeatherWidget.cpp" line="105"/>
         <source>mm/h</source>
-        <translation>mm/uro</translation>
+        <translation>mm/óra</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="69"/>
         <source>inch/h</source>
-        <translation>inči/uro</translation>
+        <translation>hüvelyk/óra</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="85"/>
@@ -2735,7 +2741,7 @@ v času opoldanskih ur.</translation>
     <message>
         <location filename="../WeatherWidget.cpp" line="101"/>
         <source>inches/h</source>
-        <translation>inči/uro</translation>
+        <translation>hüvelyk/óra</translation>
     </message>
     <message>
         <location filename="../WeatherWidget.cpp" line="68"/>

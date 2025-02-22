@@ -147,6 +147,7 @@ Tray Weather is available in:
 * Polish
 * Turkish
 * Italian
+* Hungarian
 
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
