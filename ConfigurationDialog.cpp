@@ -1761,6 +1761,7 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     const auto selectedColor = QColor(m_borderColorButton->property("iconColor").toString());
 
     //constructing temporal object only to get path for border.
+    const auto pixmapBackup = pixmap;
     QGraphicsPixmapItem tempItem(pixmap);
     tempItem.setShapeMode(QGraphicsPixmapItem::MaskShape);
     const auto path = tempItem.shape();
@@ -1768,8 +1769,13 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     QPen pen(m_borderColor->isChecked() ? invertedColor : selectedColor, m_borderWidth->value(), Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
     painter.setPen(pen);
     painter.drawPath(path);
+    painter.end();
+
+    subtractPixmap(pixmap, pixmapBackup);
 
     // repaint the temperature, it was overwritten by path.
+    painter.begin(&pixmap);
+    painter.setFont(font);
     painter.setPen(color);
     painter.drawText(pixmap.rect(), Qt::AlignCenter, roundedString);
   }
@@ -1791,12 +1797,17 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
     ratioY *= ratio;
   }
 
-  QPixmap background(m_pixmap);
+  QPixmap background(m_pixmap.size());
   if(!m_backgroundColor->isChecked()) background.fill(m_backgroundColorButton->property("iconColor").toString());
   painter.begin(&background);
   painter.translate(rect.center());
   painter.scale(ratioX, ratioY);
   painter.translate(-rect.center()+difference);
+  painter.end();
+
+  subtractPixmap(background, pixmap);
+
+  painter.begin(&background);
   painter.drawImage(QPoint{0,0}, pixmap.toImage());
   painter.end();
 

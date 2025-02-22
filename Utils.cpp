@@ -1107,11 +1107,47 @@ QPixmap setIconBackground(const QColor &color, const QPixmap &pix)
   QPixmap backgroundPixmap{pix.size()};
   backgroundPixmap.fill(color);
 
+  subtractPixmap(backgroundPixmap, pix);
+
   QPainter painter(&backgroundPixmap);
   painter.drawImage(QPoint{0, 0}, pix.toImage());
   painter.end();
 
   return backgroundPixmap;
+}
+
+//--------------------------------------------------------------------
+bool subtractImage(QImage &base, const QImage &other)
+{
+  if(base.size() != other.size())
+    return false;
+
+  auto oPtr = reinterpret_cast<const QRgb *>(other.bits());
+  auto bPtr = reinterpret_cast<QRgb *>(base.bits());
+  const auto transparentPixel = QColor{Qt::transparent}.rgba();
+
+  for(long int i = 0; i < other.byteCount()/4; ++i, ++oPtr, ++bPtr)
+  {
+    if(*oPtr != transparentPixel)
+      *bPtr = transparentPixel;
+  } 
+
+  return true; 
+}
+
+//--------------------------------------------------------------------
+bool subtractPixmap(QPixmap &base, const QPixmap &other)
+{
+  if(!base.isDetached() || (base.size() != other.size()))
+    return false;
+
+  auto baseImage = base.toImage();
+  auto otherImage = other.toImage();
+
+  subtractImage(baseImage, otherImage);
+  base = QPixmap::fromImage(baseImage);
+
+  return true;
 }
 
 //--------------------------------------------------------------------

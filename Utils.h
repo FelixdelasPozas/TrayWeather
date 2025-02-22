@@ -734,6 +734,20 @@ QPixmap createIconsSummary(const unsigned int theme, const int size, const QColo
  */
 QPixmap setIconBackground(const QColor &color, const QPixmap &pix);
 
+/** \brief Converts all pixels non transparent from other to transparent in base. Returns false if it fails.
+ * \param[inout] base Base image to modify pixels. 
+ * \param[in] other Other image to subtract.
+ *
+ */
+bool subtractImage(QImage &base, const QImage &other);
+
+/** \brief Converts all pixels non transparent from other to transparent in base. Returns false if it fails.
+ * \param[inout] base Base pixmap to modify pixels. 
+ * \param[in] other Other pixmap to subtract.
+ *
+ */
+bool subtractPixmap(QPixmap &base, const QPixmap &other);
+
 /** \brief Computes the Qt::Rect of drawn pixels in the given image.
  * \param[in] image QImage object reference.
  *
