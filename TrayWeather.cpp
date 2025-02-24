@@ -1353,6 +1353,8 @@ void TrayWeather::processAlerts(const Alerts &alerts)
     };
     std::for_each(alerts.cbegin(), alerts.cend(), filterAlerts);
 
+    removeExpiredAlerts();
+
     Alerts notShown;
     auto filterNotShown = [&](const Alert &alert)
     {
@@ -1365,16 +1367,6 @@ void TrayWeather::processAlerts(const Alerts &alerts)
       const auto actions = contextMenu()->actions();
       actions.at(8)->setEnabled(!notShown.isEmpty());
       actions.at(8)->setText(tr("Last alert...") + QString(" (%1)").arg(notShown.count()));
-
-      const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
-      const QString msg = tr("There is a weather alert for your location!");
-      setIcon(alertIcon);
-      setToolTip(msg);
-      if(m_additionalTray)
-      {
-        m_additionalTray->setIcon(alertIcon);
-        m_additionalTray->setToolTip(msg);
-      }
 
       updateTooltip();
     }

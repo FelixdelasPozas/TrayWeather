@@ -93,7 +93,7 @@
     <message>
         <location filename="../AboutDialog.ui" line="558"/>
         <source>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</source>
-        <translation>Ha támogatni kívánja a projektet az itt megteheti: &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</translation>
+        <translation>Ha támogatni kívánja a projektet azt itt megteheti: &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../AboutDialog.ui" line="598"/>

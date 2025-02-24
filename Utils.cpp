@@ -1253,7 +1253,7 @@ QSettings applicationSettings()
 
     if(isWritable)
     {
-      return QSettings(INI_FILENAME, QSettings::IniFormat);
+      return QSettings(applicationDir.absoluteFilePath(INI_FILENAME), QSettings::IniFormat);
     }
   }
 
