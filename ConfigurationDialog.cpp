@@ -1805,12 +1805,15 @@ QPixmap ConfigurationDialog::generateTemperatureIconPixmap(QFont &font)
   
   QPixmap background(m_pixmap);
   painter.begin(&background);
+  painter.setRenderHint(QPainter::RenderHint::HighQualityAntialiasing, true);
   if(!m_backgroundColor->isChecked()) painter.fillRect(background.rect(), QColor(m_backgroundColorButton->property("iconColor").toString()));  
   painter.translate(rect.center());
   painter.scale(ratioX, ratioY);
   painter.translate(-rect.center()+difference);
   painter.drawImage(QPoint{0,0}, pixmap.toImage());
   painter.end();
+
+  blurPixmap(background,10);
 
   return background.scaled(160, 160, Qt::AspectRatioMode::KeepAspectRatio, Qt::TransformationMode::SmoothTransformation);
 }

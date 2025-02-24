@@ -72,6 +72,8 @@ void AlertsWidget::showEvent(QShowEvent *e)
 {
   emit alertsSeen();
 
+  std::for_each(m_alerts.begin(), m_alerts.end(), [](Alert &a){ a.seen = true; });
+
   QWidget::showEvent(e);
 }
 
@@ -107,11 +109,11 @@ void AlertsWidget::showAlert(const int index)
   struct tm t;
   unixTimeStampToDate(t, data.startTime);
   QDateTime startTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-  m_start->setText(startTime.toString());
+  m_start->setText(startTime.toString("dddd MMMM d yyyy h:m:s ap"));
 
   unixTimeStampToDate(t, data.endTime);
   QDateTime endTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
-  m_end->setText(endTime.toString());
+  m_end->setText(endTime.toString("dddd MMMM d yyyy h:m:s ap"));
 
   if(m_alerts.count() != 1)
   {

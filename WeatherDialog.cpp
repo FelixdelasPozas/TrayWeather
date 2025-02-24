@@ -153,7 +153,7 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
   m_webpage->settings()->setAttribute(QWebSettings::JavascriptCanCloseWindows, false);
   m_webpage->setToolTip(tr("Weather Maps."));
 
-  m_tabWidget->addTab(m_webpage, QIcon(), tr("Maps"));
+  m_tabWidget->addTab(m_webpage, QIcon(), "");
 
   // Alerts tab
   m_alertsWidget = new AlertsWidget();
@@ -162,7 +162,7 @@ WeatherDialog::WeatherDialog(std::shared_ptr<WeatherProvider> provider, QWidget*
 
   // Signals to slots.
   connect(m_alertsWidget, SIGNAL(alertsSeen()), 
-          this,           SIGNAL(alertsSeen()));
+          this,           SLOT(onAlertsSeen()));
           
   connect(m_webpage, SIGNAL(loadFinished(bool)),
           this, SLOT(onLoadFinished(bool)));
@@ -799,9 +799,16 @@ void WeatherDialog::onLoadFinished(bool value)
 //--------------------------------------------------------------------
 void WeatherDialog::setAlerts(const Alerts &alerts)
 {
-  m_tabWidget->setTabEnabled(5, true);
-  m_tabWidget->setTabIcon(5, QIcon{":/TrayWeather/alert.svg"});
-  m_alertsWidget->setAlertData(alerts);
+  const auto hasAlerts = !alerts.isEmpty();
+  m_tabWidget->setTabEnabled(5, hasAlerts);
+  m_tabWidget->setTabIcon(5, hasAlerts ? QIcon{":/TrayWeather/alert.svg"} : QIcon());
+  m_tabWidget->setTabText(5, hasAlerts ? tr("Alerts") : "");
+  if(hasAlerts)
+  {
+    const auto count = std::count_if(alerts.cbegin(), alerts.cend(), [](const Alert &a) { return !a.seen; });
+    if(count > 1) m_tabWidget->setTabText(5, tr("Alerts") + QString(" (%1)").arg(count));
+    m_alertsWidget->setAlertData(alerts);
+  } 
 }
 
 //--------------------------------------------------------------------
@@ -1366,6 +1373,15 @@ void WeatherDialog::onUVAreaChanged(QDateTime begin, QDateTime end)
 }
 
 //--------------------------------------------------------------------
+void WeatherDialog::onAlertsSeen()
+{
+  if(m_tabWidget->isTabEnabled(5))
+    m_tabWidget->setTabText(5, tr("Alerts"));
+
+  emit alertsSeen();
+}
+
+//--------------------------------------------------------------------
 QColor WeatherDialog::pollutionColor(const int aqiValue)
 {
   QColor gradientColor;
@@ -1438,7 +1454,7 @@ void WeatherDialog::changeEvent(QEvent *e)
       loadMaps();
     }
 
-    const QStringList tabNames{ tr("Current Weather"), tr("Forecast"), tr("Pollution"), tr("UV"), tr("Maps") };
+    const QStringList tabNames{ tr("Current Weather"), tr("Forecast"), tr("Pollution"), tr("UV"), tr("Maps"), (m_tabWidget->isTabEnabled(5) ? tr("Alerts") : "") };
     for(int i = 0; i < m_tabWidget->count(); ++i)
     {
       m_tabWidget->setTabText(i, tabNames.at(i));
@@ -1545,6 +1561,7 @@ void WeatherDialog::removeMaps()
   m_mapsButton->setToolTip(tr("Show weather maps tab."));
 
   m_tabWidget->setTabEnabled(4, false);
+  m_tabWidget->setTabText(4, "");
 
   while(!m_tabWidget->isTabEnabled(m_tabWidget->currentIndex()))
     m_tabWidget->setCurrentIndex(m_tabWidget->currentIndex()-1);

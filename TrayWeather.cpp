@@ -959,7 +959,8 @@ void TrayWeather::showTab()
     {
       if(caller == actions.at(i))
       {
-        lastTab = i;
+        // alerts tab has not the same number as action.
+        lastTab = i == 8 ? 5 : i; 
         break;
       }
     }
@@ -969,7 +970,7 @@ void TrayWeather::showTab()
     lastTab = m_configuration.lastTab;
   }
 
-  if(lastTab == 8)
+  if(lastTab == 5)
   {
     removeExpiredAlerts();
     if(m_alerts.isEmpty())
@@ -980,6 +981,11 @@ void TrayWeather::showTab()
 
   if(m_weatherDialog)
   {
+    m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
+    m_weatherDialog->setPollutionData(m_pData);
+    m_weatherDialog->setUVData(m_vData);
+    m_weatherDialog->setAlerts(m_alerts);
+
     m_weatherDialog->raise();
     m_weatherDialog->m_tabWidget->setCurrentIndex(lastTab);
     return;
@@ -1004,6 +1010,7 @@ void TrayWeather::showTab()
   m_weatherDialog->setWeatherData(m_current, m_data, m_configuration);
   m_weatherDialog->setPollutionData(m_pData);
   m_weatherDialog->setUVData(m_vData);
+  m_weatherDialog->setAlerts(m_alerts);
 
   connect(m_weatherDialog, SIGNAL(mapsEnabled(bool)), this, SLOT(onMapsStateChanged(bool)));
   connect(m_weatherDialog, SIGNAL(alertsSeen()), this, SLOT(onAlertsSeen()));
@@ -1093,6 +1100,8 @@ void TrayWeather::requestGeolocation()
 void TrayWeather::onMapsStateChanged(bool value)
 {
   m_configuration.mapsEnabled = value;
+  const auto actions = contextMenu()->actions();
+  actions.at(4)->setEnabled(value);
 }
 
 //--------------------------------------------------------------------
@@ -1366,6 +1375,8 @@ void TrayWeather::processAlerts(const Alerts &alerts)
         m_additionalTray->setIcon(alertIcon);
         m_additionalTray->setToolTip(msg);
       }
+
+      updateTooltip();
     }
   }
 }
@@ -1424,7 +1435,7 @@ void TrayWeather::updateMenuActions()
 //--------------------------------------------------------------------
 void TrayWeather::removeExpiredAlerts()
 {
-  const long long unsigned int currentDt = QDateTime::currentDateTimeUtc().currentMSecsSinceEpoch();
+  const long long unsigned int currentDt = QDateTime::currentDateTimeUtc().currentMSecsSinceEpoch() / 1000;
   
   auto isExpired = [currentDt](const Alert &a)
   { return currentDt > a.endTime; };
@@ -1442,8 +1453,9 @@ void TrayWeather::removeExpiredAlerts()
 void TrayWeather::onAlertsSeen()
 {
   auto actions = this->contextMenu()->actions();
-  actions.at(8)->setEnabled(false);
+  actions.at(8)->setEnabled(!m_alerts.empty());
   actions.at(8)->setText(tr("Last alert..."));
+  std::for_each(m_alerts.begin(), m_alerts.end(), [](Alert &a){ a.seen = true; });
   
   updateTooltip(); 
 }
@@ -1467,10 +1479,7 @@ void TrayWeather::showAlert()
   removeExpiredAlerts();
 
   if(!m_alerts.isEmpty())
-  {
     m_configuration.lastTab = 5;
-    showTab();
-  }
 
-  onAlertsSeen();
+  showTab();
 }

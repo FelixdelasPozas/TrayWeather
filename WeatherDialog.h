@@ -207,6 +207,11 @@ class WeatherDialog
      */
     void onUVAreaChanged(QDateTime begin, QDateTime end);
 
+    /** \brief Updates the alerts tab title.
+     *
+     */
+    void onAlertsSeen();
+
   private:
     /** \brief Returns the color of the given aqi value.
      * \param[in] aqiValue aqi value in [1,5].
