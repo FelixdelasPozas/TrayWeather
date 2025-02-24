@@ -106,9 +106,10 @@ int main(int argc, char *argv[])
 
     const auto value = dialog.exec();
 
+    dialog.getConfiguration(configuration);
+
     if(configuration.isValid() && value == QDialog::Accepted)
     {
-      dialog.getConfiguration(configuration);
       save(configuration);
     }
     else
