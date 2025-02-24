@@ -69,7 +69,7 @@ creating the empty file because then the setting will be loaded from the windows
 # Screenshots
 
 > [!NOTE]
-> Some screenshots are from older versions of Tray Weather. The tabs the appear in the main dialog depend on the data that the selected weather provider can supply.
+> Some screenshots are from older versions of Tray Weather. The tabs the appear in the main dialog depend on the data that the selected weather provider can supply. The same with the context menu, some entries won't be available (like for example, alerts) if the selected provider don't support them.
 
 Tray icon showing the current weather icon. At night and on clear sky days it shows the current moon phase as the weather icon.
 
@@ -152,7 +152,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's 504 texts.
+and making a pull request. Currently it's 517 texts.
 
 To do it manually just edit the 'empty translation' file in the 'languages' directory (empty.ts) and replace the untranslated messages, for example:
 
@@ -176,7 +176,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.33.3
+**Version**: 1.34.0
 
 **Status**: finished.
 
@@ -184,8 +184,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  15           | 1434        |   593            | 7071 |
-| C/C++ Header                 |  15           |  463        |  1327            | 1348 |
+| C++                          |  15           | 1476        |   610            | 7214 |
+| C/C++ Header                 |  15           |  473        |  1356            | 1372 |
 | HTML                         |   2           |   66        |     0            |  304 |
-| CMake                        |   1           |   19        |     9            |  132 |
-| **Total**                    | **33**        | **1982**    | **1929**         | **8855** |
+| CMake                        |   1           |   19        |     9            |  133 |
+| **Total**                    | **33**        | **2034**    | **1975**         | **9023** |
