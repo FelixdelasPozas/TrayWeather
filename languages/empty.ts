@@ -1570,7 +1570,7 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../Main.cpp" line="77"/>
         <location filename="../Main.cpp" line="93"/>
-        <location filename="../Main.cpp" line="118"/>
+        <location filename="../Main.cpp" line="119"/>
         <location filename="../TrayWeather.cpp" line="350"/>
         <location filename="../TrayWeather.cpp" line="998"/>
         <source>Tray Weather</source>
@@ -1588,7 +1588,7 @@ The application will exit now.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="120"/>
+        <location filename="../Main.cpp" line="121"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
         <translation type="unfinished"></translation>
@@ -2037,7 +2037,6 @@ and it&apos;s still waiting for the response.</source>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="423"/>
-        <location filename="../TrayWeather.cpp" line="1370"/>
         <source>There is a weather alert for your location!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2170,8 +2169,8 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../TrayWeather.cpp" line="805"/>
         <location filename="../TrayWeather.cpp" line="1168"/>
-        <location filename="../TrayWeather.cpp" line="1367"/>
-        <location filename="../TrayWeather.cpp" line="1457"/>
+        <location filename="../TrayWeather.cpp" line="1369"/>
+        <location filename="../TrayWeather.cpp" line="1449"/>
         <source>Last alert...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2250,7 +2249,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Current Weather</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2330,7 +2329,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="209"/>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Temperature</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2354,8 +2353,8 @@ during midday hours.</source>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
         <location filename="../WeatherDialog.cpp" line="208"/>
-        <location filename="../WeatherDialog.cpp" line="877"/>
-        <location filename="../WeatherDialog.cpp" line="1068"/>
+        <location filename="../WeatherDialog.cpp" line="883"/>
+        <location filename="../WeatherDialog.cpp" line="1074"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2454,7 +2453,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1545"/>
+        <location filename="../WeatherDialog.cpp" line="1560"/>
         <source>Show Maps</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2485,7 +2484,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="97"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Forecast</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2496,13 +2495,13 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="119"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Pollution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="141"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>UV</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2530,8 +2529,8 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="384"/>
-        <location filename="../WeatherDialog.cpp" line="927"/>
-        <location filename="../WeatherDialog.cpp" line="1093"/>
+        <location filename="../WeatherDialog.cpp" line="933"/>
+        <location filename="../WeatherDialog.cpp" line="1099"/>
         <source>Day (Hour)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2543,8 +2542,8 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="783"/>
-        <location filename="../WeatherDialog.cpp" line="845"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="851"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Maps</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2559,42 +2558,42 @@ during midday hours.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="886"/>
+        <location filename="../WeatherDialog.cpp" line="892"/>
         <source>Low</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="895"/>
+        <location filename="../WeatherDialog.cpp" line="901"/>
         <source>High</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="900"/>
+        <location filename="../WeatherDialog.cpp" line="906"/>
         <source>Very high</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="903"/>
+        <location filename="../WeatherDialog.cpp" line="909"/>
         <source>Extreme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="931"/>
+        <location filename="../WeatherDialog.cpp" line="937"/>
         <source>Ultraviolet radiation index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="979"/>
+        <location filename="../WeatherDialog.cpp" line="985"/>
         <source>UV Index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="1472"/>
         <source>Hide Maps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1458"/>
+        <location filename="../WeatherDialog.cpp" line="1473"/>
         <source>Hide weather maps tab.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2637,6 +2636,10 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="160"/>
+        <location filename="../WeatherDialog.cpp" line="805"/>
+        <location filename="../WeatherDialog.cpp" line="809"/>
+        <location filename="../WeatherDialog.cpp" line="1379"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Alerts</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2684,32 +2687,32 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="401"/>
-        <location filename="../WeatherDialog.cpp" line="1104"/>
+        <location filename="../WeatherDialog.cpp" line="1110"/>
         <source>Click to hide or show the forecast.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="891"/>
+        <location filename="../WeatherDialog.cpp" line="897"/>
         <source>Moderate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1097"/>
+        <location filename="../WeatherDialog.cpp" line="1103"/>
         <source>Concentration in %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Rain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Wind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Clouds</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2726,7 +2729,7 @@ during midday hours.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1546"/>
+        <location filename="../WeatherDialog.cpp" line="1561"/>
         <source>Show weather maps tab.</source>
         <translation type="unfinished"></translation>
     </message>

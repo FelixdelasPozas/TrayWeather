@@ -131,20 +131,20 @@ struct LanguageData
  *
  */
 static QList<LanguageData> TRANSLATIONS = {
-    { "English",                ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez" },
-    { "Español (España)",       ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez" },
-    { "Русский",                ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"            },
-    { "Deutsch",                ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"             },
-    { "Français",               ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                },
-    { "简体中文",                ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"              },
-    { "Português (Brasileiro)", ":/TrayWeather/languages/br.svg", "pt_BR", "Autergame"                  },
-    { "Українська",             ":/TrayWeather/languages/uk.svg", "uk_UA", "Aleksandr Popov"            },
-    { "Slovenščina",            ":/TrayWeather/languages/sl.svg", "sl_SI", "datenshi888"                },
-    { "한국어",                  ":/TrayWeather/languages/kr.svg", "ko_KR", "isl6"                        },
-    { "Polski",                 ":/TrayWeather/languages/pl.svg", "pl_PL", "Krzysztof Blachnicki"       },
-    { "Türkçe",                 ":/TrayWeather/languages/tr.svg", "tr_TR", "cmhrky"                     },
-    { "Italiano",               ":/TrayWeather/languages/it.svg", "it_IT", "Hanamichi27"                },
-	  { "Magyar",                 ":/TrayWeather/languages/hu.svg", "hu_HU", "Bukodi Gábor"               }
+    { "English",                ":/TrayWeather/languages/en.svg", "en_EN", "Félix de las Pozas Álvarez"    },
+    { "Español (España)",       ":/TrayWeather/languages/es.svg", "es_ES", "Félix de las Pozas Álvarez"    },
+    { "Русский",                ":/TrayWeather/languages/ru.svg", "ru_RU", "Andrei Stepanov"               },
+    { "Deutsch",                ":/TrayWeather/languages/de.svg", "de_DE", "Andreas Lüdeke"                },
+    { "Français",               ":/TrayWeather/languages/fr.svg", "fr_FR", "Stephane D."                   },
+    { "简体中文",                ":/TrayWeather/languages/cn.svg", "zh_CN", "Chow Yuk Hong"                 },
+    { "Português (Brasileiro)", ":/TrayWeather/languages/br.svg", "pt_BR", "Autergame"                     },
+    { "Українська",             ":/TrayWeather/languages/uk.svg", "uk_UA", "Aleksandr Popov"               },
+    { "Slovenščina",            ":/TrayWeather/languages/sl.svg", "sl_SI", "datenshi888"                   },
+    { "한국어",                  ":/TrayWeather/languages/kr.svg", "ko_KR", "isl6"                          },
+    { "Polski",                 ":/TrayWeather/languages/pl.svg", "pl_PL", "Krzysztof Blachnicki & Fresta" },
+    { "Türkçe",                 ":/TrayWeather/languages/tr.svg", "tr_TR", "cmhrky"                        },
+    { "Italiano",               ":/TrayWeather/languages/it.svg", "it_IT", "Hanamichi27"                   },
+	  { "Magyar",                 ":/TrayWeather/languages/hu.svg", "hu_HU", "Bukodi Gábor"                  }
 };
 
 /** \struct IconThemeData

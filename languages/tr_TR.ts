@@ -1573,7 +1573,7 @@ Güvenlik duvarınız varsa, bu programın ağa erişmesine izin vermek için ay
     <message>
         <location filename="../Main.cpp" line="77"/>
         <location filename="../Main.cpp" line="93"/>
-        <location filename="../Main.cpp" line="118"/>
+        <location filename="../Main.cpp" line="119"/>
         <location filename="../TrayWeather.cpp" line="350"/>
         <location filename="../TrayWeather.cpp" line="998"/>
         <source>Tray Weather</source>
@@ -1592,7 +1592,7 @@ Uygulamadan çıkış yapılacaktır.</translation>
         <translation>TrayWeather zaten çalışıyor!</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="120"/>
+        <location filename="../Main.cpp" line="121"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
         <translation>TrayWeather geçerli bir konum ve geçerli bir hava durumu veri sağlayıcısı olmadan çalıştırılamaz.
@@ -2045,7 +2045,6 @@ ve hâlâ yanıt bekliyor.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="423"/>
-        <location filename="../TrayWeather.cpp" line="1370"/>
         <source>There is a weather alert for your location!</source>
         <translation>Konumunuz için bir hava durumu uyarısı var!</translation>
     </message>
@@ -2178,8 +2177,8 @@ ve hâlâ yanıt bekliyor.</translation>
     <message>
         <location filename="../TrayWeather.cpp" line="805"/>
         <location filename="../TrayWeather.cpp" line="1168"/>
-        <location filename="../TrayWeather.cpp" line="1367"/>
-        <location filename="../TrayWeather.cpp" line="1457"/>
+        <location filename="../TrayWeather.cpp" line="1369"/>
+        <location filename="../TrayWeather.cpp" line="1449"/>
         <source>Last alert...</source>
         <translation>Son uyarı...</translation>
     </message>
@@ -2260,7 +2259,7 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Current Weather</source>
         <translation>Güncel Hava Hurumu</translation>
     </message>
@@ -2340,7 +2339,7 @@ dışarıda olmaktan kaçının.</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="209"/>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Temperature</source>
         <translation>Sıcaklık</translation>
     </message>
@@ -2364,8 +2363,8 @@ dışarıda olmaktan kaçının.</translation>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
         <location filename="../WeatherDialog.cpp" line="208"/>
-        <location filename="../WeatherDialog.cpp" line="877"/>
-        <location filename="../WeatherDialog.cpp" line="1068"/>
+        <location filename="../WeatherDialog.cpp" line="883"/>
+        <location filename="../WeatherDialog.cpp" line="1074"/>
         <source>Unknown</source>
         <translation>Bilinmiyor</translation>
     </message>
@@ -2464,7 +2463,7 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1545"/>
+        <location filename="../WeatherDialog.cpp" line="1560"/>
         <source>Show Maps</source>
         <translation>Haritaları Göster</translation>
     </message>
@@ -2495,7 +2494,7 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="97"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Forecast</source>
         <translation>Tahmin</translation>
     </message>
@@ -2506,13 +2505,13 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="119"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Pollution</source>
         <translation>Kirlilik</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="141"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>UV</source>
         <translation>UV</translation>
     </message>
@@ -2540,8 +2539,8 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="384"/>
-        <location filename="../WeatherDialog.cpp" line="927"/>
-        <location filename="../WeatherDialog.cpp" line="1093"/>
+        <location filename="../WeatherDialog.cpp" line="933"/>
+        <location filename="../WeatherDialog.cpp" line="1099"/>
         <source>Day (Hour)</source>
         <translation>Gün (Saat)</translation>
     </message>
@@ -2553,8 +2552,8 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="783"/>
-        <location filename="../WeatherDialog.cpp" line="845"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="851"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Maps</source>
         <translation>Haritalar</translation>
     </message>
@@ -2569,42 +2568,42 @@ dışarıda olmaktan kaçının.</translation>
         <translation>Hava durumu haritaları yüklenemedi.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="886"/>
+        <location filename="../WeatherDialog.cpp" line="892"/>
         <source>Low</source>
         <translation>Düşük</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="895"/>
+        <location filename="../WeatherDialog.cpp" line="901"/>
         <source>High</source>
         <translation>Yüksek</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="900"/>
+        <location filename="../WeatherDialog.cpp" line="906"/>
         <source>Very high</source>
         <translation>Çok yüksek</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="903"/>
+        <location filename="../WeatherDialog.cpp" line="909"/>
         <source>Extreme</source>
         <translation>Ekstrem</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="931"/>
+        <location filename="../WeatherDialog.cpp" line="937"/>
         <source>Ultraviolet radiation index</source>
         <translation>Ultraviyole radyasyon indeksi</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="979"/>
+        <location filename="../WeatherDialog.cpp" line="985"/>
         <source>UV Index</source>
         <translation>UV İndeksi</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="1472"/>
         <source>Hide Maps</source>
         <translation>Haritaları Gizle</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1458"/>
+        <location filename="../WeatherDialog.cpp" line="1473"/>
         <source>Hide weather maps tab.</source>
         <translation>Hava durumu haritaları sekmesini gizle.</translation>
     </message>
@@ -2647,6 +2646,10 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="160"/>
+        <location filename="../WeatherDialog.cpp" line="805"/>
+        <location filename="../WeatherDialog.cpp" line="809"/>
+        <location filename="../WeatherDialog.cpp" line="1379"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Alerts</source>
         <translation>Uyarılar</translation>
     </message>
@@ -2694,32 +2697,32 @@ dışarıda olmaktan kaçının.</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="401"/>
-        <location filename="../WeatherDialog.cpp" line="1104"/>
+        <location filename="../WeatherDialog.cpp" line="1110"/>
         <source>Click to hide or show the forecast.</source>
         <translation>Tahmini gizlemek ya da göstermek için tıklayın.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="891"/>
+        <location filename="../WeatherDialog.cpp" line="897"/>
         <source>Moderate</source>
         <translation>Hassas</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1097"/>
+        <location filename="../WeatherDialog.cpp" line="1103"/>
         <source>Concentration in %1</source>
         <translation>Konsantrasyon (%1)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Rain</source>
         <translation>Yağmur</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Wind</source>
         <translation>Rüzgâr</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Clouds</source>
         <translation>Bulutlar</translation>
     </message>
@@ -2736,7 +2739,7 @@ dışarıda olmaktan kaçının.</translation>
         <translation>mt/sn</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1546"/>
+        <location filename="../WeatherDialog.cpp" line="1561"/>
         <source>Show weather maps tab.</source>
         <translation>Hava durumu haritaları sekmesini göster.</translation>
     </message>

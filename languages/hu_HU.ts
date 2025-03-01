@@ -794,7 +794,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="1554"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; In the forecast graphs the information can be hidden and shown again by clicking on the legend title text.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Note:&lt;/span&gt; Az időjárásgrafikon információk a jelmagyarázat címszövegére való kattintással ki-be kapcsolhatók .&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Megjegyzés:&lt;/span&gt; Az időjárásgrafikon információk a jelmagyarázat címszövegére való kattintással ki-be kapcsolhatók .&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="1819"/>
@@ -804,7 +804,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2052"/>
         <source>from</source>
-        <translation>innen</translation>
+        <translation>min</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2071"/>
@@ -814,7 +814,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2096"/>
         <source>to</source>
-        <translation>-&gt;</translation>
+        <translation>max</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2115"/>
@@ -1188,7 +1188,7 @@ Ha tűzfalat használ, módosítsa a beállítást úgy, hogy a programnak bizto
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1624"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Földrajzi helyzetének %1 időjárási adataihoz való hozzáféréshez API-kulcsr avan szükség ami innen igényelhető &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;honlap&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Földrajzi helyzetének %1 időjárási adataihoz való hozzáféréshez API-kulcsra van szükség ami innen igényelhető &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;honlap&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.cpp" line="1627"/>
@@ -1579,7 +1579,7 @@ Ha tűzfalat használ, módosítsa a beállítást úgy, hogy a programnak bizto
     <message>
         <location filename="../Main.cpp" line="77"/>
         <location filename="../Main.cpp" line="93"/>
-        <location filename="../Main.cpp" line="118"/>
+        <location filename="../Main.cpp" line="119"/>
         <location filename="../TrayWeather.cpp" line="350"/>
         <location filename="../TrayWeather.cpp" line="998"/>
         <source>Tray Weather</source>
@@ -1598,7 +1598,7 @@ Az alkalmazás most befejeződik.</translation>
         <translation>A TrayWeather már fut!</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="120"/>
+        <location filename="../Main.cpp" line="121"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
         <translation>A TrayWeather nem képes érvényes földrajzi helyzet és időjárás-szolgáltató nélkül működni.
@@ -2051,7 +2051,6 @@ and it&apos;s still waiting for the response.</source>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="423"/>
-        <location filename="../TrayWeather.cpp" line="1370"/>
         <source>There is a weather alert for your location!</source>
         <translation>Az tartózkodási helyén időjárási figyelmeztetés van érvényben!</translation>
     </message>
@@ -2184,8 +2183,8 @@ and it&apos;s still waiting for the response.</source>
     <message>
         <location filename="../TrayWeather.cpp" line="805"/>
         <location filename="../TrayWeather.cpp" line="1168"/>
-        <location filename="../TrayWeather.cpp" line="1367"/>
-        <location filename="../TrayWeather.cpp" line="1457"/>
+        <location filename="../TrayWeather.cpp" line="1369"/>
+        <location filename="../TrayWeather.cpp" line="1449"/>
         <source>Last alert...</source>
         <translation>Utolsó jelzés...</translation>
     </message>
@@ -2266,7 +2265,7 @@ a kint tartózkodást!</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Current Weather</source>
         <translation>Jelenlegi időjárás</translation>
     </message>
@@ -2346,7 +2345,7 @@ a kint tartózkodást!</translation>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="209"/>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Temperature</source>
         <translation>Hőmérséklet</translation>
     </message>
@@ -2370,8 +2369,8 @@ a kint tartózkodást!</translation>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
         <location filename="../WeatherDialog.cpp" line="208"/>
-        <location filename="../WeatherDialog.cpp" line="877"/>
-        <location filename="../WeatherDialog.cpp" line="1068"/>
+        <location filename="../WeatherDialog.cpp" line="883"/>
+        <location filename="../WeatherDialog.cpp" line="1074"/>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -2470,7 +2469,7 @@ a kint tartózkodást!</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1545"/>
+        <location filename="../WeatherDialog.cpp" line="1560"/>
         <source>Show Maps</source>
         <translation>Térkép mutatása</translation>
     </message>
@@ -2501,7 +2500,7 @@ a kint tartózkodást!</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="97"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Forecast</source>
         <translation>Előrejelzés</translation>
     </message>
@@ -2512,13 +2511,13 @@ a kint tartózkodást!</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="119"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Pollution</source>
         <translation>Légszennyezettség</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="141"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>UV</source>
         <translation>UV</translation>
     </message>
@@ -2546,8 +2545,8 @@ a kint tartózkodást!</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="384"/>
-        <location filename="../WeatherDialog.cpp" line="927"/>
-        <location filename="../WeatherDialog.cpp" line="1093"/>
+        <location filename="../WeatherDialog.cpp" line="933"/>
+        <location filename="../WeatherDialog.cpp" line="1099"/>
         <source>Day (Hour)</source>
         <translation>Nap (óra)</translation>
     </message>
@@ -2555,12 +2554,12 @@ a kint tartózkodást!</translation>
         <location filename="../WeatherDialog.cpp" line="389"/>
         <location filename="../WeatherDialog.cpp" line="394"/>
         <source>%1 in %2</source>
-        <translation>%1 ebből %2</translation>
+        <translation>%1 %2-ban</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="783"/>
-        <location filename="../WeatherDialog.cpp" line="845"/>
-        <location filename="../WeatherDialog.cpp" line="1442"/>
+        <location filename="../WeatherDialog.cpp" line="851"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Maps</source>
         <translation>Térképek</translation>
     </message>
@@ -2575,42 +2574,42 @@ a kint tartózkodást!</translation>
         <translation>Az időjárás térképet nem lehet betölteni.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="886"/>
+        <location filename="../WeatherDialog.cpp" line="892"/>
         <source>Low</source>
         <translation>Alacsony</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="895"/>
+        <location filename="../WeatherDialog.cpp" line="901"/>
         <source>High</source>
         <translation>Magas</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="900"/>
+        <location filename="../WeatherDialog.cpp" line="906"/>
         <source>Very high</source>
         <translation>Nagyon magas</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="903"/>
+        <location filename="../WeatherDialog.cpp" line="909"/>
         <source>Extreme</source>
         <translation>Szélsőséges</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="931"/>
+        <location filename="../WeatherDialog.cpp" line="937"/>
         <source>Ultraviolet radiation index</source>
         <translation>Ultraibolya sugárzási index</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="979"/>
+        <location filename="../WeatherDialog.cpp" line="985"/>
         <source>UV Index</source>
         <translation>UV index</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="1472"/>
         <source>Hide Maps</source>
         <translation>Térkép elrejtése</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1458"/>
+        <location filename="../WeatherDialog.cpp" line="1473"/>
         <source>Hide weather maps tab.</source>
         <translation>Időjárás térkép fül elrejtése.</translation>
     </message>
@@ -2653,6 +2652,10 @@ a kint tartózkodást!</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="160"/>
+        <location filename="../WeatherDialog.cpp" line="805"/>
+        <location filename="../WeatherDialog.cpp" line="809"/>
+        <location filename="../WeatherDialog.cpp" line="1379"/>
+        <location filename="../WeatherDialog.cpp" line="1457"/>
         <source>Alerts</source>
         <translation>Figyelmeztetések</translation>
     </message>
@@ -2700,32 +2703,32 @@ a kint tartózkodást!</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="401"/>
-        <location filename="../WeatherDialog.cpp" line="1104"/>
+        <location filename="../WeatherDialog.cpp" line="1110"/>
         <source>Click to hide or show the forecast.</source>
         <translation>Kattintson az előrejelzés megjelenítéséhez/erejtéséhez.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="891"/>
+        <location filename="../WeatherDialog.cpp" line="897"/>
         <source>Moderate</source>
         <translation>Mérsékelt</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1097"/>
+        <location filename="../WeatherDialog.cpp" line="1103"/>
         <source>Concentration in %1</source>
         <translation>Koncentráció %1 -ban</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Rain</source>
         <translation>Eső</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Wind</source>
         <translation>Szél</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1406"/>
+        <location filename="../WeatherDialog.cpp" line="1421"/>
         <source>Clouds</source>
         <translation>Felhők</translation>
     </message>
@@ -2742,7 +2745,7 @@ a kint tartózkodást!</translation>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1546"/>
+        <location filename="../WeatherDialog.cpp" line="1561"/>
         <source>Show weather maps tab.</source>
         <translation>Időjárás térkép fül megjelenítése.</translation>
     </message>
