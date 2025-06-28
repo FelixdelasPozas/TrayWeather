@@ -15,6 +15,8 @@ Tray Weather is a simple application to retrieve and show weather information fo
 
 The computer location can be automatically obtained by using the services of [http://ip-api.com/](http://ip-api.com/) or entered manually by specifying latitude and longitude coordinates. The weather information are obtained from a weather data provider.
 
+If you like it you can support this project on [ko-fi!](https://ko-fi.com/felixdelaspozas). Your support is much appreciated!!
+
 ## Weather data providers
 
 You can select one the following data providers in the condifuration dialog:
