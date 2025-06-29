@@ -111,6 +111,7 @@ static const QString CUSTOM_PREC_UNITS        = QString("Custom precipitation un
 static const QString CUSTOM_WIND_UNITS        = QString("Custom wind units");
 static const QString TOOLTIP_FIELDS           = QString("Tooltip text fields");
 static const QString SHOW_ALERTS              = QString("Show weather alerts");
+static const QString KEEP_ALERTS_ICON         = QString("Show alert icon in tray until alerts expire");
 static const QString STRETCH_TEMP_ICON        = QString("Stretch temperature icon vertically");
 static const QString GRAPH_TEMP_REPR          = QString("Forecast graph temperature representation");
 static const QString GRAPH_RAIN_REPR          = QString("Forecast graph rain representation");
@@ -669,6 +670,7 @@ void load(Configuration &configuration)
   configuration.lastStreetLayer = settings.value(LAST_STREET_LAYER, "mapnik").toString();
   configuration.language        = settings.value(LANGUAGE, "en_EN").toString();
   configuration.showAlerts      = settings.value(SHOW_ALERTS, true).toBool();
+  configuration.keepAlertIcon   = settings.value(KEEP_ALERTS_ICON, false).toBool();
   configuration.swapTrayIcons   = settings.value(TRAY_SWAP_ICONS, false).toBool();
   configuration.trayIconSize    = settings.value(TRAY_ICON_SIZE, 100).toInt();
   configuration.tempRepr        = static_cast<Representation>(settings.value(GRAPH_TEMP_REPR, 1).toInt());
@@ -765,6 +767,7 @@ void save(const Configuration &configuration)
   settings.setValue(CUSTOM_PREC_UNITS,        static_cast<int>(configuration.precUnits));
   settings.setValue(CUSTOM_WIND_UNITS,        static_cast<int>(configuration.windUnits));
   settings.setValue(SHOW_ALERTS,              configuration.showAlerts);
+  settings.setValue(KEEP_ALERTS_ICON,         configuration.keepAlertIcon);
   settings.setValue(TRAY_SWAP_ICONS,          configuration.swapTrayIcons);
   settings.setValue(TRAY_ICON_SIZE,           configuration.trayIconSize);
   settings.setValue(GRAPH_TEMP_REPR,          static_cast<int>(configuration.tempRepr));

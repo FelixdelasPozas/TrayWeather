@@ -290,6 +290,7 @@ struct Configuration
     QString            language;        /** application language.                                          */
     QList<TooltipText> tooltipFields;   /** tooltip fields in order.                                       */
     bool               showAlerts;      /** true to show weather alerts and false otherwise.               */
+    bool               keepAlertIcon;   /** true to show the alert icon in tray until alerts expire.       */
     TemperatureUnits   tempUnits;       /** custom temperature units.                                      */
     PressureUnits      pressureUnits;   /** custom pressure units.                                         */
     PrecipitationUnits precUnits;       /** custom precipitation units.                                    */
@@ -354,6 +355,7 @@ struct Configuration
     , language        {"en_EN"}
     , tooltipFields   {TooltipText::LOCATION, TooltipText::WEATHER, TooltipText::TEMPERATURE}
     , showAlerts      {true}
+    , keepAlertIcon   {false}
     , tempUnits       {TemperatureUnits::CELSIUS}
     , pressureUnits   {PressureUnits::HPA}
     , precUnits       {PrecipitationUnits::MM}

@@ -44,9 +44,43 @@
 
 // C++
 #include <iostream>
+#include <windows.h>
+#include <processthreadsapi.h>
 
 const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
 QDateTime timeOfLastUpdate = QDateTime::currentDateTime();
+
+QString m_url; // downloaded update file to launch in updater.
+
+//--------------------------------------------------------------------
+void launchUpdate()
+{
+  if(m_url.isEmpty())
+    return;
+
+  const auto appPath = qApp->applicationDirPath();
+  const QDir appDir{appPath};
+  const auto updaterPath = appDir.absoluteFilePath("Updater.exe");
+  const auto commandLine = updaterPath + " " + m_url;
+  std::string commandStr = commandLine.toStdString();
+
+    LPSTARTUPINFO lpStartupInfo;
+    LPPROCESS_INFORMATION lpProcessInfo;
+
+    memset(&lpStartupInfo, 0, sizeof(lpStartupInfo));
+    memset(&lpProcessInfo, 0, sizeof(lpProcessInfo));
+
+    CreateProcess(NULL,               // No module name (use command line)
+                  &commandStr[0],     // Command line
+                  NULL,               // Process handle not inheritable
+                  NULL,               // Thread handle not inheritable
+                  FALSE,              // Set handle inheritance to FALSE
+                  0,                  // No creation flags
+                  NULL,               // Use parent's environment block
+                  NULL,               // Use parent's starting directory
+                  lpStartupInfo,      // Pointer to STARTUPINFO structure
+                  lpProcessInfo);     // Pointer to PROCESSINFO structure
+}
 
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
@@ -216,6 +250,7 @@ void TrayWeather::showConfiguration()
   m_configuration.language        = configuration.language;
   m_configuration.tooltipFields   = configuration.tooltipFields;
   m_configuration.showAlerts      = configuration.showAlerts;
+  m_configuration.keepAlertIcon   = configuration.keepAlertIcon;
   m_configuration.swapTrayIcons   = configuration.swapTrayIcons;
   m_configuration.trayIconSize    = configuration.trayIconSize;
   m_configuration.tempRepr        = configuration.tempRepr;
@@ -416,22 +451,25 @@ void TrayWeather::updateTooltip()
   {
     removeExpiredAlerts();
 
-    auto it = std::find_if(m_alerts.cbegin(), m_alerts.cend(), [](const Alert &a) { return !a.seen; });
-    if(it != m_alerts.cend())
+    if(!m_alerts.empty())
     {
-      const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
-      const QString msg = tr("There is a weather alert for your location!");
-
-      setIcon(alertIcon);
-      setToolTip(msg);
-
-      if (m_additionalTray)
+      auto it = std::find_if(m_alerts.cbegin(), m_alerts.cend(), [](const Alert &a) { return !a.seen; });
+      if(it != m_alerts.cend() || m_configuration.keepAlertIcon)
       {
-        m_additionalTray->setIcon(alertIcon);
-        m_additionalTray->setToolTip(msg);
-      }
+        const auto alertIcon = QIcon{":/TrayWeather/alert.svg"};
+        const QString msg = tr("There is a weather alert for your location!");
 
-      return;
+        setIcon(alertIcon);
+        setToolTip(msg);
+
+        if (m_additionalTray)
+        {
+          m_additionalTray->setIcon(alertIcon);
+          m_additionalTray->setToolTip(msg);
+        }
+
+        return;
+      }
     }
   }
 
@@ -1220,9 +1258,35 @@ void TrayWeather::processGithubData(const QByteArray &data)
       msgBox.setText(message);
       msgBox.setInformativeText(informative);
       msgBox.setDetailedText(details);
+      auto installButton = msgBox.addButton(tr("Install"), QMessageBox::ButtonRole::NoRole);
+      installButton->setIcon(QIcon(":/TrayWeather/updater.svg"));
       msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
       msgBox.setIconPixmap(QIcon(":/TrayWeather/application.svg").pixmap(QSize{64,64}));
       msgBox.exec();
+
+      if(msgBox.clickedButton() == installButton)
+      {
+          const auto assets = lastRelease.value("assets").toArray();
+          for (int i = 0; i < assets.size(); ++i) {
+              const auto asset = assets.at(i).toObject();
+              m_url = asset.value("browser_download_url").toString();
+              if(m_url.endsWith(".exe", Qt::CaseInsensitive))
+                break;
+          }
+
+          if (!m_url.endsWith(".exe", Qt::CaseInsensitive)) {
+              QMessageBox msgBox;
+              msgBox.setWindowTitle(title);
+              msgBox.setText(tr("Unable to locate valid asset in Github. Install aborted."));
+              msgBox.setDetailedText(details);
+              msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+              msgBox.setIconPixmap(QIcon(":/TrayWeather/application.svg").pixmap(QSize{64, 64}));
+              msgBox.exec();
+          }
+
+          std::atexit(launchUpdate);
+          exitApplication();
+      }
     }
   }
   else
@@ -1362,13 +1426,16 @@ void TrayWeather::processAlerts(const Alerts &alerts)
     };
     std::for_each(m_alerts.cbegin(), m_alerts.cend(), filterNotShown);
 
-    if(!notShown.isEmpty())
+    if(!m_alerts.isEmpty())
     {
-      const auto actions = contextMenu()->actions();
-      actions.at(8)->setEnabled(!notShown.isEmpty());
-      actions.at(8)->setText(tr("Last alert...") + QString(" (%1)").arg(notShown.count()));
+      if(!notShown.isEmpty() || m_configuration.keepAlertIcon)
+      {
+        const auto actions = contextMenu()->actions();
+        actions.at(8)->setEnabled(!notShown.isEmpty());
+        actions.at(8)->setText(tr("Last alert...") + QString(" (%1)").arg(notShown.count()));
 
-      updateTooltip();
+        updateTooltip();
+      }
     }
   }
 }

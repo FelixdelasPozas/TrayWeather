@@ -150,7 +150,6 @@ void OpenMeteoProvider::processWeatherData(const QByteArray &contents)
     auto country = m_config.country.isEmpty() ? tr("Unknown") : m_config.country;      
     if(city.compare(region, Qt::CaseInsensitive) != 0) country = region;
 
-
     const auto keys = jsonObj.keys();
 
     if(keys.contains("current"))

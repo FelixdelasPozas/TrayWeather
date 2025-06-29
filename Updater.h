@@ -25,7 +25,11 @@
 
 // Qt
 #include <QWidget>
+#include <QNetworkAccessManager>
 #include <QUrl>
+#include <QByteArray>
+
+class QNetworkReply;
 
 /** \class TrayWeatherUpdater
  * \brief Implements the dialog that downloads the update
@@ -54,10 +58,15 @@ class TrayWeatherUpdater
 
   private slots:
     void onCancelPressed();
+    void startDownload();
+    void fileDownloaded(QNetworkReply*);
+    void onProgressChanged(qint64 current, qint64 total);
 
   private:
     const QUrl m_url; /** download url. */
     QString m_file; /** downloaded file. */
+    QNetworkAccessManager m_netManager;
+    QByteArray m_DownloadedData;    
 };
 
 #endif

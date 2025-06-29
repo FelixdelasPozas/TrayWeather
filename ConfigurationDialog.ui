@@ -2744,6 +2744,66 @@ QGroupBox::title {
          <property name="verticalSpacing">
           <number>6</number>
          </property>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_17">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Check for updates</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_22">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Language</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QComboBox" name="m_languageCombo"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_31">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Show weather alerts</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0">
           <widget class="QLabel" name="label_12">
            <property name="minimumSize">
@@ -2804,39 +2864,6 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="m_theme">
-           <item>
-            <property name="text">
-             <string>Light</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Dark</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_17">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>22</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Check for updates</string>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="1">
           <widget class="QComboBox" name="m_updatesCombo">
            <item>
@@ -2887,47 +2914,6 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_22">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>22</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Language</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QComboBox" name="m_languageCombo"/>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_31">
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>22</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Show weather alerts</string>
-           </property>
-          </widget>
-         </item>
          <item row="4" column="1">
           <widget class="QCheckBox" name="m_showAlerts">
            <property name="text">
@@ -2935,7 +2921,34 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
+         <item row="1" column="1">
+          <widget class="QComboBox" name="m_theme">
+           <item>
+            <property name="text">
+             <string>Light</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Dark</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QCheckBox" name="m_swapIcons">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Swaps tray icons. Only enabled if two icon representation is being used.</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
           <widget class="QLabel" name="m_swapIconsLabel">
            <property name="enabled">
             <bool>false</bool>
@@ -2960,13 +2973,32 @@ QGroupBox::title {
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
-          <widget class="QCheckBox" name="m_swapIcons">
+         <item row="5" column="0">
+          <widget class="QLabel" name="m_keepAlertsIconLabel">
            <property name="enabled">
             <bool>false</bool>
            </property>
-           <property name="toolTip">
-            <string>Swaps tray icons. Only enabled if two icon representation is being used.</string>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>22</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Keep alert icon until all alerts expire</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QCheckBox" name="m_keepAlertsIcon">
+           <property name="enabled">
+            <bool>false</bool>
            </property>
            <property name="text">
             <string/>
@@ -3313,6 +3345,38 @@ QGroupBox::title {
     <hint type="destinationlabel">
      <x>376</x>
      <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_showAlerts</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>m_keepAlertsIcon</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>320</x>
+     <y>163</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>320</x>
+     <y>191</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_showAlerts</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>m_keepAlertsIconLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>320</x>
+     <y>163</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>122</x>
+     <y>191</y>
     </hint>
    </hints>
   </connection>

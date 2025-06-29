@@ -286,14 +286,15 @@ void WeatherDialog::setWeatherData(const ForecastData &current, const Forecast &
       break;
   }
 
-  if(config.useGeolocation)
+  QString cityName = config.city;
+  QString countryName = config.country;
+
+  if(!config.useGeolocation)
   {
-    m_location->setText(QString("%1, %2 - %3").arg(config.city).arg(config.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
+    if(!current.name.isEmpty() && current.name != tr("Unknown")) cityName = current.name;
+    if(!current.country.isEmpty() && current.country != tr("Unknown")) countryName = current.country;
   }
-  else
-  {
-    m_location->setText(QString("%1, %2 - %3").arg(current.name).arg(current.country).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
-  }
+  m_location->setText(QString("%1, %2 - %3").arg(cityName).arg(countryName).arg(toTitleCase(dtTime.toString("dddd dd/MM, hh:mm"))));
   m_moon->setPixmap(moonPixmap(current, config.iconTheme, config.iconThemeColor).scaled(QSize{64,64}, Qt::KeepAspectRatio, Qt::SmoothTransformation));
   m_description->setText(toTitleCase(current.description));
   m_icon->setPixmap(weatherPixmap(current, config.iconTheme, config.iconThemeColor).scaled(QSize{236,236}, Qt::KeepAspectRatio, Qt::SmoothTransformation));

@@ -303,6 +303,7 @@ void ConfigurationDialog::getConfiguration(Configuration &configuration) const
   configuration.precUnits       = static_cast<PrecipitationUnits>(m_precipitationCombo->currentIndex());
   configuration.windUnits       = static_cast<WindUnits>(m_windCombo->currentIndex());
   configuration.showAlerts      = m_showAlerts->isChecked();
+  configuration.keepAlertIcon   = m_keepAlertsIcon->isChecked();
   configuration.swapTrayIcons   = m_swapIcons->isChecked();
   configuration.trayIconSize    = m_iconSize->value();
   configuration.tempRepr        = static_cast<Representation>(m_tempGraph->currentIndex());
@@ -923,6 +924,7 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   m_tooltipList->setAlternatingRowColors(true);
 
   m_showAlerts->setChecked(configuration.showAlerts);
+  m_keepAlertsIcon->setChecked(configuration.keepAlertIcon);
 
   onIconTypeChanged(configuration.iconType);
   m_swapIcons->setChecked(configuration.swapTrayIcons);
