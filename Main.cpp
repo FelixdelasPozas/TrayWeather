@@ -84,7 +84,8 @@ int main(int argc, char *argv[])
 
   // allow only one instance
   QSharedMemory guard;
-  guard.setKey("TrayWeather");
+  const QString guardKey = isPortable() ? QCoreApplication::applicationDirPath() : "TrayWeather";
+  guard.setKey(guardKey);
 
   if (!guard.create(1))
   {

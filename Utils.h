@@ -776,6 +776,11 @@ QPixmap blurPixmap(const QPixmap &pixmap, const int blurValue);
  */
 QSettings applicationSettings();
 
+/** \brief Returns true if the application is in portable mode, and false otherwise. 
+ *
+ */
+bool isPortable();
+
 /** \brief Helper method to convert the wmo code inside to fill a ForecastData object fields. 
  *         WMO codes are used to represent weather conditions (meteorological codes for use at observing stations).
  * \param[in] forecast ForecastData object reference, contains wmo code.

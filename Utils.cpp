@@ -1264,6 +1264,13 @@ QSettings applicationSettings()
 }
 
 //--------------------------------------------------------------------
+bool isPortable()
+{
+  QDir applicationDir{QCoreApplication::applicationDirPath()};
+  return applicationDir.exists(INI_FILENAME);
+}
+
+//--------------------------------------------------------------------
 void fillWMOCodeInForecast(ForecastData &forecast)
 {
   const QString CLEAR_SKY                = QObject::tr("Clear sky");
