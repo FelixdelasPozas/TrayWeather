@@ -206,6 +206,7 @@ void OWM25Provider::processReply(QNetworkReply *reply)
 
   if(contents.contains(INVALID_MSG.toLocal8Bit()))
   {
+    m_apiKeyValid = false;
     emit apiKeyValid(false);
     return;
   }
@@ -324,7 +325,11 @@ void OWM25Provider::processWeatherData(const QByteArray &contents)
         std::sort(m_forecast.begin(), m_forecast.end(), lessThan);
       }
 
-      if(!m_apiKeyValid) emit apiKeyValid(true);
+      if(!m_apiKeyValid)
+      {
+        m_apiKeyValid = true;
+        emit apiKeyValid(true);
+      } 
 
       emit weatherForecastDataReady();
     }
@@ -339,7 +344,11 @@ void OWM25Provider::processWeatherData(const QByteArray &contents)
         if(m_current.country != "Unknown") m_config.country = m_current.country;
       }
 
-      if(!m_apiKeyValid) emit apiKeyValid(true);
+      if(!m_apiKeyValid)
+      {
+        m_apiKeyValid = true;
+        emit apiKeyValid(true);
+      }
 
       emit weatherDataReady();
     }
@@ -530,8 +539,26 @@ void OWM25Provider::parsePollutionEntry(const QJsonObject &entry, PollutionData 
 }
 
 //----------------------------------------------------------------------------
+void OWM25Provider::setApiKey(const QString& key)
+{
+  if(!m_apiKey.isEmpty() && m_apiKey.compare(key, Qt::CaseSensitive) == 0)
+    return;
+
+  if (!key.isEmpty()) {
+      m_apiKey = key;
+      m_apiKeyValid = false;
+  }
+};
+
+//----------------------------------------------------------------------------
 void OWM25Provider::testApiKey(std::shared_ptr<QNetworkAccessManager> netManager)
 {
+  if(m_apiKeyValid)
+  {
+    emit apiKeyValid(true);
+    return;
+  }
+
   // protect from abuse
   static auto lastRequest = std::chrono::steady_clock::now();
   const auto now = std::chrono::steady_clock::now();

@@ -67,8 +67,7 @@ class OWM25Provider
     virtual QString apikey() const override
     { return m_apiKey; };
 
-    virtual void setApiKey(const QString &key) override
-    { if(!key.isEmpty()) m_apiKey = key; };
+    virtual void setApiKey(const QString &key) override;
 
     virtual QString name() const override
     { return "OpenWeatherMap"; };
