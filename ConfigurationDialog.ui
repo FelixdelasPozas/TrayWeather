@@ -1943,6 +1943,9 @@ QGroupBox::title {
              <bold>true</bold>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Type of tray icon to use.</string>
+           </property>
            <property name="text">
             <string>Icon type</string>
            </property>
@@ -1975,6 +1978,9 @@ QGroupBox::title {
          </item>
          <item row="0" column="1">
           <widget class="QComboBox" name="m_trayIconType">
+           <property name="toolTip">
+            <string>Type of tray icon to use.</string>
+           </property>
            <item>
             <property name="text">
              <string>Weather icon</string>
@@ -2536,6 +2542,9 @@ QGroupBox::title {
              <bold>true</bold>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Tray icon background color.</string>
+           </property>
            <property name="text">
             <string>Icon background color</string>
            </property>
@@ -2758,6 +2767,9 @@ QGroupBox::title {
              <bold>true</bold>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Check for application updates frequency.</string>
+           </property>
            <property name="text">
             <string>Check for updates</string>
            </property>
@@ -2777,13 +2789,20 @@ QGroupBox::title {
              <bold>true</bold>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Language to use in the application interface.</string>
+           </property>
            <property name="text">
             <string>Language</string>
            </property>
           </widget>
          </item>
          <item row="7" column="1">
-          <widget class="QComboBox" name="m_languageCombo"/>
+          <widget class="QComboBox" name="m_languageCombo">
+           <property name="toolTip">
+            <string>Language to use in the application interface.</string>
+           </property>
+          </widget>
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_31">
@@ -2798,6 +2817,9 @@ QGroupBox::title {
              <weight>75</weight>
              <bold>true</bold>
             </font>
+           </property>
+           <property name="toolTip">
+            <string>Shows weather alerts for the selected location.</string>
            </property>
            <property name="text">
             <string>Show weather alerts</string>
@@ -2818,6 +2840,9 @@ QGroupBox::title {
              <bold>true</bold>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Elapsed time between requests for weather data.</string>
+           </property>
            <property name="text">
             <string>Time between update requests</string>
            </property>
@@ -2830,6 +2855,9 @@ QGroupBox::title {
              <width>0</width>
              <height>22</height>
             </size>
+           </property>
+           <property name="toolTip">
+            <string>Elapsed time between requests for weather data.</string>
            </property>
            <property name="suffix">
             <string> minutes</string>
@@ -2859,6 +2887,9 @@ QGroupBox::title {
              <bold>true</bold>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Application visual theme.</string>
+           </property>
            <property name="text">
             <string>Visual theme</string>
            </property>
@@ -2866,6 +2897,9 @@ QGroupBox::title {
          </item>
          <item row="2" column="1">
           <widget class="QComboBox" name="m_updatesCombo">
+           <property name="toolTip">
+            <string>Check for application updates frequency.</string>
+           </property>
            <item>
             <property name="text">
              <string>Never</string>
@@ -2902,6 +2936,9 @@ QGroupBox::title {
              <bold>true</bold>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Sets to start the application automatically at user login.</string>
+           </property>
            <property name="text">
             <string>Autostart at login</string>
            </property>
@@ -2909,6 +2946,9 @@ QGroupBox::title {
          </item>
          <item row="3" column="1">
           <widget class="QCheckBox" name="m_autostart">
+           <property name="toolTip">
+            <string>Sets to start the application automatically at user login.</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -2916,6 +2956,9 @@ QGroupBox::title {
          </item>
          <item row="4" column="1">
           <widget class="QCheckBox" name="m_showAlerts">
+           <property name="toolTip">
+            <string>Shows weather alerts for the selected location.</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -2923,6 +2966,9 @@ QGroupBox::title {
          </item>
          <item row="1" column="1">
           <widget class="QComboBox" name="m_theme">
+           <property name="toolTip">
+            <string>Application visual theme.</string>
+           </property>
            <item>
             <property name="text">
              <string>Light</string>
@@ -2990,6 +3036,9 @@ QGroupBox::title {
              <bold>true</bold>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Maintains the alert icon in the tray until all alerts have expired, not when all alerts have been seen.</string>
+           </property>
            <property name="text">
             <string>Keep alert icon until all alerts expire</string>
            </property>
@@ -2999,6 +3048,9 @@ QGroupBox::title {
           <widget class="QCheckBox" name="m_keepAlertsIcon">
            <property name="enabled">
             <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Maintains the alert icon in the tray until all alerts have expired, not when all alerts have been seen.</string>
            </property>
            <property name="text">
             <string/>

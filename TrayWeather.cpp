@@ -51,18 +51,19 @@ const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/T
 QDateTime timeOfLastUpdate = QDateTime::currentDateTime();
 
 QString m_url; // downloaded update file to launch in updater.
+QString ERROR_STRING = QObject::tr("Error: ");
 
 //--------------------------------------------------------------------
 void launchUpdate()
 {
-  if(m_url.isEmpty())
-    return;
+    if (m_url.isEmpty()) {
+        return;
+    }
 
-  const auto appPath = qApp->applicationDirPath();
-  const QDir appDir{appPath};
-  const auto updaterPath = appDir.absoluteFilePath("Updater.exe");
-  const auto commandLine = updaterPath + " " + m_url;
-  std::string commandStr = commandLine.toStdString();
+    const auto appPath = qApp->applicationDirPath();
+    const auto updaterPath = QDir{appPath}.absoluteFilePath("Updater.exe");
+    const auto commandLine = updaterPath + " " + m_url;
+    std::string commandStr = commandLine.toStdString();
 
     LPSTARTUPINFO lpStartupInfo;
     LPPROCESS_INFORMATION lpProcessInfo;
@@ -70,16 +71,16 @@ void launchUpdate()
     memset(&lpStartupInfo, 0, sizeof(lpStartupInfo));
     memset(&lpProcessInfo, 0, sizeof(lpProcessInfo));
 
-    CreateProcess(NULL,               // No module name (use command line)
-                  &commandStr[0],     // Command line
-                  NULL,               // Process handle not inheritable
-                  NULL,               // Thread handle not inheritable
-                  FALSE,              // Set handle inheritance to FALSE
-                  0,                  // No creation flags
-                  NULL,               // Use parent's environment block
-                  NULL,               // Use parent's starting directory
-                  lpStartupInfo,      // Pointer to STARTUPINFO structure
-                  lpProcessInfo);     // Pointer to PROCESSINFO structure
+    CreateProcess(NULL,           // No module name (use command line)
+                  &commandStr[0], // Command line
+                  NULL,           // Process handle not inheritable
+                  NULL,           // Thread handle not inheritable
+                  FALSE,          // Set handle inheritance to FALSE
+                  0,              // No creation flags
+                  NULL,           // Use parent's environment block
+                  NULL,           // Use parent's starting directory
+                  lpStartupInfo,  // Pointer to STARTUPINFO structure
+                  lpProcessInfo); // Pointer to PROCESSINFO structure
 }
 
 //--------------------------------------------------------------------
@@ -138,7 +139,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      const auto errorText = tr("Error: ") + "Github.";
+      const auto errorText = ERROR_STRING + "Github.";
       setErrorTooltip(errorText);
     }
   }
@@ -152,7 +153,7 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
     }
     else
     {
-      const auto errorText = tr("Error: ") + tr("No geolocation.");
+      const auto errorText = ERROR_STRING + tr("No geolocation.");
       setErrorTooltip(errorText);
     }
   }
@@ -1190,6 +1191,8 @@ void TrayWeather::onLanguageChanged(const QString &lang)
 {
   changeLanguage(lang);
 
+  ERROR_STRING = QObject::tr("Error: ");
+
   translateMenu();
 }
 
@@ -1266,15 +1269,18 @@ void TrayWeather::processGithubData(const QByteArray &data)
 
       if(msgBox.clickedButton() == installButton)
       {
+          const auto validUrl = isPortable() ? [](const QString &url) { return url.endsWith(".zip", Qt::CaseInsensitive); } : 
+                                               [](const QString &url) { return url.endsWith(".exe", Qt::CaseInsensitive); };
+
           const auto assets = lastRelease.value("assets").toArray();
           for (int i = 0; i < assets.size(); ++i) {
               const auto asset = assets.at(i).toObject();
               m_url = asset.value("browser_download_url").toString();
-              if(m_url.endsWith(".exe", Qt::CaseInsensitive))
+              if(validUrl(m_url))
                 break;
           }
 
-          if (!m_url.endsWith(".exe", Qt::CaseInsensitive)) {
+          if (!validUrl(m_url)) {
               QMessageBox msgBox;
               msgBox.setWindowTitle(title);
               msgBox.setText(tr("Unable to locate valid asset in Github. Install aborted."));
@@ -1282,6 +1288,7 @@ void TrayWeather::processGithubData(const QByteArray &data)
               msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
               msgBox.setIconPixmap(QIcon(":/TrayWeather/application.svg").pixmap(QSize{64, 64}));
               msgBox.exec();
+              return;
           }
 
           std::atexit(launchUpdate);
@@ -1291,7 +1298,7 @@ void TrayWeather::processGithubData(const QByteArray &data)
   }
   else
   {
-    auto githubError = tr("Error: ") + "Github.";
+    auto githubError = ERROR_STRING + "Github.";
     const auto tooltipText = toolTip();
 
     if(!tooltipText.contains(githubError, Qt::CaseSensitive) && (tooltipText.length() + githubError.length() <= 125))
@@ -1353,7 +1360,7 @@ void TrayWeather::processGeolocationData(const QByteArray &data, const bool isDN
     else
     {
       const auto errorIcon = QIcon{":/TrayWeather/network_error.svg"};
-      const auto tooltip = tr("Error: ") + tr("No geolocation.");
+      const auto tooltip = ERROR_STRING + tr("No geolocation.");
 
       setIcon(errorIcon);
       setToolTip(tooltip);

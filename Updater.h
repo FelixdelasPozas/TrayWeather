@@ -22,6 +22,7 @@
 
 // Project
 #include <Ui_Updater.h>
+#include <Utils.h>
 
 // Qt
 #include <QWidget>
@@ -50,23 +51,48 @@ class TrayWeatherUpdater
      */
     virtual ~TrayWeatherUpdater() {};
 
-    QString getDownloadedFilePath() const
-    { return m_file; }
-
   protected:
     virtual void showEvent(QShowEvent *e);
 
   private slots:
+    /** \brief Aborts the download and exits the updater application. 
+     */
     void onCancelPressed();
+
+    /** \brief Starts the download of the url.
+     */
     void startDownload();
-    void fileDownloaded(QNetworkReply*);
+
+    /** \brief Starts the update process when the file has been downloaded.
+     * \param[in] reply Network reply.
+     *
+     */
+    void fileDownloaded(QNetworkReply *reply);
+
+    /** \brief Updates the progress bar while the url is being downlaoded.
+     * \param[in] current Current downloaded byted.
+     * \param[in] total Total of bytes to be downloaded.
+     *
+     */
     void onProgressChanged(qint64 current, qint64 total);
 
   private:
-    const QUrl m_url; /** download url. */
-    QString m_file; /** downloaded file. */
-    QNetworkAccessManager m_netManager;
-    QByteArray m_DownloadedData;    
+    /** \brief Unzips the portable file in the current directory. 
+     *
+     */
+    void unzipRelease();
+
+    /** \brief Shows the error message and exits the application.
+     * \param[in] msg Error message.
+     * \param[in] details Details of the error message.
+     *
+     */
+    void showErrorAndExit(const QString &msg, const QString &details = QString());
+
+    const QUrl m_url;                  /** download url. */
+    QString m_file;                    /** downloaded file. */
+    NetworkAccessManager m_netManager; /** network access manager. */
+    QByteArray m_DownloadedData;       /** contents of downloaded file. */
 };
 
 #endif

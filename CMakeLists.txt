@@ -27,6 +27,14 @@ set(CMAKE_AUTOMOC ON)
 # Find the Qt5 library
 find_package(Qt5 COMPONENTS Widgets Network WebkitWidgets Charts LinguistTools)
 
+# QuaZIP
+set(QUAZIP_INCLUDE_DIR "D:/Desarrollo/Bibliotecas/quazip-1.5")
+set(QUAZIP_LIBRARY "D:/Desarrollo/Bibliotecas/quazip-1.5-build/quazip/libquazip1-qt5.a")
+set(ZLIB_INCLUDE_DIR "D:/Desarrollo/Bibliotecas/zlib-build")
+set(ZLIB_LIBRARY "D:/Desarrollo/Bibliotecas/zlib-build/libzlibstatic.a")
+add_compile_definitions(QUAZIP_STATIC)
+
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated -mwindows -m64")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated -mconsole -m64")
@@ -89,6 +97,8 @@ include_directories(
   ${Qt5Multimedia_INCLUDE_DIRS}
   ${Qt5WebKitWidgets_INCLUDE_DIRS}
   ${CHARTS_INCLUDE_DIRS}
+  ${QUAZIP_INCLUDE_DIR}
+  ${ZLIB_INCLUDE_DIR}
   )
 
 set(TRANSLATIONS_TS_FILES
@@ -171,12 +181,15 @@ set (UPDATER_SOURCES
   ${UPDATER_UI}
   updaterMain.cpp
   Updater.cpp
+  Utils.cpp
 )
 
 set(UPDATER_EXTERNAL_LIBS
   Qt5::Widgets
   Qt5::Network
   advapi32
+  ${QUAZIP_LIBRARY}
+  ${ZLIB_LIBRARY}
 )
  
 add_executable(TrayWeather ${CORE_SOURCES})

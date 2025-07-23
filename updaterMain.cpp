@@ -18,7 +18,8 @@
  */
 
 // Project
-#include "Updater.h"
+#include <Updater.h>
+#include <Utils.h>
 
 // Qt
 #include <QApplication>
@@ -34,6 +35,8 @@
 #include <iostream>
 #include <windows.h>
 #include <winuser.h>
+
+QString REQUESTS_BUFFER; // Unused
 
 //-----------------------------------------------------------------
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -58,7 +61,8 @@ int main(int argc, char *argv[])
 
   // allow only one instance
   QSharedMemory guard;
-  guard.setKey("TrayWeatherUpdater");
+  const QString guardKey = isPortable() ? "TrayWeatherUpdater " + QCoreApplication::applicationDirPath() : "TrayWeatherUpdater";
+  guard.setKey(guardKey);
 
   if (!guard.create(1)) {
       QMessageBox msgBox;
