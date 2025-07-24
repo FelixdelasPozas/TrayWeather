@@ -48,6 +48,8 @@ class QNetworkRequest;
 class QIODevice;
 class QCheckBox;
 
+const QString INI_FILENAME = QString("TrayWeather.ini");
+
 enum class Units:              char { METRIC = 0, IMPERIAL, CUSTOM };
 enum class PressureUnits:      char { HPA =  0, PSI, MMGH, INHG };
 enum class TemperatureUnits:   char { CELSIUS = 0, FAHRENHEIT };

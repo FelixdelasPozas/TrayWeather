@@ -62,8 +62,6 @@ extern Q_CORE_EXPORT int qt_ntfs_permission_lookup;
 // True to log requests into the LOG buffer.
 bool NetworkAccessManager::LOG_REQUESTS = false;
 
-static const QString INI_FILENAME = QString("TrayWeather.ini");
-
 static const QString LONGITUDE                = QString("Longitude");
 static const QString LATITUDE                 = QString("Latitude");
 static const QString COUNTRY                  = QString("Country");

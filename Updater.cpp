@@ -45,6 +45,8 @@ constexpr int DEFAULT_LOGICAL_DPI = 96;
 std::string downloadedFile;
 std::string applicationFile;
 
+extern const QString INI_FILENAME;
+
 //----------------------------------------------------------------------------
 void launchUpdate()
 {
@@ -213,6 +215,11 @@ void TrayWeatherUpdater::unzipRelease()
 
     for (bool more = zipFile.goToFirstFile(); more; more = zipFile.goToNextFile()) {
         const auto fileName = zipFile.getCurrentFileName();
+
+        // do not overwrite user's ini file.
+        if(fileName.compare(INI_FILENAME, Qt::CaseSensitive) == 0 && currentPath.exists(INI_FILENAME))
+            continue;
+
         fileLabel->setText(fileName);
         progressBar->setValue(fileCounter++ * 100 / entries);
 
