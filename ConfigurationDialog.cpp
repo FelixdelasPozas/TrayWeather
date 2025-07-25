@@ -782,6 +782,9 @@ void ConfigurationDialog::showEvent(QShowEvent *e)
   QDialog::showEvent(e);
   scaleDialog(this);
   fixVisuals();
+
+  if(m_provider && m_provider->capabilities().requiresKey && !m_provider->apikey().isEmpty())
+     requestAPIKeyTest();
 }
 
 //--------------------------------------------------------------------
@@ -1009,34 +1012,22 @@ void ConfigurationDialog::setConfiguration(const Configuration &configuration)
   onLocationRadioChanged();
   onCoordinatesChanged();
 
-  if(configuration.isValid())
-  {
-    if(m_provider->capabilities().requiresKey)
-      requestAPIKeyTest();
-  }
-  else
-  {
-    if(m_provider && m_provider->capabilities().requiresKey)
-    {
-      m_apiTest->setEnabled(true);
+  if (!configuration.isValid()) {
+      if (m_provider && m_provider->capabilities().requiresKey) {
+          m_apiTest->setEnabled(true);
 
-      if(m_provider->apikey().isEmpty())
-      {
-        m_testLabel->setStyleSheet("QLabel { color : red; }");
-        m_testLabel->setText(tr("Invalid API Key!"));
+          if (m_provider->apikey().isEmpty()) {
+              m_testLabel->setStyleSheet("QLabel { color : red; }");
+              m_testLabel->setText(tr("Invalid API Key!"));
+          } else {
+              m_testLabel->setStyleSheet("QLabel { color : red; }");
+              m_testLabel->setText(tr("Untested API Key!"));
+          }
+      } else {
+          m_testLabel->clear();
+          m_testLabel->setEnabled(false);
+          m_apiTest->setEnabled(false);
       }
-      else
-      {
-        m_testLabel->setStyleSheet("QLabel { color : red; }");
-        m_testLabel->setText(tr("Untested API Key!"));
-      }
-    }
-    else
-    {
-      m_testLabel->clear();
-      m_testLabel->setEnabled(false);
-      m_apiTest->setEnabled(false);
-    }
   }
 
   m_tempCombo->setProperty(SELECTED, static_cast<int>(configuration.tempUnits));
