@@ -37,84 +37,84 @@
         <translation>제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="247"/>
+        <location filename="../AboutDialog.ui" line="253"/>
         <source>Qt Framework</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="329"/>
+        <location filename="../AboutDialog.ui" line="335"/>
         <source>Qt Charts Module</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="369"/>
+        <location filename="../AboutDialog.ui" line="448"/>
         <source>Icons courtesy of</source>
         <translation>아이콘 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="375"/>
+        <location filename="../AboutDialog.ui" line="454"/>
         <source>FlatIcon</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="427"/>
+        <location filename="../AboutDialog.ui" line="506"/>
         <source>IP Geolocation provided by</source>
         <translation>IP 위치정보 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="433"/>
-        <location filename="../AboutDialog.ui" line="477"/>
+        <location filename="../AboutDialog.ui" line="512"/>
+        <location filename="../AboutDialog.ui" line="556"/>
         <source>IP API</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="471"/>
+        <location filename="../AboutDialog.ui" line="550"/>
         <source>Public IP Address API provided by</source>
         <translation>공인 IP 주소 API 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="515"/>
+        <location filename="../AboutDialog.ui" line="594"/>
         <source>Maps data provided by</source>
         <translation>지도 데이터 제공:</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="521"/>
+        <location filename="../AboutDialog.ui" line="600"/>
         <source>OpenStreetMap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="537"/>
+        <location filename="../AboutDialog.ui" line="616"/>
         <source>Google Maps</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="558"/>
+        <location filename="../AboutDialog.ui" line="637"/>
         <source>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</source>
         <translation>이 프로젝트를 지원하고 싶으시다면 &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;에서 지원하실 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="598"/>
+        <location filename="../AboutDialog.ui" line="677"/>
         <source>You can support me on Ko-fi!</source>
         <translation>Ko-fi에서 저를 지원하실 수 있습니다!</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="630"/>
+        <location filename="../AboutDialog.ui" line="709"/>
         <source>Weather Providers</source>
         <translation>날씨 제공자</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="682"/>
+        <location filename="../AboutDialog.ui" line="761"/>
         <source>Translations</source>
         <translation>번역</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="733"/>
+        <location filename="../AboutDialog.ui" line="812"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translatorcomment>a little bit of paraphrasing...</translatorcomment>
         <translation>귀하의 언어가 여기 없을 경우, &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;번역&lt;/a&gt;을 도울 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="747"/>
+        <location filename="../AboutDialog.ui" line="826"/>
         <source>Icon Themes</source>
         <translation>아이콘 테마</translation>
     </message>
@@ -376,7 +376,7 @@
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="444"/>
-        <location filename="../ConfigurationDialog.cpp" line="452"/>
+        <location filename="../ConfigurationDialog.cpp" line="453"/>
         <source>Testing API Key...</source>
         <translation>API 키 테스트 중...</translation>
     </message>
@@ -527,65 +527,72 @@
         <translation>사용자 지정 온도 아이콘 테두리 색상.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1966"/>
+        <location filename="../ConfigurationDialog.ui" line="1947"/>
+        <location filename="../ConfigurationDialog.ui" line="1982"/>
+        <source>Type of tray icon to use.</source>
+        <translation>1.429 / 5.000
+사용할 트레이 아이콘 유형입니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="1969"/>
         <source>Selects the temperature icon text color</source>
         <translation>온도 아이콘 텍스트 색상 선택</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1947"/>
+        <location filename="../ConfigurationDialog.ui" line="1950"/>
         <source>Icon type</source>
         <translation>아이콘 유형</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1980"/>
+        <location filename="../ConfigurationDialog.ui" line="1986"/>
         <source>Weather icon</source>
         <translation>날씨 아이콘</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1985"/>
+        <location filename="../ConfigurationDialog.ui" line="1991"/>
         <source>Temperature icon</source>
         <translation>기온 아이콘</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1990"/>
+        <location filename="../ConfigurationDialog.ui" line="1996"/>
         <source>Weather &amp; temperature icon</source>
         <translation>날씨 및 온도 아이콘</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1995"/>
+        <location filename="../ConfigurationDialog.ui" line="2001"/>
         <source>Weather icon &amp; temperature icon</source>
         <translation>날씨 아이콘 및 온도 아이콘</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2034"/>
-        <location filename="../ConfigurationDialog.ui" line="2202"/>
+        <location filename="../ConfigurationDialog.ui" line="2040"/>
+        <location filename="../ConfigurationDialog.ui" line="2208"/>
         <source>Selects the icon theme.</source>
         <translation>아이콘 테마를 선택합니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2037"/>
+        <location filename="../ConfigurationDialog.ui" line="2043"/>
         <source>Icon theme</source>
         <translation>아이콘 테마</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2077"/>
-        <location filename="../ConfigurationDialog.ui" line="2121"/>
+        <location filename="../ConfigurationDialog.ui" line="2083"/>
+        <location filename="../ConfigurationDialog.ui" line="2127"/>
         <source>º</source>
         <translation>º</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2464"/>
-        <location filename="../ConfigurationDialog.ui" line="2519"/>
+        <location filename="../ConfigurationDialog.ui" line="2470"/>
+        <location filename="../ConfigurationDialog.ui" line="2525"/>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2218"/>
+        <location filename="../ConfigurationDialog.ui" line="2224"/>
         <source>Changes icon theme color.</source>
         <translation>아이콘 테마 색상을 변경합니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2234"/>
+        <location filename="../ConfigurationDialog.ui" line="2240"/>
         <source>Shows a summary of theme icons.</source>
         <translation>테마 아이콘 일람을 표시합니다.</translation>
     </message>
@@ -610,40 +617,52 @@
         <translation>최대값 색상을 변경하려면 클릭하십시오...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2138"/>
-        <location filename="../ConfigurationDialog.ui" line="2157"/>
-        <location filename="../ConfigurationDialog.ui" line="2187"/>
+        <location filename="../ConfigurationDialog.ui" line="2144"/>
+        <location filename="../ConfigurationDialog.ui" line="2163"/>
+        <location filename="../ConfigurationDialog.ui" line="2193"/>
         <source>Modifies the temperature icon size.</source>
         <translation>온도 아이콘 크기를 수정합니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2190"/>
+        <location filename="../ConfigurationDialog.ui" line="2196"/>
         <source>Temperature icon size</source>
         <translation>기온 아이콘 크기</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2606"/>
+        <location filename="../ConfigurationDialog.ui" line="2615"/>
         <source>Icon Tooltip</source>
         <translation>아이콘 툴팁</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2956"/>
-        <location filename="../ConfigurationDialog.ui" line="2969"/>
+        <location filename="../ConfigurationDialog.ui" line="2891"/>
+        <location filename="../ConfigurationDialog.ui" line="2970"/>
+        <source>Application visual theme.</source>
+        <translation>애플리케이션 시각적 테마입니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="2940"/>
+        <location filename="../ConfigurationDialog.ui" line="2950"/>
+        <source>Sets to start the application automatically at user login.</source>
+        <translation>사용자 로그인 시 애플리케이션이 자동으로 시작되도록 설정합니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="2990"/>
+        <location filename="../ConfigurationDialog.ui" line="3015"/>
         <source>Swaps tray icons. Only enabled if two icon representation is being used.</source>
         <translation>트레이 아이콘 위치를 서로 바꿉니다. 두 개의 아이콘이 동시에 표시되는 경우에만 활성화됩니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2353"/>
+        <location filename="../ConfigurationDialog.ui" line="2359"/>
         <source>Fixed</source>
         <translation>고정됨</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2369"/>
+        <location filename="../ConfigurationDialog.ui" line="2375"/>
         <source>Click to change fixed color...</source>
         <translation>고정 색상을 변경하려면 클릭하십시오...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="1969"/>
+        <location filename="../ConfigurationDialog.ui" line="1972"/>
         <source>Temperature text color</source>
         <translation>기온 텍스트 색</translation>
     </message>
@@ -801,154 +820,183 @@
         <translation>아이콘</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2052"/>
+        <location filename="../ConfigurationDialog.ui" line="2058"/>
         <source>from</source>
         <translation>부터:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2071"/>
+        <location filename="../ConfigurationDialog.ui" line="2077"/>
         <source>Minimum range value</source>
         <translation>최소 범위 값</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2096"/>
+        <location filename="../ConfigurationDialog.ui" line="2102"/>
         <source>to</source>
         <translation>까지:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2115"/>
+        <location filename="../ConfigurationDialog.ui" line="2121"/>
         <source>Maximum range value</source>
         <translation>최대 범위 값</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2290"/>
-        <location filename="../ConfigurationDialog.ui" line="2300"/>
+        <location filename="../ConfigurationDialog.ui" line="2296"/>
+        <location filename="../ConfigurationDialog.ui" line="2306"/>
         <source>Draw a border around temperature icon text.</source>
         <translation>온도 아이콘 텍스트 주위에 테두리를 그립니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2303"/>
+        <location filename="../ConfigurationDialog.ui" line="2309"/>
         <source>Draw a border around text for better contrast.</source>
         <translation>대비를 위해 텍스트 주위에 테두리 그리기</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2009"/>
-        <location filename="../ConfigurationDialog.ui" line="2396"/>
+        <location filename="../ConfigurationDialog.ui" line="2015"/>
+        <location filename="../ConfigurationDialog.ui" line="2402"/>
         <source>Selects the temperature icon text font</source>
         <translation>온도 아이콘 텍스트 글꼴 선택</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2415"/>
+        <location filename="../ConfigurationDialog.ui" line="2421"/>
         <source>Preview of the temperature icon</source>
         <translation>온도 아이콘 미리보기</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2012"/>
+        <location filename="../ConfigurationDialog.ui" line="2018"/>
         <source>Temperature text font</source>
         <translation>기온 텍스트 글꼴</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2336"/>
+        <location filename="../ConfigurationDialog.ui" line="2342"/>
         <source>Stretch font vertically.</source>
         <translation>글꼴을 세로로 늘립니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2254"/>
-        <location filename="../ConfigurationDialog.ui" line="2264"/>
+        <location filename="../ConfigurationDialog.ui" line="2260"/>
+        <location filename="../ConfigurationDialog.ui" line="2270"/>
         <source>Draw the degree symbol in the temperature icon.</source>
         <translation>온도 아이콘에 도 기호를 그립니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2267"/>
+        <location filename="../ConfigurationDialog.ui" line="2273"/>
         <source>Draw degree symbol</source>
         <translation>도 기호 그리기</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2481"/>
-        <location filename="../ConfigurationDialog.ui" line="2491"/>
-        <location filename="../ConfigurationDialog.ui" line="2516"/>
+        <location filename="../ConfigurationDialog.ui" line="2487"/>
+        <location filename="../ConfigurationDialog.ui" line="2497"/>
+        <location filename="../ConfigurationDialog.ui" line="2522"/>
         <source>Width of the border around the text.</source>
         <translation>텍스트 주위의 테두리 너비.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2484"/>
+        <location filename="../ConfigurationDialog.ui" line="2490"/>
         <source>Border width</source>
         <translation>테두리 너비</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2429"/>
-        <location filename="../ConfigurationDialog.ui" line="2439"/>
-        <location filename="../ConfigurationDialog.ui" line="2461"/>
+        <location filename="../ConfigurationDialog.ui" line="2435"/>
+        <location filename="../ConfigurationDialog.ui" line="2445"/>
+        <location filename="../ConfigurationDialog.ui" line="2467"/>
         <source>Modifies the space between characters in the temperatura icon.</source>
         <translation>온도 아이콘의 문자 간 간격을 수정합니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2432"/>
+        <location filename="../ConfigurationDialog.ui" line="2438"/>
         <source>Letter spacing</source>
         <translation>문자 간격</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2540"/>
+        <location filename="../ConfigurationDialog.ui" line="2546"/>
+        <source>Tray icon background color.</source>
+        <translation>트레이 아이콘 배경색입니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="2549"/>
         <source>Icon background color</source>
         <translation>아이콘 배경색</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2562"/>
+        <location filename="../ConfigurationDialog.ui" line="2571"/>
         <source>Sets the icons background as transparent.</source>
         <translation>아이콘 배경을 투명하게 설정합니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2565"/>
+        <location filename="../ConfigurationDialog.ui" line="2574"/>
         <source>Transparent</source>
         <translation>투명</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2578"/>
+        <location filename="../ConfigurationDialog.ui" line="2587"/>
         <source>Custom icons background color.</source>
         <translation>사용자 지정 아이콘 배경색.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2627"/>
+        <location filename="../ConfigurationDialog.ui" line="2636"/>
         <source>Value:</source>
         <translation>값:</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2634"/>
+        <location filename="../ConfigurationDialog.ui" line="2643"/>
         <source>Value to add to the list.</source>
         <translation>목록에 추가할 값입니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2647"/>
+        <location filename="../ConfigurationDialog.ui" line="2656"/>
         <source>Add value to tooltip text</source>
         <translation>툴팁 텍스트에 값 추가</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2694"/>
+        <location filename="../ConfigurationDialog.ui" line="2703"/>
         <source>Move value up.</source>
         <translation>값을 위로 올립니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2708"/>
+        <location filename="../ConfigurationDialog.ui" line="2717"/>
         <source>Move value down.</source>
         <translation>값을 아래로 내립니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2722"/>
+        <location filename="../ConfigurationDialog.ui" line="2731"/>
         <source>Remove value from tooltip text</source>
         <translation>툴팁 텍스트에 값 제거</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2739"/>
+        <location filename="../ConfigurationDialog.ui" line="2748"/>
         <source>Miscellaneous</source>
         <translation>기타</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2762"/>
+        <location filename="../ConfigurationDialog.ui" line="2771"/>
+        <location filename="../ConfigurationDialog.ui" line="2901"/>
+        <source>Check for application updates frequency.</source>
+        <translation>애플리케이션 업데이트 빈도를 확인합니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="2793"/>
+        <location filename="../ConfigurationDialog.ui" line="2803"/>
+        <source>Language to use in the application interface.</source>
+        <translation>애플리케이션 인터페이스에서 사용할 언어입니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="2822"/>
+        <location filename="../ConfigurationDialog.ui" line="2960"/>
+        <source>Shows weather alerts for the selected location.</source>
+        <translation>선택한 위치의 날씨 알림을 표시합니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="2844"/>
+        <location filename="../ConfigurationDialog.ui" line="2860"/>
+        <source>Elapsed time between requests for weather data.</source>
+        <translation>날씨 데이터 요청 간 경과 시간입니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="2847"/>
         <source>Time between update requests</source>
         <translation>업데이트 요청 시간 간격</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2775"/>
+        <location filename="../ConfigurationDialog.ui" line="2863"/>
         <source> minutes</source>
         <translation> 분</translation>
     </message>
@@ -958,53 +1006,53 @@
         <translation>측정 단위</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2323"/>
-        <location filename="../ConfigurationDialog.ui" line="2333"/>
+        <location filename="../ConfigurationDialog.ui" line="2329"/>
+        <location filename="../ConfigurationDialog.ui" line="2339"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
         <translation>아이콘에서 사용 가능한 모든 공간을 차지하도록 글꼴을 세로로 늘립니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2612"/>
+        <location filename="../ConfigurationDialog.ui" line="2621"/>
         <source>The values shown in the tooltip are current values or the closest forecast value to the current local time. The values are shown in order, top to bottom of the list.</source>
         <translation>툴팁에 표시된 값은 현재 값 또는 현재 현지 시간에 가장 가까운 일기예보 값입니다. 값은 목록의 맨 위부터 맨 아래 순서로 표시됩니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2803"/>
+        <location filename="../ConfigurationDialog.ui" line="2894"/>
         <source>Visual theme</source>
         <translation>시각 테마</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2811"/>
+        <location filename="../ConfigurationDialog.ui" line="2974"/>
         <source>Light</source>
         <translation>밝음</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2816"/>
+        <location filename="../ConfigurationDialog.ui" line="2979"/>
         <source>Dark</source>
         <translation>어두움</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2836"/>
+        <location filename="../ConfigurationDialog.ui" line="2774"/>
         <source>Check for updates</source>
         <translation>업데이트 확인</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2844"/>
+        <location filename="../ConfigurationDialog.ui" line="2905"/>
         <source>Never</source>
         <translation>사용 안 함</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2849"/>
+        <location filename="../ConfigurationDialog.ui" line="2910"/>
         <source>Once a day</source>
         <translation>하루에 한 번</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2854"/>
+        <location filename="../ConfigurationDialog.ui" line="2915"/>
         <source>Once a week</source>
         <translation>일주일에 한 번</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2859"/>
+        <location filename="../ConfigurationDialog.ui" line="2920"/>
         <source>Once a month</source>
         <translation>한 달에 한 번</translation>
     </message>
@@ -1019,27 +1067,27 @@
         <translation>야드파운드법 (ºF)</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2879"/>
+        <location filename="../ConfigurationDialog.ui" line="2943"/>
         <source>Autostart at login</source>
         <translation>로그온 시 자동 시작</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2905"/>
+        <location filename="../ConfigurationDialog.ui" line="2796"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2927"/>
+        <location filename="../ConfigurationDialog.ui" line="2825"/>
         <source>Show weather alerts</source>
         <translation>기상특보 표시</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2959"/>
+        <location filename="../ConfigurationDialog.ui" line="3018"/>
         <source>Swap tray icons</source>
         <translation>트레이 아이콘 교체</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="2981"/>
+        <location filename="../ConfigurationDialog.ui" line="3065"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>귀하의 언어가 여기 없을 경우, &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;번역&lt;/a&gt;을 도울 수 있습니다.</translation>
     </message>
@@ -1062,12 +1110,23 @@
         <translation>구름</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="3032"/>
+        <location filename="../ConfigurationDialog.ui" line="3040"/>
+        <location filename="../ConfigurationDialog.ui" line="3053"/>
+        <source>Maintains the alert icon in the tray until all alerts have expired, not when all alerts have been seen.</source>
+        <translation>모든 알림이 확인될 때까지가 아니라, 모든 알림이 만료될 때까지 알림 아이콘을 트레이에 유지합니다.</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="3043"/>
+        <source>Keep alert icon until all alerts expire</source>
+        <translation>모든 알림이 만료될 때까지 알림 아이콘 유지</translation>
+    </message>
+    <message>
+        <location filename="../ConfigurationDialog.ui" line="3116"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.ui" line="3039"/>
+        <location filename="../ConfigurationDialog.ui" line="3123"/>
         <source>Ok</source>
         <translation>적용</translation>
     </message>
@@ -1084,23 +1143,23 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../ConfigurationDialog.cpp" line="145"/>
         <location filename="../ConfigurationDialog.cpp" line="229"/>
-        <location filename="../ConfigurationDialog.cpp" line="1588"/>
+        <location filename="../ConfigurationDialog.cpp" line="1581"/>
         <source>Network Error</source>
         <translation>네트워크 오류</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1024"/>
-        <location filename="../ConfigurationDialog.cpp" line="1703"/>
+        <location filename="../ConfigurationDialog.cpp" line="1021"/>
+        <location filename="../ConfigurationDialog.cpp" line="1696"/>
         <source>Invalid API Key!</source>
         <translation>잘못된 API 키!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1029"/>
+        <location filename="../ConfigurationDialog.cpp" line="1024"/>
         <source>Untested API Key!</source>
         <translation>테스트되지 않은 API 키!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1697"/>
+        <location filename="../ConfigurationDialog.cpp" line="1690"/>
         <source>The API Key is valid!</source>
         <translation>API 키가 유효합니다!</translation>
     </message>
@@ -1132,75 +1191,75 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>지리 위치 추적 서버의 응답이 잘못되었습니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="373"/>
-        <location filename="../ConfigurationDialog.cpp" line="397"/>
+        <location filename="../ConfigurationDialog.cpp" line="374"/>
+        <location filename="../ConfigurationDialog.cpp" line="398"/>
         <source>Requesting...</source>
         <translation>요청 중...</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="424"/>
+        <location filename="../ConfigurationDialog.cpp" line="425"/>
         <source>API Key Error</source>
         <translation>API 키 오류</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="426"/>
+        <location filename="../ConfigurationDialog.cpp" line="427"/>
         <source>API key missing!</source>
         <translation>API 키가 누락되었습니다!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="434"/>
+        <location filename="../ConfigurationDialog.cpp" line="435"/>
         <source>Location Error</source>
         <translation>위치 오류</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="436"/>
+        <location filename="../ConfigurationDialog.cpp" line="437"/>
         <source>You must set a valid location before testing the API key.</source>
         <translation>API 키를 테스트하기 전에 유효한 위치를 설정해야 합니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1585"/>
+        <location filename="../ConfigurationDialog.cpp" line="1578"/>
         <source>Location search requires a valid weather provider API key.</source>
         <translation>위치 검색에는 유효한 날씨 제공자 API 키가 필요합니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1714"/>
+        <location filename="../ConfigurationDialog.cpp" line="1707"/>
         <source>Weather Provider Error</source>
         <translation>날씨 제공자 오류</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1376"/>
-        <location filename="../ConfigurationDialog.cpp" line="1415"/>
+        <location filename="../ConfigurationDialog.cpp" line="1369"/>
+        <location filename="../ConfigurationDialog.cpp" line="1408"/>
         <source>Font Selection</source>
         <translation>폰트 선택</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1379"/>
-        <location filename="../ConfigurationDialog.cpp" line="1418"/>
+        <location filename="../ConfigurationDialog.cpp" line="1372"/>
+        <location filename="../ConfigurationDialog.cpp" line="1411"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
         <translation>선택한 글꼴 &apos;%1&apos;은 필요한 문자를 그릴 수 없으므로 유효하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1406"/>
+        <location filename="../ConfigurationDialog.cpp" line="1399"/>
         <source>Select font for temperature icon</source>
         <translation>온도 아이콘에 사용할 글꼴 선택</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1624"/>
+        <location filename="../ConfigurationDialog.cpp" line="1617"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;귀하의 위치에 대한 %1의 일기 예보 데이터를 얻으려면 &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;웹사이트&lt;/span&gt;&lt;/a&gt;에서 API 키를 얻어야 합니다.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1627"/>
+        <location filename="../ConfigurationDialog.cpp" line="1620"/>
         <source>%1 doesn&apos;t require any configuration.</source>
         <translation>%1은 구성이 필요하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1622"/>
+        <location filename="../ConfigurationDialog.cpp" line="1615"/>
         <source>Get the coordinates of a location.</source>
         <translation>위치의 좌표를 가져옵니다.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1623"/>
+        <location filename="../ConfigurationDialog.cpp" line="1616"/>
         <source>Current provider does not have Geo-Location capability.</source>
         <translation>현재 제공자는 지리적 위치 기능을 제공하지 않습니다.</translation>
     </message>
@@ -1327,54 +1386,54 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>날씨 웹 페이지를 읽어들일 수 없음</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="221"/>
-        <location filename="../Providers/OWM25.cpp" line="235"/>
-        <location filename="../Providers/OWM25.cpp" line="247"/>
+        <location filename="../Providers/OWM25.cpp" line="222"/>
+        <location filename="../Providers/OWM25.cpp" line="236"/>
+        <location filename="../Providers/OWM25.cpp" line="248"/>
         <source>Error: </source>
         <translation>오류: </translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="221"/>
+        <location filename="../Providers/OWM25.cpp" line="222"/>
         <source>No pollution data.</source>
         <translation>오염 데이터가 없습니다.</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="235"/>
+        <location filename="../Providers/OWM25.cpp" line="236"/>
         <source>Couldn&apos;t get location information.</source>
         <translation>위치 정보를 가져올 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="247"/>
+        <location filename="../Providers/OWM25.cpp" line="248"/>
         <source>No weather data.</source>
         <translation>날씨 데이터가 없습니다.</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="422"/>
+        <location filename="../Providers/OWM25.cpp" line="431"/>
         <source>No locations found for &apos;%1&apos;.</source>
         <translation>&apos;%1&apos;에 대한 위치를 찾을 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="524"/>
+        <location filename="../Providers/OWM25.cpp" line="533"/>
         <source>Good</source>
         <translation>매우 좋음</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="525"/>
+        <location filename="../Providers/OWM25.cpp" line="534"/>
         <source>Fair</source>
         <translation>좋음</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="526"/>
+        <location filename="../Providers/OWM25.cpp" line="535"/>
         <source>Moderate</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="527"/>
+        <location filename="../Providers/OWM25.cpp" line="536"/>
         <source>Poor</source>
         <translation>나쁨</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM25.cpp" line="528"/>
+        <location filename="../Providers/OWM25.cpp" line="537"/>
         <source>Very poor</source>
         <translation>매우 나쁨</translation>
     </message>
@@ -1451,54 +1510,54 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>날씨 웹 페이지를 읽어들일 수 없음</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="216"/>
-        <location filename="../Providers/OWM30.cpp" line="230"/>
-        <location filename="../Providers/OWM30.cpp" line="242"/>
+        <location filename="../Providers/OWM30.cpp" line="217"/>
+        <location filename="../Providers/OWM30.cpp" line="231"/>
+        <location filename="../Providers/OWM30.cpp" line="243"/>
         <source>Error: </source>
         <translation>오류: </translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="216"/>
+        <location filename="../Providers/OWM30.cpp" line="217"/>
         <source>No pollution data.</source>
         <translation>오염 데이터가 없습니다.</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="230"/>
+        <location filename="../Providers/OWM30.cpp" line="231"/>
         <source>Couldn&apos;t get location information.</source>
         <translation>위치 정보를 가져올 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="242"/>
+        <location filename="../Providers/OWM30.cpp" line="243"/>
         <source>No weather data.</source>
         <translation>날씨 데이터가 없습니다.</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="443"/>
+        <location filename="../Providers/OWM30.cpp" line="452"/>
         <source>No locations found for &apos;%1&apos;.</source>
         <translation>&apos;%1&apos;에 대한 위치를 찾을 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="533"/>
+        <location filename="../Providers/OWM30.cpp" line="542"/>
         <source>Good</source>
         <translation>매우 좋음</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="534"/>
+        <location filename="../Providers/OWM30.cpp" line="543"/>
         <source>Fair</source>
         <translation>좋음</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="535"/>
+        <location filename="../Providers/OWM30.cpp" line="544"/>
         <source>Moderate</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="536"/>
+        <location filename="../Providers/OWM30.cpp" line="545"/>
         <source>Poor</source>
         <translation>나쁨</translation>
     </message>
     <message>
-        <location filename="../Providers/OWM30.cpp" line="537"/>
+        <location filename="../Providers/OWM30.cpp" line="546"/>
         <source>Very poor</source>
         <translation>매우 나쁨</translation>
     </message>
@@ -1541,27 +1600,27 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>알 수 없음</translation>
     </message>
     <message>
-        <location filename="../Providers/OpenMeteo.cpp" line="293"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="292"/>
         <source>Good</source>
         <translation>매우 좋음</translation>
     </message>
     <message>
-        <location filename="../Providers/OpenMeteo.cpp" line="294"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="293"/>
         <source>Fair</source>
         <translation>좋음</translation>
     </message>
     <message>
-        <location filename="../Providers/OpenMeteo.cpp" line="295"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="294"/>
         <source>Moderate</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../Providers/OpenMeteo.cpp" line="296"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="295"/>
         <source>Poor</source>
         <translation>나쁨</translation>
     </message>
     <message>
-        <location filename="../Providers/OpenMeteo.cpp" line="297"/>
+        <location filename="../Providers/OpenMeteo.cpp" line="296"/>
         <source>Very poor</source>
         <translation>매우 나쁨</translation>
     </message>
@@ -1578,10 +1637,8 @@ If you have a firewall change the configuration to allow this program to access 
     <name>QObject</name>
     <message>
         <location filename="../Main.cpp" line="77"/>
-        <location filename="../Main.cpp" line="93"/>
-        <location filename="../Main.cpp" line="119"/>
-        <location filename="../TrayWeather.cpp" line="350"/>
-        <location filename="../TrayWeather.cpp" line="998"/>
+        <location filename="../Main.cpp" line="94"/>
+        <location filename="../Main.cpp" line="120"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
     </message>
@@ -1593,276 +1650,276 @@ The application will exit now.</source>
 응용 프로그램이 종료됩니다.</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="95"/>
+        <location filename="../Main.cpp" line="96"/>
         <source>TrayWeather is already running!</source>
         <translation>TrayWeather는 이미 실행 중입니다!</translation>
     </message>
     <message>
-        <location filename="../Main.cpp" line="121"/>
+        <location filename="../Main.cpp" line="122"/>
         <source>TrayWeather cannot execute without a valid location and a valid weather data provider.
 The application will exit now.</source>
         <translation>유효한 위치와 유효한 날씨 데이터 제공자 없이는 TrayWeather를 실행할 수 없습니다.
 응용 프로그램이 종료됩니다.</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="367"/>
+        <location filename="../Utils.cpp" line="366"/>
         <source>New moon</source>
         <translation>신월</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="370"/>
-        <location filename="../Utils.cpp" line="388"/>
+        <location filename="../Utils.cpp" line="369"/>
+        <location filename="../Utils.cpp" line="387"/>
         <source>Waxing crescent</source>
         <translation>초승달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="373"/>
+        <location filename="../Utils.cpp" line="372"/>
         <source>First quarter</source>
         <translation>상현달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="376"/>
+        <location filename="../Utils.cpp" line="375"/>
         <source>Waxing gibbous</source>
         <translation>차가는달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="379"/>
+        <location filename="../Utils.cpp" line="378"/>
         <source>Full moon</source>
         <translation>보름달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="382"/>
+        <location filename="../Utils.cpp" line="381"/>
         <source>Waning gibbous</source>
         <translation>하현망</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="385"/>
+        <location filename="../Utils.cpp" line="384"/>
         <source>Last quarter</source>
         <translation>하현달</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="398"/>
+        <location filename="../Utils.cpp" line="397"/>
         <source>illumination</source>
         <translation>조명도</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="531"/>
+        <location filename="../Utils.cpp" line="530"/>
         <source>NNE</source>
         <translation>북북동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="532"/>
+        <location filename="../Utils.cpp" line="531"/>
         <source>NE</source>
         <translation>북동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="533"/>
+        <location filename="../Utils.cpp" line="532"/>
         <source>ENE</source>
         <translation>동북동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="534"/>
+        <location filename="../Utils.cpp" line="533"/>
         <source>E</source>
         <translation>동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="535"/>
+        <location filename="../Utils.cpp" line="534"/>
         <source>ESE</source>
         <translation>동남동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="536"/>
+        <location filename="../Utils.cpp" line="535"/>
         <source>SE</source>
         <translation>남동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="537"/>
+        <location filename="../Utils.cpp" line="536"/>
         <source>SSE</source>
         <translation>남남동</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="538"/>
+        <location filename="../Utils.cpp" line="537"/>
         <source>S</source>
         <translation>남</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="539"/>
+        <location filename="../Utils.cpp" line="538"/>
         <source>SSW</source>
         <translation>남남서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="540"/>
+        <location filename="../Utils.cpp" line="539"/>
         <source>SW</source>
         <translation>남서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="541"/>
+        <location filename="../Utils.cpp" line="540"/>
         <source>WSW</source>
         <translation>서남서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="542"/>
+        <location filename="../Utils.cpp" line="541"/>
         <source>W</source>
         <translation>서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="543"/>
+        <location filename="../Utils.cpp" line="542"/>
         <source>WNW</source>
         <translation>서북서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="544"/>
+        <location filename="../Utils.cpp" line="543"/>
         <source>NW</source>
         <translation>북서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="545"/>
+        <location filename="../Utils.cpp" line="544"/>
         <source>NNW</source>
         <translation>북북서</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="547"/>
+        <location filename="../Utils.cpp" line="546"/>
         <source>N</source>
         <translation>북</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1266"/>
+        <location filename="../Utils.cpp" line="1276"/>
         <source>Clear sky</source>
         <translation>맑은 하늘</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1267"/>
+        <location filename="../Utils.cpp" line="1277"/>
         <source>Mainly clear</source>
         <translation>대체로 맑은 하늘</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1268"/>
+        <location filename="../Utils.cpp" line="1278"/>
         <source>Partly cloudy</source>
         <translation>일부 흐림</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1269"/>
+        <location filename="../Utils.cpp" line="1279"/>
         <source>Overcast</source>
         <translation>흐림</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1270"/>
+        <location filename="../Utils.cpp" line="1280"/>
         <source>Fog</source>
         <translation>안개</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1271"/>
+        <location filename="../Utils.cpp" line="1281"/>
         <source>Light drizzle</source>
         <translation>가벼운 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1272"/>
+        <location filename="../Utils.cpp" line="1282"/>
         <source>Moderate drizzle</source>
         <translation>적당한 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1273"/>
+        <location filename="../Utils.cpp" line="1283"/>
         <source>Dense drizzle</source>
         <translation>짙은 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1274"/>
+        <location filename="../Utils.cpp" line="1284"/>
         <source>Light freezing drizzle</source>
         <translation>가벼운 얼음 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1275"/>
+        <location filename="../Utils.cpp" line="1285"/>
         <source>Dense freezing drizzle</source>
         <translation>짙은 얼음 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1276"/>
+        <location filename="../Utils.cpp" line="1286"/>
         <source>Slight rain</source>
         <translation>약간의 비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1277"/>
+        <location filename="../Utils.cpp" line="1287"/>
         <source>Moderate rain</source>
         <translation>적당한 비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1278"/>
+        <location filename="../Utils.cpp" line="1288"/>
         <source>Heavy rain</source>
         <translation>폭우</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1279"/>
+        <location filename="../Utils.cpp" line="1289"/>
         <source>Light freezing rain</source>
         <translation>가벼운 얼음 비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1280"/>
+        <location filename="../Utils.cpp" line="1290"/>
         <source>Heavy freezing rain</source>
         <translation>짙은 얼음 비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1281"/>
+        <location filename="../Utils.cpp" line="1291"/>
         <source>Slight snow</source>
         <translation>약간의 눈</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1282"/>
+        <location filename="../Utils.cpp" line="1292"/>
         <source>Moderate snow</source>
         <translation>적당한 눈</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1283"/>
+        <location filename="../Utils.cpp" line="1293"/>
         <source>Heavy snow</source>
         <translation>폭설</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1284"/>
+        <location filename="../Utils.cpp" line="1294"/>
         <source>Snow grains</source>
         <translation>눈알</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1285"/>
+        <location filename="../Utils.cpp" line="1295"/>
         <source>Slight rain showers</source>
         <translation>약간의 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1286"/>
+        <location filename="../Utils.cpp" line="1296"/>
         <source>Moderate rain showers</source>
         <translation>적당한 비 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1287"/>
+        <location filename="../Utils.cpp" line="1297"/>
         <source>Violent rain showers</source>
         <translation>폭우 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1288"/>
+        <location filename="../Utils.cpp" line="1298"/>
         <source>Light snow showers</source>
         <translation>폭우 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1289"/>
+        <location filename="../Utils.cpp" line="1299"/>
         <source>Heavy snow showers</source>
         <translation>폭우 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1290"/>
+        <location filename="../Utils.cpp" line="1300"/>
         <source>Thunderstorm</source>
         <translation>뇌우</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1291"/>
+        <location filename="../Utils.cpp" line="1301"/>
         <source>Slight thunderstorm with hail</source>
         <translation>우박을 동반한 약간의 뇌우</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1292"/>
+        <location filename="../Utils.cpp" line="1302"/>
         <source>Heavy thunderstorm with hail</source>
         <translation>우박을 동반한 강한 뇌우</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="61"/>
-        <location filename="../Utils.h" line="83"/>
+        <location filename="../Utils.h" line="85"/>
         <source>Location</source>
         <translation>위치</translation>
     </message>
@@ -1892,320 +1949,456 @@ The application will exit now.</source>
         <translation>주 / 지방 / 지역</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="83"/>
+        <location filename="../Utils.h" line="85"/>
         <source>Current Weather</source>
         <translation>현재 날씨</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="83"/>
+        <location filename="../Utils.h" line="85"/>
         <source>Temperature</source>
         <translation>기온</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="84"/>
+        <location filename="../Utils.h" line="86"/>
         <source>Cloudiness</source>
         <translation>흐림</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="84"/>
+        <location filename="../Utils.h" line="86"/>
         <source>Humidity</source>
         <translation>습도</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="84"/>
+        <location filename="../Utils.h" line="86"/>
         <source>Ground Pressure</source>
         <translation>지압</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="87"/>
         <source>Wind Speed</source>
         <translation>풍속</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="87"/>
         <source>Sunrise</source>
         <translation>일출</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="87"/>
         <source>Sunset</source>
         <translation>일몰</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="86"/>
+        <location filename="../Utils.h" line="88"/>
         <source>Air Quality</source>
         <translation>대기질</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="86"/>
+        <location filename="../Utils.h" line="88"/>
         <source>Air Quality (CO)</source>
         <translation>대기질 (CO)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="87"/>
+        <location filename="../Utils.h" line="89"/>
         <source>Air Quality (O&lt;sub&gt;3&lt;/sub&gt;)</source>
         <translation>대기질 (O&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="88"/>
+        <location filename="../Utils.h" line="90"/>
         <source>Air Quality (NO)</source>
         <translation>대기질 (NO)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="89"/>
+        <location filename="../Utils.h" line="91"/>
         <source>Air Quality (NO&lt;sub&gt;2&lt;/sub&gt;)</source>
         <translation>대기질 (NO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="90"/>
+        <location filename="../Utils.h" line="92"/>
         <source>Air Quality (SO&lt;sub&gt;2&lt;/sub&gt;)</source>
         <translation>대기질 (SO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="91"/>
+        <location filename="../Utils.h" line="93"/>
         <source>Air Quality (NH&lt;sub&gt;3&lt;/sub&gt;)</source>
         <translation>대기질 (NH&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="92"/>
+        <location filename="../Utils.h" line="94"/>
         <source>Air Quality (PM&lt;sub&gt;2.5&lt;/sub&gt;)</source>
         <translation>대기질 (PM&lt;sub&gt;2.5&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="93"/>
+        <location filename="../Utils.h" line="95"/>
         <source>Air Quality (PM&lt;sub&gt;10&lt;/sub&gt;)</source>
         <translation>대기질 (PM&lt;sub&gt;10&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="94"/>
+        <location filename="../Utils.h" line="96"/>
         <source>Wind Direction</source>
         <translation>풍향</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="95"/>
+        <location filename="../Utils.h" line="97"/>
         <source>Time of last update</source>
         <translation>마지막 업데이트 시간</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="96"/>
+        <location filename="../Utils.h" line="98"/>
         <source>UV radiation index</source>
         <translation>자외선 지수</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="352"/>
+        <location filename="../TrayWeather.cpp" line="52"/>
+        <location filename="../TrayWeather.cpp" line="1170"/>
+        <source>Error: </source>
+        <translation>오류: </translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="374"/>
         <source>TrayWeather needs to be restarted for the new configuration to take effect.
 The application will exit now.</source>
         <translation>새 구성을 적용하려면 TrayWeather를 다시 시작해야 합니다.
 응용 프로그램이 종료됩니다.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1000"/>
+        <location filename="../TrayWeather.cpp" line="1018"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
         <translation>TrayWeather는 당신의 위치에 대한 날씨 데이터를 요청하였고
 아직 응답을 기다리고 있습니다.</translation>
     </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1268"/>
+        <source>Couldn&apos;t find the Updater executable in the application directory.</source>
+        <translation>애플리케이션 디렉터리에서 업데이터 실행 파일을 찾을 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1275"/>
+        <source>Unable to create update directory.</source>
+        <translation>업데이트 디렉터리를 만들 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1281"/>
+        <source>Unable to copy files to udpate directory.</source>
+        <translation>디렉터리에 파일을 복사할 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1289"/>
+        <source>Error executing updater.
+Error code: %1</source>
+        <translation>업데이터 실행 중 오류가 발생했습니다.
+ 오류 코드: %1</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="87"/>
+        <source>The url is invalid.</source>
+        <translation>URL이 잘못되었습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="109"/>
+        <location filename="../Updater.cpp" line="119"/>
+        <source>Error downloading the update file.</source>
+        <translation>업데이트 파일을 다운로드하는 중 오류가 발생했습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="133"/>
+        <source>Downloaded contents are empty</source>
+        <translation>다운로드한 내용이 비어 있습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="142"/>
+        <source>Unable to create file in the temporal directory.</source>
+        <translation>임시 디렉터리에 파일을 만들 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="156"/>
+        <source>Unable to launch the installer after updating.</source>
+        <translation>업데이트 후 설치 프로그램을 시작할 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="157"/>
+        <source>Unable to launch the update file.</source>
+        <translation>업데이트 파일을 시작할 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="57"/>
+        <source>Download progress.</source>
+        <translation>다운로드 진행률입니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="183"/>
+        <source>Decompressing:</source>
+        <translation>압축 해제 중:</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="184"/>
+        <source>Decompression progress.</source>
+        <translation>압축 해제 진행률입니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="190"/>
+        <source>Unable to open zip file for decompression.</source>
+        <translation>압축 해제를 위해 zip 파일을 열 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="195"/>
+        <location filename="../Updater.cpp" line="221"/>
+        <source>Unable to get zip file contents.</source>
+        <translation>zip 파일 내용을 가져올 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="220"/>
+        <source>Error code: </source>
+        <translation>오류 코드: </translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="227"/>
+        <source>Error decompressing file.</source>
+        <translation>파일 압축 해제 오류.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="233"/>
+        <source>Unable to create application file.</source>
+        <translation>애플리케이션 파일을 만들 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="238"/>
+        <source>Unable to overwrite application file.</source>
+        <translation>애플리케이션 파일을 덮어쓸 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.cpp" line="254"/>
+        <location filename="../updaterMain.cpp" line="47"/>
+        <source>TrayWeather Updater</source>
+        <translation>TrayWeather Updater</translation>
+    </message>
+    <message>
+        <location filename="../updaterMain.cpp" line="79"/>
+        <source>TrayWeather Updater should be called from the application.</source>
+        <translation>TrayWeather Updater는 애플리케이션에서 호출해야 합니다.</translation>
+    </message>
+    <message>
+        <location filename="../updaterMain.cpp" line="83"/>
+        <source>TrayWeather Updater is already running!</source>
+        <translation>TrayWeather Updater가 이미 실행 중입니다!</translation>
+    </message>
+    <message>
+        <location filename="../updaterMain.cpp" line="93"/>
+        <source>Unable to remove temporal directory: %1.</source>
+        <translation>임시 디렉터리 %1을(를) 제거할 수 없습니다.</translation>
+    </message>
 </context>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="1213"/>
+        <location filename="../TrayWeather.cpp" line="1231"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translatorcomment>Aware that I placed the hyperlink which also violates the original sentence structure, but it fits the Korean sentiment instead.</translatorcomment>
         <translation>Github 웹사이트에 &lt;b&gt;Tray Weather&lt;/b&gt;의 &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;새 업데이트가 있습니다&lt;/a&gt;!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1214"/>
+        <location filename="../TrayWeather.cpp" line="1232"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation>&lt;center&gt;&lt;b&gt;버전 %1&lt;/b&gt; 이 공개되었습니다!&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1215"/>
+        <location filename="../TrayWeather.cpp" line="1233"/>
         <source>Release notes:
 %1</source>
         <translation>릴리스 정보:
 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1216"/>
+        <location filename="../TrayWeather.cpp" line="1234"/>
         <source>Tray Weather updated to version %1</source>
         <translation>Tray Weather가 버전 %1로 업데이트됨</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="107"/>
-        <location filename="../TrayWeather.cpp" line="121"/>
-        <location filename="../TrayWeather.cpp" line="1230"/>
-        <location filename="../TrayWeather.cpp" line="1292"/>
-        <source>Error: </source>
-        <translation>오류: </translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="121"/>
-        <location filename="../TrayWeather.cpp" line="1292"/>
+        <location filename="../TrayWeather.cpp" line="146"/>
+        <location filename="../TrayWeather.cpp" line="1361"/>
         <source>No geolocation.</source>
         <translation>위치 정보가 없습니다.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="400"/>
+        <location filename="../TrayWeather.cpp" line="419"/>
         <source>Requesting weather data from the server...</source>
         <translation>서버에서 날씨 데이터를 요청하는 중...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="423"/>
+        <location filename="../TrayWeather.cpp" line="444"/>
         <source>There is a weather alert for your location!</source>
         <translation>당신의 위치에 날씨 경보가 있습니다!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="595"/>
+        <location filename="../TrayWeather.cpp" line="617"/>
         <source>Cloudiness: </source>
         <translation>흐림: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="598"/>
+        <location filename="../TrayWeather.cpp" line="620"/>
         <source>Humidity: </source>
         <translation>습도: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="607"/>
+        <location filename="../TrayWeather.cpp" line="629"/>
         <source>inHg</source>
         <translation>수은주인치 (inHg)</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="610"/>
+        <location filename="../TrayWeather.cpp" line="632"/>
         <source>mmHg</source>
         <translation>수은주밀리미터 (mmHg)</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="613"/>
+        <location filename="../TrayWeather.cpp" line="635"/>
         <source>PSI</source>
         <translation>제곱인치당파운드 (PSI)</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="617"/>
+        <location filename="../TrayWeather.cpp" line="639"/>
         <source>hPa</source>
         <translation>헥토파스칼 (hPa)</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="620"/>
+        <location filename="../TrayWeather.cpp" line="642"/>
         <source>Pressure: </source>
         <translation>기압: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="630"/>
+        <location filename="../TrayWeather.cpp" line="652"/>
         <source>ft/s</source>
         <translation>ft/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="633"/>
+        <location filename="../TrayWeather.cpp" line="655"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="636"/>
+        <location filename="../TrayWeather.cpp" line="658"/>
         <source>mph</source>
         <translation>mph</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="639"/>
+        <location filename="../TrayWeather.cpp" line="661"/>
         <source>kts</source>
         <translation>매듭</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="643"/>
+        <location filename="../TrayWeather.cpp" line="665"/>
         <source>m/s</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="646"/>
+        <location filename="../TrayWeather.cpp" line="668"/>
         <source>Wind: </source>
         <translation>풍속: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="650"/>
+        <location filename="../TrayWeather.cpp" line="672"/>
         <source>Wind direction: </source>
         <translation>풍향: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="654"/>
+        <location filename="../TrayWeather.cpp" line="676"/>
         <source>Last updated: </source>
         <translation>마지막 업데이트: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="669"/>
+        <location filename="../TrayWeather.cpp" line="691"/>
         <source>Sunrise: </source>
         <translation>일출: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="678"/>
+        <location filename="../TrayWeather.cpp" line="700"/>
         <source>Sunset: </source>
         <translation>일몰: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="684"/>
+        <location filename="../TrayWeather.cpp" line="706"/>
         <source>Air: </source>
         <translation>대기질: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="769"/>
-        <location filename="../TrayWeather.cpp" line="1162"/>
+        <location filename="../TrayWeather.cpp" line="791"/>
+        <location filename="../TrayWeather.cpp" line="1179"/>
         <source>Current weather...</source>
         <translation>현재 날씨...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="774"/>
-        <location filename="../TrayWeather.cpp" line="1163"/>
+        <location filename="../TrayWeather.cpp" line="796"/>
+        <location filename="../TrayWeather.cpp" line="1180"/>
         <source>Forecast...</source>
         <translation>일기예보...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="779"/>
-        <location filename="../TrayWeather.cpp" line="1164"/>
+        <location filename="../TrayWeather.cpp" line="801"/>
+        <location filename="../TrayWeather.cpp" line="1181"/>
         <source>Pollution...</source>
         <translation>대기오염...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="784"/>
-        <location filename="../TrayWeather.cpp" line="1165"/>
+        <location filename="../TrayWeather.cpp" line="806"/>
+        <location filename="../TrayWeather.cpp" line="1182"/>
         <source>UV...</source>
         <translation>자외선...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="789"/>
-        <location filename="../TrayWeather.cpp" line="1166"/>
+        <location filename="../TrayWeather.cpp" line="811"/>
+        <location filename="../TrayWeather.cpp" line="1183"/>
         <source>Maps...</source>
         <translation>지도...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="798"/>
-        <location filename="../TrayWeather.cpp" line="1167"/>
+        <location filename="../TrayWeather.cpp" line="820"/>
+        <location filename="../TrayWeather.cpp" line="1184"/>
         <source>Refresh...</source>
         <translation>새로고침...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="805"/>
-        <location filename="../TrayWeather.cpp" line="1168"/>
-        <location filename="../TrayWeather.cpp" line="1369"/>
-        <location filename="../TrayWeather.cpp" line="1449"/>
+        <location filename="../TrayWeather.cpp" line="827"/>
+        <location filename="../TrayWeather.cpp" line="1185"/>
+        <location filename="../TrayWeather.cpp" line="1440"/>
+        <location filename="../TrayWeather.cpp" line="1533"/>
         <source>Last alert...</source>
         <translation>최근 기상특보...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="814"/>
-        <location filename="../TrayWeather.cpp" line="1169"/>
+        <location filename="../TrayWeather.cpp" line="836"/>
+        <location filename="../TrayWeather.cpp" line="1186"/>
         <source>Configuration...</source>
         <translation>설정...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="821"/>
-        <location filename="../TrayWeather.cpp" line="1170"/>
+        <location filename="../TrayWeather.cpp" line="843"/>
+        <location filename="../TrayWeather.cpp" line="1187"/>
         <source>About...</source>
         <translation>정보...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="826"/>
-        <location filename="../TrayWeather.cpp" line="1171"/>
+        <location filename="../TrayWeather.cpp" line="848"/>
+        <location filename="../TrayWeather.cpp" line="1188"/>
         <source>Quit</source>
         <translation>종료</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1241"/>
+        <source>Install</source>
+        <translation>설치</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1262"/>
+        <source>Unable to locate valid asset in Github. Install aborted.</source>
+        <translation>Github에서 유효한 에셋을 찾을 수 없습니다. 설치가 중단되었습니다.</translation>
+    </message>
+</context>
+<context>
+    <name>TrayWeatherUpdater</name>
+    <message>
+        <location filename="../Updater.cpp" line="97"/>
+        <source>Downloading:</source>
+        <translation>다운로드 중:</translation>
     </message>
 </context>
 <context>
@@ -2258,6 +2451,34 @@ during midday hours.</source>
     </message>
 </context>
 <context>
+    <name>Updater</name>
+    <message>
+        <location filename="../Updater.ui" line="26"/>
+        <source>TrayWeather Updater</source>
+        <translation>TrayWeather Updater</translation>
+    </message>
+    <message>
+        <location filename="../Updater.ui" line="33"/>
+        <source>Downloading update...</source>
+        <translation>업데이트 다운로드 중...</translation>
+    </message>
+    <message>
+        <location filename="../Updater.ui" line="47"/>
+        <source>Downloading:</source>
+        <translation>다운로드 중:</translation>
+    </message>
+    <message>
+        <location filename="../Updater.ui" line="63"/>
+        <source>Download progress.</source>
+        <translation>다운로드 진행률.</translation>
+    </message>
+    <message>
+        <location filename="../Updater.ui" line="91"/>
+        <source>Cancel</source>
+        <translation>취소</translation>
+    </message>
+</context>
+<context>
     <name>WeatherDialog</name>
     <message>
         <location filename="../WeatherDialog.ui" line="26"/>
@@ -2266,7 +2487,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="52"/>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="1458"/>
         <source>Current Weather</source>
         <translation>현재 날씨</translation>
     </message>
@@ -2346,7 +2567,7 @@ during midday hours.</source>
     <message>
         <location filename="../WeatherDialog.ui" line="405"/>
         <location filename="../WeatherDialog.cpp" line="209"/>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Temperature</source>
         <translation>기온</translation>
     </message>
@@ -2370,8 +2591,10 @@ during midday hours.</source>
         <location filename="../WeatherDialog.ui" line="466"/>
         <location filename="../WeatherDialog.ui" line="502"/>
         <location filename="../WeatherDialog.cpp" line="208"/>
-        <location filename="../WeatherDialog.cpp" line="883"/>
-        <location filename="../WeatherDialog.cpp" line="1074"/>
+        <location filename="../WeatherDialog.cpp" line="294"/>
+        <location filename="../WeatherDialog.cpp" line="295"/>
+        <location filename="../WeatherDialog.cpp" line="884"/>
+        <location filename="../WeatherDialog.cpp" line="1075"/>
         <source>Unknown</source>
         <translation>알 수 없음</translation>
     </message>
@@ -2470,7 +2693,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="645"/>
-        <location filename="../WeatherDialog.cpp" line="1560"/>
+        <location filename="../WeatherDialog.cpp" line="1561"/>
         <source>Show Maps</source>
         <translation>지도 표시</translation>
     </message>
@@ -2501,7 +2724,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="97"/>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="1458"/>
         <source>Forecast</source>
         <translation>일기예보</translation>
     </message>
@@ -2512,13 +2735,13 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="119"/>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="1458"/>
         <source>Pollution</source>
         <translation>대기오염</translation>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="141"/>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="1458"/>
         <source>UV</source>
         <translation>자외선</translation>
     </message>
@@ -2534,7 +2757,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="386"/>
-        <location filename="../WeatherDialog.cpp" line="507"/>
+        <location filename="../WeatherDialog.cpp" line="508"/>
         <source>Rain accumulation</source>
         <translation>강우량</translation>
     </message>
@@ -2545,72 +2768,72 @@ during midday hours.</source>
         <translation>헥토파스칼 (hPa)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="384"/>
-        <location filename="../WeatherDialog.cpp" line="933"/>
-        <location filename="../WeatherDialog.cpp" line="1099"/>
+        <location filename="../WeatherDialog.cpp" line="385"/>
+        <location filename="../WeatherDialog.cpp" line="934"/>
+        <location filename="../WeatherDialog.cpp" line="1100"/>
         <source>Day (Hour)</source>
         <translation>일 (시간)</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="389"/>
-        <location filename="../WeatherDialog.cpp" line="394"/>
+        <location filename="../WeatherDialog.cpp" line="390"/>
+        <location filename="../WeatherDialog.cpp" line="395"/>
         <source>%1 in %2</source>
         <translation>%2에서 %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="783"/>
-        <location filename="../WeatherDialog.cpp" line="851"/>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="784"/>
+        <location filename="../WeatherDialog.cpp" line="852"/>
+        <location filename="../WeatherDialog.cpp" line="1458"/>
         <source>Maps</source>
         <translation>지도</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="790"/>
+        <location filename="../WeatherDialog.cpp" line="791"/>
         <source>TrayWeather Maps</source>
         <translation>TrayWeather 지도</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="792"/>
+        <location filename="../WeatherDialog.cpp" line="793"/>
         <source>The weather maps couldn&apos;t be loaded.</source>
         <translation>날씨 지도를 읽어들일 수 없습니다.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="892"/>
+        <location filename="../WeatherDialog.cpp" line="893"/>
         <source>Low</source>
         <translation>낮음</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="901"/>
+        <location filename="../WeatherDialog.cpp" line="902"/>
         <source>High</source>
         <translation>높음</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="906"/>
+        <location filename="../WeatherDialog.cpp" line="907"/>
         <source>Very high</source>
         <translation>매우 높음</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="909"/>
+        <location filename="../WeatherDialog.cpp" line="910"/>
         <source>Extreme</source>
         <translation>극단적</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="937"/>
+        <location filename="../WeatherDialog.cpp" line="938"/>
         <source>Ultraviolet radiation index</source>
         <translation>자외선 지수</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="985"/>
+        <location filename="../WeatherDialog.cpp" line="986"/>
         <source>UV Index</source>
         <translation>자외선 지수</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1472"/>
+        <location filename="../WeatherDialog.cpp" line="1473"/>
         <source>Hide Maps</source>
         <translation>지도 숨기기</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1473"/>
+        <location filename="../WeatherDialog.cpp" line="1474"/>
         <source>Hide weather maps tab.</source>
         <translation>날씨 지도 탭 숨기기</translation>
     </message>
@@ -2621,7 +2844,7 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.ui" line="482"/>
-        <location filename="../WeatherDialog.cpp" line="508"/>
+        <location filename="../WeatherDialog.cpp" line="509"/>
         <source>Snow accumulation</source>
         <translation>강설량</translation>
     </message>
@@ -2653,10 +2876,10 @@ during midday hours.</source>
     </message>
     <message>
         <location filename="../WeatherDialog.cpp" line="160"/>
-        <location filename="../WeatherDialog.cpp" line="805"/>
-        <location filename="../WeatherDialog.cpp" line="809"/>
-        <location filename="../WeatherDialog.cpp" line="1379"/>
-        <location filename="../WeatherDialog.cpp" line="1457"/>
+        <location filename="../WeatherDialog.cpp" line="806"/>
+        <location filename="../WeatherDialog.cpp" line="810"/>
+        <location filename="../WeatherDialog.cpp" line="1380"/>
+        <location filename="../WeatherDialog.cpp" line="1458"/>
         <source>Alerts</source>
         <translation>알림</translation>
     </message>
@@ -2703,33 +2926,33 @@ during midday hours.</source>
         <translation>매듭</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="401"/>
-        <location filename="../WeatherDialog.cpp" line="1110"/>
+        <location filename="../WeatherDialog.cpp" line="402"/>
+        <location filename="../WeatherDialog.cpp" line="1111"/>
         <source>Click to hide or show the forecast.</source>
         <translation>일기예보를 표시하거나 숨기려면 클릭합니다.</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="897"/>
+        <location filename="../WeatherDialog.cpp" line="898"/>
         <source>Moderate</source>
         <translation>보통</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1103"/>
+        <location filename="../WeatherDialog.cpp" line="1104"/>
         <source>Concentration in %1</source>
         <translation>농도 %1</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Rain</source>
         <translation>비</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Wind</source>
         <translation>바람</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1421"/>
+        <location filename="../WeatherDialog.cpp" line="1422"/>
         <source>Clouds</source>
         <translation>구름</translation>
     </message>
@@ -2746,7 +2969,7 @@ during midday hours.</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../WeatherDialog.cpp" line="1561"/>
+        <location filename="../WeatherDialog.cpp" line="1562"/>
         <source>Show weather maps tab.</source>
         <translation>날씨 지도 탭을 표시합니다.</translation>
     </message>

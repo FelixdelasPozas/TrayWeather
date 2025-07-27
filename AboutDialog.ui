@@ -371,7 +371,7 @@ Qt Framework</string>
                  </size>
                 </property>
                 <property name="text">
-                 <string/>
+                 <string notr="true"/>
                 </property>
                </widget>
               </item>
@@ -386,7 +386,7 @@ Qt Framework</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>QuaZip</string>
+                   <string notr="true">QuaZip</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -396,7 +396,7 @@ Qt Framework</string>
                 <item>
                  <widget class="QLabel" name="label_20">
                   <property name="text">
-                   <string>version 1.5</string>
+                   <string notr="true">version 1.5</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -408,7 +408,7 @@ Qt Framework</string>
               <item>
                <widget class="QLabel" name="label_18">
                 <property name="text">
-                 <string>&lt;a href=&quot;https://stachenov.github.io/quazip/&quot;&gt;https://stachenov.github.io/quazip/&lt;/a&gt;</string>
+                 <string notr="true">&lt;a href=&quot;https://stachenov.github.io/quazip/&quot;&gt;https://stachenov.github.io/quazip/&lt;/a&gt;</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
