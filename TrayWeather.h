@@ -31,6 +31,7 @@
 #include <QTimer>
 #include <QTranslator>
 #include <QAbstractNativeEventFilter>
+#include <QMessageBox>
 
 class QNetworkReply;
 class QNetworkAccessManager;
@@ -263,6 +264,24 @@ class TrayWeather
     /** \brief Removes the expired alerts from the Alerts list. 
      */
     void removeExpiredAlerts();
+
+    /** \brief Shows a message dialog.
+     * \param[in] icon Dialog icon.
+     * \param[in] msg Message to show.
+     * \param[in] details Message details, optional.
+     */
+    void showMessageBox(const QMessageBox::Icon &icon, const QString &msg, const QString &details = QString(), const QString &title = "TrayWeather");
+
+    /** \brief Starts the download of the given url.
+     * \param url File to download.
+     */
+    void startFileDownload(const QUrl &url);
+
+    /** \brief Processes the finish of the download of a file. 
+     * \param[in] data Contents of the downloaded file.
+     *
+     */
+    void finishedDownload(const QByteArray &data);
 
     Configuration                         &m_configuration;   /** application configuration.                        */
     std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                  */

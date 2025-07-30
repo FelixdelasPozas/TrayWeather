@@ -823,35 +823,14 @@ void ConfigurationDialog::changeEvent(QEvent *e)
 //--------------------------------------------------------------------
 void ConfigurationDialog::onAutostartValueChanged(int value)
 {
-  const QString APPLICATION_NAME{"TrayWeather"};
-  QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-  bool updated = false;
-
-  if(value == Qt::Checked)
-  {
-    if(!settings.allKeys().contains(APPLICATION_NAME, Qt::CaseInsensitive))
-    {
-      settings.setValue(APPLICATION_NAME, QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
-      updated = true;
-    }
-  }
-  else
-  {
-    if(settings.allKeys().contains(APPLICATION_NAME, Qt::CaseInsensitive))
-    {
-      settings.remove(APPLICATION_NAME);
-      updated = true;
-    }
-  }
-
-  if(updated)
-    settings.sync();
+  setAutorunsKey(m_config, value);
 }
 
 //--------------------------------------------------------------------
 void ConfigurationDialog::setConfiguration(const Configuration &configuration)
 {
   m_autostart->setChecked(configuration.autostart);
+  setAutorunsKey(configuration, configuration.autostart);
 
   m_trayIconTheme->clear();
   for(int i = 0; i < ICON_THEMES.size(); ++i)

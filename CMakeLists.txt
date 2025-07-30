@@ -27,14 +27,6 @@ set(CMAKE_AUTOMOC ON)
 # Find the Qt5 library
 find_package(Qt5 COMPONENTS Widgets Network WebkitWidgets Charts LinguistTools)
 
-# QuaZIP
-set(QUAZIP_INCLUDE_DIR "D:/Desarrollo/Bibliotecas/quazip-1.5")
-set(QUAZIP_LIBRARY "D:/Desarrollo/Bibliotecas/quazip-1.5-build/quazip/libquazip1-qt5.a")
-set(ZLIB_INCLUDE_DIR "D:/Desarrollo/Bibliotecas/zlib-build")
-set(ZLIB_LIBRARY "D:/Desarrollo/Bibliotecas/zlib-build/libzlibstatic.a")
-add_compile_definitions(QUAZIP_STATIC)
-
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${Qt5Widgets_EXECUTABLE_COMPILE_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated -mwindows -m64")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-deprecated -mconsole -m64")
@@ -80,9 +72,7 @@ set(CHARTS_INCLUDE_DIRS
 if(DEFINED MINGW)
   configure_file("${PROJECT_SOURCE_DIR}/resources.rc.in" "${PROJECT_BINARY_DIR}/resources.rc")
   configure_file("${PROJECT_SOURCE_DIR}/installer/script.iss.in" "${PROJECT_BINARY_DIR}/script.iss")
-  configure_file("${PROJECT_SOURCE_DIR}/updaterResources.rc.in" "${PROJECT_BINARY_DIR}/updaterResources.rc")
   set(CORE_SOURCES ${CORE_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/resources.rc)
-  set(UPDATER_SOURCES ${UPDATER_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/updaterResources.rc)
   set(CMAKE_RC_COMPILE_OBJECT "<CMAKE_RC_COMPILER> -O coff -o <OBJECT> -i <SOURCE>")
   enable_language(RC)
 endif(DEFINED MINGW)
@@ -97,8 +87,6 @@ include_directories(
   ${Qt5Multimedia_INCLUDE_DIRS}
   ${Qt5WebKitWidgets_INCLUDE_DIRS}
   ${CHARTS_INCLUDE_DIRS}
-  ${QUAZIP_INCLUDE_DIR}
-  ${ZLIB_INCLUDE_DIR}
   )
 
 set(TRANSLATIONS_TS_FILES
@@ -171,31 +159,6 @@ set(CORE_EXTERNAL_LIBS
   advapi32
 )
 
-qt5_wrap_ui(UPDATER_UI
-  Updater.ui
-)
-
-set (UPDATER_SOURCES
-  ${UPDATER_SOURCES}
-  ${RESOURCES}
-  ${UPDATER_UI}
-  updaterMain.cpp
-  Updater.cpp
-  Utils.cpp
-)
-
-set(UPDATER_EXTERNAL_LIBS
-  Qt5::Widgets
-  Qt5::Network
-  advapi32
-  ${QUAZIP_LIBRARY}
-  ${ZLIB_LIBRARY}
-)
- 
 add_executable(TrayWeather ${CORE_SOURCES})
 target_link_libraries (TrayWeather ${CORE_EXTERNAL_LIBS})
 qt5_use_modules(TrayWeather Widgets Network WebKitWidgets Charts)
-
-add_executable(Updater ${UPDATER_SOURCES})
-target_link_libraries (Updater ${UPDATER_EXTERNAL_LIBS})
-qt5_use_modules(Updater Widgets Network)

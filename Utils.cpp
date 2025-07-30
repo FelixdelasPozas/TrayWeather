@@ -123,6 +123,7 @@ static const QString WIND_LAYER_OPACITY       = QString("Wind layer opacity");
 static const QString TEMP_LAYER_OPACITY       = QString("Temperature layer opacity");
 static const QString WEATHER_PROVIDER         = QString("Weather provider");
 static const QString BAR_REPRESENTATION_WIDTH = QString("Bar representation width");
+static const QString PORTABLE_STRING          = QString("Portable string identifier");
 
 static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/iconThemes/%1/01d.svg" },
                                               { "01n-0", ":/TrayWeather/iconThemes/%1/01n-0.svg" },
@@ -151,6 +152,9 @@ static const QMap<QString, QString> ICONS = { { "01d", ":/TrayWeather/iconThemes
                                               { "50n", ":/TrayWeather/iconThemes/%1/50n.svg" } };
 
 constexpr int DEFAULT_LOGICAL_DPI = 96;
+
+const QString AUTORUNS_KEY{"HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"};
+const QString APPLICATION_NAME{"TrayWeather"};
 
 //--------------------------------------------------------------------
 const double convertMmToInches(const double value)
@@ -550,6 +554,8 @@ const QString windDegreesToName(const double degrees)
 const QString randomString(const int length)
 {
   const QString possibleCharacters("abcdefghijklmnopqrstuvwxyz0123456789");
+  
+  qsrand(time(nullptr));
 
   QString randomString;
   for (int i = 0; i < length; ++i)
@@ -682,7 +688,10 @@ void load(Configuration &configuration)
   configuration.windMapOpacity  = settings.value(WIND_LAYER_OPACITY, 0.75).toFloat();
   configuration.tempMapOpacity  = settings.value(TEMP_LAYER_OPACITY, 0.75).toFloat();
   configuration.barWidth        = settings.value(BAR_REPRESENTATION_WIDTH, 1.0).toDouble();
+  configuration.portableString  = settings.value(PORTABLE_STRING, randomString(8)).toString();
 
+  if(configuration.portableString.isEmpty())
+    configuration.portableString = randomString(8);
 
   // if CUSTOM_UNITS values doesn't exists (first run) use units value.
   configuration.tempUnits        = static_cast<TemperatureUnits>(settings.value(CUSTOM_TEMP_UNITS, units).toInt());
@@ -779,6 +788,7 @@ void save(const Configuration &configuration)
   settings.setValue(WIND_LAYER_OPACITY,       configuration.windMapOpacity);
   settings.setValue(TEMP_LAYER_OPACITY,       configuration.tempMapOpacity);
   settings.setValue(BAR_REPRESENTATION_WIDTH, configuration.barWidth);
+  settings.setValue(PORTABLE_STRING,          configuration.portableString);
 
   QStringList fieldList;
   QList<int> fieldNums;
@@ -1544,4 +1554,62 @@ QNetworkReply *NetworkAccessManager::createRequest(QNetworkAccessManager::Operat
 void ClickableLabel::connectToCheckBox(QCheckBox *cb)
 {
   connect(this, &ClickableLabel::clicked, [cb](){ cb->setChecked(!cb->isChecked()); });
+}
+
+//----------------------------------------------------------------------------
+void setAutorunsKey(const Configuration& config, const int value)
+{
+  QSettings settings(AUTORUNS_KEY, QSettings::NativeFormat);
+  const QString appKeyValue = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
+  const QString appKey = APPLICATION_NAME + (isPortable() ? "_" + config.portableString : "");
+
+  bool updated = false;
+
+  bool hasKey = false;
+  for(const auto &key: settings.allKeys())
+  {
+    if(!key.startsWith(APPLICATION_NAME))
+      continue;
+
+    // Remove non existing TrayWeather entries.
+    const auto keyValue = settings.value(key).toString();
+    if(!QFile::exists(keyValue))
+    {
+      settings.remove(key);
+      updated = true;
+    }
+
+    // Update non-portable to portable.
+    if(keyValue.compare(appKeyValue) == 0)
+    {
+      hasKey = true;
+
+      if(key.compare(appKey) != 0)
+      {
+        settings.remove(key);
+        settings.setValue(appKey, appKeyValue);
+        updated = true;
+      }
+    }
+  }
+
+  if(value != hasKey)
+  {
+    switch(value)
+    {
+      case Qt::Checked:
+        settings.setValue(appKey, appKeyValue);
+        break;
+      case Qt::Unchecked:
+        settings.remove(appKey);
+        break;
+      default:
+        break;
+    }
+
+    updated = true;
+  }
+
+  if(updated)
+    settings.sync();
 }

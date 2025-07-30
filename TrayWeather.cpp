@@ -24,7 +24,6 @@
 #include <Utils.h>
 
 // Qt
-#include <QMessageBox>
 #include <QNetworkReply>
 #include <QObject>
 #include <QMenu>
@@ -50,38 +49,8 @@
 const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
 QDateTime timeOfLastUpdate = QDateTime::currentDateTime();
 
-QString m_url; // downloaded update file to launch in updater.
 QString ERROR_STRING = QObject::tr("Error: ");
-
-//--------------------------------------------------------------------
-void launchUpdate()
-{
-    if (m_url.isEmpty()) {
-        return;
-    }
-
-    const auto appPath = qApp->applicationDirPath();
-    const auto updaterPath = QDir{appPath}.absoluteFilePath("Updater.exe");
-    const auto commandLine = updaterPath + " " + m_url;
-    std::string commandStr = commandLine.toStdString();
-
-    LPSTARTUPINFO lpStartupInfo;
-    LPPROCESS_INFORMATION lpProcessInfo;
-
-    memset(&lpStartupInfo, 0, sizeof(lpStartupInfo));
-    memset(&lpProcessInfo, 0, sizeof(lpProcessInfo));
-
-    CreateProcess(NULL,           // No module name (use command line)
-                  &commandStr[0], // Command line
-                  NULL,           // Process handle not inheritable
-                  NULL,           // Thread handle not inheritable
-                  FALSE,          // Set handle inheritance to FALSE
-                  0,              // No creation flags
-                  NULL,           // Use parent's environment block
-                  NULL,           // Use parent's starting directory
-                  lpStartupInfo,  // Pointer to STARTUPINFO structure
-                  lpProcessInfo); // Pointer to PROCESSINFO structure
-}
+QUrl updateFile;
 
 //--------------------------------------------------------------------
 TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
@@ -134,13 +103,31 @@ void TrayWeather::replyFinished(QNetworkReply* reply)
   {
     if(reply->error() == QNetworkReply::NoError)
     {
-      const auto contents  = reply->readAll();
+      if(!updateFile.isEmpty())
+      {
+        const int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+        if(statusCode == 302)
+        {
+          const QUrl newUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
+          reply->deleteLater();
+          startFileDownload(newUrl);
+          return;
+        }
+      }
+      
+      const auto contents = reply->readAll();
       processGithubData(contents);
     }
     else
     {
-      const auto errorText = ERROR_STRING + "Github.";
-      setErrorTooltip(errorText);
+      if(updateFile.isEmpty())
+      {
+          const auto errorText = ERROR_STRING + "Github.";
+          setErrorTooltip(errorText);
+      } else {
+          showMessageBox(QMessageBox::Critical, tr("Unable to download update file."), reply->errorString());
+          updateFile.clear();
+      }
     }
   }
 
@@ -381,14 +368,7 @@ void TrayWeather::showConfiguration()
 
   if(changedRoaming)
   {
-    QMessageBox msgBox;
-    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
-    msgBox.setWindowTitle(QObject::tr("Tray Weather"));
-    msgBox.setIcon(QMessageBox::Warning);
-    msgBox.setText(QObject::tr("TrayWeather needs to be restarted for the new configuration to take effect.\nThe application will exit now."));
-    msgBox.setStandardButtons(QMessageBox::Ok);
-    msgBox.exec();
-
+    showMessageBox(QMessageBox::Warning, tr("TrayWeather needs to be restarted for the new configuration to take effect.\nThe application will exit now."));
     exitApplication();
   }
 
@@ -1032,14 +1012,7 @@ void TrayWeather::showTab()
 
   if(!validData())
   {
-    QMessageBox msgBox;
-    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
-    msgBox.setWindowTitle(QObject::tr("Tray Weather"));
-    msgBox.setIcon(QMessageBox::Warning);
-    msgBox.setText(QObject::tr("TrayWeather has requested the weather data for your geographic location\nand it's still waiting for the response."));
-    msgBox.setStandardButtons(QMessageBox::Ok);
-    msgBox.exec();
-
+    showMessageBox(QMessageBox::Warning, tr("TrayWeather has requested the weather data for your geographic location\nand it's still waiting for the response."));
     return;
   }
 
@@ -1215,6 +1188,12 @@ void TrayWeather::translateMenu()
 //--------------------------------------------------------------------
 void TrayWeather::processGithubData(const QByteArray &data)
 {
+  if(!updateFile.isEmpty())
+  {
+    finishedDownload(data);
+    return;
+  }
+
   const auto jsonDocument = QJsonDocument::fromJson(data);
 
   int currentNumbers[3], lastNumbers[3];
@@ -1261,38 +1240,33 @@ void TrayWeather::processGithubData(const QByteArray &data)
       msgBox.setText(message);
       msgBox.setInformativeText(informative);
       msgBox.setDetailedText(details);
-      auto installButton = msgBox.addButton(tr("Install"), QMessageBox::ButtonRole::NoRole);
-      installButton->setIcon(QIcon(":/TrayWeather/updater.svg"));
+      auto downloadButton = msgBox.addButton(tr("Download"), QMessageBox::ButtonRole::NoRole);
+      downloadButton->setIcon(QIcon(":/TrayWeather/download.svg"));
       msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
       msgBox.setIconPixmap(QIcon(":/TrayWeather/application.svg").pixmap(QSize{64,64}));
       msgBox.exec();
 
-      if(msgBox.clickedButton() == installButton)
+      if(msgBox.clickedButton() == downloadButton)
       {
-          const auto validUrl = isPortable() ? [](const QString &url) { return url.endsWith(".zip", Qt::CaseInsensitive); } : 
+          const auto validUrl = isPortable() ? [](const QString &url) { return url.endsWith(".7z", Qt::CaseInsensitive); } : 
                                                [](const QString &url) { return url.endsWith(".exe", Qt::CaseInsensitive); };
 
+          QString url;
           const auto assets = lastRelease.value("assets").toArray();
           for (int i = 0; i < assets.size(); ++i) {
               const auto asset = assets.at(i).toObject();
-              m_url = asset.value("browser_download_url").toString();
-              if(validUrl(m_url))
+              url = asset.value("browser_download_url").toString();
+              if(validUrl(url))
                 break;
           }
 
-          if (!validUrl(m_url)) {
-              QMessageBox msgBox;
-              msgBox.setWindowTitle(title);
-              msgBox.setText(tr("Unable to locate valid asset in Github. Install aborted."));
-              msgBox.setDetailedText(details);
-              msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
-              msgBox.setIconPixmap(QIcon(":/TrayWeather/application.svg").pixmap(QSize{64, 64}));
-              msgBox.exec();
+          if (!validUrl(url)) {
+              showMessageBox(QMessageBox::Critical, tr("Unable to locate valid asset in Github. Download aborted."), details);
               return;
           }
 
-          std::atexit(launchUpdate);
-          exitApplication();
+          updateFile = url;
+          startFileDownload(url);
       }
     }
   }
@@ -1516,6 +1490,26 @@ void TrayWeather::removeExpiredAlerts()
 }
 
 //--------------------------------------------------------------------
+void TrayWeather::showMessageBox(const QMessageBox::Icon& icon, const QString& msg, const QString& details, const QString &title)
+{
+    QMessageBox msgBox;
+    msgBox.setWindowTitle(title);
+    msgBox.setText(msg);
+    msgBox.setIcon(icon);
+    if(!details.isEmpty()) msgBox.setDetailedText(details);
+    msgBox.setWindowIcon(QIcon(":/TrayWeather/application.svg"));
+    msgBox.exec();
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::startFileDownload(const QUrl &url)
+{
+    QNetworkRequest request(url);
+    m_netManager->get(request);
+    // No need to connect, reply gets managed in replyFinished(QNetworkReply *);
+}
+
+//--------------------------------------------------------------------
 void TrayWeather::onAlertsSeen()
 {
   auto actions = this->contextMenu()->actions();
@@ -1524,6 +1518,30 @@ void TrayWeather::onAlertsSeen()
   std::for_each(m_alerts.begin(), m_alerts.end(), [](Alert &a){ a.seen = true; });
   
   updateTooltip(); 
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::finishedDownload(const QByteArray& data)
+{
+    if (data.isEmpty()) {
+        showMessageBox(QMessageBox::Critical, tr("Error downloading the update file."),
+                       tr("Downloaded file is empty."));
+    } else {
+        const auto downloadDir = QDir{QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)};
+        const auto filename = downloadDir.absoluteFilePath(updateFile.fileName());
+
+        QFile file(filename);
+        if (file.open(QFile::Append | QFile::Truncate)) {
+            file.write(data);
+            file.flush();
+            file.close();
+            showMessageBox(QMessageBox::Information, tr("The update file '%1' has been downloaded to your Downloads folder.").arg(updateFile.fileName()),
+                           filename);
+            updateFile.clear();                           
+        } else {
+            showMessageBox(QMessageBox::Critical, tr("Unable to create file in the user Downloads folder."));
+        }
+    }
 }
 
 //--------------------------------------------------------------------

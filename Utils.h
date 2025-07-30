@@ -310,6 +310,7 @@ struct Configuration
     float              rainMapOpacity;  /** opacity of the rain layer in the map. Value in [0,1].          */
     float              tempMapOpacity;  /** opacity of the temp layer in the map. Value in [0,1].          */
     double             barWidth;        /** Bar representation width in [0.5-2.0].                         */
+    QString            portableString;  /** random string for portable mode to use in Autostart.           */
 
     /** \brief Configuration struct constructor.
      *
@@ -975,5 +976,12 @@ class NetworkAccessManager
 
     QNetworkReply* createRequest(Operation op, const QNetworkRequest &request, QIODevice *outgoingData = 0) override;
 };
+
+/** \brief Sets the autorun key for the given configuration.
+ * \param[in] config Application configuration.
+ * \param[in] value Qt::Checked to set autorun and Qt::Unchecked otherwise. 
+ *
+ */
+void setAutorunsKey(const Configuration &config, const int value);
 
 #endif // UTILS_H_
