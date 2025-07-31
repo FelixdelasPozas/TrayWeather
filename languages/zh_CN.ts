@@ -1135,23 +1135,23 @@ If you have a firewall change the configuration to allow this program to access 
     <message>
         <location filename="../ConfigurationDialog.cpp" line="145"/>
         <location filename="../ConfigurationDialog.cpp" line="229"/>
-        <location filename="../ConfigurationDialog.cpp" line="1581"/>
+        <location filename="../ConfigurationDialog.cpp" line="1560"/>
         <source>Network Error</source>
         <translation>网络错误</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1021"/>
-        <location filename="../ConfigurationDialog.cpp" line="1696"/>
+        <location filename="../ConfigurationDialog.cpp" line="1000"/>
+        <location filename="../ConfigurationDialog.cpp" line="1675"/>
         <source>Invalid API Key!</source>
         <translation>无效的 API 密钥！</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1024"/>
+        <location filename="../ConfigurationDialog.cpp" line="1003"/>
         <source>Untested API Key!</source>
         <translation>未测试的 API 密钥！</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1690"/>
+        <location filename="../ConfigurationDialog.cpp" line="1669"/>
         <source>The API Key is valid!</source>
         <translation>此接口密钥有效！</translation>
     </message>
@@ -1209,49 +1209,49 @@ If you have a firewall change the configuration to allow this program to access 
         <translation>在测试 API 密钥之前，您必须设置有效位置。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1578"/>
+        <location filename="../ConfigurationDialog.cpp" line="1557"/>
         <source>Location search requires a valid weather provider API key.</source>
         <translation>位置搜索需要有效的天气提供者 API 密钥。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1707"/>
+        <location filename="../ConfigurationDialog.cpp" line="1686"/>
         <source>Weather Provider Error</source>
         <translation>天气提供者错误</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1369"/>
-        <location filename="../ConfigurationDialog.cpp" line="1408"/>
+        <location filename="../ConfigurationDialog.cpp" line="1348"/>
+        <location filename="../ConfigurationDialog.cpp" line="1387"/>
         <source>Font Selection</source>
         <translation>字体选择</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1372"/>
-        <location filename="../ConfigurationDialog.cpp" line="1411"/>
+        <location filename="../ConfigurationDialog.cpp" line="1351"/>
+        <location filename="../ConfigurationDialog.cpp" line="1390"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
         <translation>所选字体 ‘%1’ 无效，因为它无法绘制所需的字符。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1399"/>
+        <location filename="../ConfigurationDialog.cpp" line="1378"/>
         <source>Select font for temperature icon</source>
         <translation>为温度图标选择字体</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1617"/>
+        <location filename="../ConfigurationDialog.cpp" line="1596"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;要获取 %1 的天气预报数据，必须从 &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;网站&lt;/span&gt;&lt;/a&gt; 获取 API 密钥。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1620"/>
+        <location filename="../ConfigurationDialog.cpp" line="1599"/>
         <source>%1 doesn&apos;t require any configuration.</source>
         <translation>%1 不需要任何配置。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1615"/>
+        <location filename="../ConfigurationDialog.cpp" line="1594"/>
         <source>Get the coordinates of a location.</source>
         <translation>获取位置的坐标。</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1616"/>
+        <location filename="../ConfigurationDialog.cpp" line="1595"/>
         <source>Current provider does not have Geo-Location capability.</source>
         <translation>当前提供者没有地理定位功能。</translation>
     </message>
@@ -1654,258 +1654,258 @@ The application will exit now.</source>
 程序将立即退出。</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="366"/>
+        <location filename="../Utils.cpp" line="370"/>
         <source>New moon</source>
         <translation>新月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="369"/>
-        <location filename="../Utils.cpp" line="387"/>
+        <location filename="../Utils.cpp" line="373"/>
+        <location filename="../Utils.cpp" line="391"/>
         <source>Waxing crescent</source>
         <translation>蜡化镰刀月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="372"/>
+        <location filename="../Utils.cpp" line="376"/>
         <source>First quarter</source>
         <translation>上弦月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="375"/>
+        <location filename="../Utils.cpp" line="379"/>
         <source>Waxing gibbous</source>
         <translation>蜡化凸月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="378"/>
+        <location filename="../Utils.cpp" line="382"/>
         <source>Full moon</source>
         <translation>圆月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="381"/>
+        <location filename="../Utils.cpp" line="385"/>
         <source>Waning gibbous</source>
         <translation>凸渐亏月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="384"/>
+        <location filename="../Utils.cpp" line="388"/>
         <source>Last quarter</source>
         <translation>下弦月</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="397"/>
+        <location filename="../Utils.cpp" line="401"/>
         <source>illumination</source>
         <translation>光照强度</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="530"/>
+        <location filename="../Utils.cpp" line="534"/>
         <source>NNE</source>
         <translation>东北偏北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="531"/>
+        <location filename="../Utils.cpp" line="535"/>
         <source>NE</source>
         <translation>东北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="532"/>
+        <location filename="../Utils.cpp" line="536"/>
         <source>ENE</source>
         <translation>东北偏东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="533"/>
+        <location filename="../Utils.cpp" line="537"/>
         <source>E</source>
         <translation>东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="534"/>
+        <location filename="../Utils.cpp" line="538"/>
         <source>ESE</source>
         <translation>东南偏东</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="535"/>
+        <location filename="../Utils.cpp" line="539"/>
         <source>SE</source>
         <translation>东南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="536"/>
+        <location filename="../Utils.cpp" line="540"/>
         <source>SSE</source>
         <translation>东南偏南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="537"/>
+        <location filename="../Utils.cpp" line="541"/>
         <source>S</source>
         <translation>南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="538"/>
+        <location filename="../Utils.cpp" line="542"/>
         <source>SSW</source>
         <translation>西南偏南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="539"/>
+        <location filename="../Utils.cpp" line="543"/>
         <source>SW</source>
         <translation>西南</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="540"/>
+        <location filename="../Utils.cpp" line="544"/>
         <source>WSW</source>
         <translation>西南偏西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="541"/>
+        <location filename="../Utils.cpp" line="545"/>
         <source>W</source>
         <translation>西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="542"/>
+        <location filename="../Utils.cpp" line="546"/>
         <source>WNW</source>
         <translation>西北偏西</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="543"/>
+        <location filename="../Utils.cpp" line="547"/>
         <source>NW</source>
         <translation>西北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="544"/>
+        <location filename="../Utils.cpp" line="548"/>
         <source>NNW</source>
         <translation>西北偏北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="546"/>
+        <location filename="../Utils.cpp" line="550"/>
         <source>N</source>
         <translation>北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1276"/>
+        <location filename="../Utils.cpp" line="1284"/>
         <source>Clear sky</source>
         <translation>晴朗</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1277"/>
+        <location filename="../Utils.cpp" line="1285"/>
         <source>Mainly clear</source>
         <translation>基本晴朗</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1278"/>
+        <location filename="../Utils.cpp" line="1286"/>
         <source>Partly cloudy</source>
         <translation>部分多云</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1279"/>
+        <location filename="../Utils.cpp" line="1287"/>
         <source>Overcast</source>
         <translation>阴天</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1280"/>
+        <location filename="../Utils.cpp" line="1288"/>
         <source>Fog</source>
         <translation>雾</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1281"/>
+        <location filename="../Utils.cpp" line="1289"/>
         <source>Light drizzle</source>
         <translation>小雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1282"/>
+        <location filename="../Utils.cpp" line="1290"/>
         <source>Moderate drizzle</source>
         <translation>中雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1283"/>
+        <location filename="../Utils.cpp" line="1291"/>
         <source>Dense drizzle</source>
         <translation>密集雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1284"/>
+        <location filename="../Utils.cpp" line="1292"/>
         <source>Light freezing drizzle</source>
         <translation>小冻雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1285"/>
+        <location filename="../Utils.cpp" line="1293"/>
         <source>Dense freezing drizzle</source>
         <translation>密集冻雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1286"/>
+        <location filename="../Utils.cpp" line="1294"/>
         <source>Slight rain</source>
         <translation>小雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1287"/>
+        <location filename="../Utils.cpp" line="1295"/>
         <source>Moderate rain</source>
         <translation>中雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1288"/>
+        <location filename="../Utils.cpp" line="1296"/>
         <source>Heavy rain</source>
         <translation>大雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1289"/>
+        <location filename="../Utils.cpp" line="1297"/>
         <source>Light freezing rain</source>
         <translation>小冻雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1290"/>
+        <location filename="../Utils.cpp" line="1298"/>
         <source>Heavy freezing rain</source>
         <translation>密集冻雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1291"/>
+        <location filename="../Utils.cpp" line="1299"/>
         <source>Slight snow</source>
         <translation>小雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1292"/>
+        <location filename="../Utils.cpp" line="1300"/>
         <source>Moderate snow</source>
         <translation>中雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1293"/>
+        <location filename="../Utils.cpp" line="1301"/>
         <source>Heavy snow</source>
         <translation>大雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1294"/>
+        <location filename="../Utils.cpp" line="1302"/>
         <source>Snow grains</source>
         <translation>雪粒</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1295"/>
+        <location filename="../Utils.cpp" line="1303"/>
         <source>Slight rain showers</source>
         <translation>小阵雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1296"/>
+        <location filename="../Utils.cpp" line="1304"/>
         <source>Moderate rain showers</source>
         <translation>中雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1297"/>
+        <location filename="../Utils.cpp" line="1305"/>
         <source>Violent rain showers</source>
         <translation>大暴雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1298"/>
+        <location filename="../Utils.cpp" line="1306"/>
         <source>Light snow showers</source>
         <translation>小雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1299"/>
+        <location filename="../Utils.cpp" line="1307"/>
         <source>Heavy snow showers</source>
         <translation>大雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1300"/>
+        <location filename="../Utils.cpp" line="1308"/>
         <source>Thunderstorm</source>
         <translation>雷暴</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1301"/>
+        <location filename="../Utils.cpp" line="1309"/>
         <source>Slight thunderstorm with hail</source>
         <translation>小雷暴伴冰雹</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1302"/>
+        <location filename="../Utils.cpp" line="1310"/>
         <source>Heavy thunderstorm with hail</source>
         <translation>大雷暴伴冰雹</translation>
     </message>
@@ -2042,354 +2042,251 @@ The application will exit now.</source>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="52"/>
-        <location filename="../TrayWeather.cpp" line="1170"/>
+        <location filename="../TrayWeather.cpp" line="1167"/>
         <source>Error: </source>
         <translation>出错： </translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="374"/>
-        <source>TrayWeather needs to be restarted for the new configuration to take effect.
-The application will exit now.</source>
-        <translation>托盘天气需要重启以应用新配置。
-程序将退出。</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1018"/>
-        <source>TrayWeather has requested the weather data for your geographic location
-and it&apos;s still waiting for the response.</source>
-        <translation>托盘天气已请求你的位置对应的天气数据
-并且仍在等待回应。</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1268"/>
-        <source>Couldn&apos;t find the Updater executable in the application directory.</source>
-        <translation>在应用程序目录中找不到可执行的更新程序。</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1275"/>
-        <source>Unable to create update directory.</source>
-        <translation>无法创建更新目录。</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1281"/>
-        <source>Unable to copy files to udpate directory.</source>
-        <translation>无法将文件复制到更新目录。</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1289"/>
-        <source>Error executing updater.
-Error code: %1</source>
-        <translation>执行更新程序时出错。
-错误代码：%1</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="87"/>
-        <source>The url is invalid.</source>
-        <translation>URL 无效。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="109"/>
-        <location filename="../Updater.cpp" line="119"/>
-        <source>Error downloading the update file.</source>
-        <translation>下载更新文件时出错。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="133"/>
-        <source>Downloaded contents are empty</source>
-        <translation>下载的内容为空</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="142"/>
-        <source>Unable to create file in the temporal directory.</source>
-        <translation>无法在临时目录中创建文件。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="156"/>
-        <source>Unable to launch the installer after updating.</source>
-        <translation>更新后无法启动安装程序。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="157"/>
-        <source>Unable to launch the update file.</source>
-        <translation>无法启动更新文件。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="57"/>
-        <source>Download progress.</source>
-        <translation>下载进度。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="183"/>
-        <source>Decompressing:</source>
-        <translation>正在解压：</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="184"/>
-        <source>Decompression progress.</source>
-        <translation>解压进度。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="190"/>
-        <source>Unable to open zip file for decompression.</source>
-        <translation>无法打开 zip 文件进行解压。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="195"/>
-        <location filename="../Updater.cpp" line="221"/>
-        <source>Unable to get zip file contents.</source>
-        <translation>无法获取 zip 文件内容。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="220"/>
-        <source>Error code: </source>
-        <translation>错误代码： </translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="227"/>
-        <source>Error decompressing file.</source>
-        <translation>解压文件时出错。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="233"/>
-        <source>Unable to create application file.</source>
-        <translation>无法创建应用程序文件。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="238"/>
-        <source>Unable to overwrite application file.</source>
-        <translation>无法覆盖应用程序文件。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="254"/>
-        <location filename="../updaterMain.cpp" line="47"/>
-        <source>TrayWeather Updater</source>
-        <translation>TrayWeather 更新程序</translation>
-    </message>
-    <message>
-        <location filename="../updaterMain.cpp" line="79"/>
-        <source>TrayWeather Updater should be called from the application.</source>
-        <translation>TrayWeather 更新程序应从应用程序中调用。</translation>
-    </message>
-    <message>
-        <location filename="../updaterMain.cpp" line="83"/>
-        <source>TrayWeather Updater is already running!</source>
-        <translation>TrayWeather 更新程序已在运行！</translation>
-    </message>
-    <message>
-        <location filename="../updaterMain.cpp" line="93"/>
-        <source>Unable to remove temporal directory: %1.</source>
-        <translation>无法删除临时目录：%1。</translation>
     </message>
 </context>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="1231"/>
+        <location filename="../TrayWeather.cpp" line="1233"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translation>有一个新的版本发布 &lt;b&gt;托盘天气&lt;/b&gt; 在 &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github 网址&lt;/a&gt;!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1232"/>
+        <location filename="../TrayWeather.cpp" line="1234"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation>&lt;center&gt;&lt;b&gt;版本 %1&lt;/b&gt; 已经发布！&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1233"/>
+        <location filename="../TrayWeather.cpp" line="1235"/>
         <source>Release notes:
 %1</source>
         <translation>发布日志：
 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1234"/>
+        <location filename="../TrayWeather.cpp" line="1236"/>
         <source>Tray Weather updated to version %1</source>
         <translation>托盘天气更新到了版本 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="146"/>
-        <location filename="../TrayWeather.cpp" line="1361"/>
+        <location filename="../TrayWeather.cpp" line="143"/>
+        <location filename="../TrayWeather.cpp" line="1337"/>
         <source>No geolocation.</source>
         <translation>无地理位置</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="419"/>
+        <location filename="../TrayWeather.cpp" line="128"/>
+        <source>Unable to download update file.</source>
+        <translation>无法下载更新文件。</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="371"/>
+        <source>TrayWeather needs to be restarted for the new configuration to take effect.
+The application will exit now.</source>
+        <translation>托盘天气需要重启以应用新配置。
+程序将退出。</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="416"/>
         <source>Requesting weather data from the server...</source>
         <translation>正在从服务器请求天气数据...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="444"/>
+        <location filename="../TrayWeather.cpp" line="441"/>
         <source>There is a weather alert for your location!</source>
         <translation>你的位置有天气警报！</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="617"/>
+        <location filename="../TrayWeather.cpp" line="614"/>
         <source>Cloudiness: </source>
         <translation>云量: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="620"/>
+        <location filename="../TrayWeather.cpp" line="617"/>
         <source>Humidity: </source>
         <translation>湿度: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="629"/>
+        <location filename="../TrayWeather.cpp" line="626"/>
         <source>inHg</source>
         <translation>英寸汞柱</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="632"/>
+        <location filename="../TrayWeather.cpp" line="629"/>
         <source>mmHg</source>
         <translation>毫米汞柱</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="635"/>
+        <location filename="../TrayWeather.cpp" line="632"/>
         <source>PSI</source>
         <translation>磅力/平方英寸</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="639"/>
+        <location filename="../TrayWeather.cpp" line="636"/>
         <source>hPa</source>
         <translation>百帕</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="642"/>
+        <location filename="../TrayWeather.cpp" line="639"/>
         <source>Pressure: </source>
         <translation>气压: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="652"/>
+        <location filename="../TrayWeather.cpp" line="649"/>
         <source>ft/s</source>
         <translation>英尺/秒</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="655"/>
+        <location filename="../TrayWeather.cpp" line="652"/>
         <source>km/h</source>
         <translation>千米/小时</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="658"/>
+        <location filename="../TrayWeather.cpp" line="655"/>
         <source>mph</source>
         <translation>英里/小时</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="661"/>
+        <location filename="../TrayWeather.cpp" line="658"/>
         <source>kts</source>
         <translation>节</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="665"/>
+        <location filename="../TrayWeather.cpp" line="662"/>
         <source>m/s</source>
         <translation>米/秒</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="668"/>
+        <location filename="../TrayWeather.cpp" line="665"/>
         <source>Wind: </source>
         <translation>风速: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="672"/>
+        <location filename="../TrayWeather.cpp" line="669"/>
         <source>Wind direction: </source>
         <translation>风向: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="676"/>
+        <location filename="../TrayWeather.cpp" line="673"/>
         <source>Last updated: </source>
         <translation>最后更新的时间: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="691"/>
+        <location filename="../TrayWeather.cpp" line="688"/>
         <source>Sunrise: </source>
         <translation>日出: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="700"/>
+        <location filename="../TrayWeather.cpp" line="697"/>
         <source>Sunset: </source>
         <translation>日落: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="706"/>
+        <location filename="../TrayWeather.cpp" line="703"/>
         <source>Air: </source>
         <translation>空气: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="791"/>
-        <location filename="../TrayWeather.cpp" line="1179"/>
+        <location filename="../TrayWeather.cpp" line="788"/>
+        <location filename="../TrayWeather.cpp" line="1176"/>
         <source>Current weather...</source>
         <translation>当前天气...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="796"/>
-        <location filename="../TrayWeather.cpp" line="1180"/>
+        <location filename="../TrayWeather.cpp" line="793"/>
+        <location filename="../TrayWeather.cpp" line="1177"/>
         <source>Forecast...</source>
         <translation>预测...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="801"/>
-        <location filename="../TrayWeather.cpp" line="1181"/>
+        <location filename="../TrayWeather.cpp" line="798"/>
+        <location filename="../TrayWeather.cpp" line="1178"/>
         <source>Pollution...</source>
         <translation>污染...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="806"/>
-        <location filename="../TrayWeather.cpp" line="1182"/>
+        <location filename="../TrayWeather.cpp" line="803"/>
+        <location filename="../TrayWeather.cpp" line="1179"/>
         <source>UV...</source>
         <translation>紫外线...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="811"/>
-        <location filename="../TrayWeather.cpp" line="1183"/>
+        <location filename="../TrayWeather.cpp" line="808"/>
+        <location filename="../TrayWeather.cpp" line="1180"/>
         <source>Maps...</source>
         <translation>地图...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="820"/>
-        <location filename="../TrayWeather.cpp" line="1184"/>
+        <location filename="../TrayWeather.cpp" line="817"/>
+        <location filename="../TrayWeather.cpp" line="1181"/>
         <source>Refresh...</source>
         <translation>刷新...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="827"/>
-        <location filename="../TrayWeather.cpp" line="1185"/>
-        <location filename="../TrayWeather.cpp" line="1440"/>
-        <location filename="../TrayWeather.cpp" line="1533"/>
+        <location filename="../TrayWeather.cpp" line="824"/>
+        <location filename="../TrayWeather.cpp" line="1182"/>
+        <location filename="../TrayWeather.cpp" line="1416"/>
+        <location filename="../TrayWeather.cpp" line="1517"/>
         <source>Last alert...</source>
         <translation>最后的警告...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="836"/>
-        <location filename="../TrayWeather.cpp" line="1186"/>
+        <location filename="../TrayWeather.cpp" line="833"/>
+        <location filename="../TrayWeather.cpp" line="1183"/>
         <source>Configuration...</source>
         <translation>配置...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="843"/>
-        <location filename="../TrayWeather.cpp" line="1187"/>
+        <location filename="../TrayWeather.cpp" line="840"/>
+        <location filename="../TrayWeather.cpp" line="1184"/>
         <source>About...</source>
         <translation>关于...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="848"/>
-        <location filename="../TrayWeather.cpp" line="1188"/>
+        <location filename="../TrayWeather.cpp" line="845"/>
+        <location filename="../TrayWeather.cpp" line="1185"/>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1241"/>
-        <source>Install</source>
-        <translation>安装</translation>
+        <location filename="../TrayWeather.cpp" line="1015"/>
+        <source>TrayWeather has requested the weather data for your geographic location
+and it&apos;s still waiting for the response.</source>
+        <translation>托盘天气已请求你的位置对应的天气数据
+并且仍在等待回应。</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1262"/>
-        <source>Unable to locate valid asset in Github. Install aborted.</source>
-        <translation>无法在 Github 中找到有效资源。安装已中止。</translation>
+        <location filename="../TrayWeather.cpp" line="1243"/>
+        <source>Download</source>
+        <translation>下载</translation>
     </message>
-</context>
-<context>
-    <name>TrayWeatherUpdater</name>
     <message>
-        <location filename="../Updater.cpp" line="97"/>
-        <source>Downloading:</source>
-        <translation>正在下载：</translation>
+        <location filename="../TrayWeather.cpp" line="1264"/>
+        <source>Unable to locate valid asset in Github. Download aborted.</source>
+        <translation>无法在 Github 中找到有效资源。下载已中止。</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1527"/>
+        <source>Error downloading the update file.</source>
+        <translation>下载更新文件时出错。</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1528"/>
+        <source>Downloaded file is empty.</source>
+        <translation>下载的文件为空。</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1538"/>
+        <source>The update file &apos;%1&apos; has been downloaded to your Downloads folder.</source>
+        <translation>更新文件“%1”已下载到您的“下载”文件夹。</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1542"/>
+        <source>Unable to create file in the user Downloads folder.</source>
+        <translation>无法在用户“下载”文件夹中创建文件。</translation>
     </message>
 </context>
 <context>
@@ -2439,34 +2336,6 @@ during midday hours.</source>
         <location filename="../UVWidget.cpp" line="78"/>
         <source>Extreme</source>
         <translation>极端</translation>
-    </message>
-</context>
-<context>
-    <name>Updater</name>
-    <message>
-        <location filename="../Updater.ui" line="26"/>
-        <source>TrayWeather Updater</source>
-        <translation>TrayWeather 更新程序</translation>
-    </message>
-    <message>
-        <location filename="../Updater.ui" line="33"/>
-        <source>Downloading update...</source>
-        <translation>正在下载更新……</translation>
-    </message>
-    <message>
-        <location filename="../Updater.ui" line="47"/>
-        <source>Downloading:</source>
-        <translation>正在下载：</translation>
-    </message>
-    <message>
-        <location filename="../Updater.ui" line="63"/>
-        <source>Download progress.</source>
-        <translation>下载进度。</translation>
-    </message>
-    <message>
-        <location filename="../Updater.ui" line="91"/>
-        <source>Cancel</source>
-        <translation>取消</translation>
     </message>
 </context>
 <context>

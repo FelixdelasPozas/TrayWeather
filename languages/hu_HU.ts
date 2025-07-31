@@ -1143,23 +1143,23 @@ Ha tűzfalat használ, módosítsa a beállítást úgy, hogy a programnak bizto
     <message>
         <location filename="../ConfigurationDialog.cpp" line="145"/>
         <location filename="../ConfigurationDialog.cpp" line="229"/>
-        <location filename="../ConfigurationDialog.cpp" line="1581"/>
+        <location filename="../ConfigurationDialog.cpp" line="1560"/>
         <source>Network Error</source>
         <translation>Hálózati hiba</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1021"/>
-        <location filename="../ConfigurationDialog.cpp" line="1696"/>
+        <location filename="../ConfigurationDialog.cpp" line="1000"/>
+        <location filename="../ConfigurationDialog.cpp" line="1675"/>
         <source>Invalid API Key!</source>
         <translation>Helytelen API-kulcs!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1024"/>
+        <location filename="../ConfigurationDialog.cpp" line="1003"/>
         <source>Untested API Key!</source>
         <translation>Teszteletlen API-kulcs!</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1690"/>
+        <location filename="../ConfigurationDialog.cpp" line="1669"/>
         <source>The API Key is valid!</source>
         <translation>Az API-kulcs érvényes!</translation>
     </message>
@@ -1217,49 +1217,49 @@ Ha tűzfalat használ, módosítsa a beállítást úgy, hogy a programnak bizto
         <translation>Az API-kulcs ellenőrzése előtt érvényes helyet megadása szükséges.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1578"/>
+        <location filename="../ConfigurationDialog.cpp" line="1557"/>
         <source>Location search requires a valid weather provider API key.</source>
         <translation>A helyzetmeghatározáshoz érvényes időjárás-szolgáltató API-kulcs szükséges.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1707"/>
+        <location filename="../ConfigurationDialog.cpp" line="1686"/>
         <source>Weather Provider Error</source>
         <translation>Időjárás szolgáltatói hiba</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1369"/>
-        <location filename="../ConfigurationDialog.cpp" line="1408"/>
+        <location filename="../ConfigurationDialog.cpp" line="1348"/>
+        <location filename="../ConfigurationDialog.cpp" line="1387"/>
         <source>Font Selection</source>
         <translation>Betűtípus választás</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1372"/>
-        <location filename="../ConfigurationDialog.cpp" line="1411"/>
+        <location filename="../ConfigurationDialog.cpp" line="1351"/>
+        <location filename="../ConfigurationDialog.cpp" line="1390"/>
         <source>The selected font &apos;%1&apos; is not valid because it cannot draw the needed characters.</source>
         <translation>A kiválasztott  &apos;%1&apos; betűtípus nem használható mert nem tartalmazza a szükséges karaktereket.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1399"/>
+        <location filename="../ConfigurationDialog.cpp" line="1378"/>
         <source>Select font for temperature icon</source>
         <translation>Válassza ki a hőmérséklet-ikon betűtípusát</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1617"/>
+        <location filename="../ConfigurationDialog.cpp" line="1596"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To obtain weather forecast data from %1 for your location an API Key must be obtained from the &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Földrajzi helyzetének %1 időjárási adataihoz való hozzáféréshez API-kulcsra van szükség ami innen igényelhető &lt;a href=&quot;%2&quot;&gt;&lt;span style=&quot;text-decoration:underline; color:#0000ff;&quot;&gt;honlap&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1620"/>
+        <location filename="../ConfigurationDialog.cpp" line="1599"/>
         <source>%1 doesn&apos;t require any configuration.</source>
         <translation>%1 nem igényel beálítást.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1615"/>
+        <location filename="../ConfigurationDialog.cpp" line="1594"/>
         <source>Get the coordinates of a location.</source>
         <translation>Koordináták kinyerése földrajzi helyzetből.</translation>
     </message>
     <message>
-        <location filename="../ConfigurationDialog.cpp" line="1616"/>
+        <location filename="../ConfigurationDialog.cpp" line="1595"/>
         <source>Current provider does not have Geo-Location capability.</source>
         <translation>A jelenlegi szolgáltató nem rendelkezik földrajzi helyzet meghatározás funkcióval.</translation>
     </message>
@@ -1661,258 +1661,258 @@ The application will exit now.</source>
 Az alkalmazás most befejeződik.</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="366"/>
+        <location filename="../Utils.cpp" line="370"/>
         <source>New moon</source>
         <translation>Újhold</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="369"/>
-        <location filename="../Utils.cpp" line="387"/>
+        <location filename="../Utils.cpp" line="373"/>
+        <location filename="../Utils.cpp" line="391"/>
         <source>Waxing crescent</source>
         <translation>Növekvő félhold</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="372"/>
+        <location filename="../Utils.cpp" line="376"/>
         <source>First quarter</source>
         <translation>Első negyed</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="375"/>
+        <location filename="../Utils.cpp" line="379"/>
         <source>Waxing gibbous</source>
         <translation>Növekvő hold</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="378"/>
+        <location filename="../Utils.cpp" line="382"/>
         <source>Full moon</source>
         <translation>Telihold</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="381"/>
+        <location filename="../Utils.cpp" line="385"/>
         <source>Waning gibbous</source>
         <translation>Fogyó félhold</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="384"/>
+        <location filename="../Utils.cpp" line="388"/>
         <source>Last quarter</source>
         <translation>Utolsó negyed</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="397"/>
+        <location filename="../Utils.cpp" line="401"/>
         <source>illumination</source>
         <translation>megvilágítás</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="530"/>
+        <location filename="../Utils.cpp" line="534"/>
         <source>NNE</source>
         <translation>É-ÉK</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="531"/>
+        <location filename="../Utils.cpp" line="535"/>
         <source>NE</source>
         <translation>ÉK</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="532"/>
+        <location filename="../Utils.cpp" line="536"/>
         <source>ENE</source>
         <translation>K-ÉK</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="533"/>
+        <location filename="../Utils.cpp" line="537"/>
         <source>E</source>
         <translation>K</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="534"/>
+        <location filename="../Utils.cpp" line="538"/>
         <source>ESE</source>
         <translation>K-DK</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="535"/>
+        <location filename="../Utils.cpp" line="539"/>
         <source>SE</source>
         <translation>DK</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="536"/>
+        <location filename="../Utils.cpp" line="540"/>
         <source>SSE</source>
         <translation>D-DK</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="537"/>
+        <location filename="../Utils.cpp" line="541"/>
         <source>S</source>
         <translation>D</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="538"/>
+        <location filename="../Utils.cpp" line="542"/>
         <source>SSW</source>
         <translation>D-DNY</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="539"/>
+        <location filename="../Utils.cpp" line="543"/>
         <source>SW</source>
         <translation>DNY</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="540"/>
+        <location filename="../Utils.cpp" line="544"/>
         <source>WSW</source>
         <translation>NY-DNY</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="541"/>
+        <location filename="../Utils.cpp" line="545"/>
         <source>W</source>
         <translation>NY</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="542"/>
+        <location filename="../Utils.cpp" line="546"/>
         <source>WNW</source>
         <translation>NY-ÉNY</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="543"/>
+        <location filename="../Utils.cpp" line="547"/>
         <source>NW</source>
         <translation>NW</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="544"/>
+        <location filename="../Utils.cpp" line="548"/>
         <source>NNW</source>
         <translation>É-ÉNY</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="546"/>
+        <location filename="../Utils.cpp" line="550"/>
         <source>N</source>
         <translation>É</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1276"/>
+        <location filename="../Utils.cpp" line="1284"/>
         <source>Clear sky</source>
         <translation>Tiszta égbolt</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1277"/>
+        <location filename="../Utils.cpp" line="1285"/>
         <source>Mainly clear</source>
         <translation>Többnyire tiszta</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1278"/>
+        <location filename="../Utils.cpp" line="1286"/>
         <source>Partly cloudy</source>
         <translation>Részben felhős</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1279"/>
+        <location filename="../Utils.cpp" line="1287"/>
         <source>Overcast</source>
         <translation>Borult</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1280"/>
+        <location filename="../Utils.cpp" line="1288"/>
         <source>Fog</source>
         <translation>Köd</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1281"/>
+        <location filename="../Utils.cpp" line="1289"/>
         <source>Light drizzle</source>
         <translation>Szitáló eső</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1282"/>
+        <location filename="../Utils.cpp" line="1290"/>
         <source>Moderate drizzle</source>
         <translation>Mérsékelt zápor</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1283"/>
+        <location filename="../Utils.cpp" line="1291"/>
         <source>Dense drizzle</source>
         <translation>Sűrű zápor</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1284"/>
+        <location filename="../Utils.cpp" line="1292"/>
         <source>Light freezing drizzle</source>
         <translation>Enyhe fagyos szitálás</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1285"/>
+        <location filename="../Utils.cpp" line="1293"/>
         <source>Dense freezing drizzle</source>
         <translation>Sűrű fagyos zápor</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1286"/>
+        <location filename="../Utils.cpp" line="1294"/>
         <source>Slight rain</source>
         <translation>Gyenge eső</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1287"/>
+        <location filename="../Utils.cpp" line="1295"/>
         <source>Moderate rain</source>
         <translation>Mérsékelt eső</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1288"/>
+        <location filename="../Utils.cpp" line="1296"/>
         <source>Heavy rain</source>
         <translation>Heves esőzés</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1289"/>
+        <location filename="../Utils.cpp" line="1297"/>
         <source>Light freezing rain</source>
         <translation>Enyhe jeges eső</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1290"/>
+        <location filename="../Utils.cpp" line="1298"/>
         <source>Heavy freezing rain</source>
         <translation>Heves fagyos esőzés</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1291"/>
+        <location filename="../Utils.cpp" line="1299"/>
         <source>Slight snow</source>
         <translation>Enyhe havazás</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1292"/>
+        <location filename="../Utils.cpp" line="1300"/>
         <source>Moderate snow</source>
         <translation>Mérsékelt havazás</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1293"/>
+        <location filename="../Utils.cpp" line="1301"/>
         <source>Heavy snow</source>
         <translation>Heves havazás</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1294"/>
+        <location filename="../Utils.cpp" line="1302"/>
         <source>Snow grains</source>
         <translation>Hószállingózás</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1295"/>
+        <location filename="../Utils.cpp" line="1303"/>
         <source>Slight rain showers</source>
         <translation>Gyenge záporok</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1296"/>
+        <location filename="../Utils.cpp" line="1304"/>
         <source>Moderate rain showers</source>
         <translation>Mérsékelt záporok</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1297"/>
+        <location filename="../Utils.cpp" line="1305"/>
         <source>Violent rain showers</source>
         <translation>Heves felhőszakadások</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1298"/>
+        <location filename="../Utils.cpp" line="1306"/>
         <source>Light snow showers</source>
         <translation>Kisebb hózáporok</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1299"/>
+        <location filename="../Utils.cpp" line="1307"/>
         <source>Heavy snow showers</source>
         <translation>Heves hózáporok</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1300"/>
+        <location filename="../Utils.cpp" line="1308"/>
         <source>Thunderstorm</source>
         <translation>Vihar</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1301"/>
+        <location filename="../Utils.cpp" line="1309"/>
         <source>Slight thunderstorm with hail</source>
         <translation>Enyhe zivatar jégesővel</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1302"/>
+        <location filename="../Utils.cpp" line="1310"/>
         <source>Heavy thunderstorm with hail</source>
         <translatorcomment>Erős zivatar jégesővel</translatorcomment>
         <translation></translation>
@@ -2050,353 +2050,250 @@ Az alkalmazás most befejeződik.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="52"/>
-        <location filename="../TrayWeather.cpp" line="1170"/>
+        <location filename="../TrayWeather.cpp" line="1167"/>
         <source>Error: </source>
         <translation>Hiba: </translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="374"/>
-        <source>TrayWeather needs to be restarted for the new configuration to take effect.
-The application will exit now.</source>
-        <translation>Az új beállítások érvényesítéséhez a TrayWeather-t újra kell indítani.
-Az alkalmazás most bezárul.</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1018"/>
-        <source>TrayWeather has requested the weather data for your geographic location
-and it&apos;s still waiting for the response.</source>
-        <translation>A TrayWeather lekérte tartózkodási helyének adatait és a válaszra vár.</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1268"/>
-        <source>Couldn&apos;t find the Updater executable in the application directory.</source>
-        <translation>Nem található a frissítő futtatható fájlja az alkalmazás könyvtárában.</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1275"/>
-        <source>Unable to create update directory.</source>
-        <translation>Nem sikerült létrehozni a frissítési könyvtárat.</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1281"/>
-        <source>Unable to copy files to udpate directory.</source>
-        <translation>Nem sikerült fájlokat másolni az udpate könyvtárba.</translation>
-    </message>
-    <message>
-        <location filename="../TrayWeather.cpp" line="1289"/>
-        <source>Error executing updater.
-Error code: %1</source>
-        <translation>Hiba az updater futtatásakor.
-Hibakód: %1</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="87"/>
-        <source>The url is invalid.</source>
-        <translation>Az URL érvénytelen.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="109"/>
-        <location filename="../Updater.cpp" line="119"/>
-        <source>Error downloading the update file.</source>
-        <translation>Hiba történt a frissítőfájl letöltésekor.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="133"/>
-        <source>Downloaded contents are empty</source>
-        <translation>A letöltött tartalom üres</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="142"/>
-        <source>Unable to create file in the temporal directory.</source>
-        <translation>Nem sikerült fájlt létrehozni az ideiglenes könyvtárban.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="156"/>
-        <source>Unable to launch the installer after updating.</source>
-        <translation>Nem sikerült elindítani a telepítőt a frissítés után.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="157"/>
-        <source>Unable to launch the update file.</source>
-        <translation>Nem sikerült elindítani a frissítőfájlt.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="57"/>
-        <source>Download progress.</source>
-        <translation>Letöltés folyamatban.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="183"/>
-        <source>Decompressing:</source>
-        <translation>Kitömörítés:</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="184"/>
-        <source>Decompression progress.</source>
-        <translation>Dekompressziós folyamat.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="190"/>
-        <source>Unable to open zip file for decompression.</source>
-        <translation>Nem sikerült megnyitni a zip fájlt a kicsomagoláshoz.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="195"/>
-        <location filename="../Updater.cpp" line="221"/>
-        <source>Unable to get zip file contents.</source>
-        <translation>Nem sikerült lekérni a zip fájl tartalmát.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="220"/>
-        <source>Error code: </source>
-        <translation>Hibakód: </translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="227"/>
-        <source>Error decompressing file.</source>
-        <translation>Hiba a fájl kicsomagolásakor.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="233"/>
-        <source>Unable to create application file.</source>
-        <translation>Nem sikerült létrehozni az alkalmazásfájlt.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="238"/>
-        <source>Unable to overwrite application file.</source>
-        <translation>Nem sikerült felülírni az alkalmazásfájlt.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.cpp" line="254"/>
-        <location filename="../updaterMain.cpp" line="47"/>
-        <source>TrayWeather Updater</source>
-        <translation>TrayWeather Updater</translation>
-    </message>
-    <message>
-        <location filename="../updaterMain.cpp" line="79"/>
-        <source>TrayWeather Updater should be called from the application.</source>
-        <translation>A TrayWeather Updater programot az alkalmazásból kell meghívni.</translation>
-    </message>
-    <message>
-        <location filename="../updaterMain.cpp" line="83"/>
-        <source>TrayWeather Updater is already running!</source>
-        <translation>A TrayWeather Updater már fut!</translation>
-    </message>
-    <message>
-        <location filename="../updaterMain.cpp" line="93"/>
-        <source>Unable to remove temporal directory: %1.</source>
-        <translation>Nem sikerült eltávolítani az ideiglenes könyvtárat: %1.</translation>
     </message>
 </context>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="1231"/>
+        <location filename="../TrayWeather.cpp" line="1233"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translation>A &lt;b&gt;Tray Weather&lt;/b&gt; új verziója került kiadásra a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github honlapján&lt;/a&gt;!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1232"/>
+        <location filename="../TrayWeather.cpp" line="1234"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation>&lt;center&gt;&lt;b&gt;A %1 verzió&lt;/b&gt; megjelent!&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1233"/>
+        <location filename="../TrayWeather.cpp" line="1235"/>
         <source>Release notes:
 %1</source>
         <translation>Kiadási jegyzék:
 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1234"/>
+        <location filename="../TrayWeather.cpp" line="1236"/>
         <source>Tray Weather updated to version %1</source>
         <translation>A Tray Weather frissült a %1 verzióra</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="146"/>
-        <location filename="../TrayWeather.cpp" line="1361"/>
+        <location filename="../TrayWeather.cpp" line="143"/>
+        <location filename="../TrayWeather.cpp" line="1337"/>
         <source>No geolocation.</source>
         <translation>Nincs geolokáció.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="419"/>
+        <location filename="../TrayWeather.cpp" line="128"/>
+        <source>Unable to download update file.</source>
+        <translation>Nem sikerült letölteni a frissítőfájlt.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="371"/>
+        <source>TrayWeather needs to be restarted for the new configuration to take effect.
+The application will exit now.</source>
+        <translation>Az új beállítások érvényesítéséhez a TrayWeather-t újra kell indítani.
+Az alkalmazás most bezárul.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="416"/>
         <source>Requesting weather data from the server...</source>
         <translation>Időjárásadatok kérése a szerverről...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="444"/>
+        <location filename="../TrayWeather.cpp" line="441"/>
         <source>There is a weather alert for your location!</source>
         <translation>Az tartózkodási helyén időjárási figyelmeztetés van érvényben!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="617"/>
+        <location filename="../TrayWeather.cpp" line="614"/>
         <source>Cloudiness: </source>
         <translation>Felhőzet: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="620"/>
+        <location filename="../TrayWeather.cpp" line="617"/>
         <source>Humidity: </source>
         <translation>Páratartalom: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="629"/>
+        <location filename="../TrayWeather.cpp" line="626"/>
         <source>inHg</source>
         <translation>inHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="632"/>
+        <location filename="../TrayWeather.cpp" line="629"/>
         <source>mmHg</source>
         <translation>mmHg</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="635"/>
+        <location filename="../TrayWeather.cpp" line="632"/>
         <source>PSI</source>
         <translation>PSI</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="639"/>
+        <location filename="../TrayWeather.cpp" line="636"/>
         <source>hPa</source>
         <translation>hPa</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="642"/>
+        <location filename="../TrayWeather.cpp" line="639"/>
         <source>Pressure: </source>
         <translation>Légnyomás: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="652"/>
+        <location filename="../TrayWeather.cpp" line="649"/>
         <source>ft/s</source>
         <translation>ft/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="655"/>
+        <location filename="../TrayWeather.cpp" line="652"/>
         <source>km/h</source>
         <translation>km/h</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="658"/>
+        <location filename="../TrayWeather.cpp" line="655"/>
         <source>mph</source>
         <translation>mph</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="661"/>
+        <location filename="../TrayWeather.cpp" line="658"/>
         <source>kts</source>
         <translation>kts</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="665"/>
+        <location filename="../TrayWeather.cpp" line="662"/>
         <source>m/s</source>
         <translation>m/s</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="668"/>
+        <location filename="../TrayWeather.cpp" line="665"/>
         <source>Wind: </source>
         <translation>Szél: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="672"/>
+        <location filename="../TrayWeather.cpp" line="669"/>
         <source>Wind direction: </source>
         <translation>Szélirány: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="676"/>
+        <location filename="../TrayWeather.cpp" line="673"/>
         <source>Last updated: </source>
         <translation>Utoljára frissítve: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="691"/>
+        <location filename="../TrayWeather.cpp" line="688"/>
         <source>Sunrise: </source>
         <translation>Napkelte: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="700"/>
+        <location filename="../TrayWeather.cpp" line="697"/>
         <source>Sunset: </source>
         <translation>Napnyugta: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="706"/>
+        <location filename="../TrayWeather.cpp" line="703"/>
         <source>Air: </source>
         <translation>Levegő: </translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="791"/>
-        <location filename="../TrayWeather.cpp" line="1179"/>
+        <location filename="../TrayWeather.cpp" line="788"/>
+        <location filename="../TrayWeather.cpp" line="1176"/>
         <source>Current weather...</source>
         <translation>Jelenlegi időjárás...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="796"/>
-        <location filename="../TrayWeather.cpp" line="1180"/>
+        <location filename="../TrayWeather.cpp" line="793"/>
+        <location filename="../TrayWeather.cpp" line="1177"/>
         <source>Forecast...</source>
         <translation>Előrejelzés...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="801"/>
-        <location filename="../TrayWeather.cpp" line="1181"/>
+        <location filename="../TrayWeather.cpp" line="798"/>
+        <location filename="../TrayWeather.cpp" line="1178"/>
         <source>Pollution...</source>
         <translation>Légszennyezés...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="806"/>
-        <location filename="../TrayWeather.cpp" line="1182"/>
+        <location filename="../TrayWeather.cpp" line="803"/>
+        <location filename="../TrayWeather.cpp" line="1179"/>
         <source>UV...</source>
         <translation>UV...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="811"/>
-        <location filename="../TrayWeather.cpp" line="1183"/>
+        <location filename="../TrayWeather.cpp" line="808"/>
+        <location filename="../TrayWeather.cpp" line="1180"/>
         <source>Maps...</source>
         <translation>Térképek...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="820"/>
-        <location filename="../TrayWeather.cpp" line="1184"/>
+        <location filename="../TrayWeather.cpp" line="817"/>
+        <location filename="../TrayWeather.cpp" line="1181"/>
         <source>Refresh...</source>
         <translation>Frissítés...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="827"/>
-        <location filename="../TrayWeather.cpp" line="1185"/>
-        <location filename="../TrayWeather.cpp" line="1440"/>
-        <location filename="../TrayWeather.cpp" line="1533"/>
+        <location filename="../TrayWeather.cpp" line="824"/>
+        <location filename="../TrayWeather.cpp" line="1182"/>
+        <location filename="../TrayWeather.cpp" line="1416"/>
+        <location filename="../TrayWeather.cpp" line="1517"/>
         <source>Last alert...</source>
         <translation>Utolsó jelzés...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="836"/>
-        <location filename="../TrayWeather.cpp" line="1186"/>
+        <location filename="../TrayWeather.cpp" line="833"/>
+        <location filename="../TrayWeather.cpp" line="1183"/>
         <source>Configuration...</source>
         <translation>Beállítások...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="843"/>
-        <location filename="../TrayWeather.cpp" line="1187"/>
+        <location filename="../TrayWeather.cpp" line="840"/>
+        <location filename="../TrayWeather.cpp" line="1184"/>
         <source>About...</source>
         <translation>Névjegy...</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="848"/>
-        <location filename="../TrayWeather.cpp" line="1188"/>
+        <location filename="../TrayWeather.cpp" line="845"/>
+        <location filename="../TrayWeather.cpp" line="1185"/>
         <source>Quit</source>
         <translation>Kilépés</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1241"/>
-        <source>Install</source>
-        <translation>Telepítés</translation>
+        <location filename="../TrayWeather.cpp" line="1015"/>
+        <source>TrayWeather has requested the weather data for your geographic location
+and it&apos;s still waiting for the response.</source>
+        <translation>A TrayWeather lekérte tartózkodási helyének adatait és a válaszra vár.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1262"/>
-        <source>Unable to locate valid asset in Github. Install aborted.</source>
-        <translation>Nem található érvényes elem a Githubban. A telepítés megszakítva.</translation>
+        <location filename="../TrayWeather.cpp" line="1243"/>
+        <source>Download</source>
+        <translation>Letöltés</translation>
     </message>
-</context>
-<context>
-    <name>TrayWeatherUpdater</name>
     <message>
-        <location filename="../Updater.cpp" line="97"/>
-        <source>Downloading:</source>
-        <translation>Letöltés:</translation>
+        <location filename="../TrayWeather.cpp" line="1264"/>
+        <source>Unable to locate valid asset in Github. Download aborted.</source>
+        <translation>Nem található érvényes elem a Githubon. A letöltés megszakítva.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1527"/>
+        <source>Error downloading the update file.</source>
+        <translation>Hiba történt a frissítőfájl letöltésekor.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1528"/>
+        <source>Downloaded file is empty.</source>
+        <translation>A letöltött fájl üres.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1538"/>
+        <source>The update file &apos;%1&apos; has been downloaded to your Downloads folder.</source>
+        <translation>A(z) &apos;%1&apos; frissítőfájl letöltődött a Letöltések mappába.</translation>
+    </message>
+    <message>
+        <location filename="../TrayWeather.cpp" line="1542"/>
+        <source>Unable to create file in the user Downloads folder.</source>
+        <translation>Nem sikerült létrehozni a fájlt a felhasználó Letöltések mappájában.</translation>
     </message>
 </context>
 <context>
@@ -2446,34 +2343,6 @@ a kint tartózkodást!</translation>
         <location filename="../UVWidget.cpp" line="78"/>
         <source>Extreme</source>
         <translation>Szélsőséges</translation>
-    </message>
-</context>
-<context>
-    <name>Updater</name>
-    <message>
-        <location filename="../Updater.ui" line="26"/>
-        <source>TrayWeather Updater</source>
-        <translation>TrayWeather Updater</translation>
-    </message>
-    <message>
-        <location filename="../Updater.ui" line="33"/>
-        <source>Downloading update...</source>
-        <translation>Frissítés letöltése...</translation>
-    </message>
-    <message>
-        <location filename="../Updater.ui" line="47"/>
-        <source>Downloading:</source>
-        <translation>Letöltés:</translation>
-    </message>
-    <message>
-        <location filename="../Updater.ui" line="63"/>
-        <source>Download progress.</source>
-        <translation>Letöltés folyamatban.</translation>
-    </message>
-    <message>
-        <location filename="../Updater.ui" line="91"/>
-        <source>Cancel</source>
-        <translation>Mégsem</translation>
     </message>
 </context>
 <context>
