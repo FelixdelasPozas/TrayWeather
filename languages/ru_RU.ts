@@ -963,7 +963,7 @@
         <location filename="../ConfigurationDialog.ui" line="2771"/>
         <location filename="../ConfigurationDialog.ui" line="2901"/>
         <source>Check for application updates frequency.</source>
-        <translation>Проверять частоту обновлений приложения.</translation>
+        <translation>Частота проверки обновлений приложения.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2793"/>
@@ -1027,7 +1027,7 @@
     <message>
         <location filename="../ConfigurationDialog.ui" line="2774"/>
         <source>Check for updates</source>
-        <translation>Проверять обновления</translation>
+        <translation>Проверка обновлений</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="2905"/>
@@ -1106,12 +1106,12 @@
         <location filename="../ConfigurationDialog.ui" line="3040"/>
         <location filename="../ConfigurationDialog.ui" line="3053"/>
         <source>Maintains the alert icon in the tray until all alerts have expired, not when all alerts have been seen.</source>
-        <translation>Значок оповещения отображается в трее до истечения срока действия всех оповещений, а не после их просмотра.</translation>
+        <translation>Значок оповещения отображается в трее вплоть до истечения срока действия всех оповещений, а не после их просмотра.</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="3043"/>
         <source>Keep alert icon until all alerts expire</source>
-        <translation>Сохранять значок оповещения до истечения срока действия всех оповещений</translation>
+        <translation>Отображать значок оповещений, пока они активны</translation>
     </message>
     <message>
         <location filename="../ConfigurationDialog.ui" line="3116"/>
