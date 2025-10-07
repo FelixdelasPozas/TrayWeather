@@ -4,113 +4,113 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../AboutDialog.ui" line="14"/>
+        <location filename="../AboutDialog.ui" line="20"/>
         <source>About...</source>
         <translation>关于...</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="28"/>
+        <location filename="../AboutDialog.ui" line="34"/>
         <source>Tray Weather</source>
         <translation>托盘天气</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="111"/>
+        <location filename="../AboutDialog.ui" line="117"/>
         <source>Compiled on</source>
         <translation>编译于</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="121"/>
+        <location filename="../AboutDialog.ui" line="127"/>
         <source>TrayWeather Homepage</source>
         <translation>托盘天气主页</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="124"/>
+        <location filename="../AboutDialog.ui" line="130"/>
         <source>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</source>
         <translation>主页托管于 &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="180"/>
+        <location filename="../AboutDialog.ui" line="186"/>
         <source>Powered by</source>
         <translation>受支持于</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="253"/>
+        <location filename="../AboutDialog.ui" line="259"/>
         <source>Qt Framework</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="335"/>
+        <location filename="../AboutDialog.ui" line="341"/>
         <source>Qt Charts Module</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="448"/>
+        <location filename="../AboutDialog.ui" line="381"/>
         <source>Icons courtesy of</source>
         <translation>图标出自</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="454"/>
+        <location filename="../AboutDialog.ui" line="387"/>
         <source>FlatIcon</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="506"/>
+        <location filename="../AboutDialog.ui" line="439"/>
         <source>IP Geolocation provided by</source>
         <translation>IP地理定位出自</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="512"/>
-        <location filename="../AboutDialog.ui" line="556"/>
+        <location filename="../AboutDialog.ui" line="445"/>
+        <location filename="../AboutDialog.ui" line="489"/>
         <source>IP API</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="550"/>
+        <location filename="../AboutDialog.ui" line="483"/>
         <source>Public IP Address API provided by</source>
         <translation>公共 IP 地址 API 提供者是</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="594"/>
+        <location filename="../AboutDialog.ui" line="527"/>
         <source>Maps data provided by</source>
         <translation>地图数据提供者是</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="600"/>
+        <location filename="../AboutDialog.ui" line="533"/>
         <source>OpenStreetMap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="616"/>
+        <location filename="../AboutDialog.ui" line="549"/>
         <source>Google Maps</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="637"/>
+        <location filename="../AboutDialog.ui" line="570"/>
         <source>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</source>
         <translation>如果您想支持这个项目，您可以在&lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;上进行。</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="677"/>
+        <location filename="../AboutDialog.ui" line="610"/>
         <source>You can support me on Ko-fi!</source>
         <translation>您可以在 Ko-fi 上支持我！</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="709"/>
+        <location filename="../AboutDialog.ui" line="642"/>
         <source>Weather Providers</source>
         <translation>天气提供者</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="761"/>
+        <location filename="../AboutDialog.ui" line="694"/>
         <source>Translations</source>
         <translation>翻译</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="812"/>
+        <location filename="../AboutDialog.ui" line="745"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translation>如果尚未提供你的语言，你可以帮助提供一个 &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="826"/>
+        <location filename="../AboutDialog.ui" line="759"/>
         <source>Icon Themes</source>
         <translation>图标主题集</translation>
     </message>
@@ -1775,143 +1775,143 @@ The application will exit now.</source>
         <translation>北</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1284"/>
+        <location filename="../Utils.h" line="108"/>
         <source>Clear sky</source>
         <translation>晴朗</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1285"/>
+        <location filename="../Utils.h" line="109"/>
         <source>Mainly clear</source>
         <translation>基本晴朗</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1286"/>
+        <location filename="../Utils.h" line="110"/>
         <source>Partly cloudy</source>
         <translation>部分多云</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1287"/>
+        <location filename="../Utils.h" line="111"/>
         <source>Overcast</source>
         <translation>阴天</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1288"/>
+        <location filename="../Utils.h" line="112"/>
         <source>Fog</source>
         <translation>雾</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1289"/>
+        <location filename="../Utils.h" line="113"/>
         <source>Light drizzle</source>
         <translation>小雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1290"/>
+        <location filename="../Utils.h" line="114"/>
         <source>Moderate drizzle</source>
         <translation>中雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1291"/>
+        <location filename="../Utils.h" line="115"/>
         <source>Dense drizzle</source>
         <translation>密集雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1292"/>
+        <location filename="../Utils.h" line="116"/>
         <source>Light freezing drizzle</source>
         <translation>小冻雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1293"/>
+        <location filename="../Utils.h" line="117"/>
         <source>Dense freezing drizzle</source>
         <translation>密集冻雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1294"/>
+        <location filename="../Utils.h" line="118"/>
         <source>Slight rain</source>
         <translation>小雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1295"/>
+        <location filename="../Utils.h" line="119"/>
         <source>Moderate rain</source>
         <translation>中雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1296"/>
+        <location filename="../Utils.h" line="120"/>
         <source>Heavy rain</source>
         <translation>大雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1297"/>
+        <location filename="../Utils.h" line="121"/>
         <source>Light freezing rain</source>
         <translation>小冻雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1298"/>
+        <location filename="../Utils.h" line="122"/>
         <source>Heavy freezing rain</source>
         <translation>密集冻雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1299"/>
+        <location filename="../Utils.h" line="123"/>
         <source>Slight snow</source>
         <translation>小雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1300"/>
+        <location filename="../Utils.h" line="124"/>
         <source>Moderate snow</source>
         <translation>中雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1301"/>
+        <location filename="../Utils.h" line="125"/>
         <source>Heavy snow</source>
         <translation>大雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1302"/>
+        <location filename="../Utils.h" line="126"/>
         <source>Snow grains</source>
         <translation>雪粒</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1303"/>
+        <location filename="../Utils.h" line="127"/>
         <source>Slight rain showers</source>
         <translation>小阵雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1304"/>
+        <location filename="../Utils.h" line="128"/>
         <source>Moderate rain showers</source>
         <translation>中雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1305"/>
+        <location filename="../Utils.h" line="129"/>
         <source>Violent rain showers</source>
         <translation>大暴雨</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1306"/>
+        <location filename="../Utils.h" line="130"/>
         <source>Light snow showers</source>
         <translation>小雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1307"/>
+        <location filename="../Utils.h" line="131"/>
         <source>Heavy snow showers</source>
         <translation>大雪</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1308"/>
+        <location filename="../Utils.h" line="132"/>
         <source>Thunderstorm</source>
         <translation>雷暴</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1309"/>
+        <location filename="../Utils.h" line="133"/>
         <source>Slight thunderstorm with hail</source>
         <translation>小雷暴伴冰雹</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1310"/>
+        <location filename="../Utils.h" line="134"/>
         <source>Heavy thunderstorm with hail</source>
         <translation>大雷暴伴冰雹</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="61"/>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="90"/>
         <source>Location</source>
         <translation>位置</translation>
     </message>
@@ -1941,102 +1941,102 @@ The application will exit now.</source>
         <translation>州/省/地区</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="90"/>
         <source>Current Weather</source>
         <translation>当前天气</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="90"/>
         <source>Temperature</source>
         <translation>温度</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="86"/>
+        <location filename="../Utils.h" line="91"/>
         <source>Cloudiness</source>
         <translation>云量</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="86"/>
+        <location filename="../Utils.h" line="91"/>
         <source>Humidity</source>
         <translation>湿度</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="86"/>
+        <location filename="../Utils.h" line="91"/>
         <source>Ground Pressure</source>
         <translation>地面气压</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="87"/>
+        <location filename="../Utils.h" line="92"/>
         <source>Wind Speed</source>
         <translation>风速</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="87"/>
+        <location filename="../Utils.h" line="92"/>
         <source>Sunrise</source>
         <translation>日出</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="87"/>
+        <location filename="../Utils.h" line="92"/>
         <source>Sunset</source>
         <translation>日落</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="88"/>
+        <location filename="../Utils.h" line="93"/>
         <source>Air Quality</source>
         <translation>空气质量</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="88"/>
+        <location filename="../Utils.h" line="93"/>
         <source>Air Quality (CO)</source>
         <translation>空气质量 (CO)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="89"/>
+        <location filename="../Utils.h" line="94"/>
         <source>Air Quality (O&lt;sub&gt;3&lt;/sub&gt;)</source>
         <translation>空气质量 (O&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="90"/>
+        <location filename="../Utils.h" line="95"/>
         <source>Air Quality (NO)</source>
         <translation>空气质量 (NO)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="91"/>
+        <location filename="../Utils.h" line="96"/>
         <source>Air Quality (NO&lt;sub&gt;2&lt;/sub&gt;)</source>
         <translation>空气质量 (NO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="92"/>
+        <location filename="../Utils.h" line="97"/>
         <source>Air Quality (SO&lt;sub&gt;2&lt;/sub&gt;)</source>
         <translation>空气质量 (SO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="93"/>
+        <location filename="../Utils.h" line="98"/>
         <source>Air Quality (NH&lt;sub&gt;3&lt;/sub&gt;)</source>
         <translation>空气质量 (NH&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="94"/>
+        <location filename="../Utils.h" line="99"/>
         <source>Air Quality (PM&lt;sub&gt;2.5&lt;/sub&gt;)</source>
         <translation>空气质量 (PM&lt;sub&gt;2.5&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="95"/>
+        <location filename="../Utils.h" line="100"/>
         <source>Air Quality (PM&lt;sub&gt;10&lt;/sub&gt;)</source>
         <translation>空气质量 (PM&lt;sub&gt;10&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="96"/>
+        <location filename="../Utils.h" line="101"/>
         <source>Wind Direction</source>
         <translation>风向</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="97"/>
+        <location filename="../Utils.h" line="102"/>
         <source>Time of last update</source>
         <translation>最后更新的时间</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="98"/>
+        <location filename="../Utils.h" line="103"/>
         <source>UV radiation index</source>
         <translation>紫外线辐射指数</translation>
     </message>
@@ -2045,6 +2045,11 @@ The application will exit now.</source>
         <location filename="../TrayWeather.cpp" line="1167"/>
         <source>Error: </source>
         <translation>出错： </translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="574"/>
+        <source>Unknown</source>
+        <translation>未知</translation>
     </message>
 </context>
 <context>
@@ -2336,6 +2341,60 @@ during midday hours.</source>
         <location filename="../UVWidget.cpp" line="78"/>
         <source>Extreme</source>
         <translation>极端</translation>
+    </message>
+</context>
+<context>
+    <name>WeatherAPIProvider</name>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="44"/>
+        <source>WeatherAPI API Key is missing.</source>
+        <translation>WeatherAPI API 密钥缺失。</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="106"/>
+        <location filename="../Providers/WeatherAPI.cpp" line="118"/>
+        <source>Error: </source>
+        <translation>出错： </translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="106"/>
+        <source>Couldn&apos;t get location information.</source>
+        <translation>无法获取位置信息。</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="118"/>
+        <source>No weather data.</source>
+        <translation>无天气数据。</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="315"/>
+        <source>No locations found for &apos;%1&apos;.</source>
+        <translation>找不到“%1”的位置。</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="388"/>
+        <source>Good</source>
+        <translation>优</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="389"/>
+        <source>Fair</source>
+        <translation>良</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="390"/>
+        <source>Moderate</source>
+        <translation>中等</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="391"/>
+        <source>Poor</source>
+        <translation>差</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="392"/>
+        <source>Very poor</source>
+        <translation>非常差</translation>
     </message>
 </context>
 <context>

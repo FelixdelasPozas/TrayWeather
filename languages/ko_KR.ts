@@ -4,117 +4,117 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../AboutDialog.ui" line="14"/>
+        <location filename="../AboutDialog.ui" line="20"/>
         <source>About...</source>
         <translatorcomment>generally interpreted as follows.</translatorcomment>
         <translation>정보...</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="28"/>
+        <location filename="../AboutDialog.ui" line="34"/>
         <source>Tray Weather</source>
         <translation>Tray Weather</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="111"/>
+        <location filename="../AboutDialog.ui" line="117"/>
         <source>Compiled on</source>
         <translatorcomment>Unless the sentence structure is placed in reverse (i.e., the date must come forward in this case), it is awkward to erase the colon.</translatorcomment>
         <translation>컴파일된 날짜:</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="121"/>
+        <location filename="../AboutDialog.ui" line="127"/>
         <source>TrayWeather Homepage</source>
         <translation>TrayWeather 홈페이지</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="124"/>
+        <location filename="../AboutDialog.ui" line="130"/>
         <source>Homepage hosted on &lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;</source>
         <translation>&lt;a href=https://github.com/FelixdelasPozas/TrayWeather&gt;&lt;b&gt;GitHub&lt;/b&gt;&lt;/a&gt;에서 페이지 호스팅됨</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="180"/>
+        <location filename="../AboutDialog.ui" line="186"/>
         <source>Powered by</source>
         <translatorcomment>Check colon issue on &quot;Compiled on&quot; column.</translatorcomment>
         <translation>제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="253"/>
+        <location filename="../AboutDialog.ui" line="259"/>
         <source>Qt Framework</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="335"/>
+        <location filename="../AboutDialog.ui" line="341"/>
         <source>Qt Charts Module</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="448"/>
+        <location filename="../AboutDialog.ui" line="381"/>
         <source>Icons courtesy of</source>
         <translation>아이콘 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="454"/>
+        <location filename="../AboutDialog.ui" line="387"/>
         <source>FlatIcon</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="506"/>
+        <location filename="../AboutDialog.ui" line="439"/>
         <source>IP Geolocation provided by</source>
         <translation>IP 위치정보 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="512"/>
-        <location filename="../AboutDialog.ui" line="556"/>
+        <location filename="../AboutDialog.ui" line="445"/>
+        <location filename="../AboutDialog.ui" line="489"/>
         <source>IP API</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="550"/>
+        <location filename="../AboutDialog.ui" line="483"/>
         <source>Public IP Address API provided by</source>
         <translation>공인 IP 주소 API 제공</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="594"/>
+        <location filename="../AboutDialog.ui" line="527"/>
         <source>Maps data provided by</source>
         <translation>지도 데이터 제공:</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="600"/>
+        <location filename="../AboutDialog.ui" line="533"/>
         <source>OpenStreetMap</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="616"/>
+        <location filename="../AboutDialog.ui" line="549"/>
         <source>Google Maps</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="637"/>
+        <location filename="../AboutDialog.ui" line="570"/>
         <source>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</source>
         <translation>이 프로젝트를 지원하고 싶으시다면 &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;에서 지원하실 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="677"/>
+        <location filename="../AboutDialog.ui" line="610"/>
         <source>You can support me on Ko-fi!</source>
         <translation>Ko-fi에서 저를 지원하실 수 있습니다!</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="709"/>
+        <location filename="../AboutDialog.ui" line="642"/>
         <source>Weather Providers</source>
         <translation>날씨 제공자</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="761"/>
+        <location filename="../AboutDialog.ui" line="694"/>
         <source>Translations</source>
         <translation>번역</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="812"/>
+        <location filename="../AboutDialog.ui" line="745"/>
         <source>If your language is not available you can help with a &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;translation&lt;/a&gt;.</source>
         <translatorcomment>a little bit of paraphrasing...</translatorcomment>
         <translation>귀하의 언어가 여기 없을 경우, &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather#translations&quot;&gt;번역&lt;/a&gt;을 도울 수 있습니다.</translation>
     </message>
     <message>
-        <location filename="../AboutDialog.ui" line="826"/>
+        <location filename="../AboutDialog.ui" line="759"/>
         <source>Icon Themes</source>
         <translation>아이콘 테마</translation>
     </message>
@@ -1783,143 +1783,143 @@ The application will exit now.</source>
         <translation>북</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1284"/>
+        <location filename="../Utils.h" line="108"/>
         <source>Clear sky</source>
         <translation>맑은 하늘</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1285"/>
+        <location filename="../Utils.h" line="109"/>
         <source>Mainly clear</source>
         <translation>대체로 맑은 하늘</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1286"/>
+        <location filename="../Utils.h" line="110"/>
         <source>Partly cloudy</source>
         <translation>일부 흐림</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1287"/>
+        <location filename="../Utils.h" line="111"/>
         <source>Overcast</source>
         <translation>흐림</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1288"/>
+        <location filename="../Utils.h" line="112"/>
         <source>Fog</source>
         <translation>안개</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1289"/>
+        <location filename="../Utils.h" line="113"/>
         <source>Light drizzle</source>
         <translation>가벼운 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1290"/>
+        <location filename="../Utils.h" line="114"/>
         <source>Moderate drizzle</source>
         <translation>적당한 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1291"/>
+        <location filename="../Utils.h" line="115"/>
         <source>Dense drizzle</source>
         <translation>짙은 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1292"/>
+        <location filename="../Utils.h" line="116"/>
         <source>Light freezing drizzle</source>
         <translation>가벼운 얼음 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1293"/>
+        <location filename="../Utils.h" line="117"/>
         <source>Dense freezing drizzle</source>
         <translation>짙은 얼음 이슬비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1294"/>
+        <location filename="../Utils.h" line="118"/>
         <source>Slight rain</source>
         <translation>약간의 비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1295"/>
+        <location filename="../Utils.h" line="119"/>
         <source>Moderate rain</source>
         <translation>적당한 비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1296"/>
+        <location filename="../Utils.h" line="120"/>
         <source>Heavy rain</source>
         <translation>폭우</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1297"/>
+        <location filename="../Utils.h" line="121"/>
         <source>Light freezing rain</source>
         <translation>가벼운 얼음 비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1298"/>
+        <location filename="../Utils.h" line="122"/>
         <source>Heavy freezing rain</source>
         <translation>짙은 얼음 비</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1299"/>
+        <location filename="../Utils.h" line="123"/>
         <source>Slight snow</source>
         <translation>약간의 눈</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1300"/>
+        <location filename="../Utils.h" line="124"/>
         <source>Moderate snow</source>
         <translation>적당한 눈</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1301"/>
+        <location filename="../Utils.h" line="125"/>
         <source>Heavy snow</source>
         <translation>폭설</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1302"/>
+        <location filename="../Utils.h" line="126"/>
         <source>Snow grains</source>
         <translation>눈알</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1303"/>
+        <location filename="../Utils.h" line="127"/>
         <source>Slight rain showers</source>
         <translation>약간의 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1304"/>
+        <location filename="../Utils.h" line="128"/>
         <source>Moderate rain showers</source>
         <translation>적당한 비 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1305"/>
+        <location filename="../Utils.h" line="129"/>
         <source>Violent rain showers</source>
         <translation>폭우 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1306"/>
+        <location filename="../Utils.h" line="130"/>
         <source>Light snow showers</source>
         <translation>폭우 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1307"/>
+        <location filename="../Utils.h" line="131"/>
         <source>Heavy snow showers</source>
         <translation>폭우 소나기</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1308"/>
+        <location filename="../Utils.h" line="132"/>
         <source>Thunderstorm</source>
         <translation>뇌우</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1309"/>
+        <location filename="../Utils.h" line="133"/>
         <source>Slight thunderstorm with hail</source>
         <translation>우박을 동반한 약간의 뇌우</translation>
     </message>
     <message>
-        <location filename="../Utils.cpp" line="1310"/>
+        <location filename="../Utils.h" line="134"/>
         <source>Heavy thunderstorm with hail</source>
         <translation>우박을 동반한 강한 뇌우</translation>
     </message>
     <message>
         <location filename="../LocationFinderDialog.cpp" line="61"/>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="90"/>
         <source>Location</source>
         <translation>위치</translation>
     </message>
@@ -1949,102 +1949,102 @@ The application will exit now.</source>
         <translation>주 / 지방 / 지역</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="90"/>
         <source>Current Weather</source>
         <translation>현재 날씨</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="85"/>
+        <location filename="../Utils.h" line="90"/>
         <source>Temperature</source>
         <translation>기온</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="86"/>
+        <location filename="../Utils.h" line="91"/>
         <source>Cloudiness</source>
         <translation>흐림</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="86"/>
+        <location filename="../Utils.h" line="91"/>
         <source>Humidity</source>
         <translation>습도</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="86"/>
+        <location filename="../Utils.h" line="91"/>
         <source>Ground Pressure</source>
         <translation>지압</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="87"/>
+        <location filename="../Utils.h" line="92"/>
         <source>Wind Speed</source>
         <translation>풍속</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="87"/>
+        <location filename="../Utils.h" line="92"/>
         <source>Sunrise</source>
         <translation>일출</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="87"/>
+        <location filename="../Utils.h" line="92"/>
         <source>Sunset</source>
         <translation>일몰</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="88"/>
+        <location filename="../Utils.h" line="93"/>
         <source>Air Quality</source>
         <translation>대기질</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="88"/>
+        <location filename="../Utils.h" line="93"/>
         <source>Air Quality (CO)</source>
         <translation>대기질 (CO)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="89"/>
+        <location filename="../Utils.h" line="94"/>
         <source>Air Quality (O&lt;sub&gt;3&lt;/sub&gt;)</source>
         <translation>대기질 (O&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="90"/>
+        <location filename="../Utils.h" line="95"/>
         <source>Air Quality (NO)</source>
         <translation>대기질 (NO)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="91"/>
+        <location filename="../Utils.h" line="96"/>
         <source>Air Quality (NO&lt;sub&gt;2&lt;/sub&gt;)</source>
         <translation>대기질 (NO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="92"/>
+        <location filename="../Utils.h" line="97"/>
         <source>Air Quality (SO&lt;sub&gt;2&lt;/sub&gt;)</source>
         <translation>대기질 (SO&lt;sub&gt;2&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="93"/>
+        <location filename="../Utils.h" line="98"/>
         <source>Air Quality (NH&lt;sub&gt;3&lt;/sub&gt;)</source>
         <translation>대기질 (NH&lt;sub&gt;3&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="94"/>
+        <location filename="../Utils.h" line="99"/>
         <source>Air Quality (PM&lt;sub&gt;2.5&lt;/sub&gt;)</source>
         <translation>대기질 (PM&lt;sub&gt;2.5&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="95"/>
+        <location filename="../Utils.h" line="100"/>
         <source>Air Quality (PM&lt;sub&gt;10&lt;/sub&gt;)</source>
         <translation>대기질 (PM&lt;sub&gt;10&lt;/sub&gt;)</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="96"/>
+        <location filename="../Utils.h" line="101"/>
         <source>Wind Direction</source>
         <translation>풍향</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="97"/>
+        <location filename="../Utils.h" line="102"/>
         <source>Time of last update</source>
         <translation>마지막 업데이트 시간</translation>
     </message>
     <message>
-        <location filename="../Utils.h" line="98"/>
+        <location filename="../Utils.h" line="103"/>
         <source>UV radiation index</source>
         <translation>자외선 지수</translation>
     </message>
@@ -2053,6 +2053,11 @@ The application will exit now.</source>
         <location filename="../TrayWeather.cpp" line="1167"/>
         <source>Error: </source>
         <translation>오류: </translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="574"/>
+        <source>Unknown</source>
+        <translation>알 수 없음</translation>
     </message>
 </context>
 <context>
@@ -2345,6 +2350,60 @@ during midday hours.</source>
         <location filename="../UVWidget.cpp" line="78"/>
         <source>Extreme</source>
         <translation>극단적</translation>
+    </message>
+</context>
+<context>
+    <name>WeatherAPIProvider</name>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="44"/>
+        <source>WeatherAPI API Key is missing.</source>
+        <translation>WeatherAPI API 키가 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="106"/>
+        <location filename="../Providers/WeatherAPI.cpp" line="118"/>
+        <source>Error: </source>
+        <translation>오류: </translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="106"/>
+        <source>Couldn&apos;t get location information.</source>
+        <translation>위치 정보를 가져올 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="118"/>
+        <source>No weather data.</source>
+        <translation>날씨 데이터가 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="315"/>
+        <source>No locations found for &apos;%1&apos;.</source>
+        <translation>&apos;%1&apos;에 대한 위치를 찾을 수 없습니다.</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="388"/>
+        <source>Good</source>
+        <translation>매우 좋음</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="389"/>
+        <source>Fair</source>
+        <translation>좋음</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="390"/>
+        <source>Moderate</source>
+        <translation>보통</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="391"/>
+        <source>Poor</source>
+        <translation>나쁨</translation>
+    </message>
+    <message>
+        <location filename="../Providers/WeatherAPI.cpp" line="392"/>
+        <source>Very poor</source>
+        <translation>매우 나쁨</translation>
     </message>
 </context>
 <context>
