@@ -401,3 +401,154 @@ void OpenMeteoProvider::processLocationsData(const QByteArray &contents)
     emit foundLocations(locations);
   }
 }
+
+//--------------------------------------------------------------------
+void OpenMeteoProvider::fillWMOCodeInForecast(ForecastData &forecast)
+{
+  const auto wmo_code = static_cast<int>(forecast.weather_id);
+  const bool isDay = (forecast.sunrise <= forecast.dt) && (forecast.dt <= forecast.sunset);
+  const auto iconSuffix = isDay ? QString("d") : QString("n");
+
+  switch(wmo_code)
+  {
+    default:
+    case 0:
+      {
+        forecast.icon_id = "01" + iconSuffix;
+        forecast.description = QApplication::translate("QObject", CLEAR_SKY.toStdString().c_str());;
+        forecast.parameters = "clear";
+      };
+      break;
+    case 1:
+      {
+        forecast.icon_id = "02" + iconSuffix;
+        forecast.description = QApplication::translate("QObject", MAINLY_CLEAR.toStdString().c_str());;
+        forecast.parameters = "clear";
+      };
+      break;
+    case 2:
+      {
+        forecast.icon_id = "03" + iconSuffix;
+        forecast.description = QApplication::translate("QObject", PARTLY_CLOUDY.toStdString().c_str());
+        forecast.parameters = "cloudy";
+      };
+      break;
+    case 3:
+      {
+        forecast.icon_id = "04" + iconSuffix;
+        forecast.description = QApplication::translate("QObject", OVERCAST.toStdString().c_str());
+        forecast.parameters = "overcast";
+      };
+      break;
+    case 45:
+    case 48:
+      {
+        forecast.icon_id = "50" + iconSuffix;
+        forecast.description = QApplication::translate("QObject", FOG.toStdString().c_str());
+        forecast.parameters = "fog";
+      };
+      break;
+    case 51:
+    case 53:
+    case 55:
+      {
+        const QString type = wmo_code == 51 ? QApplication::translate("QObject", LIGHT_DRIZZLE.toStdString().c_str()) :
+                            (wmo_code == 53 ? QApplication::translate("QObject", MODERATE_DRIZZLE.toStdString().c_str()) :
+                                              QApplication::translate("QObject", DENSE_DRIZZLE.toStdString().c_str()));
+        forecast.icon_id = "09" + iconSuffix;
+        forecast.description = type;
+        forecast.parameters = "drizzle";
+      };
+      break;
+    case 56:
+    case 57:
+      {
+        const QString type = wmo_code == 56 ? QApplication::translate("QObject", LIGHT_FREEZING_DRIZZLE.toStdString().c_str()) :
+                                              QApplication::translate("QObject", DENSE_FREEZING_DRIZZLE.toStdString().c_str());
+        forecast.icon_id = "09" + iconSuffix;
+        forecast.description = type;
+        forecast.parameters = "freezing drizzle";
+      };
+      break;
+    case 61:
+    case 63:
+    case 65:
+      {
+        const QString type = wmo_code == 61 ? QApplication::translate("QObject", SLIGHT_RAIN.toStdString().c_str()) :
+                            (wmo_code == 63 ? QApplication::translate("QObject", MODERATE_RAIN.toStdString().c_str()) :
+                                              QApplication::translate("QObject", HEAVY_RAIN.toStdString().c_str()));
+        forecast.icon_id = "10" + iconSuffix;
+        forecast.description = type;
+        forecast.parameters = "rain";
+      };
+      break;
+    case 66:
+    case 67:
+      {
+        const QString type = wmo_code == 66 ? QApplication::translate("QObject", LIGHT_FREEZING_RAIN.toStdString().c_str()) :
+                                              QApplication::translate("QObject", HEAVY_FREEZING_RAIN.toStdString().c_str());
+        forecast.icon_id = "13" + iconSuffix;
+        forecast.description = type;
+        forecast.parameters = "freezing rain";
+      };
+      break;
+    case 71:
+    case 73:
+    case 75:
+      {
+        const QString type = wmo_code == 71 ? QApplication::translate("QObject", SLIGHT_SNOW.toStdString().c_str()) :
+                            (wmo_code == 73 ? QApplication::translate("QObject", MODERATE_SNOW.toStdString().c_str()) :
+                                              QApplication::translate("QObject", HEAVY_SNOW.toStdString().c_str()));
+        forecast.icon_id = "13" + iconSuffix;
+        forecast.description = type;
+        forecast.parameters = "snow";
+      };
+      break;
+    case 77:
+      {
+        forecast.icon_id = "13" + iconSuffix;
+        forecast.description = QApplication::translate("QObject", SNOW_GRAINS.toStdString().c_str());
+        forecast.parameters = "snow grains";
+      };
+      break;
+    case 80:
+    case 81:
+    case 82:
+      {
+        const QString type = wmo_code == 80 ? QApplication::translate("QObject", SLIGHT_RAIN_SHOWERS.toStdString().c_str()) :
+                            (wmo_code == 81 ? QApplication::translate("QObject", MODERATE_RAIN_SHOWERS.toStdString().c_str()) :
+                                              QApplication::translate("QObject", VIOLENT_RAIN_SHOWERS.toStdString().c_str()));
+        forecast.icon_id = "09" + iconSuffix;
+        forecast.description = type;
+        forecast.parameters = "rain showers";
+      };
+      break;
+    case 85:
+    case 86:
+      {
+        const QString type = wmo_code == 85 ? QApplication::translate("QObject", LIGHT_SNOW_SHOWERS.toStdString().c_str()) :
+                                              QApplication::translate("QObject", HEAVY_SNOW_SHOWERS.toStdString().c_str());
+        forecast.icon_id = "13" + iconSuffix;
+        forecast.description = type;
+        forecast.parameters = "snow showers";
+      };
+      break;
+    case 95:
+      {
+        forecast.icon_id = "11" + iconSuffix;
+        forecast.description = QApplication::translate("QObject", THUNDERSTORM.toStdString().c_str());
+        forecast.parameters = "thunderstorm";
+      };
+      break;
+    case 96:
+    case 99:
+      {
+        const QString type = wmo_code == 96 ? QApplication::translate("QObject", SLIGHT_THUNDERSTORM_HAIL.toStdString().c_str()) :
+                                              QApplication::translate("QObject", HEAVY_THUNDERSTORM_HAIL.toStdString().c_str());
+        forecast.icon_id = "11" + iconSuffix;
+        forecast.description = type;
+        forecast.parameters = "thuderstorm with hail";
+      };
+      break;
+  }
+}

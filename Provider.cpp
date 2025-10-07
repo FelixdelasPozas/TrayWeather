@@ -22,6 +22,7 @@
 #include <Providers/OpenMeteo.h>
 #include <Providers/OWM25.h>
 #include <Providers/OWM30.h>
+#include <Providers/WeatherAPI.h>
 
 // Qt
 #include <QNetworkAccessManager>
@@ -40,9 +41,10 @@
 
 /** Providers list, CAN'T be const because is used as extern elsewhere.
  */
-QList<ProviderData> WEATHER_PROVIDERS = { { OWM_25_PROVIDER,    ":/TrayWeather/application.svg" }, 
-                                          { OWM_30_PROVIDER,    ":/TrayWeather/application.svg" }, 
-                                          { OPENMETEO_PROVIDER, ":/TrayWeather/application.svg" } };
+QList<ProviderData> WEATHER_PROVIDERS = { { OWM_25_PROVIDER,     ":/TrayWeather/application.svg" }, 
+                                          { OWM_30_PROVIDER,     ":/TrayWeather/application.svg" }, 
+                                          { OPENMETEO_PROVIDER,  ":/TrayWeather/application.svg" },
+                                          { WEATHERAPI_PROVIDER, ":/TrayWeather/application.svg"} };
 
 //----------------------------------------------------------------------------
 std::unique_ptr<WeatherProvider> WeatherProviderFactory::createProvider(const QString &name, Configuration &config)
@@ -55,6 +57,9 @@ std::unique_ptr<WeatherProvider> WeatherProviderFactory::createProvider(const QS
   
   if(name.compare(OPENMETEO_PROVIDER) == 0)    
     return std::make_unique<OpenMeteoProvider>(config);
+
+  if(name.compare(WEATHERAPI_PROVIDER) == 0)    
+    return std::make_unique<WeatherAPIProvider>(config);
 
   return nullptr;
 }

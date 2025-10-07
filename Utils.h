@@ -99,6 +99,35 @@ static const QStringList TooltipTextFields = { QObject::tr("Location"), QObject:
 
 static const QString POLLUTION_UNITS{"µg/m<sup>3</sup>"};
 
+// Weather conditions
+const QString CLEAR_SKY                = QObject::tr("Clear sky");
+const QString MAINLY_CLEAR             = QObject::tr("Mainly clear");
+const QString PARTLY_CLOUDY            = QObject::tr("Partly cloudy");
+const QString OVERCAST                 = QObject::tr("Overcast");
+const QString FOG                      = QObject::tr("Fog");
+const QString LIGHT_DRIZZLE            = QObject::tr("Light drizzle");
+const QString MODERATE_DRIZZLE         = QObject::tr("Moderate drizzle");
+const QString DENSE_DRIZZLE            = QObject::tr("Dense drizzle");
+const QString LIGHT_FREEZING_DRIZZLE   = QObject::tr("Light freezing drizzle");
+const QString DENSE_FREEZING_DRIZZLE   = QObject::tr("Dense freezing drizzle");
+const QString SLIGHT_RAIN              = QObject::tr("Slight rain");
+const QString MODERATE_RAIN            = QObject::tr("Moderate rain");
+const QString HEAVY_RAIN               = QObject::tr("Heavy rain");
+const QString LIGHT_FREEZING_RAIN      = QObject::tr("Light freezing rain");
+const QString HEAVY_FREEZING_RAIN      = QObject::tr("Heavy freezing rain");
+const QString SLIGHT_SNOW              = QObject::tr("Slight snow");
+const QString MODERATE_SNOW            = QObject::tr("Moderate snow");
+const QString HEAVY_SNOW               = QObject::tr("Heavy snow");
+const QString SNOW_GRAINS              = QObject::tr("Snow grains");
+const QString SLIGHT_RAIN_SHOWERS      = QObject::tr("Slight rain showers");
+const QString MODERATE_RAIN_SHOWERS    = QObject::tr("Moderate rain showers");
+const QString VIOLENT_RAIN_SHOWERS     = QObject::tr("Violent rain showers");
+const QString LIGHT_SNOW_SHOWERS       = QObject::tr("Light snow showers");
+const QString HEAVY_SNOW_SHOWERS       = QObject::tr("Heavy snow showers");
+const QString THUNDERSTORM             = QObject::tr("Thunderstorm");
+const QString SLIGHT_THUNDERSTORM_HAIL = QObject::tr("Slight thunderstorm with hail");
+const QString HEAVY_THUNDERSTORM_HAIL  = QObject::tr("Heavy thunderstorm with hail");
+
 constexpr int ICON_TEXT_BORDER = 26;
 
 extern QString REQUESTS_BUFFER; /** buffer to log network requests. */
@@ -783,13 +812,6 @@ QSettings applicationSettings();
  *
  */
 bool isPortable();
-
-/** \brief Helper method to convert the wmo code inside to fill a ForecastData object fields. 
- *         WMO codes are used to represent weather conditions (meteorological codes for use at observing stations).
- * \param[in] forecast ForecastData object reference, contains wmo code.
- *
- */
-void fillWMOCodeInForecast(ForecastData &forecast);
 
 /** \brief Changes the weather units of the forecast data according to the given configuration.
  * \param[in] config Configuration struct reference.

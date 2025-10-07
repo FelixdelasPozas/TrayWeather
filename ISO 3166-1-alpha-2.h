@@ -258,6 +258,7 @@ static const QMap<QString, QString> ISO3166 = {
     { "United Arab Emirates", "AE" },
     { "United Kingdom", "GB" },
     { "United States", "US" },
+    { "United States of America", "US" },
     { "United States Minor Outlying Islands", "UM" },
     { "Uruguay", "UY" },
     { "Uzbekistan", "UZ" },

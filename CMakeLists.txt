@@ -4,8 +4,8 @@ project(TrayWeather)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
-set (TRAYWEATHER_VERSION_MINOR 35)
-set (TRAYWEATHER_VERSION_PATCH 1)
+set (TRAYWEATHER_VERSION_MINOR 36)
+set (TRAYWEATHER_VERSION_PATCH 0)
 
 set (UPDATER_VERSION_MAJOR 1)
 set (UPDATER_VERSION_MINOR 0)
@@ -149,6 +149,7 @@ set (CORE_SOURCES
   Providers/OWM25.cpp
   Providers/OWM30.cpp
   Providers/OpenMeteo.cpp
+  Providers/WeatherAPI.cpp
 )
 
 set(CORE_EXTERNAL_LIBS

@@ -21,8 +21,9 @@ If you like it you can support this project on [ko-fi!](https://ko-fi.com/felixd
 
 You can select one the following data providers in the condifuration dialog:
 
-* [OpenWeatherMap](http://openweathermap.org/)
+* [OpenWeatherMap](http://openweathermap.org/) in their 2.5 or 3.0 APIs.
 * [Open-Meteo](https://open-meteo.com/)
+* [WeatherAPI](https://www.weatherapi.com/)
 
 Not all them provide the same data:
 
@@ -31,6 +32,7 @@ Not all them provide the same data:
 | OpenWeatherMap 2.5 | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | OpenWeatherMap 3.0 | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | Open-Meteo         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: | :x:                | :x:                |
+| WeatherAPI         | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :heavy_check_mark: |
 
 > [!WARNING]
 > Currently the OpenWeatherMap 3.0 is untested. Please report any bug or inconsistencies by creating an [issue](https://github.com/FelixdelasPozas/TrayWeather/issues) to help.
@@ -63,10 +65,8 @@ Download the latest ![release](https://github.com/FelixdelasPozas/TrayWeather/re
 
 Supported versions are from Windows 7 onwards. Neither the application or the installer are digitally signed so the system will ask for approval before running it the first time.
 
-> **_NOTE:_**  The application will use a ini file in the same folder as the executable if the file exists and can be written. So
-its possible to use the application in "portable mode" even if it has been installed using the installer by just copying the installation 
-folder to another location and creating an empty *TrayWeather.ini* file in it. It is recommended to execute the application before 
-creating the empty file because then the setting will be loaded from the windows registry and saved to the ini file. 
+> [!NOTE] 
+> The application will use a ini file in the same folder as the executable if the file exists and can be written. So its possible to use the application in "portable mode" even if it has been installed using the installer by just copying the installation  folder to another location and creating an empty *TrayWeather.ini* file in it. It is recommended to execute the application before creating the empty file because then the setting will be loaded from the windows registry and saved to the ini file. 
 
 # Screenshots
 
@@ -154,7 +154,7 @@ Tray Weather is available in:
 If 'TrayWeather' hasn't a translation for your language you can collaborate and translate the application using the 
 [Qt Linguistic Tools](https://doc.qt.io/qt-5/qtlinguist-index.html) (available [here](https://github.com/lelegard/qtlinguist-installers))
 or manually editing the ['empty' translation source file](https://raw.githubusercontent.com/FelixdelasPozas/TrayWeather/master/languages/empty.ts)
-and making a pull request. Currently it's 534 texts.
+and making a pull request. Currently it's 545 texts.
 
 To do it manually just edit the 'empty translation' file in the 'languages' directory (empty.ts) and replace the untranslated messages, for example:
 
@@ -178,7 +178,7 @@ To the translation in your language. For example in Spanish it is:
 
 # Repository information
 
-**Version**: 1.35.0
+**Version**: 1.36.0
 
 **Status**: finished.
 
@@ -186,8 +186,8 @@ To the translation in your language. For example in Spanish it is:
 
 | Language                     |files          |blank        |comment           |code  |
 |:-----------------------------|--------------:|------------:|-----------------:|-----:|
-| C++                          |  15           | 1506        |   621            | 7377 |
-| C/C++ Header                 |  15           |  480        |  1379            | 1381 |
+| C++                          |  16           | 1580        |   656            | 7832 |
+| C/C++ Header                 |  16           |  508        |  1432            | 1462 |
 | HTML                         |   2           |   66        |     0            |  304 |
-| CMake                        |   1           |   20        |     8            |  136 |
-| **Total**                    | **33**        | **2072**    | **2008**         | **9198** |
+| CMake                        |   1           |   20        |     8            |  137 |
+| **Total**                    | **35**        | **2174**    | **2096**         | **9735** |

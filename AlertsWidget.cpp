@@ -106,13 +106,10 @@ void AlertsWidget::showAlert(const int index)
   m_event->setText(data.event);
   m_description->setText(data.description);
 
-  struct tm t;
-  unixTimeStampToDate(t, data.startTime);
-  QDateTime startTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+  QDateTime startTime = QDateTime::fromMSecsSinceEpoch(data.startTime);
   m_start->setText(startTime.toString("dddd MMMM d yyyy h:m:s ap"));
 
-  unixTimeStampToDate(t, data.endTime);
-  QDateTime endTime{QDate{t.tm_year + 1900, t.tm_mon + 1, t.tm_mday}, QTime{t.tm_hour, t.tm_min, t.tm_sec}};
+  QDateTime endTime = QDateTime::fromMSecsSinceEpoch(data.endTime);
   m_end->setText(endTime.toString("dddd MMMM d yyyy h:m:s ap"));
 
   if(m_alerts.count() != 1)
