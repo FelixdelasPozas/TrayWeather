@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <WeatherWidget.h>
+#include <widgets/WeatherWidget.h>
 
 // Qt
 #include <QApplication>

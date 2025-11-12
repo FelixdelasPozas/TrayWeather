@@ -4,7 +4,7 @@ project(TrayWeather)
 
 # Version Number
 set (TRAYWEATHER_VERSION_MAJOR 1)
-set (TRAYWEATHER_VERSION_MINOR 36)
+set (TRAYWEATHER_VERSION_MINOR 37)
 set (TRAYWEATHER_VERSION_PATCH 0)
 
 set (UPDATER_VERSION_MAJOR 1)
@@ -118,15 +118,16 @@ qt5_add_resources(RESOURCES
 
 qt5_wrap_ui(CORE_UI
   # .ui for Qt
-  ConfigurationDialog.ui
-  AboutDialog.ui
-  WeatherDialog.ui
-  WeatherWidget.ui
-  PollutionWidget.ui
-  UVWidget.ui
-  AlertsWidget.ui
-  ErrorWidget.ui
-  LocationFinderDialog.ui
+  dialogs/ConfigurationDialog.ui
+  dialogs/AboutDialog.ui
+  dialogs/WeatherDialog.ui
+  dialogs/LocationFinderDialog.ui
+  widgets/WeatherWidget.ui
+  widgets/PollutionWidget.ui
+  widgets/UVWidget.ui
+  widgets/AlertsWidget.ui
+  widgets/ErrorWidget.ui
+  widgets/CurrentWeatherWidget.ui
 )
 	
 set (CORE_SOURCES
@@ -136,15 +137,16 @@ set (CORE_SOURCES
   ${TRANSLATIONS_QM_FILES}
   Main.cpp
   Utils.cpp
-  AboutDialog.cpp
-  ConfigurationDialog.cpp
-  TrayWeather.cpp
-  WeatherDialog.cpp
-  WeatherWidget.cpp
-  PollutionWidget.cpp
-  UVWidget.cpp
-  AlertsWidget.cpp
-  LocationFinderDialog.cpp
+  TrayWeather.cpp  
+  dialogs/AboutDialog.cpp
+  dialogs/ConfigurationDialog.cpp
+  dialogs/LocationFinderDialog.cpp
+  dialogs/WeatherDialog.cpp
+  widgets/WeatherWidget.cpp
+  widgets/PollutionWidget.cpp
+  widgets/UVWidget.cpp
+  widgets/AlertsWidget.cpp
+  widgets/CurrentWeatherWidget.cpp
   Provider.cpp
   Providers/OWM25.cpp
   Providers/OWM30.cpp

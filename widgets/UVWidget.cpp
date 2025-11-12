@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <UVWidget.h>
+#include <widgets/UVWidget.h>
 
 // Qt
 #include <QApplication>

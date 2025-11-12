@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <LocationFinderDialog.h>
+#include <dialogs/LocationFinderDialog.h>
 #include <Provider.h>
 #include <ISO 3166-1-alpha-2.h>
 

@@ -18,8 +18,8 @@
  */
 
 // Project
-#include <ConfigurationDialog.h>
-#include <LocationFinderDialog.h>
+#include <dialogs/ConfigurationDialog.h>
+#include <dialogs/LocationFinderDialog.h>
 #include <Utils.h>
 #include <Provider.h>
 #include <Providers/OpenMeteo.h>

@@ -28,6 +28,7 @@ class WeatherProvider;
 #include "ui_ConfigurationDialog.h"
 #include <QDialog>
 #include <QNetworkAccessManager>
+
 class QNetworkReply;
 class QMouseEvent;
 

@@ -21,9 +21,9 @@
 #define TRAYWEATHER_H_
 
 // Project
-#include <ConfigurationDialog.h>
 #include <Utils.h>
-#include <WeatherDialog.h>
+#include <dialogs/ConfigurationDialog.h>
+#include <dialogs/WeatherDialog.h>
 #include <Provider.h>
 
 // Qt
@@ -108,6 +108,11 @@ class TrayWeather
      *
      */
     void showTab();
+
+    /** \brief Show the current weather widget next to the tray.
+     *
+     */
+    void showCurrentWeatherWidget();
 
     /** \brief Shows the configuration dialog.
      *
@@ -283,22 +288,23 @@ class TrayWeather
      */
     void finishedDownload(const QByteArray &data);
 
-    Configuration                         &m_configuration;   /** application configuration.                        */
-    std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                  */
-    Forecast                               m_data;            /** list of forecast data.                            */
-    ForecastData                           m_current;         /** weather conditions now.                           */
-    Pollution                              m_pData;           /** list pollution data.                              */
-    UV                                     m_vData;           /** list of uv data.                                  */
-    QTimer                                 m_timer;           /** timer for updates and retries.                    */
-    WeatherDialog                         *m_weatherDialog;   /** dialog to show weather and forecast data.         */
-    AboutDialog                           *m_aboutDialog;     /** pointer to current (if any) about dialog.         */
-    ConfigurationDialog                   *m_configDialog;    /** pointer to current (if any) configuration dialog. */
-    QString                                m_DNSIP;           /** DNS IP used for geolocation.                      */
-    QTimer                                 m_updatesTimer;    /** timer to check for application updates.           */
-    QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.           */
-    NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                          */
-    Alerts                                 m_alerts;          /** Last shown alert.                                 */
-    std::shared_ptr<WeatherProvider>       m_provider;        /** Weather data provider                             */
+    Configuration                         &m_configuration;   /** application configuration.                                        */
+    std::shared_ptr<QNetworkAccessManager> m_netManager;      /** network manager.                                                  */
+    Forecast                               m_data;            /** list of forecast data.                                            */
+    ForecastData                           m_current;         /** weather conditions now.                                           */
+    Pollution                              m_pData;           /** list pollution data.                                              */
+    UV                                     m_vData;           /** list of uv data.                                                  */
+    QTimer                                 m_timer;           /** timer for updates and retries.                                    */
+    QTimer                                 m_dblClick;        /** disambiguation from Trigger and DoubleClick (see onActivation()). */
+    WeatherDialog                         *m_weatherDialog;   /** dialog to show weather and forecast data.                         */
+    AboutDialog                           *m_aboutDialog;     /** pointer to current (if any) about dialog.                         */
+    ConfigurationDialog                   *m_configDialog;    /** pointer to current (if any) configuration dialog.                 */
+    QString                                m_DNSIP;           /** DNS IP used for geolocation.                                      */
+    QTimer                                 m_updatesTimer;    /** timer to check for application updates.                           */
+    QSystemTrayIcon                       *m_additionalTray;  /** Additional tray icon for two icon mode.                           */
+    NativeEventFilter                      m_eventFilter;     /** Windows OS event filter.                                          */
+    Alerts                                 m_alerts;          /** Last shown alert.                                                 */
+    std::shared_ptr<WeatherProvider>       m_provider;        /** Weather data provider                                             */
 
     friend class NativeEventFilter;
 };

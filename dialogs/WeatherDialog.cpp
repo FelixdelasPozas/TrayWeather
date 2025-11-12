@@ -18,11 +18,11 @@
  */
 
 // Project
-#include <WeatherDialog.h>
-#include <WeatherWidget.h>
-#include <PollutionWidget.h>
-#include <AlertsWidget.h>
-#include <UVWidget.h>
+#include <dialogs/WeatherDialog.h>
+#include <widgets/WeatherWidget.h>
+#include <widgets/PollutionWidget.h>
+#include <widgets/AlertsWidget.h>
+#include <widgets/UVWidget.h>
 #include <Utils.h>
 #include <Provider.h>
 

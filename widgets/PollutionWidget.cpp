@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <PollutionWidget.h>
+#include <widgets/PollutionWidget.h>
 
 // Qt
 #include <QApplication>

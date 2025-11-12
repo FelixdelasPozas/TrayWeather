@@ -22,12 +22,13 @@
 
 // Project
 #include <Utils.h>
+#include "ui_WeatherDialog.h"
+#include "ui_ErrorWidget.h"
+
 class WeatherProvider;
 struct ProviderCapabilities;
 
 // Qt
-#include "ui_WeatherDialog.h"
-#include "ui_ErrorWidget.h"
 #include <QDialog>
 #include <qwebview.h>
 #include <QWidget>

@@ -27,7 +27,7 @@ class QNetworkReply;
 
 // Project
 #include <Utils.h>
-#include <LocationFinderDialog.h>
+#include <dialogs/LocationFinderDialog.h>
 class Configuration;
 
 // C++

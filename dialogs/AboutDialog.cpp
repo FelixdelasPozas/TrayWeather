@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <AboutDialog.h>
+#include <dialogs/AboutDialog.h>
 #include <Utils.h>
 #include <Provider.h>
 
@@ -29,7 +29,7 @@
 #include <QDesktopServices>
 #include <QUrl>
 
-const QString AboutDialog::VERSION{"1.36.0"};
+const QString AboutDialog::VERSION{"1.37.0"};
 const QString COPYRIGHT{"Copyright (c) 2016-%1 Félix de las Pozas Álvarez"};
 
 extern QList<ProviderData> WEATHER_PROVIDERS;

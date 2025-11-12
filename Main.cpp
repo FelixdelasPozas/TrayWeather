@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <ConfigurationDialog.h>
+#include <dialogs/ConfigurationDialog.h>
 #include <TrayWeather.h>
 #include <Utils.h>
 

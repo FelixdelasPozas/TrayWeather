@@ -18,7 +18,7 @@
  */
 
 // Project
-#include <AlertsWidget.h>
+#include <widgets/AlertsWidget.h>
 #include <Utils.h>
 
 // Qt

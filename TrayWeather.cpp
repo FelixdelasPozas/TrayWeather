@@ -19,9 +19,10 @@
 
 // Project
 #include <TrayWeather.h>
-#include <AboutDialog.h>
-#include <ConfigurationDialog.h>
+#include <dialogs/AboutDialog.h>
+#include <dialogs/ConfigurationDialog.h>
 #include <Utils.h>
+#include <widgets/CurrentWeatherWidget.h>
 
 // Qt
 #include <QNetworkReply>
@@ -42,8 +43,8 @@
 #include <QDateTime>
 
 // C++
-#include <iostream>
 #include <windows.h>
+#include <chrono>
 #include <processthreadsapi.h>
 
 const QString RELEASES_ADDRESS = "https://api.github.com/repos/FelixdelasPozas/TrayWeather/releases";
@@ -58,6 +59,7 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 , m_configuration {configuration}
 , m_netManager    {std::make_shared<NetworkAccessManager>(this)}
 , m_timer         {this}
+, m_dblClick      {this}
 , m_weatherDialog {nullptr}
 , m_aboutDialog   {nullptr}
 , m_configDialog  {nullptr}
@@ -66,6 +68,8 @@ TrayWeather::TrayWeather(Configuration& configuration, QObject* parent)
 , m_provider      {nullptr}
 {
   m_timer.setSingleShot(true);
+  m_dblClick.setInterval(qApp->doubleClickInterval());
+  m_dblClick.setSingleShot(true);
 
   qApp->installNativeEventFilter(&m_eventFilter);
 
@@ -900,6 +904,9 @@ void TrayWeather::connectSignals()
   connect(&m_timer, SIGNAL(timeout()),
           this,     SLOT(requestData()));
 
+  connect(&m_dblClick, SIGNAL(timeout()), 
+          this,        SLOT(showCurrentWeatherWidget()));          
+
   connectProviderSignals();
 }
 
@@ -929,6 +936,9 @@ void TrayWeather::disconnectSignals()
   disconnect(&m_timer, SIGNAL(timeout()),
              this,     SLOT(requestData()));
 
+  disconnect(&m_dblClick, SIGNAL(timeout()), 
+            this,         SLOT(showCurrentWeatherWidget()));             
+
   disconnectProviderSignals();             
 }
 
@@ -949,9 +959,26 @@ void TrayWeather::disconnectProviderSignals()
 //--------------------------------------------------------------------
 void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
 {
-  if(reason == QSystemTrayIcon::ActivationReason::DoubleClick)
+  static auto lastRequest = std::chrono::steady_clock::now() - std::chrono::duration<double>(10);
+  const auto now = std::chrono::steady_clock::now();
+  const std::chrono::duration<double> interval = now - lastRequest;
+  const auto duration = interval.count();
+
+  switch(reason)
   {
-    showTab();
+    case QSystemTrayIcon::ActivationReason::DoubleClick:
+      m_dblClick.stop();
+      showTab();
+      break;
+    case QSystemTrayIcon::ActivationReason::Trigger:
+      if(duration > CurrentWeatherWidget::durationInMs()/1000)
+      {
+        m_dblClick.start();
+        lastRequest = now;
+      } 
+      break;
+    default:
+      break;
   }
 }
 
@@ -1038,6 +1065,21 @@ void TrayWeather::showTab()
   delete m_weatherDialog;
 
   m_weatherDialog = nullptr;
+}
+
+//--------------------------------------------------------------------
+void TrayWeather::showCurrentWeatherWidget()
+{
+  if(m_current.isValid())
+  {
+    ForecastData fData = m_current;
+    PollutionData pData = m_pData.isEmpty() ? PollutionData() : m_pData.first();
+    UVData uvData = m_vData.isEmpty() ? UVData() : m_vData.first();
+    
+    const QPoint tray_center = this->geometry().center();
+    auto w = new CurrentWeatherWidget(fData, pData, uvData, m_configuration, tray_center);
+    w->show();
+  }
 }
 
 //--------------------------------------------------------------------
