@@ -977,6 +977,8 @@ void TrayWeather::onActivation(QSystemTrayIcon::ActivationReason reason)
         lastRequest = now;
       } 
       break;
+    case QSystemTrayIcon::ActivationReason::MiddleClick:
+      forceRequestData();
     default:
       break;
   }
