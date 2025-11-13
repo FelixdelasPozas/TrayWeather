@@ -35,7 +35,7 @@
    <string>Configuration</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="rsc/resources.qrc">
+   <iconset resource="../rsc/resources.qrc">
     <normaloff>:/TrayWeather/application.svg</normaloff>:/TrayWeather/application.svg</iconset>
   </property>
   <property name="sizeGripEnabled">
@@ -146,7 +146,7 @@ QGroupBox::title {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
+             <pixmap resource="../rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -184,7 +184,7 @@ QGroupBox::title {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
+             <pixmap resource="../rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -209,7 +209,7 @@ QGroupBox::title {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
+             <pixmap resource="../rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -234,7 +234,7 @@ QGroupBox::title {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
+             <pixmap resource="../rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -305,7 +305,7 @@ QGroupBox::title {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
+             <pixmap resource="../rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -324,7 +324,7 @@ QGroupBox::title {
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
+             <pixmap resource="../rsc/resources.qrc">:/TrayWeather/no-cross.svg</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -2442,7 +2442,7 @@ QGroupBox::title {
            <item>
             <widget class="QSlider" name="m_spacingSlider">
              <property name="toolTip">
-              <string>Modifies the space between characters in the temperatura icon.</string>
+              <string>Modifies the space between characters in the temperature icon.</string>
              </property>
              <property name="minimum">
               <number>-25</number>
@@ -2659,7 +2659,7 @@ QGroupBox::title {
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="rsc/resources.qrc">
+            <iconset resource="../rsc/resources.qrc">
              <normaloff>:/TrayWeather/add.svg</normaloff>:/TrayWeather/add.svg</iconset>
            </property>
           </widget>
@@ -2706,7 +2706,7 @@ QGroupBox::title {
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="rsc/resources.qrc">
+            <iconset resource="../rsc/resources.qrc">
              <normaloff>:/TrayWeather/up.svg</normaloff>:/TrayWeather/up.svg</iconset>
            </property>
           </widget>
@@ -2720,7 +2720,7 @@ QGroupBox::title {
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="rsc/resources.qrc">
+            <iconset resource="../rsc/resources.qrc">
              <normaloff>:/TrayWeather/down.svg</normaloff>:/TrayWeather/down.svg</iconset>
            </property>
           </widget>
@@ -2734,7 +2734,7 @@ QGroupBox::title {
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="rsc/resources.qrc">
+            <iconset resource="../rsc/resources.qrc">
              <normaloff>:/TrayWeather/remove.svg</normaloff>:/TrayWeather/remove.svg</iconset>
            </property>
           </widget>
@@ -3141,7 +3141,8 @@ QGroupBox::title {
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="rsc/resources.qrc"/>
+  <include location="../rsc/resources.qrc"/>
+  <include location="../rsc/resources.qrc"/>
  </resources>
  <connections>
   <connection>

@@ -14,7 +14,7 @@
    <string>Search location coordinates</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="rsc/resources.qrc">
+   <iconset resource="../rsc/resources.qrc">
     <normaloff>:/TrayWeather/application.svg</normaloff>:/TrayWeather/application.svg</iconset>
   </property>
   <property name="modal">
@@ -136,7 +136,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="rsc/resources.qrc"/>
+  <include location="../rsc/resources.qrc"/>
  </resources>
  <connections>
   <connection>

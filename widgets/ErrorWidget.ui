@@ -47,7 +47,7 @@
         <string notr="true"/>
        </property>
        <property name="pixmap">
-        <pixmap resource="rsc/resources.qrc">:/TrayWeather/network_error.svg</pixmap>
+        <pixmap resource="../rsc/resources.qrc">:/TrayWeather/network_error.svg</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -95,7 +95,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="rsc/resources.qrc"/>
+  <include location="../rsc/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

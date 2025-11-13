@@ -20,7 +20,7 @@
    <string>About...</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="rsc/resources.qrc">
+   <iconset resource="../rsc/resources.qrc">
     <normaloff>:/TrayWeather/application.svg</normaloff>:/TrayWeather/application.svg</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -63,7 +63,7 @@
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="rsc/resources.qrc">:/TrayWeather/application.svg</pixmap>
+              <pixmap resource="../rsc/resources.qrc">:/TrayWeather/application.svg</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -215,7 +215,7 @@ QGroupBox::title {
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="rsc/resources.qrc">:/TrayWeather/Qt.ico</pixmap>
+                 <pixmap resource="../rsc/resources.qrc">:/TrayWeather/Qt.ico</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -298,7 +298,7 @@ Qt Framework</string>
                  <string/>
                 </property>
                 <property name="pixmap">
-                 <pixmap resource="rsc/resources.qrc">:/TrayWeather/Qt.ico</pixmap>
+                 <pixmap resource="../rsc/resources.qrc">:/TrayWeather/Qt.ico</pixmap>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
@@ -613,7 +613,7 @@ QGroupBox::title {
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="rsc/resources.qrc">:/TrayWeather/kofi_logo.png</pixmap>
+            <pixmap resource="../rsc/resources.qrc">:/TrayWeather/kofi_logo.png</pixmap>
            </property>
            <property name="scaledContents">
             <bool>true</bool>
@@ -808,7 +808,7 @@ QGroupBox::title {
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="rsc/resources.qrc"/>
+  <include location="../rsc/resources.qrc"/>
  </resources>
  <connections>
   <connection>
