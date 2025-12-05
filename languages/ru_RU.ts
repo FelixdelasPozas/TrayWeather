@@ -87,7 +87,7 @@
     <message>
         <location filename="../dialogs/AboutDialog.ui" line="570"/>
         <source>If you want to support this project you can do it on &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</source>
-        <translation>Если вы хотите поддержать этот проект, вы можете сделать это на &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</translation>
+        <translation>Если вы хотите поддержать этот проект, посетите &lt;a href=&quot;https://ko-fi.com/felixdelaspozas&quot;&gt;Ko-fi&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../dialogs/AboutDialog.ui" line="610"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2001"/>
         <source>Weather icon &amp; temperature icon</source>
-        <translation>Значки погоды и температуры</translation>
+        <translation>Значок погоды и значок температуры</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2040"/>
@@ -577,7 +577,7 @@
         <location filename="../dialogs/ConfigurationDialog.ui" line="2470"/>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2525"/>
         <source> px</source>
-        <translation> px</translation>
+        <translation> пкс</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2224"/>
@@ -744,12 +744,12 @@
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="1277"/>
         <source>millimeters/hour</source>
-        <translation>миллиметры/час</translation>
+        <translation>миллиметр/час</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="1282"/>
         <source>inches/hour</source>
-        <translation>дюймы/час</translation>
+        <translation>дюйм/час</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="1339"/>
@@ -912,7 +912,7 @@
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2571"/>
         <source>Sets the icons background as transparent.</source>
-        <translation>Устанавливает фон значков как прозрачный.</translation>
+        <translation>Делает фон значков прозрачным.</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2574"/>
@@ -969,7 +969,7 @@
         <location filename="../dialogs/ConfigurationDialog.ui" line="2793"/>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2803"/>
         <source>Language to use in the application interface.</source>
-        <translation>Язык интерфейса приложения.</translation>
+        <translation>Язык, используемый в интерфейсе приложения.</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2822"/>
@@ -986,7 +986,7 @@
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2847"/>
         <source>Time between update requests</source>
-        <translation>Интервал обновления погоды</translation>
+        <translation>Период обновления погоды</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2863"/>
@@ -1002,7 +1002,7 @@
         <location filename="../dialogs/ConfigurationDialog.ui" line="2329"/>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2339"/>
         <source>Stretches the font vertically to occupy all available space in the icon.</source>
-        <translation>Растягивает шрифт по вертикали, чтобы занять всё пространство значка.</translation>
+        <translation>Растягивает шрифт по вертикали для заполнения всего пространства значка.</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2621"/>
@@ -1111,7 +1111,7 @@
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="3043"/>
         <source>Keep alert icon until all alerts expire</source>
-        <translation>Отображать значок оповещений, пока они активны</translation>
+        <translation>Сохранять значок оповещений до их окончания</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="3116"/>
