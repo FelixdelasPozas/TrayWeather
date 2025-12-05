@@ -891,7 +891,6 @@
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2435"/>
-        <location filename="../dialogs/ConfigurationDialog.ui" line="2445"/>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2467"/>
         <source>Modifies the space between characters in the temperatura icon.</source>
         <translation>Ändert den Abstand zwischen den Zeichen im Temperatura-Symbol.</translation>
@@ -900,6 +899,11 @@
         <location filename="../dialogs/ConfigurationDialog.ui" line="2438"/>
         <source>Letter spacing</source>
         <translation>Buchstabenabstand</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/ConfigurationDialog.ui" line="2445"/>
+        <source>Modifies the space between characters in the temperature icon.</source>
+        <translation>Verändert den Abstand zwischen den Zeichen im Temperatursymbol.</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="2546"/>
@@ -2161,7 +2165,7 @@ Die Anwendung wird jetzt beendet.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="53"/>
-        <location filename="../TrayWeather.cpp" line="1209"/>
+        <location filename="../TrayWeather.cpp" line="1211"/>
         <source>Error: </source>
         <translation>Fehler: </translation>
     </message>
@@ -2175,30 +2179,30 @@ Die Anwendung wird jetzt beendet.</translation>
 <context>
     <name>TrayWeather</name>
     <message>
-        <location filename="../TrayWeather.cpp" line="1275"/>
+        <location filename="../TrayWeather.cpp" line="1277"/>
         <source>There is a new release of &lt;b&gt;Tray Weather&lt;/b&gt; at the &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;github website&lt;/a&gt;!</source>
         <translation>Eine neuere Version von &lt;b&gt;Tray Weather&lt;/b&gt; ist verfügbar auf der &lt;a href=&quot;https://github.com/FelixdelasPozas/TrayWeather/releases&quot;&gt;Github Webseite&lt;/a&gt;!</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1276"/>
+        <location filename="../TrayWeather.cpp" line="1278"/>
         <source>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; has been released!&lt;/center&gt;</source>
         <translation>&lt;center&gt;&lt;b&gt;Version %1&lt;/b&gt; wurde veröffentlicht!&lt;/center&gt;</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1277"/>
+        <location filename="../TrayWeather.cpp" line="1279"/>
         <source>Release notes:
 %1</source>
         <translation>Versionshinweis:
 %1</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1278"/>
+        <location filename="../TrayWeather.cpp" line="1280"/>
         <source>Tray Weather updated to version %1</source>
         <translation>Tray Weather wurde upgedatet auf Version %1</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="147"/>
-        <location filename="../TrayWeather.cpp" line="1379"/>
+        <location filename="../TrayWeather.cpp" line="1381"/>
         <source>No geolocation.</source>
         <translation>Keine Geolokalisierung.</translation>
     </message>
@@ -2316,99 +2320,99 @@ Die Anwendung beendet sich jetzt.</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="792"/>
-        <location filename="../TrayWeather.cpp" line="1218"/>
+        <location filename="../TrayWeather.cpp" line="1220"/>
         <source>Current weather...</source>
         <translation>Aktuelles Wetter...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="797"/>
-        <location filename="../TrayWeather.cpp" line="1219"/>
+        <location filename="../TrayWeather.cpp" line="1221"/>
         <source>Forecast...</source>
         <translation>Vorhersage...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="802"/>
-        <location filename="../TrayWeather.cpp" line="1220"/>
+        <location filename="../TrayWeather.cpp" line="1222"/>
         <source>Pollution...</source>
         <translation>Luftqualität...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="807"/>
-        <location filename="../TrayWeather.cpp" line="1221"/>
+        <location filename="../TrayWeather.cpp" line="1223"/>
         <source>UV...</source>
         <translation>UV...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="812"/>
-        <location filename="../TrayWeather.cpp" line="1222"/>
+        <location filename="../TrayWeather.cpp" line="1224"/>
         <source>Maps...</source>
         <translation>Karten...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="821"/>
-        <location filename="../TrayWeather.cpp" line="1223"/>
+        <location filename="../TrayWeather.cpp" line="1225"/>
         <source>Refresh...</source>
         <translation>Aktualisieren...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="828"/>
-        <location filename="../TrayWeather.cpp" line="1224"/>
-        <location filename="../TrayWeather.cpp" line="1458"/>
-        <location filename="../TrayWeather.cpp" line="1559"/>
+        <location filename="../TrayWeather.cpp" line="1226"/>
+        <location filename="../TrayWeather.cpp" line="1460"/>
+        <location filename="../TrayWeather.cpp" line="1561"/>
         <source>Last alert...</source>
         <translation>Letzte Warnung...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="837"/>
-        <location filename="../TrayWeather.cpp" line="1225"/>
+        <location filename="../TrayWeather.cpp" line="1227"/>
         <source>Configuration...</source>
         <translation>Konfiguration...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="844"/>
-        <location filename="../TrayWeather.cpp" line="1226"/>
+        <location filename="../TrayWeather.cpp" line="1228"/>
         <source>About...</source>
         <translation>Über...</translation>
     </message>
     <message>
         <location filename="../TrayWeather.cpp" line="849"/>
-        <location filename="../TrayWeather.cpp" line="1227"/>
+        <location filename="../TrayWeather.cpp" line="1229"/>
         <source>Quit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1042"/>
+        <location filename="../TrayWeather.cpp" line="1044"/>
         <source>TrayWeather has requested the weather data for your geographic location
 and it&apos;s still waiting for the response.</source>
         <translation>TrayWeather hat die Wetterdaten Ihres Standorts angefordert und wartet immer noch auf die Antwort des Servers.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1285"/>
+        <location filename="../TrayWeather.cpp" line="1287"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1306"/>
+        <location filename="../TrayWeather.cpp" line="1308"/>
         <source>Unable to locate valid asset in Github. Download aborted.</source>
         <translation>Gültiges Asset in GitHub nicht gefunden. Download abgebrochen.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1569"/>
+        <location filename="../TrayWeather.cpp" line="1571"/>
         <source>Error downloading the update file.</source>
         <translation>Fehler beim Herunterladen der Update-Datei.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1570"/>
+        <location filename="../TrayWeather.cpp" line="1572"/>
         <source>Downloaded file is empty.</source>
         <translation>Die heruntergeladene Datei ist leer.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1580"/>
+        <location filename="../TrayWeather.cpp" line="1582"/>
         <source>The update file &apos;%1&apos; has been downloaded to your Downloads folder.</source>
         <translation>Die Update-Datei „%1“ wurde in Ihren Download-Ordner heruntergeladen.</translation>
     </message>
     <message>
-        <location filename="../TrayWeather.cpp" line="1584"/>
+        <location filename="../TrayWeather.cpp" line="1586"/>
         <source>Unable to create file in the user Downloads folder.</source>
         <translation>Die Datei konnte nicht im Download-Ordner des Benutzers erstellt werden.</translation>
     </message>
