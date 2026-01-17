@@ -51,7 +51,7 @@
     <message>
         <location filename="../dialogs/AboutDialog.ui" line="387"/>
         <source>FlatIcon</source>
-        <translation></translation>
+        <translation>FlatIcon</translation>
     </message>
     <message>
         <location filename="../dialogs/AboutDialog.ui" line="439"/>
@@ -508,17 +508,17 @@
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="1839"/>
         <source>Select a border color automatically.</source>
-        <translation>Автоматический выбор цвета границы.</translation>
+        <translation>Выбирать цвет обводки автоматически.</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="1842"/>
         <source>Automatic border color</source>
-        <translation>Автоматический цвет границы</translation>
+        <translation>Автоматический цвет обводки</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="1855"/>
         <source>Custom temperature icon border color.</source>
-        <translation>Пользовательский цвет границы значка температуры.</translation>
+        <translation>Пользовательский цвет обводки значка температуры.</translation>
     </message>
     <message>
         <location filename="../dialogs/ConfigurationDialog.ui" line="1947"/>
@@ -1973,22 +1973,22 @@ The application will exit now.</source>
     <message>
         <location filename="../Utils.h" line="118"/>
         <source>Slight snow</source>
-        <translation>Небольшой дождь</translation>
+        <translation>Небольшой cнег</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="119"/>
         <source>Moderate snow</source>
-        <translation>Умеренный дождь</translation>
+        <translation>Умеренный снег</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="120"/>
         <source>Heavy snow</source>
-        <translation>Сильный дождь</translation>
+        <translation>Сильный снег</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="121"/>
         <source>Snow grains</source>
-        <translation>Снежные зерна</translation>
+        <translation>Снежные зёрна</translation>
     </message>
     <message>
         <location filename="../Utils.h" line="122"/>
