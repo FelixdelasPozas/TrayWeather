@@ -1,0 +1,53 @@
+name: Compilar TrayWeather 32-bits (x86)
+
+on:
+  workflow_dispatch: # Esto te permite activar la compilación con un solo botón manual
+
+jobs:
+  build-x86:
+    runs-on: windows-latest
+
+    steps:
+    - name: Clonar el repositorio de Felix
+      uses: actions/checkout@v4
+      with:
+        repository: 'FelixdelasPozas/TrayWeather' # Descarga el código directo de la fuente
+
+    - name: Configurar e instalar Python (para aqtinstall)
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Instalar aqtinstall (Gestor de Qt oficial)
+      run: |
+        python -m pip install --upgrade pip
+        pip install aqtinstall
+
+    - name: Instalar Qt5 para Windows 32-bits (MSVC 2019 x86)
+      run: |
+        # Descarga la versión mini de Qt 5.15.2 específica para compilar en 32 bits
+        aqt install-qt windows desktop 5.15.2 win32_msvc2019
+
+    - name: Configurar entorno de MSVC (Visual Studio Compiler x86)
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x86 # Fuerza al compilador de Microsoft a trabajar en modo 32-bits estricto
+
+    - name: Configurar el proyecto con CMake
+      run: |
+        cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="C:/hostedtoolcache/windows/Qt/5.15.2/msvc2019/"
+
+    - name: Compilar el Ejecutable (Release)
+      run: |
+        cmake --build build --config Release
+
+    - name: Recolectar DLLs de Qt5 de 32-bits (Despliegue Portable)
+      run: |
+        # Usa la herramienta oficial de Qt para meter las DLLs x86 en la carpeta del .exe
+        C:/hostedtoolcache/windows/Qt/5.15.2/msvc2019/bin/windeployqt.exe --release --no-translations build/Release/TrayWeather.exe
+
+    - name: Empaquetar y subir el Artefacto para la Nextbook
+      uses: actions/upload-artifact@v4
+      with:
+        name: TrayWeather-Windows-x86-Portable
+        path: build/Release/
